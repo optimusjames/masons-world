@@ -6,7 +6,7 @@
     <title>Spec Sheet - Design Experiment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&family=Fraunces:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Serif+4:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&family=Abril+Fatface&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,284 +14,917 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --font-heading: 'Fraunces', serif;
+            --font-body: 'Inter', sans-serif;
+            --bg: #0a0a0a;
+            --fg: #f5f5f5;
+            --fg-muted: rgba(245, 245, 245, 0.5);
+            --fg-subtle: rgba(245, 245, 245, 0.25);
+            --accent: #f5f5f5;
+        }
+
         body {
-            font-family: 'Work Sans', sans-serif;
-            background-color: #000;
-            color: #fff;
-            padding: 60px 80px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            line-height: 1.6;
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--fg);
+            line-height: 1.5;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            font-size: 15px;
+            font-weight: 400;
         }
 
         body.light-mode {
-            background-color: #fff;
-            color: #000;
+            --bg: #fafafa;
+            --fg: #0a0a0a;
+            --fg-muted: rgba(10, 10, 10, 0.5);
+            --fg-subtle: rgba(10, 10, 10, 0.15);
+            --accent: #0a0a0a;
         }
 
-        .toggle-button {
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 80px 120px;
+        }
+
+        /* Controls - Text-based, minimal */
+        .controls {
             position: fixed;
-            top: 30px;
-            right: 80px;
-            background: transparent;
-            border: 2px solid currentColor;
-            color: inherit;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-button:hover {
-            background: currentColor;
-            color: var(--inverse-color);
-        }
-
-        body {
-            --inverse-color: #fff;
-        }
-
-        body.light-mode {
-            --inverse-color: #000;
-        }
-
-        header {
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 80px;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 32px;
+            padding: 24px 80px;
+            z-index: 100;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--fg-muted);
+            cursor: pointer;
+            padding: 8px 0;
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .control-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--fg);
+            transition: width 0.3s ease;
+        }
+
+        .control-btn:hover {
+            color: var(--fg);
+        }
+
+        .control-btn:hover::after {
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 100px;
+            padding-top: 40px;
+        }
+
+        .masthead {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
         .logo {
-            font-size: 48px;
-            font-weight: 900;
-            letter-spacing: -2px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
         }
 
-        .quote {
-            max-width: 400px;
-            font-size: 14px;
+        .tagline {
+            font-family: var(--font-heading);
+            font-size: 48px;
             font-weight: 400;
-            line-height: 1.8;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 16px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--fg-muted);
+            letter-spacing: 0.05em;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--fg-subtle);
+        }
+
+        /* Type Specimen Hero */
+        .type-hero {
+            margin: 80px 0 100px;
+        }
+
+        .type-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(80px, 12vw, 180px);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+        }
+
+        .type-hero h1 .light {
+            font-weight: 300;
+            opacity: 0.6;
+        }
+
+        .type-hero h1 .italic {
             font-style: italic;
         }
 
+        /* Size Scale */
+        .size-scale {
+            margin: 100px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .size-scale-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            align-items: baseline;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--fg-subtle);
+        }
+
+        .size-label {
+            font-size: 11px;
+            color: var(--fg-muted);
+            letter-spacing: 0.05em;
+            font-family: var(--font-body);
+        }
+
+        .size-sample {
+            font-family: var(--font-heading);
+            line-height: 1.1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .size-72 { font-size: 72px; letter-spacing: -0.02em; }
+        .size-60 { font-size: 60px; letter-spacing: -0.02em; }
+        .size-48 { font-size: 48px; letter-spacing: -0.01em; }
+        .size-36 { font-size: 36px; letter-spacing: -0.01em; }
+        .size-24 { font-size: 24px; }
+        .size-18 { font-size: 18px; }
+        .size-14 { font-size: 14px; }
+
+        /* Weight Ramp */
+        .weight-ramp {
+            margin: 100px 0;
+        }
+
+        .weight-ramp-title {
+            font-size: 11px;
+            color: var(--fg-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .weight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px 40px;
+        }
+
+        .weight-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .weight-sample {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            line-height: 1.1;
+        }
+
+        .weight-name {
+            font-size: 11px;
+            color: var(--fg-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .w-300 { font-weight: 300; }
+        .w-400 { font-weight: 400; }
+        .w-500 { font-weight: 500; }
+        .w-600 { font-weight: 600; }
+        .w-700 { font-weight: 700; }
+        .w-800 { font-weight: 800; }
+        .w-900 { font-weight: 900; }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: var(--fg-subtle);
+            margin: 80px 0;
+        }
+
+        /* Character Set */
+        .charset {
+            margin: 100px 0;
+        }
+
+        .charset-title {
+            font-size: 11px;
+            color: var(--fg-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .charset-display {
+            font-family: var(--font-heading);
+            font-size: 42px;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
+            word-break: break-all;
+        }
+
+        .charset-lower {
+            color: var(--fg-muted);
+        }
+
+        .charset-numbers {
+            margin-top: 24px;
+            font-size: 56px;
+            letter-spacing: 0.05em;
+        }
+
+        .charset-symbols {
+            margin-top: 24px;
+            font-size: 36px;
+            letter-spacing: 0.08em;
+            color: var(--fg-muted);
+        }
+
+        /* Two Column Grid */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin: 100px 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            color: var(--fg-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+
+        .pull-quote .drop-cap {
+            float: left;
+            font-size: 96px;
+            line-height: 0.75;
+            margin-right: 12px;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .attribution {
+            margin-top: 24px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: var(--fg-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* Body Text */
+        .body-text p {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.75;
+            margin-bottom: 20px;
+            color: var(--fg);
+            opacity: 0.85;
+        }
+
+        .body-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Numeric Specimen */
+        .numbers {
+            margin: 100px 0;
+        }
+
+        .numbers-display {
+            font-family: var(--font-heading);
+            font-size: clamp(60px, 10vw, 140px);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .numbers-display span {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .numbers-display span:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 80px;
-            margin-bottom: 60px;
+            margin: 100px 0;
         }
 
         .service-section h2 {
-            font-size: 42px;
-            font-weight: 900;
-            margin-bottom: 30px;
-        }
-
-        .service-columns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
         }
 
         .service-list {
             list-style: none;
+            columns: 2;
+            column-gap: 40px;
         }
 
         .service-list li {
             font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 8px;
-            opacity: 0.8;
+            margin-bottom: 10px;
+            color: var(--fg);
+            opacity: 0.7;
+            break-inside: avoid;
+            transition: opacity 0.2s ease;
         }
 
-        .divider {
-            height: 2px;
-            background-color: currentColor;
-            margin: 60px 0;
+        .service-list li:hover {
+            opacity: 1;
         }
 
-        .hero {
-            margin: 80px 0;
+        /* Pairings Overlay */
+        .pairings-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 200;
+            overflow-y: auto;
         }
 
-        .hero h1 {
-            font-size: 120px;
-            font-weight: 900;
-            line-height: 1;
-            letter-spacing: -4px;
+        .pairings-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .hero h1 .ampersand {
-            font-weight: 400;
+        .pairings-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .hero h1 .registered {
-            font-size: 40px;
-            vertical-align: super;
+        .pairings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 80px;
+            border-bottom: 1px solid var(--fg-subtle);
         }
 
-        .content-grid {
+        .pairings-title {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--fg-muted);
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 8px 0;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--fg);
+        }
+
+        .pairings-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 80px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0;
         }
 
-        .content-section h2 {
-            font-size: 42px;
-            font-weight: 900;
-            margin-bottom: 30px;
+        .pairing-card {
+            padding: 48px 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            background: transparent;
+            text-align: left;
+            border: none;
         }
 
-        .content-section p {
-            font-size: 14px;
+        .pairing-card:hover {
+            transform: translateY(-4px);
+            filter: brightness(1.1);
+        }
+
+        /* Color treatments for each pairing */
+        .pairing-card[data-index="0"] {
+            background: linear-gradient(135deg, #2d1b4e 0%, #4a2c7a 100%);
+            color: #e8d4ff;
+        }
+        .pairing-card[data-index="1"] {
+            background: #0a0a0a;
+            color: #ff6b6b;
+        }
+        .pairing-card[data-index="2"] {
+            background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
+            color: #a8d4ff;
+        }
+        .pairing-card[data-index="3"] {
+            background: #00ff8f;
+            color: #0a0a0a;
+        }
+        .pairing-card[data-index="4"] {
+            background: linear-gradient(135deg, #5c1a1a 0%, #8a2d2d 100%);
+            color: #ffb8b8;
+        }
+        .pairing-card[data-index="5"] {
+            background: #ffd43b;
+            color: #0a0a0a;
+        }
+
+        .pairing-specimen {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .pairing-heading-sample {
+            font-size: 100px;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+        }
+
+        .pairing-alphabet {
+            font-size: 12px;
             line-height: 1.8;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .awards-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px 40px;
-        }
-
-        .awards-list li {
-            font-size: 13px;
-            font-weight: 400;
+            letter-spacing: 0.5px;
             opacity: 0.8;
         }
 
+        .pairing-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: auto;
+            padding-top: 24px;
+        }
+
+        .pairing-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            opacity: 0.6;
+        }
+
+        .pairing-names {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 120px;
+            padding-top: 40px;
+            border-top: 1px solid var(--fg-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .footer-left {
+            font-size: 11px;
+            color: var(--fg-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-right {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Responsive */
         @media (max-width: 1024px) {
-            body {
-                padding: 40px;
+            .container {
+                padding: 40px 40px 80px;
             }
 
-            .toggle-button {
-                right: 40px;
+            .controls {
+                padding: 20px 40px;
             }
 
-            .services-grid,
-            .content-grid {
+            header,
+            .two-col,
+            .services-grid {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 48px;
             }
 
-            .hero h1 {
-                font-size: 80px;
+            .type-hero h1 {
+                font-size: clamp(56px, 14vw, 120px);
+            }
+
+            .pairings-header {
+                padding: 20px 40px;
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 60px;
+            .controls {
+                padding: 16px 24px;
+                gap: 20px;
             }
 
-            .service-columns,
-            .awards-list {
+            .container {
+                padding: 32px 24px 60px;
+            }
+
+            .service-list {
+                columns: 1;
+            }
+
+            .charset-display {
+                font-size: 28px;
+            }
+
+            .charset-numbers {
+                font-size: 36px;
+            }
+
+            .pairings-header {
+                padding: 16px 24px;
+            }
+
+            .pairings-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .pairing-card {
+                padding: 36px 24px;
+            }
+
+            .pairing-heading-sample {
+                font-size: 72px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <button class="toggle-button" onclick="toggleMode()">Toggle Mode</button>
+    <div class="controls">
+        <button class="control-btn" id="mode-toggle" onclick="toggleMode()">
+            <span class="mode-label">Light</span>
+        </button>
+        <button class="control-btn" onclick="togglePairings(true)">
+            Type Pairings
+        </button>
+    </div>
 
-    <header>
-        <div class="logo">Ba∴</div>
-        <div class="quote">
-            "We shall not cease from exploration and at the end of our exploring will be to arrive where we started and know the place for the first time."
-        </div>
-    </header>
-
-    <div class="services-grid">
-        <div class="service-section">
-            <h2>Websites</h2>
-            <div class="service-columns">
-                <ul class="service-list">
-                    <li>Engagement</li>
-                    <li>Immersive</li>
-                    <li>Optimized</li>
-                    <li>Functional</li>
-                </ul>
-                <ul class="service-list">
-                    <li>Web Design</li>
-                    <li>Development</li>
-                    <li>The Live Data</li>
-                    <li>The Mobile Era</li>
-                </ul>
+    <div class="pairings-overlay" id="pairings-overlay">
+        <div class="pairings-container">
+            <div class="pairings-header">
+                <div class="pairings-title">Type Pairings</div>
+                <button class="close-btn" onclick="togglePairings(false)">Close</button>
             </div>
-        </div>
-
-        <div class="service-section">
-            <h2>Identity</h2>
-            <div class="service-columns">
-                <ul class="service-list">
-                    <li>Designation</li>
-                    <li>Symbolism</li>
-                    <li>Your Age</li>
-                    <li>Sonic Revelation</li>
-                </ul>
-                <ul class="service-list">
-                    <li>Yellow City - Alive</li>
-                    <li>Planet Mobility</li>
-                    <li>Vortex</li>
-                    <li>F.M. Urban_Uptown City</li>
-                </ul>
-            </div>
+            <div class="pairings-grid" id="pairings-grid"></div>
         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="container">
+        <header>
+            <div class="masthead">
+                <div class="logo">Type Specimen</div>
+                <h1 class="tagline">The quick brown fox jumps over the lazy dog</h1>
+            </div>
+            <div class="meta-info">
+                <div class="meta-row">
+                    <span>Classification</span>
+                    <span id="classification">Serif / Sans</span>
+                </div>
+                <div class="meta-row">
+                    <span>Heading</span>
+                    <span id="heading-name">Fraunces</span>
+                </div>
+                <div class="meta-row">
+                    <span>Body</span>
+                    <span id="body-name">Inter</span>
+                </div>
+                <div class="meta-row">
+                    <span>Designed</span>
+                    <span>2020</span>
+                </div>
+            </div>
+        </header>
 
-    <div class="hero">
-        <h1>
-            Elements<br>
-            <span class="ampersand">&</span> Principles<span class="registered">®</span>
-        </h1>
-    </div>
+        <section class="type-hero">
+            <h1>Aa<span class="light">Bb</span><span class="italic">Cc</span></h1>
+        </section>
 
-    <div class="divider"></div>
+        <section class="size-scale">
+            <div class="size-scale-item">
+                <span class="size-label">72</span>
+                <span class="size-sample size-72">Hamburgefons</span>
+            </div>
+            <div class="size-scale-item">
+                <span class="size-label">60</span>
+                <span class="size-sample size-60">Hamburgefons</span>
+            </div>
+            <div class="size-scale-item">
+                <span class="size-label">48</span>
+                <span class="size-sample size-48">Hamburgefonstiv</span>
+            </div>
+            <div class="size-scale-item">
+                <span class="size-label">36</span>
+                <span class="size-sample size-36">Hamburgefonstiv</span>
+            </div>
+            <div class="size-scale-item">
+                <span class="size-label">24</span>
+                <span class="size-sample size-24">Hamburgefonstiv</span>
+            </div>
+            <div class="size-scale-item">
+                <span class="size-label">18</span>
+                <span class="size-sample size-18">The quick brown fox jumps over the lazy dog</span>
+            </div>
+            <div class="size-scale-item">
+                <span class="size-label">14</span>
+                <span class="size-sample size-14">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.</span>
+            </div>
+        </section>
 
-    <div class="content-grid">
-        <div class="content-section">
-            <h2>About</h2>
-            <p>We are a creative team that combines technology design, world-class content strategies in a foundation. Like in Brighton, UK and Austin in Nashville we think differently about the world and how things are done.</p>
-            <p>With an approach that combines both brand and digital strategy with advanced knowledge and capability in design strategy, we work with our most significant international brands and leaders. Every project is unique, requiring our very own distinct marketing processes used to move clients towards their distinctive goals, understood by you and delivered on by us.</p>
-            <p>After graduating from RCA in 2001 with a master in Graphic Design which advanced my approach to design, the Team decided enough to work with the level of work that pushed boundaries and changed the status quo. In 2001 that foundation which created an idea brought together senior design which advanced Design thinking. The vision was a design team which made user-centric design making easy without the burden of bureaucracy and brought from the Berg Paperwork taught by you, which things will be done.</p>
-        </div>
+        <div class="divider"></div>
 
-        <div class="content-section">
-            <h2>Awards</h2>
-            <ul class="awards-list">
-                <li>FWA Mobile Daily AIGA</li>
-                <li>FWA Mobile of the Month</li>
-                <li>AIGA CASE Award</li>
-                <li>FWA Site of the Month</li>
-                <li>AIGA CASE Award</li>
-                <li>American Graphic Design Award</li>
-                <li>American Graphic Design Award</li>
-                <li>AIF Nashville Gold AIGA</li>
-                <li>AIF Nashville Gold AIGA</li>
-                <li>American Graphic Design Award</li>
-                <li>AIF Nashville Gold Award</li>
-                <li>American Graphic Design Award</li>
-                <li>AIF Nashville Gold AIGA</li>
-                <li>American Graphic Design Award</li>
-                <li>AIF Nashville (Site of Silver)</li>
-                <li>American Graphic Design Award</li>
-            </ul>
-        </div>
+        <section class="weight-ramp">
+            <div class="weight-ramp-title">Weight Ramp</div>
+            <div class="weight-grid">
+                <div class="weight-item">
+                    <span class="weight-sample w-300">Sphinx</span>
+                    <span class="weight-name">Light 300</span>
+                </div>
+                <div class="weight-item">
+                    <span class="weight-sample w-400">Sphinx</span>
+                    <span class="weight-name">Regular 400</span>
+                </div>
+                <div class="weight-item">
+                    <span class="weight-sample w-500">Sphinx</span>
+                    <span class="weight-name">Medium 500</span>
+                </div>
+                <div class="weight-item">
+                    <span class="weight-sample w-600">Sphinx</span>
+                    <span class="weight-name">Semibold 600</span>
+                </div>
+                <div class="weight-item">
+                    <span class="weight-sample w-700">Sphinx</span>
+                    <span class="weight-name">Bold 700</span>
+                </div>
+                <div class="weight-item">
+                    <span class="weight-sample w-800">Sphinx</span>
+                    <span class="weight-name">Extrabold 800</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="charset">
+            <div class="charset-title">Character Set</div>
+            <div class="charset-display">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                <span class="charset-lower">abcdefghijklmnopqrstuvwxyz</span>
+            </div>
+            <div class="charset-display charset-numbers">
+                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+            </div>
+            <div class="charset-display charset-symbols">
+                !@#$%^&amp;*(){}[]|:;"'&lt;&gt;,.?/
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="numbers">
+            <div class="charset-title">Numerals</div>
+            <div class="numbers-display">
+                <span>1</span><span>9</span><span>7</span><span>3</span>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="two-col">
+            <div>
+                <div class="section-label">Pull Quote</div>
+                <blockquote class="pull-quote">
+                    <span class="drop-cap">W</span>e shall not cease from exploration, and the end of all our exploring will be to arrive where we started and know the place for the first time.
+                </blockquote>
+                <p class="attribution">T.S. Eliot, Four Quartets</p>
+            </div>
+            <div>
+                <div class="section-label">Body Text</div>
+                <div class="body-text">
+                    <p>Typography is the art and technique of arranging type to make written language legible, readable and appealing when displayed. The arrangement of type involves selecting typefaces, point sizes, line lengths, line-spacing, and letter-spacing.</p>
+                    <p>The term typography is also applied to the style, arrangement, and appearance of the letters, numbers, and symbols created by the process. Type design is a closely related craft, sometimes considered part of typography; most typographers do not design typefaces.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="services-grid">
+            <div class="service-section">
+                <h2>Websites</h2>
+                <ul class="service-list">
+                    <li>User Experience Design</li>
+                    <li>Responsive Development</li>
+                    <li>Content Strategy</li>
+                    <li>Performance Optimization</li>
+                    <li>Accessibility Compliance</li>
+                    <li>SEO Implementation</li>
+                    <li>CMS Integration</li>
+                    <li>E-commerce Solutions</li>
+                </ul>
+            </div>
+
+            <div class="service-section">
+                <h2>Identity</h2>
+                <ul class="service-list">
+                    <li>Brand Strategy</li>
+                    <li>Visual Identity Systems</li>
+                    <li>Logo Design</li>
+                    <li>Typography Selection</li>
+                    <li>Color Systems</li>
+                    <li>Brand Guidelines</li>
+                    <li>Print Collateral</li>
+                    <li>Environmental Graphics</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-left">
+                Design Experiment / 2026
+            </div>
+            <div class="footer-right" id="current-pairing">
+                Fraunces + Inter
+            </div>
+        </footer>
     </div>
 
     <script>
+        const pairings = [
+            { name: 'Fraunces + Inter', heading: 'Fraunces', body: 'Inter', classification: 'Serif / Sans' },
+            { name: 'DM Serif Display + Plus Jakarta Sans', heading: 'DM Serif Display', body: 'Plus Jakarta Sans', classification: 'Serif / Sans' },
+            { name: 'Playfair Display + Source Sans 3', heading: 'Playfair Display', body: 'Source Sans 3', classification: 'Serif / Sans' },
+            { name: 'Space Grotesk + Source Serif 4', heading: 'Space Grotesk', body: 'Source Serif 4', classification: 'Sans / Serif' },
+            { name: 'Sora + Spectral', heading: 'Sora', body: 'Spectral', classification: 'Sans / Serif' },
+            { name: 'Abril Fatface + Work Sans', heading: 'Abril Fatface', body: 'Work Sans', classification: 'Display / Sans' }
+        ];
+
+        const root = document.documentElement;
+        const overlay = document.getElementById('pairings-overlay');
+        const grid = document.getElementById('pairings-grid');
+        const modeToggle = document.getElementById('mode-toggle');
+        const modeLabel = modeToggle.querySelector('.mode-label');
+
+        function renderPairings() {
+            grid.innerHTML = '';
+            pairings.forEach((pair, index) => {
+                const card = document.createElement('button');
+                card.className = 'pairing-card';
+                card.type = 'button';
+                card.dataset.index = index;
+                card.innerHTML = `
+                    <div class="pairing-specimen">
+                        <div class="pairing-heading-sample" style="font-family: '${pair.heading}', serif;">Aa</div>
+                        <div class="pairing-alphabet" style="font-family: '${pair.body}', sans-serif;">
+                            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                            abcdefghijklmnopqrstuvwxyz<br>
+                            1234567890!?()[]{}&$#%
+                        </div>
+                    </div>
+                    <div class="pairing-meta">
+                        <div class="pairing-label">${pair.classification}</div>
+                        <div class="pairing-names">${pair.name}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => applyPairing(pair));
+                grid.appendChild(card);
+            });
+        }
+
+        function applyPairing(pair) {
+            root.style.setProperty('--font-heading', `'${pair.heading}', serif`);
+            root.style.setProperty('--font-body', `'${pair.body}', sans-serif`);
+            document.getElementById('heading-name').textContent = pair.heading;
+            document.getElementById('body-name').textContent = pair.body;
+            document.getElementById('classification').textContent = pair.classification;
+            document.getElementById('current-pairing').textContent = pair.name;
+            togglePairings(false);
+        }
+
+        function togglePairings(open) {
+            overlay.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+
         function toggleMode() {
             document.body.classList.toggle('light-mode');
+            updateModeLabel();
         }
+
+        function updateModeLabel() {
+            const isLight = document.body.classList.contains('light-mode');
+            modeLabel.textContent = isLight ? 'Dark' : 'Light';
+        }
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                togglePairings(false);
+            }
+        });
+
+        renderPairings();
+        updateModeLabel();
     </script>
 </body>
 </html>

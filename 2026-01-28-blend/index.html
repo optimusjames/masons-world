@@ -1389,10 +1389,7 @@ This creates a cosmic space atmosphere.`
                 copyBtn.textContent = 'Copied!';
                 copyBtn.classList.add('copied');
 
-                setTimeout(() => {
-                    copyBtn.textContent = 'Copy Prompt';
-                    copyBtn.classList.remove('copied');
-                }, 2000);
+                setTimeout(hideModal, 1500);
             } catch (err) {
                 console.error('Failed to copy:', err);
             }

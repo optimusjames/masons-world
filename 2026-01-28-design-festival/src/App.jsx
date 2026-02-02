@@ -26,9 +26,9 @@ function App() {
           <CalendarWidget />
         </div>
 
-        {/* Card 4: Launch Schedule */}
+        {/* Card 4: Schedule */}
         <div className="card card-orange tall">
-          <h1>Launch<br/>Schedule</h1>
+          <h1>Schedule</h1>
         </div>
 
         {/* Card 5: Widget Dashboard */}

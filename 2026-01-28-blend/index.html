@@ -358,6 +358,137 @@
             }
         }
 
+        /* Recipe Modal Overlay */
+        .recipe-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(8, 8, 12, 0.85);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+        }
+
+        .recipe-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Recipe Modal */
+        .recipe-modal {
+            position: fixed;
+            z-index: 1000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.96);
+            background: #0c0c14;
+            border: 1px solid #1c1c28;
+            border-radius: 12px;
+            width: 480px;
+            max-width: calc(100vw - 48px);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .recipe-modal.visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: auto;
+        }
+
+        .recipe-modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #1c1c28;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            color: #f0f0f0;
+        }
+
+        .recipe-modal-swatches {
+            padding: 16px 24px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #1c1c28;
+        }
+
+        .recipe-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .recipe-modal-prompt {
+            padding: 20px 24px;
+            font-size: 13px;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+            color: #a0a0b0;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .recipe-modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #1c1c28;
+            display: flex;
+            justify-content: center;
+        }
+
+        .recipe-copy-btn {
+            background: transparent;
+            border: 1px solid #3d3d5c;
+            color: #f0f0f0;
+            padding: 10px 28px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .recipe-copy-btn:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: #6366f1;
+        }
+
+        .recipe-copy-btn.copied {
+            background: rgba(20, 184, 166, 0.15);
+            border-color: #14b8a6;
+            color: #14b8a6;
+        }
+
+        /* Recipe indicator icon */
+        .recipe-icon {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            width: 18px;
+            height: 18px;
+            pointer-events: none;
+        }
+
+        .recipe-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.4);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Clickable cards */
+        .card.has-recipe {
+            cursor: pointer;
+        }
+
+        .card.has-recipe:hover .recipe-icon svg {
+            stroke: rgba(255, 255, 255, 0.7);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .grid {
@@ -876,7 +1007,439 @@
         </div>
     </main>
 
+    <!-- Recipe Modal -->
+    <div class="recipe-overlay" id="recipeOverlay"></div>
+    <div class="recipe-modal" id="recipeModal">
+        <div class="recipe-modal-header" id="modalHeader"></div>
+        <div class="recipe-modal-swatches" id="modalSwatches"></div>
+        <div class="recipe-modal-prompt" id="modalPrompt"></div>
+        <div class="recipe-modal-footer">
+            <button class="recipe-copy-btn" id="copyBtn">Copy Prompt</button>
+        </div>
+    </div>
+
     <script>
+        // Recipe data store
+        const recipes = {
+            'g-01': {
+                name: 'Depth',
+                colors: ['#0d4f4f', '#1a2744'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: dark teal (#0d4f4f)
+- End color: deep navy (#1a2744)
+This creates a moody, oceanic depth effect.`
+            },
+            'g-02': {
+                name: 'Dusk',
+                colors: ['#3d2d5c', '#0f1729'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: muted purple (#3d2d5c)
+- End color: dark navy (#0f1729)
+This creates a twilight dusk atmosphere.`
+            },
+            'g-03': {
+                name: 'Signal',
+                colors: ['#14b8a6', '#6366f1'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: teal (#14b8a6)
+- End color: indigo (#6366f1)
+This creates a vibrant, energetic signal effect.`
+            },
+            'g-04': {
+                name: 'Ember',
+                colors: ['#c97b63', '#4a1d34'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: warm coral (#c97b63)
+- End color: deep burgundy (#4a1d34)
+This creates a warm, glowing ember effect.`
+            },
+            'g-05': {
+                name: 'Forest',
+                colors: ['#065f46', '#0a0a0a'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: deep forest green (#065f46)
+- End color: near-black (#0a0a0a)
+This creates a dark, mysterious forest atmosphere.`
+            },
+            'g-06': {
+                name: 'Haze',
+                colors: ['#8b7fc7', '#0c1222'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: soft lavender (#8b7fc7)
+- End color: deep blue-black (#0c1222)
+This creates a dreamy, hazy atmosphere.`
+            },
+            'g-07': {
+                name: 'Violet',
+                colors: ['#7c3aed', '#4f46e5'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: vibrant violet (#7c3aed)
+- End color: indigo (#4f46e5)
+This creates a rich, royal purple effect.`
+            },
+            'g-08': {
+                name: 'Cyan Pulse',
+                colors: ['#06b6d4', '#10b981'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: cyan (#06b6d4)
+- End color: emerald (#10b981)
+This creates a cool, refreshing pulse effect.`
+            },
+            'g-09': {
+                name: 'Solar Flare',
+                colors: ['#f97316', '#ec4899'],
+                prompt: `Create a card with a linear gradient background:
+- Angle: 135 degrees (top-left to bottom-right)
+- Start color: orange (#f97316)
+- End color: pink (#ec4899)
+This creates a warm, energetic solar flare effect.`
+            },
+            'm-01': {
+                name: 'Mesh',
+                colors: ['#14b8a6', '#6366f1', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="30" on overlapping ellipses
+- Ellipse colors:
+  - Teal (#14b8a6) at 70% opacity
+  - Indigo (#6366f1) at 60% opacity
+- Position ellipses offset from each other horizontally
+This creates a soft, bioluminescent glow effect.`
+            },
+            'm-02': {
+                name: 'Mesh',
+                colors: ['#8b7fc7', '#14b8a6', '#6366f1', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="50" on overlapping ellipses
+- Ellipse colors:
+  - Soft lavender (#8b7fc7) at 60% opacity
+  - Teal (#14b8a6) at 50% opacity
+  - Indigo (#6366f1) at 40% opacity
+- Position ellipses in a triangular arrangement
+This creates a multi-tonal, atmospheric depth.`
+            },
+            'm-03': {
+                name: 'Mesh',
+                colors: ['#065f46', '#10b981', '#14b8a6', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="35" on overlapping ellipses
+- Ellipse colors:
+  - Deep forest green (#065f46) at 80% opacity
+  - Emerald (#10b981) at 50% opacity
+  - Teal (#14b8a6) at 40% opacity
+- Arrange horizontally across the card
+This creates a lush, forest canopy effect.`
+            },
+            'm-04': {
+                name: 'Coral Reef',
+                colors: ['#f97316', '#0ea5e9', '#ec4899', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="50" on overlapping ellipses
+- Ellipse colors:
+  - Warm orange (#f97316) at 60% opacity
+  - Electric cyan (#0ea5e9) at 50% opacity
+  - Hot pink (#ec4899) at 40% opacity
+- Offset ellipse centers for an organic feel
+This produces a vibrant, coral-reef-like glow effect.`
+            },
+            'm-05': {
+                name: 'Rose Quartz',
+                colors: ['#fb7185', '#a855f7', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="30" on overlapping ellipses
+- Ellipse colors:
+  - Soft rose (#fb7185) at 70% opacity
+  - Purple (#a855f7) at 50% opacity
+- Position diagonally from top-left to bottom-right
+This creates a soft, romantic rose quartz effect.`
+            },
+            'm-06': {
+                name: 'Amber Dusk',
+                colors: ['#fbbf24', '#6366f1', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="30" on overlapping ellipses
+- Ellipse colors:
+  - Golden amber (#fbbf24) at 60% opacity
+  - Indigo (#6366f1) at 50% opacity
+- Position ellipses asymmetrically - one lower-left, one upper-right
+This creates a warm, dusky atmosphere with cool undertones.`
+            },
+            'm-07': {
+                name: 'Ocean Deep',
+                colors: ['#0284c7', '#06b6d4', '#8b5cf6', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="35" on overlapping ellipses
+- Ellipse colors:
+  - Deep blue (#0284c7) at 70% opacity
+  - Cyan (#06b6d4) at 50% opacity
+  - Violet (#8b5cf6) at 40% opacity
+- Arrange horizontally like ocean waves
+This creates a deep ocean atmosphere.`
+            },
+            'm-08': {
+                name: 'Aurora',
+                colors: ['#22c55e', '#8b5cf6', '#06b6d4', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="40" on overlapping ellipses
+- Ellipse colors:
+  - Green (#22c55e) at 60% opacity
+  - Violet (#8b5cf6) at 50% opacity
+  - Cyan (#06b6d4) at 50% opacity
+- Stack vertically for a tall composition
+This creates an aurora borealis effect.`
+            },
+            'm-09': {
+                name: 'Sunset Strip',
+                colors: ['#f97316', '#ec4899', '#a855f7', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="30" on overlapping ellipses
+- Ellipse colors:
+  - Orange (#f97316) at 70% opacity
+  - Pink (#ec4899) at 50% opacity
+  - Purple (#a855f7) at 50% opacity
+- Arrange horizontally like a sunset horizon
+This creates a warm sunset strip effect.`
+            },
+            'm-10': {
+                name: 'Nebula',
+                colors: ['#a855f7', '#ec4899', '#6366f1', '#14b8a6', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="55" on overlapping ellipses
+- Ellipse colors:
+  - Purple (#a855f7) at 60% opacity
+  - Pink (#ec4899) at 50% opacity
+  - Indigo (#6366f1) at 50% opacity
+  - Teal (#14b8a6) at 30% opacity (accent)
+- Create a complex arrangement with multiple overlaps
+This produces a cosmic nebula effect.`
+            },
+            'm-11': {
+                name: 'Mint Frost',
+                colors: ['#2dd4bf', '#64748b', '#14b8a6', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="45" on overlapping ellipses
+- Ellipse colors:
+  - Mint (#2dd4bf) at 60% opacity
+  - Slate gray (#64748b) at 40% opacity
+  - Teal (#14b8a6) at 50% opacity
+- Stack vertically for a tall composition
+This creates a cool, frosted mint atmosphere.`
+            },
+            'm-12': {
+                name: 'Jungle',
+                colors: ['#059669', '#14b8a6', '#22c55e', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="35" on overlapping ellipses
+- Ellipse colors:
+  - Emerald (#059669) at 70% opacity
+  - Teal (#14b8a6) at 50% opacity
+  - Green (#22c55e) at 40% opacity
+- Arrange horizontally for a wide composition
+This creates a lush jungle canopy effect.`
+            },
+            'm-13': {
+                name: 'Storm',
+                colors: ['#475569', '#6366f1', '#7c3aed', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="30" on overlapping ellipses
+- Ellipse colors:
+  - Slate (#475569) at 70% opacity
+  - Indigo (#6366f1) at 40% opacity
+  - Violet (#7c3aed) at 30% opacity
+- Create overlapping layers
+This creates a moody storm cloud atmosphere.`
+            },
+            'm-14': {
+                name: 'Dawn',
+                colors: ['#fda4af', '#fcd34d', '#fb923c', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="40" on overlapping ellipses
+- Ellipse colors:
+  - Rose pink (#fda4af) at 50% opacity
+  - Amber yellow (#fcd34d) at 40% opacity
+  - Orange (#fb923c) at 50% opacity
+- Stack vertically for a tall sunrise effect
+This creates a soft dawn atmosphere.`
+            },
+            'm-15': {
+                name: 'Infrared',
+                colors: ['#ef4444', '#f97316', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="30" on overlapping ellipses
+- Ellipse colors:
+  - Red (#ef4444) at 60% opacity
+  - Orange (#f97316) at 50% opacity
+- Position with slight overlap
+This creates a warm infrared thermal effect.`
+            },
+            'm-16': {
+                name: 'Sapphire',
+                colors: ['#2563eb', '#7c3aed', '#06b6d4', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="35" on overlapping ellipses
+- Ellipse colors:
+  - Blue (#2563eb) at 70% opacity
+  - Violet (#7c3aed) at 50% opacity
+  - Cyan (#06b6d4) at 40% opacity
+- Arrange horizontally for a wide composition
+This creates a rich sapphire gemstone effect.`
+            },
+            'm-17': {
+                name: 'Blossom',
+                colors: ['#f472b6', '#c084fc', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="28" on overlapping ellipses
+- Ellipse colors:
+  - Pink (#f472b6) at 60% opacity
+  - Light purple (#c084fc) at 50% opacity
+- Position diagonally
+This creates a soft cherry blossom effect.`
+            },
+            'm-18': {
+                name: 'Cosmic',
+                colors: ['#8b5cf6', '#14b8a6', '#ec4899', '#0c0c14'],
+                prompt: `Create an organic mesh gradient using the SVG blur technique:
+- Dark background: near-black (#0c0c14)
+- Use feGaussianBlur with stdDeviation="30" on overlapping ellipses
+- Ellipse colors:
+  - Violet (#8b5cf6) at 60% opacity
+  - Teal (#14b8a6) at 50% opacity
+  - Pink (#ec4899) at 40% opacity
+- Create a triangular arrangement
+This creates a cosmic space atmosphere.`
+            }
+        };
+
+        // Modal elements
+        const overlay = document.getElementById('recipeOverlay');
+        const modal = document.getElementById('recipeModal');
+        const modalHeader = document.getElementById('modalHeader');
+        const modalSwatches = document.getElementById('modalSwatches');
+        const modalPrompt = document.getElementById('modalPrompt');
+        const copyBtn = document.getElementById('copyBtn');
+
+        let currentRecipeId = null;
+
+        // Show modal for a card
+        function showModal(recipeId) {
+            const recipe = recipes[recipeId];
+            if (!recipe) return;
+
+            currentRecipeId = recipeId;
+
+            // Set header
+            modalHeader.textContent = `${recipe.name} · ${recipeId.toUpperCase()}`;
+
+            // Set swatches
+            modalSwatches.innerHTML = recipe.colors
+                .map(color => `<div class="recipe-swatch" style="background: ${color}"></div>`)
+                .join('');
+
+            // Set prompt
+            modalPrompt.textContent = recipe.prompt;
+
+            // Reset copy button
+            copyBtn.textContent = 'Copy Prompt';
+            copyBtn.classList.remove('copied');
+
+            // Show overlay and modal
+            requestAnimationFrame(() => {
+                overlay.classList.add('visible');
+                modal.classList.add('visible');
+            });
+        }
+
+        // Hide modal
+        function hideModal() {
+            overlay.classList.remove('visible');
+            modal.classList.remove('visible');
+            currentRecipeId = null;
+        }
+
+        // Copy prompt to clipboard
+        async function copyPrompt() {
+            if (!currentRecipeId || !recipes[currentRecipeId]) return;
+
+            try {
+                await navigator.clipboard.writeText(recipes[currentRecipeId].prompt);
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy Prompt';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+            }
+        }
+
+        // Event listeners
+        copyBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            copyPrompt();
+        });
+
+        // Close on overlay click
+        overlay.addEventListener('click', hideModal);
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideModal();
+            }
+        });
+
+        // Add recipe icons and click handlers to cards
+        document.querySelectorAll('.card').forEach(card => {
+            const idElement = card.querySelector('.card-id');
+            if (!idElement) return;
+
+            const cardId = idElement.textContent.toLowerCase();
+            if (recipes[cardId]) {
+                card.classList.add('has-recipe');
+
+                // Create clipboard icon indicator
+                const icon = document.createElement('div');
+                icon.className = 'recipe-icon';
+                icon.innerHTML = `<svg viewBox="0 0 24 24">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>`;
+                card.appendChild(icon);
+
+                // Click anywhere on card: show modal
+                card.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showModal(cardId);
+                });
+            }
+        });
+
         // Intersection Observer for scroll-triggered animations
         const observerOptions = {
             root: null,

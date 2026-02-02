@@ -6,6 +6,20 @@ A sandbox for exploring visual design systems, widgets, and layouts.
 
 ## Experiments
 
+### Day at a Glance
+
+**February 2, 2026**
+
+[![Day at a Glance](./screenshots/day-at-a-glance.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-day-at-a-glance/)
+
+Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a subtle "now" indicator line that shows through semi-transparent event cards. Features split color bars for past/upcoming visualization and continuous horizontal hour lines.
+
+**Tags:** CSS Grid • Timeline • Z-Index Layering • Dark Theme
+
+**[View Code →](./2026-01-28-day-at-a-glance/)**
+
+---
+
 ### Blend
 
 **February 2, 2026**
@@ -45,20 +59,6 @@ Bold typographic layout with dark/light mode toggle. Features strong hierarchy t
 **Tags:** Typography • Dark Mode • Minimal • Two Column
 
 **[View Code →](./2026-01-28-spec-sheet/)**
-
----
-
-### Day at a Glance
-
-**January 28, 2026**
-
-[![Day at a Glance](./screenshots/day-at-a-glance.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-day-at-a-glance/)
-
-Timeline-based daily schedule interface with colorful event blocks, interactive checkboxes, and time markers. Modern approach to calendar visualization with dark theme.
-
-**Tags:** Timeline • UI Component • Calendar • Dark Theme
-
-**[View Code →](./2026-01-28-day-at-a-glance/)**
 
 ---
 

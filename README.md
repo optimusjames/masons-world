@@ -2,13 +2,12 @@
 
 A sandbox for exploring visual design systems, widgets, and layouts.
 
-This is rough work often done spur of the moment. Nothing is typically functional. It may look like crap. It's just a place to try stuff out.
-
 ---
 
 ## Experiments
 
 ### Blend
+
 **February 2, 2026**
 
 [![Blend](./screenshots/blend.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-blend/)
@@ -22,6 +21,7 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 ---
 
 ### Design Festival
+
 **January 28, 2026**
 
 [![Design Festival](./screenshots/design-festival.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-design-festival/)
@@ -35,6 +35,7 @@ Card-based layout system combining festival poster boldness with digital interfa
 ---
 
 ### Spec Sheet
+
 **January 28, 2026**
 
 [![Spec Sheet](./screenshots/spec-sheet.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-spec-sheet/)
@@ -48,6 +49,7 @@ Bold typographic layout with dark/light mode toggle. Features strong hierarchy t
 ---
 
 ### Day at a Glance
+
 **January 28, 2026**
 
 [![Day at a Glance](./screenshots/day-at-a-glance.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-day-at-a-glance/)
@@ -61,6 +63,7 @@ Timeline-based daily schedule interface with colorful event blocks, interactive 
 ---
 
 ### Color Spec
+
 **January 28, 2026**
 
 [![Color Spec](./screenshots/color-spec.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-color-spec/)

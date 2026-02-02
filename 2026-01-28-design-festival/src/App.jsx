@@ -1,4 +1,9 @@
 import CalendarWidget from './CalendarWidget'
+import DashboardWidget from './DashboardWidget'
+import AnalyticsWidget from './AnalyticsWidget'
+import ProgressRingsWidget from './ProgressRingsWidget'
+import ActivityRingWidget from './ActivityRingWidget'
+import GoalsWidget from './GoalsWidget'
 
 function App() {
   return (
@@ -8,7 +13,7 @@ function App() {
         {/* Card 1: Festival Header */}
         <div className="card card-black tall">
           <div className="header-section">
-            <h1>Design<br/>Festival<br/>2023</h1>
+            <h1>Widget<br/>Board<br/>2025</h1>
           </div>
         </div>
 
@@ -21,301 +26,112 @@ function App() {
           <CalendarWidget />
         </div>
 
-        {/* Card 4: Holiday Village */}
+        {/* Card 4: Launch Schedule */}
         <div className="card card-orange tall">
-          <h1>Holiday<br/>Village<br/>Cinemas</h1>
+          <h1>Launch<br/>Schedule</h1>
         </div>
 
         {/* Card 5: Widget Dashboard */}
-        <div className="card card-black extra-tall" style={{
-          padding: '20px',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gridTemplateRows: 'auto auto auto',
-          gap: '12px'
-        }}>
-          {/* Time Widget */}
-          <div style={{
-            background: '#5a5a5a',
-            borderRadius: '20px',
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gridColumn: 'span 2'
-          }}>
-            <div style={{
-              fontSize: '56px',
-              fontWeight: '700',
-              lineHeight: 1,
-              letterSpacing: '-0.02em',
-              fontVariantNumeric: 'tabular-nums'
-            }}>06:40</div>
-            <div style={{
-              fontSize: '18px',
-              fontWeight: '600',
-              opacity: 0.7,
-              marginTop: '4px'
-            }}>AM</div>
-          </div>
-
-          {/* Date Widget */}
-          <div style={{
-            background: '#ccff00',
-            borderRadius: '18px',
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            color: '#1a1a1a'
-          }}>
-            <div style={{ fontSize: '32px', fontWeight: '700', lineHeight: 1 }}>Tue</div>
-            <div style={{ fontSize: '32px', fontWeight: '700', lineHeight: 1 }}>20</div>
-          </div>
-
-          {/* Temperature Widget */}
-          <div style={{
-            background: '#3a3a3a',
-            borderRadius: '50%',
-            aspectRatio: '1',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <div style={{
-              fontSize: '32px',
-              fontWeight: '600',
-              fontVariantNumeric: 'tabular-nums'
-            }}>23°</div>
-          </div>
-
-          {/* Stats Widget */}
-          <div style={{
-            background: '#5a5a5a',
-            borderRadius: '18px',
-            padding: '16px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
-            gridColumn: 'span 2'
-          }}>
-            {/* Arrow Icon */}
-            <div style={{
-              display: 'flex',
-              gap: '12px',
-              alignItems: 'center',
-              marginBottom: '6px'
-            }}>
-              <div style={{
-                background: '#2a2a2a',
-                width: '50px',
-                height: '50px',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '24px'
-              }}>↗</div>
-              <div style={{ flex: 1 }}>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'baseline',
-                  marginBottom: '4px'
-                }}>
-                  <div style={{
-                    fontSize: '11px',
-                    fontWeight: '600',
-                    opacity: 0.8
-                  }}>Speed</div>
-                  <div style={{
-                    fontSize: '10px',
-                    opacity: 0.6
-                  }}>10km/Hours</div>
-                </div>
-                <div style={{
-                  background: '#3a3a3a',
-                  height: '4px',
-                  borderRadius: '2px',
-                  overflow: 'hidden'
-                }}>
-                  <div style={{
-                    background: '#ccff00',
-                    height: '100%',
-                    width: '65%'
-                  }}></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Time Progress */}
-            <div style={{ paddingLeft: '62px' }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'baseline',
-                marginBottom: '4px'
-              }}>
-                <div style={{
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  opacity: 0.8
-                }}>Time</div>
-                <div style={{
-                  fontSize: '10px',
-                  opacity: 0.6
-                }}>1 Hrs 42 Min</div>
-              </div>
-              <div style={{
-                background: '#3a3a3a',
-                height: '4px',
-                borderRadius: '2px',
-                overflow: 'hidden'
-              }}>
-                <div style={{
-                  background: '#ccff00',
-                  height: '100%',
-                  width: '45%'
-                }}></div>
-              </div>
-            </div>
-
-            {/* Distance Display */}
-            <div style={{
-              background: '#6a6a6a',
-              borderRadius: '12px',
-              padding: '12px 16px',
-              marginTop: '4px',
-              textAlign: 'right'
-            }}>
-              <div style={{
-                fontSize: '28px',
-                fontWeight: '700',
-                lineHeight: 1,
-                fontVariantNumeric: 'tabular-nums'
-              }}>12.000</div>
-              <div style={{
-                fontSize: '16px',
-                fontWeight: '600',
-                opacity: 0.7,
-                marginTop: '2px'
-              }}>km</div>
-            </div>
-          </div>
+        <div className="card card-black extra-tall">
+          <DashboardWidget />
         </div>
 
-        {/* Card 6: Arrow Card */}
+        {/* Card 6: Activity Ring Widget */}
         <div className="card card-black tall">
-          <div style={{
-            background: '#8a8a8a',
-            height: '60px',
-            borderRadius: '8px',
-            marginBottom: '12px'
-          }}></div>
-          <h2>Holiday<br/>Village<br/>Cinemas</h2>
-          <div className="arrow">→</div>
+          <ActivityRingWidget />
         </div>
 
-        {/* Card 7: Film Screening Times */}
+        {/* Card 7: Launch Schedule */}
         <div className="card card-orange extra-tall">
           <div className="header-section">
-            <h2>Holiday<br/>Village<br/>Cinemas</h2>
+            <h2>Launch<br/>Schedule</h2>
             <div className="small-text" style={{ marginTop: '16px' }}>
-              <strong>IS THERE ANYONE OUT THERE?</strong>
+              <strong>AURORA v2.0</strong>
             </div>
             <div className="schedule">
-              <div className="schedule-item"><span>JAN. 21</span><span>2:15PM</span></div>
-              <div className="schedule-item"><span>JAN. 23</span><span>9:45PM</span></div>
-              <div className="schedule-item"><span>JAN. 22</span><span>11:30AM</span></div>
-              <div className="schedule-item"><span>JAN. 25</span><span>6:30PM</span></div>
-              <div className="schedule-item"><span>JAN. 22</span><span>7:00PM</span></div>
-              <div className="schedule-item"><span>JAN. 27</span><span>3:15PM</span></div>
+              <div className="schedule-item"><span>FEB. 10</span><span>9:00AM</span></div>
+              <div className="schedule-item"><span>FEB. 12</span><span>2:30PM</span></div>
+              <div className="schedule-item"><span>FEB. 11</span><span>11:00AM</span></div>
+              <div className="schedule-item"><span>FEB. 14</span><span>6:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 11</span><span>4:15PM</span></div>
+              <div className="schedule-item"><span>FEB. 16</span><span>10:00AM</span></div>
             </div>
             <div className="divider"></div>
             <div className="small-text" style={{ marginTop: '12px' }}>
-              <strong>THE DISAPPEARANCE OF SHERE HITE</strong>
+              <strong>PRISM BETA</strong>
             </div>
             <div className="schedule">
-              <div className="schedule-item"><span>JAN. 21</span><span>6:00PM</span></div>
-              <div className="schedule-item"><span>JAN. 24</span><span>3:30PM</span></div>
-              <div className="schedule-item"><span>JAN. 22</span><span>2:45PM</span></div>
-              <div className="schedule-item"><span>JAN. 26</span><span>8:15PM</span></div>
-              <div className="schedule-item"><span>JAN. 23</span><span>12:00PM</span></div>
-              <div className="schedule-item"><span>JAN. 28</span><span>5:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 10</span><span>1:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 13</span><span>3:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 11</span><span>9:30AM</span></div>
+              <div className="schedule-item"><span>FEB. 15</span><span>7:30PM</span></div>
+              <div className="schedule-item"><span>FEB. 12</span><span>12:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 17</span><span>11:00AM</span></div>
             </div>
             <div className="divider"></div>
             <div className="small-text" style={{ marginTop: '12px' }}>
-              <strong>LITTLE RICHARD: I AM EVERYTHING</strong>
+              <strong>NEBULA SDK</strong>
             </div>
             <div className="schedule">
-              <div className="schedule-item"><span>JAN. 20</span><span>7:15PM</span></div>
-              <div className="schedule-item"><span>JAN. 24</span><span>4:30PM</span></div>
-              <div className="schedule-item"><span>JAN. 21</span><span>3:30PM</span></div>
-              <div className="schedule-item"><span>JAN. 26</span><span>9:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 09</span><span>6:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 13</span><span>4:00PM</span></div>
+              <div className="schedule-item"><span>FEB. 10</span><span>2:30PM</span></div>
+              <div className="schedule-item"><span>FEB. 15</span><span>8:00PM</span></div>
             </div>
           </div>
           <div className="footer-section">
-            <h2 style={{ marginTop: '20px' }}>Film<br/>Screening<br/>Times</h2>
+            <h2 style={{ marginTop: '20px' }}>Release<br/>Schedule</h2>
           </div>
         </div>
 
-        {/* Card 8: Festival Info */}
+        {/* Card 8: Goals Widget */}
         <div className="card card-orange tall">
-          <div className="badge">FESTIVAL INFO</div>
-          <h2>GET THERE & AROUND</h2>
-          <p style={{ marginTop: '12px' }}>Salt Lake City International Airport (SLC) is located just 7 miles from downtown. Ground transportation options available.</p>
+          <GoalsWidget />
         </div>
 
-        {/* Card 9: Volunteer */}
+        {/* Card 9: Analytics Widget */}
         <div className="card card-orange tall">
-          <h1>Full Time<br/>Volunteer</h1>
-          <div className="small-text" style={{ marginTop: 'auto' }}>
-            SEE FILMS & ATTEND<br/>
-            PANELS WHILE HELPING<br/>
-            FESTIVAL OPERATIONS
-          </div>
+          <AnalyticsWidget />
         </div>
 
-        {/* Card 10: All Eyes */}
+        {/* Card 10: Progress Rings Widget */}
         <div className="card card-black tall">
-          <h2>All Eyes on<br/>Independents</h2>
+          <ProgressRingsWidget />
         </div>
 
-        {/* Card 11: Info Card */}
+        {/* Card 11: Featured Component */}
         <div className="card card-dark-gray tall">
-          <div className="badge" style={{ background: 'white', color: '#1a1a1a' }}>SHORT FILM DOCUMENTARY</div>
-          <h3 style={{ marginTop: 'auto' }}>Sundance<br/>Institute</h3>
+          <div className="badge" style={{ background: 'white', color: '#1a1a1a' }}>FEATURED COMPONENT</div>
+          <h3 style={{ marginTop: 'auto' }}>Component<br/>Library</h3>
         </div>
 
-        {/* Card 12: Fantastic Machine */}
+        {/* Card 12: Infinite Canvas */}
         <div className="card card-orange tall">
-          <h1>Fantastic<br/>Machine</h1>
+          <h1>Infinite<br/>Canvas</h1>
         </div>
 
         {/* Card 13: Event Details */}
         <div className="card card-black tall">
           <div className="header-section">
-            <div className="small-text">January 25 2023</div>
+            <div className="small-text">February 2 2025</div>
             <h2 style={{ marginTop: '8px' }}>3:15 PM</h2>
-            <div className="subtitle">Holiday Village<br/>Park City, UT</div>
+            <div className="subtitle">Widget Board HQ<br/>San Francisco, CA</div>
           </div>
           <div className="qr-placeholder">
             <div style={{ width: '60px', height: '60px', background: 'white' }}></div>
           </div>
           <div className="small-text" style={{ marginTop: '12px' }}>
-            SINGLE TICKET ADM. / FILMMAKER<br/>
-            AND GUEST SCREENING PASS /<br/>
-            CONFERENCE PASS / FESTIVAL PASS
+            DEVELOPER ACCESS /<br/>
+            CONTRIBUTOR LICENSE /<br/>
+            ENTERPRISE TIER
           </div>
         </div>
 
-        {/* Card 14: Film Info */}
+        {/* Card 14: Design System Info */}
         <div className="card card-orange">
           <div className="small-text">
-            <strong>AXEL DANIELSON</strong><br/>
-            MAXIMILIEN VAN AERTRYCK
+            <strong>DESIGN SYSTEM</strong><br/>
+            STUDIO WIDGET
           </div>
         </div>
 
@@ -370,7 +186,7 @@ function App() {
                 marginBottom: '16px'
               }}>Color System</h3>
               <p style={{ fontSize: '16px', lineHeight: 1.6, fontWeight: '400' }}>
-                Bold, high-contrast palette built on three core colors: vibrant orange-coral (#ff6b4a), deep black (#1a1a1a), and electric lime (#ccff00). This creates immediate visual hierarchy and energy while maintaining professional readability. Gray tones provide neutral balance for complex information displays.
+                Bold, high-contrast palette built on three core colors: vibrant orange-coral (#ff6b4a), deep black (#1a1a1a), and electric lime (#ff6b4a). This creates immediate visual hierarchy and energy while maintaining professional readability. Gray tones provide neutral balance for complex information displays.
               </p>
             </div>
 
@@ -485,9 +301,9 @@ function App() {
                 fontWeight: '800',
                 lineHeight: 1.1,
                 marginBottom: '12px'
-              }}>"Digital Festival"</h4>
+              }}>"Widget Board"</h4>
               <p style={{ fontSize: '16px', lineHeight: 1.6, fontWeight: '400' }}>
-                Bridging physical event experiences with digital interface design.
+                Bridging modular component design with digital interface precision.
               </p>
             </div>
 

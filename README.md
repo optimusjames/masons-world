@@ -6,6 +6,20 @@ A sandbox for exploring visual design systems, widgets, and layouts.
 
 ## Experiments
 
+### Design Festival
+
+**February 2, 2026**
+
+[![Design Festival](./screenshots/design-festival.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-design-festival/)
+
+Card-based layout system combining festival poster boldness with digital interface precision. Features animated React widgets including an Activity chart with SVG line-drawing animation, Goals progress bars, Analytics bar charts, concentric progress rings, and an interactive calendar. All widgets support click-to-regenerate with randomized data.
+
+**Tags:** React • Animated Widgets • CSS Grid • Festival Aesthetic
+
+**[View Code →](./2026-01-28-design-festival/)**
+
+---
+
 ### Day at a Glance
 
 **February 2, 2026**
@@ -31,20 +45,6 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 **Tags:** Gradients • SVG Mesh • Swiss Design • Scroll Animation
 
 **[View Code →](./2026-01-28-blend/)**
-
----
-
-### Design Festival
-
-**January 28, 2026**
-
-[![Design Festival](./screenshots/design-festival.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-design-festival/)
-
-Card-based layout system combining festival poster boldness with digital interface precision. Features LCD-style widgets, horizontal week calendar, metrics dashboard, and Swiss design typography.
-
-**Tags:** CSS Grid • Widgets • Festival Aesthetic • Swiss Design
-
-**[View Code →](./2026-01-28-design-festival/)**
 
 ---
 

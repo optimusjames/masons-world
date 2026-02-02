@@ -217,7 +217,7 @@ const CalendarWidget = ({ initialDate = new Date(), onDateSelect, className = ''
               fontWeight: '700',
               lineHeight: 1.3,
               letterSpacing: '-0.01em'
-            }}>DESIGN CONFERENCE<br />OPENING KEYNOTE</div>
+            }}>AURORA v2.0<br />LAUNCH</div>
           </div>
         </div>
 

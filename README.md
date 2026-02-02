@@ -8,6 +8,19 @@ This is rough work often done spur of the moment. Nothing is typically functiona
 
 ## Experiments
 
+### Blend
+**February 2, 2026**
+
+[![Blend](./screenshots/blend.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-blend/)
+
+Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling (G-01 through G-09, M-01 through M-18), scroll-triggered animations, and an analytics dashboard mockup.
+
+**Tags:** Gradients • SVG Mesh • Swiss Design • Scroll Animation
+
+**[View Code →](./2026-01-28-blend/)**
+
+---
+
 ### NASA Layout
 **January 29, 2026**
 
@@ -70,19 +83,6 @@ Comprehensive brand system specification showcasing green-focused color palette 
 **Tags:** Brand System • Color Palette • Typography • Design System
 
 **[View Code →](./2026-01-28-color-spec/)**
-
----
-
-### Blend
-**January 28, 2026**
-
-[![Blend](./screenshots/blend.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-blend/)
-
-Gradient exploration with 12 distinct color blends in two style sets. Features smooth linear gradients and bold radial techniques with vibrant purple, pink, and orange combinations.
-
-**Tags:** Gradients • Color Theory • Visual Design • Grid Layout
-
-**[View Code →](./2026-01-28-blend/)**
 
 ---
 

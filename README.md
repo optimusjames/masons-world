@@ -12,7 +12,7 @@ A sandbox for exploring visual design systems, widgets, and layouts.
 
 [![Stratum](./screenshots/color-spec.png)](https://smc-sandbox.netlify.app/2026-01-28-color-spec/)
 
-Interactive brand guidelines with React-powered color customization. Click any color swatch to open a modal with live preview and Chroma.js scale generation. Features composable Card components with context-based inheritance, semantic color naming, and real-time CSS variable updates that persist via localStorage. Includes background color customization.
+Interactive brand guidelines with React-powered color customization. Click the gear icon to open a push-in sidebar with live color editing - changes apply instantly across the entire page. Features composable Card components with context-based inheritance, semantic color naming, Chroma.js scale generation, and real-time CSS variable updates that persist via localStorage.
 
 **Tags:** React Components • Interactive • Color Systems • Single-File App
 

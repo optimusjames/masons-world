@@ -347,29 +347,6 @@
             position: relative;
         }
 
-        .color-card.clickable {
-            cursor: pointer;
-            transition: transform 150ms ease;
-        }
-
-        .color-card.clickable:hover {
-            transform: scale(1.02);
-        }
-
-        .color-card.clickable::after {
-            content: '✎';
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            opacity: 0;
-            font-size: 18px;
-            transition: opacity 150ms ease;
-        }
-
-        .color-card.clickable:hover::after {
-            opacity: 0.7;
-        }
-
         .color-card.large {
             grid-column: span 2;
             grid-row: span 2;
@@ -723,63 +700,52 @@
             margin-bottom: var(--grid-gap);
         }
 
-        /* Modal styles */
-        .modal-backdrop {
+        /* Sidebar styles */
+        .sidebar {
             position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            animation: fadeIn 200ms ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100vh;
             background: var(--stone-900);
-            border: 1px solid var(--stone-700);
-            border-radius: 8px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: slideUp 200ms ease;
+            border-left: 1px solid var(--stone-700);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 300ms ease;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .sidebar.open {
+            transform: translateX(0);
         }
 
-        .modal-header {
-            padding: 24px 32px;
+        .sidebar-header {
+            padding: 20px 24px;
             border-bottom: 1px solid var(--stone-800);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .modal-header h2 {
-            font-size: 20px;
+        .sidebar-header h2 {
+            font-size: 14px;
             font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--stone-300);
             margin: 0;
-            text-transform: capitalize;
         }
 
-        .modal-close {
+        .sidebar-close {
             background: transparent;
             border: none;
             color: var(--stone-400);
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             padding: 0;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -787,155 +753,147 @@
             transition: all 150ms ease;
         }
 
-        .modal-close:hover {
+        .sidebar-close:hover {
             background: var(--stone-800);
             color: var(--white);
         }
 
-        .modal-body {
-            padding: 32px;
+        .sidebar-body {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
         }
 
-        .color-input-section {
-            margin-bottom: 32px;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 24px;
+        .sidebar-color-row {
+            display: flex;
             align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
         }
 
-        .color-input-section label {
-            grid-column: 1 / -1;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--stone-400);
+        .sidebar-color-row:last-child {
             margin-bottom: 0;
         }
 
-        .color-input-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .color-input-wrapper input[type="color"] {
-            width: 64px;
-            height: 64px;
+        .sidebar-color-input {
+            width: 48px;
+            height: 48px;
             border: 2px solid var(--stone-700);
             border-radius: 8px;
             cursor: pointer;
             background: transparent;
+            flex-shrink: 0;
         }
 
-        .color-input-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+        .sidebar-color-input::-webkit-color-swatch-wrapper {
             padding: 0;
         }
 
-        .color-input-wrapper input[type="color"]::-webkit-color-swatch {
+        .sidebar-color-input::-webkit-color-swatch {
             border: none;
             border-radius: 6px;
         }
 
-        .color-hex-display {
+        .sidebar-color-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sidebar-color-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--white);
+            text-transform: capitalize;
+            margin-bottom: 2px;
+        }
+
+        .sidebar-color-hex {
             font-family: 'SF Mono', 'Monaco', monospace;
-            font-size: 14px;
+            font-size: 11px;
             color: var(--stone-400);
             letter-spacing: 0.5px;
         }
 
-        .preview-section {
-            margin-bottom: 0;
-        }
-
-        .preview-section h3 {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--stone-400);
-            margin-bottom: 16px;
-        }
-
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-            gap: 8px;
-        }
-
-        .preview-swatch {
-            aspect-ratio: 1;
-            border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 8px;
-            font-size: 10px;
-            font-family: 'SF Mono', 'Monaco', monospace;
-            transition: transform 150ms ease;
-        }
-
-        .preview-swatch:hover {
-            transform: scale(1.05);
-        }
-
-        .preview-swatch.light {
-            color: var(--black);
-        }
-
-        .modal-actions {
-            padding: 24px 32px;
+        .sidebar-footer {
+            padding: 20px 24px;
             border-top: 1px solid var(--stone-800);
-            display: flex;
-            gap: 12px;
-            justify-content: flex-end;
         }
 
-        .modal-button {
-            padding: 10px 20px;
-            font-size: 13px;
+        .sidebar-reset-btn {
+            width: 100%;
+            padding: 10px 16px;
+            font-size: 12px;
             font-weight: 500;
             border-radius: 6px;
             cursor: pointer;
-            border: 1px solid;
+            border: 1px solid var(--ember-700);
+            background: transparent;
+            color: var(--ember-500);
             transition: all 150ms ease;
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        .modal-button.primary {
-            background: var(--green-600);
-            border-color: var(--green-500);
-            color: var(--white);
-        }
-
-        .modal-button.primary:hover {
-            background: var(--green-500);
-            border-color: var(--green-400);
-        }
-
-        .modal-button.secondary {
-            background: var(--stone-800);
-            border-color: var(--stone-700);
-            color: var(--white);
-        }
-
-        .modal-button.secondary:hover {
-            background: var(--stone-700);
-            border-color: var(--stone-600);
-        }
-
-        .modal-button.danger {
-            background: transparent;
-            border-color: var(--ember-700);
-            color: var(--ember-500);
-        }
-
-        .modal-button.danger:hover {
+        .sidebar-reset-btn:hover {
             background: var(--ember-900);
             border-color: var(--ember-600);
             color: var(--ember-400);
+        }
+
+        /* Gear toggle button */
+        .gear-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--stone-800);
+            border: 1px solid var(--stone-600);
+            color: var(--stone-300);
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 200ms ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .gear-toggle:hover {
+            background: var(--stone-700);
+            border-color: var(--stone-500);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .gear-toggle.active {
+            background: var(--primary-700);
+            border-color: var(--primary-500);
+            color: var(--white);
+        }
+
+        .gear-toggle.active:hover {
+            background: var(--primary-600);
+        }
+
+        /* Main content push effect */
+        .grid {
+            transition: margin-right 300ms ease;
+        }
+
+        .grid.sidebar-open {
+            margin-right: 280px;
+        }
+
+        /* Disable swatch interactivity when sidebar is open */
+        .color-card.editing-disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .color-card.editing-disabled::after {
+            display: none;
         }
 
         /* Responsive */
@@ -1366,141 +1324,93 @@
             });
         }
 
-        // ColorPickerModal component
-        function ColorPickerModal({
+        // ColorSidebar component
+        function ColorSidebar({
             isOpen,
-            scaleName,
-            currentScale,
-            isBackground,
-            currentBackgroundColor,
-            onClose,
-            onApply,
-            onApplyBackground,
-            onReset,
-            onResetBackground
+            currentScales,
+            backgroundColor,
+            onColorChange,
+            onBackgroundChange,
+            onResetAll,
+            onClose
         }) {
-            const [baseColor, setBaseColor] = useState(isBackground ? currentBackgroundColor : currentScale[900]);
-            const [previewScale, setPreviewScale] = useState(currentScale);
-
-            // Update preview when base color changes (only for scales, not background)
-            useEffect(() => {
-                if (!isBackground && baseColor) {
-                    const newScale = generateScale(baseColor);
-                    if (newScale) {
-                        setPreviewScale(newScale);
-                    }
-                }
-            }, [baseColor, isBackground]);
-
-            // Reset preview when modal opens
-            useEffect(() => {
-                if (isOpen) {
-                    if (isBackground) {
-                        setBaseColor(currentBackgroundColor);
-                    } else {
-                        setBaseColor(currentScale[900]);
-                        setPreviewScale(currentScale);
-                    }
-                }
-            }, [isOpen, currentScale, isBackground, currentBackgroundColor]);
-
-            const handleApply = () => {
-                if (isBackground) {
-                    onApplyBackground(baseColor);
-                } else {
-                    onApply(scaleName, previewScale);
-                }
-                onClose();
+            const colorNames = {
+                primary: 'Primary',
+                secondary: 'Secondary',
+                accent: 'Accent',
+                neutral: 'Neutral'
             };
 
-            const handleReset = () => {
-                const itemName = isBackground ? 'background color' : `${scaleName} colors`;
-                if (window.confirm(`Reset ${itemName} to default?`)) {
-                    if (isBackground) {
-                        onResetBackground();
-                    } else {
-                        onReset(scaleName);
-                    }
-                    onClose();
+            const handleColorChange = (scaleName, newBaseColor) => {
+                const newScale = generateScale(newBaseColor);
+                if (newScale) {
+                    onColorChange(scaleName, newScale);
                 }
             };
 
-            const handleBackdropClick = (e) => {
-                if (e.target === e.currentTarget) {
-                    onClose();
+            const handleResetAll = () => {
+                if (window.confirm('Reset all colors to defaults?')) {
+                    onResetAll();
                 }
             };
-
-            const handleKeyDown = (e) => {
-                if (e.key === 'Escape') {
-                    onClose();
-                }
-            };
-
-            useEffect(() => {
-                if (isOpen) {
-                    document.addEventListener('keydown', handleKeyDown);
-                    return () => document.removeEventListener('keydown', handleKeyDown);
-                }
-            }, [isOpen]);
-
-            if (!isOpen) return null;
-
-            const isLight = (value) => value <= 400;
 
             return (
-                <div className="modal-backdrop" onClick={handleBackdropClick}>
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h2>{isBackground ? 'Edit Background Color' : `Edit ${scaleName} Color`}</h2>
-                            <button className="modal-close" onClick={onClose}>&times;</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="color-input-section">
-                                <label>{isBackground ? 'Background Color' : 'Base Color (900 value)'}</label>
-                                <div className="color-input-wrapper">
-                                    <input
-                                        type="color"
-                                        value={baseColor}
-                                        onChange={(e) => setBaseColor(e.target.value)}
-                                    />
-                                    <div className="color-hex-display">{baseColor?.toUpperCase() || ''}</div>
+                <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+                    <div className="sidebar-header">
+                        <h2>Edit Colors</h2>
+                        <button className="sidebar-close" onClick={onClose}>&times;</button>
+                    </div>
+                    <div className="sidebar-body">
+                        {Object.entries(colorNames).map(([scaleName, displayName]) => (
+                            <div className="sidebar-color-row" key={scaleName}>
+                                <input
+                                    type="color"
+                                    className="sidebar-color-input"
+                                    value={currentScales[scaleName][900]}
+                                    onChange={(e) => handleColorChange(scaleName, e.target.value)}
+                                />
+                                <div className="sidebar-color-info">
+                                    <div className="sidebar-color-name">{displayName}</div>
+                                    <div className="sidebar-color-hex">{currentScales[scaleName][900].toUpperCase()}</div>
                                 </div>
-                                {!isBackground && (
-                                    <div className="preview-section">
-                                        <h3>Preview Scale</h3>
-                                        <div className="preview-grid">
-                                            {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map(value => (
-                                                <div
-                                                    key={value}
-                                                    className={`preview-swatch ${isLight(value) ? 'light' : ''}`}
-                                                    style={{ backgroundColor: previewScale[value] }}
-                                                >
-                                                    {value}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+                            </div>
+                        ))}
+                        <div className="sidebar-color-row">
+                            <input
+                                type="color"
+                                className="sidebar-color-input"
+                                value={backgroundColor}
+                                onChange={(e) => onBackgroundChange(e.target.value)}
+                            />
+                            <div className="sidebar-color-info">
+                                <div className="sidebar-color-name">Black</div>
+                                <div className="sidebar-color-hex">{backgroundColor.toUpperCase()}</div>
                             </div>
                         </div>
-                        <div className="modal-actions">
-                            <button className="modal-button danger" onClick={handleReset}>
-                                Reset to Default
-                            </button>
-                            <button className="modal-button secondary" onClick={onClose}>
-                                Cancel
-                            </button>
-                            <button className="modal-button primary" onClick={handleApply}>
-                                Apply Changes
-                            </button>
-                        </div>
+                    </div>
+                    <div className="sidebar-footer">
+                        <button className="sidebar-reset-btn" onClick={handleResetAll}>
+                            Reset to Defaults
+                        </button>
                     </div>
                 </div>
             );
         }
 
-        // BrandColors component with interactive color editing
+        // Gear toggle button component
+        function GearToggle({ isActive, onClick }) {
+            return (
+                <button
+                    className={`gear-toggle ${isActive ? 'active' : ''}`}
+                    onClick={onClick}
+                    title={isActive ? 'Close color editor' : 'Edit colors'}
+                >
+                    &#9881;
+                </button>
+            );
+        }
+
+        // BrandColors component with sidebar color editing
         function BrandColors() {
             const scales = ['primary', 'secondary', 'accent', 'neutral'];
             const samples = [900, 600, 400];
@@ -1536,10 +1446,8 @@
                 }
             });
 
-            // Modal state
-            const [modalOpen, setModalOpen] = useState(false);
-            const [editingScale, setEditingScale] = useState(null);
-            const [editingBackground, setEditingBackground] = useState(false);
+            // Sidebar state
+            const [sidebarOpen, setSidebarOpen] = useState(false);
 
             // Sync to CSS variables and localStorage
             useEffect(() => {
@@ -1561,37 +1469,31 @@
                 }
             }, [backgroundColor]);
 
-            const handleSwatchClick = (scaleName) => {
-                setEditingScale(scaleName);
-                setEditingBackground(false);
-                setModalOpen(true);
-            };
+            // Toggle grid margin when sidebar opens/closes
+            useEffect(() => {
+                const grid = document.querySelector('.grid');
+                if (grid) {
+                    if (sidebarOpen) {
+                        grid.classList.add('sidebar-open');
+                    } else {
+                        grid.classList.remove('sidebar-open');
+                    }
+                }
+            }, [sidebarOpen]);
 
-            const handleBackgroundClick = () => {
-                setEditingBackground(true);
-                setEditingScale(null);
-                setModalOpen(true);
-            };
-
-            const handleApply = (scaleName, newScale) => {
+            const handleColorChange = (scaleName, newScale) => {
                 setCurrentScales(prev => ({
                     ...prev,
                     [scaleName]: newScale
                 }));
             };
 
-            const handleApplyBackground = (newColor) => {
+            const handleBackgroundChange = (newColor) => {
                 setBackgroundColor(newColor);
             };
 
-            const handleReset = (scaleName) => {
-                setCurrentScales(prev => ({
-                    ...prev,
-                    [scaleName]: defaultScales[scaleName]
-                }));
-            };
-
-            const handleResetBackground = () => {
+            const handleResetAll = () => {
+                setCurrentScales(defaultScales);
                 setBackgroundColor(defaultBackground);
             };
 
@@ -1605,10 +1507,9 @@
                             <div className="color-column" key={scale}>
                                 {samples.map(value => (
                                     <div
-                                        className={`color-card ${isLight(value) ? 'light' : ''} ${value === 900 ? 'clickable' : ''}`}
+                                        className={`color-card ${isLight(value) ? 'light' : ''}`}
                                         style={{ backgroundColor: currentScales[scale][value] }}
                                         key={value}
-                                        onClick={value === 900 ? () => handleSwatchClick(scale) : undefined}
                                     >
                                         <div className="color-values">--{scale}-{value}</div>
                                     </div>
@@ -1619,9 +1520,8 @@
                         {/* Neutrals column */}
                         <div className="color-column">
                             <div
-                                className="color-card clickable"
+                                className="color-card"
                                 style={{ backgroundColor: backgroundColor, border: '1px solid rgba(255,255,255,0.1)' }}
-                                onClick={handleBackgroundClick}
                             >
                                 <div className="color-values">--black</div>
                             </div>
@@ -1634,17 +1534,19 @@
                         </div>
                     </div>
 
-                    <ColorPickerModal
-                        isOpen={modalOpen}
-                        scaleName={editingScale}
-                        currentScale={editingScale ? currentScales[editingScale] : {}}
-                        isBackground={editingBackground}
-                        currentBackgroundColor={backgroundColor}
-                        onClose={() => setModalOpen(false)}
-                        onApply={handleApply}
-                        onApplyBackground={handleApplyBackground}
-                        onReset={handleReset}
-                        onResetBackground={handleResetBackground}
+                    <ColorSidebar
+                        isOpen={sidebarOpen}
+                        currentScales={currentScales}
+                        backgroundColor={backgroundColor}
+                        onColorChange={handleColorChange}
+                        onBackgroundChange={handleBackgroundChange}
+                        onResetAll={handleResetAll}
+                        onClose={() => setSidebarOpen(false)}
+                    />
+
+                    <GearToggle
+                        isActive={sidebarOpen}
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
                     />
                 </>
             );

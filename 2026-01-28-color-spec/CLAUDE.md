@@ -223,21 +223,21 @@ const scales = ['primary', 'secondary', 'accent', 'neutral', 'tertiary'];
 </Card>
 ```
 
-## Interactive Color Picker Feature
+## Interactive Color Sidebar
 
-The BrandColors component now includes interactive color editing:
+The BrandColors component includes a push-in sidebar for live color editing:
 
 **User Interaction:**
-- Click any 900-value swatch (darkest row) to open color picker modal
-- Edit icon (✎) appears on hover for clickable swatches
-- Non-900 swatches are not clickable (by design)
+- Click gear icon (bottom-right corner) to open/close sidebar
+- Sidebar slides in from right, main content shifts left
+- All 5 colors visible at once: Primary, Secondary, Accent, Neutral, Black
+- Changes apply instantly - no preview/apply flow needed
 
-**Color Picker Modal:**
-- Native `<input type="color">` for base color selection
-- Live preview showing generated 50-950 scale using Chroma.js
-- Three actions: Apply Changes, Cancel, Reset to Default
-- Modal closes on backdrop click or Escape key
-- Confirm dialog for reset action
+**Sidebar Components:**
+- `ColorSidebar` - Fixed position panel with color inputs
+- `GearToggle` - Fixed button to toggle sidebar open/closed
+- Native `<input type="color">` for each editable color
+- Reset to Defaults button in sidebar footer
 
 **Scale Generation:**
 Uses Chroma.js (loaded via CDN) with LCH color space:
@@ -250,17 +250,22 @@ Uses Chroma.js (loaded via CDN) with LCH color space:
 - Changes saved to localStorage as JSON
 - Survives page refreshes
 - Falls back to defaults if localStorage unavailable
-- Reset button restores original default colors
+- Reset button restores all colors to original defaults
 
 **CSS Variable Synchronization:**
 - Updates both semantic (`--primary-*`) and color-specific (`--green-*`) CSS variables
 - All cards and components automatically reflect new colors
 - No page reload needed - live updates
 
+**Layout Push Effect:**
+- Main `.grid` gets `margin-right: 280px` when sidebar open
+- Smooth CSS transition (300ms) for push animation
+- Sidebar uses `position: fixed` with `transform: translateX`
+
 **Implementation Details:**
 - State managed in BrandColors component via React hooks
-- Uses useEffect to sync CSS variables and localStorage
-- Modal component receives scale data via props
+- `sidebarOpen` boolean controls sidebar visibility
+- Uses useEffect to sync CSS variables, localStorage, and grid margin
 - Immutable defaultScales object preserved for reset functionality
 
 ## Design Philosophy
@@ -285,18 +290,18 @@ Adding features (new colors, new components) follows clear patterns. System desi
 
 ## Common Tasks
 
-**Customize a color scale interactively:**
-1. Click the 900 swatch (darkest) for any color scale
-2. Use the color picker to select a new base color
-3. Preview shows the generated 50-950 scale in real-time
-4. Click "Apply Changes" to update entire system
+**Customize colors interactively:**
+1. Click the gear icon (bottom-right corner) to open sidebar
+2. All 5 editable colors are visible at once
+3. Click any color input to open system color picker
+4. Changes apply instantly across the entire page
 5. Changes persist across page refreshes via localStorage
 
 **Reset colors to defaults:**
-1. Click any 900 swatch to open modal
-2. Click "Reset to Default" button
+1. Open the sidebar (click gear icon)
+2. Click "Reset to Defaults" button in sidebar footer
 3. Confirm the reset action
-4. Colors revert to original brand palette
+4. All colors revert to original brand palette
 
 **Change a card's theme:**
 ```jsx

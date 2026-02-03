@@ -287,7 +287,6 @@
         }
 
         .weight-card {
-            background: var(--primary-900);
             padding: 20px;
         }
 
@@ -295,6 +294,10 @@
             font-size: 36px;
             margin-bottom: 12px;
         }
+
+        .weight-card:nth-child(1) { background: var(--primary-900); }
+        .weight-card:nth-child(2) { background: var(--secondary-900); }
+        .weight-card:nth-child(3) { background: var(--accent-900); }
 
         .weight-card:nth-child(1) .weight-sample { font-weight: 400; }
         .weight-card:nth-child(2) .weight-sample { font-weight: 500; }
@@ -304,8 +307,11 @@
             font-size: 10px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--caribbean-green);
         }
+
+        .weight-card:nth-child(1) .weight-name { color: var(--primary-300); }
+        .weight-card:nth-child(2) .weight-name { color: var(--secondary-300); }
+        .weight-card:nth-child(3) .weight-name { color: var(--accent-300); }
 
         /* Color Palette Section */
         .color-section {

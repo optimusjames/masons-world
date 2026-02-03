@@ -7,21 +7,85 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <style>
         :root {
-            --caribbean-green: #00df81;
-            --mountain-meadow: #20c296;
-            --bangladesh-green: #01674c;
-            --dark-green: #012221;
-            --pine: #06302b;
-            --basil: #08453a;
-            --forest: #095544;
-            --frog: #178f6d;
-            --mint: #47a98c;
-            --stone: #707d7d;
-            --pistachio: #aac8c4;
-            --anti-flash-white: #f1f7f6;
-            --ember: #c97b63;
+            /* Green Scale */
+            --green-50: #f0fdf4;
+            --green-100: #d1f4e0;
+            --green-200: #9de9c5;
+            --green-300: #5dd9a8;
+            --green-400: #0bd684;  /* hero */
+            --green-500: #00b86d;
+            --green-600: #009657;
+            --green-700: #007a47;  /* base */
+            --green-800: #005f38;
+            --green-900: #003d24;
+            --green-950: #001f12;
+
+            /* Legacy names (aliases) */
+            --caribbean-green: var(--green-400);
+            --mountain-meadow: var(--green-300);
+            --bangladesh-green: var(--green-800);
+            --dark-green: var(--green-950);
+            --pine: var(--green-900);
+            --basil: var(--green-700);
+            --forest: var(--green-600);
+            --frog: var(--green-500);
+            --mint: var(--green-200);
+            --pistachio: var(--green-100);
+            --anti-flash-white: var(--green-50);
+
+            /* Ember Scale */
+            --ember-50: #fff5f7;
+            --ember-100: #ffe4e9;
+            --ember-200: #ffc9d4;
+            --ember-300: #ff9db0;
+            --ember-400: #ff7e95;
+            --ember-500: #FF5E7E;  /* base */
+            --ember-600: #e6446a;
+            --ember-700: #c72f56;
+            --ember-800: #a01f42;
+            --ember-900: #6b1530;
+            --ember-950: #3d0a1b;
+
+            /* Stone Scale */
+            --stone-50: #f7f8f8;
+            --stone-100: #e8eaea;
+            --stone-200: #d1d5d5;
+            --stone-300: #b0b6b6;
+            --stone-400: #909999;
+            --stone-500: #707d7d;  /* base */
+            --stone-600: #5a6565;
+            --stone-700: #454e4e;
+            --stone-800: #323939;
+            --stone-900: #1f2525;
+            --stone-950: #0f1313;
+
+            /* Blue Scale */
+            --blue-50: #eff6ff;
+            --blue-100: #dbeafe;
+            --blue-200: #bfdbfe;
+            --blue-300: #93c5fd;
+            --blue-400: #60a5fa;
+            --blue-500: #3b82f6;  /* base */
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --blue-800: #1e40af;
+            --blue-900: #1e3a8a;
+            --blue-950: #172554;
+
+            /* Legacy aliases */
+            --ember: var(--ember-500);
+            --stone: var(--stone-500);
+
+            /* Neutrals */
+            --gray: #7a7a7a;
             --black: #0a0a0a;
             --white: #ffffff;
 
@@ -213,6 +277,11 @@
             grid-template-columns: repeat(4, 1fr);
         }
 
+        .color-column {
+            display: flex;
+            flex-direction: column;
+        }
+
         .color-row.no-gap .color-card.large {
             height: calc(var(--row-height) * 2);
         }
@@ -248,7 +317,46 @@
             color: var(--black);
         }
 
-        /* Specific colors */
+        /* Green scale */
+        .bg-green-50 { background: var(--green-50); }
+        .bg-green-100 { background: var(--green-100); }
+        .bg-green-200 { background: var(--green-200); }
+        .bg-green-300 { background: var(--green-300); }
+        .bg-green-400 { background: var(--green-400); }
+        .bg-green-500 { background: var(--green-500); }
+        .bg-green-600 { background: var(--green-600); }
+        .bg-green-700 { background: var(--green-700); }
+        .bg-green-800 { background: var(--green-800); }
+        .bg-green-900 { background: var(--green-900); }
+        .bg-green-950 { background: var(--green-950); }
+
+        /* Ember scale */
+        .bg-ember-50 { background: var(--ember-50); }
+        .bg-ember-100 { background: var(--ember-100); }
+        .bg-ember-200 { background: var(--ember-200); }
+        .bg-ember-300 { background: var(--ember-300); }
+        .bg-ember-400 { background: var(--ember-400); }
+        .bg-ember-500 { background: var(--ember-500); }
+        .bg-ember-600 { background: var(--ember-600); }
+        .bg-ember-700 { background: var(--ember-700); }
+        .bg-ember-800 { background: var(--ember-800); }
+        .bg-ember-900 { background: var(--ember-900); }
+        .bg-ember-950 { background: var(--ember-950); }
+
+        /* Stone scale */
+        .bg-stone-50 { background: var(--stone-50); }
+        .bg-stone-100 { background: var(--stone-100); }
+        .bg-stone-200 { background: var(--stone-200); }
+        .bg-stone-300 { background: var(--stone-300); }
+        .bg-stone-400 { background: var(--stone-400); }
+        .bg-stone-500 { background: var(--stone-500); }
+        .bg-stone-600 { background: var(--stone-600); }
+        .bg-stone-700 { background: var(--stone-700); }
+        .bg-stone-800 { background: var(--stone-800); }
+        .bg-stone-900 { background: var(--stone-900); }
+        .bg-stone-950 { background: var(--stone-950); }
+
+        /* Legacy class names */
         .bg-caribbean { background: var(--caribbean-green); }
         .bg-meadow { background: var(--mountain-meadow); }
         .bg-bangladesh { background: var(--bangladesh-green); }
@@ -260,7 +368,9 @@
         .bg-mint { background: var(--mint); }
         .bg-stone { background: var(--stone); }
         .bg-pistachio { background: var(--pistachio); }
-        .bg-white { background: var(--anti-flash-white); }
+        .bg-anti-flash { background: var(--anti-flash-white); }
+        .bg-white { background: var(--white); }
+        .bg-gray { background: var(--gray); }
         .bg-ember { background: var(--ember); }
         .bg-black { background: var(--black); border: 1px solid rgba(255,255,255,0.1); }
 
@@ -281,81 +391,210 @@
             background: linear-gradient(135deg, var(--bangladesh-green) 0%, var(--black) 100%);
         }
 
-        
-        /* Editorial Section */
+
+        /* Editorial Cards */
         .editorial-section {
             grid-column: 1 / -1;
-            padding-bottom: 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .editorial-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            padding: 20px;
+            gap: var(--grid-gap);
+            margin-bottom: 60px;
         }
 
-        .editorial-row:nth-child(even) {
-            background: #222;
-        }
-
-        .editorial-text {
-            padding: 24px 24px 24px 0;
+        .editorial-card {
+            padding: 32px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
+            min-height: 240px;
+            border-radius: 3px;
         }
 
-        .editorial-image + .editorial-text {
-            padding-left: 24px;
-            padding-right: 24px;
+        .editorial-card.tall {
+            min-height: 360px;
         }
 
-        .editorial-text:first-child {
-            padding-left: 24px;
+        .editorial-card .section-label {
+            margin-bottom: 16px;
         }
 
-        .editorial-text h3 {
-            font-size: 18px;
+        .label-green { color: var(--green-100); }
+        .label-ember { color: var(--ember-100); }
+        .label-stone { color: var(--stone-100); }
+        .label-neutral { color: var(--stone-100); }
+
+        .editorial-card h3 {
+            font-size: 20px;
             font-weight: 500;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             line-height: 1.3;
         }
 
-        .editorial-text p {
+        .editorial-card p {
             font-size: 13px;
             line-height: 1.7;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 12px;
+            opacity: 0.8;
         }
 
-        .editorial-text p:last-child {
-            margin-bottom: 0;
+        /* Card Component System */
+        .card {
+            background: var(--stone-800);
+            padding: 32px;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: 100%;
         }
 
-        .editorial-text .section-label {
-            margin-bottom: 12px;
+        .card-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--stone-100);
         }
 
-        .editorial-image {
+        .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--white);
+            margin: 0;
+        }
+
+        .card-body {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+        }
+
+        .card-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--stone-950);
+            background: var(--stone-400);
+            border: 1px solid var(--stone-300);
+            border-radius: 3px;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            float: right;
+            transition: all 150ms ease;
+        }
+
+        .card-button:hover {
+            background: var(--stone-300);
+            border-color: var(--stone-200);
+        }
+
+        .editorial-card.with-image {
+            padding: 0;
             overflow: hidden;
             position: relative;
         }
 
-        .editorial-image img {
+        .editorial-card .card-image {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
-        .editorial-row .span-1 { grid-column: span 1; }
-        .editorial-row .span-2 { grid-column: span 2; }
-        .editorial-row .span-3 { grid-column: span 3; }
+        .editorial-card .card-content {
+            position: relative;
+            z-index: 1;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+        }
+
+        .card-span-1 { grid-column: span 1; align-self: stretch; }
+        .card-span-2 { grid-column: span 2; align-self: stretch; }
+        .card-span-3 { grid-column: span 3; align-self: stretch; }
+        .card-span-4 { grid-column: span 4; align-self: stretch; }
+
+        /* Type Scale */
+        .type-scale-section {
+            grid-column: 1 / -1;
+            margin-bottom: var(--grid-gap);
+        }
+
+        .type-scale-row {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 40px;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            align-items: baseline;
+        }
+
+        .type-scale-row:last-child {
+            border-bottom: none;
+        }
+
+        .type-scale-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--stone);
+        }
+
+        .type-scale-sample h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .type-scale-sample h2 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .type-scale-sample h3 {
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .type-scale-sample h4 {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .type-scale-sample h5 {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .type-scale-sample h6 {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .type-scale-sample p {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.8);
+        }
 
         .editorial-image.aspect-2-3 {
             aspect-ratio: 2 / 3;
@@ -500,18 +739,6 @@
 </head>
 <body>
     <div class="grid">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-title">
-                <div class="section-label">Brand Guidelines</div>
-                <h1>Stratum</h1>
-                <span class="version">Version 1.0</span>
-            </div>
-            <div class="header-intro">
-                <p>Stratum is a visual identity system built on principles of clarity, depth, and precision. The green-forward palette conveys growth and innovation, while the typographic system ensures legibility across all applications. These guidelines establish the foundation for consistent brand expression.</p>
-            </div>
-        </header>
-
         <!-- Typography Section -->
         <section class="typography-section">
             <div class="type-specimen">
@@ -547,200 +774,143 @@
             </div>
         </section>
 
-        <!-- Primary Colors -->
+<!-- Extended Scale -->
         <section class="color-section">
-            <div class="section-label">Primary Palette</div>
+            <div class="section-label">Brand Colors</div>
             <div class="color-row no-gap">
-                <div class="color-card large bg-caribbean light">
-                    <div class="color-name">Caribbean Green</div>
-                    <div class="color-values">
-                        HEX #00DF81<br>
-                        RGB 0 / 223 / 129<br>
-                        CMYK 64 / 0 / 72 / 0
+                <!-- Green Column -->
+                <div class="color-column">
+                    <div class="color-card bg-green-900">
+                        <div class="color-values">--green-900</div>
+                    </div>
+                    <div class="color-card bg-green-600">
+                        <div class="color-values">--green-600</div>
+                    </div>
+                    <div class="color-card bg-green-400 light">
+                        <div class="color-values">--green-400</div>
                     </div>
                 </div>
-                <div class="color-card bg-meadow light">
-                    <div class="color-name">Mountain Meadow</div>
-                    <div class="color-values">
-                        HEX #20C296<br>
-                        RGB 32 / 194 / 150
+
+                <!-- Ember Column -->
+                <div class="color-column">
+                    <div class="color-card bg-ember-900">
+                        <div class="color-values">--ember-900</div>
+                    </div>
+                    <div class="color-card bg-ember-600">
+                        <div class="color-values">--ember-600</div>
+                    </div>
+                    <div class="color-card bg-ember-400 light">
+                        <div class="color-values">--ember-400</div>
                     </div>
                 </div>
-                <div class="color-card bg-bangladesh">
-                    <div class="color-name">Bangladesh Green</div>
-                    <div class="color-values">
-                        HEX #01674C<br>
-                        RGB 1 / 103 / 76
+
+                <!-- Stone Column -->
+                <div class="color-column">
+                    <div class="color-card bg-stone-900">
+                        <div class="color-values">--stone-900</div>
+                    </div>
+                    <div class="color-card bg-stone-600">
+                        <div class="color-values">--stone-600</div>
+                    </div>
+                    <div class="color-card bg-stone-400">
+                        <div class="color-values">--stone-400</div>
                     </div>
                 </div>
-                <div class="color-card bg-dark-green">
-                    <div class="color-name">Dark Green</div>
-                    <div class="color-values">
-                        HEX #012221<br>
-                        RGB 1 / 34 / 33
+
+                <!-- Neutrals Column -->
+                <div class="color-column">
+                    <div class="color-card bg-black">
+                        <div class="color-values">--black</div>
                     </div>
-                </div>
-                <div class="color-card bg-ember">
-                    <div class="color-name">Ember</div>
-                    <div class="color-values">
-                        HEX #C97B63<br>
-                        RGB 201 / 123 / 99
+                    <div class="color-card bg-gray">
+                        <div class="color-values">--gray</div>
+                    </div>
+                    <div class="color-card bg-white light">
+                        <div class="color-values">--white</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Secondary Colors -->
-        <section class="color-section">
-            <div class="section-label">Secondary Palette</div>
-            <div class="color-row no-gap">
-                <div class="color-card bg-pine">
-                    <div class="color-name">Pine</div>
-                    <div class="color-values">HEX #06302B</div>
+        <!-- Type Scale -->
+        <section class="type-scale-section">
+            <div class="type-scale-row">
+                <div class="type-scale-label">H1</div>
+                <div class="type-scale-sample">
+                    <h1>Confident but approachable</h1>
                 </div>
-                <div class="color-card bg-basil">
-                    <div class="color-name">Basil</div>
-                    <div class="color-values">HEX #08453A</div>
+            </div>
+            <div class="type-scale-row">
+                <div class="type-scale-label">H2</div>
+                <div class="type-scale-sample">
+                    <h2>Confident but approachable</h2>
                 </div>
-                <div class="color-card bg-forest">
-                    <div class="color-name">Forest</div>
-                    <div class="color-values">HEX #095544</div>
+            </div>
+            <div class="type-scale-row">
+                <div class="type-scale-label">H3</div>
+                <div class="type-scale-sample">
+                    <h3>Confident but approachable</h3>
                 </div>
-                <div class="color-card bg-frog">
-                    <div class="color-name">Frog</div>
-                    <div class="color-values">HEX #178F6D</div>
+            </div>
+            <div class="type-scale-row">
+                <div class="type-scale-label">H4</div>
+                <div class="type-scale-sample">
+                    <h4>Confident but approachable</h4>
                 </div>
-                <div class="color-card bg-mint light">
-                    <div class="color-name">Mint</div>
-                    <div class="color-values">HEX #47A98C</div>
+            </div>
+            <div class="type-scale-row">
+                <div class="type-scale-label">H5</div>
+                <div class="type-scale-sample">
+                    <h5>Confident but approachable</h5>
                 </div>
-                <div class="color-card bg-stone">
-                    <div class="color-name">Stone</div>
-                    <div class="color-values">HEX #707D7D</div>
+            </div>
+            <div class="type-scale-row">
+                <div class="type-scale-label">H6</div>
+                <div class="type-scale-sample">
+                    <h6>Section Label</h6>
                 </div>
-                <div class="color-card bg-pistachio light">
-                    <div class="color-name">Pistachio</div>
-                    <div class="color-values">HEX #AAC8C4</div>
-                </div>
-                <div class="color-card bg-white light">
-                    <div class="color-name">Anti-Flash White</div>
-                    <div class="color-values">HEX #F1F7F6</div>
-                </div>
-                <div class="color-card gradient-card g1">
-                    <div class="color-name">Verdant</div>
-                    <div class="color-values">#00DF81 → #01674C</div>
-                </div>
-                <div class="color-card gradient-card g2">
-                    <div class="color-name">Ember Fade</div>
-                    <div class="color-values">#C97B63 → #012221</div>
-                </div>
-                <div class="color-card gradient-card g3">
-                    <div class="color-name">Depth</div>
-                    <div class="color-values">#20C296 → #06302B</div>
-                </div>
-                <div class="color-card gradient-card g4">
-                    <div class="color-name">Shadow</div>
-                    <div class="color-values">#01674C → #0A0A0A</div>
+            </div>
+            <div class="type-scale-row">
+                <div class="type-scale-label">Body</div>
+                <div class="type-scale-sample">
+                    <p>Stratum speaks with authority without being cold. We lead with clarity, not complexity. Our voice is direct, warm, and occasionally unexpected.</p>
                 </div>
             </div>
         </section>
 
         <!-- Editorial Section -->
         <section class="editorial-section">
-            <!-- Row 1 -->
-            <div class="editorial-row">
-                <div class="editorial-text span-2">
-                    <div class="section-label">Brand Personality</div>
-                    <h3>Confident but approachable</h3>
-                    <p>Stratum speaks with authority without being cold. We lead with clarity, not complexity. Our voice is direct, warm, and occasionally unexpected. We believe expertise should feel accessible, not intimidating.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                </div>
-                <div class="editorial-image span-2">
-                    <img src="../image-ref/spot-images/e791deed35df4b2e056d926f76cf6c18.jpg" alt="">
-                </div>
-            </div>
+            <div id="brand-personality-card" class="card-span-2"></div>
 
-            <!-- Row 2 -->
-            <div class="editorial-row">
-                <div class="editorial-image span-1 aspect-2-3">
-                    <img src="../image-ref/spot-images/0d560aa4b12f93a0490c645457b2d573.jpg" alt="">
-                </div>
-                <div class="editorial-text span-3">
-                    <div class="section-label">Tone of Voice</div>
-                    <h3>Clear. Precise. Human.</h3>
-                    <p>Write like you're explaining something important to a smart friend. Avoid jargon unless it genuinely clarifies. Technical terms are fine when they're the right tool; obfuscation never is.</p>
-                    <p>Short sentences work. So do longer ones when the thought requires it. Find the rhythm that serves the reader. Lorem ipsum dolor sit amet, consectetur adipiscing elit sed eiusmod.</p>
-                </div>
-            </div>
-
-            <!-- Row 3 -->
-            <div class="editorial-row">
-                <div class="editorial-image span-1 aspect-3-4">
-                    <img src="../image-ref/spot-images/2291e613c946da471b020d7364deff33.jpg" alt="">
-                </div>
-                <div class="editorial-text span-3">
-                    <div class="section-label">Visual Language</div>
+            <div class="editorial-card with-image card-span-2 tall">
+                <img class="card-image" src="../image-ref/spot-images/e791deed35df4b2e056d926f76cf6c18.jpg" alt="">
+                <div class="card-content">
+                    <div class="section-label label-green">Visual Language</div>
                     <h3>Depth over decoration</h3>
-                    <p>Imagery should feel considered, not decorative. Favor depth over flatness, texture over sterility. Abstract forms work when they suggest rather than explain. Let the viewer complete the thought.</p>
-                    <p>Every visual element should earn its place. If it doesn't clarify or enhance, remove it. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                    <div class="section-label" style="margin-top: 24px;">Application</div>
-                    <h3>Consistency over uniformity</h3>
-                    <p>These guidelines establish a foundation, not a constraint. The goal is recognition across touchpoints while allowing appropriate variation for context. Digital applications may emphasize vibrancy; print may favor subtlety.</p>
-                    <p>Both should feel unmistakably Stratum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
                 </div>
             </div>
 
-            <!-- Row 4 -->
-            <div class="editorial-row">
-                <div class="editorial-text span-3">
-                    <div class="section-label">Photography</div>
+            <div id="tone-card" class="card-span-1"></div>
+
+            <div id="application-card" class="card-span-1"></div>
+
+            <div class="editorial-card with-image card-span-2">
+                <img class="card-image" src="../image-ref/spot-images/0d560aa4b12f93a0490c645457b2d573.jpg" alt="">
+                <div class="card-content">
+                    <div class="section-label label-stone">Photography</div>
                     <h3>Present, not posed</h3>
-                    <p>Natural light. Muted backgrounds. Focus on material and form. People should feel present, not posed. Capture moments of genuine engagement and quiet concentration.</p>
-                    <p>Avoid stock photography aesthetics. Authenticity reads. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="editorial-image span-1">
-                    <img src="../image-ref/spot-images/5a638378c61807b103900d0c7429db6d.jpg" alt="">
                 </div>
             </div>
 
-            <!-- Row 6 -->
-            <div class="editorial-row">
-                <div class="editorial-image span-1">
-                    <img src="../image-ref/spot-images/6f2df44aae6b82822a4614209b280e84.jpg" alt="">
-                </div>
-                <div class="editorial-text span-3">
-                    <div class="section-label">Motion</div>
-                    <h3>Purposeful movement</h3>
-                    <p>Subtle, purposeful, never gratuitous. Animation should clarify, not distract. Ease-out curves feel natural. Stagger reveals to guide attention. Respect reduced motion preferences always.</p>
-                    <p>Duration matters: too fast feels abrupt, too slow feels sluggish. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam quis nostrud exercitation.</p>
-                </div>
+            <div id="motion-card" class="card-span-2"></div>
+
+            <div id="hierarchy-card" class="card-span-2"></div>
+
+            <div class="editorial-card with-image card-span-1">
+                <img class="card-image" src="../image-ref/spot-images/2291e613c946da471b020d7364deff33.jpg" alt="">
             </div>
 
-            <!-- Row 7 -->
-            <div class="editorial-row">
-                <div class="editorial-text span-3">
-                    <div class="section-label">Hierarchy</div>
-                    <h3>Lead with intention</h3>
-                    <p>Every layout should have a clear entry point. Guide the eye through deliberate scale contrast and spatial relationships. White space is structural, not empty. Use it to create breathing room and establish importance.</p>
-                    <p>The most important element should be obvious. If everything shouts, nothing is heard. Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="editorial-image span-1">
-                    <img src="../image-ref/spot-images/d1c38638f90750880f78ee301b07640a.jpg" alt="">
-                </div>
-            </div>
-
-            <!-- Row 8 -->
-            <div class="editorial-row">
-                <div class="editorial-image span-1">
-                    <img src="../image-ref/spot-images/e120f392b44fd59fecb6c55c4c41739c.jpg" alt="">
-                </div>
-                <div class="editorial-text span-3">
-                    <div class="section-label">Evolution</div>
-                    <h3>Built to grow</h3>
-                    <p>A living system that adapts without losing coherence. New elements should feel inevitable, not forced. When in doubt, return to first principles. Document decisions. Share rationale.</p>
-                    <p>The best guidelines teach as much as they prescribe. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua veniam.</p>
-                </div>
-            </div>
+            <div id="evolution-card" class="card-span-1"></div>
         </section>
 
         <!-- Footer -->
@@ -749,5 +919,215 @@
             <div class="footer-version">Guidelines v1.0 / 2026</div>
         </footer>
     </div>
+
+    <script type="text/babel">
+        const { useState, createContext, useContext } = React;
+
+        // Create context for card color scale
+        const CardContext = createContext();
+
+        // Color scale definitions
+        const colorScales = {
+            stone: {
+                50: '#f7f8f8',
+                100: '#e8eaea',
+                200: '#d1d5d5',
+                300: '#b0b6b6',
+                400: '#909999',
+                500: '#707d7d',
+                600: '#5a6565',
+                700: '#454e4e',
+                800: '#323939',
+                900: '#1f2525',
+                950: '#0f1313',
+            },
+            green: {
+                50: '#f0fdf4',
+                100: '#d1f4e0',
+                200: '#9de9c5',
+                300: '#5dd9a8',
+                400: '#0bd684',
+                500: '#00b86d',
+                600: '#009657',
+                700: '#007a47',
+                800: '#005f38',
+                900: '#003d24',
+                950: '#001f12',
+            },
+            ember: {
+                50: '#fff5f7',
+                100: '#ffe4e9',
+                200: '#ffc9d4',
+                300: '#ff9db0',
+                400: '#ff7e95',
+                500: '#FF5E7E',
+                600: '#e6446a',
+                700: '#c72f56',
+                800: '#a01f42',
+                900: '#6b1530',
+                950: '#3d0a1b',
+            },
+            blue: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                300: '#93c5fd',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+                950: '#172554',
+            },
+        };
+
+        // Sensible defaults
+        const defaults = {
+            bg: '900',
+            label: '300',
+            title: 'white',
+            body: 'white',
+            buttonBg: '700',
+            buttonBorder: '600',
+            buttonText: '200',
+        };
+
+        // Card component
+        function Card({ colorScale = 'stone', bg, children }) {
+            const scale = colorScales[colorScale];
+            const bgValue = bg || defaults.bg;
+            const backgroundColor = scale[bgValue];
+
+            return (
+                <CardContext.Provider value={colorScale}>
+                    <div className="card" style={{ backgroundColor }}>
+                        {children}
+                    </div>
+                </CardContext.Provider>
+            );
+        }
+
+        // CardLabel component
+        function CardLabel({ children, color }) {
+            const colorScale = useContext(CardContext);
+            const scale = colorScales[colorScale];
+            const colorValue = color || defaults.label;
+            const textColor = scale[colorValue];
+
+            return (
+                <div className="card-label" style={{ color: textColor }}>
+                    {children}
+                </div>
+            );
+        }
+
+        // CardTitle component
+        function CardTitle({ children }) {
+            return (
+                <h3 className="card-title">
+                    {children}
+                </h3>
+            );
+        }
+
+        // CardBody component
+        function CardBody({ children }) {
+            return (
+                <p className="card-body">
+                    {children}
+                </p>
+            );
+        }
+
+        // CardButton component
+        function CardButton({ children, bg, border, textColor }) {
+            const colorScale = useContext(CardContext);
+            const scale = colorScales[colorScale];
+            const bgValue = bg || defaults.buttonBg;
+            const borderValue = border || defaults.buttonBorder;
+            const textValue = textColor || defaults.buttonText;
+
+            return (
+                <a
+                    href="#"
+                    className="card-button"
+                    style={{
+                        backgroundColor: scale[bgValue],
+                        borderColor: scale[borderValue],
+                        color: scale[textValue],
+                    }}
+                >
+                    {children}
+                </a>
+            );
+        }
+
+        // Render Brand Personality card
+        const brandPersonalityRoot = ReactDOM.createRoot(document.getElementById('brand-personality-card'));
+        brandPersonalityRoot.render(
+            <Card colorScale="green">
+                <CardLabel>Brand Personality</CardLabel>
+                <CardTitle>Confident but approachable</CardTitle>
+                <CardBody>Stratum speaks with authority without being cold. We lead with clarity, not complexity.</CardBody>
+                <CardButton>Learn More</CardButton>
+            </Card>
+        );
+
+        // Render Hierarchy card
+        const hierarchyRoot = ReactDOM.createRoot(document.getElementById('hierarchy-card'));
+        hierarchyRoot.render(
+            <Card colorScale="stone">
+                <CardLabel>Hierarchy</CardLabel>
+                <CardTitle>Lead with intention</CardTitle>
+                <CardBody>Every layout should have a clear entry point. Guide the eye through deliberate scale contrast.</CardBody>
+                <CardButton>Learn More</CardButton>
+            </Card>
+        );
+
+        // Render Motion card
+        const motionRoot = ReactDOM.createRoot(document.getElementById('motion-card'));
+        motionRoot.render(
+            <Card colorScale="green">
+                <CardLabel>Motion</CardLabel>
+                <CardTitle>Purposeful movement</CardTitle>
+                <CardBody>Subtle, purposeful, never gratuitous. Animation should clarify, not distract.</CardBody>
+                <CardButton>Learn More</CardButton>
+            </Card>
+        );
+
+        // Render Evolution card
+        const evolutionRoot = ReactDOM.createRoot(document.getElementById('evolution-card'));
+        evolutionRoot.render(
+            <Card colorScale="ember">
+                <CardLabel>Evolution</CardLabel>
+                <CardTitle>Built to grow</CardTitle>
+                <CardBody>A living system that adapts without losing coherence.</CardBody>
+                <CardButton>Learn More</CardButton>
+            </Card>
+        );
+
+        // Render Tone of Voice card
+        const toneRoot = ReactDOM.createRoot(document.getElementById('tone-card'));
+        toneRoot.render(
+            <Card colorScale="blue">
+                <CardLabel>Tone of Voice</CardLabel>
+                <CardTitle>Clear. Precise. Human.</CardTitle>
+                <CardBody>Write like you're explaining something important to a smart friend.</CardBody>
+                <CardButton>Learn More</CardButton>
+            </Card>
+        );
+
+        // Render Application card
+        const applicationRoot = ReactDOM.createRoot(document.getElementById('application-card'));
+        applicationRoot.render(
+            <Card colorScale="stone">
+                <CardLabel>Application</CardLabel>
+                <CardTitle>Consistency over uniformity</CardTitle>
+                <CardBody>Recognition across touchpoints while allowing variation for context.</CardBody>
+                <CardButton>Learn More</CardButton>
+            </Card>
+        );
+    </script>
 </body>
 </html>

@@ -274,7 +274,7 @@
 
         .color-row.no-gap {
             gap: 0;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
 
         .color-column {
@@ -777,59 +777,7 @@
 <!-- Extended Scale -->
         <section class="color-section">
             <div class="section-label">Brand Colors</div>
-            <div class="color-row no-gap">
-                <!-- Green Column -->
-                <div class="color-column">
-                    <div class="color-card bg-green-900">
-                        <div class="color-values">--green-900</div>
-                    </div>
-                    <div class="color-card bg-green-600">
-                        <div class="color-values">--green-600</div>
-                    </div>
-                    <div class="color-card bg-green-400 light">
-                        <div class="color-values">--green-400</div>
-                    </div>
-                </div>
-
-                <!-- Ember Column -->
-                <div class="color-column">
-                    <div class="color-card bg-ember-900">
-                        <div class="color-values">--ember-900</div>
-                    </div>
-                    <div class="color-card bg-ember-600">
-                        <div class="color-values">--ember-600</div>
-                    </div>
-                    <div class="color-card bg-ember-400 light">
-                        <div class="color-values">--ember-400</div>
-                    </div>
-                </div>
-
-                <!-- Stone Column -->
-                <div class="color-column">
-                    <div class="color-card bg-stone-900">
-                        <div class="color-values">--stone-900</div>
-                    </div>
-                    <div class="color-card bg-stone-600">
-                        <div class="color-values">--stone-600</div>
-                    </div>
-                    <div class="color-card bg-stone-400">
-                        <div class="color-values">--stone-400</div>
-                    </div>
-                </div>
-
-                <!-- Neutrals Column -->
-                <div class="color-column">
-                    <div class="color-card bg-black">
-                        <div class="color-values">--black</div>
-                    </div>
-                    <div class="color-card bg-gray">
-                        <div class="color-values">--gray</div>
-                    </div>
-                    <div class="color-card bg-white light">
-                        <div class="color-values">--white</div>
-                    </div>
-                </div>
-            </div>
+            <div id="brand-colors"></div>
         </section>
 
         <!-- Type Scale -->
@@ -1062,6 +1010,50 @@
                 </a>
             );
         }
+
+        // BrandColors component
+        function BrandColors() {
+            const scales = ['green', 'ember', 'stone', 'blue'];
+            const samples = [900, 600, 400];
+
+            // Determine if text should be light or dark based on color value
+            const isLight = (value) => value <= 400;
+
+            return (
+                <div className="color-row no-gap">
+                    {scales.map(scale => (
+                        <div className="color-column" key={scale}>
+                            {samples.map(value => (
+                                <div
+                                    className={`color-card ${isLight(value) ? 'light' : ''}`}
+                                    style={{ backgroundColor: colorScales[scale][value] }}
+                                    key={value}
+                                >
+                                    <div className="color-values">--{scale}-{value}</div>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+
+                    {/* Neutrals column */}
+                    <div className="color-column">
+                        <div className="color-card" style={{ backgroundColor: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)' }}>
+                            <div className="color-values">--black</div>
+                        </div>
+                        <div className="color-card" style={{ backgroundColor: '#7a7a7a' }}>
+                            <div className="color-values">--gray</div>
+                        </div>
+                        <div className="color-card light" style={{ backgroundColor: '#ffffff' }}>
+                            <div className="color-values">--white</div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // Render Brand Colors
+        const brandColorsRoot = ReactDOM.createRoot(document.getElementById('brand-colors'));
+        brandColorsRoot.render(<BrandColors />);
 
         // Render Brand Personality card
         const brandPersonalityRoot = ReactDOM.createRoot(document.getElementById('brand-personality-card'));

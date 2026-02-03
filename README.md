@@ -6,6 +6,20 @@ A sandbox for exploring visual design systems, widgets, and layouts.
 
 ## Experiments
 
+### Stratum
+
+**February 2, 2026**
+
+[![Stratum](./screenshots/color-spec.png)](https://smc-sandbox.netlify.app/2026-01-28-color-spec/)
+
+Swiss-style brand guidelines with 4-column modular grid, consistent vertical rhythm, and sharp edges. Features typography specimen with character sets, color palette with technical values (HEX/RGB/CMYK), gradient treatments, and imagery section with all spot images for selection.
+
+**Tags:** Brand Guidelines, Swiss Design, Modular Grid, Typography
+
+**[View Code ->](./2026-01-28-color-spec/)**
+
+---
+
 ### Design Festival
 
 **February 2, 2026**
@@ -59,20 +73,6 @@ Bold typographic layout with dark/light mode toggle. Features strong hierarchy t
 **Tags:** Typography • Dark Mode • Minimal • Two Column
 
 **[View Code →](./2026-01-28-spec-sheet/)**
-
----
-
-### Color Spec
-
-**January 28, 2026**
-
-[![Color Spec](./screenshots/color-spec.png)](https://smc-sandbox.netlify.app/2026-01-28-color-spec/)
-
-Comprehensive brand system specification showcasing green-focused color palette with detailed technical values. Features large type specimens and organized color swatches.
-
-**Tags:** Brand System • Color Palette • Typography • Design System
-
-**[View Code →](./2026-01-28-color-spec/)**
 
 ---
 

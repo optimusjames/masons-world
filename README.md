@@ -12,9 +12,9 @@ A sandbox for exploring visual design systems, widgets, and layouts.
 
 [![Stratum](./screenshots/color-spec.png)](https://smc-sandbox.netlify.app/2026-01-28-color-spec/)
 
-Swiss-style brand guidelines with 4-column modular grid, consistent vertical rhythm, and sharp edges. Features typography specimen with character sets, color palette with technical values (HEX/RGB/CMYK), gradient treatments, and imagery section with all spot images for selection.
+Interactive brand guidelines with React-powered color customization. Click any color swatch to open a modal with live preview and Chroma.js scale generation. Features composable Card components with context-based inheritance, semantic color naming, and real-time CSS variable updates that persist via localStorage. Includes background color customization.
 
-**Tags:** Brand Guidelines, Swiss Design, Modular Grid, Typography
+**Tags:** React Components • Interactive • Color Systems • Single-File App
 
 **[View Code ->](./2026-01-28-color-spec/)**
 

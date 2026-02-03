@@ -13,6 +13,9 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <!-- Chroma.js for color scale generation -->
+    <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.1.2/chroma.min.js"></script>
+
     <style>
         :root {
             /* Green Scale */
@@ -79,6 +82,55 @@
             --blue-800: #1e40af;
             --blue-900: #1e3a8a;
             --blue-950: #172554;
+
+            /* Semantic aliases (recommended) */
+            --primary-50: var(--green-50);
+            --primary-100: var(--green-100);
+            --primary-200: var(--green-200);
+            --primary-300: var(--green-300);
+            --primary-400: var(--green-400);
+            --primary-500: var(--green-500);
+            --primary-600: var(--green-600);
+            --primary-700: var(--green-700);
+            --primary-800: var(--green-800);
+            --primary-900: var(--green-900);
+            --primary-950: var(--green-950);
+
+            --secondary-50: var(--ember-50);
+            --secondary-100: var(--ember-100);
+            --secondary-200: var(--ember-200);
+            --secondary-300: var(--ember-300);
+            --secondary-400: var(--ember-400);
+            --secondary-500: var(--ember-500);
+            --secondary-600: var(--ember-600);
+            --secondary-700: var(--ember-700);
+            --secondary-800: var(--ember-800);
+            --secondary-900: var(--ember-900);
+            --secondary-950: var(--ember-950);
+
+            --neutral-50: var(--stone-50);
+            --neutral-100: var(--stone-100);
+            --neutral-200: var(--stone-200);
+            --neutral-300: var(--stone-300);
+            --neutral-400: var(--stone-400);
+            --neutral-500: var(--stone-500);
+            --neutral-600: var(--stone-600);
+            --neutral-700: var(--stone-700);
+            --neutral-800: var(--stone-800);
+            --neutral-900: var(--stone-900);
+            --neutral-950: var(--stone-950);
+
+            --accent-50: var(--blue-50);
+            --accent-100: var(--blue-100);
+            --accent-200: var(--blue-200);
+            --accent-300: var(--blue-300);
+            --accent-400: var(--blue-400);
+            --accent-500: var(--blue-500);
+            --accent-600: var(--blue-600);
+            --accent-700: var(--blue-700);
+            --accent-800: var(--blue-800);
+            --accent-900: var(--blue-900);
+            --accent-950: var(--blue-950);
 
             /* Legacy aliases */
             --ember: var(--ember-500);
@@ -292,6 +344,30 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            position: relative;
+        }
+
+        .color-card.clickable {
+            cursor: pointer;
+            transition: transform 150ms ease;
+        }
+
+        .color-card.clickable:hover {
+            transform: scale(1.02);
+        }
+
+        .color-card.clickable::after {
+            content: '✎';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            opacity: 0;
+            font-size: 18px;
+            transition: opacity 150ms ease;
+        }
+
+        .color-card.clickable:hover::after {
+            opacity: 0.7;
         }
 
         .color-card.large {
@@ -647,6 +723,221 @@
             margin-bottom: var(--grid-gap);
         }
 
+        /* Modal styles */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 200ms ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--stone-900);
+            border: 1px solid var(--stone-700);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 200ms ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--stone-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+            text-transform: capitalize;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--stone-400);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 150ms ease;
+        }
+
+        .modal-close:hover {
+            background: var(--stone-800);
+            color: var(--white);
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .color-input-section {
+            margin-bottom: 32px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .color-input-section label {
+            grid-column: 1 / -1;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--stone-400);
+            margin-bottom: 0;
+        }
+
+        .color-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .color-input-wrapper input[type="color"] {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--stone-700);
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .color-input-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-input-wrapper input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 6px;
+        }
+
+        .color-hex-display {
+            font-family: 'SF Mono', 'Monaco', monospace;
+            font-size: 14px;
+            color: var(--stone-400);
+            letter-spacing: 0.5px;
+        }
+
+        .preview-section {
+            margin-bottom: 0;
+        }
+
+        .preview-section h3 {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--stone-400);
+            margin-bottom: 16px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 8px;
+        }
+
+        .preview-swatch {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 8px;
+            font-size: 10px;
+            font-family: 'SF Mono', 'Monaco', monospace;
+            transition: transform 150ms ease;
+        }
+
+        .preview-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .preview-swatch.light {
+            color: var(--black);
+        }
+
+        .modal-actions {
+            padding: 24px 32px;
+            border-top: 1px solid var(--stone-800);
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .modal-button {
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid;
+            transition: all 150ms ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .modal-button.primary {
+            background: var(--green-600);
+            border-color: var(--green-500);
+            color: var(--white);
+        }
+
+        .modal-button.primary:hover {
+            background: var(--green-500);
+            border-color: var(--green-400);
+        }
+
+        .modal-button.secondary {
+            background: var(--stone-800);
+            border-color: var(--stone-700);
+            color: var(--white);
+        }
+
+        .modal-button.secondary:hover {
+            background: var(--stone-700);
+            border-color: var(--stone-600);
+        }
+
+        .modal-button.danger {
+            background: transparent;
+            border-color: var(--ember-700);
+            color: var(--ember-500);
+        }
+
+        .modal-button.danger:hover {
+            background: var(--ember-900);
+            border-color: var(--ember-600);
+            color: var(--ember-400);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .type-display {
@@ -869,65 +1160,79 @@
     </div>
 
     <script type="text/babel">
-        const { useState, createContext, useContext } = React;
+        const { useState, useEffect, createContext, useContext } = React;
 
         // Create context for card color scale
         const CardContext = createContext();
 
         // Color scale definitions
+        const stoneScale = {
+            50: '#f7f8f8',
+            100: '#e8eaea',
+            200: '#d1d5d5',
+            300: '#b0b6b6',
+            400: '#909999',
+            500: '#707d7d',
+            600: '#5a6565',
+            700: '#454e4e',
+            800: '#323939',
+            900: '#1f2525',
+            950: '#0f1313',
+        };
+
+        const greenScale = {
+            50: '#f0fdf4',
+            100: '#d1f4e0',
+            200: '#9de9c5',
+            300: '#5dd9a8',
+            400: '#0bd684',
+            500: '#00b86d',
+            600: '#009657',
+            700: '#007a47',
+            800: '#005f38',
+            900: '#003d24',
+            950: '#001f12',
+        };
+
+        const emberScale = {
+            50: '#fff5f7',
+            100: '#ffe4e9',
+            200: '#ffc9d4',
+            300: '#ff9db0',
+            400: '#ff7e95',
+            500: '#FF5E7E',
+            600: '#e6446a',
+            700: '#c72f56',
+            800: '#a01f42',
+            900: '#6b1530',
+            950: '#3d0a1b',
+        };
+
+        const blueScale = {
+            50: '#eff6ff',
+            100: '#dbeafe',
+            200: '#bfdbfe',
+            300: '#93c5fd',
+            400: '#60a5fa',
+            500: '#3b82f6',
+            600: '#2563eb',
+            700: '#1d4ed8',
+            800: '#1e40af',
+            900: '#1e3a8a',
+            950: '#172554',
+        };
+
         const colorScales = {
-            stone: {
-                50: '#f7f8f8',
-                100: '#e8eaea',
-                200: '#d1d5d5',
-                300: '#b0b6b6',
-                400: '#909999',
-                500: '#707d7d',
-                600: '#5a6565',
-                700: '#454e4e',
-                800: '#323939',
-                900: '#1f2525',
-                950: '#0f1313',
-            },
-            green: {
-                50: '#f0fdf4',
-                100: '#d1f4e0',
-                200: '#9de9c5',
-                300: '#5dd9a8',
-                400: '#0bd684',
-                500: '#00b86d',
-                600: '#009657',
-                700: '#007a47',
-                800: '#005f38',
-                900: '#003d24',
-                950: '#001f12',
-            },
-            ember: {
-                50: '#fff5f7',
-                100: '#ffe4e9',
-                200: '#ffc9d4',
-                300: '#ff9db0',
-                400: '#ff7e95',
-                500: '#FF5E7E',
-                600: '#e6446a',
-                700: '#c72f56',
-                800: '#a01f42',
-                900: '#6b1530',
-                950: '#3d0a1b',
-            },
-            blue: {
-                50: '#eff6ff',
-                100: '#dbeafe',
-                200: '#bfdbfe',
-                300: '#93c5fd',
-                400: '#60a5fa',
-                500: '#3b82f6',
-                600: '#2563eb',
-                700: '#1d4ed8',
-                800: '#1e40af',
-                900: '#1e3a8a',
-                950: '#172554',
-            },
+            // Color-specific names (legacy)
+            stone: stoneScale,
+            green: greenScale,
+            ember: emberScale,
+            blue: blueScale,
+            // Semantic names (recommended)
+            primary: greenScale,
+            secondary: emberScale,
+            neutral: stoneScale,
+            accent: blueScale,
         };
 
         // Sensible defaults
@@ -942,10 +1247,9 @@
         };
 
         // Card component
-        function Card({ colorScale = 'stone', bg, children }) {
-            const scale = colorScales[colorScale];
+        function Card({ colorScale = 'neutral', bg, children }) {
             const bgValue = bg || defaults.bg;
-            const backgroundColor = scale[bgValue];
+            const backgroundColor = `var(--${colorScale}-${bgValue})`;
 
             return (
                 <CardContext.Provider value={colorScale}>
@@ -959,9 +1263,8 @@
         // CardLabel component
         function CardLabel({ children, color }) {
             const colorScale = useContext(CardContext);
-            const scale = colorScales[colorScale];
             const colorValue = color || defaults.label;
-            const textColor = scale[colorValue];
+            const textColor = `var(--${colorScale}-${colorValue})`;
 
             return (
                 <div className="card-label" style={{ color: textColor }}>
@@ -991,7 +1294,6 @@
         // CardButton component
         function CardButton({ children, bg, border, textColor }) {
             const colorScale = useContext(CardContext);
-            const scale = colorScales[colorScale];
             const bgValue = bg || defaults.buttonBg;
             const borderValue = border || defaults.buttonBorder;
             const textValue = textColor || defaults.buttonText;
@@ -1001,9 +1303,9 @@
                     href="#"
                     className="card-button"
                     style={{
-                        backgroundColor: scale[bgValue],
-                        borderColor: scale[borderValue],
-                        color: scale[textValue],
+                        backgroundColor: `var(--${colorScale}-${bgValue})`,
+                        borderColor: `var(--${colorScale}-${borderValue})`,
+                        color: `var(--${colorScale}-${textValue})`,
                     }}
                 >
                     {children}
@@ -1011,43 +1313,340 @@
             );
         }
 
-        // BrandColors component
+        // Helper: Generate color scale from base color using Chroma.js
+        function generateScale(baseColor) {
+            try {
+                // Generate 50-900 from light to dark
+                const lightScale = chroma.scale([
+                    chroma(baseColor).brighten(3.5),  // 50 - lightest
+                    baseColor                          // 900 - base
+                ])
+                .mode('lch')
+                .correctLightness()
+                .colors(10);
+
+                // Add 950 (darker than base)
+                const color950 = chroma(baseColor).darken(0.8).hex();
+
+                // Map to scale object
+                const values = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+                const scale = {};
+                values.forEach((value, index) => {
+                    scale[value] = lightScale[index];
+                });
+                scale[950] = color950;
+
+                return scale;
+            } catch (error) {
+                console.error('Error generating scale:', error);
+                return null;
+            }
+        }
+
+        // Helper: Update CSS variables from scales object
+        function updateCSSVariables(scales) {
+            const root = document.documentElement;
+            const colorNameMap = {
+                primary: 'green',
+                secondary: 'ember',
+                accent: 'blue',
+                neutral: 'stone'
+            };
+
+            Object.entries(scales).forEach(([scaleName, scaleObj]) => {
+                Object.entries(scaleObj).forEach(([value, color]) => {
+                    // Update semantic name (--primary-500)
+                    root.style.setProperty(`--${scaleName}-${value}`, color);
+                    // Update color-specific name (--green-500)
+                    const colorName = colorNameMap[scaleName];
+                    if (colorName) {
+                        root.style.setProperty(`--${colorName}-${value}`, color);
+                    }
+                });
+            });
+        }
+
+        // ColorPickerModal component
+        function ColorPickerModal({
+            isOpen,
+            scaleName,
+            currentScale,
+            isBackground,
+            currentBackgroundColor,
+            onClose,
+            onApply,
+            onApplyBackground,
+            onReset,
+            onResetBackground
+        }) {
+            const [baseColor, setBaseColor] = useState(isBackground ? currentBackgroundColor : currentScale[900]);
+            const [previewScale, setPreviewScale] = useState(currentScale);
+
+            // Update preview when base color changes (only for scales, not background)
+            useEffect(() => {
+                if (!isBackground && baseColor) {
+                    const newScale = generateScale(baseColor);
+                    if (newScale) {
+                        setPreviewScale(newScale);
+                    }
+                }
+            }, [baseColor, isBackground]);
+
+            // Reset preview when modal opens
+            useEffect(() => {
+                if (isOpen) {
+                    if (isBackground) {
+                        setBaseColor(currentBackgroundColor);
+                    } else {
+                        setBaseColor(currentScale[900]);
+                        setPreviewScale(currentScale);
+                    }
+                }
+            }, [isOpen, currentScale, isBackground, currentBackgroundColor]);
+
+            const handleApply = () => {
+                if (isBackground) {
+                    onApplyBackground(baseColor);
+                } else {
+                    onApply(scaleName, previewScale);
+                }
+                onClose();
+            };
+
+            const handleReset = () => {
+                const itemName = isBackground ? 'background color' : `${scaleName} colors`;
+                if (window.confirm(`Reset ${itemName} to default?`)) {
+                    if (isBackground) {
+                        onResetBackground();
+                    } else {
+                        onReset(scaleName);
+                    }
+                    onClose();
+                }
+            };
+
+            const handleBackdropClick = (e) => {
+                if (e.target === e.currentTarget) {
+                    onClose();
+                }
+            };
+
+            const handleKeyDown = (e) => {
+                if (e.key === 'Escape') {
+                    onClose();
+                }
+            };
+
+            useEffect(() => {
+                if (isOpen) {
+                    document.addEventListener('keydown', handleKeyDown);
+                    return () => document.removeEventListener('keydown', handleKeyDown);
+                }
+            }, [isOpen]);
+
+            if (!isOpen) return null;
+
+            const isLight = (value) => value <= 400;
+
+            return (
+                <div className="modal-backdrop" onClick={handleBackdropClick}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h2>{isBackground ? 'Edit Background Color' : `Edit ${scaleName} Color`}</h2>
+                            <button className="modal-close" onClick={onClose}>&times;</button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="color-input-section">
+                                <label>{isBackground ? 'Background Color' : 'Base Color (900 value)'}</label>
+                                <div className="color-input-wrapper">
+                                    <input
+                                        type="color"
+                                        value={baseColor}
+                                        onChange={(e) => setBaseColor(e.target.value)}
+                                    />
+                                    <div className="color-hex-display">{baseColor?.toUpperCase() || ''}</div>
+                                </div>
+                                {!isBackground && (
+                                    <div className="preview-section">
+                                        <h3>Preview Scale</h3>
+                                        <div className="preview-grid">
+                                            {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map(value => (
+                                                <div
+                                                    key={value}
+                                                    className={`preview-swatch ${isLight(value) ? 'light' : ''}`}
+                                                    style={{ backgroundColor: previewScale[value] }}
+                                                >
+                                                    {value}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="modal-actions">
+                            <button className="modal-button danger" onClick={handleReset}>
+                                Reset to Default
+                            </button>
+                            <button className="modal-button secondary" onClick={onClose}>
+                                Cancel
+                            </button>
+                            <button className="modal-button primary" onClick={handleApply}>
+                                Apply Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // BrandColors component with interactive color editing
         function BrandColors() {
-            const scales = ['green', 'ember', 'stone', 'blue'];
+            const scales = ['primary', 'secondary', 'accent', 'neutral'];
             const samples = [900, 600, 400];
+
+            // Immutable defaults for reset
+            const defaultScales = {
+                primary: greenScale,
+                secondary: emberScale,
+                accent: blueScale,
+                neutral: stoneScale,
+            };
+
+            const defaultBackground = '#0a0a0a';
+
+            // Initialize from localStorage or defaults
+            const [currentScales, setCurrentScales] = useState(() => {
+                try {
+                    const stored = localStorage.getItem('brandColors');
+                    return stored ? JSON.parse(stored) : defaultScales;
+                } catch (error) {
+                    console.error('Error loading from localStorage:', error);
+                    return defaultScales;
+                }
+            });
+
+            const [backgroundColor, setBackgroundColor] = useState(() => {
+                try {
+                    const stored = localStorage.getItem('backgroundColor');
+                    return stored || defaultBackground;
+                } catch (error) {
+                    console.error('Error loading backgroundColor:', error);
+                    return defaultBackground;
+                }
+            });
+
+            // Modal state
+            const [modalOpen, setModalOpen] = useState(false);
+            const [editingScale, setEditingScale] = useState(null);
+            const [editingBackground, setEditingBackground] = useState(false);
+
+            // Sync to CSS variables and localStorage
+            useEffect(() => {
+                updateCSSVariables(currentScales);
+                try {
+                    localStorage.setItem('brandColors', JSON.stringify(currentScales));
+                } catch (error) {
+                    console.error('Error saving to localStorage:', error);
+                }
+            }, [currentScales]);
+
+            // Sync background color
+            useEffect(() => {
+                document.documentElement.style.setProperty('--black', backgroundColor);
+                try {
+                    localStorage.setItem('backgroundColor', backgroundColor);
+                } catch (error) {
+                    console.error('Error saving backgroundColor:', error);
+                }
+            }, [backgroundColor]);
+
+            const handleSwatchClick = (scaleName) => {
+                setEditingScale(scaleName);
+                setEditingBackground(false);
+                setModalOpen(true);
+            };
+
+            const handleBackgroundClick = () => {
+                setEditingBackground(true);
+                setEditingScale(null);
+                setModalOpen(true);
+            };
+
+            const handleApply = (scaleName, newScale) => {
+                setCurrentScales(prev => ({
+                    ...prev,
+                    [scaleName]: newScale
+                }));
+            };
+
+            const handleApplyBackground = (newColor) => {
+                setBackgroundColor(newColor);
+            };
+
+            const handleReset = (scaleName) => {
+                setCurrentScales(prev => ({
+                    ...prev,
+                    [scaleName]: defaultScales[scaleName]
+                }));
+            };
+
+            const handleResetBackground = () => {
+                setBackgroundColor(defaultBackground);
+            };
 
             // Determine if text should be light or dark based on color value
             const isLight = (value) => value <= 400;
 
             return (
-                <div className="color-row no-gap">
-                    {scales.map(scale => (
-                        <div className="color-column" key={scale}>
-                            {samples.map(value => (
-                                <div
-                                    className={`color-card ${isLight(value) ? 'light' : ''}`}
-                                    style={{ backgroundColor: colorScales[scale][value] }}
-                                    key={value}
-                                >
-                                    <div className="color-values">--{scale}-{value}</div>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
+                <>
+                    <div className="color-row no-gap">
+                        {scales.map(scale => (
+                            <div className="color-column" key={scale}>
+                                {samples.map(value => (
+                                    <div
+                                        className={`color-card ${isLight(value) ? 'light' : ''} ${value === 900 ? 'clickable' : ''}`}
+                                        style={{ backgroundColor: currentScales[scale][value] }}
+                                        key={value}
+                                        onClick={value === 900 ? () => handleSwatchClick(scale) : undefined}
+                                    >
+                                        <div className="color-values">--{scale}-{value}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
 
-                    {/* Neutrals column */}
-                    <div className="color-column">
-                        <div className="color-card" style={{ backgroundColor: '#0a0a0a', border: '1px solid rgba(255,255,255,0.1)' }}>
-                            <div className="color-values">--black</div>
-                        </div>
-                        <div className="color-card" style={{ backgroundColor: '#7a7a7a' }}>
-                            <div className="color-values">--gray</div>
-                        </div>
-                        <div className="color-card light" style={{ backgroundColor: '#ffffff' }}>
-                            <div className="color-values">--white</div>
+                        {/* Neutrals column */}
+                        <div className="color-column">
+                            <div
+                                className="color-card clickable"
+                                style={{ backgroundColor: backgroundColor, border: '1px solid rgba(255,255,255,0.1)' }}
+                                onClick={handleBackgroundClick}
+                            >
+                                <div className="color-values">--black</div>
+                            </div>
+                            <div className="color-card" style={{ backgroundColor: '#7a7a7a' }}>
+                                <div className="color-values">--gray</div>
+                            </div>
+                            <div className="color-card light" style={{ backgroundColor: '#ffffff' }}>
+                                <div className="color-values">--white</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    <ColorPickerModal
+                        isOpen={modalOpen}
+                        scaleName={editingScale}
+                        currentScale={editingScale ? currentScales[editingScale] : {}}
+                        isBackground={editingBackground}
+                        currentBackgroundColor={backgroundColor}
+                        onClose={() => setModalOpen(false)}
+                        onApply={handleApply}
+                        onApplyBackground={handleApplyBackground}
+                        onReset={handleReset}
+                        onResetBackground={handleResetBackground}
+                    />
+                </>
             );
         }
 
@@ -1058,7 +1657,7 @@
         // Render Brand Personality card
         const brandPersonalityRoot = ReactDOM.createRoot(document.getElementById('brand-personality-card'));
         brandPersonalityRoot.render(
-            <Card colorScale="green">
+            <Card colorScale="primary">
                 <CardLabel>Brand Personality</CardLabel>
                 <CardTitle>Confident but approachable</CardTitle>
                 <CardBody>Stratum speaks with authority without being cold. We lead with clarity, not complexity.</CardBody>
@@ -1069,7 +1668,7 @@
         // Render Hierarchy card
         const hierarchyRoot = ReactDOM.createRoot(document.getElementById('hierarchy-card'));
         hierarchyRoot.render(
-            <Card colorScale="stone">
+            <Card colorScale="neutral">
                 <CardLabel>Hierarchy</CardLabel>
                 <CardTitle>Lead with intention</CardTitle>
                 <CardBody>Every layout should have a clear entry point. Guide the eye through deliberate scale contrast.</CardBody>
@@ -1080,7 +1679,7 @@
         // Render Motion card
         const motionRoot = ReactDOM.createRoot(document.getElementById('motion-card'));
         motionRoot.render(
-            <Card colorScale="green">
+            <Card colorScale="primary">
                 <CardLabel>Motion</CardLabel>
                 <CardTitle>Purposeful movement</CardTitle>
                 <CardBody>Subtle, purposeful, never gratuitous. Animation should clarify, not distract.</CardBody>
@@ -1091,7 +1690,7 @@
         // Render Evolution card
         const evolutionRoot = ReactDOM.createRoot(document.getElementById('evolution-card'));
         evolutionRoot.render(
-            <Card colorScale="ember">
+            <Card colorScale="secondary">
                 <CardLabel>Evolution</CardLabel>
                 <CardTitle>Built to grow</CardTitle>
                 <CardBody>A living system that adapts without losing coherence.</CardBody>
@@ -1102,7 +1701,7 @@
         // Render Tone of Voice card
         const toneRoot = ReactDOM.createRoot(document.getElementById('tone-card'));
         toneRoot.render(
-            <Card colorScale="blue">
+            <Card colorScale="accent">
                 <CardLabel>Tone of Voice</CardLabel>
                 <CardTitle>Clear. Precise. Human.</CardTitle>
                 <CardBody>Write like you're explaining something important to a smart friend.</CardBody>
@@ -1113,7 +1712,7 @@
         // Render Application card
         const applicationRoot = ReactDOM.createRoot(document.getElementById('application-card'));
         applicationRoot.render(
-            <Card colorScale="stone">
+            <Card colorScale="neutral">
                 <CardLabel>Application</CardLabel>
                 <CardTitle>Consistency over uniformity</CardTitle>
                 <CardBody>Recognition across touchpoints while allowing variation for context.</CardBody>

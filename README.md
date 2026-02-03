@@ -10,7 +10,7 @@ A sandbox for exploring visual design systems, widgets, and layouts.
 
 **February 2, 2026**
 
-[![Design Festival](./screenshots/design-festival.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-design-festival/)
+[![Design Festival](./screenshots/design-festival.png)](https://magical-sawine-959bb1.netlify.app/2026-01-28-design-festival/)
 
 Card-based layout system combining festival poster boldness with digital interface precision. Features animated React widgets including an Activity chart with SVG line-drawing animation, Goals progress bars, Analytics bar charts, concentric progress rings, and an interactive calendar. All widgets support click-to-regenerate with randomized data.
 
@@ -24,7 +24,7 @@ Card-based layout system combining festival poster boldness with digital interfa
 
 **February 2, 2026**
 
-[![Day at a Glance](./screenshots/day-at-a-glance.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-day-at-a-glance/)
+[![Day at a Glance](./screenshots/day-at-a-glance.png)](https://magical-sawine-959bb1.netlify.app/2026-01-28-day-at-a-glance/)
 
 Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a subtle "now" indicator line that shows through semi-transparent event cards. Features split color bars for past/upcoming visualization and continuous horizontal hour lines.
 
@@ -38,7 +38,7 @@ Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a sub
 
 **February 2, 2026**
 
-[![Blend](./screenshots/blend.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-blend/)
+[![Blend](./screenshots/blend.png)](https://magical-sawine-959bb1.netlify.app/2026-01-28-blend/)
 
 Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling (G-01 through G-09, M-01 through M-18), scroll-triggered animations, and an analytics dashboard mockup.
 
@@ -52,7 +52,7 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 
 **January 28, 2026**
 
-[![Spec Sheet](./screenshots/spec-sheet.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-spec-sheet/)
+[![Spec Sheet](./screenshots/spec-sheet.png)](https://magical-sawine-959bb1.netlify.app/2026-01-28-spec-sheet/)
 
 Bold typographic layout with dark/light mode toggle. Features strong hierarchy through scale contrast, clean sectioning, and a professional two-color aesthetic.
 
@@ -66,7 +66,7 @@ Bold typographic layout with dark/light mode toggle. Features strong hierarchy t
 
 **January 28, 2026**
 
-[![Color Spec](./screenshots/color-spec.png)](https://joshcoolman-smc.github.io/sandbox/2026-01-28-color-spec/)
+[![Color Spec](./screenshots/color-spec.png)](https://magical-sawine-959bb1.netlify.app/2026-01-28-color-spec/)
 
 Comprehensive brand system specification showcasing green-focused color palette with detailed technical values. Features large type specimens and organized color swatches.
 
@@ -103,4 +103,4 @@ This sandbox is for rapid design exploration—building visual systems, testing 
 
 ---
 
-**View live experiments:** https://joshcoolman-smc.github.io/sandbox/
+**View live experiments:** https://magical-sawine-959bb1.netlify.app/

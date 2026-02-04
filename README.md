@@ -6,7 +6,7 @@ A sandbox for exploring visual design systems, widgets, and layouts and ux inter
 
 ## Experiments
 
-### Stratum
+### Color Spec
 
 **February 2, 2026**
 
@@ -20,7 +20,7 @@ Interactive brand guidelines with React-powered color customization. Click the g
 
 ---
 
-### Design Festival
+### Widget Board
 
 **February 2, 2026**
 
@@ -34,7 +34,7 @@ Card-based layout system combining festival poster boldness with digital interfa
 
 ---
 
-### Day at a Glance
+### A Day in the life...
 
 **February 2, 2026**
 

@@ -6,7 +6,7 @@
     <title>Stratum - Brand Guidelines</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&family=Fraunces:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Serif+4:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&family=Abril+Fatface&family=Bitter:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&family=Caprasimo&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- React -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -141,6 +141,10 @@
             --black: #0a0a0a;
             --white: #ffffff;
 
+            /* Typography */
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+
             --grid-gap: 24px;
             --row-height: 120px;
         }
@@ -152,7 +156,7 @@
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-body);
             background-color: var(--black);
             color: var(--white);
             font-size: 14px;
@@ -231,6 +235,7 @@
         }
 
         .type-display {
+            font-family: var(--font-heading);
             font-size: 120px;
             font-weight: 700;
             line-height: 0.9;
@@ -247,12 +252,14 @@
         }
 
         .type-row.uppercase {
+            font-family: var(--font-heading);
             font-size: 24px;
             font-weight: 500;
             letter-spacing: 0.02em;
         }
 
         .type-row.lowercase {
+            font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 400;
             letter-spacing: 0.01em;
@@ -260,6 +267,7 @@
         }
 
         .type-row.digits {
+            font-family: var(--font-heading);
             font-size: 32px;
             font-weight: 700;
             letter-spacing: 0.05em;
@@ -291,6 +299,7 @@
         }
 
         .weight-sample {
+            font-family: var(--font-heading);
             font-size: 36px;
             margin-bottom: 12px;
         }
@@ -483,6 +492,7 @@
         .label-neutral { color: var(--stone-100); }
 
         .editorial-card h3 {
+            font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 500;
             margin-bottom: 16px;
@@ -515,6 +525,7 @@
         }
 
         .card-title {
+            font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 500;
             line-height: 1.3;
@@ -609,6 +620,7 @@
         }
 
         .type-scale-sample h1 {
+            font-family: var(--font-heading);
             font-size: 48px;
             font-weight: 700;
             letter-spacing: -0.02em;
@@ -616,6 +628,7 @@
         }
 
         .type-scale-sample h2 {
+            font-family: var(--font-heading);
             font-size: 36px;
             font-weight: 700;
             letter-spacing: -0.01em;
@@ -623,24 +636,28 @@
         }
 
         .type-scale-sample h3 {
+            font-family: var(--font-heading);
             font-size: 24px;
             font-weight: 500;
             line-height: 1.3;
         }
 
         .type-scale-sample h4 {
+            font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 500;
             line-height: 1.4;
         }
 
         .type-scale-sample h5 {
+            font-family: var(--font-heading);
             font-size: 16px;
             font-weight: 500;
             line-height: 1.4;
         }
 
         .type-scale-sample h6 {
+            font-family: var(--font-heading);
             font-size: 14px;
             font-weight: 500;
             letter-spacing: 0.5px;
@@ -836,13 +853,107 @@
             background: transparent;
             color: #FF5E7E;
             transition: all 150ms ease;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: var(--font-body);
         }
 
         .sidebar-reset-btn:hover {
             background: #6b1530;
             border-color: #e6446a;
             color: #ff7e95;
+        }
+
+        /* Typography Section in Sidebar */
+        .sidebar-section {
+            margin-bottom: 28px;
+        }
+
+        .sidebar-section-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #707d7d;
+            margin-bottom: 16px;
+        }
+
+        /* Custom Font Pairing Selector */
+        .font-pairing-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .font-pairing-option {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 16px;
+            background: #252c2c;
+            border: 2px solid #323939;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 200ms ease;
+            text-align: left;
+        }
+
+        .font-pairing-option:hover {
+            background: #2a3333;
+            border-color: #454e4e;
+            transform: translateY(-1px);
+        }
+
+        .font-pairing-option.selected {
+            background: #1a2828;
+            border-color: var(--caribbean-green);
+            box-shadow: 0 0 0 1px rgba(11, 214, 132, 0.2);
+        }
+
+        .font-pairing-preview {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+        }
+
+        .font-pairing-preview .heading-preview {
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 1;
+            color: #ffffff;
+        }
+
+        .font-pairing-preview .body-preview {
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.02em;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .font-pairing-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .font-pairing-name {
+            font-size: 11px;
+            font-weight: 500;
+            color: #909999;
+        }
+
+        .font-pairing-option.selected .font-pairing-name {
+            color: var(--caribbean-green);
+        }
+
+        .font-pairing-classification {
+            font-size: 9px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #5a6565;
         }
 
         /* Gear toggle button */
@@ -1005,28 +1116,7 @@
                     <div class="type-row digits">0123456789</div>
                 </div>
             </div>
-            <div class="type-info">
-                <div>
-                    <div class="section-label">Typeface</div>
-                    <div class="type-description">
-                        <strong>Space Grotesk</strong> serves as the primary typeface across all brand communications. Its geometric construction and open letterforms provide excellent readability while maintaining a contemporary, technical aesthetic. Use Regular for body text, Medium for subheadings, and Bold for headlines and emphasis.
-                    </div>
-                </div>
-                <div class="type-weights">
-                    <div class="weight-card">
-                        <div class="weight-sample">Aa</div>
-                        <div class="weight-name">Regular 400</div>
-                    </div>
-                    <div class="weight-card">
-                        <div class="weight-sample">Aa</div>
-                        <div class="weight-name">Medium 500</div>
-                    </div>
-                    <div class="weight-card">
-                        <div class="weight-sample">Aa</div>
-                        <div class="weight-name">Bold 700</div>
-                    </div>
-                </div>
-            </div>
+            <div id="type-info-container" class="type-info"></div>
         </section>
 
 <!-- Extended Scale -->
@@ -1125,6 +1215,7 @@
 
     <script type="text/babel">
         const { useState, useEffect, createContext, useContext } = React;
+        const { createPortal } = ReactDOM;
 
         // Create context for card color scale
         const CardContext = createContext();
@@ -1198,6 +1289,19 @@
             neutral: stoneScale,
             accent: blueScale,
         };
+
+        // Font pairings data
+        const fontPairings = [
+            { name: 'Space Grotesk', heading: 'Space Grotesk', body: 'Space Grotesk', classification: 'Geometric Sans' },
+            { name: 'Fraunces + Inter', heading: 'Fraunces', body: 'Inter', classification: 'Serif / Sans' },
+            { name: 'DM Serif Display + Plus Jakarta Sans', heading: 'DM Serif Display', body: 'Plus Jakarta Sans', classification: 'Serif / Sans' },
+            { name: 'Playfair Display + Source Sans 3', heading: 'Playfair Display', body: 'Source Sans 3', classification: 'Serif / Sans' },
+            { name: 'Space Grotesk + Source Serif 4', heading: 'Space Grotesk', body: 'Source Serif 4', classification: 'Sans / Serif' },
+            { name: 'Sora + Spectral', heading: 'Sora', body: 'Spectral', classification: 'Sans / Serif' },
+            { name: 'Abril Fatface + Work Sans', heading: 'Abril Fatface', body: 'Work Sans', classification: 'Display / Sans' },
+            { name: 'Bitter + Raleway', heading: 'Bitter', body: 'Raleway', classification: 'Slab Serif / Sans' },
+            { name: 'Caprasimo + Roboto', heading: 'Caprasimo', body: 'Roboto', classification: 'Display / Sans' }
+        ];
 
         // Sensible defaults
         const defaults = {
@@ -1335,8 +1439,10 @@
             isOpen,
             currentScales,
             backgroundColor,
+            currentPairing,
             onColorChange,
             onBackgroundChange,
+            onPairingChange,
             onResetAll,
             onClose
         }) {
@@ -1355,7 +1461,7 @@
             };
 
             const handleResetAll = () => {
-                if (window.confirm('Reset all colors to defaults?')) {
+                if (window.confirm('Reset all settings to defaults?')) {
                     onResetAll();
                 }
             };
@@ -1363,34 +1469,71 @@
             return (
                 <div className={`sidebar ${isOpen ? 'open' : ''}`}>
                     <div className="sidebar-header">
-                        <h2>Edit Colors</h2>
+                        <h2>Customize</h2>
                         <button className="sidebar-close" onClick={onClose}>&times;</button>
                     </div>
                     <div className="sidebar-body">
-                        {Object.entries(colorNames).map(([scaleName, displayName]) => (
-                            <div className="sidebar-color-row" key={scaleName}>
+                        {/* Colors Section */}
+                        <div className="sidebar-section">
+                            <div className="sidebar-section-label">Colors</div>
+                            {Object.entries(colorNames).map(([scaleName, displayName]) => (
+                                <div className="sidebar-color-row" key={scaleName}>
+                                    <input
+                                        type="color"
+                                        className="sidebar-color-input"
+                                        value={currentScales[scaleName][900]}
+                                        onChange={(e) => handleColorChange(scaleName, e.target.value)}
+                                    />
+                                    <div className="sidebar-color-info">
+                                        <div className="sidebar-color-name">{displayName}</div>
+                                        <div className="sidebar-color-hex">{currentScales[scaleName][900].toUpperCase()}</div>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="sidebar-color-row">
                                 <input
                                     type="color"
                                     className="sidebar-color-input"
-                                    value={currentScales[scaleName][900]}
-                                    onChange={(e) => handleColorChange(scaleName, e.target.value)}
+                                    value={backgroundColor}
+                                    onChange={(e) => onBackgroundChange(e.target.value)}
                                 />
                                 <div className="sidebar-color-info">
-                                    <div className="sidebar-color-name">{displayName}</div>
-                                    <div className="sidebar-color-hex">{currentScales[scaleName][900].toUpperCase()}</div>
+                                    <div className="sidebar-color-name">Page Background</div>
+                                    <div className="sidebar-color-hex">{backgroundColor.toUpperCase()}</div>
                                 </div>
                             </div>
-                        ))}
-                        <div className="sidebar-color-row">
-                            <input
-                                type="color"
-                                className="sidebar-color-input"
-                                value={backgroundColor}
-                                onChange={(e) => onBackgroundChange(e.target.value)}
-                            />
-                            <div className="sidebar-color-info">
-                                <div className="sidebar-color-name">Page Background</div>
-                                <div className="sidebar-color-hex">{backgroundColor.toUpperCase()}</div>
+                        </div>
+
+                        {/* Typography Section */}
+                        <div className="sidebar-section">
+                            <div className="sidebar-section-label">Typography</div>
+                            <div className="font-pairing-selector">
+                                {fontPairings.map((pairing, index) => (
+                                    <button
+                                        key={index}
+                                        className={`font-pairing-option ${currentPairing.name === pairing.name ? 'selected' : ''}`}
+                                        onClick={() => onPairingChange(pairing)}
+                                    >
+                                        <div className="font-pairing-preview">
+                                            <span
+                                                className="heading-preview"
+                                                style={{ fontFamily: `'${pairing.heading}', serif` }}
+                                            >
+                                                Aa
+                                            </span>
+                                            <span
+                                                className="body-preview"
+                                                style={{ fontFamily: `'${pairing.body}', sans-serif` }}
+                                            >
+                                                The quick brown fox
+                                            </span>
+                                        </div>
+                                        <div className="font-pairing-meta">
+                                            <span className="font-pairing-name">{pairing.name}</span>
+                                            <span className="font-pairing-classification">{pairing.classification}</span>
+                                        </div>
+                                    </button>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -1409,10 +1552,45 @@
                 <button
                     className={`gear-toggle ${isActive ? 'active' : ''}`}
                     onClick={onClick}
-                    title={isActive ? 'Close color editor' : 'Edit colors'}
+                    title={isActive ? 'Close editor' : 'Customize'}
                 >
                     &#9881;
                 </button>
+            );
+        }
+
+        // TypeInfo component - displays current font pairing info
+        function TypeInfo({ currentPairing }) {
+            const isPaired = currentPairing.heading !== currentPairing.body;
+
+            return (
+                <>
+                    <div>
+                        <div className="section-label">Typeface</div>
+                        <div className="type-description">
+                            <strong>{currentPairing.heading}</strong>
+                            {isPaired ? (
+                                <> paired with <strong>{currentPairing.body}</strong> serves as the type system across all brand communications. This {currentPairing.classification.toLowerCase()} pairing balances distinctive headlines with highly readable body text.</>
+                            ) : (
+                                <> serves as the primary typeface across all brand communications. Its geometric construction and open letterforms provide excellent readability while maintaining a contemporary, technical aesthetic.</>
+                            )}
+                        </div>
+                    </div>
+                    <div className="type-weights">
+                        <div className="weight-card">
+                            <div className="weight-sample">Aa</div>
+                            <div className="weight-name">Regular 400</div>
+                        </div>
+                        <div className="weight-card">
+                            <div className="weight-sample">Aa</div>
+                            <div className="weight-name">Medium 500</div>
+                        </div>
+                        <div className="weight-card">
+                            <div className="weight-sample">Aa</div>
+                            <div className="weight-name">Bold 700</div>
+                        </div>
+                    </div>
+                </>
             );
         }
 
@@ -1430,6 +1608,7 @@
             };
 
             const defaultBackground = '#0a0a0a';
+            const defaultPairing = fontPairings[0]; // Space Grotesk
 
             // Initialize from localStorage or defaults
             const [currentScales, setCurrentScales] = useState(() => {
@@ -1449,6 +1628,16 @@
                 } catch (error) {
                     console.error('Error loading backgroundColor:', error);
                     return defaultBackground;
+                }
+            });
+
+            const [currentPairing, setCurrentPairing] = useState(() => {
+                try {
+                    const stored = localStorage.getItem('fontPairing');
+                    return stored ? JSON.parse(stored) : defaultPairing;
+                } catch (error) {
+                    console.error('Error loading fontPairing:', error);
+                    return defaultPairing;
                 }
             });
 
@@ -1475,6 +1664,18 @@
                 }
             }, [backgroundColor]);
 
+            // Sync font pairing
+            useEffect(() => {
+                const root = document.documentElement;
+                root.style.setProperty('--font-heading', `'${currentPairing.heading}', sans-serif`);
+                root.style.setProperty('--font-body', `'${currentPairing.body}', sans-serif`);
+                try {
+                    localStorage.setItem('fontPairing', JSON.stringify(currentPairing));
+                } catch (error) {
+                    console.error('Error saving fontPairing:', error);
+                }
+            }, [currentPairing]);
+
             // Toggle grid margin when sidebar opens/closes
             useEffect(() => {
                 const grid = document.querySelector('.grid');
@@ -1498,9 +1699,14 @@
                 setBackgroundColor(newColor);
             };
 
+            const handlePairingChange = (pairing) => {
+                setCurrentPairing(pairing);
+            };
+
             const handleResetAll = () => {
                 setCurrentScales(defaultScales);
                 setBackgroundColor(defaultBackground);
+                setCurrentPairing(defaultPairing);
             };
 
             // Determine if text should be light or dark based on color value
@@ -1544,8 +1750,10 @@
                         isOpen={sidebarOpen}
                         currentScales={currentScales}
                         backgroundColor={backgroundColor}
+                        currentPairing={currentPairing}
                         onColorChange={handleColorChange}
                         onBackgroundChange={handleBackgroundChange}
+                        onPairingChange={handlePairingChange}
                         onResetAll={handleResetAll}
                         onClose={() => setSidebarOpen(false)}
                     />
@@ -1554,6 +1762,12 @@
                         isActive={sidebarOpen}
                         onClick={() => setSidebarOpen(!sidebarOpen)}
                     />
+
+                    {/* Render TypeInfo into the type-info container via portal */}
+                    {createPortal(
+                        <TypeInfo currentPairing={currentPairing} />,
+                        document.getElementById('type-info-container')
+                    )}
                 </>
             );
         }

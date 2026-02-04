@@ -1290,17 +1290,71 @@
             accent: blueScale,
         };
 
-        // Font pairings data
+        // Font pairings data with custom descriptions
         const fontPairings = [
-            { name: 'Space Grotesk', heading: 'Space Grotesk', body: 'Space Grotesk', classification: 'Geometric Sans' },
-            { name: 'Fraunces + Inter', heading: 'Fraunces', body: 'Inter', classification: 'Serif / Sans' },
-            { name: 'DM Serif Display + Plus Jakarta Sans', heading: 'DM Serif Display', body: 'Plus Jakarta Sans', classification: 'Serif / Sans' },
-            { name: 'Playfair Display + Source Sans 3', heading: 'Playfair Display', body: 'Source Sans 3', classification: 'Serif / Sans' },
-            { name: 'Space Grotesk + Source Serif 4', heading: 'Space Grotesk', body: 'Source Serif 4', classification: 'Sans / Serif' },
-            { name: 'Sora + Spectral', heading: 'Sora', body: 'Spectral', classification: 'Sans / Serif' },
-            { name: 'Abril Fatface + Work Sans', heading: 'Abril Fatface', body: 'Work Sans', classification: 'Display / Sans' },
-            { name: 'Bitter + Raleway', heading: 'Bitter', body: 'Raleway', classification: 'Slab Serif / Sans' },
-            { name: 'Caprasimo + Roboto', heading: 'Caprasimo', body: 'Roboto', classification: 'Display / Sans' }
+            {
+                name: 'Space Grotesk',
+                heading: 'Space Grotesk',
+                body: 'Space Grotesk',
+                classification: 'Geometric Sans',
+                description: 'Space Grotesk serves as the primary typeface across all brand communications. Its geometric construction and open letterforms provide excellent readability while maintaining a contemporary, technical aesthetic. Use Regular for body text, Medium for subheadings, and Bold for headlines.'
+            },
+            {
+                name: 'Fraunces + Inter',
+                heading: 'Fraunces',
+                body: 'Inter',
+                classification: 'Serif / Sans',
+                description: 'Fraunces brings old-style warmth with its soft, wonky serifs and optical sizing, while Inter provides the clarity needed for interface text. This pairing balances editorial elegance with digital practicality—perfect for brands that want personality without sacrificing usability.'
+            },
+            {
+                name: 'DM Serif Display + Plus Jakarta Sans',
+                heading: 'DM Serif Display',
+                body: 'Plus Jakarta Sans',
+                classification: 'Serif / Sans',
+                description: 'DM Serif Display offers refined, high-contrast letterforms ideal for impactful headlines, while Plus Jakarta Sans delivers friendly geometric shapes for comfortable reading. Together they create a sophisticated yet approachable voice.'
+            },
+            {
+                name: 'Playfair Display + Source Sans 3',
+                heading: 'Playfair Display',
+                body: 'Source Sans 3',
+                classification: 'Serif / Sans',
+                description: 'Playfair Display channels 18th-century transitional design with dramatic thick-thin contrast, paired with the neutral efficiency of Source Sans 3. This combination suits editorial and luxury contexts where classic elegance meets modern clarity.'
+            },
+            {
+                name: 'Space Grotesk + Source Serif 4',
+                heading: 'Space Grotesk',
+                body: 'Source Serif 4',
+                classification: 'Sans / Serif',
+                description: 'An unconventional pairing that leads with geometric sans-serif headlines and settles into traditional serif body text. Space Grotesk commands attention while Source Serif 4 provides the reading comfort expected in long-form content.'
+            },
+            {
+                name: 'Sora + Spectral',
+                heading: 'Sora',
+                body: 'Spectral',
+                classification: 'Sans / Serif',
+                description: 'Sora brings geometric precision with subtle personality through its rounded terminals, while Spectral—designed specifically for screen reading—delivers exceptional clarity at small sizes. A modern pairing optimized for digital-first experiences.'
+            },
+            {
+                name: 'Abril Fatface + Work Sans',
+                heading: 'Abril Fatface',
+                body: 'Work Sans',
+                classification: 'Display / Sans',
+                description: 'Abril Fatface makes a bold statement with its heavy Didone-inspired letterforms, demanding attention for headlines and titles. Work Sans grounds the design with friendly, straightforward text that never competes. Best for designs that need drama up top and calm below.'
+            },
+            {
+                name: 'Bitter + Raleway',
+                heading: 'Bitter',
+                body: 'Raleway',
+                classification: 'Slab Serif / Sans',
+                description: 'Bitter brings sturdy slab-serif character designed specifically for screen comfort, while Raleway adds elegance through its thin, extended letterforms. This pairing works well for content-heavy sites that need warmth without heaviness.'
+            },
+            {
+                name: 'Caprasimo + Roboto',
+                heading: 'Caprasimo',
+                body: 'Roboto',
+                classification: 'Display / Sans',
+                description: 'Caprasimo delivers playful, chunky display lettering with strong personality, balanced by Roboto\'s mechanical precision and neutral tone. Use this pairing when you want headlines that pop against dependably readable body text.'
+            }
         ];
 
         // Sensible defaults
@@ -1561,19 +1615,12 @@
 
         // TypeInfo component - displays current font pairing info
         function TypeInfo({ currentPairing }) {
-            const isPaired = currentPairing.heading !== currentPairing.body;
-
             return (
                 <>
                     <div>
                         <div className="section-label">Typeface</div>
                         <div className="type-description">
-                            <strong>{currentPairing.heading}</strong>
-                            {isPaired ? (
-                                <> paired with <strong>{currentPairing.body}</strong> serves as the type system across all brand communications. This {currentPairing.classification.toLowerCase()} pairing balances distinctive headlines with highly readable body text.</>
-                            ) : (
-                                <> serves as the primary typeface across all brand communications. Its geometric construction and open letterforms provide excellent readability while maintaining a contemporary, technical aesthetic.</>
-                            )}
+                            {currentPairing.description}
                         </div>
                     </div>
                     <div className="type-weights">

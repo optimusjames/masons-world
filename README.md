@@ -1,6 +1,6 @@
 # Design Experiments
 
-A sandbox for exploring visual design systems, widgets, and layouts.
+A sandbox for exploring visual design systems, widgets, and layouts and ux interaction patterns.
 
 ---
 
@@ -10,7 +10,7 @@ A sandbox for exploring visual design systems, widgets, and layouts.
 
 **February 2, 2026**
 
-[![Stratum](./screenshots/color-spec.png)](https://sandbox-47z.pages.dev/2026-01-28-color-spec/)
+[![Color Spec](./screenshots/color-spec.png)](https://sandbox-47z.pages.dev/2026-01-28-color-spec/)
 
 Interactive brand guidelines with React-powered color customization. Click the gear icon to open a push-in sidebar with live color editing - changes apply instantly across the entire page. Features composable Card components with context-based inheritance, semantic color naming, Chroma.js scale generation, and real-time CSS variable updates that persist via localStorage.
 
@@ -24,7 +24,7 @@ Interactive brand guidelines with React-powered color customization. Click the g
 
 **February 2, 2026**
 
-[![Design Festival](./screenshots/design-festival.png)](https://sandbox-47z.pages.dev/2026-01-28-design-festival/)
+[![Widget Board](./screenshots/design-festival.png)](https://sandbox-47z.pages.dev/2026-01-28-design-festival/)
 
 Card-based layout system combining festival poster boldness with digital interface precision. Features animated React widgets including an Activity chart with SVG line-drawing animation, Goals progress bars, Analytics bar charts, concentric progress rings, and an interactive calendar. All widgets support click-to-regenerate with randomized data.
 
@@ -52,7 +52,7 @@ Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a sub
 
 **February 2, 2026**
 
-[![Blend](./screenshots/blend.png)](https://sandbox-47z.pages.dev/2026-01-28-blend/)
+[![Gradient Explorer](./screenshots/blend.png)](https://sandbox-47z.pages.dev/2026-01-28-blend/)
 
 Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling (G-01 through G-09, M-01 through M-18), scroll-triggered animations, and an analytics dashboard mockup.
 
@@ -66,7 +66,7 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 
 **January 28, 2026**
 
-[![Spec Sheet](./screenshots/spec-sheet.png)](https://sandbox-47z.pages.dev/2026-01-28-spec-sheet/)
+[![Type Specimine](./screenshots/spec-sheet.png)](https://sandbox-47z.pages.dev/2026-01-28-spec-sheet/)
 
 Bold typographic layout with dark/light mode toggle. Features strong hierarchy through scale contrast, clean sectioning, and a professional two-color aesthetic.
 

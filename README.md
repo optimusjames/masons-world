@@ -8,13 +8,13 @@ A sandbox for exploring visual design systems, widgets, and layouts and ux inter
 
 ### Color Spec
 
-**February 4, 2026**
+**February 6, 2026**
 
 [![Color Spec](./screenshots/color-spec.png)](https://sandbox-47z.pages.dev/2026-01-28-color-spec/)
 
-Interactive brand guidelines with live color and typography customization. Click the gear icon to access a push-in sidebar featuring color pickers with Chroma.js scale generation, plus a custom font pairing selector with 9 curated type combinations. All changes apply instantly and persist via localStorage.
+Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.
 
-**Tags:** React Components • Typography • Color Systems • Interactive
+**Tags:** React Components • Animated Charts • Color Systems • Typography
 
 **[View Code ->](./2026-01-28-color-spec/)**
 

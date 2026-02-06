@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stratum - Brand Guidelines</title>
+    <link rel="stylesheet" href="../shared/back-to-index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&family=Fraunces:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Serif+4:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&family=Abril+Fatface&family=Bitter:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&family=Caprasimo&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -15,6 +16,7 @@
 
     <!-- Chroma.js for color scale generation -->
     <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.1.2/chroma.min.js"></script>
+    <script src="../shared/back-to-index.js" defer></script>
 
     <style>
         :root {
@@ -592,6 +594,266 @@
         .card-span-2 { grid-column: span 2; align-self: stretch; }
         .card-span-3 { grid-column: span 3; align-self: stretch; }
         .card-span-4 { grid-column: span 4; align-self: stretch; }
+
+        /* Analytics Widget */
+        .analytics-widget {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            cursor: pointer;
+            user-select: none;
+            height: 100%;
+        }
+
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .analytics-header.loaded {
+            animation: analytics-header-in 0.4s ease forwards;
+        }
+
+        .analytics-header-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .analytics-header-badge {
+            font-size: 10px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        .analytics-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .analytics-number.loaded {
+            animation: analytics-number-in 0.5s ease forwards;
+            animation-delay: 0.1s;
+        }
+
+        .analytics-bars {
+            display: flex;
+            gap: 6px;
+            flex: 1;
+            align-items: flex-end;
+            min-height: 80px;
+        }
+
+        .analytics-bar-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            height: 100%;
+        }
+
+        .analytics-bar-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .analytics-bar {
+            width: 100%;
+            border-radius: 4px;
+            height: 0%;
+            transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .analytics-bar.loaded {
+            height: var(--bar-height);
+        }
+
+        .analytics-bar-label {
+            font-size: 9px;
+            font-weight: 600;
+            margin-top: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .analytics-bar-label.loaded {
+            opacity: 0.7;
+        }
+
+        @keyframes analytics-header-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes analytics-number-in {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Activity Chart Widget */
+        .activity-widget {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            cursor: pointer;
+            user-select: none;
+            height: 100%;
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .activity-header.loaded {
+            animation: analytics-header-in 0.4s ease forwards;
+        }
+
+        .activity-header-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .activity-header-badge {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .activity-number {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .activity-number.loaded {
+            animation: analytics-number-in 0.5s ease forwards;
+            animation-delay: 0.1s;
+        }
+
+        .activity-number-value {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .activity-number-suffix {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.6;
+        }
+
+        .activity-chart-container {
+            flex: 1;
+            position: relative;
+            min-height: 120px;
+        }
+
+        .activity-chart-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .activity-line-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: var(--path-length);
+            stroke-dashoffset: var(--path-length);
+        }
+
+        .activity-line-path.loaded {
+            animation: activity-line-draw 1.2s ease forwards;
+        }
+
+        .activity-area-path {
+            opacity: 0;
+        }
+
+        .activity-area-path.loaded {
+            animation: activity-area-in 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .activity-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            box-shadow: 0 0 0 2px var(--neutral-900);
+            opacity: 0;
+        }
+
+        .activity-dot.loaded {
+            animation: activity-point-in 0.4s ease forwards;
+        }
+
+        .activity-day-labels {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 8px;
+            margin-top: 12px;
+            opacity: 0;
+        }
+
+        .activity-day-labels.loaded {
+            animation: activity-labels-in 0.4s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .activity-day-label {
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.5;
+        }
+
+        @keyframes activity-line-draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes activity-area-in {
+            to { opacity: 0.4; }
+        }
+
+        @keyframes activity-point-in {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        @keyframes activity-labels-in {
+            to { opacity: 1; }
+        }
 
         /* Type Scale */
         .type-scale-section {
@@ -1198,6 +1460,8 @@
 
             <div id="motion-card" class="card-span-2"></div>
 
+            <div id="palette-chart-card" class="card-span-2"></div>
+
             <div id="hierarchy-card" class="card-span-2"></div>
 
             <div class="editorial-card with-image card-span-1">
@@ -1215,7 +1479,7 @@
     </div>
 
     <script type="text/babel">
-        const { useState, useEffect, createContext, useContext } = React;
+        const { useState, useEffect, useRef, useCallback, createContext, useContext } = React;
         const { createPortal } = ReactDOM;
 
         // Create context for card color scale
@@ -1433,6 +1697,253 @@
                 >
                     {children}
                 </a>
+            );
+        }
+
+        function AnalyticsWidget({ colorScale = 'secondary', chartColor = 'secondary' }) {
+            const dayLabels = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+            const [loadKey, setLoadKey] = useState(0);
+            const [isLoaded, setIsLoaded] = useState(false);
+
+            const getRandomValues = useCallback(() => ({
+                total: Math.floor(Math.random() * 5000) + 3000,
+                bars: dayLabels.map(() => Math.floor(Math.random() * 60) + 20)
+            }), []);
+
+            const [values, setValues] = useState(getRandomValues);
+
+            const handleReload = () => {
+                setIsLoaded(false);
+                setValues(getRandomValues());
+                setLoadKey(k => k + 1);
+                setTimeout(() => setIsLoaded(true), 50);
+            };
+
+            useEffect(() => {
+                const timer = setTimeout(() => setIsLoaded(true), 100);
+                return () => clearTimeout(timer);
+            }, [loadKey]);
+
+            const formatTotal = (num) => {
+                if (num >= 1000) {
+                    return `${Math.round(num / 1000)}K+`;
+                }
+                return num.toString();
+            };
+
+            const textColor = `var(--${colorScale}-200)`;
+            const barColor = `var(--${chartColor}-400)`;
+
+            return (
+                <div
+                    key={loadKey}
+                    className="analytics-widget"
+                    onClick={handleReload}
+                >
+                    {/* Header */}
+                    <div
+                        className={`analytics-header ${isLoaded ? 'loaded' : ''}`}
+                        style={{ color: textColor }}
+                    >
+                        <span className="analytics-header-label">ANALYTICS</span>
+                        <span className="analytics-header-badge">This Week</span>
+                    </div>
+
+                    {/* Big Number */}
+                    <div
+                        className={`analytics-number ${isLoaded ? 'loaded' : ''}`}
+                        style={{ color: textColor }}
+                    >
+                        {formatTotal(values.total)}
+                    </div>
+
+                    {/* Bar Chart */}
+                    <div className="analytics-bars">
+                        {values.bars.map((height, i) => (
+                            <div className="analytics-bar-column" key={i}>
+                                <div className="analytics-bar-container">
+                                    <div
+                                        className={`analytics-bar ${isLoaded ? 'loaded' : ''}`}
+                                        style={{
+                                            '--bar-height': `${height}%`,
+                                            background: `linear-gradient(to top, ${barColor} 50%, rgba(255,255,255,0.15) 50%)`,
+                                            transitionDelay: `${0.2 + i * 0.05}s`
+                                        }}
+                                    />
+                                </div>
+                                <span
+                                    className={`analytics-bar-label ${isLoaded ? 'loaded' : ''}`}
+                                    style={{
+                                        color: textColor,
+                                        transitionDelay: `${0.3 + i * 0.05}s`
+                                    }}
+                                >
+                                    {dayLabels[i]}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        function ActivityChartWidget({ colorScale = 'primary', chartColor = 'primary' }) {
+            const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+            const svgRef = useRef(null);
+            const [loadKey, setLoadKey] = useState(0);
+            const [isLoaded, setIsLoaded] = useState(false);
+            const [pathLength, setPathLength] = useState(400);
+
+            const getRandomValues = useCallback(() => ({
+                avg: Math.floor(Math.random() * 60) + 30,
+                points: dayLabels.map(() => Math.floor(Math.random() * 60) + 20)
+            }), []);
+
+            const [values, setValues] = useState(getRandomValues);
+
+            const handleReload = () => {
+                setIsLoaded(false);
+                setValues(getRandomValues());
+                setLoadKey(k => k + 1);
+                setTimeout(() => setIsLoaded(true), 50);
+            };
+
+            useEffect(() => {
+                const timer = setTimeout(() => setIsLoaded(true), 100);
+                return () => clearTimeout(timer);
+            }, [loadKey]);
+
+            useEffect(() => {
+                if (!svgRef.current || !isLoaded) return;
+                const path = svgRef.current.querySelector('.activity-line-path');
+                if (path) {
+                    setPathLength(path.getTotalLength());
+                }
+            }, [values, isLoaded]);
+
+            const width = 100;
+            const height = 40;
+            const padding = { top: 6, right: 2, bottom: 2, left: 2 };
+            const chartWidth = width - padding.left - padding.right;
+            const chartHeight = height - padding.top - padding.bottom;
+
+            const points = values.points.map((value, index) => ({
+                x: padding.left + (index / (values.points.length - 1)) * chartWidth,
+                y: padding.top + chartHeight - ((value - 20) / 60) * chartHeight
+            }));
+
+            const generateSmoothPath = (pts) => {
+                if (pts.length < 2) return '';
+                const tension = 0.3;
+                let path = `M ${pts[0].x} ${pts[0].y}`;
+                for (let i = 0; i < pts.length - 1; i++) {
+                    const p0 = pts[Math.max(0, i - 1)];
+                    const p1 = pts[i];
+                    const p2 = pts[i + 1];
+                    const p3 = pts[Math.min(pts.length - 1, i + 2)];
+                    const cp1x = p1.x + (p2.x - p0.x) * tension;
+                    const cp1y = p1.y + (p2.y - p0.y) * tension;
+                    const cp2x = p2.x - (p3.x - p1.x) * tension;
+                    const cp2y = p2.y - (p3.y - p1.y) * tension;
+                    path += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+                }
+                return path;
+            };
+
+            const generateAreaPath = (pts) => {
+                const curvePath = generateSmoothPath(pts);
+                return `${curvePath} L ${pts[pts.length - 1].x} ${padding.top + chartHeight} L ${pts[0].x} ${padding.top + chartHeight} Z`;
+            };
+
+            const linePath = generateSmoothPath(points);
+            const areaPath = generateAreaPath(points);
+
+            const lineColor = `var(--${chartColor}-400)`;
+            const textColor = `var(--${colorScale}-200)`;
+            const badgeBg = `var(--${chartColor}-400)`;
+            const badgeText = `var(--${chartColor}-950)`;
+
+            return (
+                <div
+                    key={loadKey}
+                    className="activity-widget"
+                    onClick={handleReload}
+                >
+                    {/* Header */}
+                    <div
+                        className={`activity-header ${isLoaded ? 'loaded' : ''}`}
+                    >
+                        <span className="activity-header-label" style={{ color: '#ffffff' }}>ACTIVITY</span>
+                        <span
+                            className="activity-header-badge"
+                            style={{ background: badgeBg, color: badgeText }}
+                        >
+                            This Week
+                        </span>
+                    </div>
+
+                    {/* Big Number */}
+                    <div className={`activity-number ${isLoaded ? 'loaded' : ''}`}>
+                        <span className="activity-number-value" style={{ color: '#ffffff' }}>
+                            {values.avg}
+                        </span>
+                        <span className="activity-number-suffix" style={{ color: textColor }}>
+                            avg
+                        </span>
+                    </div>
+
+                    {/* Chart */}
+                    <div className="activity-chart-container">
+                        <svg
+                            ref={svgRef}
+                            className="activity-chart-svg"
+                            viewBox={`0 0 ${width} ${height}`}
+                            preserveAspectRatio="none"
+                            style={{ '--path-length': `${pathLength}px` }}
+                        >
+                            <defs>
+                                <linearGradient id={`activityArea-${loadKey}`} x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor={lineColor} stopOpacity="0.6" />
+                                    <stop offset="100%" stopColor={lineColor} stopOpacity="0.05" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                className={`activity-area-path ${isLoaded ? 'loaded' : ''}`}
+                                d={areaPath}
+                                fill={`url(#activityArea-${loadKey})`}
+                            />
+                            <path
+                                className={`activity-line-path ${isLoaded ? 'loaded' : ''}`}
+                                d={linePath}
+                                stroke={lineColor}
+                            />
+                        </svg>
+                        {/* Dots rendered as HTML for perfect circles */}
+                        {points.map((pt, index) => {
+                            const xPercent = (pt.x / width) * 100;
+                            const yPercent = (pt.y / height) * 100;
+                            return (
+                                <div
+                                    key={index}
+                                    className={`activity-dot ${isLoaded ? 'loaded' : ''}`}
+                                    style={{
+                                        left: `${xPercent}%`,
+                                        top: `${yPercent}%`,
+                                        background: lineColor,
+                                        animationDelay: `${0.4 + index * 0.08}s`
+                                    }}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    {/* Day Labels */}
+                    <div className={`activity-day-labels ${isLoaded ? 'loaded' : ''}`} style={{ color: textColor }}>
+                        {dayLabels.map((day, i) => (
+                            <span key={i} className="activity-day-label">{day}</span>
+                        ))}
+                    </div>
+                </div>
             );
         }
 
@@ -1846,14 +2357,19 @@
             </Card>
         );
 
-        // Render Motion card
+        // Render Activity Chart (Motion card)
         const motionRoot = ReactDOM.createRoot(document.getElementById('motion-card'));
         motionRoot.render(
-            <Card colorScale="primary">
-                <CardLabel>Motion</CardLabel>
-                <CardTitle>Purposeful movement</CardTitle>
-                <CardBody>Subtle, purposeful, never gratuitous. Animation should clarify, not distract.</CardBody>
-                <CardButton>Learn More</CardButton>
+            <Card colorScale="secondary">
+                <ActivityChartWidget colorScale="secondary" chartColor="primary" />
+            </Card>
+        );
+
+        // Render Analytics Widget
+        const analyticsRoot = ReactDOM.createRoot(document.getElementById('palette-chart-card'));
+        analyticsRoot.render(
+            <Card colorScale="secondary">
+                <AnalyticsWidget colorScale="secondary" chartColor="neutral" />
             </Card>
         );
 

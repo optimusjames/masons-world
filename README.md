@@ -6,6 +6,20 @@ A sandbox for exploring visual design systems, widgets, and layouts and ux inter
 
 ## Experiments
 
+### Geist Pixel
+
+**February 6, 2026**
+
+[![Geist Pixel](./screenshots/geist-pixel.png)](https://sandbox-47z.pages.dev/2026-02-06-geist-pixel/)
+
+Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.
+
+**Tags:** Typography • Split-Flap Effect • Text Animation • Monospace
+
+**[View Code ->](./2026-02-06-geist-pixel/)**
+
+---
+
 ### Color Spec
 
 **February 6, 2026**

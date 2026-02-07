@@ -6,6 +6,20 @@ A sandbox for exploring visual design systems, widgets, and layouts and ux inter
 
 ## Experiments
 
+### Terminator - Text Scramble
+
+**February 6, 2026**
+
+[![Terminator Text Scramble](./screenshots/terminator.png)](https://sandbox-47z.pages.dev/2026-02-06-terminator/)
+
+Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness.
+
+**Tags:** Text Animation • Terminal UI • Interactive • Split-Flap Effect
+
+**[View Code ->](./2026-02-06-terminator/)**
+
+---
+
 ### Geist Pixel
 
 **February 6, 2026**

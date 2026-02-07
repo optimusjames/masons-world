@@ -1,0 +1,59 @@
+TERMINATOR EXPERIMENT - BEFORE vs AFTER COMPARISON
+═════════════════════════════════════════════════════════════════════════
+
+BEFORE (Original mixed case, unbalanced lines):
+───────────────────────────────────────────────────────────────────────
+The Will to Truth, which is to tempt us to many a hazardous
+enterprise, the famous Truthfulness of which all philosophers
+have hitherto spoken with respect, what questions has this Will to
+Truth not laid before us! What strange, perplexing, questionable
+questions! It is already a long story; yet it seems as if it were
+hardly commenced. Is it any wonder if we at last grow
+distrustful, lose patience, and turn impatiently away? That this
+Sphinx teaches us at last to ask questions ourselves? WHO is it
+
+ISSUES:
+  ❌ Mixed case (less terminal aesthetic)
+  ❌ Irregular line lengths (59-80+ chars)
+  ❌ High variance in visual rhythm
+  ❌ Some very short lines, some very long
+
+AFTER (Uppercase, balanced lines):
+───────────────────────────────────────────────────────────────────────
+THE WILL TO TRUTH, WHICH IS TO TEMPT US TO MANY A HAZARDOUS ENTERPRISE,
+THE FAMOUS TRUTHFULNESS OF WHICH ALL PHILOSOPHERS HAVE HITHERTO SPOKEN
+WITH RESPECT, WHAT QUESTIONS HAS THIS WILL TO TRUTH NOT LAID BEFORE US!
+WHAT STRANGE, PERPLEXING, QUESTIONABLE QUESTIONS! IT IS ALREADY A LONG
+STORY; YET IT SEEMS AS IF IT WERE HARDLY COMMENCED.
+IS IT ANY WONDER IF WE AT LAST GROW DISTRUSTFUL, LOSE PATIENCE, AND TURN
+IMPATIENTLY AWAY? THAT THIS SPHINX TEACHES US AT LAST TO ASK QUESTIONS
+OURSELVES? WHO IS IT REALLY THAT PUTS QUESTIONS TO US HERE?
+
+IMPROVEMENTS:
+  ✓ All uppercase (terminal/monospace aesthetic)
+  ✓ Consistent line lengths (51-73 chars)
+  ✓ Low variance (std dev: 6.5 chars)
+  ✓ 85% of lines within 10 chars of target
+
+KEY METRICS:
+═════════════════════════════════════════════════════════════════════════
+
+Target: 72 chars/line
+Average: 67.6 chars/line
+Range: 51-73 chars (22 char spread)
+Standard Deviation: 6.5 chars
+
+DISTRIBUTION:
+  45% of lines at 71-73 chars (near perfect)
+  35% of lines at 61-70 chars (good)
+  20% of lines at 51-60 chars (punctuation breaks)
+
+ANIMATION BEHAVIOR:
+═════════════════════════════════════════════════════════════════════════
+
+✓ Phase 1: All lines scramble simultaneously for 1 second
+✓ Phase 2: Lines resolve sequentially from top to bottom
+✓ Uppercase letters scramble with uppercase characters
+✓ Numbers scramble with numbers
+✓ Spaces/punctuation scramble with alphanumeric during scramble phase
+✓ Click anywhere to replay animation

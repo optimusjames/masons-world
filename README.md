@@ -1,6 +1,6 @@
 # Design Experiments
 
-A Next.js-based sandbox for exploring visual design systems, widgets, and layouts and ux interaction patterns.
+A sandbox for exploring visual design systems, widgets, and layouts and ux interaction patterns.
 
 ---
 

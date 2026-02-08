@@ -24,7 +24,7 @@ Interactive terminal-style text scramble effect with two-phase animation. Enter 
 
 **February 6, 2026**
 
-[![Geist Pixel](./screenshots/geist-pixel.png)](https://sandbox-47z.pages.dev/2026-02-06-geist-pixel/)
+[![Geist Pixel](./screenshots/geist-pixel.png)](https://www.joshcoolman.com/2026-02-06-geist-pixel/)
 
 Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.
 
@@ -38,7 +38,7 @@ Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-i
 
 **February 6, 2026**
 
-[![Color Spec](./screenshots/color-spec.png)](https://sandbox-47z.pages.dev/2026-01-28-color-spec/)
+[![Color Spec](./screenshots/color-spec.png)](https://www.joshcoolman.com/2026-01-28-color-spec/)
 
 Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.
 
@@ -52,7 +52,7 @@ Interactive brand guidelines with live color and typography customization. Featu
 
 **February 2, 2026**
 
-[![Widget Board](./screenshots/design-festival.png)](https://sandbox-47z.pages.dev/2026-01-28-design-festival/)
+[![Widget Board](./screenshots/design-festival.png)](https://www.joshcoolman.com/2026-01-28-design-festival/)
 
 Card-based layout system combining festival poster boldness with digital interface precision. Features animated React widgets including an Activity chart with SVG line-drawing animation, Goals progress bars, Analytics bar charts, concentric progress rings, and an interactive calendar. All widgets support click-to-regenerate with randomized data.
 
@@ -66,7 +66,7 @@ Card-based layout system combining festival poster boldness with digital interfa
 
 **February 2, 2026**
 
-[![Day at a Glance](./screenshots/day-at-a-glance.png)](https://sandbox-47z.pages.dev/2026-01-28-day-at-a-glance/)
+[![Day at a Glance](./screenshots/day-at-a-glance.png)](https://www.joshcoolman.com/2026-01-28-day-at-a-glance/)
 
 Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a subtle "now" indicator line that shows through semi-transparent event cards. Features split color bars for past/upcoming visualization and continuous horizontal hour lines.
 
@@ -80,7 +80,7 @@ Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a sub
 
 **February 2, 2026**
 
-[![Gradient Explorer](./screenshots/blend.png)](https://sandbox-47z.pages.dev/2026-01-28-blend/)
+[![Gradient Explorer](./screenshots/blend.png)](https://www.joshcoolman.com/2026-01-28-blend/)
 
 Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling (G-01 through G-09, M-01 through M-18), scroll-triggered animations, and an analytics dashboard mockup.
 
@@ -94,7 +94,7 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 
 **January 28, 2026**
 
-[![Type Specimine](./screenshots/spec-sheet.png)](https://sandbox-47z.pages.dev/2026-01-28-spec-sheet/)
+[![Type Specimine](./screenshots/spec-sheet.png)](https://www.joshcoolman.com/2026-01-28-spec-sheet/)
 
 Bold typographic layout with dark/light mode toggle. Features strong hierarchy through scale contrast, clean sectioning, and a professional two-color aesthetic.
 
@@ -131,4 +131,4 @@ This sandbox is for rapid design exploration—building visual systems, testing 
 
 ---
 
-**View live experiments:** https://sandbox-47z.pages.dev/
+**View live experiments:** https://www.joshcoolman.com/

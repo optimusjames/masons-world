@@ -147,3 +147,34 @@ To add a new experiment:
 2. Add screenshot to `/public/screenshots/experiment-name.png`
 3. Update experiments gallery in `/app/design-experiments/page.jsx`
 4. Update this README with experiment details
+
+---
+
+## Claude Code Skills
+
+This repo includes custom skills for [Claude Code](https://claude.ai/code) that streamline common development workflows. While not all skills are specific to this sandbox project, they're general-purpose utilities I use across different projects.
+
+### Available Skills
+
+**`/sanity-check`**
+Quick React/TypeScript/Next.js code review from a senior engineer perspective. Catches common issues and suggests practical improvements without being pedantic.
+
+**`/ship-experiment`**
+Automated workflow for shipping design experiments: screenshots with agent-browser, updates gallery and README, commits changes, and pushes to GitHub (triggers Vercel deploy).
+
+**`/supabase`**
+Comprehensive Supabase CLI wrapper for database operations: schema migrations with validation, TypeScript type generation, edge function deployment, and postgres best practices integration.
+
+### Using Skills
+
+Skills are invoked with a slash command in Claude Code:
+
+```bash
+/sanity-check              # Review current code
+/ship-experiment           # Ship the current experiment
+/supabase migrate "..."    # Create database migration
+```
+
+### Skill Location
+
+Skills are stored in `.claude/skills/` and are committed to this repo. They work in any project when this directory structure is present, or can be copied to other repos individually.

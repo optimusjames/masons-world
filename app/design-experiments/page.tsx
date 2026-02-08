@@ -58,6 +58,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'youre-doing-it-wrong',
+      date: 'February 8, 2026',
+      title: 'You\'re Doing It Wrong',
+      description: 'Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights.',
+      screenshot: '/screenshots/youre-doing-it-wrong.png',
+      tags: ['Blog Post', 'Typography', 'Editorial', 'Long-Form Content']
+    },
+    {
       slug: 'terminator',
       date: 'February 6, 2026',
       title: 'Terminator - Text Scramble',

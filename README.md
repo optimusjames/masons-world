@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### You're Doing It Wrong
+
+**February 8, 2026**
+
+[![You're Doing It Wrong](./public/screenshots/youre-doing-it-wrong.png)](https://www.joshcoolman.com/youre-doing-it-wrong)
+
+Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights.
+
+**Tags:** Blog Post • Typography • Editorial • Long-Form Content
+
+**[View Live →](https://www.joshcoolman.com/youre-doing-it-wrong) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/youre-doing-it-wrong)**
+
+---
+
 ### Terminator - Text Scramble
 
 **February 6, 2026**

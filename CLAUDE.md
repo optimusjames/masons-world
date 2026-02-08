@@ -4,50 +4,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Design experiments sandbox for rapid visual exploration. Each experiment is a self-contained design exercise stored in dated folders.
+Design experiments sandbox built with Next.js for rapid visual exploration. Each experiment is a self-contained design exercise with its own route.
 
 ## Repository Structure
 
 ```
 /
-├── index.html                         # Homepage/changelog
-├── screenshots/                       # Homepage preview images
-├── YYYY-MM-DD-experiment-name/        # Dated experiment folders
-│   ├── index.html                     # The experiment
-│   ├── README.md                      # Documentation
-│   └── screenshots/                   # Design iterations
+├── app/
+│   ├── page.jsx                       # Animated homepage
+│   ├── design-experiments/
+│   │   └── page.jsx                   # Experiments gallery
+│   ├── [experiment-name]/
+│   │   ├── page.jsx                   # Experiment component
+│   │   └── styles.css                 # Experiment styles
+│   ├── layout.jsx                     # Root layout
+│   └── globals.css                    # Global styles
+├── public/
+│   ├── screenshots/                   # Preview images
+│   └── [media files]                  # Videos, images, etc.
+├── next.config.js                     # Next.js configuration
 └── CLAUDE.md                          # This file
 ```
 
 ## Development Commands
 
 ```bash
-npm run dev      # Start dev server on port 3000 (auto-opens browser)
+npm run dev      # Start dev server on port 3000
 npm run build    # Build for production
-npm run preview  # Preview production build
+npm start        # Run production build
 ```
 
 ## Workflow for New Experiments
 
-When the user says "new experiment" or shares an image to explore:
+When creating a new experiment:
 
-1. **Create dated folder**: `YYYY-MM-DD-descriptive-name/`
-2. **Build experiment**: Create `index.html` inside folder
+1. **Create experiment route**: `app/[experiment-name]/page.jsx`
+2. **Add styles**: Create `app/[experiment-name]/styles.css` (or use CSS modules)
 3. **Verify with browser**: Use agent-browser to check the design
-4. **Document it**: Create `README.md` with:
-   - Overview and key features
-   - Design principles
-   - How to run
-   - Dependencies (fonts, libraries)
-   - Screenshots reference
-5. **Capture screenshot**:
-   - Use agent-browser to take screenshot
-   - Save to `/screenshots/experiment-name.png` (for homepage)
-   - Also save to experiment's local `screenshots/` folder
-6. **Update homepage**: Add entry to root `index.html` with:
+4. **Capture screenshot**: Save to `public/screenshots/experiment-name.png`
+5. **Update gallery**: Add entry to `app/design-experiments/page.jsx` with:
    - Date
-   - Title (linked to experiment)
-   - Preview image: `<img src="./screenshots/experiment-name.png">`
+   - Title
+   - Description
+   - Screenshot path
+   - Tags
    - One-line description
    - Tags
 7. **Ship it**: Commit with descriptive message

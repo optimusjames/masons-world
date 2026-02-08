@@ -3,6 +3,7 @@ node_modules
 dist
 .vercel
 debug-*.png
+*.log
 
 # Next.js
 .next/

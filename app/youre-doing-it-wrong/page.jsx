@@ -226,6 +226,50 @@ export default function BlogPost() {
           The person who waited for clarity won't.
         </p>
 
+        <h2>This Repository Is Proof</h2>
+
+        <p>
+          The article you're reading right now? It exists because of the workflow it describes.
+        </p>
+
+        <p>
+          This entire repository is a live demonstration of the paradigm shift from design tools to agentic workflows:
+        </p>
+
+        <ul>
+          <li><strong>Coding in public</strong> — Every experiment, every iteration, every commit visible on GitHub</li>
+          <li><strong>Working with an AI agent</strong> — Built directly in terminal with Claude Code, no design tools</li>
+          <li><strong>Rapid experimentation</strong> — From concept to deployed experiment in minutes, not hours</li>
+          <li><strong>Remixing ideas</strong> — Typography from Spec Sheet. Layout patterns from Color Spec. Techniques combine and evolve.</li>
+        </ul>
+
+        <p>
+          This isn't theory. It's practice. Each experiment — the gradient systems, the timeline layouts, the
+          typography specimens, this blog post itself — is me developing fluency in agentic creation.
+        </p>
+
+        <p>
+          No Figma files. No design handoffs. No "can we build this?" Just terminal, Claude, and code.
+          Describe what I want, iterate rapidly, ship to production.
+        </p>
+
+        <p>
+          <strong>The experiments don't matter.</strong> Some will look dated in a year. The techniques might be obsolete.
+          But the practice of working with agents at the speed of thought? That's the skill.
+        </p>
+
+        <p>
+          You can see every commit, every experiment, every iteration at{' '}
+          <a href="https://github.com/joshcoolman-smc/sandbox" target="_blank" rel="noopener noreferrer">
+            github.com/joshcoolman-smc/sandbox
+          </a>.
+          It's not perfect. It's not polished. It's a workshop, not a portfolio.
+        </p>
+
+        <p>
+          And that's exactly the point.
+        </p>
+
         <div className="final-line">
           So keep building. Keep experimenting. Keep practicing.<br />
           You're not wasting time. You're investing in the only skill that will matter:<br />

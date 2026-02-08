@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Let Next.js run as a proper app on Vercel (not static export)
   trailingSlash: false,
-  images: {
-    unoptimized: true,
-  },
 }
 
 export default nextConfig

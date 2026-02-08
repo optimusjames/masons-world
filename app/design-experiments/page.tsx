@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './page.module.css'
+import type { Experiment } from '../types/experiments'
 
 export default function Home() {
-  const experiments = [
+  const experiments: Experiment[] = [
     {
       slug: 'terminator',
       date: 'February 6, 2026',
@@ -86,7 +87,7 @@ export default function Home() {
             </p>
             <div className={styles.experimentTags}>
               {experiment.tags.map((tag) => (
-                <span key={tag} className={styles.tag}>
+                <span key={`${experiment.slug}-${tag}`} className={styles.tag}>
                   {tag}
                 </span>
               ))}

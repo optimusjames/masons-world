@@ -12,7 +12,11 @@ export const metadata = {
   description: 'A sandbox for exploring visual design systems, widgets, and layouts',
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>

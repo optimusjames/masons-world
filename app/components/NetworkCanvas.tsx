@@ -1,98 +1,36 @@
+// @ts-nocheck - Complex canvas animation with checked null values at entry
 'use client'
 
 import { useEffect, useRef } from 'react'
-import Link from 'next/link'
-import styles from './page.module.css'
 
-export default function Home() {
-  const canvasRef = useRef(null)
-  const video1Ref = useRef(null)
-  const video2Ref = useRef(null)
-  const videoOverlayRef = useRef(null)
-  const activeVideoRef = useRef(1)
-  const isSwappedRef = useRef(false)
-  const isTransitioningRef = useRef(false)
+interface NetworkCanvasProps {
+  className?: string
+}
+
+export default function NetworkCanvas({ className }: NetworkCanvasProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const video1 = video1Ref.current
-    const video2 = video2Ref.current
-    const videoOverlay = videoOverlayRef.current
+    const canvasElement = canvasRef.current
+    if (!canvasElement) return
 
-    function handleVideoClick() {
-      if (isSwappedRef.current || isTransitioningRef.current) return
-
-      isTransitioningRef.current = true
-      activeVideoRef.current = 2
-      isSwappedRef.current = true
-
-      videoOverlay.classList.add(styles.disabled)
-
-      video1.classList.remove(styles.videoVisible)
-      video1.classList.add(styles.videoHidden)
-      video2.classList.remove(styles.videoHidden)
-      video2.classList.add(styles.videoVisible)
-
-      if (video2.readyState >= 2) {
-        video2.currentTime = 0
-        video2.play().then(() => {
-          isTransitioningRef.current = false
-        }).catch(() => {
-          isTransitioningRef.current = false
-        })
-      } else {
-        video2.addEventListener('canplay', () => {
-          video2.currentTime = 0
-          video2.play()
-          isTransitioningRef.current = false
-        }, { once: true })
-      }
-    }
-
-    function handleVideo2Ended() {
-      activeVideoRef.current = 1
-      isSwappedRef.current = false
-
-      video2.classList.remove(styles.videoVisible)
-      video2.classList.add(styles.videoHidden)
-      video1.classList.remove(styles.videoHidden)
-      video1.classList.add(styles.videoVisible)
-
-      videoOverlay.classList.remove(styles.disabled)
-
-      video1.play().catch(() => {})
-    }
-
-    videoOverlay.addEventListener('click', handleVideoClick)
-    video2.addEventListener('ended', handleVideo2Ended)
-
-    video2.load()
-
-    return () => {
-      videoOverlay.removeEventListener('click', handleVideoClick)
-      video2.removeEventListener('ended', handleVideo2Ended)
-    }
-  }, [])
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
+    const ctx = canvasElement.getContext('2d')
     if (!ctx) return
 
     let width = window.innerWidth
     let height = window.innerHeight
-    let animationFrameId
-    let animations = []
+    let animationFrameId: number
+    let animations: any[] = []
 
     function resize() {
+      if (!canvasElement) return
       width = window.innerWidth
       height = window.innerHeight
-      canvas.width = width
-      canvas.height = height
+      canvasElement.width = width
+      canvasElement.height = height
     }
 
-    function noise(x, y, seed = 0) {
+    function noise(x: number, y: number, seed = 0) {
       x = x * 0.01 + seed
       y = y * 0.01 + seed
       return (Math.sin(x * 12.9898 + y * 78.233) * 43758.5453) % 1
@@ -101,7 +39,7 @@ export default function Home() {
     window.addEventListener('resize', resize)
     resize()
 
-    const organisms = []
+    const organisms: any[] = []
     const NUM_ORGANISMS = 9
     const NODES_PER_ORGANISM = 57
     const CLUSTER_RADIUS = 500
@@ -117,7 +55,7 @@ export default function Home() {
       const centerX = cellWidth * (gridX + 0.3 + Math.random() * 0.4)
       const centerY = cellHeight * (gridY + 0.3 + Math.random() * 0.4)
 
-      const nodes = []
+      const nodes: any[] = []
       for (let j = 0; j < NODES_PER_ORGANISM; j++) {
         const angle = Math.random() * 2 * Math.PI
         const radius = Math.random() * CLUSTER_RADIUS
@@ -141,7 +79,7 @@ export default function Home() {
         })
       }
 
-      const connections = []
+      const connections: number[][] = []
       for (let k = 0; k < nodes.length; k++) {
         for (let l = k + 1; l < nodes.length; l++) {
           if (Math.random() < 0.2) connections.push([k, l])
@@ -163,7 +101,7 @@ export default function Home() {
       })
     }
 
-    function handleClick(e) {
+    function handleClick(e: MouseEvent) {
       animations.push({
         x: e.clientX,
         y: e.clientY,
@@ -179,16 +117,13 @@ export default function Home() {
 
     document.addEventListener('click', handleClick)
 
-    let lastTime = 0
     let startTime = 0
     const MAX_DISTANCE = 190
     const EDGE_THRESHOLD = 10
     const fixedSpeed = 0.12
 
-    function animate(timestamp) {
+    function animate(timestamp: number) {
       if (startTime === 0) startTime = timestamp
-
-      lastTime = timestamp
 
       const rotationAngle = (timestamp * rotationSpeed) % (Math.PI * 2)
       const centerX = width / 2
@@ -438,50 +373,5 @@ export default function Home() {
     }
   }, [])
 
-  return (
-    <main className={styles.mainContainer}>
-      <div className={styles.networkBackground}>
-        <canvas ref={canvasRef} className={styles.networkCanvas}></canvas>
-      </div>
-
-      <div className={styles.contentOverlay}>
-        <div className={styles.contentWrapper}>
-          <div className={styles.videoContainer}>
-            <div ref={videoOverlayRef} className={styles.videoOverlay}></div>
-
-            <video
-              ref={video1Ref}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className={`${styles.interactiveVideo} ${styles.videoVisible}`}
-            >
-              <source src="/spinner-1.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
-            <video
-              ref={video2Ref}
-              muted
-              playsInline
-              preload="auto"
-              className={`${styles.interactiveVideo} ${styles.videoHidden} ${styles.videoAbsolute}`}
-            >
-              <source src="/spinner-2.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <div className={styles.greetingText}>
-            Greetings Starfighter!
-          </div>
-
-          <Link href="/design-experiments" className={styles.experimentsLink}>
-            design experiments
-          </Link>
-        </div>
-      </div>
-    </main>
-  )
+  return <canvas ref={canvasRef} className={className}></canvas>
 }

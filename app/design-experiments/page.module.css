@@ -45,6 +45,35 @@
   margin-bottom: 50px;
   padding-bottom: 50px;
   border-bottom: 1px solid #303030;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experiment.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experiment[data-delay='1'] {
+  transition-delay: 0.05s;
+}
+.experiment[data-delay='2'] {
+  transition-delay: 0.1s;
+}
+.experiment[data-delay='3'] {
+  transition-delay: 0.15s;
+}
+.experiment[data-delay='4'] {
+  transition-delay: 0.2s;
+}
+.experiment[data-delay='5'] {
+  transition-delay: 0.25s;
+}
+.experiment[data-delay='6'] {
+  transition-delay: 0.3s;
 }
 
 .experiment:last-child {
@@ -155,6 +184,14 @@
 .footer a:hover {
   color: #8FF7F9;
   border-bottom-color: #8FF7F9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experiment {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {

@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Space_Grotesk, Bitter, Lora, Space_Mono } from 'next/font/google'
@@ -33,6 +36,26 @@ const spaceMono = Space_Mono({
 })
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    const experiments = containerRef.current?.querySelectorAll(`.${styles.experiment}`)
+    experiments?.forEach((experiment) => observer.observe(experiment))
+
+    return () => observer.disconnect()
+  }, [])
+
   const experiments: Experiment[] = [
     {
       slug: 'terminator',
@@ -85,7 +108,10 @@ export default function Home() {
   ]
 
   return (
-    <div className={`${styles.container} ${spaceGrotesk.variable} ${bitter.variable} ${lora.variable} ${spaceMono.variable}`}>
+    <div
+      ref={containerRef}
+      className={`${styles.container} ${spaceGrotesk.variable} ${bitter.variable} ${lora.variable} ${spaceMono.variable}`}
+    >
       <h1 className={styles.title}>Design Experiments</h1>
       <p className={styles.subtitle}>
         A sandbox for exploring visual design systems, widgets, and layouts
@@ -93,8 +119,12 @@ export default function Home() {
 
       <div className={styles.rule}></div>
 
-      {experiments.map((experiment) => (
-        <div key={experiment.slug} className={styles.experiment}>
+      {experiments.map((experiment, index) => (
+        <div
+          key={experiment.slug}
+          className={styles.experiment}
+          data-delay={Math.min(index + 1, 6)}
+        >
           <div className={styles.experimentPreviewContainer}>
             <Link href={`/${experiment.slug}`}>
               <Image

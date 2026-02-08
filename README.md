@@ -1,6 +1,6 @@
 # Design Experiments
 
-A sandbox for exploring visual design systems, widgets, and layouts and ux interaction patterns.
+A Next.js-based sandbox for exploring visual design systems, widgets, and layouts and ux interaction patterns.
 
 ---
 
@@ -16,7 +16,7 @@ Interactive terminal-style text scramble effect with two-phase animation. Enter 
 
 **Tags:** Text Animation • Terminal UI • Interactive • Split-Flap Effect
 
-**[View Code ->](./2026-02-06-terminator/)**
+**[View Code ->](/terminator)**
 
 ---
 
@@ -30,7 +30,7 @@ Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-i
 
 **Tags:** Typography • Split-Flap Effect • Text Animation • Monospace
 
-**[View Code ->](./2026-02-06-geist-pixel/)**
+**[View Code ->](/geist-pixel)**
 
 ---
 
@@ -44,7 +44,7 @@ Interactive brand guidelines with live color and typography customization. Featu
 
 **Tags:** React Components • Animated Charts • Color Systems • Typography
 
-**[View Code ->](./2026-01-28-color-spec/)**
+**[View Code ->](/color-spec)**
 
 ---
 
@@ -58,7 +58,7 @@ Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a sub
 
 **Tags:** CSS Grid • Timeline • Z-Index Layering • Dark Theme
 
-**[View Code →](./2026-01-28-day-at-a-glance/)**
+**[View Code →](/day-at-a-glance)**
 
 ---
 
@@ -72,7 +72,7 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 
 **Tags:** Gradients • SVG Mesh • Swiss Design • Scroll Animation
 
-**[View Code →](./2026-01-28-blend/)**
+**[View Code →](/blend)**
 
 ---
 
@@ -86,26 +86,32 @@ Bold typographic layout with dark/light mode toggle. Features strong hierarchy t
 
 **Tags:** Typography • Dark Mode • Minimal • Two Column
 
-**[View Code →](./2026-01-28-spec-sheet/)**
+**[View Code →](/spec-sheet)**
 
 ---
 
 ## Development
 
 ```bash
-npm run dev      # Start dev server on port 3000
-npm run build    # Build for production
-npm run preview  # Preview production build
+npm run dev    # Start Next.js dev server on port 3000
+npm run build  # Build for production
+npm start      # Run production build
 ```
 
 ## Structure
 
 ```
 /
-├── index.html                    # Homepage with visual gallery
-├── screenshots/                  # Preview images for homepage/README
-├── YYYY-MM-DD-experiment-name/   # Dated experiment folders
-│   ├── index.html                # The experiment
+├── app/                          # Next.js App Router
+│   ├── page.jsx                  # Homepage with visual gallery
+│   ├── layout.jsx                # Root layout
+│   ├── globals.css               # Global styles
+│   └── [experiment]/             # Dynamic experiment routes
+│       └── page.jsx              # Individual experiment pages
+├── public/
+│   └── screenshots/              # Preview images for homepage/README
+├── YYYY-MM-DD-experiment-name/   # Original experiment folders (preserved)
+│   ├── index.html                # Original HTML
 │   ├── README.md                 # Documentation
 │   └── screenshots/              # Design iterations
 └── CLAUDE.md                     # Workflow guidance
@@ -114,6 +120,15 @@ npm run preview  # Preview production build
 ## Purpose
 
 This sandbox is for rapid design exploration—building visual systems, testing layouts, and creating reusable design patterns. Each experiment is self-contained and can be copied out independently.
+
+### Adding New Experiments
+
+To add a new experiment to the Next.js app:
+
+1. Create a new page in `/app/[experiment-name]/page.jsx`
+2. Add screenshot to `/public/screenshots/experiment-name.png`
+3. Update homepage gallery in `/app/page.jsx`
+4. Keep original HTML version in dated folder for reference
 
 ---
 

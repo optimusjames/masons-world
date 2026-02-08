@@ -1,0 +1,106 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import styles from './page.module.css'
+
+export default function Home() {
+  const experiments = [
+    {
+      slug: 'terminator',
+      date: 'February 6, 2026',
+      title: 'Terminator - Text Scramble',
+      description: 'Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness.',
+      screenshot: '/screenshots/terminator.png',
+      tags: ['Text Animation', 'Terminal UI', 'Interactive', 'Split-Flap Effect']
+    },
+    {
+      slug: 'geist-pixel',
+      date: 'February 6, 2026',
+      title: 'Geist Pixel',
+      description: 'Typographic specimen featuring Vercel\'s Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.',
+      screenshot: '/screenshots/geist-pixel.png',
+      tags: ['Typography', 'Split-Flap Effect', 'Text Animation', 'Monospace']
+    },
+    {
+      slug: 'color-spec',
+      date: 'February 6, 2026',
+      title: 'Brand Guidelines',
+      description: 'Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.',
+      screenshot: '/screenshots/color-spec.png',
+      tags: ['React Components', 'Animated Charts', 'Color Systems', 'Typography']
+    },
+    {
+      slug: 'spec-sheet',
+      date: 'February 2, 2026',
+      title: 'Spec Sheet',
+      description: 'Type specimen sheet with interactive font pairing selector. Features size scale, weight ramp, character set display, drop cap pull quote, and colorful pairing cards inspired by the Color Spec experiment. Text-based controls with underline hover animations.',
+      screenshot: '/screenshots/spec-sheet.png',
+      tags: ['Typography', 'Font Pairings', 'Dark/Light Mode', 'Type Specimen']
+    },
+    {
+      slug: 'day-at-a-glance',
+      date: 'February 2, 2026',
+      title: 'Day at a Glance',
+      description: 'Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a subtle "now" indicator line that shows through semi-transparent event cards. Features split color bars for past/upcoming visualization.',
+      screenshot: '/screenshots/day-at-a-glance.png',
+      tags: ['CSS Grid', 'Timeline', 'Z-Index Layering', 'Dark Theme']
+    },
+    {
+      slug: 'blend',
+      date: 'February 2, 2026',
+      title: 'Blend',
+      description: 'Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling, scroll-triggered animations, and an analytics dashboard mockup.',
+      screenshot: '/screenshots/blend.png',
+      tags: ['Gradient Study', 'SVG Mesh', 'Swiss Design', 'Scroll Animation']
+    }
+  ]
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Design Experiments</h1>
+      <p className={styles.subtitle}>
+        A sandbox for exploring visual design systems, widgets, and layouts
+      </p>
+
+      <div className={styles.rule}></div>
+
+      {experiments.map((experiment) => (
+        <div key={experiment.slug} className={styles.experiment}>
+          <div className={styles.experimentPreviewContainer}>
+            <Link href={`/${experiment.slug}`}>
+              <Image
+                src={experiment.screenshot}
+                alt={`${experiment.title} preview`}
+                width={280}
+                height={210}
+                className={styles.experimentPreview}
+              />
+            </Link>
+          </div>
+          <div className={styles.experimentContent}>
+            <div className={styles.experimentDate}>{experiment.date}</div>
+            <h2 className={styles.experimentTitle}>
+              <Link href={`/${experiment.slug}`}>{experiment.title}</Link>
+            </h2>
+            <p className={styles.experimentDescription}>
+              {experiment.description}
+            </p>
+            <div className={styles.experimentTags}>
+              {experiment.tags.map((tag) => (
+                <span key={tag} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <div className={styles.footer}>
+        <p>
+          Design experiments by Josh Coolman •{' '}
+          <a href="https://github.com/joshcoolman-smc/sandbox">GitHub</a>
+        </p>
+      </div>
+    </div>
+  )
+}

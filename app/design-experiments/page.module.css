@@ -2,7 +2,7 @@
   max-width: 100%;
   margin: 0;
   padding: 80px 40px;
-  background: #0d0d0d;
+  background: #000;
   min-height: 100vh;
 }
 
@@ -19,16 +19,17 @@
   line-height: 1;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
-  color: #a8a8a8;
+  color: #F2EFEB;
 }
 
 .subtitle {
-  font-family: var(--font-space-grotesk), sans-serif;
+  font-family: var(--font-lora), serif;
   font-size: 17px;
-  font-weight: 500;
-  color: #b9b384;
+  font-weight: 400;
+  font-style: italic;
+  color: #959595;
   margin-bottom: 60px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
 }
 
 .rule {
@@ -80,7 +81,7 @@
   font-family: var(--font-space-mono), monospace;
   font-size: 12px;
   font-weight: 400;
-  color: #b9b384;
+  color: #8FF7F9;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -96,14 +97,14 @@
 }
 
 .experimentTitle a {
-  color: #a8a8a8;
+  color: #F2EFEB;
   text-decoration: none;
   border-bottom: 3px solid transparent;
   transition: border-color 0.2s;
 }
 
 .experimentTitle a:hover {
-  border-bottom-color: #b9b384;
+  border-bottom-color: #8FF7F9;
 }
 
 .experimentDescription {
@@ -127,9 +128,9 @@
   font-size: 10px;
   font-weight: 400;
   padding: 4px 10px;
-  background: #1a1814;
+  background: #151515;
   border-radius: 4px;
-  color: #9f9560;
+  color: #959595;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -152,8 +153,8 @@
 }
 
 .footer a:hover {
-  color: #a0c4d8;
-  border-bottom-color: #a0c4d8;
+  color: #8FF7F9;
+  border-bottom-color: #8FF7F9;
 }
 
 @media (max-width: 768px) {

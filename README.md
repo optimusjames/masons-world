@@ -10,13 +10,13 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 **February 6, 2026**
 
-[![Terminator Text Scramble](./public/screenshots/terminator.png)](https://www.joshcoolman.com/terminator)
+[![Terminator Text Scramble](./public/screenshots/terminator.png)](/terminator)
 
 Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness.
 
 **Tags:** Text Animation • Terminal UI • Interactive • Split-Flap Effect
 
-**[View Live →](https://www.joshcoolman.com/terminator)**
+**[View Live →](/terminator)**
 
 ---
 
@@ -24,13 +24,13 @@ Interactive terminal-style text scramble effect with two-phase animation. Enter 
 
 **February 6, 2026**
 
-[![Geist Pixel](./public/screenshots/geist-pixel.png)](https://www.joshcoolman.com/geist-pixel)
+[![Geist Pixel](./public/screenshots/geist-pixel.png)](/geist-pixel)
 
 Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.
 
 **Tags:** Typography • Split-Flap Effect • Text Animation • Monospace
 
-**[View Live →](https://www.joshcoolman.com/geist-pixel)**
+**[View Live →](/geist-pixel)**
 
 ---
 
@@ -38,13 +38,13 @@ Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-i
 
 **February 6, 2026**
 
-[![Color Spec](./public/screenshots/color-spec.png)](https://www.joshcoolman.com/color-spec)
+[![Color Spec](./public/screenshots/color-spec.png)](/color-spec)
 
 Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.
 
 **Tags:** React Components • Animated Charts • Color Systems • Typography
 
-**[View Live →](https://www.joshcoolman.com/color-spec)**
+**[View Live →](/color-spec)**
 
 ---
 
@@ -52,13 +52,13 @@ Interactive brand guidelines with live color and typography customization. Featu
 
 **February 2, 2026**
 
-[![Day at a Glance](./public/screenshots/day-at-a-glance.png)](https://www.joshcoolman.com/day-at-a-glance)
+[![Day at a Glance](./public/screenshots/day-at-a-glance.png)](/day-at-a-glance)
 
 Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a subtle "now" indicator line that shows through semi-transparent event cards. Features split color bars for past/upcoming visualization and continuous horizontal hour lines.
 
 **Tags:** CSS Grid • Timeline • Z-Index Layering • Dark Theme
 
-**[View Live →](https://www.joshcoolman.com/day-at-a-glance)**
+**[View Live →](/day-at-a-glance)**
 
 ---
 
@@ -66,13 +66,13 @@ Clean 3-column CSS grid timeline with colored sidebar bars, SVG icons, and a sub
 
 **February 2, 2026**
 
-[![Gradient Explorer](./public/screenshots/blend.png)](https://www.joshcoolman.com/blend)
+[![Gradient Explorer](./public/screenshots/blend.png)](/blend)
 
 Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling (G-01 through G-09, M-01 through M-18), scroll-triggered animations, and an analytics dashboard mockup.
 
 **Tags:** Gradients • SVG Mesh • Swiss Design • Scroll Animation
 
-**[View Live →](https://www.joshcoolman.com/blend)**
+**[View Live →](/blend)**
 
 ---
 
@@ -80,13 +80,13 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 
 **January 28, 2026**
 
-[![Type Specimen](./public/screenshots/spec-sheet.png)](https://www.joshcoolman.com/spec-sheet)
+[![Type Specimen](./public/screenshots/spec-sheet.png)](/spec-sheet)
 
 Bold typographic layout with dark/light mode toggle. Features strong hierarchy through scale contrast, clean sectioning, and a professional two-color aesthetic.
 
 **Tags:** Typography • Dark Mode • Minimal • Two Column
 
-**[View Live →](https://www.joshcoolman.com/spec-sheet)**
+**[View Live →](/spec-sheet)**
 
 ---
 
@@ -103,7 +103,9 @@ npm start      # Run production build
 ```
 /
 ├── app/                          # Next.js App Router
-│   ├── page.jsx                  # Homepage with visual gallery
+│   ├── page.jsx                  # Homepage
+│   ├── design-experiments/
+│   │   └── page.jsx              # Experiments gallery
 │   ├── layout.jsx                # Root layout
 │   ├── globals.css               # Global styles
 │   ├── geist-pixel/
@@ -129,9 +131,5 @@ To add a new experiment:
 
 1. Create `/app/[experiment-name]/page.jsx` with your React component
 2. Add screenshot to `/public/screenshots/experiment-name.png`
-3. Update homepage gallery in `/app/page.jsx`
+3. Update experiments gallery in `/app/design-experiments/page.jsx`
 4. Update this README with experiment details
-
----
-
-**View live experiments:** https://www.joshcoolman.com/

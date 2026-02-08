@@ -1,146 +1,130 @@
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 80px 40px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap');
 
-.title {
-  font-size: 64px;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
-}
-
-.subtitle {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 60px;
-}
-
-.rule {
-  height: 4px;
-  background: #1a1a1a;
-  margin: 60px 0 40px;
-}
-
-.experiment {
-  display: flex;
-  gap: 32px;
-  margin-bottom: 50px;
-  padding-bottom: 50px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.experiment:last-child {
-  border-bottom: none;
-}
-
-.experimentPreviewContainer {
-  flex: 0 0 280px;
-}
-
-.experimentPreview {
+.mainContainer {
+  position: relative;
+  min-height: 100vh;
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-  cursor: pointer;
+  background-color: #000;
+}
+
+.networkBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.networkCanvas {
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.experimentPreview:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-.experimentContent {
-  flex: 1;
-  min-width: 0;
-}
-
-.experimentDate {
-  font-size: 13px;
-  font-weight: 600;
-  color: #999;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.experimentTitle {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  line-height: 1.2;
-}
-
-.experimentTitle a {
-  color: #1a1a1a;
-  text-decoration: none;
-  border-bottom: 3px solid transparent;
-  transition: border-color 0.2s;
-}
-
-.experimentTitle a:hover {
-  border-bottom-color: #ff6b4a;
-}
-
-.experimentDescription {
-  font-size: 15px;
-  color: #555;
-  margin-bottom: 16px;
-  line-height: 1.6;
-}
-
-.experimentTags {
+.contentOverlay {
+  position: relative;
+  z-index: 10;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  pointer-events: none;
 }
 
-.tag {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 12px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  color: #666;
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
-.footer {
-  margin-top: 80px;
-  padding-top: 40px;
-  border-top: 1px solid #e0e0e0;
-  font-size: 14px;
-  color: #999;
+.videoContainer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.videoOverlay.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.interactiveVideo {
+  height: 20rem;
+  width: auto;
+  border-radius: 0.5rem;
+  transition: opacity 0.5s ease;
+  mask: radial-gradient(ellipse at center, black 55%, transparent 75%);
+  -webkit-mask: radial-gradient(ellipse at center, black 55%, transparent 75%);
+}
+
+.videoHidden {
+  opacity: 0;
+}
+
+.videoVisible {
+  opacity: 1;
+}
+
+.videoAbsolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.greetingText {
+  font-family: 'Bitter', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8FF7F9;
   text-align: center;
+  text-shadow: 0 0 20px rgba(143, 247, 249, 0.5);
+  pointer-events: none;
+  user-select: none;
 }
 
-.footer a {
-  color: #666;
+.experimentsLink {
+  font-family: 'Bitter', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #8FF7F9;
   text-decoration: none;
-  border-bottom: 1px solid #ccc;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
 }
 
-.footer a:hover {
-  color: #1a1a1a;
-  border-bottom-color: #1a1a1a;
+.experimentsLink:hover {
+  color: #fff;
+  text-shadow: 0 0 20px rgba(143, 247, 249, 0.8);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-  .experiment {
-    flex-direction: column;
+  .interactiveVideo {
+    height: 16rem;
   }
 
-  .experimentPreviewContainer {
-    flex: 0 0 auto;
+  .greetingText {
+    font-size: 2rem;
   }
 
-  .experimentTitle {
-    font-size: 24px;
+  .experimentsLink {
+    font-size: 1rem;
   }
 }

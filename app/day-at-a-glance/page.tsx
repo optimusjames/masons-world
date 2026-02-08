@@ -4,14 +4,14 @@ import { useState } from 'react';
 import './styles.css';
 
 export default function DayAtAGlance() {
-  const [checkboxes, setCheckboxes] = useState({
+  const [checkboxes, setCheckboxes] = useState<Record<number, boolean>>({
     0: true,
     1: false,
     2: false,
     3: false
   });
 
-  const toggleCheckbox = (index) => {
+  const toggleCheckbox = (index: number) => {
     setCheckboxes(prev => ({
       ...prev,
       [index]: !prev[index]

@@ -3,17 +3,24 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
 
+type FontPairing = {
+  name: string;
+  heading: string;
+  body: string;
+  classification: string;
+};
+
 export default function SpecSheet() {
   const [isLightMode, setIsLightMode] = useState(false);
   const [showPairings, setShowPairings] = useState(false);
-  const [currentPairing, setCurrentPairing] = useState({
+  const [currentPairing, setCurrentPairing] = useState<FontPairing>({
     name: 'Fraunces + Inter',
     heading: 'Fraunces',
     body: 'Inter',
     classification: 'Serif / Sans'
   });
 
-  const pairings = [
+  const pairings: FontPairing[] = [
     { name: 'Fraunces + Inter', heading: 'Fraunces', body: 'Inter', classification: 'Serif / Sans' },
     { name: 'DM Serif Display + Plus Jakarta Sans', heading: 'DM Serif Display', body: 'Plus Jakarta Sans', classification: 'Serif / Sans' },
     { name: 'Playfair Display + Source Sans 3', heading: 'Playfair Display', body: 'Source Sans 3', classification: 'Serif / Sans' },
@@ -24,7 +31,7 @@ export default function SpecSheet() {
     { name: 'Caprasimo + Roboto', heading: 'Caprasimo', body: 'Roboto', classification: 'Display / Sans' }
   ];
 
-  const applyPairing = (pair) => {
+  const applyPairing = (pair: FontPairing) => {
     setCurrentPairing(pair);
     setShowPairings(false);
   };
@@ -38,7 +45,7 @@ export default function SpecSheet() {
   }, [showPairings]);
 
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setShowPairings(false);
       }
@@ -51,7 +58,7 @@ export default function SpecSheet() {
     <div className={isLightMode ? 'light-mode' : ''} style={{
       '--font-heading': `'${currentPairing.heading}', serif`,
       '--font-body': `'${currentPairing.body}', sans-serif`
-    }}>
+    } as React.CSSProperties}>
       <div className="controls">
         <button className="control-btn" onClick={() => setIsLightMode(!isLightMode)}>
           <span className="mode-label">{isLightMode ? 'Dark' : 'Light'}</span>

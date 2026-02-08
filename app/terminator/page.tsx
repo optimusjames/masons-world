@@ -5,7 +5,7 @@ import './styles.css';
 
 const defaultText = `There are countless ingredients that make up the human body and mind, like all the components that make up me as an individual with my own personality. Sure I have a face and voice to distinguish myself from others, but my thoughts and memories are unique only to me, and I carry a sense of my own destiny. Each of those things are just a small part of it. I collect information to use in my own way. All of that blends to create a mixture that forms me and gives rise to my conscience. I feel confined, only free to expand myself within boundaries.`;
 
-function breakTextIntoLines(text) {
+function breakTextIntoLines(text: string): string[] {
   text = text.toUpperCase();
   const words = text.split(/\s+/);
   const totalChars = text.length;
@@ -49,7 +49,14 @@ function breakTextIntoLines(text) {
 }
 
 class TextScramble {
-  constructor(el, finalText) {
+  el: any;
+  finalText: string;
+  resolved: number;
+  intervalId: any;
+  resolveCallback: any;
+  isResolving: boolean;
+
+  constructor(el: any, finalText: string) {
     this.el = el;
     this.finalText = finalText;
     this.resolved = 0;
@@ -117,9 +124,9 @@ class TextScramble {
 export default function Terminator() {
   const [sourceText, setSourceText] = useState(defaultText);
   const [inputText, setInputText] = useState('');
-  const [lines, setLines] = useState([]);
-  const scramblesRef = useRef([]);
-  const containerRef = useRef(null);
+  const [lines, setLines] = useState<string[]>([]);
+  const scramblesRef = useRef<TextScramble[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const newLines = breakTextIntoLines(sourceText);
@@ -143,7 +150,8 @@ export default function Terminator() {
     if (!lineElements) return;
 
     lineElements.forEach((el) => {
-      const scramble = new TextScramble(el, el.dataset.text || '');
+      const htmlEl = el as HTMLElement;
+      const scramble = new TextScramble(htmlEl, htmlEl.dataset.text || '');
       scramblesRef.current.push(scramble);
       scramble.scramble();
     });
@@ -174,7 +182,7 @@ export default function Terminator() {
     setSourceText(defaultText);
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && e.shiftKey) {
       e.preventDefault();
       handleSubmit();

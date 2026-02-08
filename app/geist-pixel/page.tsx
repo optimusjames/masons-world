@@ -13,9 +13,9 @@ const spaceMono = Space_Mono({
 
 export default function GeistPixelPage() {
   const [currentVariant, setCurrentVariant] = useState('square')
-  const scrambleContainerRef = useRef(null)
+  const scrambleContainerRef = useRef<HTMLDivElement>(null)
 
-  const variants = {
+  const variants: Record<string, string> = {
     square: "'Geist Pixel Square', monospace",
     grid: "'Geist Pixel Grid', monospace",
     circle: "'Geist Pixel Circle', monospace",
@@ -23,7 +23,7 @@ export default function GeistPixelPage() {
     line: "'Geist Pixel Line', monospace"
   }
 
-  const handleVariantChange = (variant) => {
+  const handleVariantChange = (variant: string) => {
     setCurrentVariant(variant)
     document.documentElement.style.setProperty('--font-display', variants[variant])
   }
@@ -34,14 +34,23 @@ export default function GeistPixelPage() {
 
     // Text Scramble Effect - Split-flap / Solari board style
     class TextScramble {
-      constructor(el) {
+      el: any
+      intervalId: any
+      resolveCallback: any
+      isResolving: boolean
+      finalText: string
+      resolved: number
+
+      constructor(el: any) {
         this.el = el
         this.intervalId = null
         this.resolveCallback = null
         this.isResolving = false
+        this.finalText = ''
+        this.resolved = 0
       }
 
-      scramble(finalText) {
+      scramble(finalText: string) {
         this.finalText = finalText
         this.resolved = 0
         this.isResolving = false
@@ -110,8 +119,8 @@ export default function GeistPixelPage() {
     ]
 
     const container = scrambleContainerRef.current
-    let scrambleInstances = []
-    let lineElements = []
+    let scrambleInstances: any[] = []
+    let lineElements: any[] = []
 
     function buildLines() {
       if (!container) return

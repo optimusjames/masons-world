@@ -5,9 +5,9 @@ import './styles.css';
 
 export default function Blend() {
   const [showModal, setShowModal] = useState(false);
-  const [currentRecipe, setCurrentRecipe] = useState(null);
+  const [currentRecipe, setCurrentRecipe] = useState<any>(null);
   const [copySuccess, setCopySuccess] = useState(false);
-  const observerRef = useRef(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   const recipes = {
     'g-01': {
@@ -73,8 +73,8 @@ This creates a vibrant, energetic signal effect.`
     };
   }, []);
 
-  const showRecipe = (recipeId) => {
-    const recipe = recipes[recipeId];
+  const showRecipe = (recipeId: string) => {
+    const recipe = (recipes as any)[recipeId];
     if (recipe) {
       setCurrentRecipe({ id: recipeId, ...recipe });
       setShowModal(true);
@@ -100,7 +100,7 @@ This creates a vibrant, energetic signal effect.`
   };
 
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') hideModal();
     };
     document.addEventListener('keydown', handleEscape);
@@ -241,7 +241,7 @@ This creates a vibrant, energetic signal effect.`
               {currentRecipe?.name} · {currentRecipe?.id.toUpperCase()}
             </div>
             <div className="recipe-modal-swatches">
-              {currentRecipe?.colors.map((color, i) => (
+              {currentRecipe?.colors.map((color: string, i: number) => (
                 <div key={i} className="recipe-swatch" style={{ background: color }} />
               ))}
             </div>

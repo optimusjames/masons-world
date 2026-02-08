@@ -1,7 +1,36 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Space_Grotesk, Bitter, Lora, Space_Mono } from 'next/font/google'
 import styles from './page.module.css'
 import type { Experiment } from '../types/experiments'
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  variable: '--font-space-grotesk',
+})
+
+const bitter = Bitter({
+  subsets: ['latin'],
+  weight: ['700', '800'],
+  display: 'swap',
+  variable: '--font-bitter',
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-lora',
+})
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-space-mono',
+})
 
 export default function Home() {
   const experiments: Experiment[] = [
@@ -56,7 +85,7 @@ export default function Home() {
   ]
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${spaceGrotesk.variable} ${bitter.variable} ${lora.variable} ${spaceMono.variable}`}>
       <h1 className={styles.title}>Design Experiments</h1>
       <p className={styles.subtitle}>
         A sandbox for exploring visual design systems, widgets, and layouts

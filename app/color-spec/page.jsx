@@ -521,6 +521,9 @@ function ColorSidebar({
     onResetAll,
     onClose
 }) {
+    const [showExport, setShowExport] = useState(false);
+    const [exportText, setExportText] = useState('');
+
     const colorNames = {
         primary: 'Primary',
         secondary: 'Secondary',
@@ -541,7 +544,42 @@ function ColorSidebar({
         }
     };
 
+    const handleExport = () => {
+        const spec = `Design System Specification
+
+Background: ${backgroundColor}
+
+Typography:
+- Heading Font: ${currentPairing.heading}
+- Body Font: ${currentPairing.body}
+- Classification: ${currentPairing.classification}
+- Context: ${currentPairing.description}
+
+Color Scales:
+${Object.entries(colorNames).map(([key, name]) => `
+${name}:
+- Base (900): ${currentScales[key][900]}
+- Mid (500): ${currentScales[key][500]}
+- Light (100): ${currentScales[key][100]}
+- Full range: 50=${currentScales[key][50]}, 100=${currentScales[key][100]}, 200=${currentScales[key][200]}, 300=${currentScales[key][300]}, 400=${currentScales[key][400]}, 500=${currentScales[key][500]}, 600=${currentScales[key][600]}, 700=${currentScales[key][700]}, 800=${currentScales[key][800]}, 900=${currentScales[key][900]}, 950=${currentScales[key][950]}`).join('\n')}
+
+Implementation Notes:
+- Colors generated using perceptually uniform scales (Chroma.js)
+- Suitable for both light and dark themes
+- Font pairing optimized for digital readability
+- Use these as semantic guidelines - implement with your preferred method (CSS custom properties, Tailwind, styled-components, etc.)`;
+
+        setExportText(spec);
+        setShowExport(true);
+    };
+
+    const handleCopyExport = () => {
+        navigator.clipboard.writeText(exportText);
+        alert('Copied to clipboard! Share this with your AI agent.');
+    };
+
     return (
+        <>
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
             <div className="sidebar-header">
                 <h2>Customize</h2>
@@ -611,11 +649,34 @@ function ColorSidebar({
                 </div>
             </div>
             <div className="sidebar-footer">
+                <button className="sidebar-export-btn" onClick={handleExport}>
+                    Export for AI Agent
+                </button>
                 <button className="sidebar-reset-btn" onClick={handleResetAll}>
                     Reset to Defaults
                 </button>
             </div>
         </div>
+        {showExport && createPortal(
+            <div className="export-modal" onClick={() => setShowExport(false)}>
+                <div className="export-modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="export-modal-header">
+                        <h3>Design System Spec</h3>
+                        <button className="export-modal-close" onClick={() => setShowExport(false)}>&times;</button>
+                    </div>
+                    <div className="export-modal-body">
+                        <pre className="export-text">{exportText}</pre>
+                    </div>
+                    <div className="export-modal-footer">
+                        <button className="export-copy-btn" onClick={handleCopyExport}>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                </div>
+            </div>,
+            document.body
+        )}
+        </>
     );
 }
 
@@ -986,6 +1047,26 @@ export default function ColorSpecPage() {
 
                 .grid.sidebar-open {
                     margin-right: 280px;
+                }
+
+                .page-header {
+                    grid-column: 1 / -1;
+                    padding-top: 40px;
+                    margin-bottom: 24px;
+                }
+
+                .page-header h2 {
+                    font-size: 28px;
+                    font-weight: 700;
+                    letter-spacing: -0.01em;
+                    margin: 0 0 24px 0;
+                    color: white;
+                }
+
+                .page-divider {
+                    height: 3px;
+                    background: rgba(255,255,255,0.2);
+                    border-radius: 2px;
                 }
 
                 .section-label {
@@ -1577,9 +1658,19 @@ export default function ColorSpecPage() {
                 .sidebar-color-input {
                     width: 40px;
                     height: 40px;
-                    border: none;
+                    border: 2px solid #1a1a1a;
                     border-radius: 4px;
                     cursor: pointer;
+                    outline: none;
+                }
+
+                .sidebar-color-input::-webkit-color-swatch-wrapper {
+                    padding: 0;
+                }
+
+                .sidebar-color-input::-webkit-color-swatch {
+                    border: none;
+                    border-radius: 2px;
                 }
 
                 .sidebar-color-info {
@@ -1634,10 +1725,12 @@ export default function ColorSpecPage() {
                 .heading-preview {
                     font-size: 24px;
                     font-weight: 700;
+                    color: white;
                 }
 
                 .body-preview {
                     font-size: 11px;
+                    color: white;
                     opacity: 0.7;
                 }
 
@@ -1650,16 +1743,38 @@ export default function ColorSpecPage() {
                 .font-pairing-name {
                     font-size: 11px;
                     font-weight: 500;
+                    color: white;
                 }
 
                 .font-pairing-classification {
                     font-size: 10px;
+                    color: white;
                     opacity: 0.5;
                 }
 
                 .sidebar-footer {
                     padding: 24px;
                     border-top: 1px solid rgba(255,255,255,0.1);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                }
+
+                .sidebar-export-btn {
+                    width: 100%;
+                    padding: 12px;
+                    background: var(--primary-600);
+                    border: 1px solid var(--primary-400);
+                    border-radius: 4px;
+                    color: white;
+                    font-size: 12px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 200ms ease;
+                }
+
+                .sidebar-export-btn:hover {
+                    background: var(--primary-500);
                 }
 
                 .sidebar-reset-btn {
@@ -1677,6 +1792,108 @@ export default function ColorSpecPage() {
 
                 .sidebar-reset-btn:hover {
                     background: rgba(255,255,255,0.1);
+                }
+
+                .export-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0,0,0,0.85);
+                    backdrop-filter: blur(8px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    padding: 24px;
+                }
+
+                .export-modal-content {
+                    background: #1a1a1a;
+                    border: 1px solid rgba(255,255,255,0.2);
+                    border-radius: 12px;
+                    max-width: 700px;
+                    width: 100%;
+                    max-height: 80vh;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .export-modal-header {
+                    padding: 24px;
+                    border-bottom: 1px solid rgba(255,255,255,0.1);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .export-modal-header h3 {
+                    margin: 0;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: white;
+                }
+
+                .export-modal-close {
+                    background: none;
+                    border: none;
+                    color: rgba(255,255,255,0.6);
+                    font-size: 32px;
+                    cursor: pointer;
+                    width: 32px;
+                    height: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: color 200ms;
+                }
+
+                .export-modal-close:hover {
+                    color: white;
+                }
+
+                .export-modal-body {
+                    padding: 24px;
+                    overflow-y: auto;
+                    flex: 1;
+                }
+
+                .export-text {
+                    background: #0a0a0a;
+                    border: 1px solid rgba(255,255,255,0.1);
+                    border-radius: 6px;
+                    padding: 16px;
+                    color: #ccc;
+                    font-size: 13px;
+                    line-height: 1.6;
+                    font-family: 'Space Mono', monospace;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    margin: 0;
+                }
+
+                .export-modal-footer {
+                    padding: 24px;
+                    border-top: 1px solid rgba(255,255,255,0.1);
+                    display: flex;
+                    justify-content: flex-end;
+                }
+
+                .export-copy-btn {
+                    padding: 12px 24px;
+                    background: var(--primary-600);
+                    border: 1px solid var(--primary-400);
+                    border-radius: 6px;
+                    color: white;
+                    font-size: 13px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 200ms ease;
+                }
+
+                .export-copy-btn:hover {
+                    background: var(--primary-500);
                 }
 
                 .gear-toggle {
@@ -1758,14 +1975,9 @@ export default function ColorSpecPage() {
             `}</style>
 
             <div className="grid">
-                <div className="header">
-                    <div className="header-title">
-                        <h1>Stratum</h1>
-                        <div className="version">BRAND GUIDELINES V1.0</div>
-                    </div>
-                    <div className="header-intro">
-                        Stratum is a design system built on principles of clarity, consistency, and purposeful restraint. This living style guide documents our core brand elements—color, typography, tone—and how they work together across all touchpoints.
-                    </div>
+                <div className="page-header">
+                    <h2>Brand Guidelines</h2>
+                    <div className="page-divider"></div>
                 </div>
 
                 <div className="typography-section">

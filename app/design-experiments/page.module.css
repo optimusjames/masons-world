@@ -1,27 +1,41 @@
 .container {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 80px 40px;
+  background: #0d0d0d;
+  min-height: 100vh;
+}
+
+.container > * {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
+  font-family: var(--font-bitter), serif;
   font-size: 64px;
   font-weight: 800;
   line-height: 1;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
+  color: #a8a8a8;
 }
 
 .subtitle {
-  font-size: 18px;
-  color: #666;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: #b9b384;
   margin-bottom: 60px;
+  letter-spacing: 0.02em;
 }
 
 .rule {
   height: 4px;
-  background: #1a1a1a;
-  margin: 60px 0 40px;
+  background: #3f3f3f;
+  margin: 60px auto 40px auto;
+  max-width: 900px;
 }
 
 .experiment {
@@ -29,7 +43,7 @@
   gap: 32px;
   margin-bottom: 50px;
   padding-bottom: 50px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #303030;
 }
 
 .experiment:last-child {
@@ -44,7 +58,7 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #3f3f3f;
   transition:
     transform 0.2s,
     box-shadow 0.2s;
@@ -54,7 +68,7 @@
 
 .experimentPreview:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(16, 55, 71, 0.4);
 }
 
 .experimentContent {
@@ -63,37 +77,43 @@
 }
 
 .experimentDate {
-  font-size: 13px;
-  font-weight: 600;
-  color: #999;
-  letter-spacing: 0.05em;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: #b9b384;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .experimentTitle {
-  font-size: 28px;
+  font-family: var(--font-bitter), serif;
+  font-size: 32px;
   font-weight: 700;
   margin-bottom: 12px;
   line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .experimentTitle a {
-  color: #1a1a1a;
+  color: #a8a8a8;
   text-decoration: none;
   border-bottom: 3px solid transparent;
   transition: border-color 0.2s;
 }
 
 .experimentTitle a:hover {
-  border-bottom-color: #ff6b4a;
+  border-bottom-color: #b9b384;
 }
 
 .experimentDescription {
+  font-family: var(--font-lora), serif;
   font-size: 15px;
-  color: #555;
+  font-weight: 400;
+  color: #959595;
   margin-bottom: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
+  letter-spacing: 0;
 }
 
 .experimentTags {
@@ -103,32 +123,37 @@
 }
 
 .tag {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 12px;
-  background: #f0f0f0;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  padding: 4px 10px;
+  background: #1a1814;
   border-radius: 4px;
-  color: #666;
+  color: #9f9560;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .footer {
   margin-top: 80px;
   padding-top: 40px;
-  border-top: 1px solid #e0e0e0;
-  font-size: 14px;
-  color: #999;
+  border-top: 1px solid #303030;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 12px;
+  color: #717171;
   text-align: center;
 }
 
 .footer a {
-  color: #666;
+  color: #838383;
   text-decoration: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #4f4f4f;
+  transition: all 0.2s;
 }
 
 .footer a:hover {
-  color: #1a1a1a;
-  border-bottom-color: #1a1a1a;
+  color: #a0c4d8;
+  border-bottom-color: #a0c4d8;
 }
 
 @media (max-width: 768px) {

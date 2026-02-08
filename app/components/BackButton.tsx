@@ -29,7 +29,6 @@ export default function BackButton() {
           strokeLinejoin="round"
         />
       </svg>
-      <span>Back to Experiments</span>
     </Link>
   )
 }

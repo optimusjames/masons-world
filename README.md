@@ -48,20 +48,6 @@ Interactive brand guidelines with live color and typography customization. Featu
 
 ---
 
-### Widget Board
-
-**February 2, 2026**
-
-[![Widget Board](./screenshots/design-festival.png)](https://www.joshcoolman.com/2026-01-28-design-festival/)
-
-Card-based layout system combining festival poster boldness with digital interface precision. Features animated React widgets including an Activity chart with SVG line-drawing animation, Goals progress bars, Analytics bar charts, concentric progress rings, and an interactive calendar. All widgets support click-to-regenerate with randomized data.
-
-**Tags:** React • Animated Widgets • CSS Grid • Festival Aesthetic
-
-**[View Code →](./2026-01-28-design-festival/)**
-
----
-
 ### A Day in the life...
 
 **February 2, 2026**

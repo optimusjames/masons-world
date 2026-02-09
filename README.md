@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### CrossFit Design Challenge
+
+**February 8, 2026**
+
+[![CrossFit Design Challenge](./public/screenshots/crossfit-challenge.png)](https://www.joshcoolman.com/crossfit-challenge)
+
+Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically with Claude Code agent teams, then refined with human-in-the-loop collaboration adding real photography and typography tweaks. Includes editorial writeup on the process.
+
+**Tags:** Agent Teams • Design Challenge • CSS Modules • Multi-Layout
+
+**[View Live →](https://www.joshcoolman.com/crossfit-challenge) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/crossfit-challenge)**
+
+---
+
 ### You're Doing It Wrong
 
 **February 8, 2026**

@@ -58,6 +58,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'crossfit-challenge',
+      date: 'February 8, 2026',
+      title: 'CrossFit Design Challenge',
+      description: 'Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically, then refined with human-in-the-loop collaboration. Includes editorial writeup on the process.',
+      screenshot: '/screenshots/crossfit-challenge.png',
+      tags: ['Agent Teams', 'Design Challenge', 'CSS Modules', 'Multi-Layout']
+    },
+    {
       slug: 'youre-doing-it-wrong',
       date: 'February 8, 2026',
       title: 'You\'re Doing It Wrong',

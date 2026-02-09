@@ -1,0 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+
+.wrapper {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+
+.heading {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  line-height: 1.0;
+}
+
+.sectionTitle {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 0 0 2rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 4px solid #ff3333;
+  display: inline-block;
+}
+
+.accent {
+  color: #ff3333;
+}
+
+.mono {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* ===== HERO ===== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+  border-bottom: 6px solid #ff3333;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: url('/crossfit/image-3.jpg') center center / cover no-repeat;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+.heroDiagonal {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 140%;
+  background: #ff3333;
+  opacity: 0.04;
+  transform: skewX(-12deg);
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.heroLabel {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #ff3333;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid #ff3333;
+  padding-left: 1rem;
+}
+
+.heroTitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.85;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.heroSubtitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #666666;
+  margin: 0 0 3rem 0;
+}
+
+.heroRule {
+  width: 120px;
+  height: 4px;
+  background: #ff3333;
+  margin-bottom: 2rem;
+  border: none;
+}
+
+.heroCta {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  background: #ff3333;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.heroCta:hover {
+  background: #cc0000;
+}
+
+.heroMeta {
+  position: absolute;
+  bottom: 3rem;
+  right: 2rem;
+  text-align: right;
+  z-index: 1;
+}
+
+.heroMetaLine {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #444444;
+  display: block;
+  line-height: 2;
+}
+
+/* ===== SECTIONS SHARED ===== */
+
+.section {
+  padding: 5rem 2rem;
+  border-bottom: 2px solid #1a1a1a;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionDark {
+  padding: 5rem 2rem;
+  border-bottom: 2px solid #1a1a1a;
+  background: #0f0f0f;
+}
+
+.sectionInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== CLASSES / SCHEDULE ===== */
+
+.classesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+}
+
+.classCard {
+  border: 2px solid #1a1a1a;
+  padding: 2rem 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.classCard:hover {
+  border-color: #ff3333;
+}
+
+.classIndex {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ff3333;
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.className {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.classMeta {
+  font-size: 0.8rem;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.scheduleBar {
+  margin-top: 3rem;
+  border: 2px solid #1a1a1a;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.scheduleDay {
+  border-left: 3px solid #ff3333;
+  padding-left: 1rem;
+}
+
+.scheduleDayLabel {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 0.1em;
+}
+
+.scheduleDayTime {
+  font-size: 0.85rem;
+  color: #666666;
+  margin-top: 0.25rem;
+}
+
+/* ===== COACHES ===== */
+
+.coachesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0;
+}
+
+.coachCard {
+  border: 2px solid #1a1a1a;
+  padding: 0;
+  overflow: hidden;
+}
+
+.coachPhoto {
+  height: 200px;
+  background: linear-gradient(160deg, #1a1a1a 0%, #0f0f0f 50%, #1a0a0a 100%);
+  background-size: cover;
+  background-position: center top;
+  border-bottom: 3px solid #ff3333;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.coachPhotoLabel {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #333333;
+}
+
+.coachInfo {
+  padding: 1.5rem;
+}
+
+.coachName {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.coachRole {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ff3333;
+  margin-bottom: 0.75rem;
+}
+
+.coachBio {
+  font-size: 0.8rem;
+  color: #555555;
+  line-height: 1.5;
+}
+
+/* ===== TESTIMONIALS ===== */
+
+.testimonialsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.testimonialItem {
+  border-left: 4px solid #ff3333;
+  border-bottom: 1px solid #1a1a1a;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+.testimonialItem:last-child {
+  border-bottom: none;
+}
+
+.testimonialQuote {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.testimonialAuthor {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ff3333;
+}
+
+/* ===== PRICING ===== */
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0;
+}
+
+.pricingCard {
+  border: 2px solid #1a1a1a;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+.pricingCard:hover {
+  border-color: #333333;
+}
+
+.pricingFeatured {
+  border-color: #ff3333;
+  background: linear-gradient(180deg, #1a0a0a 0%, #0a0a0a 100%);
+}
+
+.pricingFeatured:hover {
+  border-color: #ff3333;
+}
+
+.pricingLabel {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #555555;
+  margin-bottom: 0.5rem;
+}
+
+.pricingTier {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.pricingAmount {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.pricingAmountAccent {
+  color: #ff3333;
+}
+
+.pricingUnit {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #555555;
+  margin-bottom: 2rem;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.pricingSpecList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.pricingSpec {
+  font-size: 0.8rem;
+  color: #666666;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #111111;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pricingSpec::before {
+  content: '>';
+  color: #ff3333;
+  margin-right: 0.75rem;
+  font-weight: bold;
+}
+
+.pricingBtn {
+  display: block;
+  width: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: #ffffff;
+  background: transparent;
+  border: 2px solid #333333;
+  border-radius: 0;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pricingBtn:hover {
+  border-color: #ff3333;
+  color: #ff3333;
+}
+
+.pricingBtnFeatured {
+  display: block;
+  width: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: #ffffff;
+  background: #ff3333;
+  border: 2px solid #ff3333;
+  border-radius: 0;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pricingBtnFeatured:hover {
+  background: #cc0000;
+  border-color: #cc0000;
+}
+
+.pricingTag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #0a0a0a;
+  background: #ff3333;
+  padding: 0.4rem 1rem;
+  font-weight: bold;
+}
+
+/* ===== FOOTER ===== */
+
+.footer {
+  padding: 4rem 2rem;
+  border-top: 4px solid #ff3333;
+  background: #050505;
+}
+
+.footerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.footerBrand {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.footerTagline {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #444444;
+  margin-bottom: 1.5rem;
+}
+
+.footerAddress {
+  font-size: 0.8rem;
+  color: #555555;
+  line-height: 2;
+}
+
+.footerHeading {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ff3333;
+  margin-bottom: 1.5rem;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLink {
+  font-size: 0.8rem;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+  display: block;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+}
+
+.footerBottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footerCopy {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #333333;
+}

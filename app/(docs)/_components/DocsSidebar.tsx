@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, Menu, X } from 'lucide-react'
+import { ChevronDown, ChevronLeft, Menu, X } from 'lucide-react'
 import type { DocNavCategory } from '@/lib/docs/types'
 import styles from '../docs.module.css'
 
@@ -22,6 +22,12 @@ export default function DocsSidebar({ categories }: DocsSidebarProps) {
 
   const sidebarContent = (
     <>
+      <div className={styles.sidebarBack}>
+        <Link href="/" className={styles.backLink}>
+          <ChevronLeft size={14} />
+          Back
+        </Link>
+      </div>
       <div className={styles.sidebarHeader}>
         <Link href="/docs" className={styles.sidebarTitle}>
           Docs

@@ -59,6 +59,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'crossfit-challenge-2',
+      date: 'February 9, 2026',
+      title: 'CrossFit Design Challenge: Day 2',
+      description: 'Day 2 leveled up the same four designer personas with new constraints: dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Same gym content, same personas, dramatically elevated execution. Pure CSS animations, no external libraries.',
+      screenshot: '/screenshots/crossfit-challenge-2.png',
+      tags: ['Dark Mode', 'CSS Animation', 'Data Viz', 'Agent Teams']
+    },
+    {
       slug: 'crossfit-challenge',
       date: 'February 8, 2026',
       title: 'CrossFit Design Challenge',

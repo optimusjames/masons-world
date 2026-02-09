@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### CrossFit Design Challenge: Day 2
+
+**February 9, 2026**
+
+[![CrossFit Design Challenge: Day 2](./public/screenshots/crossfit-challenge-2.png)](https://www.joshcoolman.com/crossfit-challenge-2)
+
+Day 2 leveled up the same four designer personas with new constraints: dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Same gym content, same personas, dramatically elevated execution. Pure CSS animations, no external libraries. Real CrossFit photography replaces gradient placeholders.
+
+**Tags:** Dark Mode - CSS Animation - Data Viz - Agent Teams
+
+**[View Live →](https://www.joshcoolman.com/crossfit-challenge-2) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/crossfit-challenge-2)**
+
+---
+
 ### CrossFit Design Challenge
 
 **February 8, 2026**

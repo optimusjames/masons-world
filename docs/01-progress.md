@@ -4,6 +4,37 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Docs Viewer
+
+**Date:** 2026-02-09
+
+Added a `/docs` route that renders markdown files from the `docs/` directory with sidebar navigation, syntax highlighting, table of contents with scroll spy, and dark mode styling.
+
+**What changed:**
+- New route group `app/(docs)/` with layout, catch-all slug page, and index redirect
+- Utility library `lib/docs/` for scanning the docs directory, parsing filenames, extracting headings
+- Client components for sidebar (collapsible categories, mobile drawer), TOC (IntersectionObserver scroll spy), and code blocks (react-syntax-highlighter with VS Code Dark+ theme)
+- Server-rendered markdown via next-mdx-remote/rsc with remark-gfm and rehype-slug
+- Dark mode CSS Modules with Bitter serif font on headings to match homepage brand
+- Homepage redesigned from single text link to two card-style nav links (Design Experiments + Docs)
+- Ported 3 reference docs from the notes vault: AI Dev Stack 2026, BYOK Pattern, Stack Overview
+- Files prefixed with `_` are excluded from the sidebar (used for templates)
+- Subdirectories in `docs/` become collapsible categories; numeric prefixes control sort order
+
+**Key files:**
+- `app/(docs)/layout.tsx` - Docs layout with sidebar
+- `app/(docs)/docs/[...slug]/page.tsx` - Doc renderer with TOC
+- `app/(docs)/_components/` - DocsSidebar, TableOfContents, CodeBlock, DocsContent
+- `lib/docs/loadDocs.ts` - Core logic for scanning and loading docs
+- `app/(docs)/docs.module.css` - All docs styling
+- `app/page.tsx` - Homepage with card nav links
+- `docs/stack/` - Ported reference documentation
+
+**Dependencies added:**
+- gray-matter, remark-gfm, rehype-slug, react-syntax-highlighter, next-mdx-remote, lucide-react
+
+---
+
 ### TypeScript Migration & Component Architecture
 
 **Date:** 2026-02-08

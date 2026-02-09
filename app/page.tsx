@@ -117,9 +117,26 @@ export default function Home() {
             Greetings Starfighter!
           </div>
 
-          <Link href="/design-experiments" className={styles.experimentsLink}>
-            design experiments
-          </Link>
+          <div className={styles.navCards}>
+            <Link href="/design-experiments" className={styles.navCard}>
+              <div className={styles.navCardText}>
+                <span className={styles.navCardTitle}>Design Experiments</span>
+                <span className={styles.navCardDesc}>Visual explorations of layout, color, and interaction</span>
+              </div>
+              <svg className={styles.navCardArrow} width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+            <Link href="/docs" className={styles.navCard}>
+              <div className={styles.navCardText}>
+                <span className={styles.navCardTitle}>Docs</span>
+                <span className={styles.navCardDesc}>Generally useful information for engineering agentic coding</span>
+              </div>
+              <svg className={styles.navCardArrow} width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
     </main>

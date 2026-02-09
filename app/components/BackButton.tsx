@@ -8,7 +8,7 @@ export default function BackButton() {
   const pathname = usePathname()
 
   // Only show on experiment pages (not on homepage or design-experiments gallery)
-  const shouldShow = pathname !== '/' && pathname !== '/design-experiments'
+  const shouldShow = pathname !== '/' && pathname !== '/design-experiments' && !pathname.startsWith('/docs')
 
   if (!shouldShow) return null
 

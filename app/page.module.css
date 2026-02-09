@@ -97,22 +97,66 @@
   user-select: none;
 }
 
-.experimentsLink {
-  font-family: 'Bitter', serif;
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: #8FF7F9;
-  text-decoration: none;
+.navCards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 360px;
   pointer-events: auto;
-  transition: all 0.3s ease;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
 }
 
-.experimentsLink:hover {
-  color: #fff;
-  text-shadow: 0 0 20px rgba(143, 247, 249, 0.8);
-  transform: scale(1.05);
+.navCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(143, 247, 249, 0.2);
+  border-radius: 0.5rem;
+  background: rgba(143, 247, 249, 0.04);
+  text-decoration: none;
+  color: #8FF7F9;
+  transition: all 0.2s ease;
+}
+
+.navCard:hover {
+  border-color: rgba(143, 247, 249, 0.5);
+  background: rgba(143, 247, 249, 0.08);
+  transform: translateX(2px);
+}
+
+.navCardText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.navCardTitle {
+  font-family: 'Bitter', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #8FF7F9;
+  line-height: 1.3;
+}
+
+.navCardDesc {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(143, 247, 249, 0.55);
+  line-height: 1.4;
+}
+
+.navCardArrow {
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.navCard:hover .navCardArrow {
+  opacity: 0.8;
+  transform: translateX(2px);
 }
 
 @media (max-width: 768px) {
@@ -124,7 +168,15 @@
     font-size: 2rem;
   }
 
-  .experimentsLink {
+  .navCards {
+    max-width: 300px;
+  }
+
+  .navCardTitle {
     font-size: 1rem;
+  }
+
+  .navCardDesc {
+    font-size: 0.75rem;
   }
 }

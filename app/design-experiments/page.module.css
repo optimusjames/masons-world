@@ -12,6 +12,22 @@
   margin-right: auto;
 }
 
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 13px;
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color 0.15s ease;
+}
+
+.backLink:hover {
+  color: #aaa;
+}
+
 .title {
   font-family: var(--font-bitter), serif;
   font-size: 64px;

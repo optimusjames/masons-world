@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Space_Grotesk, Bitter, Lora, Space_Mono } from 'next/font/google'
+import { ChevronLeft } from 'lucide-react'
 import styles from './page.module.css'
 import type { Experiment } from '../types/experiments'
 
@@ -128,12 +129,12 @@ export default function Home() {
       ref={containerRef}
       className={`${styles.container} ${spaceGrotesk.variable} ${bitter.variable} ${lora.variable} ${spaceMono.variable}`}
     >
-      <Link href="/" className={styles.backLink}>
-        <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-          <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        Back
-      </Link>
+      <div className={styles.backRow}>
+        <Link href="/" className={styles.backLink}>
+          <ChevronLeft size={14} />
+          Back
+        </Link>
+      </div>
       <h1 className={styles.title}>Design Experiments</h1>
       <p className={styles.subtitle}>
         A sandbox for exploring visual design systems, widgets, and layouts

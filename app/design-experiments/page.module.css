@@ -12,6 +12,10 @@
   margin-right: auto;
 }
 
+.backRow {
+  margin-bottom: 24px;
+}
+
 .backLink {
   display: inline-flex;
   align-items: center;
@@ -20,7 +24,6 @@
   font-size: 13px;
   color: #666;
   text-decoration: none;
-  margin-bottom: 24px;
   transition: color 0.15s ease;
 }
 

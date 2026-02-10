@@ -68,7 +68,7 @@
 .divider {
   width: 100%;
   height: 1px;
-  background: rgba(148, 163, 184, 0.12);
+  background: rgba(148, 163, 184, 0.15);
 }
 
 .inner {
@@ -148,26 +148,27 @@
 
 .classes {
   padding: 6rem 0;
+  background: #0e0f14;
 }
 
 .classesGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1px;
-  background: rgba(148, 163, 184, 0.1);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.08);
   margin-top: 3rem;
 }
 
 .classCard {
-  background: #0a0b0e;
+  background: #12141a;
   padding: 2.5rem 1.5rem;
   text-align: center;
   transition: background 0.4s ease;
 }
 
 .classCard:hover {
-  background: #12131a;
+  background: #1a1c22;
 }
 
 .className {
@@ -208,6 +209,7 @@
 
 .coaches {
   padding: 6rem 0;
+  background: #0a0b0e;
 }
 
 .coachesGrid {
@@ -219,12 +221,16 @@
 
 .coachCard {
   text-align: center;
+  background: #12141a;
+  padding-bottom: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.06);
+  transition: border-color 0.4s ease;
 }
 
 .coachPhoto {
   width: 100%;
   aspect-ratio: 3 / 4;
-  background-color: #16171e;
+  background-color: #0e0f14;
   background-size: cover;
   background-position: center top;
   border: 1px solid rgba(148, 163, 184, 0.08);
@@ -263,11 +269,15 @@
 
 .growth {
   padding: 6rem 0;
+  background: #0e0f14;
 }
 
 .chartContainer {
   margin-top: 3rem;
   position: relative;
+  background: #12141a;
+  border: 1px solid rgba(148, 163, 184, 0.06);
+  padding: 2rem;
 }
 
 .chartSvg {
@@ -296,7 +306,7 @@
 }
 
 .chartDot {
-  fill: #0a0b0e;
+  fill: #12141a;
   stroke: #94a3b8;
   stroke-width: 1.5;
   opacity: 0;
@@ -359,6 +369,7 @@
 
 .testimonials {
   padding: 6rem 0;
+  background: #0a0b0e;
 }
 
 .testimonialsList {
@@ -409,6 +420,7 @@
 
 .pricing {
   padding: 6rem 0;
+  background: #0e0f14;
 }
 
 .pricingGrid {
@@ -419,17 +431,17 @@
 }
 
 .pricingCard {
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.08);
   padding: 3rem 2rem;
   text-align: center;
   transition: border-color 0.4s ease, transform 0.4s ease, background 0.4s ease;
-  background: transparent;
+  background: #12141a;
 }
 
 .pricingCard:hover {
-  border-color: rgba(148, 163, 184, 0.3);
+  border-color: rgba(148, 163, 184, 0.25);
   transform: translateY(-2px);
-  background: rgba(148, 163, 184, 0.03);
+  background: #1a1c22;
 }
 
 .pricingTier {
@@ -480,6 +492,7 @@
 .footer {
   padding: 4rem 0 3rem;
   text-align: center;
+  background: #08090c;
 }
 
 .footerName {

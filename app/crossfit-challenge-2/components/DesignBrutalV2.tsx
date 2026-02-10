@@ -42,7 +42,6 @@ export default function DesignBrutalV2() {
           </span>
           <h1
             className={`${styles.heroTitle} ${anim(1)}`}
-            data-text="IRON REPUBLIC"
           >
             IRON
             <br />
@@ -79,6 +78,7 @@ export default function DesignBrutalV2() {
       </div>
 
       {/* ===== CLASSES / SCHEDULE ===== */}
+      <div className={styles.sectionClasses}>
       <section className={styles.section}>
         <div className={anim()}>
           <span className={styles.sectionLabel}>// Programs</span>
@@ -120,6 +120,7 @@ export default function DesignBrutalV2() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* ===== PERFORMANCE METRICS ===== */}
       <section className={styles.metricsSection}>
@@ -249,7 +250,7 @@ export default function DesignBrutalV2() {
       </section>
 
       {/* ===== COACHES ===== */}
-      <div className={styles.sectionDark}>
+      <div className={`${styles.sectionDark} ${styles.sectionCoaches}`}>
         <section className={styles.sectionInner}>
           <div className={anim()}>
             <span className={styles.sectionLabel}>// Personnel</span>
@@ -305,6 +306,7 @@ export default function DesignBrutalV2() {
       </div>
 
       {/* ===== TESTIMONIALS ===== */}
+      <div className={styles.sectionTestimonials}>
       <section className={styles.section}>
         <div className={anim()}>
           <span className={styles.sectionLabel}>// Field Reports</span>
@@ -341,9 +343,10 @@ export default function DesignBrutalV2() {
           ))}
         </div>
       </section>
+      </div>
 
       {/* ===== PRICING ===== */}
-      <div className={styles.sectionDark}>
+      <div className={`${styles.sectionDark} ${styles.sectionPricing}`}>
         <section className={styles.sectionInner}>
           <div className={anim()}>
             <span className={styles.sectionLabel}>// Access Tiers</span>

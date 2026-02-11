@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### Sourcing Image
+
+**February 11, 2026**
+
+[![Sourcing Image](./public/screenshots/sourcing-image.png)](https://www.joshcoolman.com/sourcing-image)
+
+A fully agentic editorial layout experiment. The only direction: source images from a personal library, pick a topic, and design an attractive page. Claude autonomously selected 10 photographs, invented an article about visual composition, wrote the editorial copy, and designed a high-end magazine layout with varied image treatments -- full-bleed hero, side-by-side pairs, sticky insets alongside body text, captioned feature images, an asymmetric photo grid, and a full-width closer. Set in Cormorant Garamond and DM Sans on warm off-white. Minimal human input beyond two layout refinements after the initial generation.
+
+**Tags:** Agentic Design - Editorial Layout - Image Sourcing - Magazine
+
+**[View Live →](https://www.joshcoolman.com/sourcing-image) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/sourcing-image)**
+
+---
+
 ### CrossFit Design Challenge: Day 2
 
 **February 9, 2026**

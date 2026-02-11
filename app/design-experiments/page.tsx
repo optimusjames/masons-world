@@ -59,6 +59,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'sourcing-image',
+      date: 'February 11, 2026',
+      title: 'Sourcing Image',
+      description: 'Fully agentic editorial layout -- the only inputs were "use the image library, pick a topic, make it beautiful." Claude sourced 10 images from a personal library, invented the article topic, wrote the copy, and designed a magazine-style layout with varied image treatments: full-bleed hero, side-by-side pairs, sticky insets, captioned features, and an asymmetric photo grid. Cormorant Garamond and DM Sans on warm off-white.',
+      screenshot: '/screenshots/sourcing-image.png',
+      tags: ['Agentic Design', 'Editorial Layout', 'Image Sourcing', 'Magazine']
+    },
+    {
       slug: 'crossfit-challenge-2',
       date: 'February 9, 2026',
       title: 'CrossFit Design Challenge: Day 2',

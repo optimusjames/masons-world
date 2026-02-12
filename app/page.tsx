@@ -136,6 +136,15 @@ export default function Home() {
                 <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
+            <Link href="/blog" className={styles.navCard}>
+              <div className={styles.navCardText}>
+                <span className={styles.navCardTitle}>Blog</span>
+                <span className={styles.navCardDesc}>Thoughts on agentic design and building in public</span>
+              </div>
+              <svg className={styles.navCardArrow} width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>

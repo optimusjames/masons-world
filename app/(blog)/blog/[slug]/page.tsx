@@ -1,0 +1,75 @@
+import { notFound } from 'next/navigation'
+import Image from 'next/image'
+import { getAllPosts, getPostBySlug } from '@/lib/blog/loadBlog'
+import BlogContent from '../../_components/BlogContent'
+import styles from '../../blog.module.css'
+
+interface PageProps {
+  params: Promise<{ slug: string }>
+}
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+
+export async function generateStaticParams() {
+  const posts = getAllPosts()
+  return posts.map((post) => ({ slug: post.slug }))
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
+  if (!post) return {}
+  return {
+    title: post.meta.title,
+    description: post.meta.subtitle,
+  }
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
+
+  if (!post) notFound()
+
+  return (
+    <div className={styles.postWrapper}>
+      <header className={styles.postHeader}>
+        <div className={styles.postMeta}>
+          <time>{formatDate(post.meta.date)}</time>
+          {post.meta.readingTime && (
+            <span className={styles.readingTime}>{post.meta.readingTime} read</span>
+          )}
+        </div>
+        <h1 className={styles.postTitle}>{post.meta.title}</h1>
+        {post.meta.subtitle && (
+          <p className={styles.postSubtitle}>{post.meta.subtitle}</p>
+        )}
+      </header>
+
+      {post.meta.image && (
+        <div className={styles.postImageWrapper}>
+          <Image
+            src={post.meta.image}
+            alt={post.meta.title}
+            fill
+            sizes="680px"
+            className={styles.postImage}
+          />
+        </div>
+      )}
+
+      <BlogContent content={post.content} />
+
+      <footer className={styles.postFooter}>
+        <div className={styles.footerNote}>Blog / 2026</div>
+      </footer>
+    </div>
+  )
+}

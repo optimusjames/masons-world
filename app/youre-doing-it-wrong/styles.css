@@ -5,7 +5,7 @@
    ─────────────────────────────────────────── */
 
 .blog-post-page {
-  background: #0c0c0b;
+  background: #0b0b0b;
   min-height: 100vh;
 }
 
@@ -21,7 +21,7 @@
   --mid: #a09888;
   --light: #706860;
   --rule: #383430;
-  --paper: #0c0c0b;
+  --paper: #0b0b0b;
   --accent: #00ff8f;
   --col-max: 680px;
 

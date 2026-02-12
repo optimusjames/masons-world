@@ -1,5 +1,5 @@
 type TypeInfoProps = {
-    currentPairing: any;
+    currentPairing: { description: string };
 };
 
 export function TypeInfo({ currentPairing }: TypeInfoProps) {

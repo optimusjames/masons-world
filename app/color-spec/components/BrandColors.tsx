@@ -95,7 +95,7 @@ export function BrandColors() {
         }
     }, [sidebarOpen]);
 
-    const handleColorChange = (scaleName: string, newScale: any) => {
+    const handleColorChange = (scaleName: string, newScale: Record<number, string>) => {
         setCurrentScales(prev => ({
             ...prev,
             [scaleName]: newScale
@@ -106,7 +106,7 @@ export function BrandColors() {
         setBackgroundColor(newColor);
     };
 
-    const handlePairingChange = (pairing: any) => {
+    const handlePairingChange = (pairing: typeof defaultPairing) => {
         setCurrentPairing(pairing);
     };
 
@@ -126,7 +126,7 @@ export function BrandColors() {
                         {samples.map(value => (
                             <div
                                 className={`color-card ${isLight(value) ? 'light' : ''}`}
-                                style={{ backgroundColor: (currentScales as any)[scale][value] }}
+                                style={{ backgroundColor: currentScales[scale as keyof typeof currentScales][value as keyof typeof greenScale] }}
                                 key={value}
                             >
                                 <div className="color-values">--{scale}-{value}</div>

@@ -34,14 +34,14 @@ export default function GeistPixelPage() {
 
     // Text Scramble Effect - Split-flap / Solari board style
     class TextScramble {
-      el: any
-      intervalId: any
-      resolveCallback: any
+      el: HTMLElement
+      intervalId: ReturnType<typeof setInterval> | null
+      resolveCallback: (() => void) | null
       isResolving: boolean
       finalText: string
       resolved: number
 
-      constructor(el: any) {
+      constructor(el: HTMLElement) {
         this.el = el
         this.intervalId = null
         this.resolveCallback = null
@@ -60,7 +60,7 @@ export default function GeistPixelPage() {
       }
 
       resolve() {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
           this.resolveCallback = resolve
           this.isResolving = true
         })
@@ -94,7 +94,7 @@ export default function GeistPixelPage() {
         this.el.textContent = output
 
         if (this.isResolving && this.resolved >= this.finalText.length) {
-          clearInterval(this.intervalId)
+          if (this.intervalId) clearInterval(this.intervalId)
           this.intervalId = null
           if (this.resolveCallback) this.resolveCallback()
         }
@@ -119,8 +119,8 @@ export default function GeistPixelPage() {
     ]
 
     const container = scrambleContainerRef.current
-    let scrambleInstances: any[] = []
-    let lineElements: any[] = []
+    let scrambleInstances: TextScramble[] = []
+    let lineElements: HTMLElement[] = []
 
     function buildLines() {
       if (!container) return
@@ -155,7 +155,7 @@ export default function GeistPixelPage() {
       lineElements.forEach((el) => {
         const scramble = new TextScramble(el)
         scrambleInstances.push(scramble)
-        scramble.scramble(el.dataset.text)
+        scramble.scramble(el.dataset.text ?? '')
       })
 
       setTimeout(() => {

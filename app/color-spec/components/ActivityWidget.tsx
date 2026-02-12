@@ -50,7 +50,7 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
         y: padding.top + chartHeight - ((value - 20) / 60) * chartHeight
     }));
 
-    const generateSmoothPath = (pts: any[]) => {
+    const generateSmoothPath = (pts: { x: number; y: number }[]) => {
         if (pts.length < 2) return '';
         const tension = 0.3;
         let path = `M ${pts[0].x} ${pts[0].y}`;
@@ -68,7 +68,7 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
         return path;
     };
 
-    const generateAreaPath = (pts: any[]) => {
+    const generateAreaPath = (pts: { x: number; y: number }[]) => {
         const curvePath = generateSmoothPath(pts);
         return `${curvePath} L ${pts[pts.length - 1].x} ${padding.top + chartHeight} L ${pts[0].x} ${padding.top + chartHeight} Z`;
     };
@@ -114,7 +114,7 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
                     className="activity-chart-svg"
                     viewBox={`0 0 ${width} ${height}`}
                     preserveAspectRatio="none"
-                    style={{ ['--path-length' as any]: `${pathLength}px` }}
+                    style={{ ['--path-length' as string]: `${pathLength}px` }}
                 >
                     <defs>
                         <linearGradient id={`activityArea-${loadKey}`} x1="0" y1="0" x2="0" y2="1">

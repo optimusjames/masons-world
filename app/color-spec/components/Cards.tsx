@@ -3,7 +3,7 @@ import { defaults } from '../data/fontPairings';
 
 const CardContext = createContext<string | undefined>(undefined);
 
-export function Card({ colorScale = 'neutral', bg, children }: any) {
+export function Card({ colorScale = 'neutral', bg, children }: { colorScale?: string; bg?: string; children: React.ReactNode }) {
     const bgValue = bg || defaults.bg;
     const backgroundColor = `var(--${colorScale}-${bgValue})`;
 
@@ -16,7 +16,7 @@ export function Card({ colorScale = 'neutral', bg, children }: any) {
     );
 }
 
-export function CardLabel({ children, color }: any) {
+export function CardLabel({ children, color }: { children: React.ReactNode; color?: string }) {
     const colorScale = useContext(CardContext);
     const colorValue = color || defaults.label;
     const textColor = `var(--${colorScale}-${colorValue})`;
@@ -28,7 +28,7 @@ export function CardLabel({ children, color }: any) {
     );
 }
 
-export function CardTitle({ children }: any) {
+export function CardTitle({ children }: { children: React.ReactNode }) {
     return (
         <h3 className="card-title">
             {children}
@@ -36,7 +36,7 @@ export function CardTitle({ children }: any) {
     );
 }
 
-export function CardBody({ children }: any) {
+export function CardBody({ children }: { children: React.ReactNode }) {
     return (
         <p className="card-body">
             {children}
@@ -44,7 +44,7 @@ export function CardBody({ children }: any) {
     );
 }
 
-export function CardButton({ children, bg, border, textColor }: any) {
+export function CardButton({ children, bg, border, textColor }: { children: React.ReactNode; bg?: string; border?: string; textColor?: string }) {
     const colorScale = useContext(CardContext);
     const bgValue = bg || defaults.buttonBg;
     const borderValue = border || defaults.buttonBorder;

@@ -93,7 +93,7 @@ Found X potential improvements in the codebase. Select which ones you'd like to 
 After user selects improvements:
 
 1. If user selects "Skip":
-   - Respond: "👍 Looks good! Your code is in good shape."
+   - Respond: "Looks good! Your code is in good shape."
    - Exit
 
 2. If user selects improvements:
@@ -179,4 +179,4 @@ If issues found:
 4. Summary of changes made
 
 If no issues:
-"👍 Quick sanity check complete - everything looks solid!"
+"Quick sanity check complete -- everything looks solid."

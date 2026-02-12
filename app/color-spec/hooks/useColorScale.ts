@@ -26,7 +26,7 @@ export function generateScale(baseColor: string) {
     }
 }
 
-export function updateCSSVariables(scales: any) {
+export function updateCSSVariables(scales: Record<string, Record<number, string>>) {
     const root = document.documentElement;
     const colorNameMap: Record<string, string> = {
         primary: 'green',

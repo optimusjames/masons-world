@@ -4,6 +4,25 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Write-post skill and TypeScript cleanup
+
+**Date:** 2026-02-12
+
+Added `/write-post` skill for blog authoring and eliminated all `any` types from the codebase.
+
+**What changed:**
+- New skill `.claude/skills/write-post/SKILL.md` for conversational blog post creation with auto-calculated reading time, slug derivation, and image handling
+- Removed `@ts-nocheck` from `NetworkCanvas.tsx`, added typed interfaces (`CanvasNode`, `Organism`, `BlastAnimation`)
+- Typed `TextScramble` class in both `geist-pixel` and `terminator` experiments
+- Replaced all `any` props in color-spec components (`Cards.tsx`, `ColorSidebar.tsx`, `BrandColors.tsx`, `TypeInfo.tsx`, `ActivityWidget.tsx`, `AnalyticsWidget.tsx`)
+- Typed blend recipe state and color scale utilities
+- Updated sanity-check skill to remove emojis
+- New feature doc: `docs/features/skills.md`
+
+**Key files:** `.claude/skills/write-post/SKILL.md`, `app/components/NetworkCanvas.tsx`, `app/color-spec/components/ColorSidebar.tsx`
+
+---
+
 ### Docs Viewer
 
 **Date:** 2026-02-09

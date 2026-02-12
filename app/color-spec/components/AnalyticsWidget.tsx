@@ -67,7 +67,7 @@ export function AnalyticsWidget({ colorScale = 'secondary', chartColor = 'second
                             <div
                                 className={`analytics-bar ${isLoaded ? 'loaded' : ''}`}
                                 style={{
-                                    ['--bar-height' as any]: `${height}%`,
+                                    ['--bar-height' as string]: `${height}%`,
                                     background: `linear-gradient(to top, ${barColor} 50%, rgba(255,255,255,0.15) 50%)`,
                                     transitionDelay: `${0.2 + i * 0.05}s`
                                 }}

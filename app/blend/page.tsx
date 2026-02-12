@@ -5,7 +5,7 @@ import './styles.css';
 
 export default function Blend() {
   const [showModal, setShowModal] = useState(false);
-  const [currentRecipe, setCurrentRecipe] = useState<any>(null);
+  const [currentRecipe, setCurrentRecipe] = useState<{ id: string; name: string; colors: string[]; prompt: string } | null>(null);
   const [copySuccess, setCopySuccess] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -74,7 +74,7 @@ This creates a vibrant, energetic signal effect.`
   }, []);
 
   const showRecipe = (recipeId: string) => {
-    const recipe = (recipes as any)[recipeId];
+    const recipe = recipes[recipeId as keyof typeof recipes];
     if (recipe) {
       setCurrentRecipe({ id: recipeId, ...recipe });
       setShowModal(true);

@@ -1,10 +1,51 @@
-// @ts-nocheck - Complex canvas animation with checked null values at entry
 'use client'
 
 import { useEffect, useRef } from 'react'
 
 interface NetworkCanvasProps {
   className?: string
+}
+
+interface CanvasNode {
+  baseX: number
+  baseY: number
+  x: number
+  y: number
+  vx: number
+  vy: number
+  size: number
+  noiseOffsetX: number
+  noiseOffsetY: number
+  mass: number
+  affectedByBlast: boolean
+  lastBlastTime: number
+  recoveryDelay: number
+}
+
+interface Organism {
+  centerX: number
+  centerY: number
+  baseX: number
+  baseY: number
+  nodes: CanvasNode[]
+  vx: number
+  vy: number
+  connections: number[][]
+  noiseSeed: number
+  lastNoiseChange: number
+  noiseChangeInterval: number
+}
+
+interface BlastAnimation {
+  x: number
+  y: number
+  startTime: number
+  radius: number
+  maxRadius: number
+  duration: number
+  blastForce: number
+  blastDelay: number
+  blastSpeed: number
 }
 
 export default function NetworkCanvas({ className }: NetworkCanvasProps) {
@@ -14,13 +55,14 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
     const canvasElement = canvasRef.current
     if (!canvasElement) return
 
-    const ctx = canvasElement.getContext('2d')
-    if (!ctx) return
+    const maybeCtx = canvasElement.getContext('2d')
+    if (!maybeCtx) return
+    const ctx: CanvasRenderingContext2D = maybeCtx
 
     let width = window.innerWidth
     let height = window.innerHeight
     let animationFrameId: number
-    let animations: any[] = []
+    let animations: BlastAnimation[] = []
 
     function resize() {
       if (!canvasElement) return
@@ -39,7 +81,7 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
     window.addEventListener('resize', resize)
     resize()
 
-    const organisms: any[] = []
+    const organisms: Organism[] = []
     const NUM_ORGANISMS = 9
     const NODES_PER_ORGANISM = 57
     const CLUSTER_RADIUS = 500
@@ -55,7 +97,7 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
       const centerX = cellWidth * (gridX + 0.3 + Math.random() * 0.4)
       const centerY = cellHeight * (gridY + 0.3 + Math.random() * 0.4)
 
-      const nodes: any[] = []
+      const nodes: CanvasNode[] = []
       for (let j = 0; j < NODES_PER_ORGANISM; j++) {
         const angle = Math.random() * 2 * Math.PI
         const radius = Math.random() * CLUSTER_RADIUS

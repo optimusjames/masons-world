@@ -3,14 +3,24 @@ import { createPortal } from 'react-dom';
 import { generateScale } from '../hooks/useColorScale';
 import { fontPairings } from '../data/fontPairings';
 
+type ColorScale = Record<number, string>;
+
+type FontPairing = {
+    name: string;
+    heading: string;
+    body: string;
+    classification: string;
+    description: string;
+};
+
 type ColorSidebarProps = {
     isOpen: boolean;
-    currentScales: any;
+    currentScales: Record<string, ColorScale>;
     backgroundColor: string;
-    currentPairing: any;
-    onColorChange: (scaleName: string, newScale: any) => void;
+    currentPairing: FontPairing;
+    onColorChange: (scaleName: string, newScale: ColorScale) => void;
     onBackgroundChange: (newColor: string) => void;
-    onPairingChange: (pairing: any) => void;
+    onPairingChange: (pairing: FontPairing) => void;
     onResetAll: () => void;
     onClose: () => void;
 };

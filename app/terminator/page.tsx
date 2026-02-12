@@ -49,14 +49,14 @@ function breakTextIntoLines(text: string): string[] {
 }
 
 class TextScramble {
-  el: any;
+  el: HTMLElement;
   finalText: string;
   resolved: number;
-  intervalId: any;
-  resolveCallback: any;
+  intervalId: ReturnType<typeof setInterval> | null;
+  resolveCallback: (() => void) | null;
   isResolving: boolean;
 
-  constructor(el: any, finalText: string) {
+  constructor(el: HTMLElement, finalText: string) {
     this.el = el;
     this.finalText = finalText;
     this.resolved = 0;
@@ -73,7 +73,7 @@ class TextScramble {
   }
 
   resolve() {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       this.resolveCallback = resolve;
       this.isResolving = true;
     });
@@ -107,7 +107,7 @@ class TextScramble {
     this.el.textContent = output;
 
     if (this.isResolving && this.resolved >= this.finalText.length) {
-      clearInterval(this.intervalId);
+      if (this.intervalId) clearInterval(this.intervalId);
       this.intervalId = null;
       if (this.resolveCallback) this.resolveCallback();
     }

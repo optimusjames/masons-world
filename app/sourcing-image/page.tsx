@@ -262,6 +262,31 @@ export default function SourcingImage() {
         </figure>
       </section>
 
+      {/* Closing Thoughts */}
+      <section className="si-closing">
+        <div className="si-closing-rule" />
+        <h2 className="si-closing-heading">Closing Thoughts</h2>
+        <p>
+          Every image in this essay was chosen before a single word was written.
+          That inversion -- visual first, language second -- mirrors how
+          attention itself operates. We see before we name. We feel the weight
+          of a composition before we can articulate why it holds us.
+        </p>
+        <p>
+          The sourcing of images is its own form of writing. Each photograph
+          carries a tonal register, a rhythm, a set of spatial relationships
+          that either harmonize with or disrupt the images around it. Curating
+          a sequence is like tuning an instrument: the individual notes matter
+          less than the intervals between them.
+        </p>
+        <p>
+          If this experiment proves anything, it is that editorial design is
+          not illustration. The images do not serve the text. The text does not
+          explain the images. They exist in dialogue -- two voices, neither
+          subordinate, each making the other more precise.
+        </p>
+      </section>
+
       {/* Colophon */}
       <footer className="si-colophon">
         <div className="si-colophon-rule" />

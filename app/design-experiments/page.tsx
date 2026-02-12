@@ -175,7 +175,7 @@ export default function Home() {
           data-delay={Math.min(index + 1, 6)}
         >
           <div className={styles.experimentPreviewContainer}>
-            <Link href={`/${experiment.slug}`}>
+            <Link href={`/design-experiments/${experiment.slug}`}>
               <Image
                 src={experiment.screenshot}
                 alt={`${experiment.title} preview`}
@@ -188,7 +188,7 @@ export default function Home() {
           <div className={styles.experimentContent}>
             <div className={styles.experimentDate}>{experiment.date}</div>
             <h2 className={styles.experimentTitle}>
-              <Link href={`/${experiment.slug}`}>{experiment.title}</Link>
+              <Link href={`/design-experiments/${experiment.slug}`}>{experiment.title}</Link>
             </h2>
             <p className={styles.experimentDescription}>
               {experiment.description}

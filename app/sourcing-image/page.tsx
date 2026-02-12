@@ -38,7 +38,7 @@ export default function SourcingImage() {
         <p className="si-dropcap">
           We rarely think about why our eyes move the way they do. A glance
           across a room, a scan down a printed page, the instinctive fixation
-          on a face in a crowd -- these movements feel automatic, almost
+          on a face in a crowd&mdash;these movements feel automatic, almost
           involuntary. But every visual environment is a carefully laid trap
           for attention, whether its designer intended it or not.
         </p>
@@ -88,7 +88,7 @@ export default function SourcingImage() {
               height={420}
               className="si-inset-img"
             />
-            <figcaption>Fig. 03 -- Profile study</figcaption>
+            <figcaption>Fig. 03&mdash;Profile study</figcaption>
           </figure>
           <div className="si-inset-text">
             <p>
@@ -99,8 +99,8 @@ export default function SourcingImage() {
               every column break, every unit of white space carries meaning.
             </p>
             <p>
-              What Tschichold understood -- and what contemporary designers
-              often forget -- is that a grid is not a cage. It is a gravitational
+              What Tschichold understood&mdash;and what contemporary designers
+              often forget&mdash;is that a grid is not a cage. It is a gravitational
               field. Elements placed on a grid acquire relationships:
               proximity implies connection, alignment implies order, deviation
               implies emphasis. The grid does not constrain the eye. It gives
@@ -110,7 +110,7 @@ export default function SourcingImage() {
               This is the paradox at the heart of visual composition. Freedom
               without structure produces chaos. Structure without freedom
               produces monotony. The most compelling visual experiences live
-              in the tension between the two -- a rigorous underlying system
+              in the tension between the two&mdash;a rigorous underlying system
               with strategic, deliberate breaks.
             </p>
           </div>
@@ -144,7 +144,7 @@ export default function SourcingImage() {
             &ldquo;The eye does not see things but the relationships
             between things.&rdquo;
           </p>
-          <cite>-- Henri Matisse, 1947</cite>
+          <cite>&mdash;Henri Matisse, 1947</cite>
         </blockquote>
       </section>
 
@@ -166,7 +166,7 @@ export default function SourcingImage() {
               that reads clearly from arm&apos;s length must also beckon from
               across the room. A poster must arrest a passerby in motion.
               The geometry shifts at every scale, but the underlying
-              architecture -- the bones of the composition -- remains legible.
+              architecture&mdash;the bones of the composition&mdash;remains legible.
             </p>
             <p>
               Consider how a single diagonal line across an otherwise static
@@ -231,7 +231,7 @@ export default function SourcingImage() {
         <p>
           What stays with us after we close the magazine, leave the gallery,
           scroll past the image? Not the content, usually. Not the specific
-          arrangement of pixels or ink. What lingers is a spatial memory --
+          arrangement of pixels or ink. What lingers is a spatial memory&mdash;
           the feeling of a composition, its weight and rhythm, the way it
           held us for a moment before releasing us back into the stream.
         </p>
@@ -240,7 +240,7 @@ export default function SourcingImage() {
           in the mind. It is imprecise, impressionistic, deeply personal.
           Two people looking at the same photograph will carry away different
           afterimages, shaped by their own histories of seeing. But the
-          designer&apos;s hand is still there, guiding even this ghost -- the
+          designer&apos;s hand is still there, guiding even this ghost&mdash;the
           emphasis that became a memory, the contrast that became an emotion,
           the rhythm that became a feeling of wholeness or unease.
         </p>
@@ -257,7 +257,7 @@ export default function SourcingImage() {
             className="si-full-img"
           />
           <figcaption className="si-full-caption">
-            Fig. 09 -- Where every line of sight converges: the horizon
+            Fig. 09&mdash;Where every line of sight converges: the horizon
           </figcaption>
         </figure>
       </section>
@@ -268,7 +268,7 @@ export default function SourcingImage() {
         <h2 className="si-closing-heading">Closing Thoughts</h2>
         <p>
           Every image in this essay was chosen before a single word was written.
-          That inversion -- visual first, language second -- mirrors how
+          That inversion&mdash;visual first, language second&mdash;mirrors how
           attention itself operates. We see before we name. We feel the weight
           of a composition before we can articulate why it holds us.
         </p>
@@ -282,7 +282,7 @@ export default function SourcingImage() {
         <p>
           If this experiment proves anything, it is that editorial design is
           not illustration. The images do not serve the text. The text does not
-          explain the images. They exist in dialogue -- two voices, neither
+          explain the images. They exist in dialogue&mdash;two voices, neither
           subordinate, each making the other more precise.
         </p>
       </section>

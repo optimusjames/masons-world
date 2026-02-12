@@ -4,7 +4,7 @@ import './styles.css'
 
 export default function SourcingImage() {
   return (
-    <article className="si-article">
+    <article className="si-article" >
       <Link href="/design-experiments" className="si-back">
         Back
       </Link>

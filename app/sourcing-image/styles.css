@@ -6,15 +6,15 @@
 
 .si-article {
   --serif: 'Cormorant Garamond', 'Georgia', serif;
-  --sans: 'DM Sans', 'Helvetica Neue', sans-serif;
-  --black: #0a0a0a;
-  --ink: #1a1a1a;
-  --body: #2e2e2e;
-  --mid: #6b6b6b;
-  --light: #a0a0a0;
-  --rule: #d4d0cb;
-  --paper: #f9f8f6;
-  --white: #fefdfb;
+  --sans: 'Cormorant Garamond', 'Georgia', sans-serif;
+  --black: #3c3c38;
+  --ink: #2d2d2a;
+  --body: #21211f;
+  --mid: #2d2d2a;
+  --light: rgb(108, 104, 104);
+  --rule: #b7ab9c;
+  --paper: #e8e8e3;
+  --white: #ffffff;
   --accent: #c43e2a;
   --col-max: 680px;
   --wide-max: 1080px;
@@ -542,7 +542,7 @@
 .si-colophon-rule {
   width: 48px;
   height: 1px;
-  background: var(--rule);
+  background: var(--body);
   margin: 64px 0 32px;
 }
 
@@ -550,7 +550,7 @@
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 400;
-  color: var(--mid);
+  color: var(--body);
   line-height: 1.6;
   margin: 0 0 8px;
 }

@@ -40,6 +40,17 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const hasVisited = sessionStorage.getItem('gallery-visited')
+    const experiments = containerRef.current?.querySelectorAll(`.${styles.experiment}`)
+
+    if (hasVisited) {
+      // Skip animation on return visits — show everything immediately
+      experiments?.forEach((el) => el.classList.add(styles.visible))
+      return
+    }
+
+    sessionStorage.setItem('gallery-visited', '1')
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -51,7 +62,6 @@ export default function Home() {
       { threshold: 0.1 }
     )
 
-    const experiments = containerRef.current?.querySelectorAll(`.${styles.experiment}`)
     experiments?.forEach((experiment) => observer.observe(experiment))
 
     return () => observer.disconnect()

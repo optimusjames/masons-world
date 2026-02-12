@@ -2,6 +2,7 @@ import './styles.css';
 
 export default function BlogPost() {
   return (
+    <div className="blog-post-page">
     <article className="blog-post">
       <header className="post-header">
         <div className="post-meta">
@@ -283,5 +284,6 @@ export default function BlogPost() {
         </div>
       </footer>
     </article>
+    </div>
   );
 }

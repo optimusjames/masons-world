@@ -38,6 +38,39 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   if (!post) notFound()
 
+  if (post.meta.overlay && post.meta.image) {
+    return (
+      <div className={styles.postWrapper}>
+        <div className={styles.overlayHero}>
+          <img
+            src={post.meta.image}
+            alt={post.meta.title}
+            className={styles.overlayImage}
+          />
+          <div className={styles.overlayGradient} />
+          <header className={styles.overlayHeader}>
+            <div className={styles.postMeta}>
+              <time>{formatDate(post.meta.date)}</time>
+              {post.meta.readingTime && (
+                <span className={styles.readingTime}>{post.meta.readingTime} read</span>
+              )}
+            </div>
+            <h1 className={styles.postTitle}>{post.meta.title}</h1>
+            {post.meta.subtitle && (
+              <p className={styles.postSubtitle}>{post.meta.subtitle}</p>
+            )}
+          </header>
+        </div>
+
+        <BlogContent content={post.content} />
+
+        <footer className={styles.postFooter}>
+          <div className={styles.footerNote}>Blog / 2026</div>
+        </footer>
+      </div>
+    )
+  }
+
   return (
     <div className={styles.postWrapper}>
       <header className={styles.postHeader}>

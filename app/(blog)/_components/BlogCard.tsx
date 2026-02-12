@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+/* eslint-disable @next/next/no-img-element */
 import type { BlogMeta } from '@/lib/blog/types'
 import styles from '../blog.module.css'
 
@@ -17,11 +17,9 @@ export default function BlogCard({ post }: { post: BlogMeta }) {
     <Link href={`/blog/${post.slug}`} className={styles.card}>
       <div className={styles.cardImageWrapper}>
         {post.image ? (
-          <Image
+          <img
             src={post.image}
             alt={post.title}
-            fill
-            sizes="340px"
             className={styles.cardImage}
           />
         ) : null}

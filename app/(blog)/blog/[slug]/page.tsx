@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
+/* eslint-disable @next/next/no-img-element */
 import { getAllPosts, getPostBySlug } from '@/lib/blog/loadBlog'
 import BlogContent from '../../_components/BlogContent'
 import styles from '../../blog.module.css'
@@ -55,11 +55,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {post.meta.image && (
         <div className={styles.postImageWrapper}>
-          <Image
+          <img
             src={post.meta.image}
             alt={post.meta.title}
-            fill
-            sizes="680px"
             className={styles.postImage}
           />
         </div>

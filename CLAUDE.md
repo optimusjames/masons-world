@@ -13,19 +13,20 @@ npm run build    # Production build (run before committing)
 
 ```
 app/
-├── page.tsx                    # Homepage
-├── design-experiments/page.tsx # Gallery
-└── [experiment]/
-    ├── page.tsx                # Experiment (TypeScript)
-    ├── styles.css
-    ├── components/             # Extract when >500 lines
-    ├── hooks/
-    └── data/
+├── page.tsx                           # Homepage
+└── design-experiments/
+    ├── page.tsx                       # Gallery
+    └── [experiment]/
+        ├── page.tsx                   # Experiment (TypeScript)
+        ├── styles.css
+        ├── components/               # Extract when >500 lines
+        ├── hooks/
+        └── data/
 ```
 
 ## New Experiment Workflow
 
-1. Create `app/[name]/page.tsx` + `styles.css`
+1. Create `app/design-experiments/[name]/page.tsx` + `styles.css`
 2. Add to gallery in `app/design-experiments/page.tsx`
 3. Screenshot to `public/screenshots/[name].png`
 4. `npm run build` to verify

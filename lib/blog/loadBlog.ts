@@ -24,7 +24,8 @@ export function getAllPosts(): BlogMeta[] {
   const files = fs.readdirSync(blogDirectory).filter((f) => f.endsWith('.md'))
 
   const posts: BlogMeta[] = files.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, '')
+    const overlay = fileName.endsWith('.overlay.md')
+    const slug = fileName.replace(/\.overlay\.md$/, '').replace(/\.md$/, '')
     const filePath = path.join(blogDirectory, fileName)
     const fileContent = fs.readFileSync(filePath, 'utf-8')
     const { data } = matter(fileContent)
@@ -35,6 +36,7 @@ export function getAllPosts(): BlogMeta[] {
       date: data.date ? String(data.date) : '',
       image: findImage(slug),
       readingTime: data.readingTime,
+      overlay,
       slug,
     }
   })
@@ -43,7 +45,10 @@ export function getAllPosts(): BlogMeta[] {
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
-  const filePath = path.join(blogDirectory, `${slug}.md`)
+  const overlayPath = path.join(blogDirectory, `${slug}.overlay.md`)
+  const regularPath = path.join(blogDirectory, `${slug}.md`)
+  const overlay = fs.existsSync(overlayPath)
+  const filePath = overlay ? overlayPath : regularPath
   if (!fs.existsSync(filePath)) return null
 
   const fileContent = fs.readFileSync(filePath, 'utf-8')
@@ -56,6 +61,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       date: data.date ? String(data.date) : '',
       image: findImage(slug),
       readingTime: data.readingTime,
+      overlay,
       slug,
     },
     content,

@@ -4,6 +4,7 @@ export interface BlogMeta {
   date: string
   image?: string
   readingTime?: string
+  overlay?: boolean
   slug: string
 }
 

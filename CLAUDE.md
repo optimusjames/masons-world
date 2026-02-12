@@ -39,3 +39,7 @@ app/
 - File >500 lines
 - Components are reusable
 - Complex with clear interface
+
+## Code Review
+
+PRs are automatically reviewed by Claude via GitHub Actions. You can also tag `@claude` in any PR or issue comment for interactive help.

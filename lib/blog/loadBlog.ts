@@ -41,7 +41,11 @@ export function getAllPosts(): BlogMeta[] {
     }
   })
 
-  return posts.sort((a, b) => (a.date > b.date ? -1 : 1))
+  return posts.sort((a, b) => {
+    const dateA = new Date(a.date)
+    const dateB = new Date(b.date)
+    return dateB.getTime() - dateA.getTime()
+  })
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {

@@ -69,6 +69,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'modular-grid',
+      date: 'February 14, 2026',
+      title: 'Modular Grid',
+      description: 'Swiss-inspired modular grid system for digital surfaces. 8px base unit, 4-column layout with proportional margins and gutters, strict vertical rhythm. Includes toggleable grid overlay, type specimen, image treatment demos, and system spec table. Dark mode adaptation of a print-precision layout methodology.',
+      screenshot: '/screenshots/modular-grid.png',
+      tags: ['Grid System', 'Swiss Design', 'Dark Mode', 'Typography']
+    },
+    {
       slug: 'day-at-a-glance',
       date: 'February 12, 2026',
       title: 'Day at a Glance',

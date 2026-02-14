@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### Modular Grid
+
+**February 14, 2026**
+
+[![Modular Grid](./public/screenshots/modular-grid.png)](https://www.joshcoolman.com/design-experiments/modular-grid)
+
+Swiss-inspired modular grid system for digital surfaces. 8px base unit, 4-column layout with proportional margins and gutters, strict vertical rhythm. Includes toggleable cyan grid overlay, type specimen, image treatment demos, and system spec table. Dark mode adaptation of a print-precision layout methodology originally built in Claude Desktop.
+
+**Tags:** Grid System - Swiss Design - Dark Mode - Typography
+
+**[View Live →](https://www.joshcoolman.com/design-experiments/modular-grid) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/modular-grid)**
+
+---
+
 ### Day at a Glance
 
 **February 12, 2026**

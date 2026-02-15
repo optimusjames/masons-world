@@ -45,8 +45,6 @@ const C = {
   textMuted: '#666',
   divider: '#e8e8e8',
   dividerSubtle: '#333',
-  placeholder: '#1a1a1a',
-  placeholderStroke: '#444',
   accent: '#00d4cc',
   gridColumn: 'rgba(0, 212, 204, 0.04)',
   gridColumnBorder: 'rgba(0, 212, 204, 0.1)',
@@ -194,46 +192,6 @@ const Spacer = ({ units = 3, span = 4 }: { units?: number; span?: number }) => {
   return <div style={{ gridColumn: `span ${col(span, columns)}`, height: u(units) }} />
 }
 
-const ImagePlaceholder = ({
-  aspectRatio = '4/3',
-  height,
-  span = 1,
-  caption,
-  style,
-}: {
-  aspectRatio?: string
-  height?: number
-  span?: number
-  caption?: string
-  style?: React.CSSProperties
-}) => {
-  const { columns } = useGrid()
-  return (
-    <div style={{ gridColumn: `span ${col(span, columns)}`, ...style }}>
-      <div
-        style={{
-          width: '100%',
-          ...(height ? { height } : { aspectRatio }),
-          background: C.placeholder,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={C.placeholderStroke} strokeWidth="1">
-          <rect x="3" y="3" width="18" height="18" rx="1" />
-          <circle cx="8.5" cy="8.5" r="1.5" />
-          <path d="M21 15l-5-5L5 21" />
-        </svg>
-      </div>
-      {caption && (
-        <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>
-          {caption}
-        </p>
-      )}
-    </div>
-  )
-}
 
 // Helper: responsive span for inline gridColumn styles
 function Span({ n, children, style }: { n: number; children: React.ReactNode; style?: React.CSSProperties }) {
@@ -377,11 +335,18 @@ export default function ModularGridSystem() {
                   that give the layout its cohesion.
                 </p>
               </SectionLabel>
-              <ImagePlaceholder
-                span={2}
-                aspectRatio="16/9"
-                caption="Fig. 1 -- Baseline grid overlay showing 8px increments across the full page height"
-              />
+              <div style={{ gridColumn: `span ${col(2, gridConfig.columns)}` }}>
+                <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden' }}>
+                  <img
+                    src="/images/astronaut-helmet-red-glow.jpg"
+                    alt="Astronaut helmet with red glow"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+                <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>
+                  Fig. 1 -- Baseline grid overlay showing 8px increments across the full page height
+                </p>
+              </div>
               <Span n={gridConfig.columns === 2 ? 2 : 1} style={{ marginTop: gridConfig.columns === 2 ? u(3) : 0 }}>
                 <p style={{ ...TYPE.body, fontFamily: FONT.body, margin: 0, color: C.textSecondary }}>
                   Line-heights snap to the grid, not font sizes. A 13px body font at 20px line-height
@@ -493,28 +458,47 @@ export default function ModularGridSystem() {
                   Captions use the smallest type size in the system and align to the same baseline.
                 </p>
               </SectionLabel>
-              <ImagePlaceholder
-                span={1}
-                height={gridConfig.columns === 2 ? undefined : u(24)}
-                aspectRatio="16/9"
-                caption="Fig. 2 -- Single column, fixed height"
-              />
-              <ImagePlaceholder
-                span={gridConfig.columns === 2 ? 1 : 2}
-                height={gridConfig.columns === 2 ? undefined : u(24)}
-                aspectRatio="16/9"
-                caption="Fig. 3 -- Two columns, same fixed height"
-              />
+              <div style={{ gridColumn: `span ${col(1, gridConfig.columns)}` }}>
+                <div style={{ width: '100%', ...(gridConfig.columns === 2 ? { aspectRatio: '16/9' } : { height: u(24) }), overflow: 'hidden' }}>
+                  <img src="/images/astronaut-face-light-streaks.jpg" alt="Astronaut face with prismatic light streaks" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
+                <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>
+                  Fig. 2 -- Single column, fixed height
+                </p>
+              </div>
+              <div style={{ gridColumn: `span ${col(gridConfig.columns === 2 ? 1 : 2, gridConfig.columns)}` }}>
+                <div style={{ width: '100%', ...(gridConfig.columns === 2 ? { aspectRatio: '16/9' } : { height: u(24) }), overflow: 'hidden' }}>
+                  <img src="/images/blade-runner-eye-reflection.jpg" alt="Blade Runner eye with galaxy reflection" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
+                <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>
+                  Fig. 3 -- Two columns, same fixed height
+                </p>
+              </div>
             </Grid>
           </Section>
 
           <Section style={{ paddingTop: u(3) }}>
             <Grid>
               <Spacer span={1} units={0} />
-              <ImagePlaceholder span={1} aspectRatio="3/4" caption="Fig. 4 -- Portrait" />
-              <ImagePlaceholder span={1} aspectRatio="3/4" caption="Fig. 5 -- Portrait" />
+              <div style={{ gridColumn: 'span 1' }}>
+                <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
+                  <img src="/images/blade-runner-woman-portrait.jpg" alt="Blade Runner woman portrait" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
+                <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>Fig. 4 -- Portrait</p>
+              </div>
+              <div style={{ gridColumn: 'span 1' }}>
+                <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
+                  <img src="/images/man-profile-colored-lighting.jpeg" alt="Man profile in colored lighting" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
+                <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>Fig. 5 -- Portrait</p>
+              </div>
               {gridConfig.columns > 2 && (
-                <ImagePlaceholder span={1} aspectRatio="3/4" caption="Fig. 6 -- Portrait" />
+                <div style={{ gridColumn: 'span 1' }}>
+                  <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
+                    <img src="/images/woman-red-background-silhouette.jpeg" alt="Woman silhouette on red background" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  </div>
+                  <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>Fig. 6 -- Portrait</p>
+                </div>
               )}
             </Grid>
           </Section>

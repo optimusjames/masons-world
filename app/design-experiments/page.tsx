@@ -69,6 +69,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'contact-sheet',
+      date: 'February 14, 2026',
+      title: 'Contact Sheet',
+      description: 'Dead simple image folder viewer that runs entirely in the browser. Pick a folder, see every image in a grid. Born from needing a quick way to see what images you have and point an LLM at the right ones. Copy path or copy image to clipboard on hover. Lightbox on click. Nothing gets uploaded -- everything stays local.',
+      screenshot: '/screenshots/contact-sheet.png',
+      tags: ['Utility', 'File API', 'Client-Side', 'Dark Theme']
+    },
+    {
       slug: 'modular-grid',
       date: 'February 14, 2026',
       title: 'Modular Grid',

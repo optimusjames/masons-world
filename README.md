@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### Contact Sheet
+
+**February 14, 2026**
+
+[![Contact Sheet](./public/screenshots/contact-sheet.png)](https://www.joshcoolman.com/design-experiments/contact-sheet)
+
+Dead simple image folder viewer that runs entirely in the browser. Pick a folder, see every image in a grid. Born from needing a quick way to see what images you have and point an LLM at the right ones. Copy path or copy image to clipboard on hover. Lightbox on click. Nothing gets uploaded -- everything stays local.
+
+**Tags:** Utility - File API - Client-Side - Dark Theme
+
+**[View Live →](https://www.joshcoolman.com/design-experiments/contact-sheet) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/contact-sheet)**
+
+---
+
 ### Modular Grid
 
 **February 14, 2026**

@@ -124,25 +124,27 @@ export default function ContactSheet() {
           <div className="grid">
             {images.map((img, i) => (
               <figure key={img.url} className="cell">
-                <img
-                  src={img.url}
-                  alt={img.name}
-                  loading="lazy"
-                  onClick={() => setLightboxSrc(img.url)}
-                />
-                <div className="actions">
-                  <button
-                    className={copiedId === `path-${i}` ? 'copied' : ''}
-                    onClick={e => { e.stopPropagation(); copyPath(img.relPath, `path-${i}`) }}
-                  >
-                    {copiedId === `path-${i}` ? 'Copied' : 'Copy Path'}
-                  </button>
-                  <button
-                    className={copiedId === `img-${i}` ? 'copied' : ''}
-                    onClick={e => { e.stopPropagation(); copyImage(img.url, `img-${i}`) }}
-                  >
-                    {copiedId === `img-${i}` ? 'Copied' : 'Copy Image'}
-                  </button>
+                <div className="image-well">
+                  <img
+                    src={img.url}
+                    alt={img.name}
+                    loading="lazy"
+                    onClick={() => setLightboxSrc(img.url)}
+                  />
+                  <div className="actions">
+                    <button
+                      className={copiedId === `path-${i}` ? 'copied' : ''}
+                      onClick={e => { e.stopPropagation(); copyPath(img.relPath, `path-${i}`) }}
+                    >
+                      {copiedId === `path-${i}` ? 'Copied' : 'Copy Path'}
+                    </button>
+                    <button
+                      className={copiedId === `img-${i}` ? 'copied' : ''}
+                      onClick={e => { e.stopPropagation(); copyImage(img.url, `img-${i}`) }}
+                    >
+                      {copiedId === `img-${i}` ? 'Copied' : 'Copy Image'}
+                    </button>
+                  </div>
                 </div>
                 <figcaption>
                   {img.name} <span className="size">{formatSize(img.size)}</span>

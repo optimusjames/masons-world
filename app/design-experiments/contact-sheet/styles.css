@@ -183,8 +183,8 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.92);
-  z-index: 100;
+  background: rgba(0,0,0,0.95);
+  z-index: 1200;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -194,8 +194,74 @@
   display: flex;
 }
 
-.lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
+.lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: default;
+}
+
+.lightbox-content img {
+  max-width: 80vw;
+  max-height: 80vh;
   object-fit: contain;
 }
+
+.lightbox-caption {
+  color: #888;
+  font-family: "SF Mono", "Menlo", "Monaco", monospace;
+  font-size: 11px;
+}
+
+.lightbox-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.lightbox-actions button {
+  background: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #666;
+  font-family: "SF Mono", "Menlo", "Monaco", monospace;
+  font-size: 10px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.lightbox-actions button:hover {
+  border-color: #666;
+  color: #ccc;
+}
+
+.lightbox-actions button.copied {
+  border-color: #4a4;
+  color: #4a4;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid #333;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.lightbox-nav:hover {
+  border-color: #666;
+  color: #ccc;
+}
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }

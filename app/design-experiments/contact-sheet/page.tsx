@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import './styles.css'
 
 const IMAGE_EXT = /\.(jpe?g|png|gif|webp|avif|svg|bmp|tiff?)$/i
@@ -21,7 +21,7 @@ function formatSize(bytes: number): string {
 export default function ContactSheet() {
   const [images, setImages] = useState<ImageEntry[]>([])
   const [folderName, setFolderName] = useState('')
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -88,6 +88,28 @@ export default function ContactSheet() {
     flash(id)
   }
 
+  const lightboxOpen = lightboxIndex !== null
+  const lightboxImage = lightboxOpen ? images[lightboxIndex] : null
+
+  const lightboxPrev = () => {
+    setLightboxIndex(i => i === null ? null : i === 0 ? images.length - 1 : i - 1)
+  }
+
+  const lightboxNext = () => {
+    setLightboxIndex(i => i === null ? null : i === images.length - 1 ? 0 : i + 1)
+  }
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxIndex(null)
+      if (e.key === 'ArrowLeft') lightboxPrev()
+      if (e.key === 'ArrowRight') lightboxNext()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  })
+
   const hasImages = images.length > 0
 
   return (
@@ -129,7 +151,7 @@ export default function ContactSheet() {
                     src={img.url}
                     alt={img.name}
                     loading="lazy"
-                    onClick={() => setLightboxSrc(img.url)}
+                    onClick={() => setLightboxIndex(i)}
                   />
                   <div className="actions">
                     <button
@@ -156,10 +178,37 @@ export default function ContactSheet() {
       )}
 
       <div
-        className={`lightbox${lightboxSrc ? ' open' : ''}`}
-        onClick={() => setLightboxSrc(null)}
+        className={`lightbox${lightboxOpen ? ' open' : ''}`}
+        onClick={() => setLightboxIndex(null)}
       >
-        {lightboxSrc && <img src={lightboxSrc} alt="" />}
+        {lightboxImage && (
+          <>
+            <button className="lightbox-nav lightbox-prev" onClick={e => { e.stopPropagation(); lightboxPrev() }} aria-label="Previous image">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+              <img src={lightboxImage.url} alt={lightboxImage.name} />
+              <p className="lightbox-caption">{lightboxImage.name}</p>
+              <div className="lightbox-actions">
+                <button
+                  className={copiedId === `lb-path` ? 'copied' : ''}
+                  onClick={() => copyPath(lightboxImage.relPath, 'lb-path')}
+                >
+                  {copiedId === 'lb-path' ? 'Copied' : 'Copy Path'}
+                </button>
+                <button
+                  className={copiedId === `lb-img` ? 'copied' : ''}
+                  onClick={() => copyImage(lightboxImage.url, 'lb-img')}
+                >
+                  {copiedId === 'lb-img' ? 'Copied' : 'Copy Image'}
+                </button>
+              </div>
+            </div>
+            <button className="lightbox-nav lightbox-next" onClick={e => { e.stopPropagation(); lightboxNext() }} aria-label="Next image">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          </>
+        )}
       </div>
     </div>
   )

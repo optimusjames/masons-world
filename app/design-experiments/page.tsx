@@ -69,6 +69,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'font-pairings',
+      date: 'February 15, 2026',
+      title: 'Font Pairings',
+      description: 'A collection of 40 curated Google Font pairings, each displayed on its own color-palette card. Click any card to copy an LLM-ready specification prompt. Includes superfamily pairings, monospace+sans combos, and brand design system fonts. Avoids overused defaults -- no Montserrat, Roboto, Open Sans, Lato, Playfair Display, Raleway, Poppins, or Inter. Static HTML with inline CSS, no framework.',
+      screenshot: '/screenshots/font-pairings.png',
+      tags: ['Typography', 'Font Pairings', 'Static HTML', 'Copy-to-Clipboard']
+    },
+    {
       slug: 'contact-sheet',
       date: 'February 14, 2026',
       title: 'Contact Sheet',

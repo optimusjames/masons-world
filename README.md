@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### Font Pairings
+
+**February 15, 2026**
+
+[![Font Pairings](./public/screenshots/font-pairings.png)](https://www.joshcoolman.com/design-experiments/font-pairings)
+
+A collection of 40 curated Google Font pairings, each displayed on its own color-palette card. Click any card to copy an LLM-ready specification prompt. Includes superfamily pairings, monospace+sans combos, and brand design system fonts. Avoids overused defaults -- no Montserrat, Roboto, Open Sans, Lato, Playfair Display, Raleway, Poppins, or Inter. Static HTML with inline CSS, no framework.
+
+**Tags:** Typography - Font Pairings - Static HTML - Copy-to-Clipboard
+
+**[View Live →](https://www.joshcoolman.com/design-experiments/font-pairings) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/font-pairings)**
+
+---
+
 ### Contact Sheet
 
 **February 14, 2026**

@@ -43,23 +43,30 @@ export default function Home() {
         <div className={styles.contentWrapper}>
           <HeroVideo />
           <div className={styles.greetingText}>Greetings Starfighter!</div>
+          <p className={styles.tagline}>
+            A place where I play around and code in public.{" "}
+            <a
+              href="https://github.com/joshcoolman-smc/sandbox"
+              className={styles.taglineLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View the repo
+            </a>
+          </p>
 
           <div className={styles.columns}>
             {/* Design Experiments */}
-            <div className={styles.column}>
-              <Link href="/design-experiments" className={styles.columnTitle}>
+            <Link href="/design-experiments" className={styles.column}>
+              <div className={styles.columnTitle}>
                 Design
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </Link>
+              </div>
               <div className={styles.columnItems}>
                 {recentExperiments.map((exp) => (
-                  <Link
-                    key={exp.slug}
-                    href={`/design-experiments/${exp.slug}`}
-                    className={styles.columnItem}
-                  >
+                  <div key={exp.slug} className={styles.columnItem}>
                     <Image
                       src={exp.screenshot}
                       alt={exp.title}
@@ -71,26 +78,22 @@ export default function Home() {
                       <span className={styles.itemTitle}>{exp.title}</span>
                       <span className={styles.itemDate}>{exp.date}</span>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
-            </div>
+            </Link>
 
             {/* Blog */}
-            <div className={styles.column}>
-              <Link href="/blog" className={styles.columnTitle}>
+            <Link href="/blog" className={styles.column}>
+              <div className={styles.columnTitle}>
                 Blog
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </Link>
+              </div>
               <div className={styles.columnItems}>
                 {posts.map((post) => (
-                  <Link
-                    key={post.slug}
-                    href={`/blog/${post.slug}`}
-                    className={styles.columnItem}
-                  >
+                  <div key={post.slug} className={styles.columnItem}>
                     {post.image && (
                       <Image
                         src={post.image}
@@ -112,33 +115,29 @@ export default function Home() {
                         </span>
                       )}
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
-            </div>
+            </Link>
 
             {/* Docs */}
-            <div className={styles.column}>
-              <Link href="/docs" className={styles.columnTitle}>
+            <Link href="/docs" className={styles.column}>
+              <div className={styles.columnTitle}>
                 Docs
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </Link>
+              </div>
               <div className={styles.columnItems}>
                 {docs.map((doc) => (
-                  <Link
-                    key={doc.slug}
-                    href={doc.href}
-                    className={styles.columnItem}
-                  >
+                  <div key={doc.slug} className={styles.columnItem}>
                     <div className={styles.itemText}>
                       <span className={styles.itemTitle}>{doc.title}</span>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

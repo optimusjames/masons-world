@@ -71,14 +71,14 @@
 }
 
 .meta {
-  color: #555;
+  color: #aaa;
 }
 
 .change-btn {
   background: none;
-  border: 1px solid #333;
+  border: 1px solid #aaa;
   border-radius: 4px;
-  color: #666;
+  color: #aaa;
   font-family: inherit;
   font-size: 11px;
   padding: 4px 10px;
@@ -87,8 +87,8 @@
 }
 
 .change-btn:hover {
-  border-color: #555;
-  color: #aaa;
+  border-color: #ccc;
+  color: #ccc;
 }
 
 .grid {
@@ -163,7 +163,7 @@
   width: 18px;
   height: 18px;
   border-radius: 3px;
-  border: 1px solid #444;
+  border: 1px solid #aaa;
   color: transparent;
   display: flex;
   align-items: center;
@@ -220,7 +220,7 @@
 
 .sidebar-actions button {
   background: none;
-  border: 1px solid #444;
+  border: 1px solid #aaa;
   border-radius: 4px;
   color: #aaa;
   font-family: inherit;
@@ -277,7 +277,7 @@
 
 .sidebar-remove {
   background: none;
-  border: 1px solid #444;
+  border: 1px solid #aaa;
   border-radius: 4px;
   color: #aaa;
   cursor: pointer;

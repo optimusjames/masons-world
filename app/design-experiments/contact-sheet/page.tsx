@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import './styles.css'
 
 const IMAGE_EXT = /\.(jpe?g|png|gif|webp|avif|svg|bmp|tiff?)$/i
@@ -12,18 +12,34 @@ interface ImageEntry {
   relPath: string
 }
 
-function formatSize(bytes: number): string {
-  if (bytes < 1024) return bytes + ' B'
-  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB'
-  return (bytes / 1048576).toFixed(1) + ' MB'
-}
-
 export default function ContactSheet() {
   const [images, setImages] = useState<ImageEntry[]>([])
   const [folderName, setFolderName] = useState('')
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [copiedId, setCopiedId] = useState<string | null>(null)
+  const [selected, setSelected] = useState<Set<number>>(new Set())
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const sidebarOpen = selected.size > 0
+
+  const toggleSelect = (index: number) => {
+    setSelected(prev => {
+      const next = new Set(prev)
+      if (next.has(index)) next.delete(index)
+      else next.add(index)
+      return next
+    })
+  }
+
+  const clearSelection = () => setSelected(new Set())
+
+  const copySelectedList = async () => {
+    const names = [...selected]
+      .sort((a, b) => a - b)
+      .map(i => images[i].name)
+      .join('\n')
+    await navigator.clipboard.writeText(names)
+    flash('sidebar-copy')
+  }
 
   const handleFiles = useCallback((fileList: FileList | null) => {
     if (!fileList) return
@@ -49,6 +65,7 @@ export default function ContactSheet() {
       prev.forEach(img => URL.revokeObjectURL(img.url))
       return entries
     })
+    setSelected(new Set())
   }, [])
 
   const openPicker = () => {
@@ -63,57 +80,10 @@ export default function ContactSheet() {
     setTimeout(() => setCopiedId(null), 1200)
   }
 
-  const copyPath = async (path: string, id: string) => {
-    await navigator.clipboard.writeText(path)
-    flash(id)
-  }
-
-  const copyImage = async (blobUrl: string, id: string) => {
-    const resp = await fetch(blobUrl)
-    const blob = await resp.blob()
-
-    if (blob.type === 'image/png') {
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-    } else {
-      const img = new Image()
-      img.src = blobUrl
-      await img.decode()
-      const c = document.createElement('canvas')
-      c.width = img.naturalWidth
-      c.height = img.naturalHeight
-      c.getContext('2d')!.drawImage(img, 0, 0)
-      const pngBlob = await new Promise<Blob>(r => c.toBlob(b => r(b!), 'image/png'))
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': pngBlob })])
-    }
-    flash(id)
-  }
-
-  const lightboxOpen = lightboxIndex !== null
-  const lightboxImage = lightboxOpen ? images[lightboxIndex] : null
-
-  const lightboxPrev = () => {
-    setLightboxIndex(i => i === null ? null : i === 0 ? images.length - 1 : i - 1)
-  }
-
-  const lightboxNext = () => {
-    setLightboxIndex(i => i === null ? null : i === images.length - 1 ? 0 : i + 1)
-  }
-
-  useEffect(() => {
-    if (!lightboxOpen) return
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxIndex(null)
-      if (e.key === 'ArrowLeft') lightboxPrev()
-      if (e.key === 'ArrowRight') lightboxNext()
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  })
-
   const hasImages = images.length > 0
 
   return (
-    <div className="contact-sheet">
+    <div className={`contact-sheet${sidebarOpen ? ' sidebar-open' : ''}`}>
       <input
         ref={inputRef}
         type="file"
@@ -145,31 +115,27 @@ export default function ContactSheet() {
 
           <div className="grid">
             {images.map((img, i) => (
-              <figure key={img.url} className="cell">
+              <figure
+                key={img.url}
+                className={`cell${selected.has(i) ? ' selected' : ''}`}
+                onClick={() => toggleSelect(i)}
+              >
                 <div className="image-well">
                   <img
                     src={img.url}
                     alt={img.name}
                     loading="lazy"
-                    onClick={() => setLightboxIndex(i)}
                   />
-                  <div className="actions">
-                    <button
-                      className={copiedId === `path-${i}` ? 'copied' : ''}
-                      onClick={e => { e.stopPropagation(); copyPath(img.relPath, `path-${i}`) }}
-                    >
-                      {copiedId === `path-${i}` ? 'Copied' : 'Copy Path'}
-                    </button>
-                    <button
-                      className={copiedId === `img-${i}` ? 'copied' : ''}
-                      onClick={e => { e.stopPropagation(); copyImage(img.url, `img-${i}`) }}
-                    >
-                      {copiedId === `img-${i}` ? 'Copied' : 'Copy Image'}
-                    </button>
-                  </div>
                 </div>
                 <figcaption>
-                  {img.name} <span className="size">{formatSize(img.size)}</span>
+                  <span className="caption-text">
+                    {img.name}
+                  </span>
+                  <span className={`select-check${selected.has(i) ? ' checked' : ''}`}>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M3 7L6 10L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
                 </figcaption>
               </figure>
             ))}
@@ -177,39 +143,36 @@ export default function ContactSheet() {
         </div>
       )}
 
-      <div
-        className={`lightbox${lightboxOpen ? ' open' : ''}`}
-        onClick={() => setLightboxIndex(null)}
-      >
-        {lightboxImage && (
-          <>
-            <button className="lightbox-nav lightbox-prev" onClick={e => { e.stopPropagation(); lightboxPrev() }} aria-label="Previous image">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      <div className={`sidebar${sidebarOpen ? ' open' : ''}`}>
+        <div className="sidebar-header">
+          <span>{selected.size} selected</span>
+          <div className="sidebar-actions">
+            <button
+              className={copiedId === 'sidebar-copy' ? 'copied' : ''}
+              onClick={copySelectedList}
+            >
+              {copiedId === 'sidebar-copy' ? 'Copied' : 'Copy List'}
             </button>
-            <div className="lightbox-content" onClick={e => e.stopPropagation()}>
-              <img src={lightboxImage.url} alt={lightboxImage.name} />
-              <p className="lightbox-caption">{lightboxImage.name}</p>
-              <div className="lightbox-actions">
-                <button
-                  className={copiedId === `lb-path` ? 'copied' : ''}
-                  onClick={() => copyPath(lightboxImage.relPath, 'lb-path')}
-                >
-                  {copiedId === 'lb-path' ? 'Copied' : 'Copy Path'}
-                </button>
-                <button
-                  className={copiedId === `lb-img` ? 'copied' : ''}
-                  onClick={() => copyImage(lightboxImage.url, 'lb-img')}
-                >
-                  {copiedId === 'lb-img' ? 'Copied' : 'Copy Image'}
-                </button>
-              </div>
-            </div>
-            <button className="lightbox-nav lightbox-next" onClick={e => { e.stopPropagation(); lightboxNext() }} aria-label="Next image">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </button>
-          </>
-        )}
+            <button onClick={clearSelection}>Clear</button>
+          </div>
+        </div>
+        <ul className="sidebar-list">
+          {[...selected].sort((a, b) => a - b).map(i => (
+            <li key={i}>
+              <img className="sidebar-thumb" src={images[i]?.url} alt="" />
+              <span className="sidebar-filename">{images[i]?.name}</span>
+              <button
+                className="sidebar-remove"
+                onClick={() => toggleSelect(i)}
+                aria-label="Remove"
+              >
+                &times;
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
+
     </div>
   )
 }

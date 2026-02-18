@@ -69,20 +69,20 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'contact-sheet',
+      date: 'February 17, 2026',
+      title: 'Contact Sheet',
+      description: 'Image folder browser for building file lists to share with LLMs. Pick a folder, click images to select them, and a sidebar shows your selections with thumbnails. Copy the filename list to clipboard with one click. Designed for the workflow of visually identifying images then telling an LLM which ones to work with. Everything runs client-side -- nothing gets uploaded.',
+      screenshot: '/screenshots/contact-sheet.png',
+      tags: ['Utility', 'File API', 'Client-Side', 'Dark Theme']
+    },
+    {
       slug: 'font-pairings',
       date: 'February 15, 2026',
       title: 'Font Pairings',
       description: 'A collection of 40 curated Google Font pairings, each displayed on its own color-palette card. Click any card to copy an LLM-ready specification prompt. Includes superfamily pairings, monospace+sans combos, and brand design system fonts. Avoids overused defaults -- no Montserrat, Roboto, Open Sans, Lato, Playfair Display, Raleway, Poppins, or Inter. Static HTML with inline CSS, no framework.',
       screenshot: '/screenshots/font-pairings.png',
       tags: ['Typography', 'Font Pairings', 'Static HTML', 'Copy-to-Clipboard']
-    },
-    {
-      slug: 'contact-sheet',
-      date: 'February 14, 2026',
-      title: 'Contact Sheet',
-      description: 'Dead simple image folder viewer that runs entirely in the browser. Pick a folder, see every image in a grid. Born from needing a quick way to see what images you have and point an LLM at the right ones. Copy path or copy image to clipboard on hover. Lightbox on click. Nothing gets uploaded -- everything stays local.',
-      screenshot: '/screenshots/contact-sheet.png',
-      tags: ['Utility', 'File API', 'Client-Side', 'Dark Theme']
     },
     {
       slug: 'modular-grid',

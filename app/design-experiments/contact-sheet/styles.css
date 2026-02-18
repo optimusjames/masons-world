@@ -7,6 +7,11 @@
   font-size: 11px;
   padding: 24px;
   min-height: 100vh;
+  transition: padding-right 0.25s ease;
+}
+
+.contact-sheet.sidebar-open {
+  padding-right: 384px;
 }
 
 .picker {
@@ -117,59 +122,32 @@
   overflow: hidden;
 }
 
+.cell {
+  cursor: pointer;
+}
+
+.cell.selected {
+  border-color: #4a9eff;
+}
+
 .cell img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   display: block;
-  cursor: pointer;
 }
 
 .cell figcaption {
   padding: 10px 0 2px;
   word-break: break-all;
-}
-
-.size {
-  color: #444;
-}
-
-.actions {
-  position: absolute;
-  top: 8px;
-  right: 8px;
   display: flex;
-  gap: 4px;
-  opacity: 0;
-  transition: opacity 0.15s;
+  align-items: center;
+  gap: 8px;
 }
 
-.cell:hover .actions {
-  opacity: 1;
-}
-
-.actions button {
-  background: rgba(0,0,0,0.75);
-  border: 1px solid #444;
-  border-radius: 4px;
-  color: #aaa;
-  font-family: inherit;
-  font-size: 10px;
-  padding: 3px 8px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition: border-color 0.15s, color 0.15s;
-}
-
-.actions button:hover {
-  border-color: #888;
-  color: #fff;
-}
-
-.actions button.copied {
-  border-color: #4a4;
-  color: #4a4;
+.caption-text {
+  flex: 1;
+  min-width: 0;
 }
 
 @media (max-width: 1100px) {
@@ -180,89 +158,141 @@
   .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  z-index: 1200;
-  cursor: pointer;
+/* Select checkbox */
+.select-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid #444;
+  color: transparent;
+  display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.lightbox.open {
-  display: flex;
+.select-check.checked {
+  background: #4a9eff;
+  border-color: #4a9eff;
+  color: #fff;
 }
 
-.lightbox-content {
+.cell:hover .select-check {
+  border-color: #666;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100vh;
+  background: #0a0a0a;
+  border-left: 1px solid #222;
+  z-index: 1100;
   display: flex;
   flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  padding: 72px 16px 12px;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  cursor: default;
-}
-
-.lightbox-content img {
-  max-width: 80vw;
-  max-height: 80vh;
-  object-fit: contain;
-}
-
-.lightbox-caption {
+  flex-shrink: 0;
   color: #888;
-  font-family: "SF Mono", "Menlo", "Monaco", monospace;
   font-size: 11px;
 }
 
-.lightbox-actions {
+.sidebar-actions {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
-.lightbox-actions button {
+.sidebar-actions button {
   background: none;
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 4px;
-  color: #666;
-  font-family: "SF Mono", "Menlo", "Monaco", monospace;
+  color: #aaa;
+  font-family: inherit;
   font-size: 10px;
-  padding: 4px 12px;
+  padding: 3px 10px;
   cursor: pointer;
   transition: border-color 0.15s, color 0.15s;
 }
 
-.lightbox-actions button:hover {
+.sidebar-actions button:hover {
   border-color: #666;
   color: #ccc;
 }
 
-.lightbox-actions button.copied {
+.sidebar-actions button.copied {
   border-color: #4a4;
   color: #4a4;
 }
 
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.sidebar-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.sidebar-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  gap: 8px;
+}
+
+.sidebar-list li:hover {
+  background: #141414;
+}
+
+.sidebar-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+  background: #111;
+}
+
+.sidebar-filename {
+  word-break: break-all;
+  color: #aaa;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-remove {
   background: none;
-  border: 1px solid #333;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
-  cursor: pointer;
+  flex-shrink: 0;
   transition: border-color 0.15s, color 0.15s;
 }
 
-.lightbox-nav:hover {
-  border-color: #666;
-  color: #ccc;
+.sidebar-remove:hover {
+  border-color: #e55;
+  color: #e55;
 }
-
-.lightbox-prev { left: 24px; }
-.lightbox-next { right: 24px; }

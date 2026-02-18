@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### Contact Sheet
+
+**February 17, 2026**
+
+[![Contact Sheet](./public/screenshots/contact-sheet.png)](https://www.joshcoolman.com/design-experiments/contact-sheet)
+
+Image folder browser for building file lists to share with LLMs. Pick a folder, click images to select them, and a sidebar shows your selections with thumbnails. Copy the filename list to clipboard with one click. Designed for the workflow of visually identifying images then telling an LLM which ones to work with. Everything runs client-side -- nothing gets uploaded.
+
+**Tags:** Utility - File API - Client-Side - Dark Theme
+
+**[View Live →](https://www.joshcoolman.com/design-experiments/contact-sheet) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/contact-sheet)**
+
+---
+
 ### Font Pairings
 
 **February 15, 2026**
@@ -17,20 +31,6 @@ A collection of 40 curated Google Font pairings, each displayed on its own color
 **Tags:** Typography - Font Pairings - Static HTML - Copy-to-Clipboard
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/font-pairings) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/font-pairings)**
-
----
-
-### Contact Sheet
-
-**February 14, 2026**
-
-[![Contact Sheet](./public/screenshots/contact-sheet.png)](https://www.joshcoolman.com/design-experiments/contact-sheet)
-
-Dead simple image folder viewer that runs entirely in the browser. Pick a folder, see every image in a grid. Born from needing a quick way to see what images you have and point an LLM at the right ones. Copy path or copy image to clipboard on hover. Lightbox on click. Nothing gets uploaded -- everything stays local.
-
-**Tags:** Utility - File API - Client-Side - Dark Theme
-
-**[View Live →](https://www.joshcoolman.com/design-experiments/contact-sheet) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/contact-sheet)**
 
 ---
 

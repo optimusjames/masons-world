@@ -4,6 +4,16 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Contact Sheet: multi-select with sidebar
+
+**Date:** 2026-02-17
+
+Added multi-select functionality to the Contact Sheet experiment. Click images to select them, a sidebar slides in showing thumbnails and filenames of selected images. Copy the full list to clipboard for pasting into LLM conversations. Removed the lightbox and per-image copy actions to focus the tool on its core use case: visually picking images and building filename lists.
+
+**Key files:** `app/design-experiments/contact-sheet/page.tsx`, `app/design-experiments/contact-sheet/styles.css`
+
+---
+
 ### Day at a Glance: time-aware enhancement
 
 **Date:** 2026-02-12

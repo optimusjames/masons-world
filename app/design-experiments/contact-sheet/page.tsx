@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
+import JSZip from 'jszip'
 import './styles.css'
 
 const IMAGE_EXT = /\.(jpe?g|png|gif|webp|avif|svg|bmp|tiff?)$/i
@@ -39,6 +40,23 @@ export default function ContactSheet() {
       .join('\n')
     await navigator.clipboard.writeText(names)
     flash('sidebar-copy')
+  }
+
+  const downloadSelected = async () => {
+    const zip = new JSZip()
+    const sorted = [...selected].sort((a, b) => a - b)
+    for (const i of sorted) {
+      const resp = await fetch(images[i].url)
+      const blob = await resp.blob()
+      zip.file(images[i].name, blob)
+    }
+    const zipBlob = await zip.generateAsync({ type: 'blob' })
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(zipBlob)
+    a.download = `${sorted.length}-image-selects.zip`
+    a.click()
+    URL.revokeObjectURL(a.href)
+    flash('sidebar-download')
   }
 
   const handleFiles = useCallback((fileList: FileList | null) => {
@@ -152,6 +170,12 @@ export default function ContactSheet() {
               onClick={copySelectedList}
             >
               {copiedId === 'sidebar-copy' ? 'Copied' : 'Copy List'}
+            </button>
+            <button
+              className={copiedId === 'sidebar-download' ? 'copied' : ''}
+              onClick={downloadSelected}
+            >
+              {copiedId === 'sidebar-download' ? 'Saved' : 'Download'}
             </button>
             <button onClick={clearSelection}>Clear</button>
           </div>

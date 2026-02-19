@@ -28,25 +28,29 @@ export default function StickyNoteStack({ notes }: Props) {
   const [justOpened, setJustOpened] = useState(false)
   const [inAdvanceZone, setInAdvanceZone] = useState(true)
   const prevIndex = useRef(0)
+  const direction = useRef<'forward' | 'back'>('forward')
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const modalStackRef = useRef<HTMLDivElement>(null)
 
-  const isInAdvanceZone = useCallback((clientX: number, clientY: number) => {
-    if (!modalStackRef.current) return true
+  const getClickZone = useCallback((clientX: number, clientY: number): 'forward' | 'back' | 'close' => {
+    if (!modalStackRef.current) return 'forward'
     const rect = modalStackRef.current.getBoundingClientRect()
-    return (
-      clientX >= rect.left - 200 &&
-      clientX <= rect.right + 200 &&
-      clientY >= rect.top - 100 &&
-      clientY <= rect.bottom + 100
-    )
+    const inY = clientY >= rect.top && clientY <= rect.bottom
+    if (!inY) return 'close'
+    if (clientX >= rect.left && clientX <= rect.right) return 'forward'
+    if (clientX >= rect.left - 100 && clientX < rect.left) return 'back'
+    if (clientX > rect.right && clientX <= rect.right + 100) return 'forward'
+    return 'close'
   }, [])
 
-  const advance = useCallback(() => {
+  const navigate = useCallback((dir: 'forward' | 'back') => {
     if (notes.length <= 1) return
-    const next = (currentIndex + 1) % notes.length
+    const next = dir === 'forward'
+      ? (currentIndex + 1) % notes.length
+      : (currentIndex - 1 + notes.length) % notes.length
     if (isExpanded && !transitioning) {
       prevIndex.current = currentIndex
+      direction.current = dir
       setTransitioning(true)
       setJustOpened(false)
       transitionTimeout.current = setTimeout(() => {
@@ -86,7 +90,11 @@ export default function StickyNoteStack({ notes }: Props) {
 
   const displayedIndex = transitioning ? prevIndex.current : currentIndex
   const active = notes[displayedIndex]
-  const incoming = transitioning ? notes[(currentIndex + 1) % notes.length] : null
+  const nextIndex = direction.current === 'forward'
+    ? (currentIndex + 1) % notes.length
+    : (currentIndex - 1 + notes.length) % notes.length
+  const incoming = transitioning ? notes[nextIndex] : null
+  const isBack = direction.current === 'back'
 
   return (
     <>
@@ -119,7 +127,7 @@ export default function StickyNoteStack({ notes }: Props) {
                     {notes.length > 1 && (
                       <button
                         className={styles.skipBtn}
-                        onClick={(e) => { e.stopPropagation(); advance() }}
+                        onClick={(e) => { e.stopPropagation(); navigate('forward') }}
                         aria-label="Next note"
                       >&rsaquo;</button>
                     )}
@@ -135,19 +143,20 @@ export default function StickyNoteStack({ notes }: Props) {
         <div
           className={styles.backdrop}
           style={{ cursor: inAdvanceZone ? 'pointer' : 'default' }}
-          onMouseMove={(e) => setInAdvanceZone(isInAdvanceZone(e.clientX, e.clientY))}
+          onMouseMove={(e) => setInAdvanceZone(getClickZone(e.clientX, e.clientY) !== 'close')}
           onClick={(e) => {
-            if (isInAdvanceZone(e.clientX, e.clientY)) {
-              advance()
-            } else {
+            const zone = getClickZone(e.clientX, e.clientY)
+            if (zone === 'close') {
               close()
+            } else {
+              navigate(zone)
             }
           }}
         >
           <div className={styles.modalStack} ref={modalStackRef}>
             <div
               key={`modal-${displayedIndex}`}
-              className={`${styles.modal} ${justOpened ? styles.modalTop : ''} ${colorClass(active.color)} ${transitioning ? styles.modalExit : ''}`}
+              className={`${styles.modal} ${justOpened ? styles.modalTop : ''} ${colorClass(active.color)} ${transitioning ? (isBack ? styles.modalExitRight : styles.modalExit) : ''}`}
             >
               <div
                 className={styles.modalContent}
@@ -158,8 +167,8 @@ export default function StickyNoteStack({ notes }: Props) {
             </div>
             {transitioning && incoming && (
               <div
-                key={`modal-incoming-${(currentIndex + 1) % notes.length}`}
-                className={`${styles.modal} ${styles.modalEnter} ${colorClass(incoming.color)}`}
+                key={`modal-incoming-${nextIndex}`}
+                className={`${styles.modal} ${isBack ? styles.modalEnterLeft : styles.modalEnter} ${colorClass(incoming.color)}`}
               >
                 <div
                   className={styles.modalContent}

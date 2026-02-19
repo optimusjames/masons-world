@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### Sticky Notes
+
+**February 18, 2026**
+
+[![Sticky Notes](./public/screenshots/sticky-notes.png)](https://www.joshcoolman.com/design-experiments/sticky-notes)
+
+Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Currently used by the blog for "note to self" thoughts.
+
+**Tags:** Component - CSS Animation - Markdown Content - Portable
+
+**[View Live →](https://www.joshcoolman.com/design-experiments/sticky-notes) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/sticky-notes)**
+
+---
+
 ### Contact Sheet
 
 **February 17, 2026**

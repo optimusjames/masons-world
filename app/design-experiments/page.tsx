@@ -69,6 +69,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'sticky-notes',
+      date: 'February 18, 2026',
+      title: 'Sticky Notes',
+      description: 'Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content.',
+      screenshot: '/screenshots/sticky-notes.png',
+      tags: ['Component', 'CSS Animation', 'Markdown Content', 'Portable']
+    },
+    {
       slug: 'contact-sheet',
       date: 'February 17, 2026',
       title: 'Contact Sheet',

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import type { StickyNote } from '../types'
 import styles from './stickyNotes.module.css'
 
@@ -23,11 +23,31 @@ export default function StickyNoteStack({ notes }: Props) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [stackIndex, setStackIndex] = useState(0)
+  const [transitioning, setTransitioning] = useState(false)
+  const [displayIndex, setDisplayIndex] = useState(0)
+  const [justOpened, setJustOpened] = useState(false)
+  const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const close = useCallback(() => {
     setIsExpanded(false)
+    setTransitioning(false)
+    setJustOpened(false)
+    if (transitionTimeout.current) clearTimeout(transitionTimeout.current)
     setActiveIndex(stackIndex)
   }, [stackIndex])
+
+  const advanceModal = useCallback(() => {
+    if (notes.length <= 1 || transitioning) return
+    setJustOpened(false)
+    setTransitioning(true)
+    const next = (activeIndex + 1) % notes.length
+    transitionTimeout.current = setTimeout(() => {
+      setActiveIndex(next)
+      setDisplayIndex(next)
+      setStackIndex(next)
+      setTransitioning(false)
+    }, 400)
+  }, [notes.length, activeIndex, transitioning])
 
   useEffect(() => {
     if (!isExpanded) return
@@ -37,6 +57,12 @@ export default function StickyNoteStack({ notes }: Props) {
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
   }, [isExpanded, close])
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimeout.current) clearTimeout(transitionTimeout.current)
+    }
+  }, [])
 
   const skipToNext = useCallback((e: React.MouseEvent) => {
     e.stopPropagation()
@@ -48,7 +74,8 @@ export default function StickyNoteStack({ notes }: Props) {
 
   if (notes.length === 0) return null
 
-  const active = notes[activeIndex]
+  const active = notes[transitioning ? displayIndex : activeIndex]
+  const incoming = transitioning ? notes[(activeIndex + 1) % notes.length] : null
 
   return (
     <>
@@ -56,6 +83,8 @@ export default function StickyNoteStack({ notes }: Props) {
         className={styles.stackWrapper}
         onClick={() => {
           setIsExpanded(true)
+          setJustOpened(true)
+          setDisplayIndex(activeIndex)
           if (notes.length > 1) {
             setStackIndex((activeIndex + 1) % notes.length)
           }
@@ -92,10 +121,18 @@ export default function StickyNoteStack({ notes }: Props) {
       </div>
 
       {isExpanded && (
-        <div className={styles.backdrop} onClick={close}>
+        <div className={styles.backdrop} onClick={advanceModal}>
+          <button
+            className={styles.closeBtn}
+            onClick={(e) => { e.stopPropagation(); close() }}
+            aria-label="Close"
+          >
+            &times;
+          </button>
           <div className={styles.modalStack}>
             <div
-              className={`${styles.modal} ${styles.modalTop} ${colorClass(active.color)}`}
+              key={`modal-${transitioning ? displayIndex : activeIndex}`}
+              className={`${styles.modal} ${justOpened ? styles.modalTop : ''} ${colorClass(active.color)} ${transitioning ? styles.modalExit : ''}`}
             >
               <div
                 className={styles.modalContent}
@@ -103,10 +140,20 @@ export default function StickyNoteStack({ notes }: Props) {
                   __html: parseInlineMarkdown(active.content),
                 }}
               />
-              {notes.length > 1 && (
-                <button className={`${styles.skipBtn} ${styles.skipBtnModal}`} onClick={skipToNext} aria-label="Next note">&rsaquo;</button>
-              )}
             </div>
+            {transitioning && incoming && (
+              <div
+                key={`modal-incoming-${(activeIndex + 1) % notes.length}`}
+                className={`${styles.modal} ${styles.modalTop} ${styles.modalEnter} ${colorClass(incoming.color)}`}
+              >
+                <div
+                  className={styles.modalContent}
+                  dangerouslySetInnerHTML={{
+                    __html: parseInlineMarkdown(incoming.content),
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       )}

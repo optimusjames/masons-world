@@ -6,7 +6,7 @@ import type { BlogMeta, BlogPost } from './types'
 const blogDirectory = path.join(process.cwd(), 'blog')
 const blogImageDirectory = path.join(process.cwd(), 'public', 'blog')
 
-const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.avif']
+const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.avif', '.svg']
 
 function findImage(slug: string): string | undefined {
   if (!fs.existsSync(blogImageDirectory)) return undefined

@@ -5,7 +5,7 @@ description: Repeatable Claude Code workflows triggered by slash commands
 # Skills
 
 **Status:** Active
-**Last Updated:** 2026-02-12
+**Last Updated:** 2026-02-19
 
 ## Overview
 
@@ -32,6 +32,13 @@ Ship a design experiment with automated screenshot, gallery update, homepage upd
 - **Skill file:** `.claude/skills/ship-experiment/skill.md`
 - **Requires:** agent-browser skill, dev server running
 
+### `/blog-post`
+Draft a blog post from conversation context. Creates markdown file with placeholder image so it's immediately visible on the homepage and blog index. Focused on rapid first drafts -- the post gets iterated on after creation.
+
+- **Skill file:** `.claude/skills/blog-post/SKILL.md`
+- **Output:** `blog/{slug}.md` + `public/blog/{slug}.svg` (placeholder)
+- **Auto-updates:** Homepage Blog column and blog index (via date-sorted auto-discovery)
+
 ### `/note`
 Quick-fire a sticky note from the command line. Everything after `/note` becomes a new markdown file in `app/(blog)/notes/` with auto-derived filename and rotating color.
 
@@ -52,4 +59,5 @@ Quick-fire a sticky note from the command line. Everything after `/note` becomes
 - `.claude/skills/write-post/SKILL.md` - Blog authoring workflow
 - `.claude/skills/sanity-check/SKILL.md` - Code review workflow
 - `.claude/skills/ship-experiment/skill.md` - Experiment shipping workflow
+- `.claude/skills/blog-post/SKILL.md` - Blog post drafting workflow
 - `.claude/skills/note/skill.md` - Quick sticky note capture

@@ -4,7 +4,7 @@ description: Sticky note stack -- a design experiment used by the blog for short
 
 ## Overview
 
-A "note to self" sticky note stack. Short thoughts (1-2 paragraphs) rendered as post-it notes. Click the stack to read a note full-size in an overlay, dismiss to reveal the next one. A subtle skip button on each card lets you cycle without opening. Works out of the box with no configuration -- just pass notes.
+A "note to self" sticky note stack. Short thoughts (1-2 paragraphs) rendered as post-it notes. Click the stack to open a full-size lightbox. Click near the card to advance forward, click left of the card to go back, click far away (above/below) or press Escape to close. Stack position persists across client-side navigation, resets on hard refresh. Works out of the box with no configuration -- just pass notes.
 
 ## Content Model
 
@@ -47,11 +47,16 @@ const notes = getAllNotes(path.join(process.cwd(), 'app/(blog)/notes'))
 
 **Demo notes**: `app/design-experiments/sticky-notes/data/*.md` -- sample notes for the experiment showcase, one per color variant.
 
-**Stack (collapsed)**: 180x140px cards, offset 3px right + 3px down per card, slight rotation. Top card shows teaser text. Hover lifts top card. Skip button (subtle circled caret, lower-right) cycles to next note instantly.
+**Stack (collapsed)**: 180x140px cards, offset 3px right + 3px down per card, slight rotation. Top card shows teaser text. Hover lifts top card. Click opens the lightbox -- no other controls on the collapsed stack.
 
-**Overlay**: Click the stack to read the current note full-size. The stack behind advances to the next note so there's no duplicate visible. Click anywhere or press Escape to dismiss. The next note is already waiting on the stack.
+**Lightbox**: Full-viewport slide transitions between notes. Click zones determine intent based on proximity to the card:
+- On card or within 100px left/right: advance (right side forward, left side back)
+- Above or below the card: close
+- Escape key: close
 
-**State**: `isExpanded`, `activeIndex`, `stackIndex`. No configuration props beyond `notes`.
+Current card slides out, next slides in. Forward goes left-to-right, back goes right-to-left. Spring easing on entry `(0.34, 1.56, 0.64, 1)`, smooth ease-out on exit. Cursor switches between pointer (advance zone) and default (close zone).
+
+**State**: Single `currentIndex` drives both stack and lightbox. Module-level `savedIndex` persists position across client-side navigation, resets on hard refresh. No configuration props beyond `notes`.
 
 ## Visual Design
 
@@ -65,7 +70,7 @@ const notes = getAllNotes(path.join(process.cwd(), 'app/(blog)/notes'))
 | cool     | `#a8d8ea` | `rgba(0,0,0,0.65)` | `#94c4d6` |
 | neutral  | `#f5c6d0` | `rgba(0,0,0,0.65)` | `#e0b2bc` |
 
-**Animations**: CSS only, no framer-motion. Spring-like cubic-bezier `(0.34, 1.56, 0.64, 1)` for hover lift and modal entrance.
+**Animations**: CSS only, no framer-motion. Spring-like cubic-bezier `(0.34, 1.56, 0.64, 1)` for hover lift and lightbox entrance. Full-viewport slide transitions (`translateX(100vw)`) for note advancement, bidirectional.
 
 ## Related Files
 

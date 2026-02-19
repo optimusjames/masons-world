@@ -51,37 +51,6 @@
 }
 
 /* ───────────────────────────────────────────
-   Skip Button
-   ─────────────────────────────────────────── */
-
-.skipBtn {
-  position: absolute;
-  bottom: 6px;
-  right: 8px;
-  background: none;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 2px;
-  font-family: system-ui, sans-serif;
-  font-size: 11px;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
-}
-
-.skipBtn:hover {
-  color: rgba(0, 0, 0, 0.45);
-  border-color: rgba(0, 0, 0, 0.3);
-}
-
-/* ───────────────────────────────────────────
    Color Variants
    ─────────────────────────────────────────── */
 

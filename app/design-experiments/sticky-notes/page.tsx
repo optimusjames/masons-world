@@ -33,8 +33,8 @@ export default function StickyNotesExperiment() {
       <div className={styles.header}>
         <h1 className={styles.title}>Sticky Notes</h1>
         <p className={styles.description}>
-          A stack of post-it notes. Click to read a note full-size, then dismiss
-          to reveal the next one. Use the skip button to cycle without opening.
+          A stack of post-it notes. Click to open the lightbox, then click near
+          the card to flip through. Click left to go back, far away to close.
           Content is loaded from markdown files -- the consumer decides where the
           notes directory lives.
         </p>

@@ -19,11 +19,13 @@ Quick-fire a sticky note from the command line.
 
 ```markdown
 ---
-date: YYYY-MM-DD
+date: YYYY-MM-DDTHH:MM:SS
 color: warm|cool|neutral
 ---
 The note content exactly as typed.
 ```
+
+Use a full ISO timestamp (date + time, no timezone) so notes sort by creation order within the same day. Use the current time when the `/note` command is run.
 
 ## Filename Convention
 

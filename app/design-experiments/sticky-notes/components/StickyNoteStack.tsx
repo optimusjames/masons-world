@@ -75,10 +75,12 @@ export default function StickyNoteStack({ notes }: Props) {
     if (!isExpanded) return
     function handleKey(e: KeyboardEvent) {
       if (e.key === 'Escape') close()
+      if (e.key === 'ArrowRight') navigate('forward')
+      if (e.key === 'ArrowLeft') navigate('back')
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [isExpanded, close])
+  }, [isExpanded, close, navigate])
 
   useEffect(() => {
     return () => {
@@ -122,16 +124,7 @@ export default function StickyNoteStack({ notes }: Props) {
                 }}
               >
                 {isTop && (
-                  <>
-                    <div className={styles.stackTeaser}>{note.content}</div>
-                    {notes.length > 1 && (
-                      <button
-                        className={styles.skipBtn}
-                        onClick={(e) => { e.stopPropagation(); navigate('forward') }}
-                        aria-label="Next note"
-                      >&rsaquo;</button>
-                    )}
-                  </>
+                  <div className={styles.stackTeaser}>{note.content}</div>
                 )}
               </div>
             )

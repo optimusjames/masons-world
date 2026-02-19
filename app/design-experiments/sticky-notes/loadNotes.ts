@@ -18,7 +18,7 @@ export function getAllNotes(notesDir: string): StickyNote[] {
     return {
       id,
       date: data.date instanceof Date
-        ? data.date.toISOString().split('T')[0]
+        ? data.date.toISOString()
         : data.date ? String(data.date) : '',
       color: data.color || 'warm',
       content: content.trim(),

@@ -3,5 +3,4 @@ date: 2026-02-18
 color: cool
 ---
 
-Spec-driven development is kind of jumping the shark.
-You still need to go back and forth to get quality results
+I've always hated the idea of spec-driven development. It's like, who really knows what they're building until they start building?

@@ -1,5 +1,5 @@
 ---
-date: 2026-02-19
+date: 2026-02-19T09:30:00
 color: warm
 ---
-Vibe. People hate this term, but it's the perfect word to describe where we're headed when taste is all that matters.
+"Vibe". It's the perfect word for when taste is all that matters.

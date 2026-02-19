@@ -27,10 +27,17 @@ Quick code review from a senior engineer perspective. Scans the codebase for Rea
 - **Workflow:** Scan -> categorize by impact -> present multi-select -> implement picks
 
 ### `/ship-experiment`
-Ship a design experiment with automated screenshot, gallery update, README update, commit, and push.
+Ship a design experiment with automated screenshot, gallery update, homepage update, README update, commit, and push.
 
-- **Skill file:** `.claude/skills/ship-experiment/SKILL.md`
+- **Skill file:** `.claude/skills/ship-experiment/skill.md`
 - **Requires:** agent-browser skill, dev server running
+
+### `/note`
+Quick-fire a sticky note from the command line. Everything after `/note` becomes a new markdown file in `app/(blog)/notes/` with auto-derived filename and rotating color.
+
+- **Skill file:** `.claude/skills/note/skill.md`
+- **Output:** `app/(blog)/notes/YYYY-MM-DD-slug.md`
+- **No confirmation** -- captures the thought instantly
 
 ## Key Patterns
 
@@ -44,4 +51,5 @@ Ship a design experiment with automated screenshot, gallery update, README updat
 
 - `.claude/skills/write-post/SKILL.md` - Blog authoring workflow
 - `.claude/skills/sanity-check/SKILL.md` - Code review workflow
-- `.claude/skills/ship-experiment/SKILL.md` - Experiment shipping workflow
+- `.claude/skills/ship-experiment/skill.md` - Experiment shipping workflow
+- `.claude/skills/note/skill.md` - Quick sticky note capture

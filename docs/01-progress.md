@@ -8,6 +8,30 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Sticky Notes: portable design experiment with pinning
+
+**Date:** 2026-02-18
+
+Consolidated the sticky note stack into a self-contained design experiment at `app/design-experiments/sticky-notes/` with its own showcase page. The component was previously scattered across `lib/notes/`, `app/(blog)/_components/`, and `notes/`. Now it lives where you'd expect to find it -- as a design experiment that other pages can import.
+
+**Key changes:**
+- `getAllNotes(notesDir)` now accepts a path parameter -- the consumer decides where content lives, not the component. The experiment showcase uses demo notes in `data/`, the blog passes `app/(blog)/notes/`
+- Fixed text flash bug on swipe cycling: outgoing card now renders from a frozen ref snapshot so content doesn't change mid-animation. Entrance animation (`scaleIn`) is skipped after cycling to prevent the underneath card from flashing through
+- Swipe animation changed from lateral to vertical drop (200px down with fade)
+- Modal sized to match stack card aspect ratio (300x233, same ~1.3:1 as 180x140)
+- Stack now reflects the pinned note: whichever note you're viewing when you close becomes the top card, with a 250ms delayed update so the stack changes after the overlay dismisses
+- Stack teaser shows full note text at 11px proportional sizing instead of 3-line clamp
+- Updated ship-experiment skill to include homepage `recentExperiments` update step
+
+**Key files:**
+- `app/design-experiments/sticky-notes/` -- component, loader, types, showcase page, demo data
+- `app/design-experiments/sticky-notes/components/StickyNoteStack.tsx` -- client component
+- `app/(blog)/notes/` -- blog's note content (moved from project root)
+- `app/(blog)/blog/page.tsx` -- imports from experiment, passes notes path
+- `.claude/skills/ship-experiment/skill.md` -- added homepage update step
+
+---
+
 ### Contact Sheet: multi-select with sidebar
 
 **Date:** 2026-02-17

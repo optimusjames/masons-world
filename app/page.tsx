@@ -8,6 +8,12 @@ import styles from "./page.module.css";
 
 const recentExperiments = [
   {
+    slug: "sticky-notes",
+    title: "Sticky Notes",
+    date: "Feb 18, 2026",
+    screenshot: "/screenshots/sticky-notes.png",
+  },
+  {
     slug: "contact-sheet",
     title: "Contact Sheet",
     date: "Feb 17, 2026",
@@ -18,12 +24,6 @@ const recentExperiments = [
     title: "Font Pairings",
     date: "Feb 15, 2026",
     screenshot: "/screenshots/font-pairings.png",
-  },
-  {
-    slug: "modular-grid",
-    title: "Modular Grid",
-    date: "Feb 14, 2026",
-    screenshot: "/screenshots/modular-grid.png",
   },
 ];
 

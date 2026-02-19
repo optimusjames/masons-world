@@ -22,22 +22,12 @@ interface Props {
 export default function StickyNoteStack({ notes }: Props) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [swiping, setSwiping] = useState(false)
+  const [stackIndex, setStackIndex] = useState(0)
 
   const close = useCallback(() => {
     setIsExpanded(false)
-    setSwiping(false)
-  }, [])
-
-  const cycleNext = useCallback(() => {
-    if (notes.length <= 1 || swiping) return
-    setSwiping(true)
-  }, [notes.length, swiping])
-
-  const handleSwipeEnd = useCallback(() => {
-    setActiveIndex((i) => (i + 1) % notes.length)
-    setSwiping(false)
-  }, [notes.length])
+    setActiveIndex(stackIndex)
+  }, [stackIndex])
 
   useEffect(() => {
     if (!isExpanded) return
@@ -48,30 +38,39 @@ export default function StickyNoteStack({ notes }: Props) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [isExpanded, close])
 
+  const skipToNext = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (notes.length <= 1) return
+    const next = (activeIndex + 1) % notes.length
+    setActiveIndex(next)
+    setStackIndex(next)
+  }, [notes.length, activeIndex])
+
   if (notes.length === 0) return null
 
-  const nextIndex = (activeIndex + 1) % notes.length
   const active = notes[activeIndex]
-  const next = notes[nextIndex]
 
   return (
     <>
       <div
         className={styles.stackWrapper}
         onClick={() => {
-          setActiveIndex(0)
-          setSwiping(false)
           setIsExpanded(true)
+          if (notes.length > 1) {
+            setStackIndex((activeIndex + 1) % notes.length)
+          }
         }}
       >
         <div className={styles.stackLabel}>Note to self</div>
         <div className={styles.stack}>
-          {notes.slice(0, 4).map((note, i) => {
+          {notes.slice(0, 4).map((_, i) => {
+            const noteIndex = (stackIndex + i) % notes.length
+            const note = notes[noteIndex]
             const rotation = (i * 2.5 - 3) + (i % 2 === 0 ? 1 : -1)
             const isTop = i === 0
             return (
               <div
-                key={note.id}
+                key={`${noteIndex}-${stackIndex}`}
                 className={`${styles.stackCard} ${colorClass(note.color)} ${isTop ? styles.stackCardTop : ''}`}
                 style={{
                   transform: `translate(${i * 3}px, ${i * 3}px) rotate(${rotation}deg)`,
@@ -79,7 +78,12 @@ export default function StickyNoteStack({ notes }: Props) {
                 }}
               >
                 {isTop && (
-                  <div className={styles.stackTeaser}>{note.content}</div>
+                  <>
+                    <div className={styles.stackTeaser}>{note.content}</div>
+                    {notes.length > 1 && (
+                      <button className={styles.skipBtn} onClick={skipToNext} aria-label="Next note">&rsaquo;</button>
+                    )}
+                  </>
                 )}
               </div>
             )
@@ -89,29 +93,9 @@ export default function StickyNoteStack({ notes }: Props) {
 
       {isExpanded && (
         <div className={styles.backdrop} onClick={close}>
-          <div
-            className={styles.modalStack}
-            onClick={(e) => {
-              e.stopPropagation()
-              cycleNext()
-            }}
-          >
-            {notes.length > 1 && (
-              <div
-                className={`${styles.modal} ${styles.modalUnderneath} ${colorClass(next.color)}`}
-              >
-                <div
-                  className={styles.modalContent}
-                  dangerouslySetInnerHTML={{
-                    __html: parseInlineMarkdown(next.content),
-                  }}
-                />
-              </div>
-            )}
-
+          <div className={styles.modalStack}>
             <div
-              className={`${styles.modal} ${styles.modalTop} ${colorClass(active.color)} ${swiping ? styles.swipeOff : ''}`}
-              onAnimationEnd={swiping ? handleSwipeEnd : undefined}
+              className={`${styles.modal} ${styles.modalTop} ${colorClass(active.color)}`}
             >
               <div
                 className={styles.modalContent}
@@ -119,6 +103,9 @@ export default function StickyNoteStack({ notes }: Props) {
                   __html: parseInlineMarkdown(active.content),
                 }}
               />
+              {notes.length > 1 && (
+                <button className={`${styles.skipBtn} ${styles.skipBtnModal}`} onClick={skipToNext} aria-label="Next note">&rsaquo;</button>
+              )}
             </div>
           </div>
         </div>

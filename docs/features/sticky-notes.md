@@ -4,7 +4,7 @@ description: Sticky note stack -- a design experiment used by the blog for short
 
 ## Overview
 
-A "note to self" sticky note stack. Short thoughts (1-2 paragraphs) rendered as post-it notes. Click to expand, click a note to cycle through, backdrop or Escape to close. Lives as a design experiment with its own showcase page; the blog imports it as a consumer.
+A "note to self" sticky note stack. Short thoughts (1-2 paragraphs) rendered as post-it notes. Click the stack to read a note full-size in an overlay, dismiss to reveal the next one. A subtle skip button on each card lets you cycle without opening. Works out of the box with no configuration -- just pass notes.
 
 ## Content Model
 
@@ -35,21 +35,23 @@ gray-matter auto-parses YAML dates into Date objects. `loadNotes.ts` converts th
 **Component location**: Design experiment at `app/design-experiments/sticky-notes/`. Blog imports via barrel export. The loader accepts a `notesDir` parameter so any consumer can point to their own content.
 
 ```tsx
-// app/(blog)/blog/page.tsx
+// Usage -- just two imports, one prop
 import { getAllNotes, StickyNoteStack } from '@/app/design-experiments/sticky-notes'
 
 const notes = getAllNotes(path.join(process.cwd(), 'app/(blog)/notes'))
+
+<StickyNoteStack notes={notes} />
 ```
 
 **Blog notes**: `app/(blog)/notes/*.md` -- content that belongs to the blog, not to the component.
 
 **Demo notes**: `app/design-experiments/sticky-notes/data/*.md` -- sample notes for the experiment showcase, one per color variant.
 
-**Stack (collapsed)**: 180x140px cards, offset 3px right + 3px down per card, slight rotation. Top card shows teaser text (3 lines clipped). Hover lifts top card.
+**Stack (collapsed)**: 180x140px cards, offset 3px right + 3px down per card, slight rotation. Top card shows teaser text. Hover lifts top card. Skip button (subtle circled caret, lower-right) cycles to next note instantly.
 
-**Expanded (modal)**: Two notes rendered stacked -- active on top (`z-index: 2`), next underneath (`z-index: 1`, offset 4px). Clicking the note triggers `swipeOff` animation on the top card, then `onAnimationEnd` advances the index revealing the card beneath. Cycles continuously. Backdrop click or Escape closes. Zero chrome -- no X, no arrows, no counter.
+**Overlay**: Click the stack to read the current note full-size. The stack behind advances to the next note so there's no duplicate visible. Click anywhere or press Escape to dismiss. The next note is already waiting on the stack.
 
-**State**: `isExpanded`, `activeIndex`, `swiping` (locks during animation).
+**State**: `isExpanded`, `activeIndex`, `stackIndex`. No configuration props beyond `notes`.
 
 ## Visual Design
 
@@ -63,11 +65,7 @@ const notes = getAllNotes(path.join(process.cwd(), 'app/(blog)/notes'))
 | cool     | `#a8d8ea` | `rgba(0,0,0,0.65)` | `#94c4d6` |
 | neutral  | `#f5c6d0` | `rgba(0,0,0,0.65)` | `#e0b2bc` |
 
-**Animations**: CSS only, no framer-motion. Spring-like cubic-bezier `(0.34, 1.56, 0.64, 1)` for entrance. `swipeOff` slides top card left and up with fade.
-
-## Known Issue (TODO)
-
-**Text flashes on swipe**: When cycling notes, the active note's text visibly switches to the next note's content before the swipe-off animation completes. The index update (which changes rendered content) fires slightly before the card has fully left the viewport. Fix: either delay the state update until the card is fully offscreen, or render the outgoing card with its own frozen content separate from `activeIndex` state (e.g., keep an `outgoingIndex` ref that holds the previous value during the swipe animation).
+**Animations**: CSS only, no framer-motion. Spring-like cubic-bezier `(0.34, 1.56, 0.64, 1)` for hover lift and modal entrance.
 
 ## Related Files
 

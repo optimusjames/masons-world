@@ -15,7 +15,7 @@ const permanentMarker = Permanent_Marker({
 
 export const metadata = {
   title: 'Sticky Notes',
-  description: 'Interactive sticky note stack with swipe-to-cycle animation',
+  description: 'Interactive sticky note stack with click-to-read overlay',
 }
 
 export default function StickyNotesExperiment() {
@@ -33,9 +33,10 @@ export default function StickyNotesExperiment() {
       <div className={styles.header}>
         <h1 className={styles.title}>Sticky Notes</h1>
         <p className={styles.description}>
-          A stack of post-it notes. Click to expand, click a note to cycle through,
-          click the backdrop or press Escape to close. Content is loaded from markdown
-          files -- the consumer decides where the notes directory lives.
+          A stack of post-it notes. Click to read a note full-size, then dismiss
+          to reveal the next one. Use the skip button to cycle without opening.
+          Content is loaded from markdown files -- the consumer decides where the
+          notes directory lives.
         </p>
       </div>
 

@@ -1,3 +1,7 @@
+---
+description: Patterns for single-file vs modular component extraction
+---
+
 # Component Architecture
 
 **Status:** Active

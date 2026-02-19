@@ -1,3 +1,7 @@
+---
+description: Core framework, AI providers, background jobs, and cost control
+---
+
 # AI Development Stack (2026)
 
 A practical reference for building AI-powered web applications and public experiments. Covers the core framework, AI providers, background jobs, and cost control.

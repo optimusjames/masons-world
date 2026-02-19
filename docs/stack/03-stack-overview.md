@@ -1,3 +1,7 @@
+---
+description: High-level view of the TypeScript, Vercel, Supabase, and Trigger.dev stack
+---
+
 # Stack Overview
 
 High-level view of the AI experiment stack. Everything is TypeScript, hosted on Vercel, backed by Supabase and Trigger.dev.

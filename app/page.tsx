@@ -31,6 +31,7 @@ export default function Home() {
   const posts = getAllPosts().slice(0, 3);
   const docs = getNavCategories()
     .flatMap((cat) => cat.items)
+    .filter((doc) => !doc.slug.match(/^overview$/))
     .slice(0, 3);
 
   return (
@@ -56,7 +57,7 @@ export default function Home() {
           </p>
 
           <div className={styles.columns}>
-            {/* Design Experiments */}
+            {/* Design */}
             <Link href="/design-experiments" className={styles.column}>
               <div className={styles.columnTitle}>
                 Design
@@ -133,6 +134,9 @@ export default function Home() {
                   <div key={doc.slug} className={styles.columnItem}>
                     <div className={styles.itemText}>
                       <span className={styles.itemTitle}>{doc.title}</span>
+                      {doc.description && (
+                        <span className={styles.itemDate}>{doc.description}</span>
+                      )}
                     </div>
                   </div>
                 ))}

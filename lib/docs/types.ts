@@ -14,6 +14,7 @@ export interface DocNavItem {
   title: string
   slug: string
   href: string
+  description?: string
 }
 
 export interface DocNavCategory {

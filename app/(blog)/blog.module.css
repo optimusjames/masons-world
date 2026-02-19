@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
 /* ───────────────────────────────────────────
    Variables
@@ -12,8 +12,8 @@
   --mid: #a09888;
   --light: #706860;
   --rule: #383430;
-  --paper: #0b0b0b;
-  --accent: #00ff8f;
+  --paper: #000;
+  --accent: #8FF7F9;
   --col-max: 680px;
 
   background: var(--paper);
@@ -26,25 +26,57 @@
    ─────────────────────────────────────────── */
 
 .indexWrapper {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 80px 24px 96px;
+  padding: 80px 40px 96px;
+}
+
+.backRow {
+  margin-bottom: 24px;
+}
+
+.indexBackLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.indexBackLink:hover {
+  color: #aaa;
 }
 
 .indexTitle {
-  font-family: var(--serif);
-  font-size: clamp(36px, 6vw, 56px);
-  font-weight: 400;
-  line-height: 1.08;
+  font-family: 'Bitter', serif;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--ink);
-  margin: 0 0 64px;
+  color: #F2EFEB;
+  margin: 0 0 16px;
+}
+
+.indexSubtitle {
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  color: #959595;
+  margin: 0 0 60px;
+}
+
+.indexRule {
+  height: 4px;
+  background: #3f3f3f;
+  margin: 0 0 40px;
 }
 
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  max-width: 1440px;
   gap: 24px;
 }
 
@@ -399,11 +431,7 @@
 
 @media (max-width: 768px) {
   .indexWrapper {
-    padding: 60px 16px 80px;
-  }
-
-  .indexTitle {
-    margin-bottom: 48px;
+    padding: 60px 20px 80px;
   }
 
   .cardGrid {

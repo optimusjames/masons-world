@@ -1,3 +1,7 @@
+---
+description: Stress-test page for validating a design system across UI components
+---
+
 # Design Verification Page
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+description: Full migration from JSX to TSX with strict type safety
+---
+
 # TypeScript Migration
 
 **Status:** Active

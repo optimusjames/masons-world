@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
 import { docsDirectory, UNCATEGORIZED_LABEL } from './config'
 import { parseFileName } from './parseFileName'
 import { parseDocTitle } from './parseDocTitle'
@@ -15,6 +16,7 @@ interface RawDoc {
   category: string
   order: number
   title: string
+  description?: string
   content: string
   filePath: string
 }
@@ -29,12 +31,21 @@ function scanDirectory(dir: string, category: string): RawDoc[] {
   for (const entry of entries) {
     if (entry.isFile() && entry.name.endsWith('.md') && !isExcluded(entry.name)) {
       const filePath = path.join(dir, entry.name)
-      const content = fs.readFileSync(filePath, 'utf-8')
+      const raw = fs.readFileSync(filePath, 'utf-8')
+      const { data: frontmatter, content } = matter(raw)
       const { order, slug } = parseFileName(entry.name)
       const title = parseDocTitle(content, slug)
       const fullSlug = category === UNCATEGORIZED_LABEL ? slug : `${category.toLowerCase()}/${slug}`
 
-      docs.push({ slug: fullSlug, category, order, title, content, filePath })
+      docs.push({
+        slug: fullSlug,
+        category,
+        order,
+        title,
+        description: frontmatter.description || undefined,
+        content,
+        filePath,
+      })
     }
   }
 
@@ -73,6 +84,7 @@ export function getNavCategories(): DocNavCategory[] {
       title: doc.title,
       slug: doc.slug,
       href: `/docs/${doc.slug}`,
+      description: doc.description,
     })
   }
 

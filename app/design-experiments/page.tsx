@@ -185,9 +185,9 @@ export default function Home() {
           Back
         </Link>
       </div>
-      <h1 className={styles.title}>Design Experiments</h1>
+      <h1 className={styles.title}>Design</h1>
       <p className={styles.subtitle}>
-        A sandbox for exploring visual design systems, widgets, and layouts
+        Random experiments in visual design — layouts, systems, widgets, and whatever else seems interesting
       </p>
 
       <div className={styles.rule}></div>

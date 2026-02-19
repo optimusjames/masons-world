@@ -1,3 +1,7 @@
+---
+description: Supporting free tier and bring-your-own-key in public AI experiments
+---
+
 # BYOK Pattern (Bring Your Own Key)
 
 Pattern for supporting both a free tier and bring-your-own-key in public AI experiments. BYOK users provide their own API key and use their own quota. Use-at-your-own-risk.

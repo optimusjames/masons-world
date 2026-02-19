@@ -1,3 +1,7 @@
+---
+description: Repeatable Claude Code workflows triggered by slash commands
+---
+
 # Skills
 
 **Status:** Active

@@ -198,7 +198,7 @@
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--ink);
-  margin: 0 0 24px;
+  margin: 0 0 10px;
 }
 
 .postSubtitle {
@@ -209,6 +209,15 @@
   line-height: 1.45;
   color: var(--mid);
   margin: 0;
+}
+
+.postByline {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--light);
+  margin: 24px 0 0;
 }
 
 .postImageWrapper {

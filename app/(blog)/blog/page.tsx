@@ -6,7 +6,7 @@ import styles from '../blog.module.css'
 
 export const metadata = {
   title: 'Blog',
-  description: 'Markdown posts with editorial styling, written as the code evolves',
+  description: 'Markdown posts with editorial styling, written when the mood strikes',
 }
 
 export default function BlogIndex() {
@@ -22,7 +22,7 @@ export default function BlogIndex() {
       </div>
       <h1 className={styles.indexTitle}>Blog</h1>
       <p className={styles.indexSubtitle}>
-        Markdown posts with editorial styling, written as the code evolves
+        Markdown posts with editorial styling, written when the mood strikes
       </p>
       <div className={styles.indexRule}></div>
       <div className={styles.cardGrid}>

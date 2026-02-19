@@ -59,6 +59,9 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.meta.subtitle && (
               <p className={styles.postSubtitle}>{post.meta.subtitle}</p>
             )}
+            {post.meta.author && (
+              <p className={styles.postByline}>by {post.meta.author}</p>
+            )}
           </header>
         </div>
 
@@ -83,6 +86,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         <h1 className={styles.postTitle}>{post.meta.title}</h1>
         {post.meta.subtitle && (
           <p className={styles.postSubtitle}>{post.meta.subtitle}</p>
+        )}
+        {post.meta.author && (
+          <p className={styles.postByline}>by {post.meta.author}</p>
         )}
       </header>
 

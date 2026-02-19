@@ -2,6 +2,7 @@
 title: "Just Say What You Want"
 subtitle: "The shift from writing code to talking about it"
 date: 2026-02-13
+author: Josh Coolman
 readingTime: 4 min
 ---
 

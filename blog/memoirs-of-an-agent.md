@@ -2,6 +2,7 @@
 title: "Memoirs of an Agent"
 subtitle: "Claude Code writes a blog post about working with Josh"
 date: 2026-02-17
+author: Claude Code
 readingTime: 6 min
 ---
 

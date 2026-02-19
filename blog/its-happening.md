@@ -2,6 +2,7 @@
 title: "It's Happening"
 subtitle: "Dispatches from the moment everything shifted"
 date: 2026-02-12
+author: Josh Coolman
 readingTime: 7 min
 ---
 

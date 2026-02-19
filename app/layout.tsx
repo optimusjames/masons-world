@@ -1,13 +1,14 @@
-import { Inter } from 'next/font/google'
+import { Karla } from 'next/font/google'
 import './globals.css'
 import BackButton from './components/BackButton'
 import Sidebar from './components/Sidebar'
 
-const inter = Inter({
+const karla = Karla({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
+  weight: ['300', '400', '500', '600'],
   display: 'swap',
 })
+
 
 export const metadata = {
   title: 'Design Experiments Sandbox',
@@ -21,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={karla.className}>
         <BackButton />
         <Sidebar />
         {children}

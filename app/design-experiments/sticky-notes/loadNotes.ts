@@ -28,6 +28,8 @@ export function getAllNotes(notesDir: string): StickyNote[] {
   return notes.sort((a, b) => {
     const dateA = new Date(a.date)
     const dateB = new Date(b.date)
-    return dateB.getTime() - dateA.getTime()
+    const diff = dateB.getTime() - dateA.getTime()
+    if (diff !== 0) return diff
+    return b.id.localeCompare(a.id)
   })
 }

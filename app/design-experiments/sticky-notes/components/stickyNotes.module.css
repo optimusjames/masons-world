@@ -82,34 +82,6 @@
 }
 
 /* ───────────────────────────────────────────
-   Close Button (lightbox)
-   ─────────────────────────────────────────── */
-
-.closeBtn {
-  position: absolute;
-  z-index: 110;
-  top: calc(50% - 143px);
-  left: calc(50% + min(150px, 45vw) + 4px);
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 27px;
-  line-height: 1;
-  width: 33px;
-  height: 33px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: color 0.15s;
-  padding: 0;
-}
-
-.closeBtn:hover {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* ───────────────────────────────────────────
    Color Variants
    ─────────────────────────────────────────── */
 

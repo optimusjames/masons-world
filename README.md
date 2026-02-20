@@ -290,6 +290,9 @@ Generate a typographic system from a font pairing. Builds a modular type scale w
 **`/design-audit`**
 Audit a design experiment's CSS for color and type consistency. Extracts every color and font-size, groups by context (light bg vs dark bg), flags near-duplicates and inconsistent roles, then suggests unifications. Interactive -- select which fixes to apply, get a before/after summary table of the cleaned system.
 
+**`/animation-audit`**
+Audit a design experiment for entrance animations, stagger timing, and interaction feedback. Maps the grid layout, identifies which components need motion (stroke draws, number counters, bar growth, diagonal waves), proposes spring presets for consistency, and wires up click-to-replay. Fits the workflow: `/sketch` then `/design-audit` then `/animation-audit`.
+
 **`/sketch`**
 Rapid visual prototyping -- paint with code. Single-file, Tailwind-only, no component libraries, no data layer. Get a visual idea on screen fast and iterate until it feels right. Hardcoded content, fake interactions, inline animations. The napkin drawing before the architecture. Feeds naturally into `/promote` when the design is locked.
 
@@ -306,6 +309,7 @@ Skills are invoked with a slash command in Claude Code:
 /promote sticky-notes      # Extract reusable component
 /type-spec "Space Grotesk" "IBM Plex Mono"  # Generate type system
 /design-audit crossfit-bento  # Audit colors and type for consistency
+/animation-audit crossfit-bento  # Add entrance animations and stagger timing
 /sketch A breathing app with animated circles  # Rapid visual prototype
 ```
 

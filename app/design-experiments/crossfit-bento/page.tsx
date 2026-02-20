@@ -39,6 +39,22 @@ export default function FitnessBento() {
 
   return (
     <div className="bento-page">
+      <div className="swiss-frame">
+        <header className="swiss-header">
+          <div className="swiss-rule" />
+          <div className="swiss-header-row">
+            <span className="swiss-logo">Iron Republic</span>
+            <span className="swiss-meta">Athlete Dashboard</span>
+          </div>
+          <div className="swiss-rule" />
+          <div className="swiss-sub-row">
+            <span className="swiss-label">Week 07 / Feb 2026</span>
+            <span className="swiss-label">Training Block: Strength</span>
+            <span className="swiss-label">Day 14 of 42</span>
+          </div>
+          <div className="swiss-rule" />
+        </header>
+
       <div className="bento-grid">
 
         {/* Orange — Goal Progress */}
@@ -327,6 +343,17 @@ export default function FitnessBento() {
           </div>
         </div>
       </div>
+
+        <footer className="swiss-footer">
+          <div className="swiss-rule" />
+          <div className="swiss-footer-row">
+            <span className="swiss-label">System v2.4.1</span>
+            <span className="swiss-label">Last Sync 08:42</span>
+            <span className="swiss-label">Next Session: 17:30</span>
+          </div>
+          <div className="swiss-rule" />
+        </footer>
+        </div>
     </div>
   );
 }

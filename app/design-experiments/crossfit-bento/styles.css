@@ -10,12 +10,66 @@
 
 .bento-page {
   min-height: 100vh;
-  background: #1c1c1a;
-  padding: 24px;
+  background: #141412;
+  padding: 48px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Swiss frame */
+.swiss-frame {
+  max-width: 840px;
+  width: 100%;
+}
+.swiss-rule {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  width: 100%;
+}
+.swiss-header {
+  margin-bottom: 32px;
+}
+.swiss-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+}
+.swiss-logo {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.swiss-meta {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.swiss-sub-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.swiss-label {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.swiss-footer {
+  margin-top: 32px;
+}
+.swiss-footer-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
 }
 
 .bento-grid {

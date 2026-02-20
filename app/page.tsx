@@ -30,10 +30,10 @@ const spaceMono = Space_Mono({
 
 const recentExperiments = [
   {
-    slug: "crypto-bento",
+    slug: "crossfit-bento",
     title: "CrossFit Bento",
     date: "Feb 20, 2026",
-    screenshot: "/screenshots/crypto-bento.png",
+    screenshot: "/screenshots/crossfit-bento.png",
   },
   {
     slug: "sticky-notes",

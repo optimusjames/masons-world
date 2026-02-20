@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Flame } from 'lucide-react';
 import { SwissFrame } from './components/SwissFrame';
@@ -34,7 +34,8 @@ const weekBars = [
   { day: 'Sun', strength: 0, cardio: 20 },
 ];
 
-const heatmapData = [
+// Static seed for SSR — gets replaced client-side immediately
+const INITIAL_HEATMAP = [
   0,1,3,2,0,4,3,1,0,2,
   2,4,3,0,1,3,4,2,3,0,
   0,3,4,2,4,0,1,3,2,4,
@@ -43,6 +44,10 @@ const heatmapData = [
   0,2,4,3,2,4,1,0,3,4,
   2,3,4,0,3,4,3,2,4,3,
 ];
+
+function randomHeatmap() {
+  return Array.from({ length: 70 }, () => Math.floor(Math.random() * 5));
+}
 
 const heatmapColors = ['#33332e', '#6b4a20', '#a06020', '#cc7020', '#e87000'];
 
@@ -53,6 +58,10 @@ function CounterSpan({ value, className, delay = 0 }: { value: number; className
 
 export default function FitnessBento() {
   const [activeTab, setActiveTab] = useState<'consumed' | 'burned'>('consumed');
+  const [heatmapData, setHeatmapData] = useState(INITIAL_HEATMAP);
+
+  // Randomize on first client mount (after hydration)
+  useEffect(() => { setHeatmapData(randomHeatmap()); }, []);
 
   return (
     <div className={s.page}>
@@ -123,6 +132,7 @@ export default function FitnessBento() {
             data={heatmapData}
             cols={10}
             colorStops={heatmapColors}
+            onShuffle={() => setHeatmapData(randomHeatmap())}
             renderCell={(level, i) =>
               level === 4 && i % 3 === 0
                 ? <Flame size={8} strokeWidth={2} color="rgba(0,0,0,0.3)" />

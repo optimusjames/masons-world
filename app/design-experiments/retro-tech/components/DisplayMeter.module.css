@@ -1,0 +1,40 @@
+.displayMeter {
+  flex: 1;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  min-height: 48px;
+  padding: 2px 0;
+  position: relative;
+}
+
+.bar {
+  flex: 1;
+  min-width: 2px;
+  border-radius: 0.5px;
+  background: rgba(200, 210, 200, 0.06);
+  transition: height 0.1s ease;
+}
+
+.filled {
+  background: var(--accent);
+  opacity: 0.45;
+}
+
+.peak {
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2.5px,
+    var(--display-bg) 2.5px,
+    var(--display-bg) 4px
+  );
+}

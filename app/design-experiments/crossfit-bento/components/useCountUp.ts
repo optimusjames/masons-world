@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 export function useCountUp(target: number, duration = 800, delay = 0) {
   const [value, setValue] = useState(0);
   useEffect(() => {
+    if (!isFinite(target) || target === 0) {
+      setValue(target || 0);
+      return;
+    }
     const timeout = setTimeout(() => {
       const start = performance.now();
       function tick() {

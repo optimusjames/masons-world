@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, ReactNode } from 'react';
+import { useState, ReactNode, useCallback } from 'react';
 import { motion } from 'motion/react';
 
 interface AnimatedCardProps {
@@ -11,16 +11,19 @@ interface AnimatedCardProps {
 
 export function AnimatedCard({ children, delay = 0, className }: AnimatedCardProps) {
   const [key, setKey] = useState(0);
-  const hasMounted = useRef(false);
-  const isReplay = hasMounted.current;
 
-  if (key > 0) hasMounted.current = true;
+  const handleClick = useCallback(() => {
+    setKey((k) => k + 1);
+  }, []);
+
+  // key=0 is the initial mount, key>0 is a replay
+  const isReplay = key > 0;
 
   return (
     <motion.div
       key={key}
       className={className}
-      onClick={() => setKey((k) => k + 1)}
+      onClick={handleClick}
       style={{ cursor: 'pointer' }}
       initial={isReplay ? { scale: 0.96 } : { opacity: 0, y: 14 }}
       animate={isReplay ? { scale: 1 } : { opacity: 1, y: 0 }}

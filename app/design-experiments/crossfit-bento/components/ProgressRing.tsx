@@ -1,6 +1,5 @@
 'use client';
 
-import { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { useCountUp } from './useCountUp';
 
@@ -9,7 +8,6 @@ interface ProgressRingProps {
   trackColor?: string;
   fillColor?: string;
   strokeWidth?: number;
-  children?: ReactNode;
 }
 
 export function ProgressRing({
@@ -17,7 +15,6 @@ export function ProgressRing({
   trackColor = 'rgba(42,40,32,0.22)',
   fillColor = 'rgba(90,50,10,0.82)',
   strokeWidth = 18,
-  children,
 }: ProgressRingProps) {
   const r = 72;
   const circumference = 2 * Math.PI * r;
@@ -48,9 +45,7 @@ export function ProgressRing({
         />
       </svg>
       <div className="goal-ring-center">
-        {children ? (
-          <span className="goal-ring-pct">{count}</span>
-        ) : null}
+        <span className="goal-ring-pct">{count}</span>
       </div>
     </div>
   );

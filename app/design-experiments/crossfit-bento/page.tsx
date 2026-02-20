@@ -67,9 +67,7 @@ export default function FitnessBento() {
         {/* Orange -- Goal Progress */}
         {/* Row 0, Col 0 */}
         <AnimatedCard className="card card-goal" delay={0}>
-          <ProgressRing percentage={78}>
-            <span className="goal-ring-pct">78</span>
-          </ProgressRing>
+          <ProgressRing percentage={78} />
           <div className="goal-footer">
             <hr className="goal-rule" />
             <div className="goal-meta">

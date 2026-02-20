@@ -293,6 +293,9 @@ Audit a design experiment's CSS for color and type consistency. Extracts every c
 **`/animation-audit`**
 Audit a design experiment for entrance animations, stagger timing, and interaction feedback. Maps the grid layout, identifies which components need motion (stroke draws, number counters, bar growth, diagonal waves), proposes spring presets for consistency, and wires up click-to-replay. Fits the workflow: `/sketch` then `/design-audit` then `/animation-audit`.
 
+**`/ts-handoff`**
+Light TypeScript cleanup to make components handoff-ready. Catches real bugs (parser failures on edge values, props APIs that don't match behavior, ref logic that breaks on remount) and hygiene issues (missing client directives, unguarded numeric operations) without over-engineering. The final pass before shipping: `/design-audit` then `/animation-audit` then `/ts-handoff`.
+
 **`/sketch`**
 Rapid visual prototyping -- paint with code. Single-file, Tailwind-only, no component libraries, no data layer. Get a visual idea on screen fast and iterate until it feels right. Hardcoded content, fake interactions, inline animations. The napkin drawing before the architecture. Feeds naturally into `/promote` when the design is locked.
 
@@ -310,6 +313,7 @@ Skills are invoked with a slash command in Claude Code:
 /type-spec "Space Grotesk" "IBM Plex Mono"  # Generate type system
 /design-audit crossfit-bento  # Audit colors and type for consistency
 /animation-audit crossfit-bento  # Add entrance animations and stagger timing
+/ts-handoff crossfit-bento       # Light TypeScript cleanup for handoff
 /sketch A breathing app with animated circles  # Rapid visual prototype
 ```
 

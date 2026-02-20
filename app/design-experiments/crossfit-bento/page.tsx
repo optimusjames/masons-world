@@ -43,13 +43,37 @@ export default function FitnessBento() {
 
         {/* Orange — Goal Progress */}
         <div className="card card-goal">
-          <div className="pct">~78%</div>
-          <div>
-            <div className="label"><span className="dot" /> Monthly Goal</div>
-            <div className="date">Feb 2026</div>
+          <div className="goal-ring-wrap">
+            <svg viewBox="0 0 180 180" className="goal-ring-svg">
+              {/* Track */}
+              <circle
+                cx="90" cy="90" r="72"
+                fill="none"
+                stroke="rgba(42,40,32,0.22)"
+                strokeWidth="18"
+                strokeLinecap="round"
+              />
+              {/* Progress arc — 78% */}
+              <circle
+                cx="90" cy="90" r="72"
+                fill="none"
+                stroke="rgba(90,50,10,0.82)"
+                strokeWidth="18"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 72 * 0.78} ${2 * Math.PI * 72 * 0.22}`}
+                transform="rotate(-90 90 90)"
+              />
+            </svg>
+            <div className="goal-ring-center">
+              <span className="goal-ring-pct">78</span>
+            </div>
           </div>
-          <div className="progress-bar">
-            <div className="progress-fill" />
+          <div className="goal-footer">
+            <hr className="goal-rule" />
+            <div className="goal-meta">
+              <div className="label">Monthly Goal</div>
+              <div className="date">Feb 2026</div>
+            </div>
           </div>
         </div>
 
@@ -152,33 +176,43 @@ export default function FitnessBento() {
 
         {/* Donut — Macro split (larger, smoother) */}
         <div className="donut-wrap">
-          <svg viewBox="0 0 200 200" className="donut-svg">
-            <circle cx="100" cy="100" r="78" fill="none" stroke="#3a3830" strokeWidth="24" />
-            {/* Protein — 35% */}
-            <circle
-              cx="100" cy="100" r="78"
-              fill="none" stroke="#e87000" strokeWidth="24"
-              strokeDasharray={`${Math.PI * 156 * 0.35} ${Math.PI * 156 * 0.65}`}
-              strokeDashoffset="0"
-              transform="rotate(-90 100 100)"
-            />
-            {/* Carbs — 40% */}
-            <circle
-              cx="100" cy="100" r="78"
-              fill="none" stroke="#6b7355" strokeWidth="24"
-              strokeDasharray={`${Math.PI * 156 * 0.40} ${Math.PI * 156 * 0.60}`}
-              strokeDashoffset={`${-Math.PI * 156 * 0.35}`}
-              transform="rotate(-90 100 100)"
-            />
-            {/* Fat — 25% */}
-            <circle
-              cx="100" cy="100" r="78"
-              fill="none" stroke="#8b5e3c" strokeWidth="24"
-              strokeDasharray={`${Math.PI * 156 * 0.25} ${Math.PI * 156 * 0.75}`}
-              strokeDashoffset={`${-Math.PI * 156 * 0.75}`}
-              transform="rotate(-90 100 100)"
-            />
-          </svg>
+          {(() => {
+            const r = 78;
+            const cx = 100;
+            const cy = 100;
+            const circumference = 2 * Math.PI * r;
+            const gap = 6; // gap in px between segments
+            const segments = [
+              { pct: 0.35, color: '#e87000' },  // Protein
+              { pct: 0.40, color: '#6b7355' },  // Carbs
+              { pct: 0.25, color: '#8b5e3c' },  // Fat
+            ];
+            let offset = 0;
+            return (
+              <svg viewBox="0 0 200 200" className="donut-svg">
+                <circle cx={cx} cy={cy} r={r} fill="none" stroke="#3a3830" strokeWidth="24" />
+                {segments.map((seg, i) => {
+                  const segLen = circumference * seg.pct - gap;
+                  const dasharray = `${segLen} ${circumference - segLen}`;
+                  const dashoffset = -offset;
+                  offset += circumference * seg.pct;
+                  return (
+                    <circle
+                      key={i}
+                      cx={cx} cy={cy} r={r}
+                      fill="none"
+                      stroke={seg.color}
+                      strokeWidth="24"
+                      strokeLinecap="round"
+                      strokeDasharray={dasharray}
+                      strokeDashoffset={dashoffset}
+                      transform={`rotate(-90 ${cx} ${cy})`}
+                    />
+                  );
+                })}
+              </svg>
+            );
+          })()}
           <div className="donut-center">
             <span className="donut-label">2,340</span>
             <span className="donut-sub">kcal</span>
@@ -210,17 +244,19 @@ export default function FitnessBento() {
               <span className="hr-unit">bpm</span>
               <span className="hr-num">164</span>
             </div>
-            <div className="zone-bars">
-              <div className="zone-bar" style={{ flex: 1, background: '#5a8a5a' }} />
-              <div className="zone-bar" style={{ flex: 1.5, background: '#b8b840' }} />
-              <div className="zone-bar" style={{ flex: 2, background: '#d08030' }} />
-              <div className="zone-bar" style={{ flex: 1.2, background: '#c84040' }} />
-            </div>
-            <div className="zone-labels">
-              <span className="zone-label">Easy</span>
-              <span className="zone-label">Moderate</span>
-              <span className="zone-label">Hard</span>
-              <span className="zone-label">Max</span>
+            <div className="zone-wrap">
+              <div className="zone-bars">
+                <div className="zone-bar" style={{ flex: 1, background: '#5a8a5a' }} />
+                <div className="zone-bar" style={{ flex: 1.5, background: '#b8b840' }} />
+                <div className="zone-bar" style={{ flex: 2, background: '#d08030' }} />
+                <div className="zone-bar" style={{ flex: 1.2, background: '#c84040' }} />
+              </div>
+              <div className="zone-labels">
+                <span className="zone-label">Easy</span>
+                <span className="zone-label">Moderate</span>
+                <span className="zone-label">Hard</span>
+                <span className="zone-label">Max</span>
+              </div>
             </div>
           </div>
           <div className="metric-grid">

@@ -65,6 +65,7 @@ export default function FitnessBento() {
       <div className="bento-grid">
 
         {/* Orange -- Goal Progress */}
+        {/* Row 0, Col 0 */}
         <AnimatedCard className="card card-goal" delay={0}>
           <ProgressRing percentage={78}>
             <span className="goal-ring-pct">78</span>
@@ -79,7 +80,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Calories */}
-        <AnimatedCard className="cal-stack" delay={0.08}>
+        {/* Row 0, Col 1 */}
+        <AnimatedCard className="cal-stack" delay={0.12}>
           <button
             className={`cal-card ${activeTab === 'consumed' ? 'active' : 'inactive'}`}
             onClick={(e) => { e.stopPropagation(); setActiveTab('consumed'); }}
@@ -98,7 +100,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Olive -- Weekly Activity */}
-        <AnimatedCard className="card card-activity" delay={0.16}>
+        {/* Row 0, Col 2 */}
+        <AnimatedCard className="card card-activity" delay={0.24}>
           <div className="title">Weekly<br />Training Load</div>
           <StackedBarChart
             bars={weekBars.map((b) => ({
@@ -113,7 +116,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Activity heatmap */}
-        <AnimatedCard className="card card-streak" delay={0.24}>
+        {/* Row 1, Col 0 */}
+        <AnimatedCard className="card card-streak" delay={0.12}>
           <div className="streak-header">
             <div className="streak-header-left">
               <Flame size={22} strokeWidth={2} color="#e87000" />
@@ -138,7 +142,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Workout Stats */}
-        <AnimatedCard className="stats-stack" delay={0.32}>
+        {/* Row 1, Col 1 */}
+        <AnimatedCard className="stats-stack" delay={0.24}>
           <div className="card-workout">
             <div className="w-title">Today&apos;s WOD</div>
             <motion.div
@@ -167,7 +172,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Donut -- Macro split */}
-        <AnimatedCard delay={0.40}>
+        {/* Row 1, Col 2 */}
+        <AnimatedCard delay={0.36}>
           <DonutChart
             segments={[
               { pct: 0.35, color: '#e87000' },
@@ -181,7 +187,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Brown -- Workout Log */}
-        <AnimatedCard className="card card-log" delay={0.48}>
+        {/* Row 2, Col 0 */}
+        <AnimatedCard className="card card-log" delay={0.24}>
           <div className="log-title">Today&apos;s<br />Lifts</div>
           <div className="exercise-list">
             {exercises.map((e, i) => (
@@ -222,7 +229,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Heart Rate Zone */}
-        <AnimatedCard className="hr-stack" delay={0.56}>
+        {/* Row 2, Col 1 */}
+        <AnimatedCard className="hr-stack" delay={0.36}>
           <div className="card-hr">
             <div className="hr-upper">
               <div className="hr-title">Avg Heart Rate</div>
@@ -254,7 +262,8 @@ export default function FitnessBento() {
         </AnimatedCard>
 
         {/* Sleep stack */}
-        <AnimatedCard className="sleep-stack" delay={0.64}>
+        {/* Row 2, Col 2 */}
+        <AnimatedCard className="sleep-stack" delay={0.48}>
           <div className="card-sleep">
             <div className="sleep-title">Last Night</div>
             <div className="sleep-row">

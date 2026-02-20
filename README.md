@@ -275,17 +275,8 @@ Automated workflow for shipping design experiments: screenshots with agent-brows
 **`/supabase`**
 Comprehensive Supabase CLI wrapper for database operations: schema migrations with validation, TypeScript type generation, edge function deployment, and postgres best practices integration.
 
-**`/palette`**
-Generate a complete color system from a single starting color. Uses chroma-js with OKLCH interpolation to build 50-950 scales, accessible pairings, dark mode variants, and complementary accent/neutral palettes. Outputs ready-to-use CSS custom properties.
-
-**`/image-prep`**
-Prepare images for experiments -- resize, crop to standard presets (hero, card, thumbnail, OG), optimize with sharp, convert to WebP, and generate Next.js `<Image>` markup with correct dimensions.
-
 **`/promote`**
 Make a design experiment importable. Assesses the experiment's current state, runs whatever pipeline passes are needed (design-audit, animation-audit, ts-handoff with CSS Modules), extracts components within the experiment directory, designs a public API, and creates a barrel export (`index.ts`). The experiment stays where it lives -- other pages import directly from it. See sticky-notes for the canonical promoted experiment.
-
-**`/type-spec`**
-Generate a typographic system from a font pairing. Builds a modular type scale with fluid clamp() sizing, vertical rhythm, CSS custom properties, and an optional specimen preview. Supports the 40 curated pairings from the font-pairings experiment.
 
 **`/design-audit`**
 Audit a design experiment's CSS for color and type consistency. Extracts every color and font-size, groups by context (light bg vs dark bg), flags near-duplicates and inconsistent roles, then suggests unifications. Interactive -- select which fixes to apply, get a before/after summary table of the cleaned system.
@@ -307,10 +298,7 @@ Skills are invoked with a slash command in Claude Code:
 /sanity-check              # Review current code
 /ship-experiment           # Ship the current experiment
 /supabase migrate "..."    # Create database migration
-/palette #2563EB           # Generate color system from hex
-/image-prep public/img/    # Resize and optimize images
 /promote sticky-notes      # Extract reusable component
-/type-spec "Space Grotesk" "IBM Plex Mono"  # Generate type system
 /design-audit crossfit-bento  # Audit colors and type for consistency
 /animation-audit crossfit-bento  # Add entrance animations and stagger timing
 /ts-handoff crossfit-bento       # Light TypeScript cleanup for handoff

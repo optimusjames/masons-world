@@ -297,7 +297,7 @@ Audit a design experiment for entrance animations, stagger timing, and interacti
 Light TypeScript cleanup to make components handoff-ready. Catches real bugs (parser failures on edge values, props APIs that don't match behavior, ref logic that breaks on remount) and hygiene issues (missing client directives, unguarded numeric operations) without over-engineering. The final pass before shipping: `/design-audit` then `/animation-audit` then `/ts-handoff`.
 
 **`/sketch`**
-Rapid visual prototyping -- paint with code. Single-file, Tailwind-only, no component libraries, no data layer. Get a visual idea on screen fast and iterate until it feels right. Hardcoded content, fake interactions, inline animations. The napkin drawing before the architecture. Feeds naturally into `/promote` when the design is locked.
+Rapid visual prototyping -- paint with code. Two files (page.tsx + styles.css), plain CSS with descriptive class names, no component libraries, no data layer. Get a visual idea on screen fast and iterate until it feels right. Hardcoded content, fake interactions, CSS animations. The napkin drawing before the architecture. Feeds naturally into `/promote` when the design is locked.
 
 ### Using Skills
 

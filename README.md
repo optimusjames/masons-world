@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### CrossFit Bento
+
+**February 20, 2026**
+
+[![CrossFit Bento](./public/screenshots/crypto-bento.png)](https://www.joshcoolman.com/design-experiments/crypto-bento)
+
+Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black.
+
+**Tags:** Bento Grid - Dashboard - Geist Pixel - Dark Theme
+
+**[View Live →](https://www.joshcoolman.com/design-experiments/crypto-bento) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/crypto-bento)**
+
+---
+
 ### Sticky Notes
 
 **February 18, 2026**

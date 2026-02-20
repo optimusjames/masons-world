@@ -49,23 +49,28 @@ All of that comes later. Right now, we're sketching.
 
 ## Rules
 
-### Single File
-Everything goes in one `page.tsx`. Components, styles, state, animations — all inline. Do not create separate files. Do not extract components into their own modules. If the file hits 500 lines, that's fine. This is a sketch.
+### Two Files: page.tsx + styles.css
+Each sketch gets a `page.tsx` and a `styles.css` in the same directory. Import the stylesheet at the top of the page:
 
-### Tailwind Only
-Use Tailwind classes for all styling. No CSS Modules, no separate `.css` files, no styled-components. Tailwind gives instant visual feedback in the dev server — that's the whole point.
+```tsx
+import './styles.css';
+```
 
-For things Tailwind can't do (complex animations, custom gradients), use inline `style={{}}` or a single `<style>` tag at the top of the component.
+Put layout, colors, typography, animations, hover states, pseudo-elements — everything visual — in `styles.css` with plain class names. Use inline `style={{}}` only for truly dynamic values (computed positions, state-driven transforms).
+
+This gives full CSS power: pseudo-elements, media queries, complex selectors, keyframe animations, `:hover`/`:focus`/`:nth-child` — things that are impossible or awkward with inline styles alone.
+
+**No Tailwind.** This project doesn't use it. No CSS Modules either — just plain `styles.css` with descriptive class names.
 
 ### No Component Libraries
-Do NOT import shadcn, Radix, Headless UI, or any component library unless the user explicitly asks for it. Build visual elements from raw HTML + Tailwind:
+Do NOT import shadcn, Radix, Headless UI, or any component library unless the user explicitly asks for it. Build visual elements from raw HTML + CSS:
 
-- **Buttons**: `<button className="px-4 py-2 rounded-lg bg-blue-600 text-white">`
+- **Buttons**: `<button className="primary-btn">` styled in CSS
 - **Dropdowns**: A `div` with `useState` toggle and absolute positioning
 - **Tabs**: Buttons that swap a state variable, conditional rendering
 - **Modals**: Fixed overlay with a centered card
-- **Toggles**: A `div` with transition classes and onClick
-- **Inputs**: Native `<input>` with Tailwind styling
+- **Toggles**: A `div` with CSS transitions and onClick
+- **Inputs**: Native `<input>` styled in CSS
 
 This keeps the visual decisions in your hands, not a library's.
 
@@ -89,9 +94,9 @@ Do NOT run `npm run build` between iterations. The user is running the dev serve
 
 ### Getting Started
 
-1. Create the file at `app/design-experiments/[name]/page.tsx`
-2. Add `'use client';` at the top
-3. Get the first version on screen — fast. 30-40 lines. Something visible. Don't overthink it.
+1. Create `app/design-experiments/[name]/styles.css` with the visual foundation
+2. Create `app/design-experiments/[name]/page.tsx` with `'use client';` and `import './styles.css';`
+3. Get the first version on screen — fast. Something visible. Don't overthink it.
 4. Tell the user what's on screen and wait for direction.
 
 Do NOT add the experiment to the gallery. This is a sketch — it's not shipped yet.
@@ -113,24 +118,21 @@ If the user says something vague like "this doesn't feel right" or "something's 
 
 ### Animations
 
-CSS transitions and animations are a key part of sketching. Use:
+CSS transitions and animations are a key part of sketching. Define them in `styles.css`:
 
-- **Tailwind transitions**: `transition-all duration-300 ease-in-out`
-- **Tailwind animations**: `animate-pulse`, `animate-bounce`, `animate-spin`
-- **Custom keyframes** via inline `<style>` for anything specific:
+```css
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+.breathe { animation: breathe 4s ease-in-out infinite; }
 
-```tsx
-<style>{`
-  @keyframes breathe {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.3); opacity: 1; }
-  }
-  .breathe { animation: breathe 4s ease-in-out infinite; }
-`}</style>
+.card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
 ```
 
 - **Spring effects**: Use `cubic-bezier(0.34, 1.56, 0.64, 1)` for overshoot
-- **Staggered entries**: Use `transition-delay` with incrementing values
+- **Staggered entries**: Use `transition-delay` with incrementing values or `:nth-child` selectors
 
 ### When It's Done
 

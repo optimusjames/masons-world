@@ -69,6 +69,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'crypto-bento',
+      date: 'February 20, 2026',
+      title: 'CrossFit Bento',
+      description: 'Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black.',
+      screenshot: '/screenshots/crypto-bento.png',
+      tags: ['Bento Grid', 'Dashboard', 'Geist Pixel', 'Dark Theme']
+    },
+    {
       slug: 'sticky-notes',
       date: 'February 18, 2026',
       title: 'Sticky Notes',

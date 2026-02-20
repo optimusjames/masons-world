@@ -1,0 +1,639 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;0,900&display=swap');
+
+@font-face {
+  font-family: 'Geist Pixel Square';
+  src: url('https://unpkg.com/geist@1.7.0/dist/fonts/geist-pixel/GeistPixel-Square.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.bento-page {
+  min-height: 100vh;
+  background: #1c1c1a;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: 280px 240px 280px;
+  grid-template-rows: auto auto auto;
+  gap: 14px;
+  max-width: 840px;
+}
+
+/* --- Shared --- */
+.card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* ========= ROW 1 ========= */
+
+/* Orange — Goal Progress */
+.card-goal {
+  background: #e87000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+.card-goal .pct {
+  font-size: 52px;
+  font-weight: 900;
+  color: #2a2820;
+  line-height: 1;
+  letter-spacing: -2px;
+  font-style: italic;
+}
+.card-goal .label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2a2820;
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 8px;
+}
+.card-goal .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2a2820;
+}
+.card-goal .date {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #c05800;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+.card-goal .progress-bar {
+  background: rgba(0,0,0,0.3);
+  border-radius: 6px;
+  height: 10px;
+  width: 100%;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.card-goal .progress-fill {
+  background: #2a2820;
+  height: 100%;
+  border-radius: 6px;
+  width: 78%;
+}
+
+/* Calories stack — standardized stat cards */
+.cal-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #b8b4aa;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.cal-card {
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-bottom: 1px solid rgba(42, 40, 32, 0.12);
+}
+.cal-card.active { background: transparent; }
+.cal-card.inactive { background: rgba(42, 40, 32, 0.08); }
+.cal-card .cal-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2a2820;
+}
+.cal-card .cal-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.cal-card .cal-unit {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #777;
+}
+.cal-card .cal-value {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: #2a2820;
+}
+
+.cal-net {
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.cal-net-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2a2820;
+}
+.cal-net-unit {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 10px;
+  color: #777;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.cal-net-value {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: #6b8f6b;
+}
+
+/* Olive — Weekly Activity */
+.card-activity {
+  background: #6b7355;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+.card-activity .title {
+  color: #3a3f2e;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.15;
+}
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  margin-top: 14px;
+  flex: 1;
+}
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.bar-stack {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+}
+.bar-dark {
+  width: 100%;
+  background: #3a3f2e;
+  border-radius: 2px;
+}
+.bar-black {
+  width: 100%;
+  background: #2a2820;
+  border-radius: 2px;
+}
+.bar-day {
+  font-size: 9px;
+  color: #3a3f2e;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.activity-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 1px solid rgba(168, 176, 144, 0.3);
+  padding-top: 8px;
+}
+.activity-footer .ft-label {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #c0c8a8;
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.activity-footer .ft-value {
+  color: #c0c8a8;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* ========= ROW 2 ========= */
+
+/* Activity heatmap card */
+.card-streak {
+  background: rgba(56, 56, 48, 0.55);
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 10px;
+}
+.streak-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.streak-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.streak-number {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #e87000;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+}
+.streak-count {
+  color: #7a7a72;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.streak-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  width: 100%;
+  flex: 1;
+}
+.streak-cell {
+  border-radius: 3px;
+  aspect-ratio: 1;
+  min-height: 0;
+}
+.streak-cell.l0 { background: #33332e; }
+.streak-cell.l1 { background: #6b4a20; }
+.streak-cell.l2 { background: #a06020; }
+.streak-cell.l3 { background: #cc7020; }
+.streak-cell.l4 {
+  background: #e87000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.streak-months {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+.streak-month {
+  font-size: 9px;
+  color: #5a5a52;
+  font-weight: 500;
+}
+
+/* Workout Stats stack */
+.stats-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-workout {
+  background: #b8b4aa;
+  border-radius: 14px;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-workout .w-title {
+  color: #2a2820;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.2;
+}
+.card-workout .w-amount {
+  font-size: 30px;
+  font-weight: 300;
+  color: #444;
+  margin-top: 8px;
+  line-height: 1;
+}
+.card-workout .w-unit {
+  color: #999;
+}
+.stat-card {
+  background: #b8b4aa;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stat-card .stat-label {
+  color: #2a2820;
+  font-weight: 700;
+  font-size: 13px;
+}
+.stat-card .stat-sub {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #888;
+  font-size: 9px;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.stat-card .stat-num {
+  font-size: 30px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1;
+}
+
+/* Donut — Macro split */
+.donut-wrap {
+  background: rgba(56, 56, 48, 0.55);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  position: relative;
+}
+.donut-svg {
+  width: 100%;
+  height: 100%;
+}
+.donut-center {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.donut-label {
+  color: #bbb;
+  font-size: 28px;
+  font-weight: 700;
+}
+.donut-sub {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #666;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ========= ROW 3 ========= */
+
+/* Brown — Workout Log */
+.card-log {
+  background: #8b5e3c;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.card-log .log-title {
+  color: #2a2820;
+  font-weight: 900;
+  font-size: 19px;
+  line-height: 1.15;
+}
+.exercise-list {
+  margin-top: 12px;
+}
+.exercise-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(42, 40, 32, 0.2);
+}
+.exercise-row:last-child {
+  border-bottom: none;
+}
+.exercise-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #000;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+.exercise-detail {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #000;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.pr-badge {
+  font-family: 'Geist Pixel Square', monospace;
+  background: #2a2820;
+  color: #e87000;
+  font-size: 7px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+/* Heart Rate + Zone */
+.hr-stack {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+}
+.card-hr {
+  background: rgba(158, 158, 120, 0.8);
+  border-radius: 14px;
+  padding: 14px;
+}
+.card-hr .hr-title {
+  color: #2a2820;
+  font-weight: 700;
+  font-size: 13px;
+}
+.card-hr .hr-sub {
+  color: #3a3830;
+  font-size: 11px;
+  margin-top: 2px;
+}
+.card-hr .hr-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.card-hr .hr-unit {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #555;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card-hr .hr-num {
+  font-size: 38px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1;
+}
+.zone-bars {
+  display: flex;
+  gap: 3px;
+  margin-top: 10px;
+}
+.zone-bar {
+  height: 22px;
+  border-radius: 3px;
+  transition: opacity 0.2s;
+}
+.zone-bar:hover {
+  opacity: 0.8;
+}
+.zone-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.zone-label {
+  font-size: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Metric tiles */
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.metric-tile {
+  background: #b8b4aa;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: default;
+  transition: background 0.15s;
+}
+.metric-tile:hover {
+  background: #aaa69c;
+}
+.metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+}
+.metric-label {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 9px;
+  color: #000;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Sleep stack — mirrors HR stack layout */
+.sleep-stack {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+}
+.card-sleep {
+  background: rgba(56, 56, 48, 0.55);
+  border-radius: 14px;
+  padding: 14px;
+}
+.card-sleep .sleep-title {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #888;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card-sleep .sleep-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.card-sleep .sleep-unit-label {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #666;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card-sleep .sleep-hours {
+  color: #d4d0c8;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1;
+}
+.sleep-stages {
+  display: flex;
+  gap: 2px;
+  margin-top: 10px;
+  height: 22px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.sleep-stage {
+  height: 100%;
+}
+.sleep-legend {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.sleep-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  color: #666;
+}
+.sleep-legend-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+/* Dark metric tiles for sleep column */
+.metric-grid-dark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.metric-tile-dark {
+  background: rgba(56, 56, 48, 0.55);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.metric-tile-dark .metric-value {
+  color: #d4d0c8;
+}
+.metric-tile-dark .metric-label {
+  color: #666;
+}

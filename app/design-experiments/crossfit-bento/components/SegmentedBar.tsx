@@ -1,0 +1,45 @@
+interface Segment {
+  flex: number;
+  color: string;
+}
+
+interface LegendItem {
+  color: string;
+  label: string;
+}
+
+interface SegmentedBarProps {
+  segments: Segment[];
+  labels?: string[];
+  legend?: LegendItem[];
+  className?: string;
+}
+
+export function SegmentedBar({ segments, labels, legend, className }: SegmentedBarProps) {
+  return (
+    <div className={className}>
+      <div style={{ display: 'flex', gap: segments.length > 4 ? '2px' : '3px', height: '22px', borderRadius: '3px', overflow: 'hidden' }}>
+        {segments.map((seg, i) => (
+          <div key={i} style={{ flex: seg.flex, background: seg.color, height: '100%' }} />
+        ))}
+      </div>
+      {labels && (
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
+          {labels.map((l) => (
+            <span key={l} className="zone-label">{l}</span>
+          ))}
+        </div>
+      )}
+      {legend && (
+        <div className="sleep-legend">
+          {legend.map((item) => (
+            <div key={item.label} className="sleep-legend-item">
+              <span className="sleep-legend-dot" style={{ background: item.color }} />
+              {item.label}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

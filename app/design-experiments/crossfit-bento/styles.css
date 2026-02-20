@@ -145,7 +145,7 @@
 .card-goal .label {
   color: rgba(60, 30, 2, 0.92);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 17px;
 }
 .card-goal .date {
   font-family: 'Geist Pixel Square', monospace;
@@ -195,7 +195,7 @@
   font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #777;
+  color: #2a2820;
 }
 .cal-card .cal-value {
   font-size: 30px;
@@ -218,7 +218,7 @@
 .cal-net-unit {
   font-family: 'Geist Pixel Square', monospace;
   font-size: 10px;
-  color: #777;
+  color: #666;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -326,13 +326,13 @@
 .streak-number {
   font-family: 'Geist Pixel Square', monospace;
   color: #e87000;
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 900;
   line-height: 1;
 }
 .streak-count {
-  color: #7a7a72;
-  font-size: 11px;
+  color: #666;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -367,7 +367,7 @@
 }
 .streak-month {
   font-size: 9px;
-  color: #5a5a52;
+  color: #666;
   font-weight: 500;
 }
 
@@ -395,12 +395,12 @@
 .card-workout .w-amount {
   font-size: 30px;
   font-weight: 300;
-  color: #444;
+  color: #2a2820;
   margin-top: 8px;
   line-height: 1;
 }
 .card-workout .w-unit {
-  color: #999;
+  color: #2a2820;
 }
 .stat-card {
   background: #b8b4aa;
@@ -417,7 +417,7 @@
 }
 .stat-card .stat-sub {
   font-family: 'Geist Pixel Square', monospace;
-  color: #888;
+  color: #2a2820;
   font-size: 9px;
   margin-top: 2px;
   letter-spacing: 0.5px;
@@ -426,7 +426,7 @@
 .stat-card .stat-num {
   font-size: 30px;
   font-weight: 700;
-  color: #222;
+  color: #2a2820;
   line-height: 1;
 }
 
@@ -451,8 +451,8 @@
   align-items: center;
 }
 .donut-label {
-  color: #bbb;
-  font-size: 28px;
+  color: #d4d0c8;
+  font-size: 30px;
   font-weight: 700;
 }
 .donut-sub {
@@ -495,14 +495,14 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #000;
+  color: #2a2820;
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.2px;
 }
 .exercise-detail {
   font-family: 'Geist Pixel Square', monospace;
-  color: #000;
+  color: #2a2820;
   font-size: 10px;
   letter-spacing: 0.5px;
 }
@@ -524,9 +524,14 @@
   gap: 10px;
 }
 .card-hr {
-  background: rgba(190, 188, 160, 0.5);
   border-radius: 14px;
-  padding: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.hr-upper {
+  background: rgba(190, 188, 160, 0.5);
+  padding: 14px 14px 10px;
 }
 .card-hr .hr-title {
   color: #2a2820;
@@ -534,19 +539,23 @@
   font-size: 13px;
 }
 .card-hr .hr-sub {
-  color: #3a3830;
-  font-size: 11px;
+  color: #2a2820;
+  font-size: 12px;
   margin-top: 2px;
+}
+.hr-lower {
+  background: #4d4b40;
+  padding: 8px 14px 10px;
+  flex: 1;
 }
 .card-hr .hr-row {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: 4px;
 }
 .card-hr .hr-unit {
   font-family: 'Geist Pixel Square', monospace;
-  color: #000;
+  color: #d4d0c8;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -554,18 +563,19 @@
 .card-hr .hr-num {
   font-size: 38px;
   font-weight: 700;
-  color: #222;
+  color: #d4d0c8;
   line-height: 1;
 }
-.zone-wrap {
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
-  padding: 6px;
+.zone-bars-wrap {
+  margin-top: 8px;
+}
+.sleep-bar-wrap {
   margin-top: 10px;
 }
 .zone-bars {
   display: flex;
   gap: 3px;
+  margin-top: 8px;
 }
 .zone-bar {
   height: 22px;
@@ -581,8 +591,8 @@
   margin-top: 4px;
 }
 .zone-label {
-  font-size: 8px;
-  color: #1c1c1a;
+  font-size: 9px;
+  color: #d4d0c8;
   font-weight: 500;
 }
 
@@ -611,12 +621,12 @@
 .metric-value {
   font-size: 22px;
   font-weight: 700;
-  color: #000;
+  color: #2a2820;
 }
 .metric-label {
   font-family: 'Geist Pixel Square', monospace;
   font-size: 9px;
-  color: #000;
+  color: #2a2820;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -635,7 +645,7 @@
 }
 .card-sleep .sleep-title {
   font-family: 'Geist Pixel Square', monospace;
-  color: #888;
+  color: #666;
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
@@ -680,7 +690,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 8px;
+  font-size: 9px;
   color: #666;
 }
 .sleep-legend-dot {

@@ -287,6 +287,9 @@ Graduate a design experiment into a reusable component. Analyzes an experiment, 
 **`/type-spec`**
 Generate a typographic system from a font pairing. Builds a modular type scale with fluid clamp() sizing, vertical rhythm, CSS custom properties, and an optional specimen preview. Supports the 40 curated pairings from the font-pairings experiment.
 
+**`/design-audit`**
+Audit a design experiment's CSS for color and type consistency. Extracts every color and font-size, groups by context (light bg vs dark bg), flags near-duplicates and inconsistent roles, then suggests unifications. Interactive -- select which fixes to apply, get a before/after summary table of the cleaned system.
+
 **`/sketch`**
 Rapid visual prototyping -- paint with code. Single-file, Tailwind-only, no component libraries, no data layer. Get a visual idea on screen fast and iterate until it feels right. Hardcoded content, fake interactions, inline animations. The napkin drawing before the architecture. Feeds naturally into `/promote` when the design is locked.
 
@@ -302,6 +305,7 @@ Skills are invoked with a slash command in Claude Code:
 /image-prep public/img/    # Resize and optimize images
 /promote sticky-notes      # Extract reusable component
 /type-spec "Space Grotesk" "IBM Plex Mono"  # Generate type system
+/design-audit crossfit-bento  # Audit colors and type for consistency
 /sketch A breathing app with animated circles  # Rapid visual prototype
 ```
 

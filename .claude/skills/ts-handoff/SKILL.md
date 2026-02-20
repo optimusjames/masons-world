@@ -91,14 +91,35 @@ For each finding, include:
 
 Present via AskUserQuestion so the user can approve which items to fix.
 
-## Step 4: Implement Fixes
+## Step 4: CSS Modules Conversion
+
+If the experiment uses a single global `styles.css` with extracted components, suggest converting to CSS Modules for portability. This makes each component self-contained -- grab the `.tsx` + `.module.css` and it works anywhere.
+
+### How to split:
+- Each component gets its own `ComponentName.module.css` with only the styles it references
+- Page-level layout styles (grid, card wrappers, typography) go in `page.module.css`
+- Font imports (`@import url(...)`, `@font-face`) stay in the page module
+- Use camelCase for multi-word class names (`cardGoal` not `card-goal`)
+- Components import their module: `import css from './Component.module.css'`
+- Page imports its module: `import s from './page.module.css'`
+
+### API cleanup during conversion:
+- If a component receives CSS class names as props (e.g., `className: 'bar-dark'`), replace with semantic props like `color: string` so the component doesn't depend on external stylesheets
+- Components that accept a `className` prop for wrapper styling (like SegmentedBar) -- that's fine, keep it
+
+### When NOT to convert:
+- Single-file experiments that haven't been extracted into components yet
+- Experiments the user considers "just poking around" -- only convert polished work
+- Ask first if unsure
+
+## Step 5: Implement Fixes
 
 For each approved fix:
 - Make the minimal change needed
 - Don't restructure surrounding code
 - Don't add types, comments, or abstractions beyond the fix itself
 
-## Step 5: Verify
+## Step 6: Verify
 
 1. `npm run build` -- must pass clean
 2. List what was changed

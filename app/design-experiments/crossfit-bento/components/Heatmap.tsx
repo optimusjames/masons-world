@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import { motion } from 'motion/react';
+import css from './Heatmap.module.css';
 
 interface HeatmapProps {
   data: number[];
@@ -13,23 +14,24 @@ interface HeatmapProps {
 export function Heatmap({ data, cols, colorStops, renderCell }: HeatmapProps) {
   return (
     <div
-      className="streak-grid"
+      className={css.grid}
       style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
     >
       {data.map((level, i) => {
         const row = Math.floor(i / cols);
         const col = i % cols;
         const waveDelay = (row + col) * 0.02;
+        const isMax = level === colorStops.length - 1;
 
         return (
           <motion.div
             key={i}
-            className="streak-cell"
+            className={css.cell}
             style={{
               background: colorStops[level] ?? colorStops[0],
-              display: level === colorStops.length - 1 ? 'flex' : undefined,
-              alignItems: level === colorStops.length - 1 ? 'center' : undefined,
-              justifyContent: level === colorStops.length - 1 ? 'center' : undefined,
+              display: isMax ? 'flex' : undefined,
+              alignItems: isMax ? 'center' : undefined,
+              justifyContent: isMax ? 'center' : undefined,
             }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

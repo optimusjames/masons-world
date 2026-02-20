@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useCountUp } from './useCountUp';
+import styles from './StatDisplay.module.css';
 
 interface StatDisplayProps {
   label?: string;
@@ -38,7 +39,7 @@ export function StatDisplay({ label, unit, value, valueColor, className }: StatD
     <div className={className}>
       {label && (
         <motion.span
-          className="cal-label"
+          className={styles.label}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.05 }}
@@ -46,9 +47,9 @@ export function StatDisplay({ label, unit, value, valueColor, className }: StatD
           {label}
         </motion.span>
       )}
-      <div className="cal-row">
-        <span className="cal-unit">{unit}</span>
-        <span className="cal-value" style={valueColor ? { color: valueColor } : undefined}>
+      <div className={styles.row}>
+        <span className={styles.unit}>{unit}</span>
+        <span className={styles.value} style={valueColor ? { color: valueColor } : undefined}>
           {displayValue}
         </span>
       </div>

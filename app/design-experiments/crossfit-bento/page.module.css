@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;0,900&display=swap');
+
+@font-face {
+  font-family: 'Geist Pixel Square';
+  src: url('https://unpkg.com/geist@1.7.0/dist/fonts/geist-pixel/GeistPixel-Square.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.page {
+  min-height: 100vh;
+  background: #141412;
+  padding: 48px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 280px 240px 280px;
+  grid-template-rows: auto auto auto;
+  gap: 14px;
+  max-width: 840px;
+}
+
+/* Shared card base */
+.card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* Orange — Goal Progress */
+.cardGoal {
+  background: #e87000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+.goalFooter {
+  width: 100%;
+  margin-top: 8px;
+}
+.goalMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.goalRule {
+  border: none;
+  border-top: 2px solid rgba(42, 40, 32, 0.25);
+  margin: 0 0 8px 0;
+}
+.goalLabel {
+  color: rgba(60, 30, 2, 0.92);
+  font-weight: 700;
+  font-size: 17px;
+}
+.goalDate {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #8b4500;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* Calories stack */
+.calStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #b8b4aa;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.calCard {
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-bottom: 1px solid rgba(42, 40, 32, 0.12);
+}
+.calCardActive { background: transparent; }
+.calCardInactive { background: rgba(42, 40, 32, 0.08); }
+
+/* Olive — Weekly Activity */
+.cardActivity {
+  background: #6b7355;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+.activityTitle {
+  color: #3a3f2e;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+/* Activity heatmap */
+.cardStreak {
+  background: rgba(56, 56, 48, 0.55);
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 10px;
+}
+.streakHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.streakHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.streakNumber {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #e87000;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+}
+.streakCount {
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.streakMonths {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+.streakMonth {
+  font-size: 9px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Workout Stats stack */
+.statsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cardWorkout {
+  background: #b8b4aa;
+  border-radius: 14px;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wTitle {
+  color: #2a2820;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.2;
+}
+.wAmount {
+  font-size: 30px;
+  font-weight: 300;
+  color: #2a2820;
+  margin-top: 8px;
+  line-height: 1;
+}
+.wUnit {
+  color: #2a2820;
+}
+.statCard {
+  background: #b8b4aa;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.statLabel {
+  color: #2a2820;
+  font-weight: 700;
+  font-size: 13px;
+}
+.statSub {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #2a2820;
+  font-size: 9px;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.statNum {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2a2820;
+  line-height: 1;
+}
+
+/* Donut labels */
+.donutLabel {
+  color: #d4d0c8;
+  font-size: 30px;
+  font-weight: 700;
+}
+.donutSub {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #666;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Brown — Workout Log */
+.cardLog {
+  background: #8b5e3c;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.logTitle {
+  color: #2a2820;
+  font-weight: 900;
+  font-size: 19px;
+  line-height: 1.15;
+}
+.exerciseList {
+  margin-top: 12px;
+}
+.exerciseRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(42, 40, 32, 0.2);
+}
+.exerciseRow:last-child {
+  border-bottom: none;
+}
+.exerciseName {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2a2820;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+.exerciseDetail {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #2a2820;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.prBadge {
+  font-family: 'Geist Pixel Square', monospace;
+  background: #2a2820;
+  color: #e87000;
+  font-size: 7px;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+/* Heart Rate + Zone */
+.hrStack {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+}
+.cardHr {
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.hrUpper {
+  background: rgba(190, 188, 160, 0.5);
+  padding: 14px 14px 10px;
+}
+.hrTitle {
+  color: #2a2820;
+  font-weight: 700;
+  font-size: 13px;
+}
+.hrSub {
+  color: #2a2820;
+  font-size: 12px;
+  margin-top: 2px;
+}
+.hrLower {
+  background: #4d4b40;
+  padding: 8px 14px 10px;
+  flex: 1;
+}
+.hrRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.hrUnit {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #d4d0c8;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.hrNum {
+  font-size: 38px;
+  font-weight: 700;
+  color: #d4d0c8;
+  line-height: 1;
+}
+.zoneBarsWrap {
+  margin-top: 8px;
+}
+.sleepBarWrap {
+  margin-top: 10px;
+}
+
+/* Metric grids */
+.metricGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.metricGridDark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Sleep stack */
+.sleepStack {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+}
+.cardSleep {
+  background: rgba(56, 56, 48, 0.55);
+  border-radius: 14px;
+  padding: 14px;
+}
+.sleepTitle {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #666;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sleepRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.sleepUnitLabel {
+  font-family: 'Geist Pixel Square', monospace;
+  color: #666;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sleepHours {
+  color: #d4d0c8;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1;
+}

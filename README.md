@@ -282,7 +282,7 @@ Generate a complete color system from a single starting color. Uses chroma-js wi
 Prepare images for experiments -- resize, crop to standard presets (hero, card, thumbnail, OG), optimize with sharp, convert to WebP, and generate Next.js `<Image>` markup with correct dimensions.
 
 **`/promote`**
-Graduate a design experiment into a reusable component. Analyzes an experiment, identifies the reusable core, designs a typed props API, extracts it into a portable component with CSS Modules, and refactors the original experiment to use the new component.
+Make a design experiment importable. Assesses the experiment's current state, runs whatever pipeline passes are needed (design-audit, animation-audit, ts-handoff with CSS Modules), extracts components within the experiment directory, designs a public API, and creates a barrel export (`index.ts`). The experiment stays where it lives -- other pages import directly from it. See sticky-notes for the canonical promoted experiment.
 
 **`/type-spec`**
 Generate a typographic system from a font pairing. Builds a modular type scale with fluid clamp() sizing, vertical rhythm, CSS custom properties, and an optional specimen preview. Supports the 40 curated pairings from the font-pairings experiment.

@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'motion/react';
+import css from './StackedBarChart.module.css';
 
 interface BarSegment {
   height: string;
-  className: string;
+  color: string;
 }
 
 interface Bar {
@@ -20,14 +21,15 @@ interface StackedBarChartProps {
 export function StackedBarChart({ bars, footer }: StackedBarChartProps) {
   return (
     <>
-      <div className="bar-chart">
+      <div className={css.chart}>
         {bars.map((b, colIdx) => (
-          <div key={b.label} className="bar-col">
-            <div className="bar-stack">
+          <div key={b.label} className={css.col}>
+            <div className={css.stack}>
               {b.segments.map((seg, i) => (
                 <motion.div
                   key={i}
-                  className={seg.className}
+                  className={css.segment}
+                  style={{ background: seg.color }}
                   initial={{ height: '0%' }}
                   animate={{ height: seg.height }}
                   transition={{
@@ -39,19 +41,19 @@ export function StackedBarChart({ bars, footer }: StackedBarChartProps) {
                 />
               ))}
             </div>
-            <span className="bar-day">{b.label}</span>
+            <span className={css.dayLabel}>{b.label}</span>
           </div>
         ))}
       </div>
       {footer && (
         <motion.div
-          className="activity-footer"
+          className={css.footer}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.5 }}
         >
-          <span className="ft-label">{footer.label}</span>
-          <span className="ft-value">{footer.value}</span>
+          <span className={css.footerLabel}>{footer.label}</span>
+          <span className={css.footerValue}>{footer.value}</span>
         </motion.div>
       )}
     </>

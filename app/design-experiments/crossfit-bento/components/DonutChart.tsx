@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import { motion } from 'motion/react';
+import css from './DonutChart.module.css';
 
 interface DonutSegment {
   pct: number;
@@ -22,8 +23,8 @@ export function DonutChart({ segments, gap = 6, children }: DonutChartProps) {
   let offset = 0;
 
   return (
-    <div className="donut-wrap">
-      <svg viewBox="0 0 200 200" className="donut-svg">
+    <div className={css.wrap}>
+      <svg viewBox="0 0 200 200" className={css.svg}>
         <circle cx={cx} cy={cy} r={r} fill="none" stroke="#3a3830" strokeWidth="24" />
         {segments.map((seg, i) => {
           const segLen = circumference * seg.pct - gap;
@@ -54,7 +55,7 @@ export function DonutChart({ segments, gap = 6, children }: DonutChartProps) {
       </svg>
       {children && (
         <motion.div
-          className="donut-center"
+          className={css.center}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.5 }}

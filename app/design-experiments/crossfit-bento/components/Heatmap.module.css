@@ -1,0 +1,11 @@
+.grid {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  flex: 1;
+}
+.cell {
+  border-radius: 3px;
+  aspect-ratio: 1;
+  min-height: 0;
+}

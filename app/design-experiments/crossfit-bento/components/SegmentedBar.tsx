@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
+import css from './SegmentedBar.module.css';
 
 interface Segment {
   flex: number;
@@ -41,15 +42,15 @@ export function SegmentedBar({ segments, labels, legend, className }: SegmentedB
       {labels && (
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
           {labels.map((l) => (
-            <span key={l} className="zone-label">{l}</span>
+            <span key={l} className={css.zoneLabel}>{l}</span>
           ))}
         </div>
       )}
       {legend && (
-        <div className="sleep-legend">
+        <div className={css.legend}>
           {legend.map((item) => (
-            <div key={item.label} className="sleep-legend-item">
-              <span className="sleep-legend-dot" style={{ background: item.color }} />
+            <div key={item.label} className={css.legendItem}>
+              <span className={css.legendDot} style={{ background: item.color }} />
               {item.label}
             </div>
           ))}

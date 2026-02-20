@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useCountUp } from './useCountUp';
+import styles from './ProgressRing.module.css';
 
 interface ProgressRingProps {
   percentage: number;
@@ -21,8 +22,8 @@ export function ProgressRing({
   const count = useCountUp(percentage, 1000, 100);
 
   return (
-    <div className="goal-ring-wrap">
-      <svg viewBox="0 0 180 180" className="goal-ring-svg">
+    <div className={styles.wrap}>
+      <svg viewBox="0 0 180 180" className={styles.svg}>
         <circle
           cx="90" cy="90" r={r}
           fill="none"
@@ -44,8 +45,8 @@ export function ProgressRing({
           transition={{ type: 'spring', damping: 20, stiffness: 60, delay: 0.1 }}
         />
       </svg>
-      <div className="goal-ring-center">
-        <span className="goal-ring-pct">{count}</span>
+      <div className={styles.center}>
+        <span className={styles.pct}>{count}</span>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
+import styles from './SwissFrame.module.css';
 
 interface SwissFrameProps {
   logo: string;
@@ -12,32 +13,32 @@ interface SwissFrameProps {
 
 export function SwissFrame({ logo, meta, subLabels, footerLabels, children }: SwissFrameProps) {
   return (
-    <div className="swiss-frame">
-      <header className="swiss-header">
-        <div className="swiss-rule" />
-        <div className="swiss-header-row">
-          <span className="swiss-logo">{logo}</span>
-          <span className="swiss-meta">{meta}</span>
+    <div className={styles.frame}>
+      <header className={styles.header}>
+        <div className={styles.rule} />
+        <div className={styles.headerRow}>
+          <span className={styles.logo}>{logo}</span>
+          <span className={styles.meta}>{meta}</span>
         </div>
-        <div className="swiss-rule" />
-        <div className="swiss-sub-row">
+        <div className={styles.rule} />
+        <div className={styles.subRow}>
           {subLabels.map((label) => (
-            <span key={label} className="swiss-label">{label}</span>
+            <span key={label} className={styles.label}>{label}</span>
           ))}
         </div>
-        <div className="swiss-rule" />
+        <div className={styles.rule} />
       </header>
 
       {children}
 
-      <footer className="swiss-footer">
-        <div className="swiss-rule" />
-        <div className="swiss-footer-row">
+      <footer className={styles.footer}>
+        <div className={styles.rule} />
+        <div className={styles.footerRow}>
           {footerLabels.map((label) => (
-            <span key={label} className="swiss-label">{label}</span>
+            <span key={label} className={styles.label}>{label}</span>
           ))}
         </div>
-        <div className="swiss-rule" />
+        <div className={styles.rule} />
       </footer>
     </div>
   );

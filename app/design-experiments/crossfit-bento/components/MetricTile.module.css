@@ -1,0 +1,45 @@
+.tile {
+  background: #b8b4aa;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: default;
+  transition: background 0.15s;
+}
+.tile:hover {
+  background: #aaa69c;
+}
+.tileDark {
+  background: rgba(56, 56, 48, 0.55);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2a2820;
+}
+.label {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 9px;
+  color: #2a2820;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.tileDark .value {
+  color: #d4d0c8;
+}
+.tileDark .label {
+  color: #666;
+}

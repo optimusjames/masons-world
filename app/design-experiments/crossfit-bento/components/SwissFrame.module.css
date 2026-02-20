@@ -1,0 +1,52 @@
+.frame {
+  max-width: 840px;
+  width: 100%;
+}
+.rule {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  width: 100%;
+}
+.header {
+  margin-bottom: 32px;
+}
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+}
+.logo {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+.meta {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.subRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.label {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.footer {
+  margin-top: 32px;
+}
+.footerRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}

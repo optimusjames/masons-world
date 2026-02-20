@@ -13,7 +13,7 @@ import { SegmentedBar } from './components/SegmentedBar';
 import { MetricTile } from './components/MetricTile';
 import { AnimatedCard } from './components/AnimatedCard';
 import { useCountUp } from './components/useCountUp';
-import './styles.css';
+import s from './page.module.css';
 
 const exercises = [
   { name: 'Back Squat', detail: '315 x 3', pr: true },
@@ -55,73 +55,69 @@ export default function FitnessBento() {
   const [activeTab, setActiveTab] = useState<'consumed' | 'burned'>('consumed');
 
   return (
-    <div className="bento-page">
+    <div className={s.page}>
       <SwissFrame
         logo="Iron Republic"
         meta="Athlete Dashboard"
         subLabels={['Week 07 / Feb 2026', 'Training Block: Strength', 'Day 14 of 42']}
         footerLabels={['System v2.4.1', 'Last Sync 08:42', 'Next Session: 17:30']}
       >
-      <div className="bento-grid">
+      <div className={s.grid}>
 
-        {/* Orange -- Goal Progress */}
-        {/* Row 0, Col 0 */}
-        <AnimatedCard className="card card-goal" delay={0}>
+        {/* Row 0, Col 0 — Goal Progress */}
+        <AnimatedCard className={`${s.card} ${s.cardGoal}`} delay={0}>
           <ProgressRing percentage={78} />
-          <div className="goal-footer">
-            <hr className="goal-rule" />
-            <div className="goal-meta">
-              <div className="label">Monthly Goal</div>
-              <div className="date">Feb 2026</div>
+          <div className={s.goalFooter}>
+            <hr className={s.goalRule} />
+            <div className={s.goalMeta}>
+              <div className={s.goalLabel}>Monthly Goal</div>
+              <div className={s.goalDate}>Feb 2026</div>
             </div>
           </div>
         </AnimatedCard>
 
-        {/* Calories */}
-        {/* Row 0, Col 1 */}
-        <AnimatedCard className="cal-stack" delay={0.12}>
+        {/* Row 0, Col 1 — Calories */}
+        <AnimatedCard className={s.calStack} delay={0.12}>
           <button
-            className={`cal-card ${activeTab === 'consumed' ? 'active' : 'inactive'}`}
+            className={`${s.calCard} ${activeTab === 'consumed' ? s.calCardActive : s.calCardInactive}`}
             onClick={(e) => { e.stopPropagation(); setActiveTab('consumed'); }}
           >
             <StatDisplay label="Consumed" unit="kcal" value="2,340" />
           </button>
           <button
-            className={`cal-card ${activeTab === 'burned' ? 'active' : 'inactive'}`}
+            className={`${s.calCard} ${activeTab === 'burned' ? s.calCardActive : s.calCardInactive}`}
             onClick={(e) => { e.stopPropagation(); setActiveTab('burned'); }}
           >
             <StatDisplay label="Burned" unit="kcal" value="1,870" />
           </button>
-          <div className="cal-card active" style={{ borderBottom: 'none' }}>
+          <div className={`${s.calCard} ${s.calCardActive}`} style={{ borderBottom: 'none' }}>
             <StatDisplay label="Surplus" unit="kcal" value="+470" valueColor="#6b8f6b" />
           </div>
         </AnimatedCard>
 
-        {/* Olive -- Weekly Activity */}
-        {/* Row 0, Col 2 */}
-        <AnimatedCard className="card card-activity" delay={0.24}>
-          <div className="title">Weekly<br />Training Load</div>
+        {/* Row 0, Col 2 — Weekly Activity */}
+        <AnimatedCard className={`${s.card} ${s.cardActivity}`} delay={0.24}>
+          <div className={s.activityTitle}>Weekly<br />Training Load</div>
           <StackedBarChart
             bars={weekBars.map((b) => ({
               label: b.day,
               segments: [
-                { height: `${b.strength}%`, className: 'bar-dark' },
-                { height: `${b.cardio}%`, className: 'bar-black' },
+                { height: `${b.strength}%`, color: '#3a3f2e' },
+                { height: `${b.cardio}%`, color: '#2a2820' },
               ],
             }))}
             footer={{ label: 'This Week:', value: '12,480 cal' }}
           />
         </AnimatedCard>
 
-        {/* Activity heatmap */}
-        {/* Row 1, Col 0 */}
-        <AnimatedCard className="card card-streak" delay={0.12}>
-          <div className="streak-header">
-            <div className="streak-header-left">
+        {/* Row 1, Col 0 — Activity Heatmap */}
+        <AnimatedCard className={`${s.card} ${s.cardStreak}`} delay={0.12}>
+          <div className={s.streakHeader}>
+            <div className={s.streakHeaderLeft}>
               <Flame size={22} strokeWidth={2} color="#e87000" />
-              <CounterSpan value={14} className="streak-number" delay={200} />
+              <CounterSpan value={14} className={s.streakNumber} delay={200} />
             </div>
-            <span className="streak-count">Day<br />Streak</span>
+            <span className={s.streakCount}>Day<br />Streak</span>
           </div>
           <Heatmap
             data={heatmapData}
@@ -133,44 +129,42 @@ export default function FitnessBento() {
                 : null
             }
           />
-          <div className="streak-months">
-            <span className="streak-month">Jan</span>
-            <span className="streak-month">Feb</span>
+          <div className={s.streakMonths}>
+            <span className={s.streakMonth}>Jan</span>
+            <span className={s.streakMonth}>Feb</span>
           </div>
         </AnimatedCard>
 
-        {/* Workout Stats */}
-        {/* Row 1, Col 1 */}
-        <AnimatedCard className="stats-stack" delay={0.24}>
-          <div className="card-workout">
-            <div className="w-title">Today&apos;s WOD</div>
+        {/* Row 1, Col 1 — Workout Stats */}
+        <AnimatedCard className={s.statsStack} delay={0.24}>
+          <div className={s.cardWorkout}>
+            <div className={s.wTitle}>Today&apos;s WOD</div>
             <motion.div
-              className="w-amount"
+              className={s.wAmount}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.15 }}
             >
-              Fran<span className="w-unit"> 3:42</span>
+              Fran<span className={s.wUnit}> 3:42</span>
             </motion.div>
           </div>
-          <div className="stat-card">
+          <div className={s.statCard}>
             <div>
-              <div className="stat-label">Workouts</div>
-              <div className="stat-sub">This month</div>
+              <div className={s.statLabel}>Workouts</div>
+              <div className={s.statSub}>This month</div>
             </div>
-            <CounterSpan value={18} className="stat-num" delay={200} />
+            <CounterSpan value={18} className={s.statNum} delay={200} />
           </div>
-          <div className="stat-card">
+          <div className={s.statCard}>
             <div>
-              <div className="stat-label">PRs Hit</div>
-              <div className="stat-sub">Last 30 days</div>
+              <div className={s.statLabel}>PRs Hit</div>
+              <div className={s.statSub}>Last 30 days</div>
             </div>
-            <CounterSpan value={5} className="stat-num" delay={300} />
+            <CounterSpan value={5} className={s.statNum} delay={300} />
           </div>
         </AnimatedCard>
 
-        {/* Donut -- Macro split */}
-        {/* Row 1, Col 2 */}
+        {/* Row 1, Col 2 — Donut Macro Split */}
         <AnimatedCard delay={0.36}>
           <DonutChart
             segments={[
@@ -179,20 +173,19 @@ export default function FitnessBento() {
               { pct: 0.25, color: '#8b5e3c' },
             ]}
           >
-            <span className="donut-label">2,340</span>
-            <span className="donut-sub">kcal</span>
+            <span className={s.donutLabel}>2,340</span>
+            <span className={s.donutSub}>kcal</span>
           </DonutChart>
         </AnimatedCard>
 
-        {/* Brown -- Workout Log */}
-        {/* Row 2, Col 0 */}
-        <AnimatedCard className="card card-log" delay={0.24}>
-          <div className="log-title">Today&apos;s<br />Lifts</div>
-          <div className="exercise-list">
+        {/* Row 2, Col 0 — Workout Log */}
+        <AnimatedCard className={`${s.card} ${s.cardLog}`} delay={0.24}>
+          <div className={s.logTitle}>Today&apos;s<br />Lifts</div>
+          <div className={s.exerciseList}>
             {exercises.map((e, i) => (
               <motion.div
                 key={e.name}
-                className="exercise-row"
+                className={s.exerciseRow}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -202,10 +195,10 @@ export default function FitnessBento() {
                   delay: i * 0.06,
                 }}
               >
-                <div className="exercise-name">
+                <div className={s.exerciseName}>
                   {e.pr && (
                     <motion.span
-                      className="pr-badge"
+                      className={s.prBadge}
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{
@@ -220,24 +213,23 @@ export default function FitnessBento() {
                   )}
                   {e.name}
                 </div>
-                <span className="exercise-detail">{e.detail}</span>
+                <span className={s.exerciseDetail}>{e.detail}</span>
               </motion.div>
             ))}
           </div>
         </AnimatedCard>
 
-        {/* Heart Rate Zone */}
-        {/* Row 2, Col 1 */}
-        <AnimatedCard className="hr-stack" delay={0.36}>
-          <div className="card-hr">
-            <div className="hr-upper">
-              <div className="hr-title">Avg Heart Rate</div>
-              <div className="hr-sub">During WOD</div>
+        {/* Row 2, Col 1 — Heart Rate Zone */}
+        <AnimatedCard className={s.hrStack} delay={0.36}>
+          <div className={s.cardHr}>
+            <div className={s.hrUpper}>
+              <div className={s.hrTitle}>Avg Heart Rate</div>
+              <div className={s.hrSub}>During WOD</div>
             </div>
-            <div className="hr-lower">
-              <div className="hr-row">
-                <span className="hr-unit">bpm</span>
-                <CounterSpan value={164} className="hr-num" delay={200} />
+            <div className={s.hrLower}>
+              <div className={s.hrRow}>
+                <span className={s.hrUnit}>bpm</span>
+                <CounterSpan value={164} className={s.hrNum} delay={200} />
               </div>
               <SegmentedBar
                 segments={[
@@ -247,11 +239,11 @@ export default function FitnessBento() {
                   { flex: 1.2, color: '#c84040' },
                 ]}
                 labels={['Easy', 'Moderate', 'Hard', 'Max']}
-                className="zone-bars-wrap"
+                className={s.zoneBarsWrap}
               />
             </div>
           </div>
-          <div className="metric-grid">
+          <div className={s.metricGrid}>
             <MetricTile value="8.2" label="Sleep" />
             <MetricTile value="72" label="HRV" />
             <MetricTile value="186" label="lbs" />
@@ -259,14 +251,13 @@ export default function FitnessBento() {
           </div>
         </AnimatedCard>
 
-        {/* Sleep stack */}
-        {/* Row 2, Col 2 */}
-        <AnimatedCard className="sleep-stack" delay={0.48}>
-          <div className="card-sleep">
-            <div className="sleep-title">Last Night</div>
-            <div className="sleep-row">
-              <span className="sleep-unit-label">hrs</span>
-              <CounterSpan value={8} className="sleep-hours" delay={200} />
+        {/* Row 2, Col 2 — Sleep */}
+        <AnimatedCard className={s.sleepStack} delay={0.48}>
+          <div className={s.cardSleep}>
+            <div className={s.sleepTitle}>Last Night</div>
+            <div className={s.sleepRow}>
+              <span className={s.sleepUnitLabel}>hrs</span>
+              <CounterSpan value={8} className={s.sleepHours} delay={200} />
             </div>
             <SegmentedBar
               segments={[
@@ -282,10 +273,10 @@ export default function FitnessBento() {
                 { color: '#3a6b8b', label: 'Light' },
                 { color: '#5a8bab', label: 'REM' },
               ]}
-              className="sleep-bar-wrap"
+              className={s.sleepBarWrap}
             />
           </div>
-          <div className="metric-grid-dark">
+          <div className={s.metricGridDark}>
             <MetricTile value="92" label="Score" variant="dark" />
             <MetricTile value="11:15" label="Bedtime" variant="dark" />
             <MetricTile value="7:28" label="Wake" variant="dark" />

@@ -1,6 +1,4 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-.contact-sheet {
+.root {
   background: #000;
   color: #aaa;
   font-family: "SF Mono", "Menlo", "Monaco", monospace;
@@ -10,61 +8,27 @@
   transition: padding-right 0.25s ease;
 }
 
-.contact-sheet.sidebar-open {
+.sidebarOpen {
   padding-right: 384px;
-}
-
-.picker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 48px);
-  gap: 24px;
-}
-
-.picker-label {
-  max-width: 360px;
-  text-align: center;
-  line-height: 1.6;
-  color: #555;
-}
-
-.picker button {
-  background: #111;
-  color: #888;
-  border: 1px solid #333;
-  border-radius: 6px;
-  padding: 14px 28px;
-  font-family: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
-}
-
-.picker button:hover {
-  border-color: #555;
-  color: #ccc;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding-top: 56px;
   padding-bottom: 16px;
   border-bottom: 1px solid #181818;
   margin-bottom: 20px;
 }
 
-.header h1 {
+.title {
   font-size: 13px;
   font-weight: 600;
   color: #ccc;
   font-family: inherit;
 }
 
-.header-right {
+.headerRight {
   display: flex;
   align-items: baseline;
   gap: 16px;
@@ -72,23 +36,6 @@
 
 .meta {
   color: #aaa;
-}
-
-.change-btn {
-  background: none;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  color: #aaa;
-  font-family: inherit;
-  font-size: 11px;
-  padding: 4px 10px;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
-}
-
-.change-btn:hover {
-  border-color: #ccc;
-  color: #ccc;
 }
 
 .grid {
@@ -105,13 +52,18 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .cell:hover {
   border-color: #3a3a3a;
 }
 
-.cell .image-well {
+.selected {
+  border-color: #4a9eff;
+}
+
+.imageWell {
   position: relative;
   aspect-ratio: 4 / 3;
   background: #000;
@@ -122,22 +74,14 @@
   overflow: hidden;
 }
 
-.cell {
-  cursor: pointer;
-}
-
-.cell.selected {
-  border-color: #4a9eff;
-}
-
-.cell img {
+.imageWell img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   display: block;
 }
 
-.cell figcaption {
+.caption {
   padding: 10px 0 2px;
   word-break: break-all;
   display: flex;
@@ -145,21 +89,12 @@
   gap: 8px;
 }
 
-.caption-text {
+.captionText {
   flex: 1;
   min-width: 0;
 }
 
-@media (max-width: 1100px) {
-  .grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 700px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* Select checkbox */
-.select-check {
+.selectCheck {
   width: 18px;
   height: 18px;
   border-radius: 3px;
@@ -172,13 +107,13 @@
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.select-check.checked {
+.checked {
   background: #4a9eff;
   border-color: #4a9eff;
   color: #fff;
 }
 
-.cell:hover .select-check {
+.cell:hover .selectCheck {
   border-color: #666;
 }
 
@@ -198,12 +133,12 @@
   transition: transform 0.25s ease;
 }
 
-.sidebar.open {
+.open {
   transform: translateX(0);
 }
 
-.sidebar-header {
-  padding: 72px 16px 12px;
+.sidebarHeader {
+  padding: 16px;
   border-bottom: 1px solid #1a1a1a;
   display: flex;
   justify-content: space-between;
@@ -213,12 +148,12 @@
   font-size: 11px;
 }
 
-.sidebar-actions {
+.sidebarActions {
   display: flex;
   gap: 6px;
 }
 
-.sidebar-actions button {
+.sidebarActions button {
   background: none;
   border: 1px solid #aaa;
   border-radius: 4px;
@@ -230,24 +165,24 @@
   transition: border-color 0.15s, color 0.15s;
 }
 
-.sidebar-actions button:hover {
+.sidebarActions button:hover {
   border-color: #666;
   color: #ccc;
 }
 
-.sidebar-actions button.copied {
+.copied {
   border-color: #4a4;
   color: #4a4;
 }
 
-.sidebar-list {
+.sidebarList {
   list-style: none;
   overflow-y: auto;
   flex: 1;
   padding: 8px 0;
 }
 
-.sidebar-list li {
+.sidebarItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -255,11 +190,11 @@
   gap: 8px;
 }
 
-.sidebar-list li:hover {
+.sidebarItem:hover {
   background: #141414;
 }
 
-.sidebar-thumb {
+.sidebarThumb {
   width: 72px;
   height: 72px;
   object-fit: cover;
@@ -268,14 +203,14 @@
   background: #111;
 }
 
-.sidebar-filename {
+.sidebarFilename {
   word-break: break-all;
   color: #aaa;
   flex: 1;
   min-width: 0;
 }
 
-.sidebar-remove {
+.sidebarRemove {
   background: none;
   border: 1px solid #aaa;
   border-radius: 4px;
@@ -292,7 +227,15 @@
   transition: border-color 0.15s, color 0.15s;
 }
 
-.sidebar-remove:hover {
+.sidebarRemove:hover {
   border-color: #e55;
   color: #e55;
+}
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }

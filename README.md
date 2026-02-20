@@ -261,6 +261,21 @@ Automated workflow for shipping design experiments: screenshots with agent-brows
 **`/supabase`**
 Comprehensive Supabase CLI wrapper for database operations: schema migrations with validation, TypeScript type generation, edge function deployment, and postgres best practices integration.
 
+**`/palette`**
+Generate a complete color system from a single starting color. Uses chroma-js with OKLCH interpolation to build 50-950 scales, accessible pairings, dark mode variants, and complementary accent/neutral palettes. Outputs ready-to-use CSS custom properties.
+
+**`/image-prep`**
+Prepare images for experiments -- resize, crop to standard presets (hero, card, thumbnail, OG), optimize with sharp, convert to WebP, and generate Next.js `<Image>` markup with correct dimensions.
+
+**`/promote`**
+Graduate a design experiment into a reusable component. Analyzes an experiment, identifies the reusable core, designs a typed props API, extracts it into a portable component with CSS Modules, and refactors the original experiment to use the new component.
+
+**`/type-spec`**
+Generate a typographic system from a font pairing. Builds a modular type scale with fluid clamp() sizing, vertical rhythm, CSS custom properties, and an optional specimen preview. Supports the 40 curated pairings from the font-pairings experiment.
+
+**`/sketch`**
+Rapid visual prototyping -- paint with code. Single-file, Tailwind-only, no component libraries, no data layer. Get a visual idea on screen fast and iterate until it feels right. Hardcoded content, fake interactions, inline animations. The napkin drawing before the architecture. Feeds naturally into `/promote` when the design is locked.
+
 ### Using Skills
 
 Skills are invoked with a slash command in Claude Code:
@@ -269,6 +284,11 @@ Skills are invoked with a slash command in Claude Code:
 /sanity-check              # Review current code
 /ship-experiment           # Ship the current experiment
 /supabase migrate "..."    # Create database migration
+/palette #2563EB           # Generate color system from hex
+/image-prep public/img/    # Resize and optimize images
+/promote sticky-notes      # Extract reusable component
+/type-spec "Space Grotesk" "IBM Plex Mono"  # Generate type system
+/sketch A breathing app with animated circles  # Rapid visual prototype
 ```
 
 ### Skill Location

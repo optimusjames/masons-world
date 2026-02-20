@@ -6,6 +6,20 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 ## Experiments
 
+### Retro Tech Control Panel
+
+**February 20, 2026**
+
+[![Retro Tech Control Panel](./public/screenshots/retro-tech.png)](https://www.joshcoolman.com/design-experiments/retro-tech)
+
+Hardware-inspired control panel rendered in CSS. Aluminum chassis with corner screws, OLED-style display with animated segmented LED meters, rotary knobs with drag interaction, vertical faders, toggle switches, tactile buttons, and a self-filling perf-grid speaker grille. Inspired by Teenage Engineering TP-7/TX-6, Braun noise gate pedal, and Work Louder numpad. DM Mono labels with Archivo Narrow model name. Warm gray surface palette with single orange accent.
+
+**Tags:** Hardware UI - Neumorphic - Interactive Controls - CSS Animation
+
+**[View Live →](https://www.joshcoolman.com/design-experiments/retro-tech) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/retro-tech)**
+
+---
+
 ### CrossFit Bento
 
 **February 20, 2026**

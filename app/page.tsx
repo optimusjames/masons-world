@@ -30,6 +30,12 @@ const spaceMono = Space_Mono({
 
 const recentExperiments = [
   {
+    slug: "retro-tech",
+    title: "Retro Tech Control Panel",
+    date: "Feb 20, 2026",
+    screenshot: "/screenshots/retro-tech.png",
+  },
+  {
     slug: "crossfit-bento",
     title: "CrossFit Bento",
     date: "Feb 20, 2026",
@@ -40,12 +46,6 @@ const recentExperiments = [
     title: "Sticky Notes",
     date: "Feb 18, 2026",
     screenshot: "/screenshots/sticky-notes.png",
-  },
-  {
-    slug: "contact-sheet",
-    title: "Contact Sheet",
-    date: "Feb 17, 2026",
-    screenshot: "/screenshots/contact-sheet.png",
   },
 ];
 

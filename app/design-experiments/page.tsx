@@ -69,6 +69,14 @@ export default function Home() {
 
   const experiments: Experiment[] = [
     {
+      slug: 'retro-tech',
+      date: 'February 20, 2026',
+      title: 'Retro Tech Control Panel',
+      description: 'Hardware-inspired control panel rendered in CSS. Aluminum chassis with corner screws, OLED-style display with animated segmented LED meters, rotary knobs with drag interaction, vertical faders, toggle switches, tactile buttons, and a self-filling perf-grid speaker grille. Inspired by Teenage Engineering TP-7/TX-6, Braun noise gate pedal, and Work Louder numpad. DM Mono labels with Archivo Narrow model name. Warm gray surface palette with single orange accent.',
+      screenshot: '/screenshots/retro-tech.png',
+      tags: ['Hardware UI', 'Neumorphic', 'Interactive Controls', 'CSS Animation']
+    },
+    {
       slug: 'crossfit-bento',
       date: 'February 20, 2026',
       title: 'CrossFit Bento',

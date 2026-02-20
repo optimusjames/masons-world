@@ -1,4 +1,7 @@
+'use client';
+
 import { ReactNode } from 'react';
+import { motion } from 'motion/react';
 
 interface DonutSegment {
   pct: number;
@@ -28,24 +31,36 @@ export function DonutChart({ segments, gap = 6, children }: DonutChartProps) {
           const dashoffset = -offset;
           offset += circumference * seg.pct;
           return (
-            <circle
+            <motion.circle
               key={i}
               cx={cx} cy={cy} r={r}
               fill="none"
               stroke={seg.color}
               strokeWidth="24"
               strokeLinecap="round"
-              strokeDasharray={dasharray}
               strokeDashoffset={dashoffset}
               transform={`rotate(-90 ${cx} ${cy})`}
+              initial={{ strokeDasharray: `0 ${circumference}` }}
+              animate={{ strokeDasharray: dasharray }}
+              transition={{
+                type: 'spring',
+                damping: 20,
+                stiffness: 60,
+                delay: i * 0.12,
+              }}
             />
           );
         })}
       </svg>
       {children && (
-        <div className="donut-center">
+        <motion.div
+          className="donut-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.5 }}
+        >
           {children}
-        </div>
+        </motion.div>
       )}
     </div>
   );

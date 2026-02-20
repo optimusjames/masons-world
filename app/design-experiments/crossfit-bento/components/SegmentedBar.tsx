@@ -1,3 +1,7 @@
+'use client';
+
+import { motion } from 'motion/react';
+
 interface Segment {
   flex: number;
   color: string;
@@ -20,7 +24,18 @@ export function SegmentedBar({ segments, labels, legend, className }: SegmentedB
     <div className={className}>
       <div style={{ display: 'flex', gap: segments.length > 4 ? '2px' : '3px', height: '22px', borderRadius: '3px', overflow: 'hidden' }}>
         {segments.map((seg, i) => (
-          <div key={i} style={{ flex: seg.flex, background: seg.color, height: '100%' }} />
+          <motion.div
+            key={i}
+            style={{ background: seg.color, height: '100%' }}
+            initial={{ flex: 0 }}
+            animate={{ flex: seg.flex }}
+            transition={{
+              type: 'spring',
+              damping: 20,
+              stiffness: 150,
+              delay: i * 0.06,
+            }}
+          />
         ))}
       </div>
       {labels && (

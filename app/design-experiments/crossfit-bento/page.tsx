@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import { Flame } from 'lucide-react';
 import { SwissFrame } from './components/SwissFrame';
 import { ProgressRing } from './components/ProgressRing';
@@ -10,6 +11,8 @@ import { Heatmap } from './components/Heatmap';
 import { DonutChart } from './components/DonutChart';
 import { SegmentedBar } from './components/SegmentedBar';
 import { MetricTile } from './components/MetricTile';
+import { AnimatedCard } from './components/AnimatedCard';
+import { useCountUp } from './components/useCountUp';
 import './styles.css';
 
 const exercises = [
@@ -43,6 +46,11 @@ const heatmapData = [
 
 const heatmapColors = ['#33332e', '#6b4a20', '#a06020', '#cc7020', '#e87000'];
 
+function CounterSpan({ value, className, delay = 0 }: { value: number; className: string; delay?: number }) {
+  const count = useCountUp(value, 700, delay);
+  return <span className={className}>{count}</span>;
+}
+
 export default function FitnessBento() {
   const [activeTab, setActiveTab] = useState<'consumed' | 'burned'>('consumed');
 
@@ -56,8 +64,8 @@ export default function FitnessBento() {
       >
       <div className="bento-grid">
 
-        {/* Orange — Goal Progress */}
-        <div className="card card-goal">
+        {/* Orange -- Goal Progress */}
+        <AnimatedCard className="card card-goal" delay={0}>
           <ProgressRing percentage={78}>
             <span className="goal-ring-pct">78</span>
           </ProgressRing>
@@ -68,29 +76,29 @@ export default function FitnessBento() {
               <div className="date">Feb 2026</div>
             </div>
           </div>
-        </div>
+        </AnimatedCard>
 
         {/* Calories */}
-        <div className="cal-stack">
+        <AnimatedCard className="cal-stack" delay={0.08}>
           <button
             className={`cal-card ${activeTab === 'consumed' ? 'active' : 'inactive'}`}
-            onClick={() => setActiveTab('consumed')}
+            onClick={(e) => { e.stopPropagation(); setActiveTab('consumed'); }}
           >
             <StatDisplay label="Consumed" unit="kcal" value="2,340" />
           </button>
           <button
             className={`cal-card ${activeTab === 'burned' ? 'active' : 'inactive'}`}
-            onClick={() => setActiveTab('burned')}
+            onClick={(e) => { e.stopPropagation(); setActiveTab('burned'); }}
           >
             <StatDisplay label="Burned" unit="kcal" value="1,870" />
           </button>
           <div className="cal-card active" style={{ borderBottom: 'none' }}>
             <StatDisplay label="Surplus" unit="kcal" value="+470" valueColor="#6b8f6b" />
           </div>
-        </div>
+        </AnimatedCard>
 
-        {/* Olive — Weekly Activity */}
-        <div className="card card-activity">
+        {/* Olive -- Weekly Activity */}
+        <AnimatedCard className="card card-activity" delay={0.16}>
           <div className="title">Weekly<br />Training Load</div>
           <StackedBarChart
             bars={weekBars.map((b) => ({
@@ -102,14 +110,14 @@ export default function FitnessBento() {
             }))}
             footer={{ label: 'This Week:', value: '12,480 cal' }}
           />
-        </div>
+        </AnimatedCard>
 
         {/* Activity heatmap */}
-        <div className="card card-streak">
+        <AnimatedCard className="card card-streak" delay={0.24}>
           <div className="streak-header">
             <div className="streak-header-left">
               <Flame size={22} strokeWidth={2} color="#e87000" />
-              <span className="streak-number">14</span>
+              <CounterSpan value={14} className="streak-number" delay={200} />
             </div>
             <span className="streak-count">Day<br />Streak</span>
           </div>
@@ -127,60 +135,94 @@ export default function FitnessBento() {
             <span className="streak-month">Jan</span>
             <span className="streak-month">Feb</span>
           </div>
-        </div>
+        </AnimatedCard>
 
         {/* Workout Stats */}
-        <div className="stats-stack">
+        <AnimatedCard className="stats-stack" delay={0.32}>
           <div className="card-workout">
             <div className="w-title">Today&apos;s WOD</div>
-            <div className="w-amount">Fran<span className="w-unit"> 3:42</span></div>
+            <motion.div
+              className="w-amount"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+            >
+              Fran<span className="w-unit"> 3:42</span>
+            </motion.div>
           </div>
           <div className="stat-card">
             <div>
               <div className="stat-label">Workouts</div>
               <div className="stat-sub">This month</div>
             </div>
-            <span className="stat-num">18</span>
+            <CounterSpan value={18} className="stat-num" delay={200} />
           </div>
           <div className="stat-card">
             <div>
               <div className="stat-label">PRs Hit</div>
               <div className="stat-sub">Last 30 days</div>
             </div>
-            <span className="stat-num">5</span>
+            <CounterSpan value={5} className="stat-num" delay={300} />
           </div>
-        </div>
+        </AnimatedCard>
 
-        {/* Donut — Macro split */}
-        <DonutChart
-          segments={[
-            { pct: 0.35, color: '#e87000' },
-            { pct: 0.40, color: '#6b7355' },
-            { pct: 0.25, color: '#8b5e3c' },
-          ]}
-        >
-          <span className="donut-label">2,340</span>
-          <span className="donut-sub">kcal</span>
-        </DonutChart>
+        {/* Donut -- Macro split */}
+        <AnimatedCard delay={0.40}>
+          <DonutChart
+            segments={[
+              { pct: 0.35, color: '#e87000' },
+              { pct: 0.40, color: '#6b7355' },
+              { pct: 0.25, color: '#8b5e3c' },
+            ]}
+          >
+            <span className="donut-label">2,340</span>
+            <span className="donut-sub">kcal</span>
+          </DonutChart>
+        </AnimatedCard>
 
-        {/* Brown — Workout Log */}
-        <div className="card card-log">
+        {/* Brown -- Workout Log */}
+        <AnimatedCard className="card card-log" delay={0.48}>
           <div className="log-title">Today&apos;s<br />Lifts</div>
           <div className="exercise-list">
-            {exercises.map((e) => (
-              <div key={e.name} className="exercise-row">
+            {exercises.map((e, i) => (
+              <motion.div
+                key={e.name}
+                className="exercise-row"
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  type: 'spring',
+                  damping: 20,
+                  stiffness: 200,
+                  delay: i * 0.06,
+                }}
+              >
                 <div className="exercise-name">
-                  {e.pr && <span className="pr-badge">PR</span>}
+                  {e.pr && (
+                    <motion.span
+                      className="pr-badge"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: 'spring',
+                        damping: 10,
+                        stiffness: 300,
+                        delay: i * 0.06 + 0.15,
+                      }}
+                    >
+                      PR
+                    </motion.span>
+                  )}
                   {e.name}
                 </div>
                 <span className="exercise-detail">{e.detail}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </AnimatedCard>
 
         {/* Heart Rate Zone */}
-        <div className="hr-stack">
+        <AnimatedCard className="hr-stack" delay={0.56}>
           <div className="card-hr">
             <div className="hr-upper">
               <div className="hr-title">Avg Heart Rate</div>
@@ -189,7 +231,7 @@ export default function FitnessBento() {
             <div className="hr-lower">
               <div className="hr-row">
                 <span className="hr-unit">bpm</span>
-                <span className="hr-num">164</span>
+                <CounterSpan value={164} className="hr-num" delay={200} />
               </div>
               <SegmentedBar
                 segments={[
@@ -209,15 +251,15 @@ export default function FitnessBento() {
             <MetricTile value="186" label="lbs" />
             <MetricTile value="14%" label="Body Fat" />
           </div>
-        </div>
+        </AnimatedCard>
 
         {/* Sleep stack */}
-        <div className="sleep-stack">
+        <AnimatedCard className="sleep-stack" delay={0.64}>
           <div className="card-sleep">
             <div className="sleep-title">Last Night</div>
             <div className="sleep-row">
               <span className="sleep-unit-label">hrs</span>
-              <span className="sleep-hours">8.2</span>
+              <CounterSpan value={8} className="sleep-hours" delay={200} />
             </div>
             <SegmentedBar
               segments={[
@@ -242,7 +284,7 @@ export default function FitnessBento() {
             <MetricTile value="7:28" label="Wake" variant="dark" />
             <MetricTile value="2" label="Wakes" variant="dark" />
           </div>
-        </div>
+        </AnimatedCard>
       </div>
       </SwissFrame>
     </div>

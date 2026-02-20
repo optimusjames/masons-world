@@ -1,4 +1,8 @@
+'use client';
+
 import { ReactNode } from 'react';
+import { motion } from 'motion/react';
+import { useCountUp } from './useCountUp';
 
 interface ProgressRingProps {
   percentage: number;
@@ -17,6 +21,8 @@ export function ProgressRing({
 }: ProgressRingProps) {
   const r = 72;
   const circumference = 2 * Math.PI * r;
+  const count = useCountUp(percentage, 1000, 100);
+
   return (
     <div className="goal-ring-wrap">
       <svg viewBox="0 0 180 180" className="goal-ring-svg">
@@ -27,18 +33,24 @@ export function ProgressRing({
           strokeWidth={strokeWidth}
           strokeLinecap="round"
         />
-        <circle
+        <motion.circle
           cx="90" cy="90" r={r}
           fill="none"
           stroke={fillColor}
           strokeWidth={strokeWidth}
           strokeLinecap="round"
-          strokeDasharray={`${circumference * (percentage / 100)} ${circumference * (1 - percentage / 100)}`}
           transform="rotate(-90 90 90)"
+          initial={{ strokeDasharray: `0 ${circumference}` }}
+          animate={{
+            strokeDasharray: `${circumference * (percentage / 100)} ${circumference * (1 - percentage / 100)}`,
+          }}
+          transition={{ type: 'spring', damping: 20, stiffness: 60, delay: 0.1 }}
         />
       </svg>
       <div className="goal-ring-center">
-        {children}
+        {children ? (
+          <span className="goal-ring-pct">{count}</span>
+        ) : null}
       </div>
     </div>
   );

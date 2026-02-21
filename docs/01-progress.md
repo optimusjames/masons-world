@@ -8,6 +8,31 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Retro Tech: skeuomorphic audio interface
+
+**Date:** 2026-02-20
+
+Built a skeuomorphic audio control panel -- an RC-1 hardware interface rendered entirely in the browser. The experiment was driven through voice-dictated conversation with an AI agent: no wireframes, no mockups, just iterative refinement of shadows, knob physics, and display readouts until it felt like real hardware.
+
+**Key changes:**
+- Interactive controls: four rotary knobs (gain, freq, resonance, mix) with horizontal drag via pointer capture, four vertical faders (vol, low, mid, high), and three toggles (filter, bypass, mute)
+- 32-bar EQ visualizer driven by fader values through overlapping bell curves, with volume as a base level
+- Track name display with Terminator-style text scramble effect (borrowed from the terminator experiment), auto-cycles every 12s with click-to-advance
+- Eased numeric readouts for frequency (5-digit zero-padded Hz) and gain (3-digit zero-padded percent) that interpolate smoothly on knob drag
+- LED cluster, recording state with REC badge, chassis screws, serial number -- details that sell the physicality
+- Extracted `SwissFrame` to shared component (`app/design-experiments/components/SwissFrame/`) with dark/light variants, reused by crossfit-bento
+- Extracted `EditorialBrief` to shared component (`app/design-experiments/components/EditorialBrief/`) for experiment write-ups with headline, lede, images, and body content
+- Custom hooks `useKnob` and `useFader` encapsulate all pointer interaction and state
+
+**Key files:**
+- `app/design-experiments/retro-tech/` -- page, components, hooks, types, barrel export
+- `app/design-experiments/retro-tech/components/RetroTechPanel.tsx` -- main panel with all controls and display logic
+- `app/design-experiments/retro-tech/hooks/useControls.ts` -- `useKnob` and `useFader` hooks
+- `app/design-experiments/components/SwissFrame/` -- shared frame component
+- `app/design-experiments/components/EditorialBrief/` -- shared editorial write-up component
+
+---
+
 ### Sticky Notes: portable design experiment with pinning
 
 **Date:** 2026-02-18

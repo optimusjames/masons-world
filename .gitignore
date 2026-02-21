@@ -5,6 +5,9 @@ dist
 debug-*.png
 *.log
 
+# Claude Code
+.claude/worktrees/
+
 # Next.js
 .next/
 out/

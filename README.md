@@ -140,7 +140,7 @@ Day 2 leveled up the same four designer personas with new constraints: dark mode
 
 Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically with Claude Code agent teams, then refined with human-in-the-loop collaboration adding real photography and typography tweaks. Includes editorial writeup on the process.
 
-**Tags:** Agent Teams • Design Challenge • CSS Modules • Multi-Layout
+**Tags:** Agent Teams - Design Challenge - CSS Modules - Multi-Layout
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/crossfit-challenge) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/crossfit-challenge)**
 
@@ -154,7 +154,7 @@ Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gy
 
 Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights.
 
-**Tags:** Blog Post • Typography • Editorial • Long-Form Content
+**Tags:** Blog Post - Typography - Editorial - Long-Form Content
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/youre-doing-it-wrong) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/youre-doing-it-wrong)**
 
@@ -168,7 +168,7 @@ Long-form blog post exploring why "AI-powered design tools" miss the point. Argu
 
 Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness.
 
-**Tags:** Text Animation • Terminal UI • Interactive • Split-Flap Effect
+**Tags:** Text Animation - Terminal UI - Interactive - Split-Flap Effect
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/terminator) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/terminator)**
 
@@ -182,7 +182,7 @@ Interactive terminal-style text scramble effect with two-phase animation. Enter 
 
 Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.
 
-**Tags:** Typography • Split-Flap Effect • Text Animation • Monospace
+**Tags:** Typography - Split-Flap Effect - Text Animation - Monospace
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/geist-pixel) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/geist-pixel)**
 
@@ -196,7 +196,7 @@ Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-i
 
 Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.
 
-**Tags:** React Components • Animated Charts • Color Systems • Typography
+**Tags:** React Components - Animated Charts - Color Systems - Typography
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/color-spec) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/color-spec)**
 
@@ -210,7 +210,7 @@ Interactive brand guidelines with live color and typography customization. Featu
 
 Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling (G-01 through G-09, M-01 through M-18), scroll-triggered animations, and an analytics dashboard mockup.
 
-**Tags:** Gradients • SVG Mesh • Swiss Design • Scroll Animation
+**Tags:** Gradients - SVG Mesh - Swiss Design - Scroll Animation
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/blend) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/blend)**
 
@@ -218,13 +218,13 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 
 ### Spec Sheet
 
-**January 28, 2026**
+**February 2, 2026**
 
 [![Type Specimen](./public/screenshots/spec-sheet.png)](https://www.joshcoolman.com/design-experiments/spec-sheet)
 
-Bold typographic layout with dark/light mode toggle. Features strong hierarchy through scale contrast, clean sectioning, and a professional two-color aesthetic.
+Type specimen sheet with interactive font pairing selector. Features size scale, weight ramp, character set display, drop cap pull quote, and colorful pairing cards inspired by the Color Spec experiment. Text-based controls with underline hover animations.
 
-**Tags:** Typography • Dark Mode • Minimal • Two Column
+**Tags:** Typography - Font Pairings - Dark/Light Mode - Type Specimen
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/spec-sheet) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/spec-sheet)**
 
@@ -238,38 +238,52 @@ npm run build  # Build for production
 npm start      # Run production build
 ```
 
+## Blog
+
+The site includes a markdown-powered blog at [joshcoolman.com/blog](https://www.joshcoolman.com/blog) with posts on design, AI agents, and working with code. Posts live in `blog/` as `.md` files with frontmatter.
+
+**[View Blog →](https://www.joshcoolman.com/blog)**
+
+---
+
+## Docs
+
+Internal documentation and reference material rendered at [joshcoolman.com/docs](https://www.joshcoolman.com/docs). Markdown files in `docs/` with sidebar navigation, syntax highlighting, and table of contents.
+
+**[View Docs →](https://www.joshcoolman.com/docs)**
+
+---
+
 ## Structure
 
 ```
 /
 ├── app/                          # Next.js App Router
 │   ├── page.tsx                  # Homepage
-│   ├── layout.tsx                # Root layout
-│   ├── globals.css               # Global styles
+│   ├── layout.tsx                # Root layout with SEO metadata
+│   ├── sitemap.ts                # Dynamic sitemap
+│   ├── robots.ts                 # Crawler rules
 │   ├── design-experiments/
 │   │   ├── page.tsx              # Experiments gallery
-│   │   ├── blend/
-│   │   ├── color-spec/
-│   │   ├── day-at-a-glance/
-│   │   └── [other experiments]/
-│   └── blog/
+│   │   └── [experiment]/         # Each experiment is a self-contained route
+│   ├── (blog)/blog/              # Blog index and post pages
+│   └── (docs)/docs/              # Docs viewer with sidebar nav
+├── lib/
+│   ├── experiments/data.ts       # Shared experiments metadata
+│   ├── blog/                     # Blog loader and types
+│   └── docs/                     # Docs loader and utilities
+├── blog/                         # Markdown blog posts
+├── docs/                         # Markdown documentation
 ├── public/
 │   └── screenshots/              # Preview images for README
-├── next.config.js                # Next.js configuration
 └── CLAUDE.md                     # Development workflow
 ```
 
-## Purpose
+## Adding New Experiments
 
-This sandbox is for rapid design exploration—building visual systems, testing layouts, and creating reusable design patterns. Built with Next.js for unlimited interactivity while maintaining clean organization.
-
-### Adding New Experiments
-
-To add a new experiment:
-
-1. Create `/app/design-experiments/[experiment-name]/page.tsx` with your React component
-2. Add screenshot to `/public/screenshots/experiment-name.png`
-3. Update experiments gallery in `/app/design-experiments/page.tsx`
+1. Create `app/design-experiments/[name]/page.tsx` with your React component
+2. Add screenshot to `public/screenshots/[name].png`
+3. Add experiment to `lib/experiments/data.ts`
 4. Update this README with experiment details
 
 ---

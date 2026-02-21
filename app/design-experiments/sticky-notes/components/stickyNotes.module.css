@@ -192,6 +192,25 @@
   margin: 0;
 }
 
+.caretLeft,
+.caretRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.caretLeft {
+  left: max(8px, calc(50% - min(150px, 45vw) - 36px));
+}
+
+.caretRight {
+  right: max(8px, calc(50% - min(150px, 45vw) - 36px));
+}
+
 /* ───────────────────────────────────────────
    Responsive
    ─────────────────────────────────────────── */

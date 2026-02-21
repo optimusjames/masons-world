@@ -34,15 +34,17 @@ export default function StickyNoteStack({ notes, className }: Props) {
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const modalStackRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const touchStart = useRef<{ x: number; y: number } | null>(null)
+  const swiped = useRef(false)
 
   const getClickZone = useCallback((clientX: number, clientY: number): 'forward' | 'back' | 'close' => {
     if (!modalStackRef.current) return 'forward'
     const rect = modalStackRef.current.getBoundingClientRect()
     const inY = clientY >= rect.top && clientY <= rect.bottom
     if (!inY) return 'close'
-    if (clientX >= rect.left && clientX <= rect.right) return 'forward'
-    if (clientX >= rect.left - 100 && clientX < rect.left) return 'back'
-    if (clientX > rect.right && clientX <= rect.right + 100) return 'forward'
+    const backEdge = rect.left + 40
+    if (clientX >= rect.left - 100 && clientX < backEdge) return 'back'
+    if (clientX >= backEdge && clientX <= rect.right + 100) return 'forward'
     return 'close'
   }, [])
 
@@ -146,7 +148,24 @@ export default function StickyNoteStack({ notes, className }: Props) {
               : undefined,
           } as React.CSSProperties}
           onMouseMove={(e) => setInAdvanceZone(getClickZone(e.clientX, e.clientY) !== 'close')}
+          onTouchStart={(e) => {
+            const t = e.touches[0]
+            touchStart.current = { x: t.clientX, y: t.clientY }
+            swiped.current = false
+          }}
+          onTouchEnd={(e) => {
+            if (!touchStart.current) return
+            const t = e.changedTouches[0]
+            const dx = t.clientX - touchStart.current.x
+            const dy = t.clientY - touchStart.current.y
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+              swiped.current = true
+              navigate(dx < 0 ? 'forward' : 'back')
+            }
+            touchStart.current = null
+          }}
           onClick={(e) => {
+            if (swiped.current) { swiped.current = false; return }
             const zone = getClickZone(e.clientX, e.clientY)
             if (zone === 'close') {
               close()
@@ -155,6 +174,7 @@ export default function StickyNoteStack({ notes, className }: Props) {
             }
           }}
         >
+          <div className={styles.caretLeft} aria-hidden>&#8249;</div>
           <div className={styles.modalStack} ref={modalStackRef}>
             <div
               key={`modal-${displayedIndex}`}
@@ -181,6 +201,7 @@ export default function StickyNoteStack({ notes, className }: Props) {
               </div>
             )}
           </div>
+          <div className={styles.caretRight} aria-hidden>&#8250;</div>
         </div>,
         document.body
       )}

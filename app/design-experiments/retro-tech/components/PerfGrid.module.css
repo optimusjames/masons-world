@@ -1,24 +1,13 @@
 .perfGrid {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 4px);
-  grid-auto-rows: 4px;
-  gap: 4px;
-  align-content: center;
-  justify-content: center;
-  overflow: hidden;
+  min-width: 60px;
+  min-height: 60px;
+  background-image: radial-gradient(circle, var(--surface-inset) 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
+  background-position: center center;
+  border-radius: 4px;
 }
 
 .inline {
   align-self: stretch;
-  margin-top: auto;
-  margin-bottom: 14px;
-}
-
-.perfHole {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--surface-inset);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
 }

@@ -13,7 +13,7 @@
   --accent-glow: rgba(232, 98, 44, 0.15);
   --display-bg: #1a1c1e;
   --display-text: #c4d0c8;
-  --display-dim: #4a5650;
+  --display-dim: #5a6860;
   --surface-page: #d0cec8;
   --knob-size: 72px;
   --fader-height: 180px;
@@ -85,11 +85,40 @@
 .display {
   background: var(--display-bg);
   border-radius: 8px;
-  padding: 16px 20px;
+  padding: 12px 20px 16px;
   margin-bottom: 28px;
+  cursor: pointer;
   box-shadow:
     inset 0 2px 6px rgba(0,0,0,0.4),
     0 1px 0 rgba(255,255,255,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trackRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.trackLabel {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #d8e4dc;
+  opacity: 0.8;
+}
+
+.recBadge {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.displayBody {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -139,6 +168,12 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--display-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.displayBright {
+  color: #d8e4dc;
+  opacity: 0.8;
 }
 
 .displayStatusActive {

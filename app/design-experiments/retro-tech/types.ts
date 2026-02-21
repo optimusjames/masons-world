@@ -9,6 +9,7 @@ export interface KnobState {
 export interface FaderState {
   value: number;
   pct: number;
+  dragging: boolean;
   trackRef: React.RefObject<HTMLDivElement | null>;
   onPointerDown: (e: React.PointerEvent) => void;
   onPointerMove: (e: React.PointerEvent) => void;

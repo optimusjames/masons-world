@@ -21,8 +21,20 @@ export function Fader({
         onPointerMove={fader.onPointerMove}
         onPointerUp={fader.onPointerUp}
       >
-        <div className={styles.faderFill} style={{ height: `${fader.pct}%` }} />
-        <div className={styles.faderThumb} style={{ bottom: `${fader.pct}%` }} />
+        <div
+          className={styles.faderFill}
+          style={{
+            height: `${fader.pct}%`,
+            transition: fader.dragging ? 'none' : undefined,
+          }}
+        />
+        <div
+          className={styles.faderThumb}
+          style={{
+            bottom: `${fader.pct}%`,
+            transition: fader.dragging ? 'none' : undefined,
+          }}
+        />
       </div>
       <span className={styles.controlLabel}>{label}</span>
     </div>

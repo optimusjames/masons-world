@@ -10,8 +10,8 @@ function KnobDots() {
     const angle = -135 + (i / (count - 1)) * 270;
     const rad = (angle * Math.PI) / 180;
     const r = 44;
-    const cx = 50 + r * Math.cos(rad - Math.PI / 2);
-    const cy = 50 + r * Math.sin(rad - Math.PI / 2);
+    const cx = Math.round((50 + r * Math.cos(rad - Math.PI / 2)) * 100) / 100;
+    const cy = Math.round((50 + r * Math.sin(rad - Math.PI / 2)) * 100) / 100;
     dots.push(
       <div
         key={i}

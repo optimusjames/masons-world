@@ -52,13 +52,14 @@ export function useFader(initial: number, min = 0, max = 100): FaderState {
     [min, max],
   );
 
-  const dragRef = useRef(false);
+  const [dragging, setDragging] = useState(false);
 
   const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
       e.preventDefault();
-      (e.target as HTMLElement).setPointerCapture(e.pointerId);
-      dragRef.current = true;
+      const track = trackRef.current;
+      if (track) track.setPointerCapture(e.pointerId);
+      setDragging(true);
       handleInteraction(e.clientY);
     },
     [handleInteraction],
@@ -66,17 +67,17 @@ export function useFader(initial: number, min = 0, max = 100): FaderState {
 
   const onPointerMove = useCallback(
     (e: React.PointerEvent) => {
-      if (!dragRef.current) return;
+      if (!dragging) return;
       handleInteraction(e.clientY);
     },
-    [handleInteraction],
+    [dragging, handleInteraction],
   );
 
   const onPointerUp = useCallback(() => {
-    dragRef.current = false;
+    setDragging(false);
   }, []);
 
   const pct = ((value - min) / (max - min)) * 100;
 
-  return { value, pct, trackRef, onPointerDown, onPointerMove, onPointerUp };
+  return { value, pct, dragging, trackRef, onPointerDown, onPointerMove, onPointerUp };
 }

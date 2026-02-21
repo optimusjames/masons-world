@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
+import CurtainLink from '../../../components/CurtainLink';
 import styles from './SwissFrame.module.css';
 
 interface SwissFrameProps {
@@ -9,6 +10,7 @@ interface SwissFrameProps {
   subLabels: string[];
   footerLabels: string[];
   variant?: 'dark' | 'light';
+  backHref?: string;
   children: ReactNode;
 }
 
@@ -18,11 +20,15 @@ export function SwissFrame({
   subLabels,
   footerLabels,
   variant = 'dark',
+  backHref = '/design-experiments',
   children,
 }: SwissFrameProps) {
   return (
     <div className={`${styles.frame} ${styles[variant]}`}>
       <header className={styles.header}>
+        <CurtainLink href={backHref} className={styles.backLink} curtainTransition={true} curtainReverse={true}>
+          <span className={styles.backArrow}>&larr;</span> Back
+        </CurtainLink>
         <div className={styles.rule} />
         <div className={styles.headerRow}>
           <span className={styles.logo}>{logo}</span>

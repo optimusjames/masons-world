@@ -25,6 +25,27 @@
   width: 100%;
 }
 
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sf-label);
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.15s ease;
+}
+
+.backLink:hover {
+  color: var(--sf-logo);
+}
+
+.backArrow {
+  font-size: 12px;
+}
+
 .header {
   margin-bottom: 32px;
 }

@@ -383,3 +383,14 @@
   font-weight: 300;
   line-height: 1;
 }
+
+@media (max-width: 520px) {
+  .page {
+    padding: 24px 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}

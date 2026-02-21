@@ -50,9 +50,8 @@
 }
 
 .headerRow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  position: relative;
+  margin-bottom: 16px;
 }
 
 .indexTitle {
@@ -62,7 +61,14 @@
   line-height: 1;
   letter-spacing: -0.02em;
   color: #F2EFEB;
-  margin: 0 0 16px;
+  margin: 0;
+}
+
+.stickyNotesWrapper {
+  position: absolute;
+  top: -60px;
+  right: 0;
+  z-index: 10;
 }
 
 .indexSubtitle {

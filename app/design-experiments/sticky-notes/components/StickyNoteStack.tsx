@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import type { StickyNote } from '../types'
 import styles from './stickyNotes.module.css'
 
@@ -19,9 +20,10 @@ let savedIndex = 0
 
 interface Props {
   notes: StickyNote[]
+  className?: string
 }
 
-export default function StickyNoteStack({ notes }: Props) {
+export default function StickyNoteStack({ notes, className }: Props) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(savedIndex)
   const [transitioning, setTransitioning] = useState(false)
@@ -31,6 +33,7 @@ export default function StickyNoteStack({ notes }: Props) {
   const direction = useRef<'forward' | 'back'>('forward')
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const modalStackRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
   const getClickZone = useCallback((clientX: number, clientY: number): 'forward' | 'back' | 'close' => {
     if (!modalStackRef.current) return 'forward'
@@ -101,6 +104,7 @@ export default function StickyNoteStack({ notes }: Props) {
   return (
     <>
       <div
+        ref={wrapperRef}
         className={styles.stackWrapper}
         onClick={() => {
           setIsExpanded(true)
@@ -132,10 +136,15 @@ export default function StickyNoteStack({ notes }: Props) {
         </div>
       </div>
 
-      {isExpanded && (
+      {isExpanded && createPortal(
         <div
-          className={styles.backdrop}
-          style={{ cursor: inAdvanceZone ? 'pointer' : 'default' }}
+          className={`${styles.backdrop}${className ? ` ${className}` : ''}`}
+          style={{
+            cursor: inAdvanceZone ? 'pointer' : 'default',
+            '--font-marker': wrapperRef.current
+              ? getComputedStyle(wrapperRef.current).getPropertyValue('--font-marker')
+              : undefined,
+          } as React.CSSProperties}
           onMouseMove={(e) => setInAdvanceZone(getClickZone(e.clientX, e.clientY) !== 'close')}
           onClick={(e) => {
             const zone = getClickZone(e.clientX, e.clientY)
@@ -172,7 +181,8 @@ export default function StickyNoteStack({ notes }: Props) {
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )

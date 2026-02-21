@@ -60,7 +60,7 @@ export default function BlogIndexContent({ posts, notes }: Props) {
         </div>
       </div>
       <p className={styles.indexSubtitle}>
-        Markdown posts with editorial styling, written when the mood strikes
+        When the mood strikes...
       </p>
       <div className={styles.indexRule}></div>
       <div className={styles.cardGrid}>

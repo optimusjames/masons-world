@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 /* eslint-disable @next/next/no-img-element */
+import { ChevronLeft } from 'lucide-react'
 import { getAllPosts, getPostBySlug } from '@/lib/blog/loadBlog'
+import CurtainLink from '@/app/components/CurtainLink'
 import BlogContent from '../../_components/BlogContent'
 import styles from '../../blog.module.css'
 
@@ -41,6 +43,12 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (post.meta.overlay && post.meta.image) {
     return (
       <div className={styles.postWrapper}>
+        <div className={styles.backRow}>
+          <CurtainLink href="/blog" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
+            <ChevronLeft size={14} />
+            Back
+          </CurtainLink>
+        </div>
         <div className={styles.overlayHero}>
           <img
             src={post.meta.image}
@@ -76,6 +84,12 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className={styles.postWrapper}>
+      <div className={styles.backRow}>
+        <CurtainLink href="/blog" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
+          <ChevronLeft size={14} />
+          Back
+        </CurtainLink>
+      </div>
       <header className={styles.postHeader}>
         <div className={styles.postMeta}>
           <time>{formatDate(post.meta.date)}</time>

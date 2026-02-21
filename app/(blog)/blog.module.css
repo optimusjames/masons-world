@@ -482,7 +482,30 @@
 
 @media (max-width: 768px) {
   .indexWrapper {
-    padding: 60px 20px 80px;
+    padding: 16px 16px 80px;
+  }
+
+  .backRow {
+    margin-bottom: 12px;
+  }
+
+  .indexTitle {
+    font-size: 48px;
+  }
+
+  .stickyNotesWrapper {
+    transform: scale(0.65);
+    transform-origin: top right;
+    top: -30px;
+    right: 20px;
+  }
+
+  .indexSubtitle {
+    margin-bottom: 24px;
+  }
+
+  .indexRule {
+    margin-bottom: 24px;
   }
 
   .cardGrid {
@@ -499,7 +522,7 @@
   }
 
   .postWrapper {
-    padding: 60px 24px 80px;
+    padding: 16px 16px 80px;
   }
 
   .postHeader {

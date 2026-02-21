@@ -8,6 +8,19 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Sticky Notes: Portal-based Modal for Mobile
+
+**Date:** 2026-02-21
+
+The sticky note expanded overlay was broken on mobile because the blog page's `.stickyNotesWrapper` uses `transform: scale(0.65)` at small viewports. CSS `transform` on any ancestor creates a new containing block for `position: fixed` descendants, so the modal backdrop was sizing and positioning relative to the scaled wrapper instead of the viewport -- appearing clipped and off-center.
+
+Fixed by rendering the modal via `createPortal(jsx, document.body)`, which escapes all ancestor CSS containment (transform, z-index stacking contexts, overflow). The font variable (`--font-marker`) is forwarded to the portal by reading the computed style from the in-tree wrapper ref and inlining it on the backdrop element.
+
+**Key files:**
+- `app/design-experiments/sticky-notes/components/StickyNoteStack.tsx` -- createPortal to document.body, wrapperRef for font variable forwarding
+
+---
+
 ### Initial Mobile Readiness Pass
 
 **Date:** 2026-02-21

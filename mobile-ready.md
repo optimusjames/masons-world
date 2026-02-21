@@ -1,0 +1,2 @@
+- for the design pages, maybe on both, but at least on mobile, we want to increase or sort of utilize the screen space more, so less margin, definitely less space above the back, maybe even tighten up the space between the back link and design. This is generally true for both the design main page and the blog main page. I think we can even have less space between the sub-header and the divider, and I think the divider should be one pixel high. 
+- 

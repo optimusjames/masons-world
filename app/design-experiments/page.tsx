@@ -81,7 +81,7 @@ export default function Home() {
       </div>
       <h1 className={styles.title}>Design</h1>
       <p className={styles.subtitle}>
-        Random experiments in visual design — layouts, systems, widgets, and whatever else seems interesting
+        Random experiments in visual design
       </p>
 
       <div className={styles.rule}></div>

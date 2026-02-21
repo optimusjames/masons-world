@@ -62,7 +62,6 @@ export default function BlogIndexContent({ posts, notes }: Props) {
       <p className={styles.indexSubtitle}>
         When the mood strikes...
       </p>
-      <div className={styles.indexRule}></div>
       <div className={styles.cardGrid}>
         {posts.map((post, index) => (
           <BlogCard key={post.slug} post={post} delay={Math.min(index + 1, 6)} />

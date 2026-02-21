@@ -116,15 +116,15 @@ export default async function BlogPostPage({ params }: PageProps) {
         </CurtainLink>
       </div>
       <header className={styles.postHeader}>
-        <div className={styles.postMeta}>
-          <time>{formatDate(post.meta.date)}</time>
+        <div className={styles.postTitleRow}>
+          <h1 className={styles.postTitle}>{post.meta.title}</h1>
+          <time className={styles.postDate}>{formatDate(post.meta.date)}</time>
         </div>
-        <h1 className={styles.postTitle}>{post.meta.title}</h1>
         {post.meta.subtitle && (
           <p className={styles.postSubtitle}>{post.meta.subtitle}</p>
         )}
         {post.meta.author && (
-          <p className={styles.postByline}>by {post.meta.author}</p>
+          <span className={styles.postByline}>by {post.meta.author}</span>
         )}
       </header>
 

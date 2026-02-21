@@ -33,28 +33,28 @@
 
 .title {
   font-family: var(--font-bitter), serif;
-  font-size: 64px;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 16px;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 700;
+  line-height: 1.08;
+  margin: 0 auto 10px;
   letter-spacing: -0.02em;
-  color: #F2EFEB;
+  color: #f0ede8;
 }
 
 .subtitle {
   font-family: var(--font-lora), serif;
-  font-size: 17px;
+  font-size: clamp(16px, 2vw, 22px);
   font-weight: 400;
   font-style: italic;
-  color: #959595;
-  margin-bottom: 60px;
+  color: #f0ede8;
+  margin: 0 auto;
   letter-spacing: 0;
 }
 
 .rule {
   height: 1px;
   background: #3f3f3f;
-  margin: 60px auto 40px auto;
+  margin: 32px auto 40px auto;
   max-width: 900px;
 }
 
@@ -223,16 +223,11 @@
   }
 
   .title {
-    font-size: 48px;
-    margin-bottom: 8px;
+    font-size: 36px;
   }
 
   .subtitle {
     margin-bottom: 24px;
-  }
-
-  .rule {
-    margin: 24px auto 24px;
   }
 
   .experiment {

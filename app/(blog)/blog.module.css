@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Permanent+Marker&display=swap');
-
 /* ───────────────────────────────────────────
    Variables
    ─────────────────────────────────────────── */
 
 .blogLayout {
-  --serif: 'Cormorant Garamond', 'Georgia', serif;
-  --sans: 'DM Sans', 'Helvetica Neue', sans-serif;
+  --serif: var(--font-lora), 'Georgia', serif;
+  --sans: var(--font-dm-sans), 'Helvetica Neue', sans-serif;
   --ink: #f0ede8;
   --body: #d5d0c8;
   --mid: #a09888;
@@ -51,17 +49,16 @@
 
 .headerRow {
   position: relative;
-  margin-bottom: 16px;
 }
 
 .indexTitle {
-  font-family: 'Bitter', serif;
-  font-size: 64px;
-  font-weight: 800;
-  line-height: 1;
+  font-family: var(--font-bitter), serif;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 700;
+  line-height: 1.08;
   letter-spacing: -0.02em;
-  color: #F2EFEB;
-  margin: 0;
+  color: var(--ink);
+  margin: 0 0 10px;
 }
 
 .stickyNotesWrapper {
@@ -72,12 +69,12 @@
 }
 
 .indexSubtitle {
-  font-family: 'Lora', serif;
-  font-size: 17px;
+  font-family: var(--font-lora), serif;
+  font-size: clamp(16px, 2vw, 22px);
   font-weight: 400;
   font-style: italic;
-  color: #959595;
-  margin: 0 0 60px;
+  color: var(--ink);
+  margin: 0 0 32px;
 }
 
 .indexRule {
@@ -160,9 +157,9 @@
 }
 
 .cardTitle {
-  font-family: var(--serif);
+  font-family: var(--font-bitter), serif;
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -184,15 +181,14 @@
    ─────────────────────────────────────────── */
 
 .postWrapper {
-  max-width: var(--col-max);
+  max-width: 900px;
   margin: 0 auto;
-  padding: 80px 24px 96px;
+  padding: 80px 40px 96px;
 }
 
 .postHeader {
-  margin-bottom: 64px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0;
+  padding-bottom: 32px;
 }
 
 .postMeta {
@@ -208,10 +204,27 @@
   margin-bottom: 48px;
 }
 
-.postTitle {
+.postTitleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.postDate {
   font-family: var(--serif);
-  font-size: clamp(36px, 6vw, 56px);
+  font-size: 13px;
   font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--mid);
+  white-space: nowrap;
+  padding-top: 0.45em;
+}
+
+.postTitle {
+  font-family: var(--font-bitter), serif;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -224,8 +237,8 @@
   font-weight: 400;
   font-style: italic;
   line-height: 1.45;
-  color: var(--mid);
-  margin: 0;
+  color: var(--ink);
+  margin: 0 0 8px;
 }
 
 .postByline {
@@ -233,8 +246,7 @@
   font-size: 14px;
   font-weight: 400;
   font-style: italic;
-  color: var(--light);
-  margin: 24px 0 0;
+  color: var(--mid);
 }
 
 .postImageWrapper {
@@ -243,7 +255,7 @@
   aspect-ratio: 16 / 9;
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 48px;
+  margin-bottom: 64px;
 }
 
 .postImage {
@@ -477,7 +489,7 @@
   }
 
   .indexTitle {
-    font-size: 48px;
+    font-size: 36px;
   }
 
   .stickyNotesWrapper {
@@ -523,7 +535,7 @@
   }
 
   .postHeader {
-    margin-bottom: 48px;
-    padding-bottom: 36px;
+    margin-bottom: 0;
+    padding-bottom: 24px;
   }
 }

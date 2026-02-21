@@ -39,19 +39,19 @@ sitemap URL. My site is at [your-domain.com].
 
 Finding your pages is step one. Understanding what they are is step two.
 
-**Page titles with your name in them.** This is embarrassingly obvious in hindsight. If your page titles don't include your name, Google doesn't strongly associate your site with your name. I added a title template so every page renders as "Page Title | Josh Coolman" in the browser tab and in search results. Every page is now a vote for "this site belongs to this person."
+**Consistent page titles.** This is embarrassingly obvious in hindsight. If your page titles are generic or inconsistent, Google has a harder time understanding what your site is and who it belongs to. I added a title template so every page renders as "Page Title | Site Name" in the browser tab and in search results. Every page now reinforces what the site is about.
 
 **Meta descriptions.** The two-line summary that appears under your link in Google results. If you don't write one, Google guesses, and it usually guesses badly. A single sentence describing each page gives you control over how you appear in search.
 
 **Open Graph tags.** These control what your link looks like when someone shares it on social media, Slack, Discord, or iMessage. Without them, shared links show a generic title and no image. With them, you get a proper card with your title, description, and a preview image. This isn't strictly SEO, but it affects whether people click your links, which affects whether Google thinks your site is worth ranking.
 
-**Structured data (JSON-LD).** This is metadata for robots. You embed a small JSON blob in your page that says "this is a Person named Josh Coolman" or "this is an Article published on this date by this author." Google uses it to build those rich search results you see -- the ones with author info, publication dates, and sitelinks. It's a script tag with some JSON. Not hard.
+**Structured data (JSON-LD).** This is metadata for robots. You embed a small JSON blob in your page that says "this is a person, here's their name and website" or "this is an article published on this date by this author." Google uses it to build those rich search results you see -- the ones with author info, publication dates, and sitelinks. It's a script tag with some JSON. Not hard.
 
 **What to ask AI:**
 
 ```
 Upgrade the metadata on my site. I need:
-- A title template so every page includes my name (e.g. "Page Title | My Name")
+- A title template so every page has a consistent suffix (e.g. "Page Title | Site Name")
 - A default meta description that mentions me by name
 - Open Graph tags (title, description, site name, type) on every page
 - Twitter card defaults (summary_large_image)
@@ -113,7 +113,7 @@ If you're like me -- a developer who's been ignoring this stuff for years -- her
 
 1. Add a sitemap (one file, auto-generates from your routes)
 2. Add robots.txt (one file, three lines)
-3. Add page titles with your name in them
+3. Add consistent page titles with a site-wide template
 4. Add meta descriptions to your key pages
 5. Add Open Graph tags (title, description, image)
 6. Add JSON-LD structured data (Person schema, Article schema for blog posts)

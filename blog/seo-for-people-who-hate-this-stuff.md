@@ -77,75 +77,16 @@ Upgrade the metadata on my site. I need:
   generateMetadata function
 ```
 
-## The stuff that actually drives traffic
+## What actually drives traffic
 
-Here's where I have to be honest about something. Everything above makes you findable. None of it makes you found. The difference matters.
+Honestly, I don't really care if anyone visits my site. I didn't do any of this to get traffic. I just didn't want to be ignorant about it anymore.
 
-Being findable means: when someone searches your name, your site shows up. That's table stakes. Being found means: people who don't know your name encounter your work. That's traffic. And traffic comes from one place -- other people linking to your stuff.
+So I asked AI what actually matters beyond the technical basics, and the answer was simple: inbound links. Google's entire algorithm, stripped to its core, is that pages other pages link to are probably worth showing people. Every backlink is a vote. The more votes from reputable sources, the higher you rank. Everything else is optimization around the margins.
 
-Google's entire algorithm, stripped to its core, is: pages that other pages link to are probably worth showing people. Every backlink is a vote. The more votes from reputable sources, the higher you rank. Everything else is optimization around the margins.
+Here's the broad strokes of what I heard. Do your own research -- ask AI, read around, whatever -- but this is the gist:
 
-So how do you get links without doing marketing?
+**Make things worth linking to.** This sounds circular but it's apparently the whole game. Something interesting gets shared. A genuine point of view gets quoted. You can't optimize your way to this.
 
-**Make things worth linking to.** This sounds circular but it's the whole game. A design experiment that does something interesting will get shared. A blog post with a genuine point of view will get quoted. An interactive tool that solves a real problem will get bookmarked and referenced. You can't optimize your way to this. You just have to make good stuff.
+**Post it somewhere.** Hacker News, Reddit, DEV.to, wherever people who care about your kind of work hang out. Cross-posting to platforms like DEV.to with a canonical link back to your site gives you a free backlink. Sharing a project on Hacker News can apparently generate thousands of visits. The advice is to spend 10 minutes posting your work somewhere relevant whenever you finish something.
 
-**Put it where people already are.** The content exists. You just need to drop it into the places where people who care about this stuff hang out. Not with a pitch. Not with a strategy. Just: "here's a thing I made."
-
-The places that matter for technical/design work:
-
-*Hacker News.* Submit interesting projects as "Show HN" posts. The audience is technical, opinionated, and clicks through to source. A front-page post generates thousands of visits and a trail of blog posts linking back to you. Even posts that don't hit the front page get indexed and create backlinks.
-
-*Reddit.* Specific subreddits (r/webdev, r/nextjs, r/design, r/ClaudeAI) have built-in audiences for exactly this kind of work. Reddit's culture punishes self-promotion, so frame it as sharing something interesting rather than advertising. The work should speak for itself.
-
-*DEV.to or Hashnode.* Cross-post a blog post with a canonical link back to your site. These platforms have large audiences, their own SEO weight, and the canonical tag tells Google your site is the original source. Free backlink, free distribution, zero downside.
-
-**The 10-minute habit.** When you finish something you're proud of, spend 10 minutes posting it to one of those places. That's the entire strategy. You're already doing the hard part by making things. The distribution is a 10-minute habit on top of it.
-
-**What to ask AI:**
-
-```
-I just finished [describe what you built]. Help me write a short,
-authentic post to share on [Hacker News / Reddit / DEV.to]. It should
-describe what the project does and what's interesting about it without
-sounding like marketing. For Hacker News, format it as a "Show HN"
-post. For DEV.to, include a canonical URL pointing back to the original
-on my site.
-```
-
-## What I'm not going to do
-
-I'm not going to start a YouTube channel. I'm not going to post daily on X. I'm not going to "build a personal brand." I'm not going to write SEO-optimized listicles or chase trending keywords.
-
-The people who do LinkedIn + X + YouTube are building audiences. That's a full-time activity with its own skills, rhythms, and demands. If you enjoy that, great. I don't.
-
-My approach is different: make interesting things, make them findable, and occasionally drop them where relevant people congregate. That's it. No funnel. No strategy. No content calendar.
-
-Will this generate massive traffic? Probably not. But massive traffic was never the goal. The goal is: if someone Googles my name, they find a real site with real work. If someone searches for something I've written about, maybe they find that too. And if something I make is good enough to get shared organically, the infrastructure is there to capitalize on it.
-
-## The checklist
-
-If you're like me -- a developer who's been ignoring this stuff for years -- here's the whole list:
-
-1. Add a sitemap (one file, auto-generates from your routes)
-2. Add robots.txt (one file, three lines)
-3. Add consistent page titles with a site-wide template
-4. Add meta descriptions to your key pages
-5. Add Open Graph tags (title, description, image)
-6. Add JSON-LD structured data (Person schema, Article schema for blog posts)
-7. Add a favicon (so you don't look like a placeholder in browser tabs)
-8. Set up Google Search Console and submit your sitemap
-9. Fill out your GitHub and LinkedIn profiles with your name and site URL
-10. When you make something good, spend 10 minutes sharing it somewhere relevant
-
-That's it. No ongoing maintenance. No weekly rituals. No tools to pay for. Just the basics that should have been there all along, plus the occasional habit of showing your work to people who might care about it.
-
-**What to ask AI:**
-
-```
-Audit my site for SEO basics. Check whether I have: a sitemap,
-robots.txt, meta descriptions on all pages, Open Graph tags, structured
-data (JSON-LD), a favicon, and consistent page titles that include my
-name. Tell me what's missing and fix it.
-```
-
-The whole thing took an afternoon. I'm annoyed I didn't do it ten years ago.
+I'm not going to do any of this, to be honest. But there it is. Those are the basics of being visible and getting traffic, for what it's worth. Cheers.

@@ -1,0 +1,77 @@
+.frame {
+  max-width: 840px;
+  width: 100%;
+}
+
+/* Dark variant (default) — light text on dark backgrounds */
+.dark {
+  --sf-rule: rgba(255, 255, 255, 0.12);
+  --sf-logo: rgba(255, 255, 255, 0.7);
+  --sf-meta: rgba(255, 255, 255, 0.5);
+  --sf-label: rgba(255, 255, 255, 0.5);
+}
+
+/* Light variant — dark text on light backgrounds */
+.light {
+  --sf-rule: rgba(0, 0, 0, 0.12);
+  --sf-logo: rgba(0, 0, 0, 0.55);
+  --sf-meta: rgba(0, 0, 0, 0.4);
+  --sf-label: rgba(0, 0, 0, 0.4);
+}
+
+.rule {
+  height: 1px;
+  background: var(--sf-rule);
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+}
+
+.logo {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sf-logo);
+}
+
+.meta {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sf-meta);
+}
+
+.subRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.label {
+  font-family: 'Geist Pixel Square', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sf-label);
+}
+
+.footer {
+  margin-top: 32px;
+}
+
+.footerRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}

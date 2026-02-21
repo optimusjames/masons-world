@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Flame } from 'lucide-react';
-import { SwissFrame } from './components/SwissFrame';
+import { SwissFrame } from '../components/SwissFrame';
 import { ProgressRing } from './components/ProgressRing';
 import { StatDisplay } from './components/StatDisplay';
 import { StackedBarChart } from './components/StackedBarChart';

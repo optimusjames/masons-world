@@ -20,12 +20,6 @@
 }
 
 .device {
-  min-height: 100vh;
-  background: var(--surface-page);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
   font-family: 'DM Mono', monospace;
 }
 

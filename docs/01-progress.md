@@ -8,6 +8,28 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Initial Mobile Readiness Pass
+
+**Date:** 2026-02-21
+
+First pass at making design experiments usable on mobile. Focused on the experiments that were most broken at small screen sizes and added a back link to the shared SwissFrame component.
+
+**Key changes:**
+- **Retro Tech:** Knobs reflow to 2x2 grid, faders span full width, toggles go horizontal, buttons become 2x2 grid at 520px. Track name display locked to single line with overflow ellipsis to prevent layout shift during scramble animation
+- **CrossFit Bento:** Three-column fixed grid collapses to single fluid column
+- **Contact Sheet:** Selection sidebar becomes a fixed 50vh bottom drawer on mobile, sliding up from below with independently scrollable file list and smaller thumbnails
+- **SwissFrame (shared):** Added inline back link above the top rule using CurtainLink with reverse curtain transition, defaults to `/design-experiments`
+
+**Key files:**
+- `app/design-experiments/retro-tech/components/RetroTechPanel.module.css` -- mobile media query with `.knobsRow` and `.mixRow` targets
+- `app/design-experiments/retro-tech/components/RetroTechPanel.tsx` -- added explicit class names for mobile CSS targeting
+- `app/design-experiments/crossfit-bento/page.module.css` -- single column grid at 520px
+- `app/design-experiments/contact-sheet/components/ContactSheet.module.css` -- bottom drawer sidebar
+- `app/design-experiments/components/SwissFrame/SwissFrame.tsx` -- back link with `backHref` prop
+- `app/design-experiments/components/SwissFrame/SwissFrame.module.css` -- back link styles
+
+---
+
 ### Curtain Reveal Page Transitions
 
 **Date:** 2026-02-20

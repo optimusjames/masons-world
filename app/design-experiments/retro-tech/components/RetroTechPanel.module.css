@@ -317,3 +317,62 @@
   padding: 3px 8px;
   border-radius: 3px;
 }
+
+/* Mobile layout */
+@media (max-width: 520px) {
+  .chassis {
+    padding: 20px 16px;
+  }
+
+  .display {
+    padding: 10px 14px 12px;
+    margin-bottom: 20px;
+  }
+
+  .displayValue {
+    font-size: 26px;
+  }
+
+  .knobsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    justify-items: center;
+  }
+
+  .divider {
+    margin: 12px 0;
+  }
+
+  .mixRow {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .fadersSection {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .togglesColumn {
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .buttonsColumn {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    min-width: unset;
+    padding: 0;
+  }
+
+  .btn {
+    height: 40px;
+  }
+}

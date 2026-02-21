@@ -201,7 +201,7 @@ export function RetroTechPanel({ className }: { className?: string }) {
           </div>
         </div>
 
-        <div className={styles.controlsRow}>
+        <div className={`${styles.controlsRow} ${styles.knobsRow}`}>
           <Knob label="Gain" knob={gain} />
           <Knob label="Freq" knob={freq} />
           <Knob label="Res" knob={resonance} />
@@ -210,7 +210,7 @@ export function RetroTechPanel({ className }: { className?: string }) {
 
         <div className={styles.divider} />
 
-        <div className={styles.controlsRow}>
+        <div className={`${styles.controlsRow} ${styles.mixRow}`}>
           <div className={styles.fadersSection}>
             <Fader label="Vol" fader={vol} />
             <Fader label="Low" fader={low} />

@@ -14,7 +14,7 @@ function formatDate(dateStr: string): string {
   const date = new Date(dateStr)
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
   })
 }
@@ -59,9 +59,6 @@ export default async function BlogPostPage({ params }: PageProps) {
           <header className={styles.overlayHeader}>
             <div className={styles.postMeta}>
               <time>{formatDate(post.meta.date)}</time>
-              {post.meta.readingTime && (
-                <span className={styles.readingTime}>{post.meta.readingTime} read</span>
-              )}
             </div>
             <h1 className={styles.postTitle}>{post.meta.title}</h1>
             {post.meta.subtitle && (
@@ -93,9 +90,6 @@ export default async function BlogPostPage({ params }: PageProps) {
       <header className={styles.postHeader}>
         <div className={styles.postMeta}>
           <time>{formatDate(post.meta.date)}</time>
-          {post.meta.readingTime && (
-            <span className={styles.readingTime}>{post.meta.readingTime} read</span>
-          )}
         </div>
         <h1 className={styles.postTitle}>{post.meta.title}</h1>
         {post.meta.subtitle && (

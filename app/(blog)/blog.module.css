@@ -81,7 +81,7 @@
 }
 
 .indexRule {
-  height: 4px;
+  height: 1px;
   background: #3f3f3f;
   margin: 0 0 40px;
 }
@@ -98,16 +98,14 @@
   max-width: 400px;
   text-decoration: none;
   color: inherit;
-  background: #161412;
-  border: 1px solid var(--rule);
+  background: #1e1c1a;
   border-radius: 8px;
   overflow: hidden;
   opacity: 0;
   transform: translateY(24px);
   transition:
     opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.2s;
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cardVisible {
@@ -116,7 +114,6 @@
 }
 
 .card:hover {
-  border-color: var(--light);
   transform: translateY(-2px);
 }
 
@@ -160,11 +157,6 @@
   text-transform: uppercase;
   color: var(--mid);
   margin-bottom: 12px;
-}
-
-.cardMeta .readingTime::before {
-  content: '\00b7';
-  margin-right: 8px;
 }
 
 .cardTitle {
@@ -214,11 +206,6 @@
   text-transform: uppercase;
   color: var(--mid);
   margin-bottom: 48px;
-}
-
-.postMeta .readingTime::before {
-  content: '\00b7';
-  margin-right: 12px;
 }
 
 .postTitle {
@@ -513,12 +500,22 @@
     gap: 16px;
   }
 
+  .cardBody {
+    padding: 12px;
+  }
+
+  .cardMeta {
+    font-size: 8px;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
   .cardTitle {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .cardSubtitle {
-    font-size: 13px;
+    font-size: 10px;
   }
 
   .postWrapper {

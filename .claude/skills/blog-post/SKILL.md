@@ -53,15 +53,7 @@ Write in the style of the existing posts in `blog/`. The writing philosophy:
 >
 > That's where we are right now. We're all learning to just talk to AI. Learning to use our words. Everything changed, and we're still figuring it out.
 
-### 4. Calculate Reading Time
-
-```
-words = count all words in markdown body (exclude front matter)
-readingTime = ceil(words / 238)
-format as "{readingTime} min"
-```
-
-### 5. Generate Front Matter
+### 4. Generate Front Matter
 
 ```yaml
 ---
@@ -69,11 +61,10 @@ title: "Post Title"
 subtitle: "Optional subtitle"
 date: YYYY-MM-DD  # today's date
 author: Josh Coolman
-readingTime: X min
 ---
 ```
 
-### 6. Write File
+### 5. Write File
 
 Save to `blog/{slug}.md` in the sandbox root.
 
@@ -87,7 +78,7 @@ cp public/blog/placeholder.png public/blog/{slug}.png
 
 This is a real 1200x630 dark gray PNG. It shows up correctly in blog cards and on the homepage. To replace it, the user just saves a real image to the same path -- same name, same extension. Everything just works.
 
-### 8. Production Build
+### 7. Production Build
 
 ```bash
 npm run build
@@ -95,12 +86,11 @@ npm run build
 
 Fix any errors before reporting success.
 
-### 9. Report
+### 8. Report
 
 Confirm:
 - Post drafted at `blog/{slug}.md`
 - Placeholder image at `public/blog/{slug}.png`
-- Reading time: X min
 - Viewable at `/blog/{slug}`
 - Appears on homepage Blog column and blog index
 - Build passed

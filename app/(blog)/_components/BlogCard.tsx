@@ -7,7 +7,7 @@ function formatDate(dateStr: string): string {
   const date = new Date(dateStr)
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
   })
 }
@@ -27,9 +27,6 @@ export default function BlogCard({ post, delay }: { post: BlogMeta; delay?: numb
       <div className={styles.cardBody}>
         <div className={styles.cardMeta}>
           <time>{formatDate(post.date)}</time>
-          {post.readingTime && (
-            <span className={styles.readingTime}>{post.readingTime} read</span>
-          )}
         </div>
         <h2 className={styles.cardTitle}>{post.title}</h2>
         {post.subtitle && (

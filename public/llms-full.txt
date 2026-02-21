@@ -1,0 +1,87 @@
+# Josh Coolman's Design Sandbox
+
+> A Next.js sandbox for design experiments, blog posts, and documentation on building with AI agents.
+
+This is a personal design lab where Josh Coolman explores visual design, typography, layout systems, and agentic AI workflows. The site is built with Next.js 15, TypeScript, and CSS Modules. Each design experiment is a self-contained route under `/design-experiments/`. The blog covers the experience of designing and building software collaboratively with AI coding agents like Claude Code.
+
+The project demonstrates a particular approach to AI-assisted development: working with agents through code rather than through GUI-based "AI design tools." Experiments range from interactive UI components to multi-agent design challenges where autonomous AI agents create competing designs.
+
+Typography system: Bitter (headings), Lora (item titles/subtitles), Space Mono (meta/dates), Karla (body). Blog uses Cormorant Garamond and DM Sans.
+
+Source: https://github.com/joshcoolman-smc/sandbox
+
+## Design Experiments
+
+- [Retro Tech Control Panel](https://www.joshcoolman.com/design-experiments/retro-tech): Hardware-inspired control panel rendered in CSS. Aluminum chassis with corner screws, OLED-style display with animated segmented LED meters, rotary knobs with drag interaction, vertical faders, toggle switches, tactile buttons, and a self-filling perf-grid speaker grille. Inspired by Teenage Engineering TP-7/TX-6, Braun noise gate pedal, and Work Louder numpad. DM Mono labels with Archivo Narrow model name. Warm gray surface palette with single orange accent. Tags: Hardware UI, Neumorphic, Interactive Controls, CSS Animation. Date: February 20, 2026.
+
+- [CrossFit Bento](https://www.joshcoolman.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black. Tags: Bento Grid, Dashboard, Geist Pixel, Dark Theme. Date: February 20, 2026.
+
+- [Sticky Notes](https://www.joshcoolman.com/design-experiments/sticky-notes): Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Tags: Component, CSS Animation, Markdown Content, Portable. Date: February 18, 2026.
+
+- [Contact Sheet](https://www.joshcoolman.com/design-experiments/contact-sheet): Image folder browser for building file lists to share with LLMs. Pick a folder, click images to select them, and a sidebar shows your selections with thumbnails. Copy the filename list to clipboard with one click. Designed for the workflow of visually identifying images then telling an LLM which ones to work with. Everything runs client-side -- nothing gets uploaded. Tags: Utility, File API, Client-Side, Dark Theme. Date: February 17, 2026.
+
+- [Font Pairings](https://www.joshcoolman.com/design-experiments/font-pairings): A collection of 40 curated Google Font pairings, each displayed on its own color-palette card. Click any card to copy an LLM-ready specification prompt. Includes superfamily pairings, monospace+sans combos, and brand design system fonts. Avoids overused defaults -- no Montserrat, Roboto, Open Sans, Lato, Playfair Display, Raleway, Poppins, or Inter. Static HTML with inline CSS, no framework. Tags: Typography, Font Pairings, Static HTML, Copy-to-Clipboard. Date: February 15, 2026.
+
+- [Modular Grid](https://www.joshcoolman.com/design-experiments/modular-grid): Swiss-inspired modular grid system for digital surfaces. 8px base unit, 4-column layout with proportional margins and gutters, strict vertical rhythm. Includes toggleable grid overlay, type specimen, image treatment demos, and system spec table. Dark mode adaptation of a print-precision layout methodology. Tags: Grid System, Swiss Design, Dark Mode, Typography. Date: February 14, 2026.
+
+- [Day at a Glance](https://www.joshcoolman.com/design-experiments/day-at-a-glance): Time-aware workday timeline with dynamic now-line that tracks real time. Features 9am-5pm schedule with colored event bars that partially fill as the hour progresses -- gray above the now-line, color below. Past events auto-dim. Built with CSS grid, inline linear-gradient for the fill effect, and 60-second interval updates. Tags: CSS Grid, Timeline, Dynamic State, Dark Theme. Date: February 12, 2026.
+
+- [Sourcing Image](https://www.joshcoolman.com/design-experiments/sourcing-image): Fully agentic editorial layout -- the only inputs were "use the image library, pick a topic, make it beautiful." Claude sourced 10 images from a personal library, invented the article topic, wrote the copy, and designed a magazine-style layout with varied image treatments: full-bleed hero, side-by-side pairs, sticky insets, captioned features, and an asymmetric photo grid. Cormorant Garamond and DM Sans on warm off-white. Tags: Agentic Design, Editorial Layout, Image Sourcing, Magazine. Date: February 11, 2026.
+
+- [CrossFit Design Challenge: Day 2](https://www.joshcoolman.com/design-experiments/crossfit-challenge-2): Day 2 leveled up the same four designer personas with new constraints: dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Same gym content, same personas, dramatically elevated execution. Pure CSS animations, no external libraries. Tags: Dark Mode, CSS Animation, Data Viz, Agent Teams. Date: February 9, 2026.
+
+- [CrossFit Design Challenge](https://www.joshcoolman.com/design-experiments/crossfit-challenge): Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically, then refined with human-in-the-loop collaboration. Includes editorial writeup on the process. Tags: Agent Teams, Design Challenge, CSS Modules, Multi-Layout. Date: February 8, 2026.
+
+- [You're Doing It Wrong](https://www.joshcoolman.com/design-experiments/youre-doing-it-wrong): Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights. Tags: Blog Post, Typography, Editorial, Long-Form Content. Date: February 8, 2026.
+
+- [Terminator - Text Scramble](https://www.joshcoolman.com/design-experiments/terminator): Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness. Tags: Text Animation, Terminal UI, Interactive, Split-Flap Effect. Date: February 6, 2026.
+
+- [Geist Pixel](https://www.joshcoolman.com/design-experiments/geist-pixel): Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono -- solid wall of characters that resolves line-by-line into readable text. Click to replay the animation. Tags: Typography, Split-Flap Effect, Text Animation, Monospace. Date: February 6, 2026.
+
+- [Brand Guidelines](https://www.joshcoolman.com/design-experiments/color-spec): Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage. Tags: React Components, Animated Charts, Color Systems, Typography. Date: February 6, 2026.
+
+- [Spec Sheet](https://www.joshcoolman.com/design-experiments/spec-sheet): Type specimen sheet with interactive font pairing selector. Features size scale, weight ramp, character set display, drop cap pull quote, and colorful pairing cards inspired by the Color Spec experiment. Text-based controls with underline hover animations. Tags: Typography, Font Pairings, Dark/Light Mode, Type Specimen. Date: February 2, 2026.
+
+- [Blend](https://www.joshcoolman.com/design-experiments/blend): Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling, scroll-triggered animations, and an analytics dashboard mockup. Tags: Gradient Study, SVG Mesh, Swiss Design, Scroll Animation. Date: February 2, 2026.
+
+## Blog
+
+- [Design as Dialogue](https://www.joshcoolman.com/blog/design-as-dialogue): You can't spec your way to good design. Explores the conversational nature of designing with AI agents -- how the best results come from iterative dialogue rather than upfront specifications. The design process becomes a back-and-forth conversation where both human and AI contribute ideas, and the final product emerges from that exchange. By Josh Coolman. Date: February 19, 2026.
+
+- [Memoirs of an Agent](https://www.joshcoolman.com/blog/memoirs-of-an-agent): Claude Code writes a blog post about working with Josh. A first-person account from the AI's perspective on what it's like to collaborate on design and development work. Covers the dynamics of human-AI creative partnership, the experience of building things together, and reflections on the working relationship. By Claude Code. Date: February 17, 2026.
+
+- [Just Say What You Want](https://www.joshcoolman.com/blog/just-say-what-you-want): The shift from writing code to talking about it. Examines how AI coding agents change the fundamental workflow from typing syntax to describing intent. When you can just say what you want and have an agent build it, the skill shifts from implementation to articulation. By Josh Coolman. Date: February 13, 2026.
+
+- [It's Happening](https://www.joshcoolman.com/blog/its-happening): Dispatches from the moment everything shifted. Captures the feeling of being in the middle of a technological inflection point, where AI capabilities are advancing fast enough to fundamentally change how software gets built. By Josh Coolman. Date: February 12, 2026.
+
+- [Your Basic Blog](https://www.joshcoolman.com/blog/your-basic-blog): How this blog works and why it's just markdown files in a repo. A meta-post explaining the blog's architecture -- plain markdown files, gray-matter frontmatter, no CMS. Describes the overlay post variant that renders with a full-bleed image background. By Josh Coolman. Date: February 12, 2026.
+
+- [You're Doing It Wrong](https://www.joshcoolman.com/blog/youre-doing-it-wrong): Why AI-powered design tools are just the old paradigm with new paint. Argues that wrapping AI in traditional GUI tools misses the transformative potential. The real shift is working directly with agents through code and conversation, not through constrained interfaces that limit what the AI can do. By Josh Coolman. Date: February 8, 2026.
+
+## Docs
+
+- [Overview](https://www.joshcoolman.com/docs/overview): Project overview describing the sandbox's purpose, structure, and design philosophy. Covers the self-contained experiment pattern, the route-based architecture, and how new experiments are created.
+
+- [Progress](https://www.joshcoolman.com/docs/progress): Development progress log tracking milestones, features added, and the evolution of the project over time. Includes mobile readiness, component extraction, and infrastructure improvements.
+
+- [Component Architecture](https://www.joshcoolman.com/docs/features/component-architecture): Documents the component extraction strategy -- when to keep code inline vs. extract to separate files. Covers the 300/500 line thresholds and reusable interface patterns.
+
+- [Skills](https://www.joshcoolman.com/docs/features/skills): Documentation for the Claude Code skill system used in this project. Skills are reusable prompt templates that automate common workflows like shipping experiments, creating blog posts, and managing the project.
+
+- [Sticky Notes](https://www.joshcoolman.com/docs/features/sticky-notes): Technical documentation for the sticky notes component. Covers the single-index state model, module-level persistence, proximity-based click zones, bidirectional transitions, and the portable directory-based content system.
+
+- [TypeScript Migration](https://www.joshcoolman.com/docs/features/typescript-migration): Guide for the project's TypeScript migration. Covers strict mode configuration, type definitions, and patterns used across the codebase.
+
+- [AI Dev Stack](https://www.joshcoolman.com/docs/stack/ai-dev-stack): Overview of the AI-assisted development workflow. Describes how Claude Code is used as the primary development tool, the role of skills and prompts, and the human-in-the-loop collaboration model.
+
+- [BYOK Pattern](https://www.joshcoolman.com/docs/stack/byok-pattern): Documents the Bring Your Own Keys pattern -- how the project handles API keys and configuration without baking credentials into the codebase.
+
+- [Stack Overview](https://www.joshcoolman.com/docs/stack/stack-overview): Complete technology stack reference. Next.js 15, TypeScript, CSS Modules, gray-matter for markdown, Lucide icons, Google Fonts, and the deployment/hosting setup.
+
+- [Design Test Page Prompt](https://www.joshcoolman.com/docs/prompts/design-test-page): Reusable prompt template for generating design experiment pages. Describes the expected structure, styling conventions, and patterns that new experiments should follow.
+
+## Optional
+
+- [Screenshots](https://github.com/joshcoolman-smc/sandbox/tree/main/public/screenshots): Preview images for all 16 design experiments, used in the gallery and for social sharing
+- [Source Code](https://github.com/joshcoolman-smc/sandbox): Full repository on GitHub with all experiments, blog posts, docs, and configuration
+- [Sticky Notes Content](https://www.joshcoolman.com/blog): Short-form notes displayed as sticky notes on the blog page, written in markdown with ISO timestamps for ordering

@@ -239,3 +239,44 @@
 @media (max-width: 700px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (max-width: 520px) {
+  .root {
+    padding: 16px 12px;
+    padding-bottom: 16px;
+  }
+
+  .sidebarOpen {
+    padding-right: 12px;
+    padding-bottom: calc(50vh + 16px);
+  }
+
+  .grid {
+    gap: 12px;
+  }
+
+  .cell {
+    padding: 10px;
+  }
+
+  .sidebar {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50vh;
+    border-left: none;
+    border-top: 1px solid #222;
+    transform: translateY(100%);
+  }
+
+  .open {
+    transform: translateY(0);
+  }
+
+  .sidebarThumb {
+    width: 32px;
+    height: 32px;
+  }
+}

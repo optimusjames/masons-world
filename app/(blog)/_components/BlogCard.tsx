@@ -12,9 +12,9 @@ function formatDate(dateStr: string): string {
   })
 }
 
-export default function BlogCard({ post }: { post: BlogMeta }) {
+export default function BlogCard({ post, delay }: { post: BlogMeta; delay?: number }) {
   return (
-    <Link href={`/blog/${post.slug}`} className={styles.card}>
+    <Link href={`/blog/${post.slug}`} className={styles.card} data-delay={delay}>
       <div className={styles.cardImageWrapper}>
         {post.image ? (
           <img

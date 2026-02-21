@@ -1,7 +1,5 @@
 import { Karla } from 'next/font/google'
 import './globals.css'
-import BackButton from './components/BackButton'
-import Sidebar from './components/Sidebar'
 
 const karla = Karla({
   subsets: ['latin'],
@@ -23,8 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={karla.className}>
-        <BackButton />
-        <Sidebar />
         {children}
       </body>
     </html>

@@ -1,6 +1,7 @@
 import path from 'path'
 import Link from 'next/link'
 import { ChevronLeft } from 'lucide-react'
+import CurtainLink from '@/app/components/CurtainLink'
 import { getAllPosts } from '@/lib/blog/loadBlog'
 import { getAllNotes, StickyNoteStack } from '@/app/design-experiments/sticky-notes'
 import BlogCard from '../_components/BlogCard'
@@ -18,10 +19,10 @@ export default function BlogIndex() {
   return (
     <div className={styles.indexWrapper}>
       <div className={styles.backRow}>
-        <Link href="/" className={styles.indexBackLink}>
+        <CurtainLink href="/" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
           <ChevronLeft size={14} />
           Back
-        </Link>
+        </CurtainLink>
       </div>
       <div className={styles.headerRow}>
         <h1 className={styles.indexTitle}>Blog</h1>

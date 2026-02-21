@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Bitter, Lora, Space_Mono } from "next/font/google";
 import NetworkCanvas from "./components/NetworkCanvas";
 import HeroVideo from "./components/HeroVideo";
+import CurtainLink from "./components/CurtainLink";
 import { getAllPosts } from "@/lib/blog/loadBlog";
 import { getNavCategories } from "@/lib/docs/loadDocs";
 import styles from "./page.module.css";
@@ -69,7 +70,7 @@ export default function Home() {
 
           <div className={styles.columns}>
             {/* Design */}
-            <Link href="/design-experiments" className={styles.column}>
+            <CurtainLink href="/design-experiments" className={styles.column} curtainTransition={true}>
               <div className={styles.columnTitle}>
                 Design
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
@@ -93,10 +94,10 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </Link>
+            </CurtainLink>
 
             {/* Blog */}
-            <Link href="/blog" className={styles.column}>
+            <CurtainLink href="/blog" className={styles.column} curtainTransition={true}>
               <div className={styles.columnTitle}>
                 Blog
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
@@ -130,10 +131,10 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </Link>
+            </CurtainLink>
 
             {/* Docs */}
-            <Link href="/docs" className={styles.column}>
+            <CurtainLink href="/docs" className={styles.column} curtainTransition={true}>
               <div className={styles.columnTitle}>
                 Docs
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
@@ -152,7 +153,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </Link>
+            </CurtainLink>
           </div>
 
           <div className={styles.footer}>

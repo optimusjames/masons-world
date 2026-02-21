@@ -53,8 +53,92 @@ body {
   }
 }
 
+/* Curtain Reveal Transition */
+/* Triggered when data-curtain-transition attribute is present */
+
+/* Forward curtain: wipe up to reveal page below */
+html[data-curtain-transition]:not([data-curtain-reverse])::view-transition-old(root) {
+  animation-name: wipeOut;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2; /* Old page on top */
+}
+
+html[data-curtain-transition]:not([data-curtain-reverse])::view-transition-new(root) {
+  animation-name: wipeIn;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1; /* New page underneath */
+}
+
+/* Reverse curtain: wipe down when going back */
+html[data-curtain-transition][data-curtain-reverse]::view-transition-old(root) {
+  animation-name: wipeOutReverse;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+html[data-curtain-transition][data-curtain-reverse]::view-transition-new(root) {
+  animation-name: wipeInReverse;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* Wipe upward: old page gets clipped from bottom to top */
+@keyframes wipeOut {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+/* Wipe upward: new page reveals from bottom to top */
+@keyframes wipeIn {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Wipe downward: old page gets clipped from top to bottom */
+@keyframes wipeOutReverse {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+/* Wipe downward: new page reveals from top to bottom */
+@keyframes wipeInReverse {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Reduced motion: fall back to fade */
 @media (prefers-reduced-motion: reduce) {
   body {
     animation: none;
+  }
+
+  html[data-curtain-transition]::view-transition-old(root) {
+    animation-name: fadeOut;
+    animation-duration: 0.3s;
+  }
+
+  html[data-curtain-transition]::view-transition-new(root) {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
   }
 }

@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import CurtainLink from './CurtainLink'
 import styles from './BackButton.module.css'
 
 export default function BackButton() {
@@ -16,7 +16,7 @@ export default function BackButton() {
   const parentPath = pathname.replace(/\/[^/]+$/, '') || '/'
 
   return (
-    <Link href={parentPath} className={styles.backButton}>
+    <CurtainLink href={parentPath} className={styles.backButton} curtainTransition={true} curtainReverse={true}>
       <svg
         width="20"
         height="20"
@@ -32,6 +32,6 @@ export default function BackButton() {
           strokeLinejoin="round"
         />
       </svg>
-    </Link>
+    </CurtainLink>
   )
 }

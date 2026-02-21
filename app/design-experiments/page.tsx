@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Space_Grotesk, Bitter, Lora, Space_Mono } from 'next/font/google'
 import { ChevronLeft } from 'lucide-react'
+import CurtainLink from '@/app/components/CurtainLink'
 import styles from './page.module.css'
 import type { Experiment } from '../types/experiments'
 
@@ -204,10 +205,10 @@ export default function Home() {
       className={`${styles.container} ${spaceGrotesk.variable} ${bitter.variable} ${lora.variable} ${spaceMono.variable}`}
     >
       <div className={styles.backRow}>
-        <Link href="/" className={styles.backLink}>
+        <CurtainLink href="/" className={styles.backLink} curtainTransition={true} curtainReverse={true}>
           <ChevronLeft size={14} />
           Back
-        </Link>
+        </CurtainLink>
       </div>
       <h1 className={styles.title}>Design</h1>
       <p className={styles.subtitle}>

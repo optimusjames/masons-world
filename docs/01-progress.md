@@ -8,6 +8,33 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### SEO Foundation
+
+**Date:** 2026-02-21
+
+Added baseline SEO infrastructure to improve search visibility and crawlability.
+
+**Key changes:**
+- Dynamic `sitemap.ts` covering all routes (blog posts, experiments, docs) with `lastModified` dates
+- `robots.ts` allowing all crawlers with sitemap reference
+- Root layout metadata upgraded: title template so every page includes the site name, `metadataBase`, Open Graph and Twitter card defaults, `authors` field
+- Person and WebSite JSON-LD structured data on the root layout
+- Blog posts enhanced with OG article type, `publishedTime`, and Article JSON-LD schema
+- Docs pages now export `generateMetadata` from document content
+- Design experiments section gets metadata via a layout file
+- Experiments data extracted to `lib/experiments/data.ts` (shared module, imported by gallery and sitemap)
+- Generated favicon via `icon.tsx`
+
+**Key files:**
+- `app/sitemap.ts`, `app/robots.ts`, `app/icon.tsx` -- new crawlability and identity files
+- `app/layout.tsx` -- metadata upgrade and JSON-LD
+- `app/design-experiments/layout.tsx` -- section metadata
+- `lib/experiments/data.ts` -- shared experiments data
+- `app/(blog)/blog/[slug]/page.tsx` -- enhanced blog metadata and Article JSON-LD
+- `app/(docs)/docs/[...slug]/page.tsx` -- added generateMetadata
+
+---
+
 ### Sticky Notes: Portal-based Modal for Mobile
 
 **Date:** 2026-02-21

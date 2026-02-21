@@ -8,6 +8,28 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Blog Page: entrance animations
+
+**Date:** 2026-02-20
+
+Added entrance animations to blog post cards using the proven pattern from the design experiments gallery -- fade-in with upward movement, staggered timing, and sessionStorage check to skip on return visits.
+
+**Key changes:**
+- Blog cards animate in with spring easing (`cubic-bezier(0.16, 1, 0.3, 1)`) over 0.6s
+- Stagger delays from 50ms to 300ms (capped at 6 cards) create cascading effect
+- Intersection Observer triggers animation when cards enter viewport (threshold: 0.1)
+- sessionStorage prevents animation on return visits for snappier experience
+- Respects `prefers-reduced-motion` for accessibility
+- Split blog page into server component (data fetching) and client component (animations) to avoid fs module resolution error in Next.js 13+
+
+**Key files:**
+- `app/(blog)/_components/BlogIndexContent.tsx` -- client component with entrance animation logic
+- `app/(blog)/_components/BlogCard.tsx` -- accepts delay prop for stagger timing
+- `app/(blog)/blog/page.tsx` -- server component that fetches posts and notes
+- `app/(blog)/blog.module.css` -- entrance animation styles
+
+---
+
 ### Retro Tech: skeuomorphic audio interface
 
 **Date:** 2026-02-20

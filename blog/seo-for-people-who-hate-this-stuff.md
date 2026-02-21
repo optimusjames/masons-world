@@ -47,6 +47,21 @@ Finding your pages is step one. Understanding what they are is step two.
 
 **Structured data (JSON-LD).** This is metadata for robots. You embed a small JSON blob in your page that says "this is a person, here's their name and website" or "this is an article published on this date by this author." Google uses it to build those rich search results you see -- the ones with author info, publication dates, and sitelinks. It's a script tag with some JSON. Not hard.
 
+Here's what all of this actually looks like in your page's `<head>`:
+
+```html
+<title>Design Experiments | Your Site Name</title>
+<meta name="description" content="Interactive design experiments and writing." />
+<meta property="og:title" content="Design Experiments | Your Site Name" />
+<meta property="og:description" content="Interactive design experiments and writing." />
+<meta property="og:type" content="website" />
+<script type="application/ld+json">
+  { "@type": "WebSite", "name": "Your Site Name", "url": "https://yoursite.com" }
+</script>
+```
+
+If that looks like noise to you, don't worry about it. Your AI knows exactly what to do with the prompt below.
+
 **What to ask AI:**
 
 ```

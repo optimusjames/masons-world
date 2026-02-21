@@ -1,19 +1,22 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import styles from './BackButton.module.css'
 
 export default function BackButton() {
   const pathname = usePathname()
-  const router = useRouter()
 
   // Only show on experiment pages (not on homepage or design-experiments gallery)
   const shouldShow = pathname !== '/' && pathname !== '/design-experiments' && !pathname.startsWith('/docs')
 
   if (!shouldShow) return null
 
+  // Navigate to parent path: /design-experiments/retro-tech -> /design-experiments
+  const parentPath = pathname.replace(/\/[^/]+$/, '') || '/'
+
   return (
-    <button onClick={() => router.back()} className={styles.backButton}>
+    <Link href={parentPath} className={styles.backButton}>
       <svg
         width="20"
         height="20"
@@ -29,6 +32,6 @@ export default function BackButton() {
           strokeLinejoin="round"
         />
       </svg>
-    </button>
+    </Link>
   )
 }

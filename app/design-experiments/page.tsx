@@ -7,7 +7,7 @@ import { Space_Grotesk, Bitter, Lora, Space_Mono } from 'next/font/google'
 import { ChevronLeft } from 'lucide-react'
 import CurtainLink from '@/app/components/CurtainLink'
 import styles from './page.module.css'
-import type { Experiment } from '../types/experiments'
+import { experiments } from '@/lib/experiments/data'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -67,137 +67,6 @@ export default function Home() {
 
     return () => observer.disconnect()
   }, [])
-
-  const experiments: Experiment[] = [
-    {
-      slug: 'retro-tech',
-      date: 'February 20, 2026',
-      title: 'Retro Tech Control Panel',
-      description: 'Hardware-inspired control panel rendered in CSS. Aluminum chassis with corner screws, OLED-style display with animated segmented LED meters, rotary knobs with drag interaction, vertical faders, toggle switches, tactile buttons, and a self-filling perf-grid speaker grille. Inspired by Teenage Engineering TP-7/TX-6, Braun noise gate pedal, and Work Louder numpad. DM Mono labels with Archivo Narrow model name. Warm gray surface palette with single orange accent.',
-      screenshot: '/screenshots/retro-tech.png',
-      tags: ['Hardware UI', 'Neumorphic', 'Interactive Controls', 'CSS Animation']
-    },
-    {
-      slug: 'crossfit-bento',
-      date: 'February 20, 2026',
-      title: 'CrossFit Bento',
-      description: 'Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black.',
-      screenshot: '/screenshots/crossfit-bento.png',
-      tags: ['Bento Grid', 'Dashboard', 'Geist Pixel', 'Dark Theme']
-    },
-    {
-      slug: 'sticky-notes',
-      date: 'February 18, 2026',
-      title: 'Sticky Notes',
-      description: 'Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content.',
-      screenshot: '/screenshots/sticky-notes.png',
-      tags: ['Component', 'CSS Animation', 'Markdown Content', 'Portable']
-    },
-    {
-      slug: 'contact-sheet',
-      date: 'February 17, 2026',
-      title: 'Contact Sheet',
-      description: 'Image folder browser for building file lists to share with LLMs. Pick a folder, click images to select them, and a sidebar shows your selections with thumbnails. Copy the filename list to clipboard with one click. Designed for the workflow of visually identifying images then telling an LLM which ones to work with. Everything runs client-side -- nothing gets uploaded.',
-      screenshot: '/screenshots/contact-sheet.png',
-      tags: ['Utility', 'File API', 'Client-Side', 'Dark Theme']
-    },
-    {
-      slug: 'font-pairings',
-      date: 'February 15, 2026',
-      title: 'Font Pairings',
-      description: 'A collection of 40 curated Google Font pairings, each displayed on its own color-palette card. Click any card to copy an LLM-ready specification prompt. Includes superfamily pairings, monospace+sans combos, and brand design system fonts. Avoids overused defaults -- no Montserrat, Roboto, Open Sans, Lato, Playfair Display, Raleway, Poppins, or Inter. Static HTML with inline CSS, no framework.',
-      screenshot: '/screenshots/font-pairings.png',
-      tags: ['Typography', 'Font Pairings', 'Static HTML', 'Copy-to-Clipboard']
-    },
-    {
-      slug: 'modular-grid',
-      date: 'February 14, 2026',
-      title: 'Modular Grid',
-      description: 'Swiss-inspired modular grid system for digital surfaces. 8px base unit, 4-column layout with proportional margins and gutters, strict vertical rhythm. Includes toggleable grid overlay, type specimen, image treatment demos, and system spec table. Dark mode adaptation of a print-precision layout methodology.',
-      screenshot: '/screenshots/modular-grid.png',
-      tags: ['Grid System', 'Swiss Design', 'Dark Mode', 'Typography']
-    },
-    {
-      slug: 'day-at-a-glance',
-      date: 'February 12, 2026',
-      title: 'Day at a Glance',
-      description: 'Time-aware workday timeline with dynamic now-line that tracks real time. Features 9am-5pm schedule with colored event bars that partially fill as the hour progresses -- gray above the now-line, color below. Past events auto-dim. Built with CSS grid, inline linear-gradient for the fill effect, and 60-second interval updates.',
-      screenshot: '/screenshots/day-at-a-glance.png',
-      tags: ['CSS Grid', 'Timeline', 'Dynamic State', 'Dark Theme']
-    },
-    {
-      slug: 'sourcing-image',
-      date: 'February 11, 2026',
-      title: 'Sourcing Image',
-      description: 'Fully agentic editorial layout -- the only inputs were "use the image library, pick a topic, make it beautiful." Claude sourced 10 images from a personal library, invented the article topic, wrote the copy, and designed a magazine-style layout with varied image treatments: full-bleed hero, side-by-side pairs, sticky insets, captioned features, and an asymmetric photo grid. Cormorant Garamond and DM Sans on warm off-white.',
-      screenshot: '/screenshots/sourcing-image.png',
-      tags: ['Agentic Design', 'Editorial Layout', 'Image Sourcing', 'Magazine']
-    },
-    {
-      slug: 'crossfit-challenge-2',
-      date: 'February 9, 2026',
-      title: 'CrossFit Design Challenge: Day 2',
-      description: 'Day 2 leveled up the same four designer personas with new constraints: dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Same gym content, same personas, dramatically elevated execution. Pure CSS animations, no external libraries.',
-      screenshot: '/screenshots/crossfit-challenge-2.png',
-      tags: ['Dark Mode', 'CSS Animation', 'Data Viz', 'Agent Teams']
-    },
-    {
-      slug: 'crossfit-challenge',
-      date: 'February 8, 2026',
-      title: 'CrossFit Design Challenge',
-      description: 'Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically, then refined with human-in-the-loop collaboration. Includes editorial writeup on the process.',
-      screenshot: '/screenshots/crossfit-challenge.png',
-      tags: ['Agent Teams', 'Design Challenge', 'CSS Modules', 'Multi-Layout']
-    },
-    {
-      slug: 'youre-doing-it-wrong',
-      date: 'February 8, 2026',
-      title: 'You\'re Doing It Wrong',
-      description: 'Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights.',
-      screenshot: '/screenshots/youre-doing-it-wrong.png',
-      tags: ['Blog Post', 'Typography', 'Editorial', 'Long-Form Content']
-    },
-    {
-      slug: 'terminator',
-      date: 'February 6, 2026',
-      title: 'Terminator - Text Scramble',
-      description: 'Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness.',
-      screenshot: '/screenshots/terminator.png',
-      tags: ['Text Animation', 'Terminal UI', 'Interactive', 'Split-Flap Effect']
-    },
-    {
-      slug: 'geist-pixel',
-      date: 'February 6, 2026',
-      title: 'Geist Pixel',
-      description: 'Typographic specimen featuring Vercel\'s Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.',
-      screenshot: '/screenshots/geist-pixel.png',
-      tags: ['Typography', 'Split-Flap Effect', 'Text Animation', 'Monospace']
-    },
-    {
-      slug: 'color-spec',
-      date: 'February 6, 2026',
-      title: 'Brand Guidelines',
-      description: 'Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.',
-      screenshot: '/screenshots/color-spec.png',
-      tags: ['React Components', 'Animated Charts', 'Color Systems', 'Typography']
-    },
-    {
-      slug: 'spec-sheet',
-      date: 'February 2, 2026',
-      title: 'Spec Sheet',
-      description: 'Type specimen sheet with interactive font pairing selector. Features size scale, weight ramp, character set display, drop cap pull quote, and colorful pairing cards inspired by the Color Spec experiment. Text-based controls with underline hover animations.',
-      screenshot: '/screenshots/spec-sheet.png',
-      tags: ['Typography', 'Font Pairings', 'Dark/Light Mode', 'Type Specimen']
-    },
-    {
-      slug: 'blend',
-      date: 'February 2, 2026',
-      title: 'Blend',
-      description: 'Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling, scroll-triggered animations, and an analytics dashboard mockup.',
-      screenshot: '/screenshots/blend.png',
-      tags: ['Gradient Study', 'SVG Mesh', 'Swiss Design', 'Scroll Animation']
-    }
-  ]
 
   return (
     <div

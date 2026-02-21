@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { Karla } from 'next/font/google'
 import './globals.css'
 
@@ -7,11 +8,43 @@ const karla = Karla({
   display: 'swap',
 })
 
-
-export const metadata = {
-  title: 'Design Experiments Sandbox',
-  description: 'A sandbox for exploring visual design systems, widgets, and layouts',
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.joshcoolman.com'),
+  title: {
+    default: 'Josh Coolman — Design Experiments & Writing',
+    template: '%s | Josh Coolman',
+  },
+  description: 'Josh Coolman explores design through code — interactive experiments, visual systems, and writing about building with AI agents.',
+  authors: [{ name: 'Josh Coolman' }],
+  openGraph: {
+    title: 'Josh Coolman — Design Experiments & Writing',
+    description: 'Interactive design experiments, visual systems, and writing about building with AI agents.',
+    siteName: 'Josh Coolman',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 }
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Josh Coolman',
+    url: 'https://www.joshcoolman.com',
+    sameAs: [
+      'https://github.com/joshcoolman-smc',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Josh Coolman',
+    url: 'https://www.joshcoolman.com',
+  },
+]
 
 export default function RootLayout({
   children,
@@ -21,6 +54,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={karla.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>

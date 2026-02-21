@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getDocBySlug, getHeadingsForSlug, getNavCategories } from '@/lib/docs/loadDocs'
 import DocsContent from '../../_components/DocsContent'
@@ -6,6 +7,15 @@ import styles from '../../docs.module.css'
 
 interface DocPageProps {
   params: Promise<{ slug: string[] }>
+}
+
+export async function generateMetadata({ params }: DocPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const doc = getDocBySlug(slug)
+  if (!doc) return {}
+  return {
+    title: doc.metadata.title,
+  }
 }
 
 export default async function DocPage({ params }: DocPageProps) {

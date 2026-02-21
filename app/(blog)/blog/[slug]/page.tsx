@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 /* eslint-disable @next/next/no-img-element */
 import { ChevronLeft } from 'lucide-react'
@@ -24,13 +25,20 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return {}
   return {
     title: post.meta.title,
     description: post.meta.subtitle,
+    openGraph: {
+      title: post.meta.title,
+      description: post.meta.subtitle || undefined,
+      type: 'article',
+      publishedTime: post.meta.date || undefined,
+      authors: [post.meta.author || 'Josh Coolman'],
+    },
   }
 }
 
@@ -40,9 +48,25 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   if (!post) notFound()
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.meta.title,
+    datePublished: post.meta.date || undefined,
+    author: {
+      '@type': 'Person',
+      name: post.meta.author || 'Josh Coolman',
+      url: 'https://www.joshcoolman.com',
+    },
+  }
+
   if (post.meta.overlay && post.meta.image) {
     return (
       <div className={styles.postWrapper}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         <div className={styles.backRow}>
           <CurtainLink href="/blog" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
             <ChevronLeft size={14} />
@@ -81,6 +105,10 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className={styles.postWrapper}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <div className={styles.backRow}>
         <CurtainLink href="/blog" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
           <ChevronLeft size={14} />

@@ -1,6 +1,6 @@
 ---
-title: "SEO for People Who Hate This Stuff"
-subtitle: "A practical guide to being findable without becoming a marketer"
+title: "Never Google Yourself"
+subtitle: "Practical SEO for people like me"
 date: 2026-02-21
 author: Josh Coolman
 readingTime: 10 min

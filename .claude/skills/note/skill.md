@@ -25,7 +25,7 @@ color: warm|cool|neutral
 The note content exactly as typed.
 ```
 
-Use a full ISO timestamp (date + time, no timezone) so notes sort by creation order within the same day. Use the current time when the `/note` command is run.
+Use a full ISO timestamp (date + time, no timezone) so notes sort by creation order within the same day. IMPORTANT: Always run `date +"%Y-%m-%dT%H:%M:%S"` to get the actual current time. Never guess or estimate the timestamp.
 
 ## Filename Convention
 

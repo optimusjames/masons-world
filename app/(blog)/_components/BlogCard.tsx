@@ -1,6 +1,9 @@
-import Link from 'next/link'
+'use client'
+
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link'
 import type { BlogMeta } from '@/lib/blog/types'
+import ImageTintProvider from './ImageTintProvider'
 import styles from '../blog.module.css'
 
 function formatDate(dateStr: string): string {
@@ -14,25 +17,27 @@ function formatDate(dateStr: string): string {
 
 export default function BlogCard({ post, delay }: { post: BlogMeta; delay?: number }) {
   return (
-    <Link href={`/blog/${post.slug}`} className={styles.card} data-delay={delay}>
-      <div className={styles.cardImageWrapper}>
-        {post.image ? (
-          <img
-            src={post.image}
-            alt={post.title}
-            className={styles.cardImage}
-          />
-        ) : null}
-      </div>
-      <div className={styles.cardBody}>
-        <div className={styles.cardMeta}>
-          <time>{formatDate(post.date)}</time>
+    <ImageTintProvider imageSrc={post.image}>
+      <Link href={`/blog/${post.slug}`} className={styles.card} data-delay={delay}>
+        <div className={styles.cardImageWrapper}>
+          {post.image ? (
+            <img
+              src={post.image}
+              alt={post.title}
+              className={styles.cardImage}
+            />
+          ) : null}
         </div>
-        <h2 className={styles.cardTitle}>{post.title}</h2>
-        {post.subtitle && (
-          <p className={styles.cardSubtitle}>{post.subtitle}</p>
-        )}
-      </div>
-    </Link>
+        <div className={styles.cardBody}>
+          <div className={styles.cardMeta}>
+            <time>{formatDate(post.date)}</time>
+          </div>
+          <h2 className={styles.cardTitle}>{post.title}</h2>
+          {post.subtitle && (
+            <p className={styles.cardSubtitle}>{post.subtitle}</p>
+          )}
+        </div>
+      </Link>
+    </ImageTintProvider>
   )
 }

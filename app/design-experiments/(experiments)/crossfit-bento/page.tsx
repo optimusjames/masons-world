@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Flame } from 'lucide-react';
-import { SwissFrame } from '../components/SwissFrame';
 import { ProgressRing } from './components/ProgressRing';
 import { StatDisplay } from './components/StatDisplay';
 import { StackedBarChart } from './components/StackedBarChart';
@@ -65,12 +64,6 @@ export default function FitnessBento() {
 
   return (
     <div className={s.page}>
-      <SwissFrame
-        logo="Iron Republic"
-        meta="Athlete Dashboard"
-        subLabels={['Week 07 / Feb 2026', 'Training Block: Strength', 'Day 14 of 42']}
-        footerLabels={['System v2.4.1', 'Last Sync 08:42', 'Next Session: 17:30']}
-      >
       <div className={s.grid}>
 
         {/* Row 0, Col 0 — Goal Progress */}
@@ -294,7 +287,6 @@ export default function FitnessBento() {
           </div>
         </AnimatedCard>
       </div>
-      </SwissFrame>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import path from 'path'
 import { getAllPosts } from '@/lib/blog/loadBlog'
-import { getAllNotes } from '@/app/design-experiments/sticky-notes'
+import { getAllNotes } from '@/app/design-experiments/(experiments)/sticky-notes'
 import BlogIndexContent from '../_components/BlogIndexContent'
 
 export const metadata = {

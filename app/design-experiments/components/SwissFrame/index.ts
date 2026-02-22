@@ -1,1 +1,0 @@
-export { SwissFrame } from './SwissFrame';

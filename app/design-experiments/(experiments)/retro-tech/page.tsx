@@ -1,8 +1,10 @@
+import { experimentMetadata } from '@/lib/experiments/metadata';
 import { RetroTechPanel } from './components/RetroTechPanel';
-import { SwissFrame } from '../components/SwissFrame';
-import { EditorialBrief } from '../components/EditorialBrief';
-import type { EditorialImage } from '../components/EditorialBrief';
+import { EditorialBrief } from '../../components/EditorialBrief';
+import type { EditorialImage } from '../../components/EditorialBrief';
 import styles from './page.module.css';
+
+export const metadata = experimentMetadata('retro-tech');
 
 const images: EditorialImage[] = [
   { src: '/retro-tech/sample-product-design-2.jpg', alt: 'Control surface detail', cropClass: 'imageCropped' },
@@ -12,15 +14,7 @@ const images: EditorialImage[] = [
 export default function RetroTechPage() {
   return (
     <div className={styles.page}>
-      <SwissFrame
-        logo="RC-1 Control"
-        meta="Design Experiment"
-        subLabels={['Audio Interface Study', 'Skeuomorphic / Hardware', 'Feb 2026']}
-        footerLabels={['48kHz / 24bit', 'DM Mono + Archivo Narrow', 'SN 2024-0847']}
-        variant="light"
-      >
-        <RetroTechPanel />
-      </SwissFrame>
+      <RetroTechPanel />
       <EditorialBrief
         headline="Designing hardware that only exists on screen"
         lede="A skeuomorphic audio interface built through voice-driven pairing between a designer and an AI agent, one conversation at a time."

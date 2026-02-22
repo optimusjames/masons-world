@@ -1,7 +1,5 @@
 import path from 'path'
-import Link from 'next/link'
 import { Permanent_Marker } from 'next/font/google'
-import { ChevronLeft } from 'lucide-react'
 import { getAllNotes } from './loadNotes'
 import StickyNoteStack from './components/StickyNoteStack'
 import styles from './styles.module.css'
@@ -19,20 +17,12 @@ export const metadata = {
 }
 
 export default function StickyNotesExperiment() {
-  const notes = getAllNotes(path.join(process.cwd(), 'app/design-experiments/sticky-notes/data'))
+  const notes = getAllNotes(path.join(process.cwd(), 'app/design-experiments/(experiments)/sticky-notes/data'))
 
   return (
     <div className={styles.pageWrap}>
       <div className={`${styles.page} ${permanentMarker.variable}`}>
-        <div className={styles.backRow}>
-          <Link href="/design-experiments" className={styles.backLink}>
-            <ChevronLeft size={14} />
-            Design
-          </Link>
-        </div>
-
         <div className={styles.header}>
-          <h1 className={styles.title}>Sticky Notes</h1>
           <p className={styles.description}>
             A stack of post-it notes. Click to open the lightbox, then click near
             the card to flip through. Click left to go back, far away to close.

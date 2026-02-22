@@ -8,6 +8,26 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Recommended Links Page
+
+**Date:** 2026-02-22
+
+Added a curated links page at `/recommended` for sharing YouTube videos, GitHub repos, and web tools with personal commentary. Each link is a markdown file in `app/(blog)/recommended/items/` with frontmatter (url, date, optional title) and a one-line comment.
+
+Thumbnails resolve automatically at build time: YouTube titles and thumbnails via oEmbed API, GitHub repo names and OG images via GitHub API, and web link titles from frontmatter. Web links get manual screenshots via agent-browser. The loader (`loadRecommended.ts`) handles all source detection, thumbnail fetching, and caching to `public/screenshots/recommended/`.
+
+Also created the `/recommend` skill for quick link capture from the CLI -- pass a URL and comment, and the skill creates the markdown file, takes screenshots for web links, and runs a build to verify.
+
+**Key files:**
+- `app/(blog)/recommended/page.tsx` -- server component, card grid layout
+- `app/(blog)/recommended/loadRecommended.ts` -- markdown loading, oEmbed/OG image fetching, source detection
+- `app/(blog)/recommended/types.ts` -- RecommendedItem, SourceType types
+- `app/(blog)/recommended/items/` -- individual link markdown files
+- `app/(blog)/blog.module.css` -- card styles for recommended items
+- `.claude/skills/recommend/SKILL.md` -- /recommend skill definition
+
+---
+
 ### Blog Post Light/Dark Mode Toggle
 
 **Date:** 2026-02-22

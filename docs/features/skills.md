@@ -78,6 +78,14 @@ Replace a blog post's hero image using natural language. Accepts a blog title (f
 - **Crop behavior:** Top-crop when reducing height, center-crop when reducing width
 - **No confirmation** -- crops and replaces immediately
 
+### `/recommend` <sub>repo-specific</sub>
+Add a link to the Recommended page. Pass a URL and a comment -- the skill detects the source type (YouTube, GitHub, web), creates a dated markdown file, takes screenshots for web links via agent-browser, and runs a production build to trigger thumbnail downloads.
+
+- **Skill file:** `.claude/skills/recommend/SKILL.md`
+- **Output:** `app/(blog)/recommended/items/YYYY-MM-DD-slug.md` + optional screenshot
+- **Usage:** `/recommend https://example.com Great tool for voice dictation`
+- **No confirmation** -- creates the file and builds immediately
+
 ### `/note` <sub>repo-specific</sub>
 Quick-fire a sticky note from the command line. Everything after `/note` becomes a new markdown file with auto-derived filename and rotating color.
 

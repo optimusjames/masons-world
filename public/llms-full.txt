@@ -80,6 +80,10 @@ Source: https://github.com/joshcoolman-smc/sandbox
 
 - [Design Test Page Prompt](https://www.joshcoolman.com/docs/prompts/design-test-page): Reusable prompt template for generating design experiment pages. Describes the expected structure, styling conventions, and patterns that new experiments should follow.
 
+## Recommended
+
+- [Recommended Links](https://www.joshcoolman.com/recommended): A curated collection of links Josh finds valuable -- YouTube videos, GitHub repos, and web tools related to AI, design, and development. Each link includes a personal comment and an auto-fetched thumbnail (via oEmbed for YouTube, OG images for GitHub, and manual screenshots for web links). New links are added via the `/recommend` Claude Code skill.
+
 ## Optional
 
 - [Screenshots](https://github.com/joshcoolman-smc/sandbox/tree/main/public/screenshots): Preview images for all 16 design experiments, used in the gallery and for social sharing

@@ -198,6 +198,7 @@
   line-height: 1.2;
 }
 
+
 @media (max-width: 768px) {
   .interactiveVideo {
     height: 16rem;

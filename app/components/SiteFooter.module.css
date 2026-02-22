@@ -10,10 +10,24 @@
   pointer-events: auto;
 }
 
-.left {
-  font-family: var(--font-space-mono), 'Space Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
+.recommended {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-lora), 'Lora', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.heart {
+  color: rgba(219, 112, 147, 0.6);
+  transition: color 0.2s ease;
+}
+
+.recommended:hover .heart {
+  color: rgba(219, 112, 147, 0.9);
 }
 
 .link {
@@ -36,7 +50,11 @@
 }
 
 /* Dark variant (homepage, design experiments, etc.) */
-.dark .left {
+.dark .recommended {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dark .recommended:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -57,8 +75,12 @@
 }
 
 /* Light variant (blog, etc.) */
-.light .left {
-  color: rgba(0, 0, 0, 0.4);
+.light .recommended {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.light .recommended:hover {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .light .link {

@@ -104,7 +104,7 @@
   font-weight: 400;
   font-style: italic;
   color: var(--ink);
-  margin: 0 0 32px;
+  margin: 0 0 6px;
 }
 
 .indexRule {
@@ -348,15 +348,34 @@
    ─────────────────────────────────────────── */
 
 .indexMetaLink {
-  font-family: var(--font-space-mono), monospace;
-  font-size: 12px;
-  color: var(--mid);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-lora), serif;
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--ink);
   text-decoration: none;
   transition: color 0.15s ease;
+  margin-bottom: 28px;
+}
+
+.indexMetaHeart {
+  color: rgb(219, 112, 147);
+  transition: transform 0.2s ease;
+}
+
+.indexMetaCaret {
+  position: relative;
+  top: 1px;
 }
 
 .indexMetaLink:hover {
   color: var(--ink);
+}
+
+.indexMetaLink:hover .indexMetaHeart {
+  transform: scale(1.3);
 }
 
 /* ───────────────────────────────────────────

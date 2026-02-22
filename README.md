@@ -246,6 +246,16 @@ The site includes a markdown-powered blog at [joshcoolman.com/blog](https://www.
 
 ---
 
+## Recommended
+
+A curated collection of links -- YouTube videos, GitHub repos, and web tools -- with personal commentary and auto-fetched thumbnails. New links are added via the `/recommend` skill. Each item is a markdown file with frontmatter (url, date, optional title) and a one-line comment.
+
+Thumbnails resolve automatically at build time: YouTube via oEmbed, GitHub via OG images, and web links via manual screenshots taken with agent-browser.
+
+**[View Recommended →](https://www.joshcoolman.com/recommended)**
+
+---
+
 ## Docs
 
 Internal documentation and reference material rendered at [joshcoolman.com/docs](https://www.joshcoolman.com/docs). Markdown files in `docs/` with sidebar navigation, syntax highlighting, and table of contents.
@@ -267,6 +277,7 @@ Internal documentation and reference material rendered at [joshcoolman.com/docs]
 │   │   ├── page.tsx              # Experiments gallery
 │   │   └── [experiment]/         # Each experiment is a self-contained route
 │   ├── (blog)/blog/              # Blog index and post pages
+│   ├── (blog)/recommended/       # Recommended links page
 │   └── (docs)/docs/              # Docs viewer with sidebar nav
 ├── lib/
 │   ├── experiments/data.ts       # Shared experiments metadata
@@ -319,6 +330,9 @@ Ship a design experiment: screenshots with agent-browser, updates gallery and RE
 
 **Content:**
 
+**`/recommend`**
+Add a link to the Recommended page. Pass a URL and a comment -- the skill detects the source type (YouTube, GitHub, web), creates a markdown file, handles screenshots for web links, and runs a production build to trigger thumbnail downloads.
+
 **`/blog-post`**
 Draft a blog post from conversation context. Creates markdown with a placeholder image, immediately visible on the homepage and blog index.
 
@@ -348,6 +362,7 @@ Skills are invoked with a slash command in Claude Code:
 /ts-handoff crossfit-bento                      # TypeScript cleanup
 /promote sticky-notes                           # Extract reusable component
 /ship-experiment                                # Ship the current experiment
+/recommend https://example.com Great tool        # Add recommended link
 /blog-post "Design as Dialogue"                 # Draft a blog post
 /note Remember to update the docs               # Quick sticky note
 /sanity-check                                   # Review current code

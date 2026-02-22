@@ -37,9 +37,9 @@ export default async function RecommendedPage() {
             Blog
           </Link>
         </div>
-        <h1 className={styles.indexTitle}>Recommended</h1>
+        <h1 className={styles.indexTitle}>Link Worthy</h1>
         <p className={styles.indexSubtitle}>
-          Links worth sharing
+          If you&apos;re bored...
         </p>
         <div className={styles.indexRule} />
         <ul className={styles.recList}>

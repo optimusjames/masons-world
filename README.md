@@ -294,43 +294,65 @@ This repo includes custom skills for [Claude Code](https://claude.ai/code) that 
 
 ### Available Skills
 
-**`/sanity-check`**
-Quick React/TypeScript/Next.js code review from a senior engineer perspective. Catches common issues and suggests practical improvements without being pedantic.
-
-**`/ship-experiment`**
-Automated workflow for shipping design experiments: screenshots with agent-browser, updates gallery and README, commits changes, and pushes to GitHub (triggers Vercel deploy).
-
-**`/supabase`**
-Comprehensive Supabase CLI wrapper for database operations: schema migrations with validation, TypeScript type generation, edge function deployment, and postgres best practices integration.
-
-**`/promote`**
-Make a design experiment importable. Assesses the experiment's current state, runs whatever pipeline passes are needed (design-audit, animation-audit, ts-handoff with CSS Modules), extracts components within the experiment directory, designs a public API, and creates a barrel export (`index.ts`). The experiment stays where it lives -- other pages import directly from it. See sticky-notes for the canonical promoted experiment.
-
-**`/design-audit`**
-Audit a design experiment's CSS for color and type consistency. Extracts every color and font-size, groups by context (light bg vs dark bg), flags near-duplicates and inconsistent roles, then suggests unifications. Interactive -- select which fixes to apply, get a before/after summary table of the cleaned system.
-
-**`/animation-audit`**
-Audit a design experiment for entrance animations, stagger timing, and interaction feedback. Maps the grid layout, identifies which components need motion (stroke draws, number counters, bar growth, diagonal waves), proposes spring presets for consistency, and wires up click-to-replay. Fits the workflow: `/sketch` then `/design-audit` then `/animation-audit`.
-
-**`/ts-handoff`**
-Light TypeScript cleanup to make components handoff-ready. Catches real bugs (parser failures on edge values, props APIs that don't match behavior, ref logic that breaks on remount) and hygiene issues (missing client directives, unguarded numeric operations) without over-engineering. The final pass before shipping: `/design-audit` then `/animation-audit` then `/ts-handoff`.
+**Design Experiment Pipeline:**
 
 **`/sketch`**
-Rapid visual prototyping -- paint with code. Two files (page.tsx + styles.css), plain CSS with descriptive class names, no component libraries, no data layer. Get a visual idea on screen fast and iterate until it feels right. Hardcoded content, fake interactions, CSS animations. The napkin drawing before the architecture. Feeds naturally into `/promote` when the design is locked.
+Rapid visual prototyping -- paint with code. Two files (page.tsx + styles.css), plain CSS with descriptive class names, no component libraries, no data layer. The napkin drawing before the architecture.
+
+**`/design-experiment`**
+Create a new design experiment in the sandbox. Scaffolds the route, page, and styles following project conventions.
+
+**`/design-audit`**
+Audit a design experiment's CSS for color and type consistency. Extracts every color and font-size, flags near-duplicates, suggests unifications. Interactive -- select which fixes to apply.
+
+**`/animation-audit`**
+Audit a design experiment for entrance animations, stagger timing, and interaction feedback. Proposes spring presets for consistency and wires up click-to-replay.
+
+**`/ts-handoff`**
+Light TypeScript cleanup to make components handoff-ready. Catches real bugs and hygiene issues without over-engineering. The final pass before shipping.
+
+**`/promote`**
+Make a design experiment importable. Runs the full quality pipeline, extracts components, designs a public API, and creates a barrel export.
+
+**`/ship-experiment`**
+Ship a design experiment: screenshots with agent-browser, updates gallery and README, commits and pushes to GitHub.
+
+**Content:**
+
+**`/blog-post`**
+Draft a blog post from conversation context. Creates markdown with a placeholder image, immediately visible on the homepage and blog index.
+
+**`/note`**
+Quick-fire a sticky note from the command line. Everything after `/note` becomes a new markdown file with auto-derived filename and rotating color.
+
+**Utilities:**
+
+**`/sanity-check`**
+Quick React/TypeScript/Next.js code review from a senior engineer perspective. Catches common issues and suggests practical improvements.
+
+**`/supabase`**
+Supabase CLI wrapper for database operations: schema migrations, TypeScript type generation, edge function deployment, and postgres best practices.
+
+**`/bitmap-to-vector`**
+Convert raster images (PNG, JPG, etc.) to clean, icon-ready SVG vectors using potrace. Auto-detects threshold and polarity, strips bounding rectangles, outputs `fill="currentColor"` SVGs ready for inline use or CSS masks.
 
 ### Using Skills
 
 Skills are invoked with a slash command in Claude Code:
 
 ```bash
-/sanity-check              # Review current code
-/ship-experiment           # Ship the current experiment
-/supabase migrate "..."    # Create database migration
-/promote sticky-notes      # Extract reusable component
-/design-audit crossfit-bento  # Audit colors and type for consistency
-/animation-audit crossfit-bento  # Add entrance animations and stagger timing
-/ts-handoff crossfit-bento       # Light TypeScript cleanup for handoff
 /sketch A breathing app with animated circles  # Rapid visual prototype
+/design-experiment Interactive color palette    # Scaffold new experiment
+/design-audit crossfit-bento                    # Audit colors and type
+/animation-audit crossfit-bento                 # Add entrance animations
+/ts-handoff crossfit-bento                      # TypeScript cleanup
+/promote sticky-notes                           # Extract reusable component
+/ship-experiment                                # Ship the current experiment
+/blog-post "Design as Dialogue"                 # Draft a blog post
+/note Remember to update the docs               # Quick sticky note
+/sanity-check                                   # Review current code
+/supabase migrate "add users table"             # Database migration
+/bitmap-to-vector logo.png                      # Vectorize an image
 ```
 
 ### Skill Location

@@ -8,6 +8,28 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Bitmap-to-Vector Skill Refinement
+
+**Date:** 2026-02-21
+
+Tested and confirmed the `/bitmap-to-vector` skill across three image types: dark subject on light background (line art), light subject on dark background (silhouette), and dark outlines on light background (illustrated icon). Identified and fixed core issues in the tracing pipeline.
+
+**Key changes:**
+- Fixed bounding rectangle issue in `trace.py` -- potrace wraps traced regions in a full-viewBox rectangle that inverts the fill with `evenodd`. Script now auto-detects and strips this, producing clean icon-ready SVGs
+- Preview rendering changed from ambiguous white-on-black to unambiguous black-on-white
+- Added polarity reporting to JSON output so the agent knows what the script decided
+- Updated skill instructions with guidance on `currentColor` SVG usage (inline SVG or CSS mask, not `<img>`)
+- Organized skills documentation in README (grouped by pipeline, content, utilities) and added 4 previously undocumented skills
+- Updated `docs/features/skills.md` to match current skill inventory (12 skills total)
+
+**Key files:**
+- `.claude/skills/bitmap-to-vector/scripts/trace.py` -- bounding rect removal, preview fix, polarity reporting
+- `.claude/skills/bitmap-to-vector/skill.md` -- updated instructions with usage guidance
+- `README.md` -- reorganized skills section
+- `docs/features/skills.md` -- full rewrite to match reality
+
+---
+
 ### SEO Foundation
 
 **Date:** 2026-02-21

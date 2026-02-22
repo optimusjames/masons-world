@@ -221,12 +221,27 @@
 .footerLink {
   color: rgba(255, 255, 255, 0.7);
   transition: color 0.2s ease;
+  display: flex;
+}
+
+.footerIcons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .footerLink:hover {
   color: #8FF7F9;
 }
 
+.skullIcon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  mask: url('/skull-icon.svg') center / contain no-repeat;
+  -webkit-mask: url('/skull-icon.svg') center / contain no-repeat;
+}
 @media (max-width: 768px) {
   .interactiveVideo {
     height: 16rem;

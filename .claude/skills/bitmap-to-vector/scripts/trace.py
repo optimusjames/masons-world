@@ -122,8 +122,10 @@ def preprocess(image_path, threshold=None, invert=False, blur_size=5):
         threshold = auto_threshold(gray)
 
     # Auto-detect polarity if not explicitly set
+    auto_inverted = False
     if not invert and detect_polarity(gray, threshold):
         invert = True
+        auto_inverted = True
 
     # Apply threshold
     _, binary = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY)
@@ -136,7 +138,7 @@ def preprocess(image_path, threshold=None, invert=False, blur_size=5):
     binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=2)
     binary = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=1)
 
-    return (binary > 128).astype(np.bool_), gray.shape
+    return (binary > 128).astype(np.bool_), gray.shape, auto_inverted
 
 
 def crop_to_content(bitmap, padding=10):
@@ -206,6 +208,27 @@ def trace_to_svg(bitmap, turdsize=50, alphamax=1.0, opttolerance=0.2, fill="curr
         d += "Z"
         svg_paths.append(d)
 
+    # Remove outer bounding-box rectangle if present.
+    # Potrace sometimes wraps the traced region in a full-image rectangle
+    # (all corners match the bitmap bounds). With evenodd, this inverts
+    # the fill so the subject becomes a hole instead of the filled shape.
+    if svg_paths:
+        first = svg_paths[0]
+        # Check if the first subpath is a rectangle covering the full bitmap
+        # by looking for paths that only use L commands and hit all 4 corners
+        corners = {(0, 0), (w, 0), (0, h), (w, h),
+                   (0, h/2), (w, h/2), (h/2, 0), (w/2, 0)}
+        # Parse the first path's points
+        import re
+        nums = [float(x) for x in re.findall(r'[\d.]+', first)]
+        points = set()
+        for i in range(0, len(nums) - 1, 2):
+            points.add((round(nums[i]), round(nums[i+1])))
+        # If the first path hits at least the 4 corners, it's a bounding rect
+        true_corners = {(0, 0), (w, 0), (0, h), (w, h)}
+        if true_corners.issubset(points):
+            svg_paths = svg_paths[1:]
+
     combined = " ".join(svg_paths)
 
     svg = (
@@ -220,13 +243,18 @@ def trace_to_svg(bitmap, turdsize=50, alphamax=1.0, opttolerance=0.2, fill="curr
         "width": w,
         "height": h,
         "svg_bytes": len(svg.encode('utf-8')),
+        "fill": fill,
     }
 
     return svg, stats
 
 
 def render_preview(svg_path, output_path, width):
-    """Render SVG to PNG at the given width."""
+    """Render SVG to PNG at the given width.
+
+    Rewrites fill to black and adds a white background so the preview
+    is unambiguous regardless of the SVG's actual fill value.
+    """
     try:
         import cairosvg
     except ImportError:
@@ -237,7 +265,19 @@ def render_preview(svg_path, output_path, width):
         ])
         import cairosvg
 
-    cairosvg.svg2png(url=svg_path, write_to=output_path, output_width=width)
+    with open(svg_path, 'r') as f:
+        svg_content = f.read()
+
+    # Replace any fill on the root <svg> with black for a clear preview
+    import re
+    preview_svg = re.sub(r'fill="[^"]*"', 'fill="black"', svg_content, count=1)
+
+    cairosvg.svg2png(
+        bytestring=preview_svg.encode('utf-8'),
+        write_to=output_path,
+        output_width=width,
+        background_color='white',
+    )
 
 
 def main():
@@ -279,7 +319,7 @@ def main():
         args.smoothing = p['smoothing']
 
     # Preprocess
-    bitmap, original_shape = preprocess(
+    bitmap, original_shape, auto_inverted = preprocess(
         args.input,
         threshold=args.threshold,
         invert=args.invert,
@@ -299,6 +339,14 @@ def main():
         fill=args.fill,
     )
 
+    # Record polarity decision
+    if args.invert:
+        polarity = "inverted (tracing dark regions)"
+    elif auto_inverted:
+        polarity = "auto-inverted (detected dark subject on light background)"
+    else:
+        polarity = "normal (tracing light regions)"
+
     # Write SVG
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
     with open(args.output, 'w') as f:
@@ -309,6 +357,8 @@ def main():
         preview_path = args.output.rsplit('.', 1)[0] + '-preview.png'
         render_preview(args.output, preview_path, args.preview)
         stats['preview'] = preview_path
+
+    stats['polarity'] = polarity
 
     # Print stats as JSON for easy parsing
     print(json.dumps(stats, indent=2))

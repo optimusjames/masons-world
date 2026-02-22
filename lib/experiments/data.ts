@@ -58,36 +58,12 @@ export const experiments: Experiment[] = [
     tags: ['CSS Grid', 'Timeline', 'Dynamic State', 'Dark Theme']
   },
   {
-    slug: 'sourcing-image',
-    date: 'February 11, 2026',
-    title: 'Sourcing Image',
-    description: 'Fully agentic editorial layout -- the only inputs were "use the image library, pick a topic, make it beautiful." Claude sourced 10 images from a personal library, invented the article topic, wrote the copy, and designed a magazine-style layout with varied image treatments: full-bleed hero, side-by-side pairs, sticky insets, captioned features, and an asymmetric photo grid. Cormorant Garamond and DM Sans on warm off-white.',
-    screenshot: '/screenshots/sourcing-image.png',
-    tags: ['Agentic Design', 'Editorial Layout', 'Image Sourcing', 'Magazine']
-  },
-  {
-    slug: 'crossfit-challenge-2',
-    date: 'February 9, 2026',
-    title: 'CrossFit Design Challenge: Day 2',
-    description: 'Day 2 leveled up the same four designer personas with new constraints: dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Same gym content, same personas, dramatically elevated execution. Pure CSS animations, no external libraries.',
-    screenshot: '/screenshots/crossfit-challenge-2.png',
-    tags: ['Dark Mode', 'CSS Animation', 'Data Viz', 'Agent Teams']
-  },
-  {
     slug: 'crossfit-challenge',
-    date: 'February 8, 2026',
+    date: 'February 9, 2026',
     title: 'CrossFit Design Challenge',
-    description: 'Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically, then refined with human-in-the-loop collaboration. Includes editorial writeup on the process.',
+    description: 'Four AI personas -- brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward -- each designed a CrossFit homepage for IRON REPUBLIC gym. Dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Pure CSS animations, no external libraries.',
     screenshot: '/screenshots/crossfit-challenge.png',
-    tags: ['Agent Teams', 'Design Challenge', 'CSS Modules', 'Multi-Layout']
-  },
-  {
-    slug: 'youre-doing-it-wrong',
-    date: 'February 8, 2026',
-    title: "You're Doing It Wrong",
-    description: 'Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights.',
-    screenshot: '/screenshots/youre-doing-it-wrong.png',
-    tags: ['Blog Post', 'Typography', 'Editorial', 'Long-Form Content']
+    tags: ['Dark Mode', 'CSS Animation', 'Data Viz', 'Agent Teams']
   },
   {
     slug: 'terminator',

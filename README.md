@@ -2,6 +2,8 @@
 
 A Next.js-based sandbox for exploring visual design systems, widgets, and interactive patterns.
 
+> **Heads up:** This is a personal sandbox -- me coding in public. Experiments get added, removed, and rewritten all the time. Feel free to browse, but don't depend on anything here staying put.
+
 ---
 
 ## Experiments
@@ -104,59 +106,17 @@ Time-aware workday timeline with a dynamic now-line that tracks real time. Featu
 
 ---
 
-### Sourcing Image
-
-**February 11, 2026**
-
-[![Sourcing Image](./public/screenshots/sourcing-image.png)](https://www.joshcoolman.com/design-experiments/sourcing-image)
-
-A fully agentic editorial layout experiment. The only direction: source images from a personal library, pick a topic, and design an attractive page. Claude autonomously selected 10 photographs, invented an article about visual composition, wrote the editorial copy, and designed a high-end magazine layout with varied image treatments -- full-bleed hero, side-by-side pairs, sticky insets alongside body text, captioned feature images, an asymmetric photo grid, and a full-width closer. Set in Cormorant Garamond and DM Sans on warm off-white. Minimal human input beyond two layout refinements after the initial generation.
-
-**Tags:** Agentic Design - Editorial Layout - Image Sourcing - Magazine
-
-**[View Live →](https://www.joshcoolman.com/design-experiments/sourcing-image) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/sourcing-image)**
-
----
-
-### CrossFit Design Challenge: Day 2
+### CrossFit Design Challenge
 
 **February 9, 2026**
 
-[![CrossFit Design Challenge: Day 2](./public/screenshots/crossfit-challenge-2.png)](https://www.joshcoolman.com/design-experiments/crossfit-challenge-2)
+[![CrossFit Design Challenge](./public/screenshots/crossfit-challenge.png)](https://www.joshcoolman.com/design-experiments/crossfit-challenge)
 
-Day 2 leveled up the same four designer personas with new constraints: dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Same gym content, same personas, dramatically elevated execution. Pure CSS animations, no external libraries. Real CrossFit photography replaces gradient placeholders.
+Four AI personas -- brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward -- each designed a CrossFit homepage for IRON REPUBLIC gym. Dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Pure CSS animations, no external libraries.
 
 **Tags:** Dark Mode - CSS Animation - Data Viz - Agent Teams
 
-**[View Live →](https://www.joshcoolman.com/design-experiments/crossfit-challenge-2) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/crossfit-challenge-2)**
-
----
-
-### CrossFit Design Challenge
-
-**February 8, 2026**
-
-[![CrossFit Design Challenge](./public/screenshots/crossfit-challenge.png)](https://www.joshcoolman.com/design-experiments/crossfit-challenge)
-
-Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically with Claude Code agent teams, then refined with human-in-the-loop collaboration adding real photography and typography tweaks. Includes editorial writeup on the process.
-
-**Tags:** Agent Teams - Design Challenge - CSS Modules - Multi-Layout
-
 **[View Live →](https://www.joshcoolman.com/design-experiments/crossfit-challenge) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/crossfit-challenge)**
-
----
-
-### You're Doing It Wrong
-
-**February 8, 2026**
-
-[![You're Doing It Wrong](./public/screenshots/youre-doing-it-wrong.png)](https://www.joshcoolman.com/design-experiments/youre-doing-it-wrong)
-
-Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights.
-
-**Tags:** Blog Post - Typography - Editorial - Long-Form Content
-
-**[View Live →](https://www.joshcoolman.com/design-experiments/youre-doing-it-wrong) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/youre-doing-it-wrong)**
 
 ---
 

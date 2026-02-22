@@ -1,0 +1,253 @@
+.page {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pageHeader {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 64px 40px 16px;
+}
+
+.pageHeader h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.pageHeader p {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #777;
+  margin-top: 12px;
+  max-width: 560px;
+}
+
+.hint {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: #555;
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+}
+
+.grid {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 40px 120px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cardWrapper {
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 14px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.cardWrapper:hover .card:not(.flipped) {
+  transform: translateY(-3px);
+}
+
+.cardWrapper:hover .card.flipped {
+  transform: rotateY(180deg) translateY(-3px);
+}
+
+.cardFront,
+.cardBack {
+  border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.cardFront {
+  position: relative;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+}
+
+.cardBack {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.backLabel {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 16px;
+}
+
+.specBlock {
+  font-family: 'Albert Sans', monospace;
+  font-size: 0.72rem;
+  line-height: 1.75;
+  opacity: 0.8;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.specBlock strong {
+  font-weight: 600;
+  opacity: 1;
+}
+
+.copyIcon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  z-index: 2;
+}
+
+.cardFront:hover .copyIcon,
+.cardBack .copyIcon {
+  opacity: 0.5;
+}
+
+.copyIcon:hover {
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.copyIcon:active {
+  transform: scale(0.9);
+}
+
+.copyIcon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.cardNumber {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 20px;
+}
+
+.pairingName {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 16px;
+}
+
+.headingSample {
+  line-height: 1.08;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+}
+
+.bodySample {
+  line-height: 1.68;
+  font-size: 0.88rem;
+  opacity: 0.75;
+}
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #fff;
+  color: #111;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 32px 20px 80px;
+    gap: 16px;
+  }
+  .pageHeader {
+    padding: 48px 20px 12px;
+  }
+  .cardFront {
+    padding: 28px 24px;
+  }
+  .cardBack {
+    padding: 28px 24px;
+  }
+  .headingSample {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -2,20 +2,20 @@
 
 import { useState } from 'react'
 import { designers } from './data/designers'
-import DesignBrutal from './components/DesignBrutal'
-import DesignMinimal from './components/DesignMinimal'
-import DesignEditorial from './components/DesignEditorial'
-import DesignTechData from './components/DesignTechData'
+import DesignBrutalV2 from './components/DesignBrutalV2'
+import DesignMinimalV2 from './components/DesignMinimalV2'
+import DesignEditorialV2 from './components/DesignEditorialV2'
+import DesignTechDataV2 from './components/DesignTechDataV2'
 import './styles.css'
 
 const designComponents: Record<string, React.ComponentType> = {
-  brutal: DesignBrutal,
-  minimal: DesignMinimal,
-  editorial: DesignEditorial,
-  'tech-data': DesignTechData,
+  brutal: DesignBrutalV2,
+  minimal: DesignMinimalV2,
+  editorial: DesignEditorialV2,
+  'tech-data': DesignTechDataV2,
 }
 
-export default function CrossFitChallenge() {
+export default function CrossFitChallenge2() {
   const [selected, setSelected] = useState<string | null>(null)
 
   if (selected) {
@@ -35,8 +35,9 @@ export default function CrossFitChallenge() {
   return (
     <div className="showcase">
       <div className="showcase-header">
+        <span className="day-badge">Day 2</span>
         <h1>CrossFit Design Challenge</h1>
-        <p>Four agentic designers, one brief. Click to view each approach.</p>
+        <p>Dark mode, animation, and data visualization. Same four designers, elevated execution.</p>
       </div>
       <div className="gallery-grid">
         {designers.map((designer) => {
@@ -69,36 +70,35 @@ export default function CrossFitChallenge() {
 
       <article className="story">
         <div className="story-inner">
-          <h2 className="story-heading">How This Was Made</h2>
+          <h2 className="story-heading">Day 2: Leveling Up</h2>
 
           <div className="story-body">
             <p>
-              This experiment started with a question: what happens when you give four autonomous AI agents the same design brief and let them work independently?
+              Day 1 proved that four autonomous agents could each produce a distinct, fully-realized homepage from the same brief. Day 2 asks a harder question: can they evolve their own work under new constraints?
             </p>
 
             <p>
-              The brief was simple -- build a homepage for IRON REPUBLIC, a fictional CrossFit gym in Austin, TX. Same content, same sections, same constraints. The only variable was the designer.
+              The brief added three requirements: dark mode across all designs, meaningful animation, and at least one data visualization per design. Same gym content, same personas, dramatically different execution.
             </p>
 
-            <h3>Phase 1: Agentic Design</h3>
+            <h3>The Dark Mode Constraint</h3>
             <p>
-              Using Claude Code's agent teams, we spun up four parallel agents, each assigned a designer persona with a distinct aesthetic point of view. Marcus Voss went dark and industrial. Elise Nakamura pursued minimalist restraint. Sofia Reyes took an editorial, magazine-inspired direction. James Chen built a data-forward dashboard experience.
-            </p>
-            <p>
-              Each agent worked autonomously -- choosing fonts, writing CSS, structuring components, and making design decisions without any human input. A lead agent coordinated the team, ensuring each designer stayed in their lane and delivered a complete, buildable page. The four designs you see above are the direct output of that first pass.
+              Two designs -- Marcus Voss's brutal approach and James Chen's tech-data dashboard -- were already dark. For them, the constraint was about pushing further. For Elise Nakamura and Sofia Reyes, it meant a fundamental transformation: flipping light, airy designs to dark without losing their identity. Nakamura's minimalist restraint had to survive the shift from off-white to near-black. Reyes's warm editorial warmth had to translate to dark magazine spreads.
             </p>
 
-            <h3>Phase 2: Human in the Loop</h3>
+            <h3>Animation as Communication</h3>
             <p>
-              After the initial agentic pass, the designs were refined through conversation. Subtle typography adjustments, font experiments with Geist Pixel variants, and the addition of real CrossFit photography to replace placeholder gradients. This was a collaborative back-and-forth -- reviewing in the browser, discussing what worked and what didn't, and iterating together.
+              The animation constraint wasn't about decoration -- it was about motion that serves the design. Voss went aggressive with glitch effects and hard transitions. Nakamura chose subtle fades and reveals. Reyes used scroll-driven storytelling. Chen animated his charts and dashboards to feel alive. Each approach reflected the persona, not a one-size-fits-all animation library.
+            </p>
+
+            <h3>Data Visualization</h3>
+            <p>
+              This was the most revealing constraint. Every designer had to find a way to present data that fit their aesthetic. Chen went hardest -- animated charts, live-feeling metrics, gradient-filled graphs. Voss made data feel raw and industrial. Nakamura stripped charts down to their essence. Reyes wove data into her editorial narrative like infographics in a magazine feature.
             </p>
 
             <h3>The Process</h3>
             <p>
-              The entire project was built in Claude Code. No IDE was opened at any point. No manual file editing, no copy-pasting between tools. From the initial agent team setup through the final image placement and typography refinements, every change was made through conversation. The build succeeded on every iteration with zero errors.
-            </p>
-            <p>
-              What's interesting isn't that AI can write code -- it's the workflow. Agent teams handle the divergent, exploratory work. Human-AI collaboration handles the convergent, taste-driven refinement. Both phases matter, and the boundary between them is more fluid than you'd expect.
+              Same as Day 1: four parallel agents, each working autonomously with their persona and Day 1 design as reference. The lead agent coordinated task assignment and dependency installation. Each agent chose their own tech stack for animation and charting. The entire build was done in Claude Code with zero manual file editing.
             </p>
           </div>
         </div>

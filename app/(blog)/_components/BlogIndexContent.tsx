@@ -25,25 +25,39 @@ export default function BlogIndexContent({ posts, notes }: Props) {
     if (hasVisited) {
       // Skip animation on return visits — show everything immediately
       cards?.forEach((el) => el.classList.add(styles.cardVisible))
-      return
+    } else {
+      sessionStorage.setItem('blog-visited', '1')
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add(styles.cardVisible)
+            }
+          })
+        },
+        { threshold: 0.1 }
+      )
+
+      cards?.forEach((card) => observer.observe(card))
+
+      return () => observer.disconnect()
     }
 
-    sessionStorage.setItem('blog-visited', '1')
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.cardVisible)
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    cards?.forEach((card) => observer.observe(card))
-
-    return () => observer.disconnect()
+    // Scroll restoration: check hash or sessionStorage
+    const hash = window.location.hash?.slice(1)
+    const saved = sessionStorage.getItem('blog-last-slug')
+    const target = hash || saved
+    if (target) {
+      sessionStorage.removeItem('blog-last-slug')
+      const el = document.getElementById(target)
+      if (el) {
+        el.scrollIntoView({ block: 'center', behavior: 'instant' })
+      }
+      if (hash) {
+        history.replaceState(null, '', window.location.pathname)
+      }
+    }
   }, [])
 
   return (
@@ -72,7 +86,13 @@ export default function BlogIndexContent({ posts, notes }: Props) {
       </Link>
       <div className={styles.cardGrid}>
         {posts.map((post, index) => (
-          <BlogCard key={post.slug} post={post} delay={Math.min(index + 1, 6)} />
+          <div
+            key={post.slug}
+            id={post.slug}
+            onClick={() => sessionStorage.setItem('blog-last-slug', post.slug)}
+          >
+            <BlogCard post={post} delay={Math.min(index + 1, 6)} />
+          </div>
         ))}
       </div>
     </div>

@@ -26,13 +26,7 @@ Source: https://github.com/joshcoolman-smc/sandbox
 
 - [Day at a Glance](https://www.joshcoolman.com/design-experiments/day-at-a-glance): Time-aware workday timeline with dynamic now-line that tracks real time. Features 9am-5pm schedule with colored event bars that partially fill as the hour progresses -- gray above the now-line, color below. Past events auto-dim. Built with CSS grid, inline linear-gradient for the fill effect, and 60-second interval updates. Tags: CSS Grid, Timeline, Dynamic State, Dark Theme. Date: February 12, 2026.
 
-- [Sourcing Image](https://www.joshcoolman.com/design-experiments/sourcing-image): Fully agentic editorial layout -- the only inputs were "use the image library, pick a topic, make it beautiful." Claude sourced 10 images from a personal library, invented the article topic, wrote the copy, and designed a magazine-style layout with varied image treatments: full-bleed hero, side-by-side pairs, sticky insets, captioned features, and an asymmetric photo grid. Cormorant Garamond and DM Sans on warm off-white. Tags: Agentic Design, Editorial Layout, Image Sourcing, Magazine. Date: February 11, 2026.
-
-- [CrossFit Design Challenge: Day 2](https://www.joshcoolman.com/design-experiments/crossfit-challenge-2): Day 2 leveled up the same four designer personas with new constraints: dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Same gym content, same personas, dramatically elevated execution. Pure CSS animations, no external libraries. Tags: Dark Mode, CSS Animation, Data Viz, Agent Teams. Date: February 9, 2026.
-
-- [CrossFit Design Challenge](https://www.joshcoolman.com/design-experiments/crossfit-challenge): Four autonomous AI agents each designed a CrossFit homepage for IRON REPUBLIC gym, working in parallel with distinct aesthetic personas. Brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward approaches -- all built agenically, then refined with human-in-the-loop collaboration. Includes editorial writeup on the process. Tags: Agent Teams, Design Challenge, CSS Modules, Multi-Layout. Date: February 8, 2026.
-
-- [You're Doing It Wrong](https://www.joshcoolman.com/design-experiments/youre-doing-it-wrong): Long-form blog post exploring why "AI-powered design tools" miss the point. Argues that agentic apps apply old paradigms to new technology, while the real shift is learning to work directly with agents through code. Features typography from Spec Sheet with editorial layout and accent highlights. Tags: Blog Post, Typography, Editorial, Long-Form Content. Date: February 8, 2026.
+- [CrossFit Design Challenge](https://www.joshcoolman.com/design-experiments/crossfit-challenge): Four AI personas -- brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward -- each designed a CrossFit homepage for IRON REPUBLIC gym. Dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Pure CSS animations, no external libraries. Tags: Dark Mode, CSS Animation, Data Viz, Agent Teams. Date: February 9, 2026.
 
 - [Terminator - Text Scramble](https://www.joshcoolman.com/design-experiments/terminator): Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness. Tags: Text Animation, Terminal UI, Interactive, Split-Flap Effect. Date: February 6, 2026.
 
@@ -86,6 +80,6 @@ Source: https://github.com/joshcoolman-smc/sandbox
 
 ## Optional
 
-- [Screenshots](https://github.com/joshcoolman-smc/sandbox/tree/main/public/screenshots): Preview images for all 16 design experiments, used in the gallery and for social sharing
+- [Screenshots](https://github.com/joshcoolman-smc/sandbox/tree/main/public/screenshots): Preview images for all 13 design experiments, used in the gallery and for social sharing
 - [Source Code](https://github.com/joshcoolman-smc/sandbox): Full repository on GitHub with all experiments, blog posts, docs, and configuration
 - [Sticky Notes Content](https://www.joshcoolman.com/blog): Short-form notes displayed as sticky notes on the blog page, written in markdown with ISO timestamps for ordering

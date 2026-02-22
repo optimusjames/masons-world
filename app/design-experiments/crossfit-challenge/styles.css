@@ -28,6 +28,16 @@
   margin: 0;
 }
 
+.showcase-header .day-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ff3333;
+  margin-bottom: 0.75rem;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

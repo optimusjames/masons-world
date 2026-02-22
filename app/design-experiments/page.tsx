@@ -47,25 +47,39 @@ export default function Home() {
     if (hasVisited) {
       // Skip animation on return visits — show everything immediately
       experiments?.forEach((el) => el.classList.add(styles.visible))
-      return
+    } else {
+      sessionStorage.setItem('gallery-visited', '1')
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add(styles.visible)
+            }
+          })
+        },
+        { threshold: 0.1 }
+      )
+
+      experiments?.forEach((experiment) => observer.observe(experiment))
+
+      return () => observer.disconnect()
     }
 
-    sessionStorage.setItem('gallery-visited', '1')
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible)
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    experiments?.forEach((experiment) => observer.observe(experiment))
-
-    return () => observer.disconnect()
+    // Scroll restoration: check hash or sessionStorage
+    const hash = window.location.hash?.slice(1)
+    const saved = sessionStorage.getItem('gallery-last-slug')
+    const target = hash || saved
+    if (target) {
+      sessionStorage.removeItem('gallery-last-slug')
+      const el = document.getElementById(target)
+      if (el) {
+        el.scrollIntoView({ block: 'center', behavior: 'instant' })
+      }
+      if (hash) {
+        history.replaceState(null, '', window.location.pathname)
+      }
+    }
   }, [])
 
   return (
@@ -89,11 +103,15 @@ export default function Home() {
       {experiments.map((experiment, index) => (
         <div
           key={experiment.slug}
+          id={experiment.slug}
           className={styles.experiment}
           data-delay={Math.min(index + 1, 6)}
         >
           <div className={styles.experimentPreviewContainer}>
-            <Link href={`/design-experiments/${experiment.slug}`}>
+            <Link
+              href={`/design-experiments/${experiment.slug}`}
+              onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
+            >
               <Image
                 src={experiment.screenshot}
                 alt={`${experiment.title} preview`}
@@ -106,7 +124,10 @@ export default function Home() {
           <div className={styles.experimentContent}>
             <div className={styles.experimentDate}>{experiment.date}</div>
             <h2 className={styles.experimentTitle}>
-              <Link href={`/design-experiments/${experiment.slug}`}>{experiment.title}</Link>
+              <Link
+                href={`/design-experiments/${experiment.slug}`}
+                onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
+              >{experiment.title}</Link>
             </h2>
             <p className={styles.experimentDescription}>
               {experiment.description}

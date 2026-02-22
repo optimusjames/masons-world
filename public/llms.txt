@@ -15,10 +15,7 @@ Source: https://github.com/joshcoolman-smc/sandbox
 - [Font Pairings](https://www.joshcoolman.com/design-experiments/font-pairings): 40 curated Google Font pairings with copy-to-clipboard LLM prompts
 - [Modular Grid](https://www.joshcoolman.com/design-experiments/modular-grid): Swiss-inspired modular grid system with toggleable overlay and type specimen
 - [Day at a Glance](https://www.joshcoolman.com/design-experiments/day-at-a-glance): Time-aware workday timeline with dynamic now-line tracking
-- [Sourcing Image](https://www.joshcoolman.com/design-experiments/sourcing-image): Fully agentic editorial layout -- Claude sourced images, wrote copy, designed layout
-- [CrossFit Design Challenge: Day 2](https://www.joshcoolman.com/design-experiments/crossfit-challenge-2): Dark mode designs with animation and data visualization from four AI personas
-- [CrossFit Design Challenge](https://www.joshcoolman.com/design-experiments/crossfit-challenge): Four AI agents each designed a CrossFit homepage with distinct aesthetics
-- [You're Doing It Wrong](https://www.joshcoolman.com/design-experiments/youre-doing-it-wrong): Long-form blog post on why AI design tools miss the point
+- [CrossFit Design Challenge](https://www.joshcoolman.com/design-experiments/crossfit-challenge): Four AI personas designed CrossFit homepages with dark mode, animation, and data viz
 - [Terminator - Text Scramble](https://www.joshcoolman.com/design-experiments/terminator): Terminal-style text scramble effect with two-phase animation
 - [Geist Pixel](https://www.joshcoolman.com/design-experiments/geist-pixel): Typographic specimen for Vercel's Geist Pixel font with split-flap effect
 - [Brand Guidelines](https://www.joshcoolman.com/design-experiments/color-spec): Interactive brand guidelines with live color and typography customization

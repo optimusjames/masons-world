@@ -1,0 +1,78 @@
+.footer {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto 0;
+  padding: 10px 1rem 1rem;
+  border-top: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.left {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.link {
+  transition: color 0.2s ease;
+  display: flex;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.skull {
+  display: block;
+  width: 20px;
+  height: 20px;
+  mask: url('/skull-icon.svg') center / contain no-repeat;
+  -webkit-mask: url('/skull-icon.svg') center / contain no-repeat;
+}
+
+/* Dark variant (homepage, design experiments, etc.) */
+.dark .left {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .link:hover {
+  color: #8FF7F9;
+}
+
+.dark .skull {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.dark {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Light variant (blog, etc.) */
+.light .left {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.light .link {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.light .link:hover {
+  color: #1a1a1a;
+}
+
+.light .skull {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.light {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}

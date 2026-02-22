@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
+import { SwissFrame } from '../components/SwissFrame'
 import { ContactSheet } from './components/ContactSheet'
 import type { ImageEntry } from './types'
 import styles from './page.module.css'
@@ -49,39 +50,51 @@ export default function ContactSheetPage() {
 
   return (
     <div className={styles.page}>
-      <input
-        ref={inputRef}
-        type="file"
-        // @ts-expect-error webkitdirectory is non-standard but widely supported
-        webkitdirectory=""
-        multiple
-        hidden
-        onChange={e => handleFiles(e.target.files)}
-      />
-
-      {!hasImages && (
-        <div className={styles.picker}>
-          <button className={styles.pickerButton} onClick={openPicker}>
-            Choose Folder
-          </button>
-          <p className={styles.pickerLabel}>
-            Pick any folder of images from your device. Nothing gets uploaded -- everything stays in your browser.
-          </p>
-        </div>
-      )}
-
-      {hasImages && (
-        <ContactSheet
-          images={images}
-          title={folderName}
-          className={styles.sheet}
-          headerExtra={
-            <button className={styles.changeBtn} onClick={openPicker}>
-              Change Folder
-            </button>
-          }
+      <SwissFrame
+        logo="Contact Sheet"
+        meta="Image Browser"
+        subLabels={[
+          hasImages ? `${images.length} images` : 'No folder selected',
+          hasImages ? folderName : 'Local only',
+          'Nothing uploaded',
+        ]}
+        footerLabels={['Client-side only', 'WebkitDirectory API', 'JSZip export']}
+        fluid
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          // @ts-expect-error webkitdirectory is non-standard but widely supported
+          webkitdirectory=""
+          multiple
+          hidden
+          onChange={e => handleFiles(e.target.files)}
         />
-      )}
+
+        {!hasImages && (
+          <div className={styles.picker}>
+            <button className={styles.pickerButton} onClick={openPicker}>
+              Choose Folder
+            </button>
+            <p className={styles.pickerLabel}>
+              Pick any folder of images from your device. Nothing gets uploaded -- everything stays in your browser.
+            </p>
+          </div>
+        )}
+
+        {hasImages && (
+          <ContactSheet
+            images={images}
+            title={folderName}
+            className={styles.sheet}
+            headerExtra={
+              <button className={styles.changeBtn} onClick={openPicker}>
+                Change Folder
+              </button>
+            }
+          />
+        )}
+      </SwissFrame>
     </div>
   )
 }

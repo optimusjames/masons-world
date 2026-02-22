@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import SiteFooter from '../components/SiteFooter'
+import styles from './layout.module.css'
 
 export const metadata: Metadata = {
   title: 'Design Experiments',
@@ -10,5 +12,10 @@ export default function DesignExperimentsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <div className={styles.layout}>
+      {children}
+      <SiteFooter variant="dark" />
+    </div>
+  )
 }

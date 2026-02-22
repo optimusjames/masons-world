@@ -122,12 +122,6 @@ export default function Home() {
         </div>
       ))}
 
-      <div className={styles.footer}>
-        <p>
-          Design experiments by Josh Coolman •{' '}
-          <a href="https://github.com/joshcoolman-smc/sandbox">GitHub</a>
-        </p>
-      </div>
     </div>
   )
 }

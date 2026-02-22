@@ -1,3 +1,8 @@
+.pageWrap {
+  background: #fafafa;
+  min-height: 100vh;
+}
+
 .page {
   max-width: 720px;
   margin: 0 auto;

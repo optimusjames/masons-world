@@ -9,8 +9,26 @@ const marker = Permanent_Marker({
   display: "swap",
 });
 
-export default function SkullEasterEgg({ className }: { className?: string }) {
+const themes = {
+  dark: {
+    bubble: "rgba(255, 255, 255, 0.95)",
+    text: "#1a1a1a",
+  },
+  light: {
+    bubble: "rgba(30, 30, 30, 0.92)",
+    text: "#f0f0f0",
+  },
+};
+
+export default function SkullEasterEgg({
+  className,
+  variant = "dark",
+}: {
+  className?: string;
+  variant?: "light" | "dark";
+}) {
   const [visible, setVisible] = useState(false);
+  const theme = themes[variant];
 
   const handleClick = useCallback(() => {
     if (visible) return;
@@ -52,8 +70,8 @@ export default function SkullEasterEgg({ className }: { className?: string }) {
           style={{
             display: "block",
             position: "relative",
-            background: "rgba(255, 255, 255, 0.95)",
-            color: "#1a1a1a",
+            background: theme.bubble,
+            color: theme.text,
             fontSize: "0.75rem",
             padding: "5px 10px 4px",
             borderRadius: "6px",
@@ -72,7 +90,7 @@ export default function SkullEasterEgg({ className }: { className?: string }) {
               height: 0,
               borderLeft: "5px solid transparent",
               borderRight: "5px solid transparent",
-              borderTop: "5px solid rgba(255, 255, 255, 0.95)",
+              borderTop: `5px solid ${theme.bubble}`,
             }}
           />
         </span>

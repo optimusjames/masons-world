@@ -10,6 +10,7 @@ interface SwissFrameProps {
   subLabels: string[];
   footerLabels: string[];
   variant?: 'dark' | 'light';
+  fluid?: boolean;
   backHref?: string;
   children: ReactNode;
 }
@@ -20,11 +21,12 @@ export function SwissFrame({
   subLabels,
   footerLabels,
   variant = 'dark',
+  fluid = false,
   backHref = '/design-experiments',
   children,
 }: SwissFrameProps) {
   return (
-    <div className={`${styles.frame} ${styles[variant]}`}>
+    <div className={`${styles.frame} ${styles[variant]}${fluid ? ` ${styles.fluid}` : ''}`}>
       <header className={styles.header}>
         <CurtainLink href={backHref} className={styles.backLink} curtainTransition={true} curtainReverse={true}>
           <span className={styles.backArrow}>&larr;</span> Back

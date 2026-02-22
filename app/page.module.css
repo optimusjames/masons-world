@@ -198,50 +198,6 @@
   line-height: 1.2;
 }
 
-/* Footer */
-.footer {
-  width: calc(100% - 2rem);
-  max-width: calc(800px - 2rem);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin-top: -1.25rem;
-  padding-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: auto;
-}
-
-.footerLeft {
-  font-family: var(--font-space-mono), 'Space Mono', monospace;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.05em;
-}
-
-.footerLink {
-  color: rgba(255, 255, 255, 0.7);
-  transition: color 0.2s ease;
-  display: flex;
-}
-
-.footerIcons {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.footerLink:hover {
-  color: #8FF7F9;
-}
-
-.skullIcon {
-  display: block;
-  width: 20px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.65);
-  mask: url('/skull-icon.svg') center / contain no-repeat;
-  -webkit-mask: url('/skull-icon.svg') center / contain no-repeat;
-}
 @media (max-width: 768px) {
   .interactiveVideo {
     height: 16rem;

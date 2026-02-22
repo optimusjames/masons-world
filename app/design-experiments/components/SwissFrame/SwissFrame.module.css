@@ -1,6 +1,11 @@
 .frame {
   max-width: 840px;
   width: 100%;
+  margin-bottom: 100px;
+}
+
+.fluid {
+  max-width: none;
 }
 
 /* Dark variant (default) — light text on dark backgrounds */

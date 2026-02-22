@@ -8,6 +8,31 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Image-Tinted Blog Cards
+
+**Date:** 2026-02-22
+
+Blog cards on the index page now extract the dominant color from each post's hero image and derive a per-card tinted palette. The effect is subtle but distinctive -- each card feels like it belongs to its image.
+
+The technique: draw the hero image onto a 32x32 offscreen canvas (bilinear interpolation acts as a free blur), run k-means clustering (6 clusters, 5 iterations) on the filtered pixels, and pick the most dominant chromatic color. That single hue drives the entire card palette through HSL transforms at different saturation and lightness levels.
+
+**Color mapping (all same hue `h` from dominant):**
+- Title: `hsl(h, clamp(s, 0.45, 0.75), 0.75)` -- bright, saturated
+- Subtitle: `hsl(h, clamp(s, 0.35, 0.55), 0.85)` -- lighter version of title
+- Date: matches subtitle
+- Card background: `hsl(h, 0.24, 0.10)` -- dark tint, visible against pure black page
+
+Pre-filtering strips near-black and desaturated pixels before clustering so shadows don't dominate. Falls back to default palette when no image is present or extraction fails (CORS, canvas error).
+
+Also removed the overlay blog layout option (renamed `.overlay.md` to `.md`), updated the design page headline, and added line-clamping to card titles/subtitles for consistent grid alignment.
+
+**Key files:**
+- `app/(blog)/_components/ImageTintProvider.tsx` -- color extraction, k-means clustering, HSL palette derivation
+- `app/(blog)/_components/BlogCard.tsx` -- wraps each card in ImageTintProvider
+- `app/(blog)/blog.module.css` -- CSS custom property fallbacks (`--card-bg`, `--subtitle-color`)
+
+---
+
 ### Bitmap-to-Vector Skill Refinement
 
 **Date:** 2026-02-21

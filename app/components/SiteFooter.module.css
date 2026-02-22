@@ -10,15 +10,20 @@
   pointer-events: auto;
 }
 
-.recommended {
+.nav {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-lora), 'Lora', serif;
-  font-size: 0.8rem;
-  font-style: italic;
+  gap: 1.2rem;
+}
+
+.navLink {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 0.7rem;
   text-decoration: none;
   transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .heart {
@@ -26,7 +31,7 @@
   transition: color 0.2s ease;
 }
 
-.recommended:hover .heart {
+.navLink:hover .heart {
   color: rgba(219, 112, 147, 0.9);
 }
 
@@ -50,11 +55,11 @@
 }
 
 /* Dark variant (homepage, design experiments, etc.) */
-.dark .recommended {
+.dark .navLink {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.dark .recommended:hover {
+.dark .navLink:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -75,11 +80,11 @@
 }
 
 /* Light variant (blog, etc.) */
-.light .recommended {
+.light .navLink {
   color: rgba(0, 0, 0, 0.35);
 }
 
-.light .recommended:hover {
+.light .navLink:hover {
   color: rgba(0, 0, 0, 0.6);
 }
 

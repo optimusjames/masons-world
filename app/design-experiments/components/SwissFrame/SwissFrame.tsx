@@ -29,7 +29,7 @@ export function SwissFrame({
     <div className={`${styles.frame} ${styles[variant]}${fluid ? ` ${styles.fluid}` : ''}`}>
       <header className={styles.header}>
         <CurtainLink href={backHref} className={styles.backLink} curtainTransition={true} curtainReverse={true}>
-          <span className={styles.backArrow}>&larr;</span> Back
+          <span className={styles.backArrow}>&larr;</span> Design
         </CurtainLink>
         <div className={styles.rule} />
         <div className={styles.headerRow}>

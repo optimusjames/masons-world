@@ -70,16 +70,16 @@ export default function Home() {
 
           <div className={styles.columns}>
             {/* Design */}
-            <CurtainLink href="/design-experiments" className={styles.column} curtainTransition={true}>
-              <div className={styles.columnTitle}>
+            <div className={styles.column}>
+              <CurtainLink href="/design-experiments" className={styles.columnTitle} curtainTransition={true}>
                 Design
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </div>
+              </CurtainLink>
               <div className={styles.columnItems}>
                 {recentExperiments.map((exp) => (
-                  <div key={exp.slug} className={styles.columnItem}>
+                  <CurtainLink key={exp.slug} href={`/design-experiments/${exp.slug}`} className={styles.columnItem} curtainTransition={true}>
                     <Image
                       src={exp.screenshot}
                       alt={exp.title}
@@ -91,22 +91,22 @@ export default function Home() {
                       <span className={styles.itemTitle}>{exp.title}</span>
                       <span className={styles.itemDate}>{exp.date}</span>
                     </div>
-                  </div>
+                  </CurtainLink>
                 ))}
               </div>
-            </CurtainLink>
+            </div>
 
             {/* Blog */}
-            <CurtainLink href="/blog" className={styles.column} curtainTransition={true}>
-              <div className={styles.columnTitle}>
+            <div className={styles.column}>
+              <CurtainLink href="/blog" className={styles.columnTitle} curtainTransition={true}>
                 Blog
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </div>
+              </CurtainLink>
               <div className={styles.columnItems}>
                 {posts.map((post) => (
-                  <div key={post.slug} className={styles.columnItem}>
+                  <CurtainLink key={post.slug} href={`/blog/${post.slug}`} className={styles.columnItem} curtainTransition={true}>
                     {post.image && (
                       <Image
                         src={post.image}
@@ -128,32 +128,32 @@ export default function Home() {
                         </span>
                       )}
                     </div>
-                  </div>
+                  </CurtainLink>
                 ))}
               </div>
-            </CurtainLink>
+            </div>
 
             {/* Docs */}
-            <CurtainLink href="/docs" className={styles.column} curtainTransition={true}>
-              <div className={styles.columnTitle}>
+            <div className={styles.column}>
+              <CurtainLink href="/docs" className={styles.columnTitle} curtainTransition={true}>
                 Docs
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </div>
+              </CurtainLink>
               <div className={styles.columnItems}>
                 {docs.map((doc) => (
-                  <div key={doc.slug} className={styles.columnItem}>
+                  <CurtainLink key={doc.slug} href={`/docs/${doc.slug}`} className={styles.columnItem} curtainTransition={true}>
                     <div className={styles.itemText}>
                       <span className={styles.itemTitle}>{doc.title}</span>
                       {doc.description && (
                         <span className={styles.itemDate}>{doc.description}</span>
                       )}
                     </div>
-                  </div>
+                  </CurtainLink>
                 ))}
               </div>
-            </CurtainLink>
+            </div>
           </div>
 
           <SiteFooter variant="dark" />

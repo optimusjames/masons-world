@@ -6,7 +6,7 @@ export default function SourcingImage() {
   return (
     <article className="si-article" >
       <Link href="/design-experiments" className="si-back">
-        Back
+        Design
       </Link>
 
       {/* Hero: Full-bleed image with title overlay */}

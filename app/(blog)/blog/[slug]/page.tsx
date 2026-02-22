@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className={styles.backRow}>
           <CurtainLink href="/blog" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
             <ChevronLeft size={14} />
-            Back
+            Blog
           </CurtainLink>
           <ThemeToggle />
         </div>
@@ -114,7 +114,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <div className={styles.backRow}>
         <CurtainLink href="/blog" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
           <ChevronLeft size={14} />
-          Back
+          Blog
         </CurtainLink>
         <ThemeToggle />
       </div>

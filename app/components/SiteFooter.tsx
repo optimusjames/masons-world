@@ -7,12 +7,17 @@ import styles from './SiteFooter.module.css'
 export default function SiteFooter({ variant = 'dark' }: { variant?: 'light' | 'dark' }) {
   return (
     <footer className={`${styles.footer} ${styles[variant]}`}>
-      <CurtainLink href="/recommended" className={styles.recommended} curtainTransition={true}>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none" className={styles.heart}>
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-        </svg>
-        Link Worthy
-      </CurtainLink>
+      <nav className={styles.nav}>
+        <CurtainLink href="/design-experiments" className={styles.navLink} curtainTransition={true}>Design</CurtainLink>
+        <CurtainLink href="/blog" className={styles.navLink} curtainTransition={true}>Blog</CurtainLink>
+        <CurtainLink href="/docs" className={styles.navLink} curtainTransition={true}>Docs</CurtainLink>
+        <CurtainLink href="/recommended" className={styles.navLink} curtainTransition={true}>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" className={styles.heart}>
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          Link Worthy
+        </CurtainLink>
+      </nav>
       <div className={styles.icons}>
         <a
           href="https://github.com/joshcoolman-smc/sandbox"

@@ -27,7 +27,7 @@ export default function StickyNotesExperiment() {
         <div className={styles.backRow}>
           <Link href="/design-experiments" className={styles.backLink}>
             <ChevronLeft size={14} />
-            Back
+            Design
           </Link>
         </div>
 

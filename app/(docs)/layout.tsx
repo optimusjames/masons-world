@@ -1,5 +1,6 @@
 import { getNavCategories } from '@/lib/docs/loadDocs'
 import DocsSidebar from './_components/DocsSidebar'
+import SiteFooter from '@/app/components/SiteFooter'
 import styles from './docs.module.css'
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
@@ -8,7 +9,10 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className={styles.docsLayout}>
       <DocsSidebar categories={categories} />
-      <main className={styles.mainContent}>{children}</main>
+      <main className={styles.mainContent}>
+        {children}
+        <SiteFooter variant="dark" />
+      </main>
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { ChevronLeft } from 'lucide-react'
+import Link from 'next/link'
 import CurtainLink from '@/app/components/CurtainLink'
 import StickyNoteStack from '@/app/design-experiments/sticky-notes/components/StickyNoteStack'
 import type { StickyNote } from '@/app/design-experiments/sticky-notes/types'
@@ -61,6 +62,10 @@ export default function BlogIndexContent({ posts, notes }: Props) {
       </div>
       <p className={styles.indexSubtitle}>
         When the mood strikes...
+        <span style={{ margin: '0 12px' }}>&middot;</span>
+        <Link href="/recommended" className={styles.indexMetaLink}>
+          Recommended
+        </Link>
       </p>
       <div className={styles.cardGrid}>
         {posts.map((post, index) => (

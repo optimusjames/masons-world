@@ -10,7 +10,7 @@
   --mid: #a09888;
   --light: #706860;
   --rule: #383430;
-  --paper: #000;
+  --paper: #0d0d0d;
   --accent: #8FF7F9;
   --col-max: 680px;
 
@@ -54,9 +54,9 @@
 }
 
 .blogLayout[data-theme="light"] {
-  --paper: #d5d0c8;
-  --body: #000;
-  --ink: #000;
+  --paper: #d0cec8;
+  --body: #2a2a28;
+  --ink: #2a2a28;
   --mid: #333;
   --light: #555;
   --rule: #bbb;

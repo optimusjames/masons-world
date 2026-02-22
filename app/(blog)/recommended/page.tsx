@@ -41,7 +41,6 @@ export default async function RecommendedPage() {
         <p className={styles.indexSubtitle}>
           If you&apos;re bored...
         </p>
-        <div className={styles.indexRule} />
         <ul className={styles.recList}>
           {items.map((item) => (
             <li key={item.id} className={styles.recItem}>

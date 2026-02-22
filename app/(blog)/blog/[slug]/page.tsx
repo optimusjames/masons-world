@@ -5,6 +5,7 @@ import { ChevronLeft } from 'lucide-react'
 import { getAllPosts, getPostBySlug } from '@/lib/blog/loadBlog'
 import CurtainLink from '@/app/components/CurtainLink'
 import BlogContent from '../../_components/BlogContent'
+import ThemeToggle from '../../_components/ThemeToggle'
 import styles from '../../blog.module.css'
 
 interface PageProps {
@@ -72,6 +73,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <ChevronLeft size={14} />
             Back
           </CurtainLink>
+          <ThemeToggle />
         </div>
         <div className={styles.overlayHero}>
           <img
@@ -114,6 +116,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <ChevronLeft size={14} />
           Back
         </CurtainLink>
+        <ThemeToggle />
       </div>
       <header className={styles.postHeader}>
         <div className={styles.postTitleRow}>

@@ -8,6 +8,21 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Blog Post Light/Dark Mode Toggle
+
+**Date:** 2026-02-22
+
+Added a light/dark mode toggle to blog post pages. A sun/moon icon sits opposite the back link in the top row -- click to swap between dark (default) and a warm light reading mode. The toggle targets the `blogLayout` wrapper so the entire viewport background changes, not just the content column. On unmount (navigating away), the attribute is cleaned up so the blog index always stays dark.
+
+Uses a `-webkit-text-stroke: 0.25px` trick in light mode to optically thicken body text for better readability on the lighter background without changing font-weight (which would cause line reflow). Preference persists via `localStorage` across post pages but resets when leaving the blog post context.
+
+**Key files:**
+- `app/(blog)/_components/ThemeToggle.tsx` -- client component, localStorage persistence, cleanup on unmount
+- `app/(blog)/blog.module.css` -- `.themeToggle` styles, `.blogLayout[data-theme="light"]` variable overrides
+- `app/(blog)/blog/[slug]/page.tsx` -- ThemeToggle placed in backRow for both overlay and standard layouts
+
+---
+
 ### Image-Tinted Blog Cards
 
 **Date:** 2026-02-22

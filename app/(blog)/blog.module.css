@@ -44,6 +44,8 @@
   color: #666;
   font-size: 13px;
   line-height: 1;
+  position: relative;
+  top: 8px;
   transition: color 0.15s ease;
 }
 

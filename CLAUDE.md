@@ -7,6 +7,28 @@ npm run dev      # Dev server :3000
 npm run build    # Production build
 ```
 
+## Frequent Workflows
+
+**Quick capture (most common):**
+- `/note` -- sticky note, instant capture
+- `/recommend` -- save a link with comment, auto-thumbnails
+- `/blog-post` -- draft from conversation context
+
+**Design experiments:**
+- `/sketch` -- rapid prototype (page.tsx + styles.css)
+- `/ship-experiment` -- screenshot, gallery, README, commit, push
+
+## SEO Checklist
+
+After adding any new route or content section, touch these files:
+- `app/sitemap.ts` -- add new routes to `staticRoutes` (dynamic routes like blog/experiments are auto-discovered)
+- `public/llms.txt` -- concise entry
+- `public/llms-full.txt` -- expanded entry with description
+- `README.md` -- if it's a new section (not just a new item within existing content)
+- `docs/01-progress.md` -- notable changes
+
+Metadata: each page.tsx should export `metadata` with title + description. The root layout has OG/Twitter defaults.
+
 ## Structure
 
 ```
@@ -18,14 +40,14 @@ app/design-experiments/
     ├── components/               # Extract when >500 lines
     ├── hooks/
     └── data/
+
+app/(blog)/
+├── blog/                          # Blog index and posts
+├── recommended/                   # Link Worthy page
+│   ├── items/                     # Individual link .md files
+│   └── loadRecommended.ts         # Auto-fetches thumbnails at build
+└── notes/                         # Sticky note .md files
 ```
-
-## New Experiment Workflow
-
-1. Create `app/design-experiments/[name]/page.tsx` + `styles.css`
-2. Add to gallery in `app/design-experiments/page.tsx`
-3. Screenshot to `public/screenshots/[name].png`
-4. Use `/ship-experiment` skill when done (handles screenshot, gallery, README, commit, push)
 
 ## Component Extraction
 

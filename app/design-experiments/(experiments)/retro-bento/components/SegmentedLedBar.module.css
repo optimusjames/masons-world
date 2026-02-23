@@ -1,0 +1,28 @@
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.segment {
+  width: 100%;
+  height: 6px;
+  border-radius: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.off { background: rgba(0, 0, 0, 0.08); }
+
+.green {
+  background: var(--display-text);
+}
+
+.yellow {
+  background: var(--display-text);
+  opacity: 0.85;
+}
+
+.red {
+  background: var(--accent);
+}

@@ -113,7 +113,7 @@ function ModularGridDemo() {
             <div style={{ gridColumn: `span ${col(2)}` }}>
               <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden' }}>
                 <img
-                  src="/images/astronaut-helmet-red-glow.jpg"
+                  src="/design-experiments/modular-grid/astronaut-helmet-red-glow.jpg"
                   alt="Astronaut helmet with red glow"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
@@ -210,7 +210,7 @@ function ModularGridDemo() {
             </SectionLabel>
             <div style={{ gridColumn: `span ${col(1)}` }}>
               <div style={{ width: '100%', ...(grid.columns === 2 ? { aspectRatio: '16/9' } : { height: u(24) }), overflow: 'hidden' }}>
-                <img src="/images/astronaut-face-light-streaks.jpg" alt="Astronaut face with prismatic light streaks" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src="/design-experiments/modular-grid/astronaut-face-light-streaks.jpg" alt="Astronaut face with prismatic light streaks" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
               <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>
                 Fig. 2 -- Single column, fixed height
@@ -218,7 +218,7 @@ function ModularGridDemo() {
             </div>
             <div style={{ gridColumn: `span ${col(grid.columns === 2 ? 1 : 2)}` }}>
               <div style={{ width: '100%', ...(grid.columns === 2 ? { aspectRatio: '16/9' } : { height: u(24) }), overflow: 'hidden' }}>
-                <img src="/images/blade-runner-eye-reflection.jpg" alt="Blade Runner eye with galaxy reflection" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src="/design-experiments/modular-grid/blade-runner-eye-reflection.jpg" alt="Blade Runner eye with galaxy reflection" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
               <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>
                 Fig. 3 -- Two columns, same fixed height
@@ -232,20 +232,20 @@ function ModularGridDemo() {
             <Spacer span={1} units={0} />
             <div style={{ gridColumn: 'span 1' }}>
               <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                <img src="/images/blade-runner-woman-portrait.jpg" alt="Blade Runner woman portrait" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src="/design-experiments/modular-grid/blade-runner-woman-portrait.jpg" alt="Blade Runner woman portrait" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
               <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>Fig. 4 -- Portrait</p>
             </div>
             <div style={{ gridColumn: 'span 1' }}>
               <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                <img src="/images/man-profile-colored-lighting.jpeg" alt="Man profile in colored lighting" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src="/design-experiments/modular-grid/man-profile-colored-lighting.jpeg" alt="Man profile in colored lighting" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
               <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>Fig. 5 -- Portrait</p>
             </div>
             {grid.columns > 2 && (
               <div style={{ gridColumn: 'span 1' }}>
                 <div style={{ width: '100%', aspectRatio: '3/4', overflow: 'hidden' }}>
-                  <img src="/images/woman-red-background-silhouette.jpeg" alt="Woman silhouette on red background" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <img src="/design-experiments/modular-grid/woman-red-background-silhouette.jpeg" alt="Woman silhouette on red background" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
                 <p style={{ ...TYPE.caption, fontFamily: FONT.body, color: C.textMuted, marginTop: u(1), marginBottom: 0 }}>Fig. 6 -- Portrait</p>
               </div>

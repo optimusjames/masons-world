@@ -2,6 +2,15 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'retro-bento',
+    date: 'February 23, 2026',
+    title: 'Retro Bento',
+    description: 'CrossFit bento grid meets retro hardware aesthetics. Nine fitness widgets styled as rack-mount modules with brushed aluminum panels, CRT displays with scanlines, LED indicators, analog needle gauges, segmented VU meters, and oscilloscope macro charts. DM Mono for technical readouts, Archivo Narrow for engraved labels. Warm gray surface palette with orange accent. Click any card to replay its entrance animation.',
+    screenshot: '/screenshots/retro-bento.png',
+    tags: ['Bento Grid', 'Hardware UI', 'CRT Display', 'SVG Animation'],
+    theme: 'light'
+  },
+  {
     slug: 'retro-tech',
     date: 'February 20, 2026',
     title: 'Retro Tech Control Panel',

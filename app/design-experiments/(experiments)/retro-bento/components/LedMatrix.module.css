@@ -1,0 +1,28 @@
+.matrix {
+  display: grid;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.level0 { background: var(--surface-deep, #c8c6c2); }
+.level1 { background: color-mix(in srgb, var(--accent) 20%, var(--surface-deep, #c8c6c2)); }
+.level2 { background: color-mix(in srgb, var(--accent) 40%, var(--surface-deep, #c8c6c2)); }
+.level3 { background: color-mix(in srgb, var(--accent) 65%, var(--surface-deep, #c8c6c2)); }
+
+.level4 {
+  background: var(--accent);
+  box-shadow: 0 0 4px var(--accent-glow, rgba(232, 98, 44, 0.25));
+  animation: ledPulse 2s ease-in-out infinite;
+}
+
+@keyframes ledPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}

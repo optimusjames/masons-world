@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { updateCSSVariables } from '../hooks/useColorScale';
 import { greenScale, emberScale, blueScale, stoneScale, fontPairings } from '../data/fontPairings';
 import { ColorSidebar } from './ColorSidebar';
-import { GearToggle } from './GearToggle';
 import { TypeInfo } from './TypeInfo';
 
 export function BrandColors() {
@@ -24,7 +23,6 @@ export function BrandColors() {
     const [currentScales, setCurrentScales] = useState(defaultScales);
     const [backgroundColor, setBackgroundColor] = useState(defaultBackground);
     const [currentPairing, setCurrentPairing] = useState(defaultPairing);
-    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     // Load from localStorage on mount
     useEffect(() => {
@@ -84,17 +82,6 @@ export function BrandColors() {
         }
     }, [currentPairing, isMounted]);
 
-    useEffect(() => {
-        const grid = document.querySelector('.grid');
-        if (grid) {
-            if (sidebarOpen) {
-                grid.classList.add('sidebar-open');
-            } else {
-                grid.classList.remove('sidebar-open');
-            }
-        }
-    }, [sidebarOpen]);
-
     const handleColorChange = (scaleName: string, newScale: Record<number, string>) => {
         setCurrentScales(prev => ({
             ...prev,
@@ -151,22 +138,18 @@ export function BrandColors() {
                 </div>
             </div>
 
-            <ColorSidebar
-                isOpen={sidebarOpen}
-                currentScales={currentScales}
-                backgroundColor={backgroundColor}
-                currentPairing={currentPairing}
-                onColorChange={handleColorChange}
-                onBackgroundChange={handleBackgroundChange}
-                onPairingChange={handlePairingChange}
-                onResetAll={handleResetAll}
-                onClose={() => setSidebarOpen(false)}
-            />
-
-            <GearToggle
-                isActive={sidebarOpen}
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-            />
+            {isMounted && createPortal(
+                <ColorSidebar
+                    currentScales={currentScales}
+                    backgroundColor={backgroundColor}
+                    currentPairing={currentPairing}
+                    onColorChange={handleColorChange}
+                    onBackgroundChange={handleBackgroundChange}
+                    onPairingChange={handlePairingChange}
+                    onResetAll={handleResetAll}
+                />,
+                document.getElementById('sidebar-container')!
+            )}
 
             {isMounted && createPortal(
                 <TypeInfo currentPairing={currentPairing} />,

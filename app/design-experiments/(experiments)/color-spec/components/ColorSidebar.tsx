@@ -14,7 +14,6 @@ type FontPairing = {
 };
 
 type ColorSidebarProps = {
-    isOpen: boolean;
     currentScales: Record<string, ColorScale>;
     backgroundColor: string;
     currentPairing: FontPairing;
@@ -22,11 +21,9 @@ type ColorSidebarProps = {
     onBackgroundChange: (newColor: string) => void;
     onPairingChange: (pairing: FontPairing) => void;
     onResetAll: () => void;
-    onClose: () => void;
 };
 
 export function ColorSidebar({
-    isOpen,
     currentScales,
     backgroundColor,
     currentPairing,
@@ -34,8 +31,8 @@ export function ColorSidebar({
     onBackgroundChange,
     onPairingChange,
     onResetAll,
-    onClose
 }: ColorSidebarProps) {
+    const [activeTab, setActiveTab] = useState<'colors' | 'type'>('colors');
     const [showExport, setShowExport] = useState(false);
     const [exportText, setExportText] = useState('');
 
@@ -95,73 +92,79 @@ Implementation Notes:
 
     return (
         <>
-        <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-            <div className="sidebar-header">
-                <h2>Customize</h2>
-                <button className="sidebar-close" onClick={onClose}>&times;</button>
+        <div className="sidebar">
+            <div className="sidebar-tabs">
+                <button
+                    className={`sidebar-tab ${activeTab === 'colors' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('colors')}
+                >
+                    Colors
+                </button>
+                <button
+                    className={`sidebar-tab ${activeTab === 'type' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('type')}
+                >
+                    Type
+                </button>
             </div>
             <div className="sidebar-body">
-                <div className="sidebar-section">
-                    <div className="sidebar-section-label">Colors</div>
-                    {Object.entries(colorNames).map(([scaleName, displayName]) => (
-                        <div className="sidebar-color-row" key={scaleName}>
+                {activeTab === 'colors' && (
+                    <div className="sidebar-section">
+                        {Object.entries(colorNames).map(([scaleName, displayName]) => (
+                            <div className="sidebar-color-row" key={scaleName}>
+                                <input
+                                    type="color"
+                                    className="sidebar-color-input"
+                                    value={currentScales[scaleName][900]}
+                                    onChange={(e) => handleColorChange(scaleName, e.target.value)}
+                                />
+                                <div className="sidebar-color-info">
+                                    <div className="sidebar-color-name">{displayName}</div>
+                                    <div className="sidebar-color-hex">{currentScales[scaleName][900].toUpperCase()}</div>
+                                </div>
+                            </div>
+                        ))}
+                        <div className="sidebar-color-row">
                             <input
                                 type="color"
                                 className="sidebar-color-input"
-                                value={currentScales[scaleName][900]}
-                                onChange={(e) => handleColorChange(scaleName, e.target.value)}
+                                value={backgroundColor}
+                                onChange={(e) => onBackgroundChange(e.target.value)}
                             />
                             <div className="sidebar-color-info">
-                                <div className="sidebar-color-name">{displayName}</div>
-                                <div className="sidebar-color-hex">{currentScales[scaleName][900].toUpperCase()}</div>
+                                <div className="sidebar-color-name">Page Background</div>
+                                <div className="sidebar-color-hex">{backgroundColor.toUpperCase()}</div>
                             </div>
                         </div>
-                    ))}
-                    <div className="sidebar-color-row">
-                        <input
-                            type="color"
-                            className="sidebar-color-input"
-                            value={backgroundColor}
-                            onChange={(e) => onBackgroundChange(e.target.value)}
-                        />
-                        <div className="sidebar-color-info">
-                            <div className="sidebar-color-name">Page Background</div>
-                            <div className="sidebar-color-hex">{backgroundColor.toUpperCase()}</div>
+                    </div>
+                )}
+
+                {activeTab === 'type' && (
+                    <div className="sidebar-section">
+                        <div className="font-pairing-selector">
+                            {fontPairings.map((pairing, index) => (
+                                <button
+                                    key={index}
+                                    className={`font-pairing-option ${currentPairing.name === pairing.name ? 'selected' : ''}`}
+                                    onClick={() => onPairingChange(pairing)}
+                                >
+                                    <div className="font-pairing-preview">
+                                        <span
+                                            className="heading-preview"
+                                            style={{ fontFamily: `'${pairing.heading}', serif` }}
+                                        >
+                                            Aa
+                                        </span>
+                                        <div className="font-pairing-meta">
+                                            <span className="font-pairing-name">{pairing.name}</span>
+                                            <span className="font-pairing-classification">{pairing.classification}</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            ))}
                         </div>
                     </div>
-                </div>
-
-                <div className="sidebar-section">
-                    <div className="sidebar-section-label">Typography</div>
-                    <div className="font-pairing-selector">
-                        {fontPairings.map((pairing, index) => (
-                            <button
-                                key={index}
-                                className={`font-pairing-option ${currentPairing.name === pairing.name ? 'selected' : ''}`}
-                                onClick={() => onPairingChange(pairing)}
-                            >
-                                <div className="font-pairing-preview">
-                                    <span
-                                        className="heading-preview"
-                                        style={{ fontFamily: `'${pairing.heading}', serif` }}
-                                    >
-                                        Aa
-                                    </span>
-                                    <span
-                                        className="body-preview"
-                                        style={{ fontFamily: `'${pairing.body}', sans-serif` }}
-                                    >
-                                        The quick brown fox
-                                    </span>
-                                </div>
-                                <div className="font-pairing-meta">
-                                    <span className="font-pairing-name">{pairing.name}</span>
-                                    <span className="font-pairing-classification">{pairing.classification}</span>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                )}
             </div>
             <div className="sidebar-footer">
                 <button className="sidebar-export-btn" onClick={handleExport}>

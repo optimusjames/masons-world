@@ -5,4 +5,5 @@ export interface Experiment {
   description: string
   screenshot: string
   tags: string[]
+  theme?: 'light' | 'dark'
 }

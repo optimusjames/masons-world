@@ -2,6 +2,12 @@
   --site-bg: #0d0d0d;
   --site-text: #f0ede8;
   --content-max: 900px;
+
+  /* Light mode tokens */
+  --light-bg: #d8d4ca;
+  --light-text: #2a2a28;
+  --light-rule: rgba(0, 0, 0, 0.15);
+  --light-meta: rgba(0, 0, 0, 0.5);
 }
 
 html {

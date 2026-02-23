@@ -1,11 +1,33 @@
 import type { Metadata } from 'next'
-import { Karla } from 'next/font/google'
+import { Karla, Bitter, Lora, Space_Mono } from 'next/font/google'
 import './globals.css'
 
 const karla = Karla({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   display: 'swap',
+})
+
+const bitter = Bitter({
+  subsets: ['latin'],
+  weight: ['700', '800'],
+  display: 'swap',
+  variable: '--font-bitter',
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-lora',
+})
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-space-mono',
 })
 
 export const metadata: Metadata = {
@@ -52,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${bitter.variable} ${lora.variable} ${spaceMono.variable}`}>
       <body className={karla.className}>
         <script
           type="application/ld+json"

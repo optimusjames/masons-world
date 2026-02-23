@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Bitter, Lora, Space_Mono } from "next/font/google";
 import NetworkCanvas from "./components/NetworkCanvas";
 import HeroVideo from "./components/HeroVideo";
 import CurtainLink from "./components/CurtainLink";
@@ -7,27 +6,6 @@ import SiteFooter from "./components/SiteFooter";
 import { getAllPosts } from "@/lib/blog/loadBlog";
 import { getNavCategories } from "@/lib/docs/loadDocs";
 import styles from "./page.module.css";
-
-const bitter = Bitter({
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  display: "swap",
-  variable: "--font-bitter",
-});
-
-const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-  variable: "--font-lora",
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-  variable: "--font-space-mono",
-});
 
 const recentExperiments = [
   {
@@ -58,7 +36,7 @@ export default function Home() {
     .slice(0, 3);
 
   return (
-    <main className={`${styles.mainContainer} ${bitter.variable} ${lora.variable} ${spaceMono.variable}`}>
+    <main className={styles.mainContainer}>
       <div className={styles.networkBackground}>
         <NetworkCanvas className={styles.networkCanvas} />
       </div>

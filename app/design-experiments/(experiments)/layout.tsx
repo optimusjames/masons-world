@@ -21,7 +21,7 @@ export default function ExperimentLayout({
   const footerTags = tags.length > 3 ? tags.slice(0, 3) : tags
 
   return (
-    <div className={styles.frame}>
+    <div className={styles.frame} data-theme={experiment.theme ?? 'dark'}>
       <header className={styles.header}>
         <CurtainLink
           href="/design-experiments"

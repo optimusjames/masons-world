@@ -134,19 +134,17 @@ export async function getAllRecommendations(): Promise<Recommendation[]> {
         }
       } else {
         const gh = parseGitHubUrl(url)
-        if (gh) {
-          const repo = await fetchGitHubRepo(gh.owner, gh.repo)
-          if (repo) {
-            rec.title = data.title || repo.full_name
-            rec.author = repo.owner.login
-            rec.authorUrl = repo.owner.html_url
-          }
+        const [repoResult, ogImageUrl] = await Promise.all([
+          gh ? fetchGitHubRepo(gh.owner, gh.repo) : null,
+          !rec.thumbnail ? fetchOgImage(url) : null,
+        ])
+        if (repoResult) {
+          rec.title = data.title || repoResult.full_name
+          rec.author = repoResult.owner.login
+          rec.authorUrl = repoResult.owner.html_url
         }
-        if (!rec.thumbnail) {
-          const ogImageUrl = await fetchOgImage(url)
-          if (ogImageUrl) {
-            rec.thumbnail = await downloadThumbnail(ogImageUrl, id) || undefined
-          }
+        if (!rec.thumbnail && ogImageUrl) {
+          rec.thumbnail = await downloadThumbnail(ogImageUrl, id) || undefined
         }
       }
 

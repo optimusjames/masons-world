@@ -55,9 +55,9 @@
 }
 
 .blogLayout[data-theme="light"] {
-  --paper: #d8d4ca;
-  --body: #2a2a28;
-  --ink: #2a2a28;
+  --paper: var(--light-bg);
+  --body: var(--light-text);
+  --ink: var(--light-text);
   --mid: #333;
   --light: #555;
   --rule: #bbb;

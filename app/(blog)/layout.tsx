@@ -1,28 +1,6 @@
-import { Bitter, Lora, Space_Mono, DM_Sans, Permanent_Marker } from 'next/font/google'
+import { DM_Sans, Permanent_Marker } from 'next/font/google'
 import SiteFooter from '@/app/components/SiteFooter'
 import styles from './blog.module.css'
-
-const bitter = Bitter({
-  subsets: ['latin'],
-  weight: ['700', '800'],
-  display: 'swap',
-  variable: '--font-bitter',
-})
-
-const lora = Lora({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-  variable: '--font-lora',
-})
-
-const spaceMono = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-  variable: '--font-space-mono',
-})
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -41,7 +19,7 @@ const permanentMarker = Permanent_Marker({
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${styles.blogLayout} ${bitter.variable} ${lora.variable} ${spaceMono.variable} ${dmSans.variable} ${permanentMarker.variable}`}>
+    <div className={`${styles.blogLayout} ${dmSans.variable} ${permanentMarker.variable}`}>
       {children}
       <SiteFooter className={styles.blogFooter} />
     </div>

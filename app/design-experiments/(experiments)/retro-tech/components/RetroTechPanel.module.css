@@ -6,15 +6,15 @@
   --surface-inset: #d4d2ce;
   --surface-deep: #c8c6c2;
   --border: #cac8c4;
-  --text-primary: #2a2a28;
-  --text-secondary: #6b6965;
-  --text-tertiary: #9a9690;
+  --text-primary: var(--light-text);
+  --text-secondary: var(--light-meta);
+  --text-tertiary: var(--light-meta);
   --accent: #e8622c;
   --accent-glow: rgba(232, 98, 44, 0.15);
   --display-bg: #1a1c1e;
   --display-text: #c4d0c8;
   --display-dim: #5a6860;
-  --surface-page: #d0cec8;
+  --surface-page: var(--light-bg);
   --knob-size: 72px;
   --fader-height: 180px;
 }

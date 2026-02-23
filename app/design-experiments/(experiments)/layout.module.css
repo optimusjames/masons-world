@@ -88,3 +88,11 @@
   padding: 10px 0;
 }
 
+.frame[data-theme="light"] {
+  background: var(--experiment-bg, var(--light-bg));
+  --sf-rule: var(--light-rule);
+  --sf-text: var(--light-text);
+  --sf-meta: var(--light-meta);
+  --sf-label: var(--light-meta);
+}
+

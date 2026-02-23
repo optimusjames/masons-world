@@ -9,7 +9,6 @@ export interface EditorialImage {
 }
 
 interface EditorialBriefProps {
-  label?: string;
   headline: string;
   lede: string;
   images?: EditorialImage[];
@@ -17,7 +16,6 @@ interface EditorialBriefProps {
 }
 
 export function EditorialBrief({
-  label = 'Design Notes',
   headline,
   lede,
   images,
@@ -25,9 +23,6 @@ export function EditorialBrief({
 }: EditorialBriefProps) {
   return (
     <section className={styles.brief}>
-      <div className={styles.rule} />
-      <div className={styles.sectionLabel}>{label}</div>
-
       <h2 className={styles.headline}>{headline}</h2>
 
       <p className={styles.lede}>{lede}</p>

@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -18,7 +19,7 @@ function findImage(slug: string): string | undefined {
   return undefined
 }
 
-export function getAllPosts(): BlogMeta[] {
+export const getAllPosts = cache(function getAllPosts(): BlogMeta[] {
   if (!fs.existsSync(blogDirectory)) return []
 
   const files = fs.readdirSync(blogDirectory).filter((f) => f.endsWith('.md'))
@@ -47,9 +48,9 @@ export function getAllPosts(): BlogMeta[] {
     const dateB = new Date(b.date)
     return dateB.getTime() - dateA.getTime()
   })
-}
+})
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export const getPostBySlug = cache(function getPostBySlug(slug: string): BlogPost | null {
   const overlayPath = path.join(blogDirectory, `${slug}.overlay.md`)
   const regularPath = path.join(blogDirectory, `${slug}.md`)
   const overlay = fs.existsSync(overlayPath)
@@ -72,4 +73,4 @@ export function getPostBySlug(slug: string): BlogPost | null {
     },
     content,
   }
-}
+})

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap');
 
 .brief {
-  max-width: 840px;
   width: 100%;
   margin-top: 64px;
   padding: 0;
@@ -12,13 +11,13 @@
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.35);
+  color: var(--sf-label);
   margin-bottom: 24px;
 }
 
 .rule {
   height: 1px;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--sf-rule);
   width: 100%;
   margin-bottom: 32px;
 }
@@ -28,8 +27,9 @@
   font-size: 28px;
   font-weight: 400;
   line-height: 1.35;
-  color: #2a2a28;
-  margin: 0 0 16px 0;
+  color: var(--sf-text);
+  margin: 0 auto 16px;
+  max-width: 600px;
 }
 
 .lede {
@@ -38,8 +38,8 @@
   font-style: italic;
   font-weight: 400;
   line-height: 1.6;
-  color: #6b6965;
-  margin: 0 0 40px 0;
+  color: var(--sf-meta);
+  margin: 0 auto 40px;
   max-width: 600px;
 }
 
@@ -48,8 +48,8 @@
   font-size: 14px;
   font-weight: 300;
   line-height: 1.75;
-  color: #4a4845;
-  margin: 0 0 48px 0;
+  color: var(--sf-meta);
+  margin: 0 auto 48px;
   max-width: 600px;
 }
 
@@ -64,7 +64,7 @@
 .imageGrid {
   display: grid;
   gap: 12px;
-  margin-bottom: 48px;
+  margin: 0 auto 48px;
   max-width: 600px;
 }
 

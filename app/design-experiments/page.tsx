@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Space_Grotesk, Bitter, Lora, Space_Mono } from 'next/font/google'
+import { Space_Grotesk } from 'next/font/google'
 import { ChevronLeft } from 'lucide-react'
 import CurtainLink from '@/app/components/CurtainLink'
 import styles from './page.module.css'
@@ -14,27 +14,6 @@ const spaceGrotesk = Space_Grotesk({
   weight: ['400', '500', '700'],
   display: 'swap',
   variable: '--font-space-grotesk',
-})
-
-const bitter = Bitter({
-  subsets: ['latin'],
-  weight: ['700', '800'],
-  display: 'swap',
-  variable: '--font-bitter',
-})
-
-const lora = Lora({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  display: 'swap',
-  variable: '--font-lora',
-})
-
-const spaceMono = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-  variable: '--font-space-mono',
 })
 
 export default function Home() {
@@ -85,7 +64,7 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className={`${styles.container} ${spaceGrotesk.variable} ${bitter.variable} ${lora.variable} ${spaceMono.variable}`}
+      className={`${styles.container} ${spaceGrotesk.variable}`}
     >
       <div className={styles.backRow}>
         <CurtainLink href="/" className={styles.backLink} curtainTransition={true} curtainReverse={true}>

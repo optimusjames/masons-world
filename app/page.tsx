@@ -5,31 +5,12 @@ import CurtainLink from "./components/CurtainLink";
 import SiteFooter from "./components/SiteFooter";
 import { getAllPosts } from "@/lib/blog/loadBlog";
 import { getRecentDocs } from "@/lib/docs/loadDocs";
+import { experiments } from "@/lib/experiments/data";
 
 import styles from "./page.module.css";
 
-const recentExperiments = [
-  {
-    slug: "retro-tech",
-    title: "Retro Tech Control Panel",
-    date: "Feb 20, 2026",
-    screenshot: "/screenshots/retro-tech.png",
-  },
-  {
-    slug: "crossfit-bento",
-    title: "CrossFit Bento",
-    date: "Feb 20, 2026",
-    screenshot: "/screenshots/crossfit-bento.png",
-  },
-  {
-    slug: "sticky-notes",
-    title: "Sticky Notes",
-    date: "Feb 18, 2026",
-    screenshot: "/screenshots/sticky-notes.png",
-  },
-];
-
 export default function Home() {
+  const recentExperiments = experiments.slice(0, 3);
   const posts = getAllPosts().slice(0, 3);
   const recentDocs = getRecentDocs(3);
 
@@ -94,7 +75,9 @@ export default function Home() {
                     )}
                     <div className={styles.itemText}>
                       <span className={styles.itemTitle}>{post.title}</span>
-                      {post.date && (
+                      {post.subtitle ? (
+                        <span className={styles.itemDate}>{post.subtitle}</span>
+                      ) : post.date ? (
                         <span className={styles.itemDate}>
                           {new Date(post.date).toLocaleDateString("en-US", {
                             month: "short",
@@ -102,7 +85,7 @@ export default function Home() {
                             year: "numeric",
                           })}
                         </span>
-                      )}
+                      ) : null}
                     </div>
                   </CurtainLink>
                 ))}
@@ -122,13 +105,17 @@ export default function Home() {
                   <CurtainLink key={doc.slug} href={doc.href} className={styles.columnItem} curtainTransition={true}>
                     <div className={styles.itemText}>
                       <span className={styles.itemTitle}>{doc.title}</span>
-                      <span className={styles.itemDate}>
-                        {doc.modified.toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </span>
+                      {doc.description ? (
+                        <span className={styles.itemDate}>{doc.description}</span>
+                      ) : (
+                        <span className={styles.itemDate}>
+                          {doc.modified.toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span>
+                      )}
                     </div>
                   </CurtainLink>
                 ))}

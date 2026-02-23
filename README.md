@@ -134,20 +134,6 @@ Interactive terminal-style text scramble effect with two-phase animation. Enter 
 
 ---
 
-### Geist Pixel
-
-**February 6, 2026**
-
-[![Geist Pixel](./public/screenshots/geist-pixel.png)](https://www.joshcoolman.com/design-experiments/geist-pixel)
-
-Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.
-
-**Tags:** Typography - Split-Flap Effect - Text Animation - Monospace
-
-**[View Live →](https://www.joshcoolman.com/design-experiments/geist-pixel) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/geist-pixel)**
-
----
-
 ### Color Spec
 
 **February 6, 2026**
@@ -173,20 +159,6 @@ Swiss modernist gradient specimen system featuring organic mesh gradients via SV
 **Tags:** Gradients - SVG Mesh - Swiss Design - Scroll Animation
 
 **[View Live →](https://www.joshcoolman.com/design-experiments/blend) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/blend)**
-
----
-
-### Spec Sheet
-
-**February 2, 2026**
-
-[![Type Specimen](./public/screenshots/spec-sheet.png)](https://www.joshcoolman.com/design-experiments/spec-sheet)
-
-Type specimen sheet with interactive font pairing selector. Features size scale, weight ramp, character set display, drop cap pull quote, and colorful pairing cards inspired by the Color Spec experiment. Text-based controls with underline hover animations.
-
-**Tags:** Typography - Font Pairings - Dark/Light Mode - Type Specimen
-
-**[View Live →](https://www.joshcoolman.com/design-experiments/spec-sheet) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/spec-sheet)**
 
 ---
 

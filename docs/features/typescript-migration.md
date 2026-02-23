@@ -46,8 +46,6 @@ Complete migration of the Next.js design experiments sandbox from JavaScript (.j
 
 - `app/blend/page.tsx` - TypeScript conversion with intersection observer
 - `app/day-at-a-glance/page.tsx` - Record type for checkbox state
-- `app/geist-pixel/page.tsx` - Text scramble class with proper types
-- `app/spec-sheet/page.tsx` - FontPairing type definition
 - `app/terminator/page.tsx` - TextScramble class with full typing
 - `app/youre-doing-it-wrong/page.tsx` - Simple conversion
 - `app/color-spec/page.tsx` - Refactored with extracted components

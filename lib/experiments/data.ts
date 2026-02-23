@@ -74,28 +74,12 @@ export const experiments: Experiment[] = [
     tags: ['Text Animation', 'Terminal UI', 'Interactive', 'Split-Flap Effect']
   },
   {
-    slug: 'geist-pixel',
-    date: 'February 6, 2026',
-    title: 'Geist Pixel',
-    description: "Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono - solid wall of characters that resolves line-by-line into readable text. Click to replay the animation.",
-    screenshot: '/screenshots/geist-pixel.png',
-    tags: ['Typography', 'Split-Flap Effect', 'Text Animation', 'Monospace']
-  },
-  {
     slug: 'color-spec',
     date: 'February 6, 2026',
     title: 'Brand Guidelines',
     description: 'Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.',
     screenshot: '/screenshots/color-spec.png',
     tags: ['React Components', 'Animated Charts', 'Color Systems', 'Typography']
-  },
-  {
-    slug: 'spec-sheet',
-    date: 'February 2, 2026',
-    title: 'Spec Sheet',
-    description: 'Type specimen sheet with interactive font pairing selector. Features size scale, weight ramp, character set display, drop cap pull quote, and colorful pairing cards inspired by the Color Spec experiment. Text-based controls with underline hover animations.',
-    screenshot: '/screenshots/spec-sheet.png',
-    tags: ['Typography', 'Font Pairings', 'Dark/Light Mode', 'Type Specimen']
   },
   {
     slug: 'blend',

@@ -30,11 +30,7 @@ Source: https://github.com/joshcoolman-smc/sandbox
 
 - [Terminator - Text Scramble](https://www.joshcoolman.com/design-experiments/terminator): Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness. Tags: Text Animation, Terminal UI, Interactive, Split-Flap Effect. Date: February 6, 2026.
 
-- [Geist Pixel](https://www.joshcoolman.com/design-experiments/geist-pixel): Typographic specimen featuring Vercel's Geist Pixel display font with 5 bitmap-inspired variants. Includes a split-flap text scramble effect using Space Mono -- solid wall of characters that resolves line-by-line into readable text. Click to replay the animation. Tags: Typography, Split-Flap Effect, Text Animation, Monospace. Date: February 6, 2026.
-
 - [Brand Guidelines](https://www.joshcoolman.com/design-experiments/color-spec): Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage. Tags: React Components, Animated Charts, Color Systems, Typography. Date: February 6, 2026.
-
-- [Spec Sheet](https://www.joshcoolman.com/design-experiments/spec-sheet): Type specimen sheet with interactive font pairing selector. Features size scale, weight ramp, character set display, drop cap pull quote, and colorful pairing cards inspired by the Color Spec experiment. Text-based controls with underline hover animations. Tags: Typography, Font Pairings, Dark/Light Mode, Type Specimen. Date: February 2, 2026.
 
 - [Blend](https://www.joshcoolman.com/design-experiments/blend): Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling, scroll-triggered animations, and an analytics dashboard mockup. Tags: Gradient Study, SVG Mesh, Swiss Design, Scroll Animation. Date: February 2, 2026.
 

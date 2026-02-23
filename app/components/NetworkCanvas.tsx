@@ -161,20 +161,28 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
 
     let startTime = 0
     const MAX_DISTANCE = 190
+    const MAX_DISTANCE_SQ = MAX_DISTANCE * MAX_DISTANCE
     const EDGE_THRESHOLD = 10
+    const EDGE_THRESHOLD_SQ = EDGE_THRESHOLD * EDGE_THRESHOLD
     const fixedSpeed = 0.12
+    const TWO_PI = 2 * Math.PI
+    const INV_MASS = 1 / 2.0
 
     function animate(timestamp: number) {
       if (startTime === 0) startTime = timestamp
 
-      const rotationAngle = (timestamp * rotationSpeed) % (Math.PI * 2)
-      const centerX = width / 2
-      const centerY = height / 2
+      const rotationAngle = (timestamp * rotationSpeed) % TWO_PI
+      const cosRot = Math.cos(rotationAngle)
+      const sinRot = Math.sin(rotationAngle)
+      const screenCenterX = width / 2
+      const screenCenterY = height / 2
 
       ctx.fillStyle = "black"
       ctx.fillRect(0, 0, width, height)
 
-      const interEdges = []
+      // --- Update organisms and draw intra-organism edges ---
+      ctx.strokeStyle = "#8FD0FFFF"
+      ctx.lineWidth = 0.5
 
       for (const org of organisms) {
         if (timestamp - org.lastNoiseChange > org.noiseChangeInterval) {
@@ -222,15 +230,13 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
           org.baseY = height - padding
         }
 
-        const vx = org.baseX - centerX
-        const vy = org.baseY - centerY
-        const distance = Math.sqrt(vx * vx + vy * vy)
-        const currentAngle = Math.atan2(vy, vx)
-        const newAngle = currentAngle + rotationAngle
+        // Apply global rotation
+        const vx = org.baseX - screenCenterX
+        const vy = org.baseY - screenCenterY
+        org.centerX = screenCenterX + vx * cosRot - vy * sinRot
+        org.centerY = screenCenterY + vx * sinRot + vy * cosRot
 
-        org.centerX = centerX + Math.cos(newAngle) * distance
-        org.centerY = centerY + Math.sin(newAngle) * distance
-
+        // Update nodes
         for (const node of org.nodes) {
           const nodeNoiseX = noise(node.noiseOffsetX + timestamp * 0.001 * fixedSpeed, 0)
           const nodeNoiseY = noise(node.noiseOffsetY + timestamp * 0.001 * fixedSpeed, 0)
@@ -256,16 +262,18 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
             springForce = springForce * (1 + Math.min(2, velocityMagnitude / 5)) * 3.0
           }
 
-          springForce = springForce / node.mass
+          springForce = springForce * INV_MASS
 
           const dx = targetX - node.x
           const dy = targetY - node.y
-          const distanceFromTarget = Math.sqrt(dx * dx + dy * dy)
+          const distSq = dx * dx + dy * dy
 
-          if (distanceFromTarget > 0) {
-            const recoveryMultiplier = Math.min(3, Math.max(1, distanceFromTarget / 100))
-            node.vx += (dx / distanceFromTarget) * springForce * recoveryMultiplier
-            node.vy += (dy / distanceFromTarget) * springForce * recoveryMultiplier
+          if (distSq > 0) {
+            const dist = Math.sqrt(distSq)
+            const recoveryMultiplier = Math.min(3, Math.max(1, dist / 100))
+            const invDist = 1 / dist
+            node.vx += dx * invDist * springForce * recoveryMultiplier
+            node.vy += dy * invDist * springForce * recoveryMultiplier
           }
 
           node.vx *= damping
@@ -274,63 +282,92 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
           node.y += node.vy
         }
 
-        ctx.strokeStyle = "#8FD0FFFF"
-        ctx.lineWidth = 0.5
+        // Batch intra-organism edges by opacity bucket (10 buckets)
+        const buckets: { ax: number; ay: number; bx: number; by: number }[][] = []
+        for (let b = 0; b < 10; b++) buckets.push([])
+
         for (const [i, j] of org.connections) {
           const nodeA = org.nodes[i]
           const nodeB = org.nodes[j]
           const dx = nodeA.x - nodeB.x
           const dy = nodeA.y - nodeB.y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-          const opacity = Math.max(0, 1 - distance / MAX_DISTANCE)
-          ctx.globalAlpha = opacity
+          const distSq = dx * dx + dy * dy
+          if (distSq >= MAX_DISTANCE_SQ) continue
+          const distance = Math.sqrt(distSq)
+          const opacity = 1 - distance / MAX_DISTANCE
+          const bucket = Math.min(9, Math.floor(opacity * 10))
+          buckets[bucket].push({ ax: nodeA.x, ay: nodeA.y, bx: nodeB.x, by: nodeB.y })
+        }
+
+        for (let b = 0; b < 10; b++) {
+          const edges = buckets[b]
+          if (edges.length === 0) continue
+          ctx.globalAlpha = (b + 0.5) / 10
           ctx.beginPath()
-          ctx.moveTo(nodeA.x, nodeA.y)
-          ctx.lineTo(nodeB.x, nodeB.y)
+          for (const edge of edges) {
+            ctx.moveTo(edge.ax, edge.ay)
+            ctx.lineTo(edge.bx, edge.by)
+          }
           ctx.stroke()
         }
         ctx.globalAlpha = 1.0
+      }
 
-        for (let k = 0; k < organisms.length; k++) {
-          if (k === organisms.indexOf(org)) continue
-          const otherOrg = organisms[k]
-          for (const nodeA of org.nodes) {
-            for (const nodeB of otherOrg.nodes) {
+      // --- Inter-organism edges (only check neighboring organisms) ---
+      ctx.strokeStyle = "#4094D0FF"
+      ctx.lineWidth = 0.5
+
+      const interPath = new Path2D()
+      let hasInterEdges = false
+
+      for (let i = 0; i < organisms.length; i++) {
+        const orgA = organisms[i]
+        for (let j = i + 1; j < organisms.length; j++) {
+          const orgB = organisms[j]
+
+          // Skip organism pairs whose centers are too far apart
+          const cdx = orgA.centerX - orgB.centerX
+          const cdy = orgA.centerY - orgB.centerY
+          const centerDistSq = cdx * cdx + cdy * cdy
+          const maxPairDist = CLUSTER_RADIUS + EDGE_THRESHOLD
+          if (centerDistSq > maxPairDist * maxPairDist) continue
+
+          for (const nodeA of orgA.nodes) {
+            for (const nodeB of orgB.nodes) {
               const dx = nodeA.x - nodeB.x
               const dy = nodeA.y - nodeB.y
-              const dist = Math.sqrt(dx * dx + dy * dy)
-              if (dist < EDGE_THRESHOLD) {
-                interEdges.push({ nodeA, nodeB, dist })
+              const distSq = dx * dx + dy * dy
+              if (distSq < EDGE_THRESHOLD_SQ) {
+                interPath.moveTo(nodeA.x, nodeA.y)
+                interPath.lineTo(nodeB.x, nodeB.y)
+                hasInterEdges = true
               }
             }
           }
         }
       }
 
-      ctx.strokeStyle = "#4094D0FF"
-      ctx.lineWidth = 0.5
-      for (const edge of interEdges) {
-        const opacity = Math.max(0, 1 - edge.dist / EDGE_THRESHOLD)
-        ctx.globalAlpha = opacity
-        ctx.beginPath()
-        ctx.moveTo(edge.nodeA.x, edge.nodeA.y)
-        ctx.lineTo(edge.nodeB.x, edge.nodeB.y)
-        ctx.stroke()
+      if (hasInterEdges) {
+        ctx.globalAlpha = 0.5
+        ctx.stroke(interPath)
+        ctx.globalAlpha = 1.0
       }
-      ctx.globalAlpha = 1.0
 
+      // --- Draw all nodes in a single batched path ---
+      ctx.fillStyle = "#8FF7F9FF"
+      ctx.beginPath()
       for (const org of organisms) {
         for (const node of org.nodes) {
-          const radius = Math.max(0, node.size / 3)
+          const radius = node.size / 3
           if (radius > 0) {
-            ctx.fillStyle = "#8FF7F9FF"
-            ctx.beginPath()
-            ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI)
-            ctx.fill()
+            ctx.moveTo(node.x + radius, node.y)
+            ctx.arc(node.x, node.y, radius, 0, TWO_PI)
           }
         }
       }
+      ctx.fill()
 
+      // --- Blast animations ---
       const currentAnimations = [...animations]
       animations = []
 
@@ -347,7 +384,7 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
 
         if (opacity > 0 && currentRadius > 0) {
           ctx.beginPath()
-          ctx.arc(anim.x, anim.y, Math.max(0, currentRadius), 0, 2 * Math.PI)
+          ctx.arc(anim.x, anim.y, Math.max(0, currentRadius), 0, TWO_PI)
           ctx.fillStyle = `rgba(64, 148, 208, ${opacity})`
           ctx.fill()
         }
@@ -364,18 +401,20 @@ export default function NetworkCanvas({ className }: NetworkCanvasProps) {
             for (const node of org.nodes) {
               const dx = node.x - anim.x
               const dy = node.y - anim.y
-              const distanceFromBlast = Math.sqrt(dx * dx + dy * dy)
+              const distSq = dx * dx + dy * dy
 
-              if (distanceFromBlast === 0) continue
+              if (distSq === 0) continue
 
-              const directionX = dx / distanceFromBlast
-              const directionY = dy / distanceFromBlast
+              const distanceFromBlast = Math.sqrt(distSq)
               const distFromWaveEdge = distanceFromBlast - blastRadius
 
               if (distFromWaveEdge < 0 && distFromWaveEdge > -blastWaveWidth) {
+                const invDist = 1 / distanceFromBlast
+                const directionX = dx * invDist
+                const directionY = dy * invDist
                 const waveDepthFactor = 1 - Math.abs(distFromWaveEdge) / blastWaveWidth
                 const blastStrength = anim.blastForce * waveDepthFactor * blastForceMultiplier
-                const massAdjustedForce = blastStrength / node.mass
+                const massAdjustedForce = blastStrength * INV_MASS
 
                 node.vx += directionX * massAdjustedForce
                 node.vy += directionY * massAdjustedForce

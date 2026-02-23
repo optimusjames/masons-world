@@ -1,5 +1,6 @@
 import path from 'path'
 import { Permanent_Marker } from 'next/font/google'
+import { experimentMetadata } from '@/lib/experiments/metadata'
 import { getAllNotes } from './loadNotes'
 import StickyNoteStack from './components/StickyNoteStack'
 import styles from './styles.module.css'
@@ -11,10 +12,7 @@ const permanentMarker = Permanent_Marker({
   variable: '--font-marker',
 })
 
-export const metadata = {
-  title: 'Sticky Notes',
-  description: 'Interactive sticky note stack with click-to-read overlay',
-}
+export const metadata = experimentMetadata('sticky-notes')
 
 export default function StickyNotesExperiment() {
   const notes = getAllNotes(path.join(process.cwd(), 'app/design-experiments/(experiments)/sticky-notes/data'))

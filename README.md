@@ -4,6 +4,8 @@ A Next.js-based sandbox for exploring visual design systems, widgets, and intera
 
 > **Heads up:** This is a personal sandbox -- me coding in public. Experiments get added, removed, and rewritten all the time. Feel free to browse, but don't depend on anything here staying put.
 
+This is a design sketchbook, not production software. There's no test suite and that's intentional -- the point is rapid experimentation and learning in public, not shipping stable APIs. Things break, get rewritten, and disappear without notice.
+
 ---
 
 ## Experiments

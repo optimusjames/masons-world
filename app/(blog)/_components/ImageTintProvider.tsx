@@ -1,3 +1,19 @@
+/*
+ * ImageTintProvider
+ *
+ * Extracts the dominant color from a blog post's hero image and derives a
+ * full tint palette so each post feels color-matched to its artwork.
+ *
+ * Pipeline:
+ *   1. Draw the image onto a tiny 32x32 canvas to sample pixels
+ *   2. Filter out near-black and desaturated pixels so shadows don't dominate
+ *   3. Run k-means clustering (6 clusters, 5 iterations) to find color groups
+ *   4. Pick the most prominent chromatic cluster as the "dominant" color
+ *   5. Derive heading, subtitle, body, mid, and paper colors via HSL manipulation
+ *   6. Set CSS custom properties (--ink, --body, --mid, --paper, etc.) on the wrapper
+ *
+ * Falls back to default theme colors on CORS errors or achromatic images.
+ */
 'use client'
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
@@ -104,31 +120,36 @@ function pickDominantColor(clusters: { centroid: RGB; count: number }[]): RGB {
   return clusters[0].centroid
 }
 
-// Headings: dominant hue
+// Headings: keep the dominant hue, clamp saturation to 45-75% so it pops
+// without neon, and fix lightness at 75% for readability on dark backgrounds
 function makeHeadingColor(dominant: RGB): string {
   const [h, s] = rgbToHsl(dominant)
   return hslToHex(h, Math.min(Math.max(s, 0.45), 0.75), 0.75)
 }
 
-// Subtitle: same as header but lighter
+// Subtitle: same hue, lower saturation band (35-55%) and higher lightness (85%)
+// so it reads as a softer echo of the heading
 function makeSubtitleColor(dominant: RGB): string {
   const [h, s] = rgbToHsl(dominant)
   return hslToHex(h, Math.min(Math.max(s, 0.35), 0.55), 0.85)
 }
 
-// Body text: low saturation tint of dominant hue
+// Body text: nearly neutral -- just enough hue (8% saturation) to feel warm/cool
+// without competing with headings. 68% lightness for comfortable reading
 function makeBodyColor(dominant: RGB): string {
   const [h] = rgbToHsl(dominant)
   return hslToHex(h, 0.08, 0.682)
 }
 
-// Mid text (meta, byline): desaturated, lighter
+// Mid text (meta, byline): same minimal saturation as body, slightly darker (62%)
+// to create a subtle hierarchy between body copy and secondary info
 function makeMidColor(dominant: RGB): string {
   const [h] = rgbToHsl(dominant)
   return hslToHex(h, 0.08, 0.62)
 }
 
-// Background: split-complement tint, barely perceptible over near-black
+// Paper background: dominant hue at 24% saturation and 10% lightness --
+// just enough color to warm/cool the near-black without being visible as a "color"
 function makePaperColor(dominant: RGB): string {
   const [h] = rgbToHsl(dominant)
   return hslToHex(h, 0.24, 0.10)

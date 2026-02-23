@@ -4,7 +4,7 @@ import HeroVideo from "./components/HeroVideo";
 import CurtainLink from "./components/CurtainLink";
 import SiteFooter from "./components/SiteFooter";
 import { getAllPosts } from "@/lib/blog/loadBlog";
-import { getNavCategories } from "@/lib/docs/loadDocs";
+
 import styles from "./page.module.css";
 
 const recentExperiments = [
@@ -30,10 +30,6 @@ const recentExperiments = [
 
 export default function Home() {
   const posts = getAllPosts().slice(0, 3);
-  const docs = getNavCategories()
-    .flatMap((cat) => cat.items)
-    .filter((doc) => !doc.slug.match(/^overview$/))
-    .slice(0, 3);
 
   return (
     <main className={styles.mainContainer}>
@@ -111,27 +107,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Docs */}
-            <div className={styles.column}>
-              <CurtainLink href="/docs" className={styles.columnTitle} curtainTransition={true}>
-                Docs
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </CurtainLink>
-              <div className={styles.columnItems}>
-                {docs.map((doc) => (
-                  <CurtainLink key={doc.slug} href={`/docs/${doc.slug}`} className={styles.columnItem} curtainTransition={true}>
-                    <div className={styles.itemText}>
-                      <span className={styles.itemTitle}>{doc.title}</span>
-                      {doc.description && (
-                        <span className={styles.itemDate}>{doc.description}</span>
-                      )}
-                    </div>
-                  </CurtainLink>
-                ))}
-              </div>
-            </div>
           </div>
           <SiteFooter className={styles.homeFooter} />
         </div>

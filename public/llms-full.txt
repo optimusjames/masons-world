@@ -74,7 +74,7 @@ Source: https://github.com/joshcoolman-smc/sandbox
 
 ## Recommended
 
-- [Recommended Links](https://www.joshcoolman.com/linked): A curated collection of links Josh finds valuable -- YouTube videos, GitHub repos, and web tools related to AI, design, and development. Each link includes a personal comment and an auto-fetched thumbnail (via oEmbed for YouTube, OG images for GitHub, and manual screenshots for web links). New links are added via the `/link` Claude Code skill.
+- [Recommended Links](https://www.joshcoolman.com/recommended): A curated collection of links Josh finds valuable -- YouTube videos, GitHub repos, and web tools related to AI, design, and development. Each link includes a personal comment and an auto-fetched thumbnail (via oEmbed for YouTube, OG images for GitHub, and manual screenshots for web links). New links are added via the `/link` Claude Code skill.
 
 ## Optional
 

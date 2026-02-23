@@ -186,7 +186,7 @@ A curated collection of links -- YouTube videos, GitHub repos, and web tools -- 
 
 Thumbnails resolve automatically at build time: YouTube via oEmbed, GitHub via OG images, and web links via manual screenshots taken with agent-browser.
 
-**[View Recommended →](https://www.joshcoolman.com/linked)**
+**[View Recommended →](https://www.joshcoolman.com/recommended)**
 
 ---
 
@@ -211,7 +211,7 @@ Internal documentation and reference material rendered at [joshcoolman.com/docs]
 │   │   ├── page.tsx              # Experiments gallery
 │   │   └── [experiment]/         # Each experiment is a self-contained route
 │   ├── (blog)/blog/              # Blog index and post pages
-│   ├── (blog)/linked/       # Recommended links page
+│   ├── (blog)/recommended/       # Recommended links page
 │   ├── (blog)/notes/             # Sticky note markdown files
 │   └── (docs)/docs/              # Docs viewer with sidebar nav
 ├── lib/

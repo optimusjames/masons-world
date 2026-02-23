@@ -5,12 +5,12 @@
 .blogLayout {
   --serif: var(--font-lora), 'Georgia', serif;
   --sans: var(--font-dm-sans), 'Helvetica Neue', sans-serif;
-  --ink: #f0ede8;
+  --ink: var(--site-text);
   --body: #d5d0c8;
   --mid: #a09888;
   --light: #706860;
   --rule: #383430;
-  --paper: #0d0d0d;
+  --paper: var(--site-bg);
   --accent: #8FF7F9;
   --col-max: 680px;
 

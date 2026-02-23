@@ -8,6 +8,23 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Theme System, SiteFooter, Layout Refinements
+
+**Date:** 2026-02-23
+
+Follow-up polish after the experiment frame refactor. Added a light/dark theme system for design experiments with CSS custom properties and a toggle. Extracted a shared `SiteFooter` component and unified content width across pages using `--content-max`. Sticky notes got a light mode variant and footer-to-bottom layout fix. Font pairings switched to edge-to-edge layout with zero frame padding. Day-at-a-glance widened its layout and hardcoded demo time for consistent screenshots. Modular grid now shows its cyan grid overlay by default.
+
+**Key files:**
+- `app/components/SiteFooter/` -- extracted shared footer
+- `app/design-experiments/(experiments)/layout.tsx` -- theme toggle integration
+- `app/globals.css` -- `--content-max` variable, theme custom properties
+- `app/design-experiments/(experiments)/sticky-notes/` -- light mode styles
+- `app/design-experiments/(experiments)/font-pairings/` -- edge-to-edge layout
+- `app/design-experiments/(experiments)/day-at-a-glance/` -- wider layout, demo time
+- `app/design-experiments/(experiments)/modular-grid/` -- always-on grid overlay
+
+---
+
 ### Design Frame & Experiment Cleanup
 
 **Date:** 2026-02-22

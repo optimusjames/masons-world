@@ -210,6 +210,7 @@ Internal documentation and reference material rendered at [joshcoolman.com/docs]
 │   │   └── [experiment]/         # Each experiment is a self-contained route
 │   ├── (blog)/blog/              # Blog index and post pages
 │   ├── (blog)/recommended/       # Recommended links page
+│   ├── (blog)/notes/             # Sticky note markdown files
 │   └── (docs)/docs/              # Docs viewer with sidebar nav
 ├── lib/
 │   ├── experiments/data.ts       # Shared experiments metadata

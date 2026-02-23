@@ -130,3 +130,16 @@ export function getHeadingsForSlug(slugParts: string[]): Heading[] {
   if (!doc) return []
   return extractHeadings(doc.content)
 }
+
+export function getRecentDocs(count: number = 3): { title: string; slug: string; href: string; modified: Date }[] {
+  const docs = getAllDocs()
+  return docs
+    .map((doc) => ({
+      title: doc.title,
+      slug: doc.slug,
+      href: `/docs/${doc.slug}`,
+      modified: fs.statSync(doc.filePath).mtime,
+    }))
+    .sort((a, b) => b.modified.getTime() - a.modified.getTime())
+    .slice(0, count)
+}

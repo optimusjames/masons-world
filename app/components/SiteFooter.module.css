@@ -2,7 +2,7 @@
   --sf-rule: rgba(255, 255, 255, 0.12);
   --sf-text: rgba(255, 255, 255, 0.7);
   --sf-label: rgba(255, 255, 255, 0.5);
-  margin-bottom: 100px;
+  margin-bottom: 0;
 }
 
 .rule {

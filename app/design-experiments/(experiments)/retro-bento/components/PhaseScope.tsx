@@ -1,50 +1,66 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { HardwareCard } from './HardwareCard';
 import { CrtDisplay } from './CrtDisplay';
 import { Knob } from './Knob';
 
-const PHASE_DATA = [
-  { label: 'Alpha', value: 42, pct: 35 },
-  { label: 'Beta', value: 31, pct: 40 },
-  { label: 'Gamma', value: 19, pct: 25 },
-];
+const PHASE_LABELS = ['Alpha', 'Beta', 'Gamma'];
+const BASE_PCTS = [35, 40, 25];
+const OPACITIES = [0.8, 0.5, 0.3];
+
+function derivePhases(value: number) {
+  // Deterministic but varied proportions based on knob value
+  const t = value / 128;
+  const shift1 = Math.sin(t * Math.PI * 2) * 15;
+  const shift2 = Math.cos(t * Math.PI * 3) * 10;
+  const raw = [
+    BASE_PCTS[0] + shift1,
+    BASE_PCTS[1] + shift2,
+    BASE_PCTS[2] - shift1 - shift2,
+  ];
+  // Normalize to 100
+  const total = raw.reduce((a, b) => a + b, 0);
+  return raw.map((v) => Math.max(5, (v / total) * 100));
+}
 
 export function PhaseScope() {
   const [resolution, setResolution] = useState(64);
+  const randomize = () => setResolution(Math.floor(Math.random() * 128) + 1);
 
   const size = 160;
   const cx = size / 2;
   const cy = size / 2;
   const r = 58;
   const strokeWidth = 14;
+  const circumference = 2 * Math.PI * r;
 
-  const opacities = [0.8, 0.5, 0.3];
-  let currentAngle = -90;
-  const arcs = PHASE_DATA.map((phase, idx) => {
-    const startAngle = currentAngle;
-    const sweep = (phase.pct / 100) * 360;
-    currentAngle += sweep;
-    const endAngle = startAngle + sweep;
+  // Rotation driven by knob
+  const rotation = (resolution / 128) * 360 - 90;
 
-    const rad1 = (startAngle * Math.PI) / 180;
-    const rad2 = (endAngle * Math.PI) / 180;
-    const x1 = cx + r * Math.cos(rad1);
-    const y1 = cy + r * Math.sin(rad1);
-    const x2 = cx + r * Math.cos(rad2);
-    const y2 = cy + r * Math.sin(rad2);
-    const largeArc = sweep > 180 ? 1 : 0;
+  const pcts = useMemo(() => derivePhases(resolution), [resolution]);
 
-    return {
-      ...phase,
-      path: `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2}`,
-      opacity: opacities[idx],
-    };
-  });
+  // Build dasharray segments: each arc is a portion of the circumference
+  // We render 3 concentric circles, each with a single dash for its segment
+  const segments = useMemo(() => {
+    let offset = 0;
+    return pcts.map((pct, i) => {
+      const dashLen = (pct / 100) * circumference;
+      const gapLen = circumference - dashLen;
+      const dashOffset = -offset;
+      offset += dashLen;
+      return {
+        label: PHASE_LABELS[i],
+        dasharray: `${dashLen} ${gapLen}`,
+        dashoffset: dashOffset,
+        opacity: OPACITIES[i],
+        pct: Math.round(pct),
+      };
+    });
+  }, [pcts, circumference]);
 
   const tickCount = 24;
-  const ticks = Array.from({ length: tickCount }, (_, i) => {
+  const ticks = useMemo(() => Array.from({ length: tickCount }, (_, i) => {
     const angle = (i / tickCount) * 360 - 90;
     const rad = (angle * Math.PI) / 180;
     const inner = r + strokeWidth / 2 + 2;
@@ -55,19 +71,35 @@ export function PhaseScope() {
       x2: cx + outer * Math.cos(rad),
       y2: cy + outer * Math.sin(rad),
     };
-  });
+  }), [cx, cy, r, strokeWidth]);
+
+  const transitionStyle = 'all 0.8s cubic-bezier(0.34, 1.2, 0.64, 1)';
 
   return (
-    <HardwareCard label="Phase Scope">
+    <HardwareCard label="Phase Scope" onClick={randomize}>
       <CrtDisplay>
         <svg viewBox={`0 0 ${size} ${size}`} style={{ width: '100%', display: 'block' }}>
           {ticks.map((t, i) => (
             <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke="var(--display-dim)" strokeWidth="0.8" opacity="0.5" />
           ))}
           <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(0,0,0,0.06)" strokeWidth={strokeWidth} />
-          {arcs.map((arc, i) => (
-            <path key={i} d={arc.path} fill="none" stroke="var(--display-text)" strokeWidth={strokeWidth} strokeLinecap="butt" opacity={arc.opacity} />
-          ))}
+          <g style={{ transform: `rotate(${rotation}deg)`, transformOrigin: `${cx}px ${cy}px`, transition: transitionStyle }}>
+            {segments.map((seg, i) => (
+              <circle
+                key={i}
+                cx={cx}
+                cy={cy}
+                r={r}
+                fill="none"
+                stroke="var(--display-text)"
+                strokeWidth={strokeWidth}
+                strokeDasharray={seg.dasharray}
+                strokeDashoffset={seg.dashoffset}
+                opacity={seg.opacity}
+                style={{ transition: transitionStyle }}
+              />
+            ))}
+          </g>
           <text x={cx} y={cx - 4} textAnchor="middle" fill="var(--display-text)" style={{ fontSize: 14, fontFamily: 'var(--font-mono), monospace', fontWeight: 500 }}>
             {resolution} Hz
           </text>
@@ -78,9 +110,9 @@ export function PhaseScope() {
       </CrtDisplay>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 8, padding: '0 4px' }}>
         <div style={{ display: 'flex', gap: 10 }}>
-          {PHASE_DATA.map((m, i) => (
+          {segments.map((seg, i) => (
             <span key={i} style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 9, color: 'var(--text-secondary)' }}>
-              {m.label}
+              {seg.label}
             </span>
           ))}
         </div>

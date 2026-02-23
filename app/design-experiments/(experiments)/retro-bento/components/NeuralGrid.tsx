@@ -1,38 +1,59 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { HardwareCard } from './HardwareCard';
 import { CrtDisplay } from './CrtDisplay';
-import { LedMatrix } from './LedMatrix';
+import { LedMatrix, LedMatrixHandle } from './LedMatrix';
 import { LabelPlate } from './LabelPlate';
 import { Toggle } from './Toggle';
 import { useCountUp } from './useCountUp';
 
-const NEURAL_DATA: number[] = [
-  0,1,2,0,3,4,2, 1,0,3,2,4,1,0, 2,3,1,0,4,2,3,
-  0,2,4,3,1,2,0, 1,3,2,4,0,1,2, 3,4,2,1,0,3,4,
-  2,1,3,0,2,4,1, 0,3,2,1,4,3,2, 1,0,2,3,4,2,1,
-  3,2,4,1,0,3,2,
-];
+function generateGrid(cols: number, rows: number): number[] {
+  const data: number[] = [];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const v = Math.abs(Math.sin(r * 3.1 + c * 1.7) * 2 + Math.cos(r * 0.8 - c * 2.3) * 1.5);
+      data.push(Math.min(4, Math.floor(v)));
+    }
+  }
+  return data;
+}
+
+const COLS = 24;
+const ROWS = 18;
+const NEURAL_DATA = generateGrid(COLS, ROWS);
 
 export function NeuralGrid() {
-  const count = useCountUp(47, 800, 300);
   const [sync, setSync] = useState(true);
+  const count = useCountUp(sync ? COLS * ROWS : 0, 800, 300);
+  const matrixRef = useRef<LedMatrixHandle>(null);
+
+  const toggle = useCallback(async (next: boolean) => {
+    setSync(next);
+    if (next) {
+      await matrixRef.current?.expand();
+    } else {
+      await matrixRef.current?.collapse();
+    }
+  }, []);
+
+  const handleTap = useCallback(() => {
+    toggle(!sync);
+  }, [sync, toggle]);
+
   return (
     <HardwareCard label="Neural Pathways">
-      <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-        <LedMatrix data={NEURAL_DATA} cols={7} />
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, minWidth: 48 }}>
+      <LedMatrix ref={matrixRef} data={NEURAL_DATA} cols={COLS} onTap={handleTap} />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+        <Toggle value={sync} onChange={(v) => toggle(v)} label="Sync" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <CrtDisplay>
-            <span style={{ fontSize: 28, fontWeight: 500, color: 'var(--display-active)', display: 'block', textAlign: 'center', lineHeight: 1 }}>
+            <span style={{ fontSize: 18, fontWeight: 500, color: 'var(--display-active)', display: 'block', textAlign: 'left', lineHeight: 1, padding: '0 4px', width: 42, fontVariantNumeric: 'tabular-nums' }}>
               {count}
             </span>
           </CrtDisplay>
           <LabelPlate text="Nodes" />
         </div>
-      </div>
-      <div style={{ marginTop: 8 }}>
-        <Toggle value={sync} onChange={setSync} label="Sync" />
       </div>
     </HardwareCard>
   );

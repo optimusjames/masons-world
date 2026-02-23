@@ -34,9 +34,10 @@ export function NeedleGauge({ value, className }: NeedleGaugeProps) {
   const arcEnd = polar(endAngle, r);
   const trackPath = `M ${arcStart.x} ${arcStart.y} A ${r} ${r} 0 1 1 ${arcEnd.x} ${arcEnd.y}`;
 
-  const valuePt = polar(needleAngle, r);
-  const sweep = needleAngle - startAngle > 180 ? 1 : 0;
-  const fillPath = `M ${arcStart.x} ${arcStart.y} A ${r} ${r} 0 ${sweep} 1 ${valuePt.x} ${valuePt.y}`;
+  const totalSweep = endAngle - startAngle;
+  const arcLength = (totalSweep / 360) * 2 * Math.PI * r;
+  const pct = (currentValue) / 100;
+  const fillOffset = arcLength * (1 - pct);
 
   const ticks = [0, 25, 50, 75, 100];
 
@@ -44,7 +45,16 @@ export function NeedleGauge({ value, className }: NeedleGaugeProps) {
     <div className={`${styles.gauge} ${className || ''}`}>
       <svg viewBox="0 0 200 160" className={styles.svg}>
         <path d={trackPath} fill="none" stroke="var(--surface-deep)" strokeWidth="8" strokeLinecap="round" />
-        <path d={fillPath} fill="none" stroke="var(--accent)" strokeWidth="8" strokeLinecap="round" />
+        <path
+          d={trackPath}
+          fill="none"
+          stroke="var(--accent)"
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeDasharray={arcLength}
+          strokeDashoffset={fillOffset}
+          className={styles.fill}
+        />
 
         {ticks.map((tick) => {
           const tickAngle = startAngle + (tick / 100) * (endAngle - startAngle);

@@ -8,8 +8,9 @@ import { Knob } from './Knob';
 
 export function TemporalGauge() {
   const [dilation, setDilation] = useState(78);
+  const randomize = () => setDilation(Math.floor(Math.random() * 101));
   return (
-    <HardwareCard label="Temporal Coefficient">
+    <HardwareCard label="Temporal Coefficient" onClick={randomize}>
       <NeedleGauge value={dilation} />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: -40, gap: 6 }}>
         <Knob value={dilation} onChange={setDilation} size={40} />

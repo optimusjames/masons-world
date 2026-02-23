@@ -1,14 +1,32 @@
-.matrix {
-  display: grid;
-  gap: 4px;
+.container {
+  position: relative;
   cursor: pointer;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
+.matrix {
+  display: grid;
+  gap: 3px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.backdropDot {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  transition: background 0.3s, box-shadow 0.3s;
+  background: var(--surface-deep, #c8c6c2);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 
 .level0 { background: var(--surface-deep, #c8c6c2); }

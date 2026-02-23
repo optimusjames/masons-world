@@ -10,7 +10,7 @@ interface HardwareCardProps {
 
 export function HardwareCard({ children, label, className, onClick }: HardwareCardProps) {
   return (
-    <div className={`${styles.panel} ${className || ''}`} onClick={onClick}>
+    <div className={`${styles.panel} ${className || ''}`} onClick={onClick ? (e) => { e.stopPropagation(); onClick(); } : undefined}>
       <div className={`${styles.screw} ${styles.tl}`} />
       <div className={`${styles.screw} ${styles.tr}`} />
       <div className={`${styles.screw} ${styles.bl}`} />

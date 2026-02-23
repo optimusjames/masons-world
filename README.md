@@ -16,7 +16,7 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 [![Retro Bento](./public/screenshots/retro-bento.png)](https://www.joshcoolman.com/design-experiments/retro-bento)
 
-Bento grid of fictional hardware modules. Nine self-contained rack-mount panels with brushed aluminum surfaces, LCD displays, and interactive controls. Temporal gauge with animated needle and arc, flux capacitor with stacked LCD readouts, spectral analyzer VU meters, neural pathways LED dot matrix with staggered animations, entropy engine with escalating states, phase scope with rotating arc chart, memory bank with fader-driven scroll, resonance monitor with zone bars, and stasis chamber. All controls are interactive -- knobs drag horizontally, toggles animate with solid orange, and tapping panels randomizes values with buttery smooth transitions.
+What if CrossFit Bento and Retro Tech had a baby? The interactive widget layout of CrossFit Bento meets the brushed aluminum, LCD panels, and tactile controls of Retro Tech. Nine fictional hardware modules -- temporal gauge with animated needle, flux capacitor with stacked LCD readouts, spectral analyzer VU meters, neural pathways LED dot matrix with staggered animations, entropy engine with escalating states, phase scope with rotating arc chart, memory bank with fader-driven scroll, resonance monitor with zone bars, and stasis chamber. All controls are interactive -- knobs drag horizontally, toggles glow orange, and tapping panels randomizes values with buttery smooth transitions.
 
 `Bento Grid` `Hardware UI` `CRT Display` `SVG Animation`
 

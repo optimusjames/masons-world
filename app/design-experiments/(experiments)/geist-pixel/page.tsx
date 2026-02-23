@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Space_Mono } from 'next/font/google'
-import './styles.css'
+import s from './styles.module.css'
 
 const spaceMono = Space_Mono({
   weight: ['400', '700'],
@@ -129,14 +129,14 @@ export default function GeistPixelPage() {
 
       lines.forEach((text, i) => {
         const wrapper = document.createElement('div')
-        wrapper.className = 'scramble-line'
+        wrapper.className = s['scramble-line']
 
         const placeholder = document.createElement('span')
-        placeholder.className = 'scramble-placeholder'
+        placeholder.className = s['scramble-placeholder']
         placeholder.textContent = text
 
         const animated = document.createElement('span')
-        animated.className = 'scramble-text'
+        animated.className = s['scramble-text']
         animated.dataset.text = text
         animated.id = `line-${i}`
 
@@ -149,7 +149,7 @@ export default function GeistPixelPage() {
     }
 
     function runScramble() {
-      scrambleInstances.forEach(s => s.stop())
+      scrambleInstances.forEach(inst => inst.stop())
       scrambleInstances = []
 
       lineElements.forEach((el) => {
@@ -187,155 +187,108 @@ export default function GeistPixelPage() {
 
     return () => {
       clearTimeout(initialTimer)
-      scrambleInstances.forEach(s => s.stop())
+      scrambleInstances.forEach(inst => inst.stop())
       if (container) {
         container.removeEventListener('click', handleClick)
       }
     }
   }, [])
 
+  const comparisonVariants: Record<string, string> = {
+    square: s.comparisonSquare,
+    grid: s.comparisonGrid,
+    circle: s.comparisonCircle,
+    triangle: s.comparisonTriangle,
+    line: s.comparisonLine,
+  }
+
   return (
     <div className={spaceMono.variable}>
-      <div className="container">
-        <header>
-          <div className="masthead">
-            <h1 className="title">Geist Pixel</h1>
-            <p className="subtitle">A pixel typeface by Vercel</p>
+      <div className={s.container}>
+        <header className={s.gpHeader}>
+          <div className={s.masthead}>
+            <h1 className={s.title}>Geist Pixel</h1>
+            <p className={s.subtitle}>A pixel typeface by Vercel</p>
           </div>
-          <div className="meta-info">
-            <div className="meta-item">
+          <div className={s['meta-info']}>
+            <div className={s['meta-item']}>
               <span>Variants</span>
-              <span className="meta-value">5</span>
+              <span className={s['meta-value']}>5</span>
             </div>
-            <div className="meta-item">
+            <div className={s['meta-item']}>
               <span>Glyphs</span>
-              <span className="meta-value">480</span>
+              <span className={s['meta-value']}>480</span>
             </div>
           </div>
         </header>
 
-        <nav className="variant-selector">
-          <button
-            className={`variant-btn ${currentVariant === 'square' ? 'active' : ''}`}
-            onClick={() => handleVariantChange('square')}
-          >
-            Square
-          </button>
-          <button
-            className={`variant-btn ${currentVariant === 'grid' ? 'active' : ''}`}
-            onClick={() => handleVariantChange('grid')}
-          >
-            Grid
-          </button>
-          <button
-            className={`variant-btn ${currentVariant === 'circle' ? 'active' : ''}`}
-            onClick={() => handleVariantChange('circle')}
-          >
-            Circle
-          </button>
-          <button
-            className={`variant-btn ${currentVariant === 'triangle' ? 'active' : ''}`}
-            onClick={() => handleVariantChange('triangle')}
-          >
-            Triangle
-          </button>
-          <button
-            className={`variant-btn ${currentVariant === 'line' ? 'active' : ''}`}
-            onClick={() => handleVariantChange('line')}
-          >
-            Line
-          </button>
+        <nav className={s['variant-selector']}>
+          {(['square', 'grid', 'circle', 'triangle', 'line'] as const).map(v => (
+            <button
+              key={v}
+              className={`${s['variant-btn']} ${currentVariant === v ? s.variantBtnActive : ''}`}
+              onClick={() => handleVariantChange(v)}
+            >
+              {v.charAt(0).toUpperCase() + v.slice(1)}
+            </button>
+          ))}
         </nav>
 
-        <section className="type-hero">
-          <div className="type-hero-text">Aa</div>
-          <div className="type-hero-copy" ref={scrambleContainerRef}></div>
+        <section className={s['type-hero']}>
+          <div className={s['type-hero-text']}>Aa</div>
+          <div className={`${s['type-hero-copy']} ${s.scrambleContainer}`} ref={scrambleContainerRef}></div>
         </section>
 
-        <div className="divider"></div>
+        <div className={s.divider}></div>
 
-        <section className="size-scale">
-          <div className="section-title">Size Scale</div>
-          <div className="size-scale-item">
-            <span className="size-label">72</span>
-            <span className="size-sample size-72">Hamburgefons</span>
-          </div>
-          <div className="size-scale-item">
-            <span className="size-label">60</span>
-            <span className="size-sample size-60">Hamburgefons</span>
-          </div>
-          <div className="size-scale-item">
-            <span className="size-label">48</span>
-            <span className="size-sample size-48">Hamburgefonstiv</span>
-          </div>
-          <div className="size-scale-item">
-            <span className="size-label">36</span>
-            <span className="size-sample size-36">Hamburgefonstiv</span>
-          </div>
-          <div className="size-scale-item">
-            <span className="size-label">24</span>
-            <span className="size-sample size-24">Hamburgefonstiv</span>
-          </div>
-          <div className="size-scale-item">
-            <span className="size-label">18</span>
-            <span className="size-sample size-18">The quick brown fox jumps over the lazy dog</span>
-          </div>
-          <div className="size-scale-item">
-            <span className="size-label">14</span>
-            <span className="size-sample size-14">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.</span>
-          </div>
+        <section className={s['size-scale']}>
+          <div className={s['section-title']}>Size Scale</div>
+          {[72, 60, 48, 36, 24, 18, 14].map(size => (
+            <div key={size} className={s['size-scale-item']}>
+              <span className={s['size-label']}>{size}</span>
+              <span className={`${s['size-sample']} ${s[`size-${size}`]}`}>
+                {size >= 36 ? 'Hamburgefons' : size >= 24 ? 'Hamburgefonstiv' : 'The quick brown fox jumps over the lazy dog' + (size === 14 ? '. Pack my box with five dozen liquor jugs.' : '')}
+              </span>
+            </div>
+          ))}
         </section>
 
-        <div className="divider"></div>
+        <div className={s.divider}></div>
 
-        <section className="charset">
-          <div className="section-title">Character Set</div>
-          <div className="charset-display">
+        <section className={s.charset}>
+          <div className={s['section-title']}>Character Set</div>
+          <div className={s['charset-display']}>
             ABCDEFGHIJKLMNOPQRSTUVWXYZ
           </div>
-          <div className="charset-display charset-lower">
+          <div className={`${s['charset-display']} ${s['charset-lower']}`}>
             abcdefghijklmnopqrstuvwxyz
           </div>
-          <div className="charset-display charset-numbers">
+          <div className={`${s['charset-display']} ${s['charset-numbers']}`}>
             0123456789
           </div>
-          <div className="charset-display charset-symbols">
-            !@#$%^&*(){}[]|:;"'&lt;&gt;,.?/
+          <div className={`${s['charset-display']} ${s['charset-symbols']}`}>
+            {'!@#$%^&*(){}[]|:;"\'<>,.?/'}
           </div>
         </section>
 
-        <div className="divider"></div>
+        <div className={s.divider}></div>
 
-        <section className="comparison">
-          <div className="section-title">Variant Comparison</div>
-          <div className="comparison-row">
-            <span className="comparison-label">Square</span>
-            <span className="comparison-sample square">The quick brown fox</span>
-          </div>
-          <div className="comparison-row">
-            <span className="comparison-label">Grid</span>
-            <span className="comparison-sample grid">The quick brown fox</span>
-          </div>
-          <div className="comparison-row">
-            <span className="comparison-label">Circle</span>
-            <span className="comparison-sample circle">The quick brown fox</span>
-          </div>
-          <div className="comparison-row">
-            <span className="comparison-label">Triangle</span>
-            <span className="comparison-sample triangle">The quick brown fox</span>
-          </div>
-          <div className="comparison-row">
-            <span className="comparison-label">Line</span>
-            <span className="comparison-sample line">The quick brown fox</span>
-          </div>
+        <section className={s.comparison}>
+          <div className={s['section-title']}>Variant Comparison</div>
+          {['square', 'grid', 'circle', 'triangle', 'line'].map(v => (
+            <div key={v} className={s['comparison-row']}>
+              <span className={s['comparison-label']}>{v.charAt(0).toUpperCase() + v.slice(1)}</span>
+              <span className={`${s['comparison-sample']} ${comparisonVariants[v]}`}>The quick brown fox</span>
+            </div>
+          ))}
         </section>
 
-        <div className="divider"></div>
+        <div className={s.divider}></div>
 
         <section>
-          <div className="section-title">Sample Text</div>
-          <div className="sample-block">
-            <p className="sample-text">
+          <div className={s['section-title']}>Sample Text</div>
+          <div className={s['sample-block']}>
+            <p className={s['sample-text']}>
               Geist Pixel is a bitmap-inspired typeface designed for digital interfaces.
               Each variant offers a unique pixel treatment while maintaining legibility.
               Built for banners, dashboards, and experimental layouts.
@@ -343,11 +296,11 @@ export default function GeistPixelPage() {
           </div>
         </section>
 
-        <footer>
-          <div className="footer-left">
+        <footer className={s.gpFooter}>
+          <div className={s['footer-left']}>
             Design Experiment / 2026
           </div>
-          <div className="footer-right">
+          <div className={s['footer-right']}>
             <a href="https://vercel.com/font" target="_blank" rel="noopener">vercel.com/font</a>
           </div>
         </footer>

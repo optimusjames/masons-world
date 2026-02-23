@@ -123,15 +123,8 @@
     --row-height: 120px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+.grid {
     font-family: var(--font-body);
-    background-color: var(--black);
     color: var(--white);
     font-size: 14px;
     line-height: 1.5;

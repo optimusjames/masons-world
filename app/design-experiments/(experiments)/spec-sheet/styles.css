@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&family=Fraunces:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Serif+4:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&family=Abril+Fatface&family=Bitter:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&family=Caprasimo&family=Roboto:wght@300;400;500;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
+.container {
     --font-heading: 'Fraunces', serif;
     --font-body: 'Inter', sans-serif;
     --bg: #0a0a0a;
@@ -14,14 +8,10 @@
     --fg-muted: rgba(245, 245, 245, 0.5);
     --fg-subtle: rgba(245, 245, 245, 0.25);
     --accent: #f5f5f5;
-}
-
-body {
     font-family: var(--font-body);
-    background-color: var(--bg);
     color: var(--fg);
     line-height: 1.5;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: color 0.4s ease;
     font-size: 15px;
     font-weight: 400;
 }
@@ -96,7 +86,7 @@ body {
     width: 100%;
 }
 
-header {
+.container header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
@@ -493,7 +483,7 @@ header {
     letter-spacing: 0.02em;
 }
 
-footer {
+.container footer {
     margin-top: 120px;
     padding-top: 40px;
     border-top: 1px solid var(--fg-subtle);
@@ -572,7 +562,7 @@ footer {
         font-size: 72px;
     }
 
-    footer {
+    .container footer {
         flex-direction: column;
         align-items: flex-start;
         gap: 24px;

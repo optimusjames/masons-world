@@ -48,13 +48,7 @@
     font-display: swap;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
+.container {
     --font-display: 'Geist Pixel Square', monospace;
     --font-body: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --bg: #000000;
@@ -62,25 +56,18 @@
     --fg-muted: rgba(255, 255, 255, 0.5);
     --fg-subtle: rgba(255, 255, 255, 0.15);
     --accent: #ffffff;
-}
-
-body {
     font-family: var(--font-body);
-    background-color: var(--bg);
     color: var(--fg);
     line-height: 1.5;
     font-size: 15px;
     font-weight: 400;
-}
-
-.container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 60px 80px 120px;
 }
 
 /* Header */
-header {
+.gpHeader {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 80px;
@@ -154,7 +141,7 @@ header {
     color: var(--fg);
 }
 
-.variant-btn.active {
+.variantBtnActive {
     background: var(--fg);
     border-color: var(--fg);
     color: var(--bg);
@@ -220,7 +207,7 @@ header {
     display: block;
 }
 
-#scramble-container {
+.scrambleContainer {
     cursor: pointer;
 }
 
@@ -319,11 +306,11 @@ header {
     letter-spacing: 0.02em;
 }
 
-.comparison-sample.square { font-family: 'Geist Pixel Square', monospace; }
-.comparison-sample.grid { font-family: 'Geist Pixel Grid', monospace; }
-.comparison-sample.circle { font-family: 'Geist Pixel Circle', monospace; }
-.comparison-sample.triangle { font-family: 'Geist Pixel Triangle', monospace; }
-.comparison-sample.line { font-family: 'Geist Pixel Line', monospace; }
+.comparisonSquare { font-family: 'Geist Pixel Square', monospace; }
+.comparisonGrid { font-family: 'Geist Pixel Grid', monospace; }
+.comparisonCircle { font-family: 'Geist Pixel Circle', monospace; }
+.comparisonTriangle { font-family: 'Geist Pixel Triangle', monospace; }
+.comparisonLine { font-family: 'Geist Pixel Line', monospace; }
 
 /* Sample Text */
 .sample-block {
@@ -340,7 +327,7 @@ header {
 }
 
 /* Footer */
-footer {
+.gpFooter {
     margin-top: 120px;
     padding-top: 40px;
     border-top: 1px solid var(--fg-subtle);
@@ -376,7 +363,7 @@ footer {
         padding: 40px 40px 80px;
     }
 
-    header {
+    .gpHeader {
         grid-template-columns: 1fr;
         gap: 32px;
     }
@@ -421,7 +408,7 @@ footer {
         font-size: 28px;
     }
 
-    footer {
+    .gpFooter {
         flex-direction: column;
         align-items: flex-start;
         gap: 24px;

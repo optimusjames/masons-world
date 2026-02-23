@@ -1,29 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+.day-container {
     font-family: 'Inter', sans-serif;
-    background-color: #1a1a1a;
     color: #fff;
     padding: 40px;
     min-height: 100vh;
-}
-
-.day-container {
     max-width: 500px;
     margin: 0 auto;
 }
 
-header {
-    margin-bottom: 48px;
+.day-container header {
+    margin-bottom: 20px;
 }
 
-h1 {
+.day-container h1 {
     font-size: 48px;
     font-weight: 700;
     line-height: 1.1;
@@ -42,7 +32,8 @@ h1 {
     font-size: 14px;
     font-weight: 500;
     color: #666;
-    margin-top: 12px;
+    margin-top: 20px;
+    text-align: right;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }

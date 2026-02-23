@@ -162,8 +162,6 @@ export default function DayAtAGlance() {
   return (
     <div className="day-container">
       <header>
-        <h1>Your day at<br />a glance</h1>
-        <p className="subtitle">Easily view your scheduled time blocks<br />in a clean and efficient timeline format.</p>
         {todayDate && <p className="today-date">{todayDate}</p>}
       </header>
 

@@ -11,14 +11,7 @@
     src: url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .terminator-body {
-    background: #000000;
     color: #cccccc;
     font-family: 'Space Mono', monospace;
     display: flex;
@@ -59,7 +52,7 @@
     gap: 8px;
 }
 
-button {
+.terminator-body button {
     background: #222222;
     border: 1px solid #444444;
     color: #cccccc;
@@ -71,12 +64,12 @@ button {
     letter-spacing: 0.05em;
 }
 
-button:hover {
+.terminator-body button:hover {
     background: #333333;
     border-color: #666666;
 }
 
-button:active {
+.terminator-body button:active {
     background: #444444;
 }
 

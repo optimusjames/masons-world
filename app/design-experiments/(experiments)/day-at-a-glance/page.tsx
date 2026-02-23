@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './styles.css';
 
 const COLOR_MAP: Record<string, string> = {
@@ -117,40 +117,16 @@ const events = [
   },
 ];
 
+// Hardcoded to 11:30 so the partial-day design always looks right
+const DEMO_HOUR = 11;
+const DEMO_MINUTE = 30;
+
 export default function DayAtAGlance() {
   const [checkboxes, setCheckboxes] = useState<Record<number, boolean>>({});
-  const [nowPosition, setNowPosition] = useState<number | null>(null);
-  const [currentHour, setCurrentHour] = useState<number>(-1);
-  const [currentMinute, setCurrentMinute] = useState<number>(0);
-  const [todayDate, setTodayDate] = useState('');
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const hour = now.getHours();
-      const minute = now.getMinutes();
-      setCurrentHour(hour);
-      setCurrentMinute(minute);
-
-      if (hour >= 9 && hour < 17) {
-        setNowPosition((hour - 9) * 100 + (minute / 60) * 100 + 2);
-      } else {
-        setNowPosition(null);
-      }
-    };
-
-    setTodayDate(
-      new Date().toLocaleDateString('en-US', {
-        weekday: 'long',
-        month: 'short',
-        day: 'numeric',
-      })
-    );
-
-    updateTime();
-    const interval = setInterval(updateTime, 60000);
-    return () => clearInterval(interval);
-  }, []);
+  const currentHour = DEMO_HOUR;
+  const currentMinute = DEMO_MINUTE;
+  const nowPosition = (currentHour - 9) * 100 + (currentMinute / 60) * 100 - 2;
 
   const toggleCheckbox = (index: number) => {
     setCheckboxes(prev => ({
@@ -162,7 +138,7 @@ export default function DayAtAGlance() {
   return (
     <div className="day-container">
       <header>
-        {todayDate && <p className="today-date">{todayDate}</p>}
+        <p className="today-date">Wednesday, Mar 12</p>
       </header>
 
       <div className="timeline">

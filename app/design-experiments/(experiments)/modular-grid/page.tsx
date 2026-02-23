@@ -22,7 +22,6 @@ import styles from './page.module.css'
 
 function ModularGridDemo() {
   const grid = useGrid()
-  const [showGrid, setShowGrid] = useState(true)
   const [totalHeight, setTotalHeight] = useState(4000)
 
   useEffect(() => {
@@ -43,28 +42,8 @@ function ModularGridDemo() {
       className={styles.page}
       style={{ fontFamily: FONT.body, color: C.text }}
     >
-      <button
-        onClick={() => setShowGrid(!showGrid)}
-        style={{
-          position: 'fixed',
-          top: u(2),
-          right: u(2),
-          zIndex: 200,
-          background: showGrid ? C.accent : '#333',
-          color: '#fff',
-          border: 'none',
-          padding: `${u(1)}px ${u(2)}px`,
-          ...TYPE.label,
-          fontFamily: FONT.body,
-          cursor: 'pointer',
-          transition: 'background 0.2s',
-        }}
-      >
-        {showGrid ? 'Grid On' : 'Grid Off'}
-      </button>
-
       <div id="grid-page" style={{ position: 'relative', overflow: 'hidden' }}>
-        <GridOverlay visible={showGrid} rows={rows} />
+        <GridOverlay visible={true} rows={rows} />
 
         {/* HEADER */}
         <Section style={{ paddingTop: u(6) }}>

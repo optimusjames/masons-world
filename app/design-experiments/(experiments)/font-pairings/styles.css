@@ -38,6 +38,21 @@
   letter-spacing: 0.02em;
 }
 
+.loadingScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.loadingText {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #555;
+}
+
 .grid {
   max-width: 1600px;
   margin: 0 auto;
@@ -45,6 +60,12 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.grid.ready {
+  opacity: 1;
 }
 
 .cardWrapper {

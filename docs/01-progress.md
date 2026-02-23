@@ -8,6 +8,19 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+### Design Frame & Experiment Cleanup
+
+**Date:** 2026-02-22
+
+Unified the experiment viewing experience with a shared layout frame and cleaned up accumulated debt. Experiments now render inside a `(experiments)` route group with a consistent header (back link, title, tags) and footer (date, site nav). Global CSS variables (`--site-bg`, `--site-text`) replace hardcoded colors across the site. Scoped experiment stylesheets to prevent cross-page style leaking. Removed deprecated experiments (geist-pixel, spec-sheet). Fixed the font-pairings blank page bug -- fonts are now injected into `<head>` via `useEffect` with `document.fonts.ready` gating and a loading screen.
+
+**Key files:**
+- `app/design-experiments/(experiments)/layout.tsx` -- shared experiment frame
+- `app/design-experiments/(experiments)/font-pairings/page.tsx` -- programmatic font loading with ready gate
+- `app/globals.css` -- site-wide CSS variables
+
+---
+
 ### Recommended Links Page
 
 **Date:** 2026-02-22

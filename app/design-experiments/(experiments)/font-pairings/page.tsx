@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { pairings, quote, text } from './data/pairings'
 import type { FontPairing } from './data/pairings'
 import './styles.css'
@@ -76,8 +76,36 @@ function PairingCard({ pairing, index, onCopy }: { pairing: FontPairing; index: 
 }
 
 export default function FontPairingsPage() {
+  const [fontsReady, setFontsReady] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    // Inject stylesheet into <head> and wait for it to load
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = GOOGLE_FONTS_URL
+    link.onload = () => {
+      // CSS loaded — now wait for actual font files to finish
+      document.fonts.ready.then(() => {
+        if (!cancelled) setFontsReady(true)
+      })
+    }
+    link.onerror = () => {
+      if (!cancelled) setFontsReady(true) // show page anyway
+    }
+    document.head.appendChild(link)
+
+    // Fallback: show page after 5s no matter what
+    const fallback = setTimeout(() => { if (!cancelled) setFontsReady(true) }, 5000)
+
+    return () => {
+      cancelled = true
+      clearTimeout(fallback)
+    }
+  }, [])
 
   const handleCopy = useCallback((name: string) => {
     if (timerRef.current) clearTimeout(timerRef.current)
@@ -87,9 +115,12 @@ export default function FontPairingsPage() {
 
   return (
     <div className="page">
-      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-      <link rel="stylesheet" href={GOOGLE_FONTS_URL} />
-      <div className="grid">
+      {!fontsReady && (
+        <div className="loadingScreen">
+          <span className="loadingText">Loading fonts...</span>
+        </div>
+      )}
+      <div className={`grid${fontsReady ? ' ready' : ''}`}>
         {pairings.map((p, i) => (
           <PairingCard key={`${p.heading}-${p.body}-${i}`} pairing={p} index={i} onCopy={handleCopy} />
         ))}

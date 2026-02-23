@@ -1,6 +1,7 @@
 :root {
   --site-bg: #0d0d0d;
   --site-text: #f0ede8;
+  --content-max: 900px;
 }
 
 html {

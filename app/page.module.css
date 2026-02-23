@@ -103,7 +103,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   width: 100%;
-  max-width: 800px;
+  max-width: var(--content-max);
   pointer-events: auto;
   background: rgba(0, 0, 0, 0.45);
   border-radius: 0.75rem;
@@ -200,6 +200,14 @@
   line-height: 1.2;
 }
 
+
+.homeFooter {
+  width: 100%;
+  max-width: var(--content-max);
+  pointer-events: auto;
+  margin-bottom: 0;
+  padding: 0 1rem;
+}
 
 @media (max-width: 768px) {
   .interactiveVideo {

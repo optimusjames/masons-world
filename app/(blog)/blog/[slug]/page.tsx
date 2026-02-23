@@ -97,10 +97,6 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <BlogContent content={post.content} />
-
-        <footer className={styles.postFooter}>
-          <div className={styles.footerNote}>Blog / 2026</div>
-        </footer>
       </div>
     )
   }
@@ -142,10 +138,6 @@ export default async function BlogPostPage({ params }: PageProps) {
       )}
 
       <BlogContent content={post.content} />
-
-      <footer className={styles.postFooter}>
-        <div className={styles.footerNote}>Blog / 2026</div>
-      </footer>
     </div>
   )
 }

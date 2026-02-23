@@ -1,0 +1,73 @@
+.footer {
+  --sf-rule: rgba(255, 255, 255, 0.12);
+  --sf-text: rgba(255, 255, 255, 0.7);
+  --sf-label: rgba(255, 255, 255, 0.5);
+  margin-bottom: 100px;
+}
+
+.rule {
+  height: 1px;
+  background: var(--sf-rule);
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.navLink {
+  font-size: 0.7rem;
+  text-decoration: none;
+  color: var(--sf-label);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.navLink:hover {
+  color: var(--sf-text);
+}
+
+.navLink svg {
+  color: rgba(219, 112, 147, 0.6);
+  transition: color 0.2s ease;
+}
+
+.navLink:hover svg {
+  color: rgba(219, 112, 147, 0.9);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.iconLink {
+  color: var(--sf-text);
+  display: flex;
+  transition: color 0.2s ease;
+}
+
+.iconLink:hover {
+  color: #8FF7F9;
+}
+
+.skull {
+  display: block;
+  width: 20px;
+  height: 20px;
+  mask: url('/skull-icon.svg') center / contain no-repeat;
+  -webkit-mask: url('/skull-icon.svg') center / contain no-repeat;
+  background: rgba(255, 255, 255, 0.65);
+}

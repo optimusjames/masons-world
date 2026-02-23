@@ -16,6 +16,7 @@
 
   background: var(--paper);
   min-height: 100vh;
+  padding: 0 40px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -24,9 +25,9 @@
    ─────────────────────────────────────────── */
 
 .indexWrapper {
-  max-width: 900px;
+  max-width: var(--content-max);
   margin: 0 auto;
-  padding: 80px 40px 96px;
+  padding: 80px 0 96px;
 }
 
 .backRow {
@@ -385,9 +386,9 @@
    ─────────────────────────────────────────── */
 
 .postWrapper {
-  max-width: 900px;
+  max-width: var(--content-max);
   margin: 0 auto;
-  padding: 80px 40px 96px;
+  padding: 80px 0 96px;
 }
 
 .postHeader {
@@ -652,19 +653,9 @@
    Post Footer
    ─────────────────────────────────────────── */
 
-.postFooter {
-  margin-top: 64px;
-  padding-top: 32px;
-  border-top: 1px solid var(--rule);
-}
-
-.footerNote {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--light);
+.blogFooter {
+  max-width: var(--content-max);
+  margin: 0 auto;
 }
 
 /* ───────────────────────────────────────────
@@ -684,8 +675,12 @@
    ─────────────────────────────────────────── */
 
 @media (max-width: 768px) {
+  .blogLayout {
+    padding: 0 16px;
+  }
+
   .indexWrapper {
-    padding: 16px 16px 80px;
+    padding: 16px 0 80px;
   }
 
   .backRow {
@@ -744,7 +739,7 @@
   }
 
   .postWrapper {
-    padding: 16px 16px 80px;
+    padding: 16px 0 80px;
   }
 
   .postHeader {

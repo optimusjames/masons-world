@@ -5,7 +5,7 @@ export const experiments: Experiment[] = [
     slug: 'retro-bento',
     date: 'February 23, 2026',
     title: 'Retro Bento',
-    description: 'CrossFit bento grid meets retro hardware aesthetics. Nine fitness widgets styled as rack-mount modules with brushed aluminum panels, CRT displays with scanlines, LED indicators, analog needle gauges, segmented VU meters, and oscilloscope macro charts. DM Mono for technical readouts, Archivo Narrow for engraved labels. Warm gray surface palette with orange accent. Click any card to replay its entrance animation.',
+    description: 'Bento grid of fictional hardware modules. Nine self-contained rack-mount panels with brushed aluminum, LCD displays, and interactive controls -- temporal gauge with animated needle, flux capacitor, spectral analyzer, neural pathways LED matrix with staggered animations, entropy engine with escalating states, phase scope with rotating arcs, memory bank with fader-driven scroll, resonance monitor, and stasis chamber. Knobs drag horizontally, toggles glow orange, tapping panels randomizes with smooth transitions.',
     screenshot: '/screenshots/retro-bento.png',
     tags: ['Bento Grid', 'Hardware UI', 'CRT Display', 'SVG Animation'],
     theme: 'light'

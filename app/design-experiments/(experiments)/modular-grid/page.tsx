@@ -41,7 +41,7 @@ function ModularGridDemo() {
   return (
     <div
       className={styles.page}
-      style={{ fontFamily: FONT.body, background: C.bg, color: C.text }}
+      style={{ fontFamily: FONT.body, color: C.text }}
     >
       <button
         onClick={() => setShowGrid(!showGrid)}

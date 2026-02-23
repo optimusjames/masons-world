@@ -3,7 +3,6 @@ import { Bitter, Lora, Space_Mono } from "next/font/google";
 import NetworkCanvas from "./components/NetworkCanvas";
 import HeroVideo from "./components/HeroVideo";
 import CurtainLink from "./components/CurtainLink";
-import SiteFooter from "./components/SiteFooter";
 import { getAllPosts } from "@/lib/blog/loadBlog";
 import { getNavCategories } from "@/lib/docs/loadDocs";
 import styles from "./page.module.css";
@@ -155,8 +154,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <SiteFooter variant="dark" />
         </div>
       </div>
     </main>

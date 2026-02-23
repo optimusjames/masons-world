@@ -89,14 +89,6 @@ export default function FontPairingsPage() {
     <div className="page">
       {/* eslint-disable-next-line @next/next/no-page-custom-font */}
       <link rel="stylesheet" href={GOOGLE_FONTS_URL} />
-      <header className="pageHeader">
-        <h1>Font Pairings</h1>
-        <p>
-          Typeface combinations with character. Each card is a heading + body
-          pairing you can click to copy a specification prompt.
-        </p>
-        <div className="hint">Click any card to flip</div>
-      </header>
       <div className="grid">
         {pairings.map((p, i) => (
           <PairingCard key={`${p.heading}-${p.body}-${i}`} pairing={p} index={i} onCopy={handleCopy} />

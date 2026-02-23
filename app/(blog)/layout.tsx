@@ -1,5 +1,4 @@
 import { Bitter, Lora, Space_Mono, DM_Sans, Permanent_Marker } from 'next/font/google'
-import SiteFooter from '../components/SiteFooter'
 import styles from './blog.module.css'
 
 const bitter = Bitter({
@@ -43,7 +42,6 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className={`${styles.blogLayout} ${bitter.variable} ${lora.variable} ${spaceMono.variable} ${dmSans.variable} ${permanentMarker.variable}`}>
       {children}
-      <SiteFooter variant="dark" />
     </div>
   )
 }

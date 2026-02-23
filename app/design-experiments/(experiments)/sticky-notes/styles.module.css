@@ -1,49 +1,13 @@
-.pageWrap {
-  background: #fafafa;
-  min-height: 100vh;
-}
-
 .page {
   max-width: 720px;
   margin: 0 auto;
   padding: 48px 24px 96px;
   font-family: 'DM Sans', system-ui, sans-serif;
-  color: #2c2420;
-}
-
-.backRow {
-  margin-bottom: 32px;
-}
-
-.backLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 13px;
-  color: #706860;
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.backLink:hover {
-  color: #2c2420;
-}
-
-.header {
-  margin-bottom: 48px;
-}
-
-.title {
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  margin: 0 0 12px;
 }
 
 .description {
   font-size: 15px;
   line-height: 1.6;
-  color: #706860;
   margin: 0;
 }
 
@@ -51,52 +15,4 @@
   display: flex;
   justify-content: center;
   padding: 48px 0;
-  margin-bottom: 48px;
-  border-top: 1px solid #e8e0d8;
-  border-bottom: 1px solid #e8e0d8;
-}
-
-.details {
-  max-width: 560px;
-}
-
-.sectionTitle {
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #706860;
-  margin: 32px 0 12px;
-}
-
-.swatches {
-  display: flex;
-  gap: 12px;
-}
-
-.swatch {
-  width: 80px;
-  height: 80px;
-  border-radius: 3px;
-  border: 1px solid;
-  display: flex;
-  align-items: flex-end;
-  padding: 8px;
-  font-family: var(--font-marker), 'Permanent Marker', cursive;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.codeBlock {
-  background: #f8f4f0;
-  border: 1px solid #e8e0d8;
-  border-radius: 4px;
-  padding: 16px;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 13px;
-  line-height: 1.5;
-  overflow-x: auto;
-  white-space: pre;
-  color: #4a4040;
 }

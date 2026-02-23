@@ -1,3 +1,12 @@
+:root {
+  --site-bg: #222;
+  --site-text: #fff;
+}
+
+html {
+  background: var(--site-bg);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +14,8 @@
 }
 
 body {
-  background: #fafafa;
-  color: #1a1a1a;
+  background: var(--site-bg);
+  color: var(--site-text);
   line-height: 1.6;
   animation: quickFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }

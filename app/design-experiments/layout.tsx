@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import SiteFooter from '../components/SiteFooter'
 import styles from './layout.module.css'
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export default function DesignExperimentsLayout({
   return (
     <div className={styles.layout}>
       {children}
-      <SiteFooter variant="dark" />
     </div>
   )
 }

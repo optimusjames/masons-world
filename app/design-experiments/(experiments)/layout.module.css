@@ -1,5 +1,5 @@
 .frame {
-  max-width: 840px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
@@ -37,6 +37,7 @@
 }
 
 .header {
+  padding-top: 8px;
   margin-bottom: 32px;
 }
 
@@ -86,4 +87,66 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+}
+
+.siteFooterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.siteNav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.siteNavLink {
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
+  font-size: 0.7rem;
+  text-decoration: none;
+  color: var(--sf-label);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.siteNavLink:hover {
+  color: var(--sf-text);
+}
+
+.siteNavLink svg {
+  color: rgba(219, 112, 147, 0.6);
+  transition: color 0.2s ease;
+}
+
+.siteNavLink:hover svg {
+  color: rgba(219, 112, 147, 0.9);
+}
+
+.siteIcons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.siteIconLink {
+  color: var(--sf-text);
+  display: flex;
+  transition: color 0.2s ease;
+}
+
+.siteIconLink:hover {
+  color: #8FF7F9;
+}
+
+.skull {
+  display: block;
+  width: 20px;
+  height: 20px;
+  mask: url('/skull-icon.svg') center / contain no-repeat;
+  -webkit-mask: url('/skull-icon.svg') center / contain no-repeat;
+  background: rgba(255, 255, 255, 0.65);
 }

@@ -20,15 +20,15 @@ Creates a sticky note -- a single thought on a colored card. Takes the content d
 
 Writes a markdown file to `app/(blog)/notes/` with an ISO timestamp and auto-cycled color (warm, cool, neutral). The note appears immediately on the blog index as part of the sticky note stack. No title, no category -- just the thought and the date.
 
-### /recommend
+### /link
 
 Saves a link with a comment to the Link Worthy collection.
 
 ```
-/recommend https://github.com/anthropics/claude-code A CLI for Claude to write code directly
+/link https://github.com/anthropics/claude-code A CLI for Claude to write code directly
 ```
 
-Creates a markdown file in `app/(blog)/recommended/items/`. For YouTube and GitHub links, thumbnails are auto-fetched at build time. For generic web links, the command takes a screenshot (1200x630) and saves it to `public/screenshots/recommended/`. Titles are pulled from Open Graph metadata if not provided.
+Creates a markdown file in `app/(blog)/linked/items/`. For YouTube and GitHub links, thumbnails are auto-fetched at build time. For generic web links, the command takes a screenshot (1200x630) and saves it to `public/screenshots/linked/`. Titles are pulled from Open Graph metadata if not provided.
 
 ### /blog-post
 

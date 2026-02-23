@@ -1,13 +1,13 @@
-# recommend
+# link
 
-Add a link to the Recommended page.
+Add a link to the Link Worthy page.
 
 ## Usage
 
 ```
-/recommend https://youtube.com/watch?v=abc123 Great breakdown of how agents actually work
-/recommend https://github.com/user/repo I use this as a reference for building skills
-/recommend https://some-tool.com Amazing tool for voice dictation
+/link https://youtube.com/watch?v=abc123 Great breakdown of how agents actually work
+/link https://github.com/user/repo I use this as a reference for building skills
+/link https://some-tool.com Amazing tool for voice dictation
 ```
 
 Everything after the URL is your comment. URL must come first.

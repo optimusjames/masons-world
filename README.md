@@ -182,11 +182,11 @@ The site includes a markdown-powered blog at [joshcoolman.com/blog](https://www.
 
 ## Recommended
 
-A curated collection of links -- YouTube videos, GitHub repos, and web tools -- with personal commentary and auto-fetched thumbnails. New links are added via the `/recommend` skill. Each item is a markdown file with frontmatter (url, date, optional title) and a one-line comment.
+A curated collection of links -- YouTube videos, GitHub repos, and web tools -- with personal commentary and auto-fetched thumbnails. New links are added via the `/link` skill. Each item is a markdown file with frontmatter (url, date, optional title) and a one-line comment.
 
 Thumbnails resolve automatically at build time: YouTube via oEmbed, GitHub via OG images, and web links via manual screenshots taken with agent-browser.
 
-**[View Recommended →](https://www.joshcoolman.com/recommended)**
+**[View Recommended →](https://www.joshcoolman.com/linked)**
 
 ---
 
@@ -211,7 +211,7 @@ Internal documentation and reference material rendered at [joshcoolman.com/docs]
 │   │   ├── page.tsx              # Experiments gallery
 │   │   └── [experiment]/         # Each experiment is a self-contained route
 │   ├── (blog)/blog/              # Blog index and post pages
-│   ├── (blog)/recommended/       # Recommended links page
+│   ├── (blog)/linked/       # Recommended links page
 │   ├── (blog)/notes/             # Sticky note markdown files
 │   └── (docs)/docs/              # Docs viewer with sidebar nav
 ├── lib/
@@ -265,7 +265,7 @@ Ship a design experiment: screenshots with agent-browser, updates gallery and RE
 
 **Content:**
 
-**`/recommend`**
+**`/link`**
 Add a link to the Recommended page. Pass a URL and a comment -- the skill detects the source type (YouTube, GitHub, web), creates a markdown file, handles screenshots for web links, and runs a production build to trigger thumbnail downloads.
 
 **`/blog-post`**
@@ -297,7 +297,7 @@ Skills are invoked with a slash command in Claude Code:
 /ts-handoff crossfit-bento                      # TypeScript cleanup
 /promote sticky-notes                           # Extract reusable component
 /ship-experiment                                # Ship the current experiment
-/recommend https://example.com Great tool        # Add recommended link
+/link https://example.com Great tool        # Add recommended link
 /blog-post "Design as Dialogue"                 # Draft a blog post
 /note Remember to update the docs               # Quick sticky note
 /sanity-check                                   # Review current code

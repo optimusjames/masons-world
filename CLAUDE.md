@@ -11,7 +11,7 @@ npm run build    # Production build
 
 **Quick capture (most common):**
 - `/note` -- sticky note, instant capture
-- `/recommend` -- save a link with comment, auto-thumbnails
+- `/link` -- save a link with comment, auto-thumbnails
 - `/blog-post` -- draft from conversation context
 
 **Design experiments:**

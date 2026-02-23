@@ -76,4 +76,4 @@ Not everything needs to be an essay. `/note` creates a sticky note -- a single t
 
 ## Link Worthy
 
-`/recommend` saves a link with a comment. The build system auto-fetches thumbnails (from OEmbed for YouTube, og:image for web pages) and detects the source type. Links render as a list with 200px thumbnails, Lora titles, and small source badges (YouTube, GitHub, or Globe). The `/recommend` command handles screenshot capture for generic web links too.
+`/link` saves a link with a comment. The build system auto-fetches thumbnails (from OEmbed for YouTube, og:image for web pages) and detects the source type. Links render as a list with 200px thumbnails, Lora titles, and small source badges (YouTube, GitHub, or Globe). The `/link` command handles screenshot capture for generic web links too.

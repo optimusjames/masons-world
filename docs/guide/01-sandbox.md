@@ -24,7 +24,7 @@ The most common loops:
 
 - `/sketch` an idea, talk through iterations, `/ship-experiment` when it's ready
 - `/note` a quick thought mid-conversation, see it appear on the blog index
-- `/recommend` a link you found interesting, with a comment about why
+- `/link` a link you found interesting, with a comment about why
 - `/blog-post` to draft something longer from the conversation context
 
 The docs you're reading now are part of the site too -- markdown files in a `docs/` folder, rendered with a sidebar, table of contents, and syntax-highlighted code blocks.

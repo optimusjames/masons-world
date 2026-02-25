@@ -7,8 +7,8 @@ import styles from './page.module.css';
 export const metadata = experimentMetadata('retro-tech');
 
 const images: EditorialImage[] = [
-  { src: '/retro-tech/sample-product-design-2.jpg', alt: 'Control surface detail', cropClass: 'imageCropped' },
-  { src: '/retro-tech/sample-product-design-4.jpg', alt: 'Panel layout reference', cropClass: 'imageCroppedDown' },
+  { src: '/design-experiments/retro-tech/sample-product-design-2.jpg', alt: 'Control surface detail', cropClass: 'imageCropped' },
+  { src: '/design-experiments/retro-tech/sample-product-design-4.jpg', alt: 'Panel layout reference', cropClass: 'imageCroppedDown' },
 ];
 
 export default function RetroTechPage() {

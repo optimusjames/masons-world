@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { pairings, quote, text } from './data/pairings'
 import type { FontPairing } from './data/pairings'
 import './styles.css'
@@ -30,7 +30,7 @@ function CheckIcon() {
   )
 }
 
-function PairingCard({ pairing, index, onCopy }: { pairing: FontPairing; index: number; onCopy: (name: string) => void }) {
+function PairingCard({ pairing, index, onCopy }: { pairing: FontPairing; index: number; onCopy: (spec: string) => void }) {
   const [flipped, setFlipped] = useState(false)
   const [copied, setCopied] = useState(false)
   const num = String(index + 1).padStart(2, '0')
@@ -41,10 +41,10 @@ function PairingCard({ pairing, index, onCopy }: { pairing: FontPairing; index: 
     const spec = buildSpec(pairing)
     navigator.clipboard.writeText(spec).then(() => {
       setCopied(true)
-      onCopy(name)
+      onCopy(spec)
       setTimeout(() => setCopied(false), 2000)
     })
-  }, [pairing, name, onCopy])
+  }, [pairing, onCopy])
 
   return (
     <div className="cardWrapper" onClick={() => setFlipped((f) => !f)}>
@@ -75,30 +75,46 @@ function PairingCard({ pairing, index, onCopy }: { pairing: FontPairing; index: 
   )
 }
 
+function CopyPopup({ spec, onClose }: { spec: string; onClose: () => void }) {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', handleKey)
+    return () => document.removeEventListener('keydown', handleKey)
+  }, [onClose])
+
+  return (
+    <div className="popupOverlay" onClick={onClose}>
+      <div className="popupContent" onClick={e => e.stopPropagation()}>
+        <div className="popupHeader">
+          <span className="popupTitle">Copied to clipboard</span>
+          <button className="popupClose" onClick={onClose}>&times;</button>
+        </div>
+        <pre className="popupSpec">{spec}</pre>
+      </div>
+    </div>
+  )
+}
+
 export default function FontPairingsPage() {
   const [fontsReady, setFontsReady] = useState(false)
-  const [toast, setToast] = useState<string | null>(null)
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
+  const [copiedSpec, setCopiedSpec] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
 
-    // Inject stylesheet into <head> and wait for it to load
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = GOOGLE_FONTS_URL
     link.onload = () => {
-      // CSS loaded — now wait for actual font files to finish
       document.fonts.ready.then(() => {
         if (!cancelled) setFontsReady(true)
       })
     }
     link.onerror = () => {
-      if (!cancelled) setFontsReady(true) // show page anyway
+      if (!cancelled) setFontsReady(true)
     }
     document.head.appendChild(link)
 
-    // Fallback: show page after 5s no matter what
     const fallback = setTimeout(() => { if (!cancelled) setFontsReady(true) }, 5000)
 
     return () => {
@@ -107,10 +123,8 @@ export default function FontPairingsPage() {
     }
   }, [])
 
-  const handleCopy = useCallback((name: string) => {
-    if (timerRef.current) clearTimeout(timerRef.current)
-    setToast(`Copied: ${name}`)
-    timerRef.current = setTimeout(() => setToast(null), 2000)
+  const handleCopy = useCallback((spec: string) => {
+    setCopiedSpec(spec)
   }, [])
 
   return (
@@ -125,7 +139,7 @@ export default function FontPairingsPage() {
           <PairingCard key={`${p.heading}-${p.body}-${i}`} pairing={p} index={i} onCopy={handleCopy} />
         ))}
       </div>
-      <div className={`toast${toast ? ' visible' : ''}`}>{toast}</div>
+      {copiedSpec && <CopyPopup spec={copiedSpec} onClose={() => setCopiedSpec(null)} />}
     </div>
   )
 }

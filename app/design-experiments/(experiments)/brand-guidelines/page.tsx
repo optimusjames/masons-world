@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import './styles.css';
 import { Card, CardLabel, CardTitle, CardBody, CardButton } from './components/Cards';
 import { AnalyticsWidget } from './components/AnalyticsWidget';
@@ -8,12 +9,41 @@ import { BrandColors } from './components/BrandColors';
 
 const FONT_URL = 'https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&family=Fraunces:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Serif+4:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&family=Abril+Fatface&family=Bitter:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&family=Caprasimo&family=Roboto:wght@300;400;500;700&display=swap';
 
-export default function ColorSpecPage() {
+export default function BrandGuidelinesPage() {
+    const [fontsReady, setFontsReady] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = FONT_URL;
+        link.onload = () => {
+            document.fonts.ready.then(() => {
+                if (!cancelled) setFontsReady(true);
+            });
+        };
+        link.onerror = () => {
+            if (!cancelled) setFontsReady(true);
+        };
+        document.head.appendChild(link);
+
+        const fallback = setTimeout(() => { if (!cancelled) setFontsReady(true); }, 5000);
+
+        return () => {
+            cancelled = true;
+            clearTimeout(fallback);
+        };
+    }, []);
+
     return (
         <div className="page-layout">
-            {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-            <link rel="stylesheet" href={FONT_URL} />
-            <div className="content">
+            {!fontsReady && (
+                <div className="loadingScreen">
+                    <span className="loadingText">Loading fonts...</span>
+                </div>
+            )}
+            <div className={`content${fontsReady ? ' ready' : ''}`}>
                 <div className="grid">
                     <div className="editorial-section">
                         <div className="card-span-2">

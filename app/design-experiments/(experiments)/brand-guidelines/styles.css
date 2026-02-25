@@ -121,6 +121,22 @@
     --row-height: 120px;
 }
 
+.loadingScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    width: 100%;
+}
+
+.loadingText {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #555;
+}
+
 .page-layout {
     display: flex;
     width: 100%;
@@ -133,6 +149,12 @@
 .content {
     flex: 1;
     min-width: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.content.ready {
+    opacity: 1;
 }
 
 .grid {

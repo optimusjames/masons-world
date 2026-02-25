@@ -18,7 +18,7 @@ Source: https://github.com/joshcoolman-smc/sandbox
 - [Day at a Glance](https://www.joshcoolman.com/design-experiments/day-at-a-glance): Time-aware workday timeline with dynamic now-line tracking
 - [CrossFit Design Challenge](https://www.joshcoolman.com/design-experiments/crossfit-challenge): Four AI personas designed CrossFit homepages with dark mode, animation, and data viz
 - [Terminator - Text Scramble](https://www.joshcoolman.com/design-experiments/terminator): Terminal-style text scramble effect with two-phase animation
-- [Brand Guidelines](https://www.joshcoolman.com/design-experiments/color-spec): Interactive brand guidelines with live color and typography customization
+- [Brand Guidelines](https://www.joshcoolman.com/design-experiments/brand-guidelines): Interactive brand guidelines with live color and typography customization
 - [Blend](https://www.joshcoolman.com/design-experiments/blend): Swiss modernist gradient specimen with organic mesh gradients via SVG blur
 
 ## Blog

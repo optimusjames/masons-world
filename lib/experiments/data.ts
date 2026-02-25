@@ -85,11 +85,11 @@ export const experiments: Experiment[] = [
     tags: ['Text Animation', 'Terminal UI', 'Interactive', 'Split-Flap Effect']
   },
   {
-    slug: 'color-spec',
+    slug: 'brand-guidelines',
     date: 'February 6, 2026',
     title: 'Brand Guidelines',
     description: 'Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.',
-    screenshot: '/screenshots/color-spec.png',
+    screenshot: '/screenshots/brand-guidelines.png',
     tags: ['React Components', 'Animated Charts', 'Color Systems', 'Typography']
   },
   {

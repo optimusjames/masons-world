@@ -150,17 +150,17 @@ Interactive terminal-style text scramble effect with two-phase animation. Enter 
 
 ---
 
-### Color Spec
+### Brand Guidelines
 
 **February 6, 2026**
 
-[![Color Spec](./public/screenshots/color-spec.png)](https://www.joshcoolman.com/design-experiments/color-spec)
+[![Brand Guidelines](./public/screenshots/brand-guidelines.png)](https://www.joshcoolman.com/design-experiments/brand-guidelines)
 
 Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage.
 
 **Tags:** React Components - Animated Charts - Color Systems - Typography
 
-**[View Live →](https://www.joshcoolman.com/design-experiments/color-spec) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/color-spec)**
+**[View Live →](https://www.joshcoolman.com/design-experiments/brand-guidelines) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/brand-guidelines)**
 
 ---
 

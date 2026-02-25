@@ -141,7 +141,7 @@ export function ContactSheet({
         <ul className={styles.sidebarList}>
           {[...selected].sort((a, b) => a - b).map(i => (
             <li key={i} className={styles.sidebarItem}>
-              <img className={styles.sidebarThumb} src={images[i]?.url} alt="" />
+              <img className={styles.sidebarThumb} src={images[i]?.url} alt="" aria-hidden="true" />
               <span className={styles.sidebarFilename}>{images[i]?.name}</span>
               <button
                 className={styles.sidebarRemove}

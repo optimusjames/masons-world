@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { generateScale } from '../hooks/useColorScale';
 import { fontPairings } from '../data/fontPairings';
+import s from '../styles.module.css';
 
 type ColorScale = Record<number, string>;
 
@@ -92,72 +93,72 @@ Implementation Notes:
 
     return (
         <>
-        <div className="sidebar">
-            <div className="sidebar-tabs">
+        <div className={s.sidebar}>
+            <div className={s['sidebar-tabs']}>
                 <button
-                    className={`sidebar-tab ${activeTab === 'colors' ? 'active' : ''}`}
+                    className={`${s['sidebar-tab']} ${activeTab === 'colors' ? s.active : ''}`}
                     onClick={() => setActiveTab('colors')}
                 >
                     Colors
                 </button>
                 <button
-                    className={`sidebar-tab ${activeTab === 'type' ? 'active' : ''}`}
+                    className={`${s['sidebar-tab']} ${activeTab === 'type' ? s.active : ''}`}
                     onClick={() => setActiveTab('type')}
                 >
                     Type
                 </button>
             </div>
-            <div className="sidebar-body">
+            <div className={s['sidebar-body']}>
                 {activeTab === 'colors' && (
-                    <div className="sidebar-section">
+                    <div className={s['sidebar-section']}>
                         {Object.entries(colorNames).map(([scaleName, displayName]) => (
-                            <div className="sidebar-color-row" key={scaleName}>
+                            <div className={s['sidebar-color-row']} key={scaleName}>
                                 <input
                                     type="color"
-                                    className="sidebar-color-input"
+                                    className={s['sidebar-color-input']}
                                     value={currentScales[scaleName][900]}
                                     onChange={(e) => handleColorChange(scaleName, e.target.value)}
                                 />
-                                <div className="sidebar-color-info">
-                                    <div className="sidebar-color-name">{displayName}</div>
-                                    <div className="sidebar-color-hex">{currentScales[scaleName][900].toUpperCase()}</div>
+                                <div className={s['sidebar-color-info']}>
+                                    <div className={s['sidebar-color-name']}>{displayName}</div>
+                                    <div className={s['sidebar-color-hex']}>{currentScales[scaleName][900].toUpperCase()}</div>
                                 </div>
                             </div>
                         ))}
-                        <div className="sidebar-color-row">
+                        <div className={s['sidebar-color-row']}>
                             <input
                                 type="color"
-                                className="sidebar-color-input"
+                                className={s['sidebar-color-input']}
                                 value={backgroundColor}
                                 onChange={(e) => onBackgroundChange(e.target.value)}
                             />
-                            <div className="sidebar-color-info">
-                                <div className="sidebar-color-name">Page Background</div>
-                                <div className="sidebar-color-hex">{backgroundColor.toUpperCase()}</div>
+                            <div className={s['sidebar-color-info']}>
+                                <div className={s['sidebar-color-name']}>Page Background</div>
+                                <div className={s['sidebar-color-hex']}>{backgroundColor.toUpperCase()}</div>
                             </div>
                         </div>
                     </div>
                 )}
 
                 {activeTab === 'type' && (
-                    <div className="sidebar-section">
-                        <div className="font-pairing-selector">
+                    <div className={s['sidebar-section']}>
+                        <div className={s['font-pairing-selector']}>
                             {fontPairings.map((pairing, index) => (
                                 <button
                                     key={index}
-                                    className={`font-pairing-option ${currentPairing.name === pairing.name ? 'selected' : ''}`}
+                                    className={`${s['font-pairing-option']} ${currentPairing.name === pairing.name ? s.selected : ''}`}
                                     onClick={() => onPairingChange(pairing)}
                                 >
-                                    <div className="font-pairing-preview">
+                                    <div className={s['font-pairing-preview']}>
                                         <span
-                                            className="heading-preview"
+                                            className={s['heading-preview']}
                                             style={{ fontFamily: `'${pairing.heading}', serif` }}
                                         >
                                             Aa
                                         </span>
-                                        <div className="font-pairing-meta">
-                                            <span className="font-pairing-name">{pairing.name}</span>
-                                            <span className="font-pairing-classification">{pairing.classification}</span>
+                                        <div className={s['font-pairing-meta']}>
+                                            <span className={s['font-pairing-name']}>{pairing.name}</span>
+                                            <span className={s['font-pairing-classification']}>{pairing.classification}</span>
                                         </div>
                                     </div>
                                 </button>
@@ -166,27 +167,27 @@ Implementation Notes:
                     </div>
                 )}
             </div>
-            <div className="sidebar-footer">
-                <button className="sidebar-export-btn" onClick={handleExport}>
+            <div className={s['sidebar-footer']}>
+                <button className={s['sidebar-export-btn']} onClick={handleExport}>
                     Export for AI Agent
                 </button>
-                <button className="sidebar-reset-btn" onClick={handleResetAll}>
+                <button className={s['sidebar-reset-btn']} onClick={handleResetAll}>
                     Reset to Defaults
                 </button>
             </div>
         </div>
         {showExport && createPortal(
-            <div className="export-modal" onClick={() => setShowExport(false)}>
-                <div className="export-modal-content" onClick={(e) => e.stopPropagation()}>
-                    <div className="export-modal-header">
+            <div className={s['export-modal']} onClick={() => setShowExport(false)}>
+                <div className={s['export-modal-content']} onClick={(e) => e.stopPropagation()}>
+                    <div className={s['export-modal-header']}>
                         <h3>Design System Spec</h3>
-                        <button className="export-modal-close" onClick={() => setShowExport(false)}>&times;</button>
+                        <button className={s['export-modal-close']} onClick={() => setShowExport(false)}>&times;</button>
                     </div>
-                    <div className="export-modal-body">
-                        <pre className="export-text">{exportText}</pre>
+                    <div className={s['export-modal-body']}>
+                        <pre className={s['export-text']}>{exportText}</pre>
                     </div>
-                    <div className="export-modal-footer">
-                        <button className="export-copy-btn" onClick={handleCopyExport}>
+                    <div className={s['export-modal-footer']}>
+                        <button className={s['export-copy-btn']} onClick={handleCopyExport}>
                             Copy to Clipboard
                         </button>
                     </div>

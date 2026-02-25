@@ -48,7 +48,7 @@ export default async function RecommendedPage() {
             <li key={item.id} className={styles.recItem}>
               <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.recItemLink}>
                 {item.thumbnail ? (
-                  <img src={item.thumbnail} alt="" className={styles.recThumb} />
+                  <img src={item.thumbnail} alt="" aria-hidden="true" className={styles.recThumb} />
                 ) : (
                   <div className={styles.recThumbPlaceholder} />
                 )}

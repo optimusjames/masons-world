@@ -4,6 +4,7 @@ import { updateCSSVariables } from '../hooks/useColorScale';
 import { greenScale, emberScale, blueScale, stoneScale, fontPairings } from '../data/fontPairings';
 import { ColorSidebar } from './ColorSidebar';
 import { TypeInfo } from './TypeInfo';
+import s from '../styles.module.css';
 
 export function BrandColors() {
     const scales = ['primary', 'secondary', 'accent', 'neutral'];
@@ -30,23 +31,17 @@ export function BrandColors() {
         try {
             const stored = localStorage.getItem('brandColors');
             if (stored) setCurrentScales(JSON.parse(stored));
-        } catch (error) {
-            console.error('Error loading from localStorage:', error);
-        }
+        } catch { /* ignore localStorage errors (e.g. private browsing) */ }
 
         try {
             const stored = localStorage.getItem('backgroundColor');
             if (stored) setBackgroundColor(stored);
-        } catch (error) {
-            console.error('Error loading backgroundColor:', error);
-        }
+        } catch { /* ignore */ }
 
         try {
             const stored = localStorage.getItem('fontPairing');
             if (stored) setCurrentPairing(JSON.parse(stored));
-        } catch (error) {
-            console.error('Error loading fontPairing:', error);
-        }
+        } catch { /* ignore */ }
     }, []);
 
     // Sync to CSS variables and localStorage
@@ -55,9 +50,7 @@ export function BrandColors() {
         updateCSSVariables(currentScales);
         try {
             localStorage.setItem('brandColors', JSON.stringify(currentScales));
-        } catch (error) {
-            console.error('Error saving to localStorage:', error);
-        }
+        } catch { /* ignore */ }
     }, [currentScales, isMounted]);
 
     useEffect(() => {
@@ -65,9 +58,7 @@ export function BrandColors() {
         document.documentElement.style.setProperty('--black', backgroundColor);
         try {
             localStorage.setItem('backgroundColor', backgroundColor);
-        } catch (error) {
-            console.error('Error saving backgroundColor:', error);
-        }
+        } catch { /* ignore */ }
     }, [backgroundColor, isMounted]);
 
     useEffect(() => {
@@ -77,9 +68,7 @@ export function BrandColors() {
         root.style.setProperty('--font-body', `'${currentPairing.body}', sans-serif`);
         try {
             localStorage.setItem('fontPairing', JSON.stringify(currentPairing));
-        } catch (error) {
-            console.error('Error saving fontPairing:', error);
-        }
+        } catch { /* ignore */ }
     }, [currentPairing, isMounted]);
 
     const handleColorChange = (scaleName: string, newScale: Record<number, string>) => {
@@ -107,33 +96,33 @@ export function BrandColors() {
 
     return (
         <>
-            <div className="color-row no-gap">
+            <div className={`${s['color-row']} ${s['no-gap']}`}>
                 {scales.map(scale => (
-                    <div className="color-column" key={scale}>
+                    <div className={s['color-column']} key={scale}>
                         {samples.map(value => (
                             <div
-                                className={`color-card ${isLight(value) ? 'light' : ''}`}
+                                className={`${s['color-card']} ${isLight(value) ? s.light : ''}`}
                                 style={{ backgroundColor: currentScales[scale as keyof typeof currentScales][value as keyof typeof greenScale] }}
                                 key={value}
                             >
-                                <div className="color-values">--{scale}-{value}</div>
+                                <div className={s['color-values']}>--{scale}-{value}</div>
                             </div>
                         ))}
                     </div>
                 ))}
 
-                <div className="color-column">
+                <div className={s['color-column']}>
                     <div
-                        className="color-card"
+                        className={s['color-card']}
                         style={{ backgroundColor: backgroundColor, border: '1px solid rgba(255,255,255,0.1)' }}
                     >
-                        <div className="color-values">--black</div>
+                        <div className={s['color-values']}>--black</div>
                     </div>
-                    <div className="color-card" style={{ backgroundColor: '#7a7a7a' }}>
-                        <div className="color-values">--gray</div>
+                    <div className={s['color-card']} style={{ backgroundColor: '#7a7a7a' }}>
+                        <div className={s['color-values']}>--gray</div>
                     </div>
-                    <div className="color-card light" style={{ backgroundColor: '#ffffff' }}>
-                        <div className="color-values">--white</div>
+                    <div className={`${s['color-card']} ${s.light}`} style={{ backgroundColor: '#ffffff' }}>
+                        <div className={s['color-values']}>--white</div>
                     </div>
                 </div>
             </div>

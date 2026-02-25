@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import s from '../styles.module.css';
 
 type ActivityWidgetProps = {
     colorScale?: string;
@@ -33,7 +34,7 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
 
     useEffect(() => {
         if (!svgRef.current || !isLoaded) return;
-        const path = svgRef.current.querySelector('.activity-line-path') as SVGPathElement;
+        const path = svgRef.current.querySelector(`.${s['activity-line-path']}`) as SVGPathElement;
         if (path) {
             setPathLength(path.getTotalLength());
         }
@@ -84,34 +85,34 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
     return (
         <div
             key={loadKey}
-            className="activity-widget"
+            className={s['activity-widget']}
             onClick={handleReload}
         >
             <div
-                className={`activity-header ${isLoaded ? 'loaded' : ''}`}
+                className={`${s['activity-header']} ${isLoaded ? s.loaded : ''}`}
             >
-                <span className="activity-header-label" style={{ color: '#ffffff' }}>ACTIVITY</span>
+                <span className={s['activity-header-label']} style={{ color: '#ffffff' }}>ACTIVITY</span>
                 <span
-                    className="activity-header-badge"
+                    className={s['activity-header-badge']}
                     style={{ background: badgeBg, color: badgeText }}
                 >
                     This Week
                 </span>
             </div>
 
-            <div className={`activity-number ${isLoaded ? 'loaded' : ''}`}>
-                <span className="activity-number-value" style={{ color: '#ffffff' }}>
+            <div className={`${s['activity-number']} ${isLoaded ? s.loaded : ''}`}>
+                <span className={s['activity-number-value']} style={{ color: '#ffffff' }}>
                     {values.avg}
                 </span>
-                <span className="activity-number-suffix" style={{ color: textColor }}>
+                <span className={s['activity-number-suffix']} style={{ color: textColor }}>
                     avg
                 </span>
             </div>
 
-            <div className="activity-chart-container">
+            <div className={s['activity-chart-container']}>
                 <svg
                     ref={svgRef}
-                    className="activity-chart-svg"
+                    className={s['activity-chart-svg']}
                     viewBox={`0 0 ${width} ${height}`}
                     preserveAspectRatio="none"
                     style={{ ['--path-length' as string]: `${pathLength}px` }}
@@ -123,12 +124,12 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
                         </linearGradient>
                     </defs>
                     <path
-                        className={`activity-area-path ${isLoaded ? 'loaded' : ''}`}
+                        className={`${s['activity-area-path']} ${isLoaded ? s.loaded : ''}`}
                         d={areaPath}
                         fill={`url(#activityArea-${loadKey})`}
                     />
                     <path
-                        className={`activity-line-path ${isLoaded ? 'loaded' : ''}`}
+                        className={`${s['activity-line-path']} ${isLoaded ? s.loaded : ''}`}
                         d={linePath}
                         stroke={lineColor}
                     />
@@ -139,7 +140,7 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
                     return (
                         <div
                             key={index}
-                            className={`activity-dot ${isLoaded ? 'loaded' : ''}`}
+                            className={`${s['activity-dot']} ${isLoaded ? s.loaded : ''}`}
                             style={{
                                 left: `${xPercent}%`,
                                 top: `${yPercent}%`,
@@ -151,9 +152,9 @@ export function ActivityWidget({ colorScale = 'primary', chartColor = 'primary' 
                 })}
             </div>
 
-            <div className={`activity-day-labels ${isLoaded ? 'loaded' : ''}`} style={{ color: textColor }}>
+            <div className={`${s['activity-day-labels']} ${isLoaded ? s.loaded : ''}`} style={{ color: textColor }}>
                 {dayLabels.map((day, i) => (
-                    <span key={i} className="activity-day-label">{day}</span>
+                    <span key={i} className={s['activity-day-label']}>{day}</span>
                 ))}
             </div>
         </div>

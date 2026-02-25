@@ -1,5 +1,6 @@
 import { useContext, createContext } from 'react';
 import { defaults } from '../data/fontPairings';
+import s from '../styles.module.css';
 
 const CardContext = createContext<string | undefined>(undefined);
 
@@ -9,7 +10,7 @@ export function Card({ colorScale = 'neutral', bg, children }: { colorScale?: st
 
     return (
         <CardContext.Provider value={colorScale}>
-            <div className="card" style={{ backgroundColor }}>
+            <div className={s.card} style={{ backgroundColor }}>
                 {children}
             </div>
         </CardContext.Provider>
@@ -22,7 +23,7 @@ export function CardLabel({ children, color }: { children: React.ReactNode; colo
     const textColor = `var(--${colorScale}-${colorValue})`;
 
     return (
-        <div className="card-label" style={{ color: textColor }}>
+        <div className={s['card-label']} style={{ color: textColor }}>
             {children}
         </div>
     );
@@ -30,7 +31,7 @@ export function CardLabel({ children, color }: { children: React.ReactNode; colo
 
 export function CardTitle({ children }: { children: React.ReactNode }) {
     return (
-        <h3 className="card-title">
+        <h3 className={s['card-title']}>
             {children}
         </h3>
     );
@@ -38,7 +39,7 @@ export function CardTitle({ children }: { children: React.ReactNode }) {
 
 export function CardBody({ children }: { children: React.ReactNode }) {
     return (
-        <p className="card-body">
+        <p className={s['card-body']}>
             {children}
         </p>
     );
@@ -53,7 +54,7 @@ export function CardButton({ children, bg, border, textColor }: { children: Reac
     return (
         <a
             href="#"
-            className="card-button"
+            className={s['card-button']}
             style={{
                 backgroundColor: `var(--${colorScale}-${bgValue})`,
                 borderColor: `var(--${colorScale}-${borderValue})`,

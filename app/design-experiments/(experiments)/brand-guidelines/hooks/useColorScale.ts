@@ -20,8 +20,7 @@ export function generateScale(baseColor: string) {
         scale[950] = color950;
 
         return scale;
-    } catch (error) {
-        console.error('Error generating scale:', error);
+    } catch {
         return null;
     }
 }

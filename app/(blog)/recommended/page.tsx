@@ -14,15 +14,15 @@ const sourceConfig = {
   youtube: { icon: YoutubeIcon, label: 'YouTube' },
   github: { icon: GithubIcon, label: 'GitHub' },
   pdf: { icon: FileText, label: 'PDF' },
-  web: { icon: Globe, label: null },
+  web: { icon: Globe, label: 'Site' },
 } as const
 
 function SourceBadge({ source }: { source: Recommendation['source'] }) {
   const { icon: Icon, label } = sourceConfig[source]
   return (
-    <span className={`${styles.recBadge} ${label ? styles.recBadgeLabeled : ''}`}>
+    <span className={`${styles.recBadge} ${styles.recBadgeLabeled}`}>
       <Icon size={14} />
-      {label && <span className={styles.recBadgeLabel}>{label}</span>}
+      <span className={styles.recBadgeLabel}>{label}</span>
     </span>
   )
 }
@@ -46,36 +46,26 @@ export default async function RecommendedPage() {
         <ul className={styles.recList}>
           {items.map((item) => (
             <li key={item.id} className={styles.recItem}>
-              {item.thumbnail ? (
-                <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.recThumbLink}>
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.recItemLink}>
+                {item.thumbnail ? (
                   <img src={item.thumbnail} alt="" className={styles.recThumb} />
-                </a>
-              ) : (
-                <div className={styles.recThumbPlaceholder} />
-              )}
-              <div className={styles.recBody}>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.recLink}
-                >
-                  {item.title}
-                  <ArrowUpRight size={14} className={styles.recArrow} />
-                </a>
-                {item.author && (
-                  <span className={styles.recMeta}>
-                    {item.authorUrl
-                      ? <a href={item.authorUrl} target="_blank" rel="noopener noreferrer" className={styles.recAuthorLink}>{item.author}</a>
-                      : <span>{item.author}</span>
-                    }
+                ) : (
+                  <div className={styles.recThumbPlaceholder} />
+                )}
+                <div className={styles.recBody}>
+                  <span className={styles.recLink}>
+                    {item.title}
+                    <ArrowUpRight size={14} className={styles.recArrow} />
                   </span>
-                )}
-                {item.note && (
-                  <p className={styles.recNote}>{item.note}</p>
-                )}
-              </div>
-              <SourceBadge source={item.source} />
+                  {item.author && (
+                    <span className={styles.recMeta}>{item.author}</span>
+                  )}
+                  {item.note && (
+                    <p className={styles.recNote}>{item.note}</p>
+                  )}
+                </div>
+                <SourceBadge source={item.source} />
+              </a>
             </li>
           ))}
         </ul>

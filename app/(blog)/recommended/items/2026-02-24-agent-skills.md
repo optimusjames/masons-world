@@ -1,6 +1,6 @@
 ---
 title: Agent Skills
-url: https://agentskills.io/home
+url: https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf
 date: 2026-02-24
 ---
 

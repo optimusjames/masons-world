@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ChevronLeft, ArrowUpRight, YoutubeIcon, GithubIcon, Globe } from 'lucide-react'
+import { ChevronLeft, ArrowUpRight, YoutubeIcon, GithubIcon, Globe, FileText } from 'lucide-react'
 import Link from 'next/link'
 import { getAllRecommendations } from './loadRecommended'
 import type { Recommendation } from './types'
@@ -10,17 +10,19 @@ export const metadata: Metadata = {
   description: 'Links worth sharing — videos, articles, and other finds',
 }
 
-const sourceIcons = {
-  youtube: YoutubeIcon,
-  github: GithubIcon,
-  web: Globe,
+const sourceConfig = {
+  youtube: { icon: YoutubeIcon, label: 'YouTube' },
+  github: { icon: GithubIcon, label: 'GitHub' },
+  pdf: { icon: FileText, label: 'PDF' },
+  web: { icon: Globe, label: null },
 } as const
 
 function SourceBadge({ source }: { source: Recommendation['source'] }) {
-  const Icon = sourceIcons[source]
+  const { icon: Icon, label } = sourceConfig[source]
   return (
-    <span className={styles.recBadge}>
+    <span className={`${styles.recBadge} ${label ? styles.recBadgeLabeled : ''}`}>
       <Icon size={14} />
+      {label && <span className={styles.recBadgeLabel}>{label}</span>}
     </span>
   )
 }

@@ -77,6 +77,10 @@ async function downloadThumbnail(imageUrl: string, id: string): Promise<string |
   }
 }
 
+function isPdfUrl(url: string): boolean {
+  return /\.pdf(\?|#|$)/i.test(url)
+}
+
 function isYouTubeUrl(url: string): boolean {
   return /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(url)
 }
@@ -113,7 +117,7 @@ export async function getAllRecommendations(): Promise<Recommendation[]> {
         : data.date ? String(data.date) : ''
 
       const note = content.trim() || undefined
-      const source = isYouTubeUrl(url) ? 'youtube' : parseGitHubUrl(url) ? 'github' : 'web' as const
+      const source = isYouTubeUrl(url) ? 'youtube' : parseGitHubUrl(url) ? 'github' : isPdfUrl(url) ? 'pdf' : 'web' as const
       const rec: Recommendation = { id, title: data.title || url, url, date, note, source }
 
       // Check for existing local thumbnail first

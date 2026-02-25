@@ -8,6 +8,7 @@ Add a link to the Link Worthy page.
 /link https://youtube.com/watch?v=abc123 Great breakdown of how agents actually work
 /link https://github.com/user/repo I use this as a reference for building skills
 /link https://some-tool.com Amazing tool for voice dictation
+/link https://example.com/whitepaper.pdf Excellent guide to building agents
 ```
 
 Everything after the URL is your comment. URL must come first.
@@ -15,10 +16,11 @@ Everything after the URL is your comment. URL must come first.
 ## What It Does
 
 1. Parses the URL and comment from the arguments
-2. Detects the source type: `youtube`, `github`, or `web`
+2. Detects the source type: `youtube`, `github`, `pdf`, or `web`
 3. Creates a markdown file in `app/(blog)/recommended/items/`
 4. For **web** links: uses `agent-browser` to take a screenshot (1200x630 viewport) and saves it to `public/screenshots/recommended/`
-5. Runs `npm run build` to trigger automatic thumbnail downloads for YouTube and GitHub links (oEmbed and OG image)
+5. For **pdf** links: no screenshot needed -- the PDF badge serves as the visual indicator
+6. Runs `npm run build` to trigger automatic thumbnail downloads for YouTube and GitHub links (oEmbed and OG image)
 6. Reports back with what was created
 
 ## File Format
@@ -45,13 +47,14 @@ date: YYYY-MM-DD
 `YYYY-MM-DD-slug.md` where slug is derived from:
 - **YouTube**: slugified video title from oEmbed (fetch via `curl -s 'https://www.youtube.com/oembed?url=URL&format=json'`)
 - **GitHub**: repo name (e.g., `superpowers`)
+- **PDF**: slugified title or filename from the URL
 - **Web**: domain name or a few words from the title
 
 If a file with that name already exists, append `-2`, `-3`, etc.
 
-## Screenshot Workflow (web links only)
+## Screenshot Workflow (web links only, not PDFs)
 
-YouTube and GitHub thumbnails are downloaded automatically during build. Only web links need a manual screenshot:
+YouTube and GitHub thumbnails are downloaded automatically during build. PDF links don't need screenshots. Only web links need a manual screenshot:
 
 ```bash
 agent-browser open <url> --viewport 1200x630
@@ -64,6 +67,7 @@ agent-browser close
 
 - **YouTube**: auto-resolved from oEmbed at build time -- do NOT add title to frontmatter
 - **GitHub**: auto-resolved from GitHub API at build time -- do NOT add title to frontmatter
+- **PDF**: add title to frontmatter (can't extract from PDF URL)
 - **Web**: fetch the page title (curl + grep for `<title>`) and add it to frontmatter
 
 ## Rules

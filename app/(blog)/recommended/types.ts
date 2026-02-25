@@ -7,5 +7,5 @@ export interface Recommendation {
   authorUrl?: string
   thumbnail?: string
   note?: string
-  source: 'youtube' | 'github' | 'web'
+  source: 'youtube' | 'github' | 'pdf' | 'web'
 }

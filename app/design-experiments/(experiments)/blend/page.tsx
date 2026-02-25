@@ -116,13 +116,13 @@ export default function Blend() {
             <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
               <defs>
                 <filter id="blur1" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="30"/>
+                  <feGaussianBlur stdDeviation="35"/>
                 </filter>
               </defs>
               <rect fill="#0c0c14" width="100%" height="100%"/>
               <g filter="url(#blur1)" className="blob-group">
-                <ellipse cx="100" cy="100" rx="100" ry="80" fill="#14b8a6" opacity="0.7"/>
-                <ellipse cx="300" cy="120" rx="80" ry="100" fill="#6366f1" opacity="0.6"/>
+                <ellipse cx="80" cy="80" rx="160" ry="120" fill="#14b8a6" opacity="0.75"/>
+                <ellipse cx="320" cy="130" rx="150" ry="130" fill="#6366f1" opacity="0.7"/>
               </g>
             </svg>
             <span className="card-label">Mesh</span>
@@ -236,14 +236,14 @@ export default function Blend() {
             <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
               <defs>
                 <filter id="blur2" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="35"/>
+                  <feGaussianBlur stdDeviation="38"/>
                 </filter>
               </defs>
               <rect fill="#1a0f0a" width="100%" height="100%"/>
               <g filter="url(#blur2)" className="blob-group">
-                <ellipse cx="120" cy="110" rx="90" ry="70" fill="#f97316" opacity="0.7"/>
-                <ellipse cx="300" cy="60" rx="70" ry="60" fill="#eab308" opacity="0.5"/>
-                <ellipse cx="200" cy="170" rx="80" ry="60" fill="#7c2d12" opacity="0.6"/>
+                <ellipse cx="80" cy="120" rx="160" ry="130" fill="#f97316" opacity="0.75"/>
+                <ellipse cx="320" cy="50" rx="140" ry="110" fill="#eab308" opacity="0.6"/>
+                <ellipse cx="200" cy="180" rx="130" ry="100" fill="#7c2d12" opacity="0.65"/>
               </g>
             </svg>
             <span className="card-label">Solar Mesh</span>
@@ -319,9 +319,9 @@ export default function Blend() {
               </defs>
               <rect fill="#0a0a1a" width="100%" height="100%"/>
               <g filter="url(#blur3)" className="blob-group">
-                <ellipse cx="80" cy="60" rx="100" ry="80" fill="#0891b2" opacity="0.65"/>
-                <ellipse cx="320" cy="150" rx="90" ry="70" fill="#059669" opacity="0.55"/>
-                <ellipse cx="200" cy="100" rx="70" ry="90" fill="#312e81" opacity="0.5"/>
+                <ellipse cx="60" cy="60" rx="160" ry="120" fill="#0891b2" opacity="0.7"/>
+                <ellipse cx="340" cy="150" rx="150" ry="120" fill="#059669" opacity="0.65"/>
+                <ellipse cx="200" cy="100" rx="120" ry="130" fill="#312e81" opacity="0.6"/>
               </g>
             </svg>
             <span className="card-label">Deep Sea Mesh</span>

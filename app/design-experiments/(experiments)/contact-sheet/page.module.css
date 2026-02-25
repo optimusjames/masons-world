@@ -4,7 +4,7 @@
 }
 
 .sheet {
-  padding-top: 0;
+  padding-top: 12px;
 }
 
 .picker {
@@ -40,6 +40,29 @@
   color: rgba(255, 255, 255, 0.7);
   font-family: "SF Mono", "Menlo", "Monaco", monospace;
   font-size: 11px;
+}
+
+.sampleBanner {
+  padding: 10px 20px;
+  font-family: "SF Mono", "Menlo", "Monaco", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.bannerLink {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.bannerLink:hover {
+  color: #ccc;
 }
 
 .changeBtn {

@@ -7,9 +7,29 @@ import styles from './page.module.css'
 
 const IMAGE_EXT = /\.(jpe?g|png|gif|webp|avif|svg|bmp|tiff?)$/i
 
+const SAMPLE_DIR = '/design-experiments/contact-sheet'
+
+const SAMPLE_IMAGES: ImageEntry[] = [
+  'basquiat-style-fashion-portrait.jpg',
+  'bearded-man-pattern-illustration.jpg',
+  'bird-face-closeup-portrait.jpg',
+  'bird-floral-circle-logo.jpg',
+  'bird-landscape-sage-logo.jpg',
+  'chameleon-face-closeup-portrait.jpg',
+  'fisheye-streetwear-urban.jpg',
+  'greyhound-yawning-white.jpg',
+  'skater-crosswalk-motion-blur.jpg',
+].map(name => ({
+  name,
+  size: 0,
+  url: `${SAMPLE_DIR}/${name}`,
+  relPath: `samples/${name}`,
+}))
+
 export default function ContactSheetPage() {
-  const [images, setImages] = useState<ImageEntry[]>([])
-  const [folderName, setFolderName] = useState('')
+  const [images, setImages] = useState<ImageEntry[]>(SAMPLE_IMAGES)
+  const [folderName, setFolderName] = useState('Sample Images')
+  const [isSample, setIsSample] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFiles = useCallback((fileList: FileList | null) => {
@@ -24,6 +44,7 @@ export default function ContactSheetPage() {
     const path = (files[0] as unknown as { webkitRelativePath: string }).webkitRelativePath || ''
     const folder = path.split('/')[0] || 'Images'
     setFolderName(folder)
+    setIsSample(false)
 
     const entries: ImageEntry[] = files.map(f => ({
       name: f.name,
@@ -33,7 +54,9 @@ export default function ContactSheetPage() {
     }))
 
     setImages(prev => {
-      prev.forEach(img => URL.revokeObjectURL(img.url))
+      prev.forEach(img => {
+        if (img.url.startsWith('blob:')) URL.revokeObjectURL(img.url)
+      })
       return entries
     })
   }, [])
@@ -45,7 +68,16 @@ export default function ContactSheetPage() {
     }
   }
 
-  const hasImages = images.length > 0
+  const resetToSamples = () => {
+    setImages(prev => {
+      prev.forEach(img => {
+        if (img.url.startsWith('blob:')) URL.revokeObjectURL(img.url)
+      })
+      return SAMPLE_IMAGES
+    })
+    setFolderName('Sample Images')
+    setIsSample(true)
+  }
 
   return (
     <div className={styles.page}>
@@ -59,29 +91,29 @@ export default function ContactSheetPage() {
         onChange={e => handleFiles(e.target.files)}
       />
 
-      {!hasImages && (
-        <div className={styles.picker}>
-          <button className={styles.pickerButton} onClick={openPicker}>
-            Choose Folder
-          </button>
-          <p className={styles.pickerLabel}>
-            Pick any folder of images from your device. Nothing gets uploaded -- everything stays in your browser.
-          </p>
+      {isSample && (
+        <div className={styles.sampleBanner}>
+          These are sample images. To try your own, click <button className={styles.bannerLink} onClick={openPicker}>change folder</button> and select a folder from your device.
         </div>
       )}
 
-      {hasImages && (
-        <ContactSheet
-          images={images}
-          title={folderName}
-          className={styles.sheet}
-          headerExtra={
+      <ContactSheet
+        images={images}
+        title={folderName}
+        className={styles.sheet}
+        headerExtra={
+          <>
             <button className={styles.changeBtn} onClick={openPicker}>
               Change Folder
             </button>
-          }
-        />
-      )}
+            {!isSample && (
+              <button className={styles.changeBtn} onClick={resetToSamples}>
+                Clear
+              </button>
+            )}
+          </>
+        }
+      />
     </div>
   )
 }

@@ -1,6 +1,4 @@
 import Image from "next/image";
-import NetworkCanvas from "./components/NetworkCanvas";
-import HeroVideo from "./components/HeroVideo";
 import CurtainLink from "./components/CurtainLink";
 import SiteFooter from "./components/SiteFooter";
 import { getAllPosts } from "@/lib/blog/loadBlog";
@@ -16,13 +14,8 @@ export default function Home() {
 
   return (
     <main className={styles.mainContainer}>
-      <div className={styles.networkBackground}>
-        <NetworkCanvas className={styles.networkCanvas} />
-      </div>
-
       <div className={styles.contentOverlay}>
         <div className={styles.contentWrapper}>
-          <HeroVideo />
           <div className={styles.greetingText}>Greetings Starfighter!</div>
 
           <div className={styles.columns}>

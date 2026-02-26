@@ -20,7 +20,7 @@ Dark bento grid dashboard for CrossFit training data. Nine widget cards covering
 
 **Tags:** Bento Grid - Dashboard - Geist Pixel - Dark Theme
 
-**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/crossfit-bento)**
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/(experiments)/crossfit-bento)**
 
 ---
 
@@ -34,7 +34,7 @@ Interactive sticky note stack component. Post-it notes rendered from markdown fi
 
 **Tags:** Component - CSS Animation - Markdown Content - Portable
 
-**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/sticky-notes)**
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/(experiments)/sticky-notes)**
 
 ---
 
@@ -48,9 +48,7 @@ npm start      # Run production build
 
 ## Blog
 
-The site includes a markdown-powered blog at [jamesmason.com/blog](https://www.jamesmason.com/blog) with posts on design, AI agents, and working with code. Posts live in `blog/` as `.md` files with frontmatter.
-
-**[View Blog →](https://www.jamesmason.com/blog)**
+The site includes a markdown-powered blog with posts on design, AI agents, and working with code. Posts live in `blog/` as `.md` files with frontmatter.
 
 ---
 
@@ -60,15 +58,12 @@ A curated collection of links -- YouTube videos, GitHub repos, and web tools -- 
 
 Thumbnails resolve automatically at build time: YouTube via oEmbed, GitHub via OG images, and web links via manual screenshots taken with agent-browser.
 
-**[View Recommended →](https://www.jamesmason.com/recommended)**
 
 ---
 
 ## Docs
 
-Internal documentation and reference material rendered at [jamesmason.com/docs](https://www.jamesmason.com/docs). Markdown files in `docs/` with sidebar navigation, syntax highlighting, and table of contents.
-
-**[View Docs →](https://www.jamesmason.com/docs)**
+Internal documentation and reference material. Markdown files in `docs/` with sidebar navigation, syntax highlighting, and table of contents.
 
 ---
 

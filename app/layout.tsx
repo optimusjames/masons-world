@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Karla, Bitter, Lora, Space_Mono } from 'next/font/google'
+import { Karla, Space_Grotesk, Lora, Space_Mono } from 'next/font/google'
 import './globals.css'
 
 const karla = Karla({
@@ -8,9 +8,9 @@ const karla = Karla({
   display: 'swap',
 })
 
-const bitter = Bitter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['700', '800'],
+  weight: ['400', '500', '700'],
   display: 'swap',
   variable: '--font-bitter',
 })
@@ -74,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${bitter.variable} ${lora.variable} ${spaceMono.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${lora.variable} ${spaceMono.variable}`}>
       <body className={karla.className}>
         <script
           type="application/ld+json"

@@ -47,7 +47,7 @@
 }
 
 .sidebarTitle {
-  font-family: 'Bitter', serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 14px;
   font-weight: 700;
   color: #e5e5e5;
@@ -168,7 +168,7 @@
 
 /* Prose styles */
 .prose h1 {
-  font-family: 'Bitter', serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 28px;
   font-weight: 700;
   color: #f0f0f0;
@@ -178,7 +178,7 @@
 }
 
 .prose h2 {
-  font-family: 'Bitter', serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 20px;
   font-weight: 600;
   color: #e5e5e5;
@@ -190,7 +190,7 @@
 }
 
 .prose h3 {
-  font-family: 'Bitter', serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: #ccc;
@@ -200,7 +200,7 @@
 }
 
 .prose h4 {
-  font-family: 'Bitter', serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: #bbb;

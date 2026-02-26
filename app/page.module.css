@@ -73,7 +73,7 @@
 }
 
 .greetingText {
-  font-family: var(--font-bitter), 'Bitter', serif;
+  font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #8FF7F9;
@@ -111,7 +111,7 @@
 
 
 .columnTitle {
-  font-family: var(--font-bitter), 'Bitter', serif;
+  font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: #F2EFEB;

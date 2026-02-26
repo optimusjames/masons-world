@@ -83,7 +83,7 @@
 }
 
 .indexTitle {
-  font-family: var(--font-bitter), serif;
+  font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
   font-size: clamp(36px, 6vw, 56px);
   font-weight: 700;
   line-height: 1.08;
@@ -189,7 +189,7 @@
 }
 
 .cardTitle {
-  font-family: var(--font-bitter), serif;
+  font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
   font-size: 22px;
   font-weight: 700;
   line-height: 1.2;
@@ -426,7 +426,7 @@
 }
 
 .postTitle {
-  font-family: var(--font-bitter), serif;
+  font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
   font-size: clamp(36px, 6vw, 56px);
   font-weight: 700;
   line-height: 1.08;

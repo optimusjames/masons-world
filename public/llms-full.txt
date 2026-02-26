@@ -6,35 +6,13 @@ This is a personal design lab where Josh Coolman explores visual design, typogra
 
 The project demonstrates a particular approach to AI-assisted development: working with agents through code rather than through GUI-based "AI design tools." Experiments range from interactive UI components to multi-agent design challenges where autonomous AI agents create competing designs.
 
-Typography system: Bitter (headings), Lora (item titles/subtitles), Space Mono (meta/dates), Karla (body). Blog uses Cormorant Garamond and DM Sans.
-
 Source: https://github.com/joshcoolman-smc/sandbox
 
 ## Design Experiments
 
-- [Retro Bento](https://www.joshcoolman.com/design-experiments/retro-bento): What if CrossFit Bento and Retro Tech had a baby? Nine fictional hardware modules in a bento grid -- the interactive widget layout of CrossFit Bento meets the brushed aluminum, LCD panels, and tactile controls of Retro Tech. Temporal gauge with animated needle, flux capacitor, spectral analyzer, neural pathways LED matrix with staggered animations, entropy engine with escalating states, phase scope with rotating arcs, memory bank with fader-driven scroll, resonance monitor, and stasis chamber. Knobs drag horizontally, toggles glow orange, tapping panels randomizes with smooth transitions. Tags: Bento Grid, Hardware UI, CRT Display, SVG Animation. Date: February 23, 2026.
-
-- [Retro Tech Control Panel](https://www.joshcoolman.com/design-experiments/retro-tech): Hardware-inspired control panel rendered in CSS. Aluminum chassis with corner screws, OLED-style display with animated segmented LED meters, rotary knobs with drag interaction, vertical faders, toggle switches, tactile buttons, and a self-filling perf-grid speaker grille. Inspired by Teenage Engineering TP-7/TX-6, Braun noise gate pedal, and Work Louder numpad. DM Mono labels with Archivo Narrow model name. Warm gray surface palette with single orange accent. Tags: Hardware UI, Neumorphic, Interactive Controls, CSS Animation. Date: February 20, 2026.
-
 - [CrossFit Bento](https://www.joshcoolman.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black. Tags: Bento Grid, Dashboard, Geist Pixel, Dark Theme. Date: February 20, 2026.
 
 - [Sticky Notes](https://www.joshcoolman.com/design-experiments/sticky-notes): Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Tags: Component, CSS Animation, Markdown Content, Portable. Date: February 18, 2026.
-
-- [Contact Sheet](https://www.joshcoolman.com/design-experiments/contact-sheet): Image folder browser for building file lists to share with LLMs. Pick a folder, click images to select them, and a sidebar shows your selections with thumbnails. Copy the filename list to clipboard with one click. Designed for the workflow of visually identifying images then telling an LLM which ones to work with. Everything runs client-side -- nothing gets uploaded. Tags: Utility, File API, Client-Side, Dark Theme. Date: February 17, 2026.
-
-- [Font Pairings](https://www.joshcoolman.com/design-experiments/font-pairings): A collection of 40 curated Google Font pairings, each displayed on its own color-palette card. Click any card to copy an LLM-ready specification prompt. Includes superfamily pairings, monospace+sans combos, and brand design system fonts. Avoids overused defaults -- no Montserrat, Roboto, Open Sans, Lato, Playfair Display, Raleway, Poppins, or Inter. Static HTML with inline CSS, no framework. Tags: Typography, Font Pairings, Static HTML, Copy-to-Clipboard. Date: February 15, 2026.
-
-- [Modular Grid](https://www.joshcoolman.com/design-experiments/modular-grid): Swiss-inspired modular grid system for digital surfaces. 8px base unit, 4-column layout with proportional margins and gutters, strict vertical rhythm. Includes toggleable grid overlay, type specimen, image treatment demos, and system spec table. Dark mode adaptation of a print-precision layout methodology. Tags: Grid System, Swiss Design, Dark Mode, Typography. Date: February 14, 2026.
-
-- [Day at a Glance](https://www.joshcoolman.com/design-experiments/day-at-a-glance): Time-aware workday timeline with dynamic now-line that tracks real time. Features 9am-5pm schedule with colored event bars that partially fill as the hour progresses -- gray above the now-line, color below. Past events auto-dim. Built with CSS grid, inline linear-gradient for the fill effect, and 60-second interval updates. Tags: CSS Grid, Timeline, Dynamic State, Dark Theme. Date: February 12, 2026.
-
-- [CrossFit Design Challenge](https://www.joshcoolman.com/design-experiments/crossfit-challenge): Four AI personas -- brutal/industrial, minimal/refined, editorial/magazine, and tech/data-forward -- each designed a CrossFit homepage for IRON REPUBLIC gym. Dark mode across all designs, meaningful animation (glitch effects, scroll reveals, chart animations), and data visualization (SVG charts, radial indicators, bar graphs). Pure CSS animations, no external libraries. Tags: Dark Mode, CSS Animation, Data Viz, Agent Teams. Date: February 9, 2026.
-
-- [Terminator - Text Scramble](https://www.joshcoolman.com/design-experiments/terminator): Interactive terminal-style text scramble effect with two-phase animation. Enter custom text to see it scramble chaotically for 1 second, then resolve sequentially line-by-line. Features balanced line breaking and automatic uppercase conversion. Default text: Ghost in the Shell quote on identity and consciousness. Tags: Text Animation, Terminal UI, Interactive, Split-Flap Effect. Date: February 6, 2026.
-
-- [Brand Guidelines](https://www.joshcoolman.com/design-experiments/brand-guidelines): Interactive brand guidelines with live color and typography customization. Features animated Activity line chart and Analytics bar chart widgets with CSS-only animations. Click the gear icon for a push-in sidebar with color pickers using Chroma.js scale generation and 9 curated font pairings. All changes persist via localStorage. Tags: React Components, Animated Charts, Color Systems, Typography. Date: February 6, 2026.
-
-- [Blend](https://www.joshcoolman.com/design-experiments/blend): Swiss modernist gradient specimen system featuring organic mesh gradients via SVG blur technique. Includes 27 gradient cards across linear and mesh styles, systematic labeling, scroll-triggered animations, and an analytics dashboard mockup. Tags: Gradient Study, SVG Mesh, Swiss Design, Scroll Animation. Date: February 2, 2026.
 
 ## Blog
 
@@ -56,7 +34,7 @@ Source: https://github.com/joshcoolman-smc/sandbox
 
 - [Overview](https://www.joshcoolman.com/docs/overview): Project overview describing the sandbox's purpose, structure, and design philosophy. Covers the self-contained experiment pattern, the route-based architecture, and how new experiments are created.
 
-- [Progress](https://www.joshcoolman.com/docs/progress): Development progress log tracking milestones, features added, and the evolution of the project over time. Includes mobile readiness, component extraction, and infrastructure improvements.
+- [Progress](https://www.joshcoolman.com/docs/progress): Development progress log tracking milestones, features added, and the evolution of the project over time.
 
 - [Component Architecture](https://www.joshcoolman.com/docs/features/component-architecture): Documents the component extraction strategy -- when to keep code inline vs. extract to separate files. Covers the 300/500 line thresholds and reusable interface patterns.
 
@@ -80,6 +58,6 @@ Source: https://github.com/joshcoolman-smc/sandbox
 
 ## Optional
 
-- [Screenshots](https://github.com/joshcoolman-smc/sandbox/tree/main/public/screenshots): Preview images for all 11 design experiments, used in the gallery and for social sharing
+- [Screenshots](https://github.com/joshcoolman-smc/sandbox/tree/main/public/screenshots): Preview images for all design experiments, used in the gallery and for social sharing
 - [Source Code](https://github.com/joshcoolman-smc/sandbox): Full repository on GitHub with all experiments, blog posts, docs, and configuration
 - [Sticky Notes Content](https://www.joshcoolman.com/blog): Short-form notes displayed as sticky notes on the blog page, written in markdown with ISO timestamps for ordering

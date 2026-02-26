@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.joshcoolman.com/sitemap.xml',
+    sitemap: 'https://www.jamesmason.com/sitemap.xml',
   }
 }

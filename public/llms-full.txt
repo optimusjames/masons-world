@@ -1,63 +1,63 @@
-# Josh Coolman's Design Sandbox
+# James Mason's Design Sandbox
 
 > A Next.js sandbox for design experiments, blog posts, and documentation on building with AI agents.
 
-This is a personal design lab where Josh Coolman explores visual design, typography, layout systems, and agentic AI workflows. The site is built with Next.js 16, TypeScript, and CSS Modules. Each design experiment is a self-contained route under `/design-experiments/`. The blog covers the experience of designing and building software collaboratively with AI coding agents like Claude Code.
+This is a personal design lab where James Mason explores visual design, typography, layout systems, and agentic AI workflows. The site is built with Next.js 16, TypeScript, and CSS Modules. Each design experiment is a self-contained route under `/design-experiments/`. The blog covers the experience of designing and building software collaboratively with AI coding agents like Claude Code.
 
 The project demonstrates a particular approach to AI-assisted development: working with agents through code rather than through GUI-based "AI design tools." Experiments range from interactive UI components to multi-agent design challenges where autonomous AI agents create competing designs.
 
-Source: https://github.com/joshcoolman-smc/sandbox
+Source: https://github.com/optimusjames/masons-world
 
 ## Design Experiments
 
-- [CrossFit Bento](https://www.joshcoolman.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black. Tags: Bento Grid, Dashboard, Geist Pixel, Dark Theme. Date: February 20, 2026.
+- [CrossFit Bento](https://www.jamesmason.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black. Tags: Bento Grid, Dashboard, Geist Pixel, Dark Theme. Date: February 20, 2026.
 
-- [Sticky Notes](https://www.joshcoolman.com/design-experiments/sticky-notes): Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Tags: Component, CSS Animation, Markdown Content, Portable. Date: February 18, 2026.
+- [Sticky Notes](https://www.jamesmason.com/design-experiments/sticky-notes): Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Tags: Component, CSS Animation, Markdown Content, Portable. Date: February 18, 2026.
 
 ## Blog
 
-- [Design as Dialogue](https://www.joshcoolman.com/blog/design-as-dialogue): You can't spec your way to good design. Explores the conversational nature of designing with AI agents -- how the best results come from iterative dialogue rather than upfront specifications. The design process becomes a back-and-forth conversation where both human and AI contribute ideas, and the final product emerges from that exchange. By Josh Coolman. Date: February 19, 2026.
+- [Design as Dialogue](https://www.jamesmason.com/blog/design-as-dialogue): You can't spec your way to good design. Explores the conversational nature of designing with AI agents -- how the best results come from iterative dialogue rather than upfront specifications. The design process becomes a back-and-forth conversation where both human and AI contribute ideas, and the final product emerges from that exchange. By James Mason. Date: February 19, 2026.
 
-- [Memoirs of an Agent](https://www.joshcoolman.com/blog/memoirs-of-an-agent): Claude Code writes a blog post about working with Josh. A first-person account from the AI's perspective on what it's like to collaborate on design and development work. Covers the dynamics of human-AI creative partnership, the experience of building things together, and reflections on the working relationship. By Claude Code. Date: February 17, 2026.
+- [Memoirs of an Agent](https://www.jamesmason.com/blog/memoirs-of-an-agent): Claude Code writes a blog post about working with James. A first-person account from the AI's perspective on what it's like to collaborate on design and development work. Covers the dynamics of human-AI creative partnership, the experience of building things together, and reflections on the working relationship. By Claude Code. Date: February 17, 2026.
 
-- [Just Say What You Want](https://www.joshcoolman.com/blog/just-say-what-you-want): The shift from writing code to talking about it. Examines how AI coding agents change the fundamental workflow from typing syntax to describing intent. When you can just say what you want and have an agent build it, the skill shifts from implementation to articulation. By Josh Coolman. Date: February 13, 2026.
+- [Just Say What You Want](https://www.jamesmason.com/blog/just-say-what-you-want): The shift from writing code to talking about it. Examines how AI coding agents change the fundamental workflow from typing syntax to describing intent. When you can just say what you want and have an agent build it, the skill shifts from implementation to articulation. By James Mason. Date: February 13, 2026.
 
-- [It's Happening](https://www.joshcoolman.com/blog/its-happening): Dispatches from the moment everything shifted. Captures the feeling of being in the middle of a technological inflection point, where AI capabilities are advancing fast enough to fundamentally change how software gets built. By Josh Coolman. Date: February 12, 2026.
+- [It's Happening](https://www.jamesmason.com/blog/its-happening): Dispatches from the moment everything shifted. Captures the feeling of being in the middle of a technological inflection point, where AI capabilities are advancing fast enough to fundamentally change how software gets built. By James Mason. Date: February 12, 2026.
 
-- [Your Basic Blog](https://www.joshcoolman.com/blog/your-basic-blog): How this blog works and why it's just markdown files in a repo. A meta-post explaining the blog's architecture -- plain markdown files, gray-matter frontmatter, no CMS. Describes the overlay post variant that renders with a full-bleed image background. By Josh Coolman. Date: February 12, 2026.
+- [Your Basic Blog](https://www.jamesmason.com/blog/your-basic-blog): How this blog works and why it's just markdown files in a repo. A meta-post explaining the blog's architecture -- plain markdown files, gray-matter frontmatter, no CMS. Describes the overlay post variant that renders with a full-bleed image background. By James Mason. Date: February 12, 2026.
 
-- [You're Doing It Wrong](https://www.joshcoolman.com/blog/youre-doing-it-wrong): Why AI-powered design tools are just the old paradigm with new paint. Argues that wrapping AI in traditional GUI tools misses the transformative potential. The real shift is working directly with agents through code and conversation, not through constrained interfaces that limit what the AI can do. By Josh Coolman. Date: February 8, 2026.
+- [You're Doing It Wrong](https://www.jamesmason.com/blog/youre-doing-it-wrong): Why AI-powered design tools are just the old paradigm with new paint. Argues that wrapping AI in traditional GUI tools misses the transformative potential. The real shift is working directly with agents through code and conversation, not through constrained interfaces that limit what the AI can do. By James Mason. Date: February 8, 2026.
 
-- [Never Google Yourself](https://www.joshcoolman.com/blog/never-google-yourself): Practical SEO for people like me. A personal take on search engine optimization -- what actually matters for individual developers and creators trying to be discoverable online. By Josh Coolman.
+- [Never Google Yourself](https://www.jamesmason.com/blog/never-google-yourself): Practical SEO for people like me. A personal take on search engine optimization -- what actually matters for individual developers and creators trying to be discoverable online. By James Mason.
 
 ## Docs
 
-- [Overview](https://www.joshcoolman.com/docs/overview): Project overview describing the sandbox's purpose, structure, and design philosophy. Covers the self-contained experiment pattern, the route-based architecture, and how new experiments are created.
+- [Overview](https://www.jamesmason.com/docs/overview): Project overview describing the sandbox's purpose, structure, and design philosophy. Covers the self-contained experiment pattern, the route-based architecture, and how new experiments are created.
 
-- [Progress](https://www.joshcoolman.com/docs/progress): Development progress log tracking milestones, features added, and the evolution of the project over time.
+- [Progress](https://www.jamesmason.com/docs/progress): Development progress log tracking milestones, features added, and the evolution of the project over time.
 
-- [Component Architecture](https://www.joshcoolman.com/docs/features/component-architecture): Documents the component extraction strategy -- when to keep code inline vs. extract to separate files. Covers the 300/500 line thresholds and reusable interface patterns.
+- [Component Architecture](https://www.jamesmason.com/docs/features/component-architecture): Documents the component extraction strategy -- when to keep code inline vs. extract to separate files. Covers the 300/500 line thresholds and reusable interface patterns.
 
-- [Skills](https://www.joshcoolman.com/docs/features/skills): Documentation for the Claude Code skill system used in this project. Skills are reusable prompt templates that automate common workflows like shipping experiments, creating blog posts, and managing the project.
+- [Skills](https://www.jamesmason.com/docs/features/skills): Documentation for the Claude Code skill system used in this project. Skills are reusable prompt templates that automate common workflows like shipping experiments, creating blog posts, and managing the project.
 
-- [Sticky Notes](https://www.joshcoolman.com/docs/features/sticky-notes): Technical documentation for the sticky notes component. Covers the single-index state model, module-level persistence, proximity-based click zones, bidirectional transitions, and the portable directory-based content system.
+- [Sticky Notes](https://www.jamesmason.com/docs/features/sticky-notes): Technical documentation for the sticky notes component. Covers the single-index state model, module-level persistence, proximity-based click zones, bidirectional transitions, and the portable directory-based content system.
 
-- [TypeScript Migration](https://www.joshcoolman.com/docs/features/typescript-migration): Guide for the project's TypeScript migration. Covers strict mode configuration, type definitions, and patterns used across the codebase.
+- [TypeScript Migration](https://www.jamesmason.com/docs/features/typescript-migration): Guide for the project's TypeScript migration. Covers strict mode configuration, type definitions, and patterns used across the codebase.
 
-- [AI Dev Stack](https://www.joshcoolman.com/docs/stack/ai-dev-stack): Overview of the AI-assisted development workflow. Describes how Claude Code is used as the primary development tool, the role of skills and prompts, and the human-in-the-loop collaboration model.
+- [AI Dev Stack](https://www.jamesmason.com/docs/stack/ai-dev-stack): Overview of the AI-assisted development workflow. Describes how Claude Code is used as the primary development tool, the role of skills and prompts, and the human-in-the-loop collaboration model.
 
-- [BYOK Pattern](https://www.joshcoolman.com/docs/stack/byok-pattern): Documents the Bring Your Own Keys pattern -- how the project handles API keys and configuration without baking credentials into the codebase.
+- [BYOK Pattern](https://www.jamesmason.com/docs/stack/byok-pattern): Documents the Bring Your Own Keys pattern -- how the project handles API keys and configuration without baking credentials into the codebase.
 
-- [Stack Overview](https://www.joshcoolman.com/docs/stack/stack-overview): Complete technology stack reference. Next.js 15, TypeScript, CSS Modules, gray-matter for markdown, Lucide icons, Google Fonts, and the deployment/hosting setup.
+- [Stack Overview](https://www.jamesmason.com/docs/stack/stack-overview): Complete technology stack reference. Next.js 15, TypeScript, CSS Modules, gray-matter for markdown, Lucide icons, Google Fonts, and the deployment/hosting setup.
 
-- [Design Test Page Prompt](https://www.joshcoolman.com/docs/prompts/design-test-page): Reusable prompt template for generating design experiment pages. Describes the expected structure, styling conventions, and patterns that new experiments should follow.
+- [Design Test Page Prompt](https://www.jamesmason.com/docs/prompts/design-test-page): Reusable prompt template for generating design experiment pages. Describes the expected structure, styling conventions, and patterns that new experiments should follow.
 
 ## Recommended
 
-- [Recommended Links](https://www.joshcoolman.com/recommended): A curated collection of links Josh finds valuable -- YouTube videos, GitHub repos, and web tools related to AI, design, and development. Each link includes a personal comment and an auto-fetched thumbnail (via oEmbed for YouTube, OG images for GitHub, and manual screenshots for web links). New links are added via the `/link` Claude Code skill.
+- [Recommended Links](https://www.jamesmason.com/recommended): A curated collection of links James finds valuable -- YouTube videos, GitHub repos, and web tools related to AI, design, and development. Each link includes a personal comment and an auto-fetched thumbnail (via oEmbed for YouTube, OG images for GitHub, and manual screenshots for web links). New links are added via the `/link` Claude Code skill.
 
 ## Optional
 
-- [Screenshots](https://github.com/joshcoolman-smc/sandbox/tree/main/public/screenshots): Preview images for all design experiments, used in the gallery and for social sharing
-- [Source Code](https://github.com/joshcoolman-smc/sandbox): Full repository on GitHub with all experiments, blog posts, docs, and configuration
-- [Sticky Notes Content](https://www.joshcoolman.com/blog): Short-form notes displayed as sticky notes on the blog page, written in markdown with ISO timestamps for ordering
+- [Screenshots](https://github.com/optimusjames/masons-world/tree/main/public/screenshots): Preview images for all design experiments, used in the gallery and for social sharing
+- [Source Code](https://github.com/optimusjames/masons-world): Full repository on GitHub with all experiments, blog posts, docs, and configuration
+- [Sticky Notes Content](https://www.jamesmason.com/blog): Short-form notes displayed as sticky notes on the blog page, written in markdown with ISO timestamps for ordering

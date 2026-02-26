@@ -2,7 +2,7 @@
 title: "Design as Dialogue"
 subtitle: "You can't spec your way to good design"
 date: 2026-02-19
-author: Josh Coolman
+author: James Mason
 readingTime: 3 min
 ---
 

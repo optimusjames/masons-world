@@ -2,7 +2,7 @@
 title: "Your Basic Blog"
 subtitle: "How this blog works and why it's just markdown files in a repo"
 date: 2026-02-12
-author: Josh Coolman
+author: James Mason
 readingTime: 4 min
 ---
 

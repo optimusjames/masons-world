@@ -14,13 +14,13 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 **February 20, 2026**
 
-[![CrossFit Bento](./public/screenshots/crossfit-bento.png)](https://www.joshcoolman.com/design-experiments/crossfit-bento)
+![CrossFit Bento](./public/screenshots/crossfit-bento.png)
 
 Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black.
 
 **Tags:** Bento Grid - Dashboard - Geist Pixel - Dark Theme
 
-**[View Live →](https://www.joshcoolman.com/design-experiments/crossfit-bento) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/crossfit-bento)**
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/crossfit-bento)**
 
 ---
 
@@ -28,13 +28,13 @@ Dark bento grid dashboard for CrossFit training data. Nine widget cards covering
 
 **February 18, 2026**
 
-[![Sticky Notes](./public/screenshots/sticky-notes.png)](https://www.joshcoolman.com/design-experiments/sticky-notes)
+![Sticky Notes](./public/screenshots/sticky-notes.png)
 
 Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Currently used by the blog for "note to self" thoughts.
 
 **Tags:** Component - CSS Animation - Markdown Content - Portable
 
-**[View Live →](https://www.joshcoolman.com/design-experiments/sticky-notes) | [View Code →](https://github.com/joshcoolman-smc/sandbox/tree/main/app/design-experiments/sticky-notes)**
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/sticky-notes)**
 
 ---
 
@@ -48,9 +48,9 @@ npm start      # Run production build
 
 ## Blog
 
-The site includes a markdown-powered blog at [joshcoolman.com/blog](https://www.joshcoolman.com/blog) with posts on design, AI agents, and working with code. Posts live in `blog/` as `.md` files with frontmatter.
+The site includes a markdown-powered blog at [jamesmason.com/blog](https://www.jamesmason.com/blog) with posts on design, AI agents, and working with code. Posts live in `blog/` as `.md` files with frontmatter.
 
-**[View Blog →](https://www.joshcoolman.com/blog)**
+**[View Blog →](https://www.jamesmason.com/blog)**
 
 ---
 
@@ -60,15 +60,15 @@ A curated collection of links -- YouTube videos, GitHub repos, and web tools -- 
 
 Thumbnails resolve automatically at build time: YouTube via oEmbed, GitHub via OG images, and web links via manual screenshots taken with agent-browser.
 
-**[View Recommended →](https://www.joshcoolman.com/recommended)**
+**[View Recommended →](https://www.jamesmason.com/recommended)**
 
 ---
 
 ## Docs
 
-Internal documentation and reference material rendered at [joshcoolman.com/docs](https://www.joshcoolman.com/docs). Markdown files in `docs/` with sidebar navigation, syntax highlighting, and table of contents.
+Internal documentation and reference material rendered at [jamesmason.com/docs](https://www.jamesmason.com/docs). Markdown files in `docs/` with sidebar navigation, syntax highlighting, and table of contents.
 
-**[View Docs →](https://www.joshcoolman.com/docs)**
+**[View Docs →](https://www.jamesmason.com/docs)**
 
 ---
 

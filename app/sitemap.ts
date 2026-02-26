@@ -4,7 +4,7 @@ import { getAllPosts } from '@/lib/blog/loadBlog'
 import { getNavCategories } from '@/lib/docs/loadDocs'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.joshcoolman.com'
+  const baseUrl = 'https://www.jamesmason.com'
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },

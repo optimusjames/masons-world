@@ -31,17 +31,17 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.joshcoolman.com'),
+  metadataBase: new URL('https://www.jamesmason.com'),
   title: {
-    default: 'Josh Coolman — Design Experiments & Writing',
-    template: '%s | Josh Coolman',
+    default: 'James Mason — Design Experiments & Writing',
+    template: '%s | James Mason',
   },
-  description: 'Josh Coolman explores design through code — interactive experiments, visual systems, and writing about building with AI agents.',
-  authors: [{ name: 'Josh Coolman' }],
+  description: 'James Mason explores design through code — interactive experiments, visual systems, and writing about building with AI agents.',
+  authors: [{ name: 'James Mason' }],
   openGraph: {
-    title: 'Josh Coolman — Design Experiments & Writing',
+    title: 'James Mason — Design Experiments & Writing',
     description: 'Interactive design experiments, visual systems, and writing about building with AI agents.',
-    siteName: 'Josh Coolman',
+    siteName: 'James Mason',
     type: 'website',
     locale: 'en_US',
   },
@@ -54,17 +54,17 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Josh Coolman',
-    url: 'https://www.joshcoolman.com',
+    name: 'James Mason',
+    url: 'https://www.jamesmason.com',
     sameAs: [
-      'https://github.com/joshcoolman-smc',
+      'https://github.com/optimusjames',
     ],
   },
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Josh Coolman',
-    url: 'https://www.joshcoolman.com',
+    name: 'James Mason',
+    url: 'https://www.jamesmason.com',
   },
 ]
 

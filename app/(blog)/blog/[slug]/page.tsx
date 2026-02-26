@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: post.meta.subtitle || undefined,
       type: 'article',
       publishedTime: post.meta.date || undefined,
-      authors: [post.meta.author || 'Josh Coolman'],
+      authors: [post.meta.author || 'James Mason'],
     },
   }
 }
@@ -56,8 +56,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     datePublished: post.meta.date || undefined,
     author: {
       '@type': 'Person',
-      name: post.meta.author || 'Josh Coolman',
-      url: 'https://www.joshcoolman.com',
+      name: post.meta.author || 'James Mason',
+      url: 'https://www.jamesmason.com',
     },
   }
 

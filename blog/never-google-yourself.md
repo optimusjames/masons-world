@@ -2,7 +2,7 @@
 title: "Never Google Yourself"
 subtitle: "Practical SEO for people like me"
 date: 2026-02-21
-author: Josh Coolman
+author: James Mason
 readingTime: 10 min
 ---
 

@@ -60,7 +60,7 @@ Write in the style of the existing posts in `blog/`. The writing philosophy:
 title: "Post Title"
 subtitle: "Optional subtitle"
 date: YYYY-MM-DD  # today's date
-author: Josh Coolman
+author: James Mason
 ---
 ```
 

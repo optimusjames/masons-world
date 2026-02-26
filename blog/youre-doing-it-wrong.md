@@ -2,7 +2,7 @@
 title: "You're Doing It Wrong"
 subtitle: "Why \"AI-powered design tools\" are just the old paradigm with new paint"
 date: 2026-02-08
-author: Josh Coolman
+author: James Mason
 readingTime: 3 min
 ---
 

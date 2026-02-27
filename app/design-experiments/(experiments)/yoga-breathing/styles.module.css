@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+.page {
+  min-height: 100svh;
+  background: #0e110f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 48px 24px;
+}
+
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.28);
+  margin: 0;
+}
+
+.ringWrap {
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+}
+
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.phaseLabel {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 34px;
+  color: #e8e3d8;
+  letter-spacing: 0.02em;
+}
+
+.countdown {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: rgba(127, 168, 130, 0.65);
+  letter-spacing: 0.1em;
+}
+
+.btn {
+  background: none;
+  border: 1px solid rgba(232, 227, 216, 0.14);
+  color: rgba(232, 227, 216, 0.5);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 14px 44px;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+  border-radius: 1px;
+}
+
+.btn:hover {
+  border-color: rgba(127, 168, 130, 0.5);
+  color: #7fa882;
+  background: rgba(127, 168, 130, 0.05);
+}
+
+.btnStop {
+  border-color: rgba(232, 227, 216, 0.07);
+  color: rgba(232, 227, 216, 0.22);
+}
+
+.btnStop:hover {
+  border-color: rgba(200, 90, 90, 0.35);
+  color: rgba(200, 90, 90, 0.6);
+  background: rgba(200, 90, 90, 0.04);
+}
+
+.techniques {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: border-color 0.2s, background 0.2s;
+  min-width: 108px;
+}
+
+.card:hover {
+  border-color: rgba(127, 168, 130, 0.3);
+  background: rgba(127, 168, 130, 0.04);
+}
+
+.cardActive {
+  border-color: rgba(127, 168, 130, 0.5);
+  background: rgba(127, 168, 130, 0.08);
+}
+
+.techName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: #e8e3d8;
+}
+
+.techRatio {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(127, 168, 130, 0.75);
+  letter-spacing: 0.08em;
+}
+
+.techBenefit {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  color: rgba(232, 227, 216, 0.28);
+}

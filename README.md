@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Yoga Breathing
+
+**February 27, 2026**
+
+![Yoga Breathing](./public/screenshots/yoga-breathing.png)
+
+Guided pranayama breathing app with an animated ring that expands and contracts with each phase. Three techniques: Box Breathing (4-4-4-4) for focus, 4-7-8 for sleep and anxiety, and Belly Breathing as a foundation practice. Dark sage palette, Cormorant Garamond phase labels, Space Mono countdown.
+
+**Tags:** Breathing - Animation - Wellness - Interactive
+
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/(experiments)/yoga-breathing)**
+
+---
+
 ### CrossFit Bento
 
 **February 20, 2026**

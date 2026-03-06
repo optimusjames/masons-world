@@ -5,7 +5,7 @@ export const experiments: Experiment[] = [
     slug: 'yoga-breathing',
     date: 'March 6, 2026',
     title: 'Yoga Breathing',
-    description: 'Guided pranayama breathing app with an animated ring that expands and contracts with each phase. Three techniques: Box Breathing (4-4-4-4) for focus, 4-7-8 for sleep and anxiety, and Belly Breathing as a foundation practice. Dark sage palette, Cormorant Garamond phase labels, Space Mono countdown.',
+    description: 'Guided pranayama breathing app with an animated ring that expands and contracts with each phase. Five techniques: Box (4-4-4-4), 4-7-8, Foundation (5-5), 2:1 Calm, and Triangle. Three color themes (sage, ocean, dusk), optional session timer, Cormorant Garamond phase labels, Space Mono countdown.',
     screenshot: '/screenshots/yoga-breathing.png',
     tags: ['Breathing', 'Animation', 'Wellness', 'Interactive']
   },

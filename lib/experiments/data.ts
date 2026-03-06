@@ -3,7 +3,7 @@ import type { Experiment } from '@/app/types/experiments'
 export const experiments: Experiment[] = [
   {
     slug: 'yoga-breathing',
-    date: 'February 26, 2026',
+    date: 'March 6, 2026',
     title: 'Yoga Breathing',
     description: 'Guided pranayama breathing app with an animated ring that expands and contracts with each phase. Three techniques: Box Breathing (4-4-4-4) for focus, 4-7-8 for sleep and anxiety, and Belly Breathing as a foundation practice. Dark sage palette, Cormorant Garamond phase labels, Space Mono countdown.',
     screenshot: '/screenshots/yoga-breathing.png',

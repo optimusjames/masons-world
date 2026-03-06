@@ -1,23 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
 
 .page {
+  --accent: #7fa882;
+  --accent-rgb: 127, 168, 130;
+  --bg: #0e110f;
   min-height: 100svh;
-  background: #0e110f;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 48px;
+  gap: 36px;
   padding: 48px 24px;
+  position: relative;
+  transition: background 0.4s ease;
+}
+
+.page[data-theme="ocean"] {
+  --accent: #7aafc4;
+  --accent-rgb: 122, 175, 196;
+  --bg: #08101a;
+}
+
+.page[data-theme="dusk"] {
+  --accent: #a882a8;
+  --accent-rgb: 168, 130, 168;
+  --bg: #100d10;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .eyebrow {
   font-family: 'Space Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: rgba(232, 227, 216, 0.28);
   margin: 0;
+}
+
+.swatches {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--swatch-color);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+
+.swatch:hover {
+  opacity: 0.85;
+}
+
+.swatchActive {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--swatch-color);
 }
 
 .ringWrap {
@@ -52,8 +103,8 @@
 
 .countdown {
   font-family: 'Space Mono', monospace;
-  font-size: 13px;
-  color: rgba(127, 168, 130, 0.65);
+  font-size: 28px;
+  color: rgba(var(--accent-rgb), 0.65);
   letter-spacing: 0.1em;
 }
 
@@ -72,9 +123,9 @@
 }
 
 .btn:hover {
-  border-color: rgba(127, 168, 130, 0.5);
-  color: #7fa882;
-  background: rgba(127, 168, 130, 0.05);
+  border-color: rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.05);
 }
 
 .btnStop {
@@ -86,6 +137,40 @@
   border-color: rgba(200, 90, 90, 0.35);
   color: rgba(200, 90, 90, 0.6);
   background: rgba(200, 90, 90, 0.04);
+}
+
+.durationPills {
+  display: flex;
+  gap: 8px;
+}
+
+.pill {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(232, 227, 216, 0.3);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  padding: 6px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.pill:hover:not(:disabled) {
+  border-color: rgba(var(--accent-rgb), 0.3);
+  color: rgba(var(--accent-rgb), 0.8);
+}
+
+.pillActive {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.07);
+}
+
+.pill:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 .techniques {
@@ -110,32 +195,51 @@
 }
 
 .card:hover {
-  border-color: rgba(127, 168, 130, 0.3);
-  background: rgba(127, 168, 130, 0.04);
+  border-color: rgba(var(--accent-rgb), 0.3);
+  background: rgba(var(--accent-rgb), 0.04);
 }
 
 .cardActive {
-  border-color: rgba(127, 168, 130, 0.5);
-  background: rgba(127, 168, 130, 0.08);
-}
-
-.techName {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 400;
-  font-size: 17px;
-  color: #e8e3d8;
-}
-
-.techRatio {
-  font-family: 'Space Mono', monospace;
-  font-size: 9px;
-  color: rgba(127, 168, 130, 0.75);
-  letter-spacing: 0.08em;
+  border-color: rgba(var(--accent-rgb), 0.5);
+  background: rgba(var(--accent-rgb), 0.08);
 }
 
 .techBenefit {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  font-size: 12px;
-  color: rgba(232, 227, 216, 0.28);
+  font-size: 13px;
+  color: var(--accent);
+  opacity: 0.85;
+  font-style: normal;
+}
+
+.techRatio {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(var(--accent-rgb), 0.5);
+  letter-spacing: 0.08em;
+}
+
+.techniquesRunning .card {
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.techniquesRunning .cardActive {
+  pointer-events: none;
+}
+
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  opacity: 0.55;
+  transition: width 1s linear;
 }

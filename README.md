@@ -12,7 +12,7 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ### Yoga Breathing
 
-**February 27, 2026**
+**March 6, 2026**
 
 ![Yoga Breathing](./public/screenshots/yoga-breathing.png)
 

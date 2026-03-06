@@ -13,9 +13,9 @@ Ship a design experiment with automated screenshot, updates, and commit workflow
 
 1. **Screenshot**: Take 1280x720 screenshot of experiment with agent-browser
 2. **Save screenshot**: To `public/screenshots/experiment-name.png`
-3. **Update gallery**: Move experiment to top of `app/design-experiments/page.tsx`
-4. **Update homepage**: Move experiment to top of `recentExperiments` in `app/page.tsx` (keep 3, drop oldest)
-5. **Update README**: Move experiment to top of README.md experiments list
+3. **Review description**: Display the current description from `lib/experiments/data.ts` and ask the user to confirm or update it before proceeding
+4. **Update gallery**: Move experiment to top of `lib/experiments/data.ts`, update date to today
+5. **Update README**: Move experiment to top of README.md experiments list, sync description if changed
 6. **Commit**: All changes with descriptive message
 7. **Push**: To GitHub (triggers Vercel deploy)
 
@@ -31,22 +31,24 @@ agent-browser open "http://localhost:3000/experiment-name" --viewport 1280x720
 agent-browser screenshot ./public/screenshots/experiment-name.png
 # Close browser and stop server
 
-# 2. Update app/design-experiments/page.tsx
+# 2. Review description
+#    Read current description from lib/experiments/data.ts
+#    Show it to the user: "Current description: '...'"
+#    Ask: "Does this still accurately describe the experiment, or would you like to update it?"
+#    If updated, apply the new description to both lib/experiments/data.ts and README.md
+
+# 3. Update lib/experiments/data.ts
 #    Move this experiment's entry to top of experiments array
 #    Update date to today's date
 
-# 3. Update app/page.tsx
-#    Move experiment to top of recentExperiments array
-#    Keep only 3 entries (drop the oldest)
-
 # 4. Update README.md
 #    Move experiment section to top of list
-#    Update date if needed
+#    Update date to today's date
 #    Ensure links point to /experiment-name
 
 # 5. Commit and push
 git add -A
-git commit -m "Update Experiment Name"
+git commit -m "Ship Experiment Name"
 git push
 ```
 

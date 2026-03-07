@@ -21,12 +21,13 @@ const themes = {
   },
 };
 
-export default function SkullEasterEgg({
+export default function ShellEasterEgg({
   variant = "dark",
 }: {
   variant?: "light" | "dark";
 }) {
   const [visible, setVisible] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const theme = themes[variant];
 
   const handleClick = useCallback(() => {
@@ -40,7 +41,15 @@ export default function SkullEasterEgg({
       <Shell
         size={20}
         onClick={handleClick}
-        style={{ cursor: "pointer", color: "rgba(255,255,255,0.65)", outline: "none" }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          cursor: "pointer",
+          color: "rgba(255,255,255,0.65)",
+          outline: "none",
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.2s ease",
+        }}
         role="button"
         tabIndex={0}
         aria-label="Easter egg"

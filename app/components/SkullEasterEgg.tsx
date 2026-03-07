@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { Shell } from "lucide-react";
 import { Permanent_Marker } from "next/font/google";
 
 const marker = Permanent_Marker({
@@ -21,10 +22,8 @@ const themes = {
 };
 
 export default function SkullEasterEgg({
-  className,
   variant = "dark",
 }: {
-  className?: string;
   variant?: "light" | "dark";
 }) {
   const [visible, setVisible] = useState(false);
@@ -38,10 +37,10 @@ export default function SkullEasterEgg({
 
   return (
     <span style={{ position: "relative", display: "inline-flex" }}>
-      <span
-        className={className}
+      <Shell
+        size={20}
         onClick={handleClick}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", color: "rgba(255,255,255,0.65)" }}
         role="button"
         tabIndex={0}
         aria-label="Easter egg"
@@ -78,7 +77,7 @@ export default function SkullEasterEgg({
             letterSpacing: "0.04em",
           }}
         >
-          Amor Fati!
+          Todo pasa
           {/* Bubble tail */}
           <span
             style={{

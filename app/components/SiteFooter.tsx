@@ -27,7 +27,7 @@ export default function SiteFooter({ className }: { className?: string }) {
         </nav>
         <div className={styles.icons}>
           <a
-            href="https://github.com/optimusjames/masons-world"
+            href="https://github.com/optimusjames"
             className={styles.iconLink}
             target="_blank"
             rel="noopener noreferrer"

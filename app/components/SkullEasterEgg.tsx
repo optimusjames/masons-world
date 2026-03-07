@@ -40,7 +40,7 @@ export default function SkullEasterEgg({
       <Shell
         size={20}
         onClick={handleClick}
-        style={{ cursor: "pointer", color: "rgba(255,255,255,0.65)" }}
+        style={{ cursor: "pointer", color: "rgba(255,255,255,0.65)", outline: "none" }}
         role="button"
         tabIndex={0}
         aria-label="Easter egg"

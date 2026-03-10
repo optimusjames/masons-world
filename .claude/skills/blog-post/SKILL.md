@@ -29,29 +29,19 @@ Before writing, gather context:
 Write in the style of the existing posts in `blog/`. The writing philosophy:
 
 - **Short paragraphs.** 2-4 sentences max. White space is structure.
-- **Concrete over abstract.** "200 pixels to 100 pixels" not "iterative refinement." Specific details from real work, not theory.
+- **Concrete over abstract.** Specific details from real experience, not theory.
 - **One thesis.** Every post makes one point. Say it early, support it with examples, end when the point is made.
-- **Conversational but declarative.** Write like you talk, but land on strong statements. No hedging, no "in conclusion."
-- **No preamble.** Start with the meat. Open with a concrete observation, not a setup.
-- **End sharp.** The last line should hit. One sentence. Sometimes one word.
-- **200-400 words is the sweet spot.** If it's longer, you're probably making two points. Split it.
+- **Edgy and light on the outside, thoughtful and Zen on the inside.** Humor and irony help people connect. Don't be too serious. The depth earns its place because the delivery is fun.
+- **Start in first person.** Ground the opening in a real personal moment ("I can stand at the window..."), then broaden to "you" as the post opens up to the reader.
+- **Conversational but not rambling.** Write like you talk, but land on strong statements. No hedging, no "in conclusion."
+- **End sharp.** The last line should hit. Sometimes it echoes the title.
+- **200-500 words.** 200-400 is the sweet spot, but let the idea breathe if it needs to. If it's pushing longer, check you're not making two points.
 - **Essays, not documentation.** No headers unless the post genuinely needs sections. Most don't.
+- **Don't force the AI parallel.** It'll appear naturally when it fits. Not every post needs it.
 
-**Example of a well-written personal post:**
+**Voice:** The posts read like someone who thinks deeply but doesn't take themselves too seriously. Warm, a little irreverent, always grounded in something real. The tone is the subtle leader — confident without performing confidence, making the point without lecturing.
 
-> I don't code much anymore, if at all, but I sure do talk a lot. You hear this from more and more engineers, and it's true. The shift has gone from trying to get AI to do what I want, to talking with AI to figure out what the hell it is I'm doing. It's much more conversational.
->
-> I remember when I first started, I was like, make a button, make it bigger, move it over here, no, there, no, you're doing it wrong. I thought AI was stupid, and I just didn't get AI.
->
-> Everything changed when I replaced my keyboard with a microphone. The light went on. I'm looking at code, talking about the code, making decisions, correcting the AI when it makes plans. As far as code is concerned, I'm just a spectator.
->
-> It's not about the code. It's about the conversation.
->
-> Back in the day — which was like a year and a half ago — I used to pride myself on knowing the ins and outs. Prop drilling. Custom hooks. The difference between SSR and CSR. How to make shadcn components look bespoke instead of off-the-shelf. All that became a liability. I was too busy telling AI what to do instead of working with AI on what I wanted.
->
-> There's this Seinfeld episode where Kramer's phone number is too close to Moviefone, so he just starts being the movie phone guy. He's reading the newspaper trying to help callers, doing the whole "Press one for Firestorm, press two..." thing. People get confused. Eventually he just says, "Why don't you just tell me what movie you want to see?"
->
-> That's where we are right now. We're all learning to just talk to AI. Learning to use our words. Everything changed, and we're still figuring it out.
+**On drafting:** Sometimes the first draft is close and needs minimal polish. Sometimes the idea is still finding its shape and takes more passes. Both are fine. Start from what's in the conversation and let it land where it lands.
 
 ### 4. Generate Front Matter
 
@@ -95,6 +85,16 @@ Confirm:
 - Appears on homepage Blog column and blog index
 - Build passed
 - Remind: replace placeholder with real image at `public/blog/{slug}.{png,jpg,webp}`
+
+## Image Selection
+
+The image is part of the post. It should feel inevitable — like the title and image were always meant for each other.
+
+- **Symbolic over literal.** A photo of someone literally doing the thing is almost always wrong. Find the image that makes the point sideways. Darth Vader force-choking someone for "You Can't Force It." Chevy Chase grinning with a half-baked plan for "This Is Gonna Be Fun."
+- **Cinematic and recognizable.** Something people feel immediately, even if they can't place it. Cultural moments, movie stills, iconic images — the recognizable creates instant connection.
+- **A little humor goes a long way.** The image can be funnier than the post. That contrast — irreverent image, genuine depth inside — is the whole vibe.
+- **Title and image click together last.** Often the right title only becomes obvious once the right image appears. Don't lock the title until you've thought about the image.
+- **Suggest image directions, don't just describe a placeholder.** Give the user 2-3 specific directions to explore — a movie scene, a cultural moment, a type of shot — and explain why each one might work.
 
 ## Key Decisions
 

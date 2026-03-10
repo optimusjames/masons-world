@@ -10,29 +10,20 @@ Source: https://github.com/optimusjames/masons-world
 
 - [CrossFit Bento](https://www.jamesmason.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data with charts and heatmaps
 - [Sticky Notes](https://www.jamesmason.com/design-experiments/sticky-notes): Interactive sticky note stack with swipe animation and handwriting font
+- [Yoga Breathing](https://www.jamesmason.com/design-experiments/yoga-breathing): Animated breathing timer with five techniques, three color themes, and duration options
 
 ## Blog
 
-- [Design as Dialogue](https://www.jamesmason.com/blog/design-as-dialogue): You can't spec your way to good design
-- [Memoirs of an Agent](https://www.jamesmason.com/blog/memoirs-of-an-agent): Claude Code writes a blog post about working with James
-- [Just Say What You Want](https://www.jamesmason.com/blog/just-say-what-you-want): The shift from writing code to talking about it
-- [It's Happening](https://www.jamesmason.com/blog/its-happening): Dispatches from the moment everything shifted
-- [Your Basic Blog](https://www.jamesmason.com/blog/your-basic-blog): How this blog works and why it's just markdown files in a repo
-- [You're Doing It Wrong](https://www.jamesmason.com/blog/youre-doing-it-wrong): Why AI-powered design tools are just the old paradigm with new paint
-- [Never Google Yourself](https://www.jamesmason.com/blog/never-google-yourself): Practical SEO for people like me
+- [This Is Gonna Be Fun](https://www.jamesmason.com/blog/this-is-gonna-be-fun): On starting before you know what you're doing
+- [You Can't Force It](https://www.jamesmason.com/blog/you-cant-force-it): On leading by listening, and why it works the same way with AI
 
 ## Docs
 
-- [Overview](https://www.jamesmason.com/docs/overview): Project overview and purpose
-- [Progress](https://www.jamesmason.com/docs/progress): Development progress and milestones
-- [Component Architecture](https://www.jamesmason.com/docs/features/component-architecture): Component extraction and architecture patterns
-- [Skills](https://www.jamesmason.com/docs/features/skills): Claude Code skill system documentation
-- [Sticky Notes](https://www.jamesmason.com/docs/features/sticky-notes): Sticky notes component documentation
-- [TypeScript Migration](https://www.jamesmason.com/docs/features/typescript-migration): TypeScript migration guide
-- [AI Dev Stack](https://www.jamesmason.com/docs/stack/ai-dev-stack): AI development stack overview
-- [BYOK Pattern](https://www.jamesmason.com/docs/stack/byok-pattern): Bring Your Own Keys pattern
-- [Stack Overview](https://www.jamesmason.com/docs/stack/stack-overview): Full technology stack reference
-- [Design Test Page Prompt](https://www.jamesmason.com/docs/prompts/design-test-page): Prompt template for design experiments
+- [Development Progress](https://www.jamesmason.com/docs/progress): Major changes and milestones as the project evolves
+- [The Sandbox](https://www.jamesmason.com/docs/guide/sandbox): How the design sandbox works
+- [Blog](https://www.jamesmason.com/docs/guide/blog): How the blog is structured
+- [Design Experiments](https://www.jamesmason.com/docs/guide/experiments): How design experiments are built and shipped
+- [Skills](https://www.jamesmason.com/docs/guide/skills): Claude Code skill system used in this project
 
 ## Recommended
 

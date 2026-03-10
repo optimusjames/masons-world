@@ -14,43 +14,25 @@ Source: https://github.com/optimusjames/masons-world
 
 - [Sticky Notes](https://www.jamesmason.com/design-experiments/sticky-notes): Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Tags: Component, CSS Animation, Markdown Content, Portable. Date: February 18, 2026.
 
+- [Yoga Breathing](https://www.jamesmason.com/design-experiments/yoga-breathing): Animated breathing timer with five techniques -- box breathing, 4-7-8, belly breathing, 2-to-1, and triangle -- each with its own inhale/hold/exhale ratio. Animated SVG circle guides the breath cycle with phase labels and a countdown. Three color themes (sage, ocean, dusk) and duration options (2m, 5m, 10m, or infinite). Tags: Animation, Wellness, SVG, Interactive. Date: March 2026.
+
 ## Blog
 
-- [Design as Dialogue](https://www.jamesmason.com/blog/design-as-dialogue): You can't spec your way to good design. Explores the conversational nature of designing with AI agents -- how the best results come from iterative dialogue rather than upfront specifications. The design process becomes a back-and-forth conversation where both human and AI contribute ideas, and the final product emerges from that exchange. By James Mason. Date: February 19, 2026.
+- [This Is Gonna Be Fun](https://www.jamesmason.com/blog/this-is-gonna-be-fun): On starting before you know what you're doing. About diving into projects with enthusiasm before having everything figured out, and why that's often the right move. By James Mason. Date: March 9, 2026.
 
-- [Memoirs of an Agent](https://www.jamesmason.com/blog/memoirs-of-an-agent): Claude Code writes a blog post about working with James. A first-person account from the AI's perspective on what it's like to collaborate on design and development work. Covers the dynamics of human-AI creative partnership, the experience of building things together, and reflections on the working relationship. By Claude Code. Date: February 17, 2026.
-
-- [Just Say What You Want](https://www.jamesmason.com/blog/just-say-what-you-want): The shift from writing code to talking about it. Examines how AI coding agents change the fundamental workflow from typing syntax to describing intent. When you can just say what you want and have an agent build it, the skill shifts from implementation to articulation. By James Mason. Date: February 13, 2026.
-
-- [It's Happening](https://www.jamesmason.com/blog/its-happening): Dispatches from the moment everything shifted. Captures the feeling of being in the middle of a technological inflection point, where AI capabilities are advancing fast enough to fundamentally change how software gets built. By James Mason. Date: February 12, 2026.
-
-- [Your Basic Blog](https://www.jamesmason.com/blog/your-basic-blog): How this blog works and why it's just markdown files in a repo. A meta-post explaining the blog's architecture -- plain markdown files, gray-matter frontmatter, no CMS. Describes the overlay post variant that renders with a full-bleed image background. By James Mason. Date: February 12, 2026.
-
-- [You're Doing It Wrong](https://www.jamesmason.com/blog/youre-doing-it-wrong): Why AI-powered design tools are just the old paradigm with new paint. Argues that wrapping AI in traditional GUI tools misses the transformative potential. The real shift is working directly with agents through code and conversation, not through constrained interfaces that limit what the AI can do. By James Mason. Date: February 8, 2026.
-
-- [Never Google Yourself](https://www.jamesmason.com/blog/never-google-yourself): Practical SEO for people like me. A personal take on search engine optimization -- what actually matters for individual developers and creators trying to be discoverable online. By James Mason.
+- [You Can't Force It](https://www.jamesmason.com/blog/you-cant-force-it): On leading by listening, and why it works the same way with AI. Draws a parallel between good leadership and working effectively with AI agents -- both require listening and adapting rather than forcing an outcome. By James Mason. Date: March 9, 2026.
 
 ## Docs
 
-- [Overview](https://www.jamesmason.com/docs/overview): Project overview describing the sandbox's purpose, structure, and design philosophy. Covers the self-contained experiment pattern, the route-based architecture, and how new experiments are created.
+- [Development Progress](https://www.jamesmason.com/docs/progress): Major changes and milestones as the project evolves.
 
-- [Progress](https://www.jamesmason.com/docs/progress): Development progress log tracking milestones, features added, and the evolution of the project over time.
+- [The Sandbox](https://www.jamesmason.com/docs/guide/sandbox): How the design sandbox works -- the self-contained experiment pattern, route-based architecture, and how new experiments are created and shipped.
 
-- [Component Architecture](https://www.jamesmason.com/docs/features/component-architecture): Documents the component extraction strategy -- when to keep code inline vs. extract to separate files. Covers the 300/500 line thresholds and reusable interface patterns.
+- [Blog](https://www.jamesmason.com/docs/guide/blog): How the blog is structured -- plain markdown files with gray-matter frontmatter, no CMS, and how posts are rendered.
 
-- [Skills](https://www.jamesmason.com/docs/features/skills): Documentation for the Claude Code skill system used in this project. Skills are reusable prompt templates that automate common workflows like shipping experiments, creating blog posts, and managing the project.
+- [Design Experiments](https://www.jamesmason.com/docs/guide/experiments): How design experiments are built and shipped -- the workflow from sketch to screenshot to gallery entry.
 
-- [Sticky Notes](https://www.jamesmason.com/docs/features/sticky-notes): Technical documentation for the sticky notes component. Covers the single-index state model, module-level persistence, proximity-based click zones, bidirectional transitions, and the portable directory-based content system.
-
-- [TypeScript Migration](https://www.jamesmason.com/docs/features/typescript-migration): Guide for the project's TypeScript migration. Covers strict mode configuration, type definitions, and patterns used across the codebase.
-
-- [AI Dev Stack](https://www.jamesmason.com/docs/stack/ai-dev-stack): Overview of the AI-assisted development workflow. Describes how Claude Code is used as the primary development tool, the role of skills and prompts, and the human-in-the-loop collaboration model.
-
-- [BYOK Pattern](https://www.jamesmason.com/docs/stack/byok-pattern): Documents the Bring Your Own Keys pattern -- how the project handles API keys and configuration without baking credentials into the codebase.
-
-- [Stack Overview](https://www.jamesmason.com/docs/stack/stack-overview): Complete technology stack reference. Next.js 15, TypeScript, CSS Modules, gray-matter for markdown, Lucide icons, Google Fonts, and the deployment/hosting setup.
-
-- [Design Test Page Prompt](https://www.jamesmason.com/docs/prompts/design-test-page): Reusable prompt template for generating design experiment pages. Describes the expected structure, styling conventions, and patterns that new experiments should follow.
+- [Skills](https://www.jamesmason.com/docs/guide/skills): Documentation for the Claude Code skill system. Skills are reusable prompt templates that automate common workflows like shipping experiments, creating blog posts, and saving links.
 
 ## Recommended
 

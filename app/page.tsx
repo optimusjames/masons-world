@@ -16,7 +16,7 @@ export default function Home() {
     <main className={styles.mainContainer}>
       <div className={styles.contentOverlay}>
         <div className={styles.contentWrapper}>
-          <div className={styles.greetingText}>Greetings Starfighter!</div>
+          <div className={styles.greetingText}>Greetings, Earthling!</div>
 
           <div className={styles.columns}>
             {/* Design */}

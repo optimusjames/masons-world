@@ -2,6 +2,14 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'yoga-flow',
+    date: 'March 11, 2026',
+    title: 'Yoga Flow',
+    description: 'A two-screen yoga flow planner. Pick a duration (Quick / Flow / Long) and level (Gentle / Moderate / Strong) on the setup screen, then hit Begin Flow to reveal a sequenced pose list with hold times and per-side indicators. Total time is computed live from the actual holds. Shares the dark theme and color swatch system from the Yoga Breathing experiment — Cormorant Garamond for pose names, Space Mono for times.',
+    screenshot: '/screenshots/yoga-flow.png',
+    tags: ['Wellness', 'Interactive', 'Yoga', 'Dark Theme']
+  },
+  {
     slug: 'yoga-breathing',
     date: 'March 6, 2026',
     title: 'Yoga Breathing',

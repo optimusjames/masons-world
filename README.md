@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Yoga Flow
+
+**March 11, 2026**
+
+![Yoga Flow](./public/screenshots/yoga-flow.png)
+
+A two-screen yoga flow planner. Pick a duration (Quick / Flow / Long) and level (Gentle / Moderate / Strong) on the setup screen, then hit Begin Flow to reveal a sequenced pose list with hold times and per-side indicators. Total time is computed live from the actual holds. Shares the dark theme and color swatch system from the Yoga Breathing experiment — Cormorant Garamond for pose names, Space Mono for times.
+
+**Tags:** Wellness - Interactive - Yoga - Dark Theme
+
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/(experiments)/yoga-flow)**
+
+---
+
 ### Yoga Breathing
 
 **March 6, 2026**

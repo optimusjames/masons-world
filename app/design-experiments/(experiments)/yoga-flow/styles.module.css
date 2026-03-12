@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&family=Karla:wght@300;400;500;600&display=swap');
+
+/* ─── Theming ───────────────────────────────── */
+
+.page {
+  --accent: #7fa882;
+  --accent-rgb: 127, 168, 130;
+  --bg: #0e110f;
+  min-height: 100svh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 24px 72px;
+  gap: 44px;
+  transition: background 0.4s ease;
+}
+
+.page[data-theme="ocean"] {
+  --accent: #7aafc4;
+  --accent-rgb: 122, 175, 196;
+  --bg: #08101a;
+}
+
+.page[data-theme="dusk"] {
+  --accent: #a882a8;
+  --accent-rgb: 168, 130, 168;
+  --bg: #100d10;
+}
+
+/* ─── Header ────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.28);
+  margin: 0;
+}
+
+.swatches {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--swatch-color);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+
+.swatch:hover { opacity: 0.85; }
+
+.swatchActive {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--swatch-color);
+}
+
+/* ─── Setup Panel ───────────────────────────── */
+
+.setupPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.sectionLabel {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.28);
+  margin-bottom: 10px;
+}
+
+.pillRow {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.pill {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  color: rgba(232, 227, 216, 0.32);
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  text-align: center;
+}
+
+.pill:hover {
+  border-color: rgba(var(--accent-rgb), 0.3);
+  color: rgba(var(--accent-rgb), 0.8);
+  background: rgba(var(--accent-rgb), 0.04);
+}
+
+.pillActive {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+
+.mantra {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 21px;
+  color: rgba(232, 227, 216, 0.38);
+  text-align: center;
+  margin: 0;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+.beginBtn {
+  background: none;
+  border: 1px solid rgba(232, 227, 216, 0.14);
+  color: rgba(232, 227, 216, 0.5);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 14px 44px;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+
+.beginBtn:hover {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.05);
+}
+
+/* ─── Flow Panel ────────────────────────────── */
+
+.flowPanel {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.flowHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.flowTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #e8e3d8;
+  margin: 0;
+  line-height: 1.05;
+}
+
+.flowMeta {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: rgba(var(--accent-rgb), 0.6);
+  letter-spacing: 0.06em;
+  margin: 8px 0 0;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: rgba(232, 227, 216, 0.28);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: 10px;
+  transition: color 0.2s;
+}
+
+.backBtn:hover { color: rgba(232, 227, 216, 0.65); }
+
+/* ─── Pose List ─────────────────────────────── */
+
+.poseList {
+  display: flex;
+  flex-direction: column;
+}
+
+.poseRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  gap: 16px;
+}
+
+.poseRow:last-child { border-bottom: none; }
+
+.poseLeft { flex: 1; min-width: 0; }
+
+.poseName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 19px;
+  color: #e8e3d8;
+  line-height: 1.2;
+}
+
+.poseDesc {
+  font-family: 'Karla', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(232, 227, 216, 0.35);
+  margin-top: 3px;
+  line-height: 1.3;
+}
+
+.poseRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.poseHold {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  opacity: 0.75;
+  letter-spacing: 0.05em;
+}
+
+.poseSides {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(var(--accent-rgb), 0.45);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Responsive ────────────────────────────── */
+
+@media (max-width: 480px) {
+  .page { padding: 40px 16px 56px; gap: 36px; }
+  .flowPanel { max-width: 100%; }
+  .setupPanel { max-width: 100%; }
+}

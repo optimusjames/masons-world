@@ -1,0 +1,1150 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&family=Karla:wght@300;400;500;600&display=swap');
+
+/* ─── Theming ───────────────────────────────── */
+
+.page {
+  --accent: #7fa882;
+  --accent-rgb: 127, 168, 130;
+  --bg: #0e110f;
+  min-height: 100svh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 24px 72px;
+  gap: 28px;
+  transition: background 0.4s ease;
+}
+
+.page[data-theme="ocean"] {
+  --accent: #7aafc4;
+  --accent-rgb: 122, 175, 196;
+  --bg: #08101a;
+}
+
+.page[data-theme="dusk"] {
+  --accent: #a882a8;
+  --accent-rgb: 168, 130, 168;
+  --bg: #100d10;
+}
+
+/* ─── Header ────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.28);
+  margin: 0;
+}
+
+.swatches {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--swatch-color);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+
+.swatch:hover { opacity: 0.85; }
+
+.swatchActive {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--swatch-color);
+}
+
+/* ─── Progress Dots ─────────────────────────── */
+
+.progressDots {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.progressDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease;
+}
+
+.progressDotActive {
+  background: rgba(var(--accent-rgb), 0.55);
+}
+
+/* ─── Step Panel ────────────────────────────── */
+
+.stepPanel {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Welcome ───────────────────────────────── */
+
+.welcomeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding-top: 24px;
+}
+
+.welcomeTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 48px;
+  color: #e8e3d8;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.welcomeTagline {
+  font-family: 'Karla', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(232, 227, 216, 0.4);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Step Content ──────────────────────────── */
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.stepTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 32px;
+  color: #e8e3d8;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.stepSubtitle {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.35);
+  margin: 8px 0 0;
+}
+
+/* ─── Shared Labels & Pills ─────────────────── */
+
+.sectionLabel {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.42);
+  margin-bottom: 10px;
+}
+
+.pillRow {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.pill {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  color: rgba(232, 227, 216, 0.32);
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pill:hover {
+  border-color: rgba(var(--accent-rgb), 0.3);
+  color: rgba(var(--accent-rgb), 0.8);
+  background: rgba(var(--accent-rgb), 0.04);
+}
+
+.pillActive {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+
+/* ─── Back Button ───────────────────────────── */
+
+.backBtn {
+  background: none;
+  border: none;
+  color: rgba(232, 227, 216, 0.25);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  align-self: flex-start;
+  transition: color 0.2s;
+}
+
+.backBtn:hover { color: rgba(232, 227, 216, 0.6); }
+
+/* ─── Begin / Continue Button ───────────────── */
+
+.beginBtn {
+  background: none;
+  border: 1px solid rgba(232, 227, 216, 0.14);
+  color: rgba(232, 227, 216, 0.5);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 14px 44px;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: border-color 0.25s, color 0.25s, background 0.25s, opacity 0.25s;
+  align-self: center;
+}
+
+.beginBtn:hover:not(:disabled) {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.05);
+}
+
+.beginBtn:disabled {
+  opacity: 0.22;
+  cursor: not-allowed;
+}
+
+/* ─── Intentions Grid ───────────────────────── */
+
+.intentionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.intentionPill {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  color: rgba(232, 227, 216, 0.38);
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 13px 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, opacity 0.2s;
+  text-align: left;
+}
+
+.intentionPill:hover {
+  border-color: rgba(var(--accent-rgb), 0.3);
+  color: rgba(var(--accent-rgb), 0.8);
+  background: rgba(var(--accent-rgb), 0.04);
+}
+
+.intentionPillActive {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+
+.intentionPillDimmed {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.intentionPillDimmed:hover {
+  border-color: rgba(255, 255, 255, 0.07);
+  color: rgba(232, 227, 216, 0.38);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* ─── Context Sections ──────────────────────── */
+
+.contextSection {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Dosha Cards ───────────────────────────── */
+
+.doshaCards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.doshaCard {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  overflow: hidden;
+}
+
+.doshaCard:hover {
+  border-color: rgba(var(--accent-rgb), 0.25);
+  background: rgba(var(--accent-rgb), 0.03);
+}
+
+.doshaCardExpanded {
+  border-color: rgba(var(--accent-rgb), 0.45);
+  background: rgba(var(--accent-rgb), 0.06);
+}
+
+.doshaCardHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.doshaName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #e8e3d8;
+  line-height: 1.1;
+}
+
+.doshaTagline {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(var(--accent-rgb), 0.55);
+  margin-top: 4px;
+}
+
+.doshaTeaserText {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.38);
+  line-height: 1.55;
+  margin-top: 10px;
+}
+
+.doshaExpanded {
+  overflow: hidden;
+}
+
+.doshaDesc {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(232, 227, 216, 0.5);
+  line-height: 1.65;
+  margin: 14px 0 16px;
+}
+
+.doshaChooseBtn {
+  background: none;
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
+  color: var(--accent);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.doshaChooseBtn:hover {
+  background: rgba(var(--accent-rgb), 0.1);
+  border-color: rgba(var(--accent-rgb), 0.6);
+}
+
+/* ─── Results ───────────────────────────────── */
+
+.resultsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+/* ─── Bento Grid ────────────────────────────── */
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.bentoCard {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bentoValue {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 26px;
+  color: #e8e3d8;
+  line-height: 1.1;
+}
+
+.bentoUnit {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: rgba(var(--accent-rgb), 0.5);
+}
+
+.bentoLabel {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(var(--accent-rgb), 0.55);
+}
+
+.atAGlance {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.atAGlanceHeading {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.28);
+  margin: 0;
+}
+
+.intentionsBar {
+  grid-column: 1 / -1;
+  gap: 10px;
+}
+
+.intentionTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.intentionTag {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  border-radius: 100px;
+  padding: 4px 10px;
+}
+
+/* ─── Results Summary ───────────────────────── */
+
+.resultsSummary {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 21px;
+  color: rgba(232, 227, 216, 0.65);
+  line-height: 1.6;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Pose List ─────────────────────────────── */
+
+.poseList {
+  display: flex;
+  flex-direction: column;
+}
+
+.poseRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  gap: 16px;
+}
+
+.poseRow:last-child { border-bottom: none; }
+
+.poseLeft { flex: 1; min-width: 0; }
+
+.poseName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 19px;
+  color: #e8e3d8;
+  line-height: 1.2;
+}
+
+.poseBenefit {
+  font-family: 'Karla', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(232, 227, 216, 0.58);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.poseRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.poseMeta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0.75;
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+.poseMetaSub {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(var(--accent-rgb), 0.4);
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+/* ─── Breathing Cards ───────────────────────── */
+
+.breathCards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.breathCard {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.breathName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 19px;
+  color: #e8e3d8;
+}
+
+.breathRatio {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(var(--accent-rgb), 0.55);
+  letter-spacing: 0.1em;
+}
+
+.breathBenefit {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.62);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+.breathLink {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(var(--accent-rgb), 0.55);
+  text-decoration: none;
+  margin-top: 4px;
+  transition: color 0.2s;
+}
+
+.breathLink:hover { color: var(--accent); }
+
+/* ─── Guidance ──────────────────────────────── */
+
+.guidanceRow {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.guidanceText {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.62);
+  line-height: 1.65;
+}
+
+/* ─── Ayurvedic Tips ────────────────────────── */
+
+.tipRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.tipDot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(var(--accent-rgb), 0.55);
+  margin-top: 6px;
+}
+
+.tipText {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.62);
+  line-height: 1.65;
+}
+
+/* ─── CTA Buttons (begin flow / start breathing) ─ */
+
+.ctaBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.28);
+  border-radius: 3px;
+  color: var(--accent);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  margin-top: 16px;
+}
+
+.ctaBtn:hover {
+  background: rgba(var(--accent-rgb), 0.12);
+  border-color: rgba(var(--accent-rgb), 0.5);
+}
+
+.ctaBtnReady {
+  border-color: rgba(var(--accent-rgb), 0.6);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+/* ─── Save Row ──────────────────────────────── */
+
+.saveRow {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.saveBtn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(232, 227, 216, 0.38);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.saveBtn:hover {
+  border-color: rgba(var(--accent-rgb), 0.35);
+  color: rgba(var(--accent-rgb), 0.7);
+  background: rgba(var(--accent-rgb), 0.04);
+}
+
+.saveBtnConfirmed {
+  border-color: rgba(var(--accent-rgb), 0.4);
+  color: var(--accent);
+}
+
+/* ─── Start Over ────────────────────────────── */
+
+.startOverBtn {
+  background: none;
+  border: none;
+  color: rgba(232, 227, 216, 0.2);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 0;
+  align-self: center;
+  transition: color 0.2s;
+}
+
+.startOverBtn:hover { color: rgba(232, 227, 216, 0.5); }
+
+/* ─── Sub-view wrapper (breathe + flow) ─────── */
+
+.subView {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  width: 100%;
+}
+
+/* ─── Breathe View ──────────────────────────── */
+
+.breathViewHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.breathViewName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 34px;
+  color: #e8e3d8;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.breathViewRatio {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(var(--accent-rgb), 0.65);
+  margin: 0;
+}
+
+.breathViewBenefit {
+  font-family: 'Karla', sans-serif;
+  font-size: 14px;
+  color: rgba(232, 227, 216, 0.6);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 320px;
+}
+
+.breathCircleWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.breathCircle {
+  width: 188px;
+  height: 188px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--accent-rgb), 0.35);
+  background: rgba(var(--accent-rgb), 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.breathPhaseLabel {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  color: #e8e3d8;
+  letter-spacing: 0.02em;
+}
+
+.breathCountdown {
+  font-family: 'Space Mono', monospace;
+  font-size: 24px;
+  color: rgba(var(--accent-rgb), 0.65);
+  letter-spacing: 0.08em;
+}
+
+.breathCycleLabel {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.32);
+  text-align: center;
+  margin-top: -14px;
+}
+
+/* ─── Flow View ─────────────────────────────── */
+
+.flowViewHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.flowViewTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 34px;
+  color: #e8e3d8;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.flowViewMeta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(var(--accent-rgb), 0.6);
+  letter-spacing: 0.08em;
+}
+
+/* Pre-start list */
+.flowPreList {
+  display: flex;
+  flex-direction: column;
+}
+
+.flowPreRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  gap: 12px;
+}
+
+.flowPreRow:last-child { border-bottom: none; }
+
+.flowPreLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.flowPreName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #e8e3d8;
+}
+
+.flowPreSide {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--accent-rgb), 0.5);
+}
+
+.flowPreHold {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(var(--accent-rgb), 0.6);
+  flex-shrink: 0;
+}
+
+/* Active pose during flow */
+.flowActiveHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flowProgress {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(var(--accent-rgb), 0.5);
+}
+
+.flowActivePose {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.flowActiveSide {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(var(--accent-rgb), 0.65);
+}
+
+.flowActiveName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 44px;
+  color: #e8e3d8;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.flowActiveBenefit {
+  font-family: 'Karla', sans-serif;
+  font-size: 14px;
+  color: rgba(232, 227, 216, 0.58);
+  line-height: 1.55;
+  max-width: 300px;
+}
+
+.flowTimer {
+  font-family: 'Space Mono', monospace;
+  font-size: 52px;
+  color: rgba(var(--accent-rgb), 0.55);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.flowTimerDone {
+  color: rgba(var(--accent-rgb), 0.85);
+}
+
+.flowTimerUnit {
+  font-size: 22px;
+  opacity: 0.6;
+}
+
+.flowControls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Flow done */
+.flowDone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 40px 0 20px;
+}
+
+.flowDoneTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 38px;
+  color: #e8e3d8;
+  margin: 0;
+}
+
+.flowDoneSubtitle {
+  font-family: 'Karla', sans-serif;
+  font-size: 14px;
+  color: rgba(232, 227, 216, 0.55);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.flowDoneActions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+/* ─── Learn More Button ─────────────────────── */
+
+.learnMoreBtn {
+  background: none;
+  border: none;
+  color: rgba(var(--accent-rgb), 0.5);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 6px;
+  align-self: flex-start;
+  transition: color 0.2s;
+}
+
+.learnMoreBtn:hover { color: var(--accent); }
+
+/* ─── Breath Duration Selector ──────────────── */
+
+.breathDurationRow {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* ─── Flow Active Instruction ───────────────── */
+
+.flowActiveInstruction {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.42);
+  line-height: 1.65;
+  max-width: 300px;
+  text-align: center;
+}
+
+/* ─── Auto Advance Note ─────────────────────── */
+
+.autoAdvanceNote {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(var(--accent-rgb), 0.5);
+  text-align: center;
+}
+
+/* ─── Deep Dive Views (Rhythm + Ayurveda) ───── */
+
+.deepDiveHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.deepDiveTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 36px;
+  color: #e8e3d8;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.deepDiveSummary {
+  font-family: 'Karla', sans-serif;
+  font-size: 14px;
+  color: rgba(232, 227, 216, 0.55);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.deepDiveSubtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(232, 227, 216, 0.5);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.deepDiveSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.deepDiveText {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.62);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.ayurvedaAffirmation {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
+  color: rgba(232, 227, 216, 0.45);
+  line-height: 1.55;
+  margin: 0;
+  text-align: center;
+  padding: 20px 0 8px;
+}
+
+/* ─── Responsive ────────────────────────────── */
+
+@media (max-width: 480px) {
+  .page { padding: 40px 16px 56px; gap: 24px; }
+  .stepPanel { max-width: 100%; }
+  .welcomeTitle { font-size: 38px; }
+  .flowActiveName { font-size: 36px; }
+  .flowTimer { font-size: 44px; }
+}
+
+/* ─── Print / Save as PDF ───────────────────── */
+
+@media print {
+  .header,
+  .progressDots,
+  .backBtn,
+  .ctaBtn,
+  .saveRow,
+  .startOverBtn,
+  .breathLink,
+  .doshaCards,
+  .stepContent { display: none !important; }
+
+  .page {
+    background: #fff !important;
+    color: #1a1a1a !important;
+    padding: 24px !important;
+    gap: 20px !important;
+    min-height: unset !important;
+  }
+
+  .resultsSummary { color: #333 !important; font-size: 18px !important; }
+  .sectionLabel { color: #666 !important; }
+  .poseName, .breathName, .flowViewTitle { color: #1a1a1a !important; }
+  .poseBenefit, .breathBenefit, .guidanceText, .tipText,
+  .poseMetaSub, .breathRatio { color: #555 !important; }
+  .poseMeta { color: #3a6b45 !important; }
+  .poseRow { border-bottom-color: #ddd !important; }
+  .breathCard { border-color: #ccc !important; background: #f8f8f8 !important; }
+  .tipDot { background: #3a6b45 !important; }
+}

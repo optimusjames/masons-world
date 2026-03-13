@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Yoga Guide
+
+**March 13, 2026**
+
+![Yoga Guide](./public/screenshots/yoga-guide.png)
+
+A five-step questionnaire that produces a personalized yoga prescription — poses, breathing techniques, frequency guidance, and Ayurvedic tips — from a static scoring engine. Questions cover intentions (anxiety, poor sleep, back pain, etc.), activity level, preferred practice time, and Ayurvedic constitution (Vata, Pitta, Kapha). Results include an in-app breathing practice and guided flow sequence with auto-advancing pose timer. Deep-dive screens for movement rhythm and Ayurvedic lifestyle guidance. Sage/ocean/dusk themes, Cormorant Garamond display, Space Mono labels.
+
+**Tags:** Wellness - Interactive - Yoga - Dark Theme
+
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/(experiments)/yoga-guide)**
+
+---
+
 ### Yoga Flow
 
 **March 11, 2026**

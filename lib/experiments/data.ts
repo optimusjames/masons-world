@@ -2,6 +2,14 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'yoga-guide',
+    date: 'March 13, 2026',
+    title: 'Yoga Guide',
+    description: 'A five-step questionnaire that produces a personalized yoga prescription — poses, breathing techniques, frequency guidance, and Ayurvedic tips — from a static scoring engine.',
+    screenshot: '/screenshots/yoga-guide.png',
+    tags: ['Wellness', 'Interactive', 'Yoga', 'Dark Theme'],
+  },
+  {
     slug: 'yoga-flow',
     date: 'March 11, 2026',
     title: 'Yoga Flow',

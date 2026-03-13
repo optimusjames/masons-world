@@ -8,6 +8,7 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Design Experiments
 
+- [Yoga Guide](https://www.jamesmason.com/design-experiments/yoga-guide): Five-step questionnaire that produces a personalized yoga prescription with poses, breathing, and Ayurvedic guidance
 - [CrossFit Bento](https://www.jamesmason.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data with charts and heatmaps
 - [Sticky Notes](https://www.jamesmason.com/design-experiments/sticky-notes): Interactive sticky note stack with swipe animation and handwriting font
 - [Yoga Breathing](https://www.jamesmason.com/design-experiments/yoga-breathing): Animated breathing timer with five techniques, three color themes, and duration options

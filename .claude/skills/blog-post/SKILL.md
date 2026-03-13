@@ -35,7 +35,7 @@ Write in the style of the existing posts in `blog/`. The writing philosophy:
 - **Start in first person.** Ground the opening in a real personal moment ("I can stand at the window..."), then broaden to "you" as the post opens up to the reader.
 - **Conversational but not rambling.** Write like you talk, but land on strong statements. No hedging, no "in conclusion."
 - **End sharp.** The last line should hit. Sometimes it echoes the title.
-- **300-700 words.** 400-600 is the sweet spot. Let the idea breathe and develop fully. If it's pushing past 700, check you're not making two points.
+- **300-600 words.** 400-500 is the sweet spot. Let the idea breathe and develop fully. If it's pushing past 600, check you're not making two points.
 - **Essays, not documentation.** No headers unless the post genuinely needs sections. Most don't.
 - **Don't force the AI parallel.** It'll appear naturally when it fits. Not every post needs it.
 - **Minimize em dashes.** They read as AI filler. Use periods, colons, or parentheses instead. A dash here and there is fine. Defaulting to them is not.
@@ -47,6 +47,8 @@ Specific qualities to bring:
 - Personal and direct. Name the uncomfortable thing. Be honest about your own loops and failures.
 - Slightly contrarian. A little self-deprecating. Wry humor earns more trust than earnestness.
 - Light on the outside, genuine on the inside. The depth earns its place because the delivery is fun.
+
+**Watch for the instructional trap.** When a post starts to feel like advice, pull back. The voice earns its depth through lightness, not earnestness. If a paragraph is explaining the lesson rather than showing it, cut or reframe. Preachy is the main failure mode.
 
 **On drafting:** Sometimes the first draft is close and needs minimal polish. Sometimes the idea is still finding its shape and takes more passes. Both are fine. Start from what's in the conversation and let it land where it lands.
 

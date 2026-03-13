@@ -35,6 +35,7 @@ export default function Home() {
                       alt={exp.title}
                       width={60}
                       height={45}
+                      sizes="60px"
                       className={styles.itemThumb}
                     />
                     <div className={styles.itemText}>
@@ -63,6 +64,7 @@ export default function Home() {
                         alt={post.title}
                         width={60}
                         height={45}
+                        sizes="60px"
                         className={styles.itemThumb}
                       />
                     )}

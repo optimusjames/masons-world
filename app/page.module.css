@@ -172,9 +172,10 @@
 }
 
 .greetingText {
-  font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-family: var(--font-display), 'Michroma', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: #7FE8A0;
   text-align: center;
   text-shadow: 0 0 20px rgba(127, 232, 160, 0.5);
@@ -301,7 +302,7 @@
   }
 
   .greetingText {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 
   .columns {

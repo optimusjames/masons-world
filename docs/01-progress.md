@@ -20,7 +20,7 @@ This file tracks major changes and milestones in the project.
 
 ## February 2026
 
-**Forked and restarted** — Rebranded to James Mason. Cleared out inherited experiments, blog posts, and images to start fresh. Swapped Space Grotesk in for Bitter across the site UI.
+**Forked and restarted** — Rebranded the site. Cleared out inherited experiments, blog posts, and images to start fresh. Swapped Space Grotesk in for Bitter across the site UI.
 
 **Yoga Breathing** — New design experiment. Animated breathing timer with five techniques, color themes, and duration options.
 

@@ -4,13 +4,14 @@ import { getAllPosts } from '@/lib/blog/loadBlog'
 import { getNavCategories } from '@/lib/docs/loadDocs'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.jamesmason.com'
+  const baseUrl = 'https://masons-world.vercel.app'
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
     { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/design-experiments`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/recommended`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${baseUrl}/docs`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
   ]
 
   const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({

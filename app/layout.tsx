@@ -31,7 +31,7 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.jamesmason.com'),
+  metadataBase: new URL('https://masons-world.vercel.app'),
   title: {
     default: 'James Mason — Design Experiments & Writing',
     template: '%s | James Mason',
@@ -55,7 +55,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'James Mason',
-    url: 'https://www.jamesmason.com',
+    url: 'https://masons-world.vercel.app',
     sameAs: [
       'https://github.com/optimusjames',
     ],
@@ -64,7 +64,7 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'James Mason',
-    url: 'https://www.jamesmason.com',
+    url: 'https://masons-world.vercel.app',
   },
 ]
 

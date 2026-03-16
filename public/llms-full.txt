@@ -4,44 +4,48 @@
 
 This is a personal design lab where James Mason explores visual design, typography, layout systems, and agentic AI workflows. The site is built with Next.js 16, TypeScript, and CSS Modules. Each design experiment is a self-contained route under `/design-experiments/`. The blog covers the experience of designing and building software collaboratively with AI coding agents like Claude Code.
 
-The project demonstrates a particular approach to AI-assisted development: working with agents through code rather than through GUI-based "AI design tools." Experiments range from interactive UI components to multi-agent design challenges where autonomous AI agents create competing designs.
+The project demonstrates a particular approach to AI-assisted development: working with agents through code rather than through GUI-based "AI design tools." Experiments range from interactive UI components to wellness tools and data dashboards.
 
 Source: https://github.com/optimusjames/masons-world
 
 ## Design Experiments
 
-- [Yoga Guide](https://www.jamesmason.com/design-experiments/yoga-guide): A five-step questionnaire that produces a personalized yoga prescription from a fully static scoring engine. Questions cover intentions (anxiety, poor sleep, back pain, etc.), activity level, preferred practice time, and Ayurvedic constitution (Vata, Pitta, Kapha). Results include a ranked four-pose sequence, two pranayama techniques, frequency and timing guidance, and Ayurvedic lifestyle tips — all computed without AI. Bento stat grid with count-up animation, dark yoga aesthetic with sage/ocean/dusk themes. Tags: Wellness, Interactive, Yoga, Dark Theme. Date: March 13, 2026.
+- [Yoga Guide](https://masons-world.vercel.app/design-experiments/yoga-guide): A five-step questionnaire that produces a personalized yoga prescription from a fully static scoring engine. Questions cover intentions (anxiety, poor sleep, back pain, etc.), activity level, preferred practice time, and Ayurvedic constitution (Vata, Pitta, Kapha). Results include a ranked four-pose sequence, two pranayama techniques, frequency and timing guidance, and Ayurvedic lifestyle tips — all computed without AI. Bento stat grid with count-up animation, dark yoga aesthetic with sage/ocean/dusk themes. Tags: Wellness, Interactive, Yoga, Dark Theme. Date: March 13, 2026.
 
-- [CrossFit Bento](https://www.jamesmason.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black. Tags: Bento Grid, Dashboard, Geist Pixel, Dark Theme. Date: February 20, 2026.
+- [Yoga Flow](https://masons-world.vercel.app/design-experiments/yoga-flow): A two-screen yoga flow planner. Pick a duration (Quick / Flow / Long) and level (Gentle / Moderate / Strong) on the setup screen, then hit Begin Flow to reveal a sequenced pose list with hold times and per-side indicators. Total time is computed live from the actual holds. Shares the dark theme and color swatch system from the Yoga Breathing experiment — Cormorant Garamond for pose names, Space Mono for times. Tags: Wellness, Interactive, Yoga, Dark Theme. Date: March 11, 2026.
 
-- [Sticky Notes](https://www.jamesmason.com/design-experiments/sticky-notes): Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Tags: Component, CSS Animation, Markdown Content, Portable. Date: February 18, 2026.
+- [Yoga Breathing](https://masons-world.vercel.app/design-experiments/yoga-breathing): Animated breathing timer with five techniques -- box breathing, 4-7-8, belly breathing, 2-to-1, and triangle -- each with its own inhale/hold/exhale ratio. Animated SVG circle guides the breath cycle with phase labels and a countdown. Three color themes (sage, ocean, dusk) and duration options (2m, 5m, 10m, or infinite). Tags: Animation, Wellness, SVG, Interactive. Date: March 6, 2026.
 
-- [Yoga Breathing](https://www.jamesmason.com/design-experiments/yoga-breathing): Animated breathing timer with five techniques -- box breathing, 4-7-8, belly breathing, 2-to-1, and triangle -- each with its own inhale/hold/exhale ratio. Animated SVG circle guides the breath cycle with phase labels and a countdown. Three color themes (sage, ocean, dusk) and duration options (2m, 5m, 10m, or infinite). Tags: Animation, Wellness, SVG, Interactive. Date: March 2026.
+- [CrossFit Bento](https://masons-world.vercel.app/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black. Tags: Bento Grid, Dashboard, Geist Pixel, Dark Theme. Date: February 20, 2026.
+
+- [Sticky Notes](https://masons-world.vercel.app/design-experiments/sticky-notes): Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content. Tags: Component, CSS Animation, Markdown Content, Portable. Date: February 18, 2026.
 
 ## Blog
 
-- [This Is Gonna Be Fun](https://www.jamesmason.com/blog/this-is-gonna-be-fun): On starting before you know what you're doing. About diving into projects with enthusiasm before having everything figured out, and why that's often the right move. By James Mason. Date: March 9, 2026.
+- [Wrong Again](https://masons-world.vercel.app/blog/wrong-again): On being wrong, adjusting, and the loop that actually works. About the iterative process of making mistakes, learning from them, and how that cycle is the real skill. By James Mason. Date: March 12, 2026.
 
-- [You Can't Force It](https://www.jamesmason.com/blog/you-cant-force-it): On leading by listening, and why it works the same way with AI. Draws a parallel between good leadership and working effectively with AI agents -- both require listening and adapting rather than forcing an outcome. By James Mason. Date: March 9, 2026.
+- [This Is Gonna Be Fun](https://masons-world.vercel.app/blog/this-is-gonna-be-fun): On starting before you know what you're doing. About diving into projects with enthusiasm before having everything figured out, and why that's often the right move. By James Mason. Date: March 9, 2026.
+
+- [You Can't Force It](https://masons-world.vercel.app/blog/you-cant-force-it): On leading by listening, and why it works the same way with AI. Draws a parallel between good leadership and working effectively with AI agents -- both require listening and adapting rather than forcing an outcome. By James Mason. Date: March 9, 2026.
 
 ## Docs
 
-- [Development Progress](https://www.jamesmason.com/docs/progress): Major changes and milestones as the project evolves.
+- [Development Progress](https://masons-world.vercel.app/docs/progress): Major changes and milestones as the project evolves.
 
-- [The Sandbox](https://www.jamesmason.com/docs/guide/sandbox): How the design sandbox works -- the self-contained experiment pattern, route-based architecture, and how new experiments are created and shipped.
+- [The Sandbox](https://masons-world.vercel.app/docs/guide/sandbox): How the design sandbox works -- the self-contained experiment pattern, route-based architecture, and how new experiments are created and shipped.
 
-- [Blog](https://www.jamesmason.com/docs/guide/blog): How the blog is structured -- plain markdown files with gray-matter frontmatter, no CMS, and how posts are rendered.
+- [Blog](https://masons-world.vercel.app/docs/guide/blog): How the blog is structured -- plain markdown files with gray-matter frontmatter, no CMS, and how posts are rendered.
 
-- [Design Experiments](https://www.jamesmason.com/docs/guide/experiments): How design experiments are built and shipped -- the workflow from sketch to screenshot to gallery entry.
+- [Design Experiments](https://masons-world.vercel.app/docs/guide/experiments): How design experiments are built and shipped -- the workflow from sketch to screenshot to gallery entry.
 
-- [Skills](https://www.jamesmason.com/docs/guide/skills): Documentation for the Claude Code skill system. Skills are reusable prompt templates that automate common workflows like shipping experiments, creating blog posts, and saving links.
+- [Skills](https://masons-world.vercel.app/docs/guide/skills): Documentation for the Claude Code skill system. Skills are reusable prompt templates that automate common workflows like shipping experiments, creating blog posts, and saving links.
 
 ## Recommended
 
-- [Recommended Links](https://www.jamesmason.com/recommended): A curated collection of links James finds valuable -- YouTube videos, GitHub repos, and web tools related to AI, design, and development. Each link includes a personal comment and an auto-fetched thumbnail (via oEmbed for YouTube, OG images for GitHub, and manual screenshots for web links). New links are added via the `/link` Claude Code skill.
+- [Recommended Links](https://masons-world.vercel.app/recommended): A curated collection of links James finds valuable -- YouTube videos, GitHub repos, and web tools related to AI, design, and development. Each link includes a personal comment and an auto-fetched thumbnail (via oEmbed for YouTube, OG images for GitHub, and manual screenshots for web links). New links are added via the `/link` Claude Code skill.
 
 ## Optional
 
 - [Screenshots](https://github.com/optimusjames/masons-world/tree/main/public/screenshots): Preview images for all design experiments, used in the gallery and for social sharing
 - [Source Code](https://github.com/optimusjames/masons-world): Full repository on GitHub with all experiments, blog posts, docs, and configuration
-- [Sticky Notes Content](https://www.jamesmason.com/blog): Short-form notes displayed as sticky notes on the blog page, written in markdown with ISO timestamps for ordering
+- [Sticky Notes Content](https://masons-world.vercel.app/blog): Short-form notes displayed as sticky notes on the blog page, written in markdown with ISO timestamps for ordering

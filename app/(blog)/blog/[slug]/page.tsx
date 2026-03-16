@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     author: {
       '@type': 'Person',
       name: post.meta.author || 'James Mason',
-      url: 'https://www.jamesmason.com',
+      url: 'https://masons-world.vercel.app',
     },
   }
 

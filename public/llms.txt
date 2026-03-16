@@ -8,27 +8,29 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Design Experiments
 
-- [Yoga Guide](https://www.jamesmason.com/design-experiments/yoga-guide): Five-step questionnaire that produces a personalized yoga prescription with poses, breathing, and Ayurvedic guidance
-- [CrossFit Bento](https://www.jamesmason.com/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data with charts and heatmaps
-- [Sticky Notes](https://www.jamesmason.com/design-experiments/sticky-notes): Interactive sticky note stack with swipe animation and handwriting font
-- [Yoga Breathing](https://www.jamesmason.com/design-experiments/yoga-breathing): Animated breathing timer with five techniques, three color themes, and duration options
+- [Yoga Guide](https://masons-world.vercel.app/design-experiments/yoga-guide): Five-step questionnaire that produces a personalized yoga prescription with poses, breathing, and Ayurvedic guidance
+- [Yoga Flow](https://masons-world.vercel.app/design-experiments/yoga-flow): Two-screen yoga flow planner with duration/level selection and sequenced pose list
+- [Yoga Breathing](https://masons-world.vercel.app/design-experiments/yoga-breathing): Animated breathing timer with five techniques, three color themes, and duration options
+- [CrossFit Bento](https://masons-world.vercel.app/design-experiments/crossfit-bento): Dark bento grid dashboard for CrossFit training data with charts and heatmaps
+- [Sticky Notes](https://masons-world.vercel.app/design-experiments/sticky-notes): Interactive sticky note stack with swipe animation and handwriting font
 
 ## Blog
 
-- [This Is Gonna Be Fun](https://www.jamesmason.com/blog/this-is-gonna-be-fun): On starting before you know what you're doing
-- [You Can't Force It](https://www.jamesmason.com/blog/you-cant-force-it): On leading by listening, and why it works the same way with AI
+- [Wrong Again](https://masons-world.vercel.app/blog/wrong-again): On being wrong, adjusting, and the loop that actually works
+- [This Is Gonna Be Fun](https://masons-world.vercel.app/blog/this-is-gonna-be-fun): On starting before you know what you're doing
+- [You Can't Force It](https://masons-world.vercel.app/blog/you-cant-force-it): On leading by listening, and why it works the same way with AI
 
 ## Docs
 
-- [Development Progress](https://www.jamesmason.com/docs/progress): Major changes and milestones as the project evolves
-- [The Sandbox](https://www.jamesmason.com/docs/guide/sandbox): How the design sandbox works
-- [Blog](https://www.jamesmason.com/docs/guide/blog): How the blog is structured
-- [Design Experiments](https://www.jamesmason.com/docs/guide/experiments): How design experiments are built and shipped
-- [Skills](https://www.jamesmason.com/docs/guide/skills): Claude Code skill system used in this project
+- [Development Progress](https://masons-world.vercel.app/docs/progress): Major changes and milestones as the project evolves
+- [The Sandbox](https://masons-world.vercel.app/docs/guide/sandbox): How the design sandbox works
+- [Blog](https://masons-world.vercel.app/docs/guide/blog): How the blog is structured
+- [Design Experiments](https://masons-world.vercel.app/docs/guide/experiments): How design experiments are built and shipped
+- [Skills](https://masons-world.vercel.app/docs/guide/skills): Claude Code skill system used in this project
 
 ## Recommended
 
-- [Recommended Links](https://www.jamesmason.com/recommended): Curated links to YouTube videos, GitHub repos, and web tools with auto-fetched thumbnails
+- [Recommended Links](https://masons-world.vercel.app/recommended): Curated links to YouTube videos, GitHub repos, and web tools with auto-fetched thumbnails
 
 ## Optional
 

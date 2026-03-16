@@ -3,6 +3,105 @@
   min-height: 100vh;
   width: 100%;
   background-color: #000;
+  overflow: hidden;
+}
+
+.ambientGlow {
+  position: fixed;
+  inset: -20%;
+  z-index: 20;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 25% 20% at 15% 25%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 25% at 75% 15%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 22% 18% at 40% 70%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 18% 22% at 85% 65%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 20% at 55% 40%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 24% 16% at 25% 85%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 16% 24% at 65% 90%, var(--glow-color, #7FE8A0) 0%, transparent 70%);
+  opacity: 0.06;
+  animation: ambientDrift 30s ease-in-out infinite alternate;
+}
+
+.ambientGlow::before,
+.ambientGlow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ambientGlow::before {
+  background:
+    radial-gradient(ellipse 22% 18% at 30% 45%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 18% 22% at 70% 35%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 16% at 10% 60%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 16% 20% at 90% 80%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 20% at 50% 15%, var(--glow-color, #7FE8A0) 0%, transparent 70%);
+  animation: ambientDriftMid 22s ease-in-out infinite alternate-reverse;
+}
+
+.ambientGlow::after {
+  background:
+    radial-gradient(ellipse 18% 15% at 20% 10%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 15% 18% at 80% 50%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 14% at 45% 85%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
+    radial-gradient(ellipse 14% 20% at 60% 60%, var(--glow-color, #7FE8A0) 0%, transparent 70%);
+  animation: ambientDriftFast 17s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(2%, -1.5%) scale(1.03);
+  }
+  66% {
+    transform: translate(-1.5%, 2%) scale(0.98);
+  }
+  100% {
+    transform: translate(1%, -0.5%) scale(1.01);
+  }
+}
+
+@keyframes ambientDriftMid {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-2%, 1%) scale(1.04);
+  }
+  50% {
+    transform: translate(1.5%, -2%) scale(0.97);
+  }
+  75% {
+    transform: translate(-1%, 2.5%) scale(1.02);
+  }
+  100% {
+    transform: translate(2%, -1%) scale(0.99);
+  }
+}
+
+@keyframes ambientDriftFast {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  20% {
+    transform: translate(1.5%, 2%) scale(1.02);
+  }
+  40% {
+    transform: translate(-2.5%, -1%) scale(0.98);
+  }
+  60% {
+    transform: translate(2%, -2%) scale(1.03);
+  }
+  80% {
+    transform: translate(-1%, 1.5%) scale(0.97);
+  }
+  100% {
+    transform: translate(0.5%, -0.5%) scale(1.01);
+  }
 }
 
 .contentOverlay {
@@ -92,7 +191,7 @@
   width: 100%;
   max-width: var(--content-max);
   pointer-events: auto;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 0.75rem;
   padding: 1rem;
 }
@@ -106,15 +205,15 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
   margin: -0.5rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.35);
 }
 
 
 .columnTitle {
   font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #F2EFEB;
+  color: #F5F3F0;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
@@ -140,7 +239,7 @@
   align-items: flex-start;
   gap: 0.6rem;
   padding: 0.5rem;
-  height: 65px;
+  height: 68px;
   border-radius: 0.375rem;
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -157,7 +256,7 @@
   height: 45px;
   object-fit: cover;
   border-radius: 0.25rem;
-  border: 1px solid rgba(143, 247, 249, 0.15);
+  border: 1.5px solid color-mix(in srgb, var(--glow-color, #8FF7F9) 25%, transparent);
 }
 
 .itemText {
@@ -169,9 +268,9 @@
 
 .itemTitle {
   font-family: var(--font-lora), 'Lora', serif;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.88);
   line-height: 1.3;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -180,10 +279,10 @@
 
 .itemDate {
   font-family: var(--font-lora), 'Lora', serif;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 400;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.2;
 }
 

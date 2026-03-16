@@ -7,16 +7,39 @@ import { experiments } from "@/lib/experiments/data";
 
 import styles from "./page.module.css";
 
+const GREETINGS = [
+  { text: "Greetings, Earthling.", color: "#7FE8A0", glow: "#7FE8A0" },
+  { text: "Oh, hello there.", color: "#1E3FBA", glow: "#4A8AFF" },
+  { text: "You found me.", color: "#5EC47A", glow: "#7FE8A0" },
+  { text: "Don\u2019t panic.", color: "#7FE8A0", glow: "#7FE8A0" },
+  { text: "Signal received.", color: "#8FF7F9", glow: "#8FF7F9" },
+  { text: "Transmission incoming.", color: "#5EC47A", glow: "#7FE8A0" },
+];
+
 export default function Home() {
   const recentExperiments = experiments.slice(0, 3);
   const posts = getAllPosts().slice(0, 3);
   const recentDocs = getRecentDocs(3);
 
+  const greeting = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
+
   return (
-    <main className={styles.mainContainer}>
+    <main
+      className={styles.mainContainer}
+      style={{ "--glow-color": greeting.glow } as React.CSSProperties}
+    >
+      <div className={styles.ambientGlow} />
       <div className={styles.contentOverlay}>
         <div className={styles.contentWrapper}>
-          <div className={styles.greetingText}>Greetings, Earthling!</div>
+          <div
+            className={styles.greetingText}
+            style={{
+              color: greeting.color,
+              textShadow: `0 0 7px ${greeting.glow}90, 0 0 20px ${greeting.glow}60, 0 0 40px ${greeting.glow}30, 0 0 60px ${greeting.glow}18`,
+            }}
+          >
+            {greeting.text}
+          </div>
 
           <div className={styles.columns}>
             {/* Design */}

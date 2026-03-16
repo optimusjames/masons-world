@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.jamesmason.com/sitemap.xml',
+    sitemap: 'https://masons-world.vercel.app/sitemap.xml',
   }
 }

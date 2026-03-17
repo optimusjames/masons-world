@@ -12,13 +12,13 @@
   z-index: 20;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 25% 20% at 15% 25%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 25% at 75% 15%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 22% 18% at 40% 70%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 18% 22% at 85% 65%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 20% at 55% 40%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 24% 16% at 25% 85%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 16% 24% at 65% 90%, var(--glow-color, #7FE8A0) 0%, transparent 70%);
+    radial-gradient(ellipse 25% 20% at 15% 25%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 25% at 75% 15%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 22% 18% at 40% 70%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 18% 22% at 85% 65%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 20% at 55% 40%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 24% 16% at 25% 85%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 16% 24% at 65% 90%, var(--glow-color, transparent) 0%, transparent 70%);
   opacity: 0.06;
   animation: ambientDrift 30s ease-in-out infinite alternate;
 }
@@ -33,20 +33,20 @@
 
 .ambientGlow::before {
   background:
-    radial-gradient(ellipse 22% 18% at 30% 45%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 18% 22% at 70% 35%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 16% at 10% 60%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 16% 20% at 90% 80%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 20% at 50% 15%, var(--glow-color, #7FE8A0) 0%, transparent 70%);
+    radial-gradient(ellipse 22% 18% at 30% 45%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 18% 22% at 70% 35%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 16% at 10% 60%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 16% 20% at 90% 80%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 20% at 50% 15%, var(--glow-color, transparent) 0%, transparent 70%);
   animation: ambientDriftMid 22s ease-in-out infinite alternate-reverse;
 }
 
 .ambientGlow::after {
   background:
-    radial-gradient(ellipse 18% 15% at 20% 10%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 15% 18% at 80% 50%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 14% at 45% 85%, var(--glow-color, #7FE8A0) 0%, transparent 70%),
-    radial-gradient(ellipse 14% 20% at 60% 60%, var(--glow-color, #7FE8A0) 0%, transparent 70%);
+    radial-gradient(ellipse 18% 15% at 20% 10%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 15% 18% at 80% 50%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 14% at 45% 85%, var(--glow-color, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 14% 20% at 60% 60%, var(--glow-color, transparent) 0%, transparent 70%);
   animation: ambientDriftFast 17s ease-in-out infinite alternate;
 }
 
@@ -273,7 +273,7 @@
   height: 45px;
   object-fit: cover;
   border-radius: 0.25rem;
-  border: 1.5px solid color-mix(in srgb, var(--glow-color, #8FF7F9) 25%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--glow-color, transparent) 25%, transparent);
 }
 
 .itemText {

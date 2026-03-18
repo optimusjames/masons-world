@@ -31,7 +31,7 @@ The blog pairs four typefaces, each with a clear job:
 
 | Font | Where | Size |
 |------|-------|------|
-| Bitter 700 | Page titles, card titles | `clamp(36px, 6vw, 56px)` |
+| Space Grotesk 700 | Page titles, card titles | `clamp(36px, 6vw, 56px)` |
 | Lora 400 | Body prose, subtitles | 17px, line-height 1.72 |
 | DM Sans 500 | Meta labels, dates | 10-11px, uppercase |
 | Space Mono | Publication details | 12px, monospace |

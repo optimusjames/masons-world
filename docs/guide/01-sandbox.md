@@ -35,10 +35,11 @@ The site uses a small set of shared conventions across all sections:
 
 | Font | Role |
 |------|------|
-| Bitter 700 | Headings everywhere |
-| Lora 400 / italic | Body text, titles, subtitles |
-| Space Mono | Meta, dates, monospace details |
-| Karla | Global body fallback |
+| Space Grotesk 700 | Headings everywhere (`--font-space-grotesk`) |
+| Lora 400 / italic | Body text, titles, subtitles (`--font-lora`) |
+| Space Mono | Meta, dates, monospace details (`--font-space-mono`) |
+| Michroma | Homepage greeting display (`--font-display`) |
+| Karla | Global body font (applied to `body`) |
 
 Colors are warm and dark by default (`--site-bg: #0b0b0b`, `--site-text: #F2EFEB`) with a cyan accent (`#8FF7F9`) for interactive elements. A light theme is available for experiments and the blog, activated through a `data-theme` attribute that flips CSS custom properties.
 

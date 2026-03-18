@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
   display: 'swap',
-  variable: '--font-bitter',
+  variable: '--font-space-grotesk',
 })
 
 const lora = Lora({

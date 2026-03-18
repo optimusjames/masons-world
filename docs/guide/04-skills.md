@@ -28,7 +28,7 @@ Saves a link with a comment to the Link Worthy collection.
 /link https://github.com/anthropics/claude-code A CLI for Claude to write code directly
 ```
 
-Creates a markdown file in `app/(blog)/linked/items/`. For YouTube and GitHub links, thumbnails are auto-fetched at build time. For generic web links, the command takes a screenshot (1200x630) and saves it to `public/screenshots/linked/`. Titles are pulled from Open Graph metadata if not provided.
+Creates a markdown file in `app/(blog)/recommended/items/`. For YouTube and GitHub links, thumbnails are auto-fetched at build time. For generic web links, the command takes a screenshot (1200x630) and saves it to `public/screenshots/linked/`. Titles are pulled from Open Graph metadata if not provided.
 
 ### /blog-post
 

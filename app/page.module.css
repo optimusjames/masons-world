@@ -211,7 +211,7 @@
 
 
 .columnTitle {
-  font-family: var(--font-bitter), 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #F5F3F0;

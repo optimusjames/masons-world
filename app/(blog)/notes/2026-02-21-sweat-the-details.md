@@ -1,5 +1,0 @@
----
-date: 2026-02-21T11:20:00
-color: warm
----
-Sweat the details. It's the only job left.

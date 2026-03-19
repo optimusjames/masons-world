@@ -47,6 +47,14 @@
   color: rgba(219, 112, 147, 0.9);
 }
 
+.navLink .docsIcon {
+  color: inherit;
+}
+
+.navLink:hover .docsIcon {
+  color: inherit;
+}
+
 .icons {
   display: flex;
   align-items: center;

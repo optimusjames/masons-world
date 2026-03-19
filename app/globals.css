@@ -142,6 +142,58 @@ html[data-curtain-transition][data-curtain-reverse]::view-transition-new(root) {
   }
 }
 
+/* Horizontal curtain: Writing → Explore (new page enters from right) */
+html[data-curtain-direction="right"]::view-transition-old(root) {
+  animation-name: wipeRightOut;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+html[data-curtain-direction="right"]::view-transition-new(root) {
+  animation-name: wipeRightIn;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* Horizontal curtain: Explore → Writing (new page enters from left) */
+html[data-curtain-direction="left"]::view-transition-old(root) {
+  animation-name: wipeLeftOut;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+html[data-curtain-direction="left"]::view-transition-new(root) {
+  animation-name: wipeLeftIn;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* Old page collapses rightward, new page reveals from right */
+@keyframes wipeRightOut {
+  from { clip-path: inset(0 0% 0 0); }
+  to   { clip-path: inset(0 100% 0 0); }
+}
+
+@keyframes wipeRightIn {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* Old page collapses leftward, new page reveals from left */
+@keyframes wipeLeftOut {
+  from { clip-path: inset(0 0 0 0%); }
+  to   { clip-path: inset(0 0 0 100%); }
+}
+
+@keyframes wipeLeftIn {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
 /* Reduced motion: fall back to fade */
 @media (prefers-reduced-motion: reduce) {
   body {

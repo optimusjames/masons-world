@@ -75,13 +75,10 @@ export default function BlogIndexContent({ posts, notes }: Props) {
         </div>
       </div>
       <p className={styles.indexSubtitle}>When the mood strikes</p>
-      <Link href="/recommended" className={styles.indexMetaLink}>
+      <CurtainLink href="/recommended" className={`${styles.indexMetaLink} ${styles.indexMetaLinkRight}`} curtainTransition={true} curtainDirection="right">
         <Telescope size={12} className={styles.indexMetaIcon} />
         Explore
-        <svg width="8" height="8" viewBox="0 0 20 20" fill="none" className={styles.indexMetaCaret}>
-          <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </Link>
+      </CurtainLink>
       <div className={styles.cardGrid}>
         {posts.map((post, index) => (
           <div

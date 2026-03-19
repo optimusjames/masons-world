@@ -7,11 +7,13 @@ import { ComponentProps, MouseEvent } from 'react'
 interface CurtainLinkProps extends ComponentProps<typeof Link> {
   curtainTransition?: boolean
   curtainReverse?: boolean
+  curtainDirection?: 'left' | 'right'
 }
 
 export default function CurtainLink({
   curtainTransition = false,
   curtainReverse = false,
+  curtainDirection,
   href,
   onClick,
   ...props
@@ -33,9 +35,13 @@ export default function CurtainLink({
     e.preventDefault()
 
     // Add data attributes to trigger curtain CSS
-    document.documentElement.setAttribute('data-curtain-transition', 'true')
-    if (curtainReverse) {
-      document.documentElement.setAttribute('data-curtain-reverse', 'true')
+    if (curtainDirection) {
+      document.documentElement.setAttribute('data-curtain-direction', curtainDirection)
+    } else {
+      document.documentElement.setAttribute('data-curtain-transition', 'true')
+      if (curtainReverse) {
+        document.documentElement.setAttribute('data-curtain-reverse', 'true')
+      }
     }
 
     // Start view transition
@@ -47,6 +53,7 @@ export default function CurtainLink({
     transition.finished.finally(() => {
       document.documentElement.removeAttribute('data-curtain-transition')
       document.documentElement.removeAttribute('data-curtain-reverse')
+      document.documentElement.removeAttribute('data-curtain-direction')
     })
   }
 

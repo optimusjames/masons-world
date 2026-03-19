@@ -381,8 +381,18 @@
   50% { transform: scale(1.3); }
 }
 
+@keyframes caretDrift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
 .indexMetaLink:hover .indexMetaIcon {
-  animation: iconPulse 1.2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  animation: iconPulse 2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.indexMetaLink:hover .indexMetaCaret {
+  animation: caretDrift 2.4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 
 /* ───────────────────────────────────────────

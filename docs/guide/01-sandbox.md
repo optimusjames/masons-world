@@ -14,7 +14,7 @@ This is a design playground that doubles as a portfolio. It's built with Next.js
 
 **Sticky Notes** are quick captures -- single thoughts written in a handwritten typeface on colored cards. They stack in the corner of the blog index like Post-its on a desk. No titles, no categories, just a thought and a date.
 
-**Link Worthy** is a curated link collection with auto-fetched thumbnails and source badges. Drop a URL and a comment in a markdown file, and the build system handles the rest -- pulling titles from Open Graph, downloading thumbnails, detecting whether it's a YouTube video, GitHub repo, or web page.
+**Explore** is a curated link collection with auto-fetched thumbnails and source badges. Drop a URL and a comment in a markdown file, and the build system handles the rest -- pulling titles from Open Graph, downloading thumbnails, detecting whether it's a YouTube video, GitHub repo, or web page.
 
 ## How It's Made
 

@@ -74,6 +74,6 @@ Light mode flips through `data-theme="light"` with a toggle in the top corner, s
 
 Not everything needs to be an essay. `/note` creates a sticky note -- a single thought in a handwritten typeface on a colored card. Notes stack in the top-right corner of the blog index, clickable into a lightbox with proximity-based navigation (click near the edges to flip through, click away to close). They use ISO timestamps for ordering, cycle through warm/cool/neutral colors automatically, and persist your position across page navigations.
 
-## Link Worthy
+## Explore
 
 `/link` saves a link with a comment. The build system auto-fetches thumbnails (from OEmbed for YouTube, og:image for web pages) and detects the source type. Links render as a list with 200px thumbnails, Lora titles, and small source badges (YouTube, GitHub, or Globe). The `/link` command handles screenshot capture for generic web links too.

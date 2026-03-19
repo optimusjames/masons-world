@@ -187,7 +187,7 @@
 /* Three-column recent content */
 .columns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
   width: 100%;
   max-width: var(--content-max);
@@ -256,11 +256,15 @@
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-decoration: none;
-  transition: transform 0.3s ease;
 }
 
 .columnItem:hover {
-  transform: scale(1.03);
+  animation: cardBreath 2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+@keyframes cardBreath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
 }
 
 .columnItem:last-child {

@@ -6,7 +6,7 @@ import type { Recommendation } from './types'
 import styles from '../blog.module.css'
 
 export const metadata: Metadata = {
-  title: 'Recommended',
+  title: 'Explore',
   description: 'Links worth sharing — videos, articles, and other finds',
 }
 
@@ -34,12 +34,12 @@ export default async function RecommendedPage() {
     <div className={styles.blogLayout} data-theme="dark">
       <div className={styles.indexWrapper}>
         <div className={styles.backRow}>
-          <Link href="/blog" className={styles.indexBackLink}>
+          <Link href="/" className={styles.indexBackLink}>
             <ChevronLeft size={14} />
-            Blog
+            Back
           </Link>
         </div>
-        <h1 className={styles.indexTitle}>Link Worthy</h1>
+        <h1 className={styles.indexTitle}>Explore</h1>
         <p className={styles.indexSubtitle}>
           If you&apos;re bored...
         </p>

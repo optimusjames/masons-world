@@ -4,8 +4,8 @@ import { getAllNotes } from '@/app/design-experiments/(experiments)/sticky-notes
 import BlogIndexContent from '../_components/BlogIndexContent'
 
 export const metadata = {
-  title: 'Blog',
-  description: 'Markdown posts with editorial styling, written when the mood strikes',
+  title: 'Writing',
+  description: 'Essays, reflections, and creative writing — when the mood strikes',
 }
 
 export default function BlogIndex() {

@@ -16,14 +16,9 @@ export default function SiteFooter({ className }: { className?: string }) {
       <div className={styles.row}>
         <nav className={styles.nav}>
           <CurtainLink href="/design-experiments" className={styles.navLink} curtainTransition curtainReverse>Design</CurtainLink>
-          <CurtainLink href="/blog" className={styles.navLink} curtainTransition>Blog</CurtainLink>
+          <CurtainLink href="/blog" className={styles.navLink} curtainTransition>Write</CurtainLink>
+          <CurtainLink href="/recommended" className={styles.navLink} curtainTransition>Explore</CurtainLink>
           <CurtainLink href="/docs" className={styles.navLink} curtainTransition>Docs</CurtainLink>
-          <CurtainLink href="/recommended" className={styles.navLink} curtainTransition>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-            Link Worthy
-          </CurtainLink>
         </nav>
         <div className={styles.icons}>
           <a

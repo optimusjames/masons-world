@@ -2,16 +2,16 @@ import Image from "next/image";
 import CurtainLink from "./components/CurtainLink";
 import SiteFooter from "./components/SiteFooter";
 import { getAllPosts } from "@/lib/blog/loadBlog";
-import { getRecentDocs } from "@/lib/docs/loadDocs";
+import { getAllRecommendations } from "@/app/(blog)/recommended/loadRecommended";
 import { experiments } from "@/lib/experiments/data";
 
 import RandomGreeting from "./components/RandomGreeting";
 import styles from "./page.module.css";
 
-export default function Home() {
+export default async function Home() {
   const recentExperiments = experiments.slice(0, 3);
   const posts = getAllPosts().slice(0, 3);
-  const recentDocs = getRecentDocs(3);
+  const recentExplores = (await getAllRecommendations()).slice(0, 3);
 
   return (
     <main className={styles.mainContainer}>
@@ -49,10 +49,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Blog */}
+            {/* Write */}
             <div className={styles.column}>
               <CurtainLink href="/blog" className={styles.columnTitle} curtainTransition={true}>
-                Blog
+                Write
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -89,30 +89,30 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Docs */}
+            {/* Explore */}
             <div className={styles.column}>
-              <CurtainLink href="/docs" className={styles.columnTitle} curtainTransition={true}>
-                Docs
+              <CurtainLink href="/recommended" className={styles.columnTitle} curtainTransition={true}>
+                Explore
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </CurtainLink>
               <div className={styles.columnItems}>
-                {recentDocs.map((doc) => (
-                  <CurtainLink key={doc.slug} href={doc.href} className={styles.columnItem} curtainTransition={true}>
+                {recentExplores.map((item) => (
+                  <CurtainLink key={item.id} href="/recommended" className={styles.columnItem} curtainTransition={true}>
+                    {item.thumbnail && (
+                      <Image
+                        src={item.thumbnail}
+                        alt={item.title}
+                        width={60}
+                        height={45}
+                        sizes="60px"
+                        className={styles.itemThumb}
+                      />
+                    )}
                     <div className={styles.itemText}>
-                      <span className={styles.itemTitle}>{doc.title}</span>
-                      {doc.description ? (
-                        <span className={styles.itemDate}>{doc.description}</span>
-                      ) : (
-                        <span className={styles.itemDate}>
-                          {doc.modified.toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
-                        </span>
-                      )}
+                      <span className={styles.itemTitle}>{item.title}</span>
+                      <span className={styles.itemDate}>{item.date}</span>
                     </div>
                   </CurtainLink>
                 ))}

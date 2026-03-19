@@ -22,7 +22,7 @@ Writes a markdown file to `app/(blog)/notes/` with an ISO timestamp and auto-cyc
 
 ### /link
 
-Saves a link with a comment to the Link Worthy collection.
+Saves a link with a comment to the Explore collection.
 
 ```
 /link https://github.com/anthropics/claude-code A CLI for Claude to write code directly

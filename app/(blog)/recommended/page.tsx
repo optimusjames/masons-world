@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ChevronLeft, ArrowUpRight, YoutubeIcon, GithubIcon, Globe, FileText } from 'lucide-react'
+import { ChevronLeft, ArrowUpRight, YoutubeIcon, GithubIcon, Globe, FileText, Feather } from 'lucide-react'
 import Link from 'next/link'
 import { getAllRecommendations } from './loadRecommended'
 import type { Recommendation } from './types'
@@ -43,6 +43,13 @@ export default async function RecommendedPage() {
         <p className={styles.indexSubtitle}>
           If you&apos;re bored...
         </p>
+        <Link href="/blog" className={styles.indexMetaLink}>
+          <Feather size={12} className={styles.indexMetaIcon} />
+          Writing
+          <svg width="8" height="8" viewBox="0 0 20 20" fill="none" className={styles.indexMetaCaret}>
+            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
         <ul className={styles.recList}>
           {items.map((item) => (
             <li key={item.id} className={styles.recItem}>

@@ -39,7 +39,7 @@ export default function ShellEasterEgg({
   return (
     <span style={{ position: "relative", display: "inline-flex" }}>
       <Shell
-        size={20}
+        size={18}
         onClick={handleClick}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}

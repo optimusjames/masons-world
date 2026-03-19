@@ -47,13 +47,6 @@
   color: rgba(219, 112, 147, 0.9);
 }
 
-.navLink .docsIcon {
-  color: inherit;
-}
-
-.navLink:hover .docsIcon {
-  color: #8FF7F9;
-}
 
 .icons {
   display: flex;

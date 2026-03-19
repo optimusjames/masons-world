@@ -35,8 +35,8 @@ export default async function Home() {
                     <Image
                       src={exp.screenshot}
                       alt={exp.title}
-                      width={60}
-                      height={45}
+                      width={120}
+                      height={90}
                       sizes="60px"
                       className={styles.itemThumb}
                     />

@@ -19,7 +19,7 @@ export default function SiteFooter({ className }: { className?: string }) {
           <CurtainLink href="/design-experiments" className={styles.navLink} curtainTransition>Design</CurtainLink>
           <CurtainLink href="/blog" className={styles.navLink} curtainTransition>Write</CurtainLink>
           <CurtainLink href="/recommended" className={styles.navLink} curtainTransition>Explore</CurtainLink>
-          <CurtainLink href="/docs" className={styles.navLink} curtainTransition>Docs<FileTerminal size={16} strokeWidth={1.5} className={styles.docsIcon} /></CurtainLink>
+          <CurtainLink href="/docs" className={styles.navLink} curtainTransition>Docs<FileTerminal size={15} strokeWidth={1.5} className={styles.docsIcon} /></CurtainLink>
         </nav>
         <div className={styles.icons}>
           <a

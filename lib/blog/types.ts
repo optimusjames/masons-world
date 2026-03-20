@@ -6,6 +6,7 @@ export interface BlogMeta {
   image?: string
   readingTime?: string
   overlay?: boolean
+  split?: boolean
   slug: string
 }
 

@@ -62,6 +62,48 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
   }
 
+  if (post.meta.split && post.meta.image) {
+    return (
+      <div className={styles.postWrapper}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+        <div className={styles.backRow}>
+          <CurtainLink href="/blog" className={styles.indexBackLink} curtainTransition={true} curtainReverse={true}>
+            <ChevronLeft size={14} />
+            Blog
+          </CurtainLink>
+          <ThemeToggle />
+        </div>
+        <div className={styles.splitHero}>
+          <div className={styles.splitImageWrapper}>
+            <img
+              src={post.meta.image}
+              alt={post.meta.title}
+              className={styles.splitImage}
+            />
+          </div>
+          <header className={styles.splitHeader}>
+            <div className={styles.splitTitleRow}>
+              <h1 className={styles.postTitle}>{post.meta.title}</h1>
+              <time className={`${styles.postDate} ${styles.splitDateMobile}`}>{formatDate(post.meta.date)}</time>
+            </div>
+            {post.meta.subtitle && (
+              <p className={styles.postSubtitle}>{post.meta.subtitle}</p>
+            )}
+            {post.meta.author && (
+              <span className={styles.postByline}>by {post.meta.author}</span>
+            )}
+            <time className={`${styles.postDate} ${styles.splitDateDesktop}`}>{formatDate(post.meta.date)}</time>
+          </header>
+        </div>
+
+        <BlogContent content={post.content} />
+      </div>
+    )
+  }
+
   if (post.meta.overlay && post.meta.image) {
     return (
       <div className={styles.postWrapper}>

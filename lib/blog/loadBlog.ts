@@ -26,7 +26,8 @@ export const getAllPosts = cache(function getAllPosts(): BlogMeta[] {
 
   const posts: BlogMeta[] = files.map((fileName) => {
     const overlay = fileName.endsWith('.overlay.md')
-    const slug = fileName.replace(/\.overlay\.md$/, '').replace(/\.md$/, '')
+    const split = fileName.endsWith('.split.md')
+    const slug = fileName.replace(/\.(overlay|split)\.md$/, '').replace(/\.md$/, '')
     const filePath = path.join(blogDirectory, fileName)
     const fileContent = fs.readFileSync(filePath, 'utf-8')
     const { data } = matter(fileContent)
@@ -39,6 +40,7 @@ export const getAllPosts = cache(function getAllPosts(): BlogMeta[] {
       image: findImage(slug),
       readingTime: data.readingTime,
       overlay,
+      split,
       slug,
     }
   })
@@ -52,9 +54,11 @@ export const getAllPosts = cache(function getAllPosts(): BlogMeta[] {
 
 export const getPostBySlug = cache(function getPostBySlug(slug: string): BlogPost | null {
   const overlayPath = path.join(blogDirectory, `${slug}.overlay.md`)
+  const splitPath = path.join(blogDirectory, `${slug}.split.md`)
   const regularPath = path.join(blogDirectory, `${slug}.md`)
   const overlay = fs.existsSync(overlayPath)
-  const filePath = overlay ? overlayPath : regularPath
+  const split = !overlay && fs.existsSync(splitPath)
+  const filePath = overlay ? overlayPath : split ? splitPath : regularPath
   if (!fs.existsSync(filePath)) return null
 
   const fileContent = fs.readFileSync(filePath, 'utf-8')
@@ -69,6 +73,7 @@ export const getPostBySlug = cache(function getPostBySlug(slug: string): BlogPos
       image: findImage(slug),
       readingTime: data.readingTime,
       overlay,
+      split,
       slug,
     },
     content,

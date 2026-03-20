@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Shell } from "lucide-react";
 import { Permanent_Marker } from "next/font/google";
 
@@ -29,12 +29,23 @@ export default function ShellEasterEgg({
   const [visible, setVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
   const theme = themes[variant];
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const handleClick = useCallback(() => {
-    if (visible) return;
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
     setVisible(true);
-    setTimeout(() => setVisible(false), 525);
-  }, [visible]);
+    timersRef.current.push(setTimeout(() => setVisible(false), 900));
+    const el = document.querySelector<HTMLElement>('[class*="ambientGlow"]');
+    if (el) {
+      el.style.transition = "opacity 1.5s ease";
+      el.style.opacity = "0.13";
+      timersRef.current.push(setTimeout(() => {
+        el.style.opacity = "";
+        timersRef.current.push(setTimeout(() => { el.style.transition = ""; }, 1500));
+      }, 900));
+    }
+  }, []);
 
   return (
     <span style={{ position: "relative", display: "inline-flex" }}>
@@ -86,7 +97,7 @@ export default function ShellEasterEgg({
             letterSpacing: "0.04em",
           }}
         >
-          Todo pasa
+          Infinito
           {/* Bubble tail */}
           <span
             style={{

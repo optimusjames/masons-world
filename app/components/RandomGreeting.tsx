@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const GREETINGS = [
   { text: "Greetings, Earthling.", color: "#7FE8A0", glow: "#7FE8A0" },
@@ -15,8 +15,16 @@ function pick() {
   return GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
 }
 
+const BASE_SHADOW = (glow: string) =>
+  `0 0 7px ${glow}90, 0 0 20px ${glow}60, 0 0 40px ${glow}30, 0 0 60px ${glow}18`;
+
+const BRIGHT_SHADOW = (glow: string) =>
+  `0 0 10px ${glow}cc, 0 0 30px ${glow}90, 0 0 60px ${glow}50, 0 0 90px ${glow}30`;
+
 export default function RandomGreeting({ className }: { className?: string }) {
   const [greeting, setGreeting] = useState<(typeof GREETINGS)[number] | null>(null);
+  const [textBright, setTextBright] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     const g = pick();
@@ -24,16 +32,25 @@ export default function RandomGreeting({ className }: { className?: string }) {
     document.documentElement.style.setProperty("--glow-color", g.glow);
   }, []);
 
+  const handleClick = useCallback(() => {
+    if (!greeting) return;
+    clearTimeout(timerRef.current);
+    setTextBright(true);
+    timerRef.current = setTimeout(() => setTextBright(false), 1000);
+  }, [greeting]);
+
   return (
     <div
       className={className}
+      onClick={handleClick}
       style={{
         color: greeting?.color ?? "transparent",
         textShadow: greeting
-          ? `0 0 7px ${greeting.glow}90, 0 0 20px ${greeting.glow}60, 0 0 40px ${greeting.glow}30, 0 0 60px ${greeting.glow}18`
+          ? textBright ? BRIGHT_SHADOW(greeting.glow) : BASE_SHADOW(greeting.glow)
           : "none",
         opacity: greeting ? 1 : 0,
-        transition: "opacity 0.4s ease-in",
+        transition: "opacity 0.4s ease-in, text-shadow 2s ease",
+        cursor: "pointer",
       }}
     >
       {greeting?.text ?? "\u00A0"}

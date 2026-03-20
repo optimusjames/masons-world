@@ -4,6 +4,7 @@
   width: 100%;
   background-color: #000;
   overflow: hidden;
+  user-select: none;
 }
 
 .ambientGlow {
@@ -12,15 +13,15 @@
   z-index: 20;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 25% 20% at 15% 25%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 25% at 75% 15%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 22% 18% at 40% 70%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 18% 22% at 85% 65%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 20% at 55% 40%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 24% 16% at 25% 85%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 16% 24% at 65% 90%, var(--glow-color, transparent) 0%, transparent 70%);
-  opacity: 0.06;
-  animation: ambientDrift 30s ease-in-out infinite alternate;
+    radial-gradient(ellipse 24% 20% at 15% 25%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 8% 10% at 75% 15%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 14% 12% at 40% 70%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 7% 9% at 85% 65%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 20% 16% at 55% 40%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 10% 8% at 25% 85%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 16% 22% at 65% 90%, var(--glow-color, transparent) 0%, transparent 80%);
+  opacity: 0.07;
+  animation: ambientDrift 45s ease-in-out infinite alternate;
 }
 
 .ambientGlow::before,
@@ -33,21 +34,21 @@
 
 .ambientGlow::before {
   background:
-    radial-gradient(ellipse 22% 18% at 30% 45%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 18% 22% at 70% 35%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 16% at 10% 60%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 16% 20% at 90% 80%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 20% at 50% 15%, var(--glow-color, transparent) 0%, transparent 70%);
-  animation: ambientDriftMid 22s ease-in-out infinite alternate-reverse;
+    radial-gradient(ellipse 22% 18% at 30% 45%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 9% 11% at 70% 35%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 7% 8% at 10% 60%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 15% 13% at 90% 80%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 10% 10% at 50% 15%, var(--glow-color, transparent) 0%, transparent 80%);
+  animation: ambientDriftMid 34s ease-in-out infinite alternate-reverse;
 }
 
 .ambientGlow::after {
   background:
-    radial-gradient(ellipse 18% 15% at 20% 10%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 15% 18% at 80% 50%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 14% at 45% 85%, var(--glow-color, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 14% 20% at 60% 60%, var(--glow-color, transparent) 0%, transparent 70%);
-  animation: ambientDriftFast 17s ease-in-out infinite alternate;
+    radial-gradient(ellipse 8% 6% at 20% 10%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 18% 15% at 80% 50%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 6% 8% at 45% 85%, var(--glow-color, transparent) 0%, transparent 80%),
+    radial-gradient(ellipse 13% 16% at 60% 60%, var(--glow-color, transparent) 0%, transparent 80%);
+  animation: ambientDriftFast 26s ease-in-out infinite alternate;
 }
 
 @keyframes ambientDrift {
@@ -179,8 +180,9 @@
   color: #7FE8A0;
   text-align: center;
   text-shadow: 0 0 20px rgba(127, 232, 160, 0.5);
-  pointer-events: none;
+  pointer-events: auto;
   user-select: none;
+  cursor: pointer;
   margin-bottom: -2px;
 }
 

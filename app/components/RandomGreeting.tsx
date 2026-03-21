@@ -24,7 +24,7 @@ const BRIGHT_SHADOW = (glow: string) =>
 export default function RandomGreeting({ className }: { className?: string }) {
   const [greeting, setGreeting] = useState<(typeof GREETINGS)[number] | null>(null);
   const [textBright, setTextBright] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   useEffect(() => {
     const g = pick();
@@ -34,7 +34,7 @@ export default function RandomGreeting({ className }: { className?: string }) {
 
   const handleClick = useCallback(() => {
     if (!greeting) return;
-    clearTimeout(timerRef.current);
+    if (timerRef.current) clearTimeout(timerRef.current);
     setTextBright(true);
     timerRef.current = setTimeout(() => setTextBright(false), 1000);
   }, [greeting]);

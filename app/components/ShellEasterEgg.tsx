@@ -39,7 +39,7 @@ export default function ShellEasterEgg({
     const el = document.querySelector<HTMLElement>('[class*="ambientGlow"]');
     if (el) {
       el.style.transition = "opacity 1.5s ease";
-      el.style.opacity = "0.13";
+      el.style.opacity = "0.22";
       timersRef.current.push(setTimeout(() => {
         el.style.opacity = "";
         timersRef.current.push(setTimeout(() => { el.style.transition = ""; }, 1500));

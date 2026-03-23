@@ -6,13 +6,13 @@ author: James Mason
 readingTime: 3 min
 ---
 
-Most things don't stick. Not because they're bad, because they're forgettable. Jobs told his team that people don't have a lot of time or attention. You get a few seconds before someone decides whether to care. Remarkable doesn't just mean flashy. It doesn't just mean new. It means something that changes what you expected, and what you expect next.
+Most things don't stick. Not because they're bad, because they're forgettable. Jobs told his team that people don't have a lot of time or attention. You get a few seconds before someone decides whether to care. Remarkable doesn't mean flashy. It doesn't just mean new. It means something that changes what you expected, and what you expect next.
 
 Jobs knew Apple was never about the specs. Nike sells shoes, but when you think of Nike you don't just think about shoes. You feel something. He understood that. At its core, Apple stood for a belief that people with passion can change the world. The crazy ones, the misfits, the ones who see things differently. The ones crazy enough to think they can change the world are the ones who do. That's not marketing. That's a direction. And when people feel your direction, they don't just use what you make. They carry it forward.
 
 That's what I'm chasing. Not a finish line. A direction. You don't arrive at remarkable. You move toward it, and the moving is what matters.
 
-Getting there takes obsession, but not the grinding, teeth-clenched kind. The kind that ebbs and flows. Structured one day, reckless the next. Tight, then loose. You sketch something clean, then tear it apart and try something that might be stupid. You let yourself be sloppy because the interesting ideas live in the mess. Then you pull it back together.
+Getting there takes obsession, but not the grinding, teeth-clenched kind. The kind that ebbs and flows. Structured one day, reckless the next. Tight, then loose. You sketch something clean, then tear it apart and try something that might be stupid. You let yourself be sloppy because the interesting ideas live in the mess, then you pull it back together.
 
 The playfulness matters more than people think. Obsession and play aren't opposites; the play is what keeps the obsession from going mechanical. You need both: the rigor to care about the parts nobody sees, and the looseness to try something nobody asked for.
 

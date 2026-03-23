@@ -32,8 +32,9 @@ Write in the style of the existing posts in `blog/`. The writing philosophy:
 - **Concrete over abstract.** Specific details from real experience, not theory.
 - **One thesis.** Every post makes one point. Say it early, support it with examples, end when the point is made.
 - **Edgy and light on the outside, thoughtful and Zen on the inside.** Humor and irony help people connect. Don't be too serious. The depth earns its place because the delivery is fun.
-- **Start in first person.** Ground the opening in a real personal moment ("I can stand at the window..."), then broaden to "you" as the post opens up to the reader.
+- **Start in first person or in thesis.** Personal posts ground the opening in a real moment ("I can stand at the window..."), then broaden to "you." Philosophical posts can lead with the idea — the personal comes through perspective, not anecdote. The conversation and subject matter will signal which mode fits.
 - **Conversational but not rambling.** Write like you talk, but land on strong statements. No hedging, no "in conclusion."
+- **Vary sentence rhythm.** Short fragments punch. Comma-joined clauses flow. Use both — the contrast is what makes the writing feel alive.
 - **End sharp.** The last line should hit. Sometimes it echoes the title.
 - **300-600 words.** 400-500 is the sweet spot. Let the idea breathe and develop fully. If it's pushing past 600, check you're not making two points.
 - **Essays, not documentation.** No headers unless the post genuinely needs sections. Most don't.

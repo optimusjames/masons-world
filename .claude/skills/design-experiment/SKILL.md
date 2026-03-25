@@ -39,7 +39,31 @@ export default function Page() {
 
 ## Steps
 
-1. Create the experiment files at `app/design-experiments/[name]/`
+1. Create the experiment files at `app/design-experiments/[name]/`, including:
+
+   **`page.tsx`** — must export `metadata` using the shared helper:
+   ```tsx
+   import type { Metadata } from 'next'
+   import { experimentMetadata } from '@/lib/experiments/metadata'
+   import [ComponentName] from './[ComponentName]'
+
+   export const metadata: Metadata = experimentMetadata('[name]')
+
+   export default function Page() {
+     return <[ComponentName] />
+   }
+   ```
+
+   **`opengraph-image.tsx`** — always create this file (6 lines, no customization needed):
+   ```tsx
+   export const runtime = 'nodejs'
+   export const size = { width: 1200, height: 630 }
+   export const contentType = 'image/png'
+
+   import { experimentOgImage } from '@/lib/og/experimentOgImage'
+   export default function OgImage() { return experimentOgImage('[name]') }
+   ```
+
 2. Add entry to gallery at top of the experiments array in `app/design-experiments/page.tsx`:
    ```tsx
    {

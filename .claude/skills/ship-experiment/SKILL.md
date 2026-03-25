@@ -24,6 +24,19 @@ Ship a design experiment with automated screenshot, updates, and commit workflow
 ```bash
 # From sandbox root directory
 
+# 0. Ensure OG files exist (create if missing — older experiments may lack them)
+#    Check for app/design-experiments/(experiments)/[name]/opengraph-image.tsx
+#    If missing, create it:
+#
+#    export const runtime = 'nodejs'
+#    export const size = { width: 1200, height: 630 }
+#    export const contentType = 'image/png'
+#    import { experimentOgImage } from '@/lib/og/experimentOgImage'
+#    export default function OgImage() { return experimentOgImage('[name]') }
+#
+#    Also check that page.tsx exports metadata via experimentMetadata('[name]').
+#    If missing, add the import and export at the top of page.tsx.
+
 # 1. Start dev server and take screenshot
 npm run dev &
 sleep 3

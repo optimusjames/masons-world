@@ -22,6 +22,14 @@ function formatDate(dateStr: string): string {
   })
 }
 
+// Detect real MIME type from magic bytes — don't trust file extension
+function detectMime(buf: Buffer): string {
+  if (buf[0] === 0xff && buf[1] === 0xd8) return 'jpeg'
+  if (buf[0] === 0x89 && buf[1] === 0x50) return 'png'
+  if (buf[0] === 0x52 && buf[1] === 0x49) return 'webp' // RIFF...WEBP
+  return 'jpeg' // safe fallback
+}
+
 export default async function OgImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -38,15 +46,15 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
 
   const dateStr = post.meta.date ? formatDate(post.meta.date) : ''
 
-  // With hero image: image as background, gradient overlay, title + date
+  // With hero image: full-bleed photo, subtle vignette — no text overlay
   if (post.meta.image) {
     const imgPath = path.join(process.cwd(), 'public', post.meta.image)
     let imgSrc: string | null = null
 
     if (existsSync(imgPath)) {
       const imgBuffer = readFileSync(imgPath)
-      const ext = path.extname(post.meta.image).slice(1).replace('jpg', 'jpeg')
-      imgSrc = `data:image/${ext};base64,${imgBuffer.toString('base64')}`
+      const mime = detectMime(imgBuffer)
+      imgSrc = `data:image/${mime};base64,${imgBuffer.toString('base64')}`
     }
 
     return new ImageResponse(
@@ -74,7 +82,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
             }}
           />
         )}
-        {/* Gradient overlay */}
+        {/* Subtle vignette */}
         <div
           style={{
             position: 'absolute',
@@ -82,47 +90,10 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
             left: 0,
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.15) 100%)',
+            background: 'linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.0) 60%)',
             display: 'flex',
           }}
         />
-        {/* Text */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            padding: '0 64px 56px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 10,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'Space Grotesk',
-              fontSize: 15,
-              fontWeight: 700,
-              color: 'rgba(255,255,255,0.55)',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-            }}
-          >
-            {dateStr}
-          </span>
-          <span
-            style={{
-              fontFamily: 'Space Grotesk',
-              fontSize: 64,
-              fontWeight: 700,
-              color: '#ffffff',
-              lineHeight: 1.1,
-              maxWidth: 900,
-            }}
-          >
-            {post.meta.title}
-          </span>
-        </div>
       </div>,
       {
         width: 1200,

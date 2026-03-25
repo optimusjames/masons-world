@@ -54,6 +54,31 @@
   color: #aaa;
 }
 
+.shareButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: #666;
+  font-size: 13px;
+  line-height: 1;
+  position: relative;
+  top: 8px;
+  transition: color 0.15s ease;
+}
+
+.shareButton:hover {
+  color: #aaa;
+}
+
+.shareRow {
+  display: flex;
+  justify-content: center;
+  padding-top: 48px;
+  margin-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
 .blogLayout[data-theme="light"] {
   --paper: var(--light-bg);
   --body: var(--light-text);

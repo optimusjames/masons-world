@@ -6,6 +6,7 @@ import { getAllPosts, getPostBySlug } from '@/lib/blog/loadBlog'
 import CurtainLink from '@/app/components/CurtainLink'
 import BlogContent from '../../_components/BlogContent'
 import ThemeToggle from '../../_components/ThemeToggle'
+import ShareButton from '../../_components/ShareButton'
 import styles from '../../blog.module.css'
 
 interface PageProps {
@@ -74,7 +75,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             <ChevronLeft size={14} />
             Blog
           </CurtainLink>
-          <ThemeToggle />
+          <div style={{ display: 'flex', gap: 16 }}>
+            <ShareButton title={post.meta.title} />
+            <ThemeToggle />
+          </div>
         </div>
         <div className={styles.splitHero}>
           <div className={styles.splitImageWrapper}>
@@ -100,6 +104,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <BlogContent content={post.content} />
+        <div className={styles.shareRow}>
+          <ShareButton title={post.meta.title} />
+        </div>
       </div>
     )
   }
@@ -116,7 +123,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             <ChevronLeft size={14} />
             Blog
           </CurtainLink>
-          <ThemeToggle />
+          <div style={{ display: 'flex', gap: 16 }}>
+            <ShareButton title={post.meta.title} />
+            <ThemeToggle />
+          </div>
         </div>
         <div className={styles.overlayHero}>
           <img
@@ -140,6 +150,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <BlogContent content={post.content} />
+        <div className={styles.shareRow}>
+          <ShareButton title={post.meta.title} />
+        </div>
       </div>
     )
   }
@@ -155,7 +168,10 @@ export default async function BlogPostPage({ params }: PageProps) {
           <ChevronLeft size={14} />
           Blog
         </CurtainLink>
-        <ThemeToggle />
+        <div style={{ display: 'flex', gap: 16 }}>
+          <ShareButton title={post.meta.title} />
+          <ThemeToggle />
+        </div>
       </div>
       <header className={styles.postHeader}>
         <div className={styles.postTitleRow}>
@@ -181,6 +197,9 @@ export default async function BlogPostPage({ params }: PageProps) {
       )}
 
       <BlogContent content={post.content} />
+      <div className={styles.shareRow}>
+        <ShareButton title={post.meta.title} />
+      </div>
     </div>
   )
 }

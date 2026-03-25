@@ -79,6 +79,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
               width: '100%',
               height: '100%',
               objectFit: 'cover',
+              objectPosition: 'center top',
             }}
           />
         )}

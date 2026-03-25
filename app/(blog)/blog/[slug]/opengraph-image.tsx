@@ -63,8 +63,9 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           width: 1200,
           height: 630,
           display: 'flex',
-          position: 'relative',
+          overflow: 'hidden',
           background: '#1a1a1a',
+          position: 'relative',
         }}
       >
         {imgSrc && (
@@ -72,15 +73,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           <img
             src={imgSrc}
             alt=""
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-            }}
+            style={{ width: 1200, flexShrink: 0 }}
           />
         )}
         {/* Subtle vignette */}

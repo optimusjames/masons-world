@@ -1,0 +1,484 @@
+/* ──────────────────────────────────────────
+   Yoga Cards – Design Experiment
+   ────────────────────────────────────────── */
+
+.yoga-cards {
+  min-height: 100vh;
+  background: #0d0d0d;
+  color: #f0ede8;
+  padding: 80px 24px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.yoga-cards__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.yoga-cards__eyebrow {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #8a8580;
+  margin-bottom: 12px;
+}
+
+.yoga-cards__title {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 300;
+  font-size: clamp(36px, 6vw, 56px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.yoga-cards__subtitle {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 15px;
+  color: #8a8580;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ── Style Picker ── */
+.yoga-cards__style-picker {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.yoga-cards__style-btn {
+  background: #1a1816;
+  border: 1px solid #2a2724;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+  min-width: 140px;
+}
+
+.yoga-cards__style-btn:hover {
+  border-color: #4a4540;
+  background: #1e1c1a;
+}
+
+.yoga-cards__style-btn--active {
+  border-color: #8a8580;
+  background: #1e1c1a;
+}
+
+.yoga-cards__style-label {
+  display: block;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #f0ede8;
+  margin-bottom: 2px;
+}
+
+.yoga-cards__style-desc {
+  display: block;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 11px;
+  color: #6a6560;
+}
+
+/* ── Grid Layouts ── */
+.yoga-cards__grid {
+  display: grid;
+  gap: 24px;
+}
+
+.yoga-cards__grid--landscape {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.yoga-cards__grid--portrait {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.yoga-cards__grid--square {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.yoga-cards__grid--minimal {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* ── Card ── */
+.yoga-card {
+  perspective: 900px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--delay);
+  outline: none;
+}
+
+.yoga-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.yoga-card__inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--aspect);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.yoga-card__inner--rounded {
+  border-radius: 12px;
+}
+
+.yoga-card__inner--flipped {
+  transform: rotateY(180deg);
+}
+
+.yoga-card:hover .yoga-card__inner:not(.yoga-card__inner--flipped) {
+  transform: scale(1.02);
+}
+
+/* ── Faces ── */
+.yoga-card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.yoga-card__inner--rounded .yoga-card__face {
+  border-radius: 12px;
+}
+
+.yoga-card__front {
+  z-index: 2;
+}
+
+.yoga-card__back {
+  transform: rotateY(180deg);
+  background: #1a1816;
+  border: 1px solid #2a2724;
+}
+
+.yoga-card__inner--rounded .yoga-card__back {
+  border-radius: 12px;
+}
+
+/* ── Image ── */
+.yoga-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.yoga-card:hover .yoga-card__img {
+  transform: scale(1.05);
+}
+
+/* ── Overlays ── */
+.yoga-card__overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 3;
+}
+
+.yoga-card__overlay--bottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  padding-top: 60px;
+}
+
+.yoga-card__overlay--top {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  padding-bottom: 40px;
+}
+
+.yoga-card__category {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(240, 237, 232, 0.6);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.yoga-card__name {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  color: #f0ede8;
+}
+
+.yoga-card__sanskrit {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(240, 237, 232, 0.5);
+  margin-top: 2px;
+}
+
+/* ── Minimal Info Button ── */
+.yoga-card__info-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0ede8;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.yoga-card__info-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+/* ── Back Face ── */
+.yoga-card__back-content {
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.yoga-card__back-header {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #2a2724;
+}
+
+.yoga-card__back-name {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+  color: #f0ede8;
+  margin-bottom: 2px;
+}
+
+.yoga-card__back-sanskrit {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #8a8580;
+  margin-bottom: 10px;
+}
+
+.yoga-card__level-badge {
+  display: inline-block;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: #0d0d0d;
+}
+
+.yoga-card__back-section {
+  margin-bottom: 14px;
+}
+
+.yoga-card__back-label {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #6a6560;
+  margin-bottom: 6px;
+}
+
+.yoga-card__back-list {
+  list-style: none;
+  padding: 0;
+}
+
+.yoga-card__back-list li {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  color: #c5c0b8;
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 3px;
+}
+
+.yoga-card__back-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--level-color, #8a8580);
+  font-weight: 700;
+}
+
+.yoga-card__hold-time {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  color: var(--level-color, #8a8580);
+  margin-bottom: 14px;
+}
+
+.yoga-card__back-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid #2a2724;
+}
+
+.yoga-card__share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a8580;
+  background: none;
+  border: 1px solid #2a2724;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.yoga-card__share-btn:hover {
+  color: #f0ede8;
+  border-color: #4a4540;
+}
+
+.yoga-card__tap-hint {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  color: #4a4540;
+  letter-spacing: 0.08em;
+}
+
+/* ── Minimal card back – compact layout ── */
+.yoga-card--minimal .yoga-card__back-content {
+  padding: 16px;
+  overflow: hidden;
+}
+
+.yoga-card--minimal .yoga-card__back-header {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.yoga-card--minimal .yoga-card__back-name {
+  font-size: 19px;
+}
+
+.yoga-card--minimal .yoga-card__back-sanskrit {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.yoga-card--minimal .yoga-card__level-badge {
+  font-size: 9px;
+  padding: 2px 8px;
+}
+
+.yoga-card--minimal .yoga-card__back-section {
+  margin-bottom: 8px;
+}
+
+.yoga-card--minimal .yoga-card__back-label {
+  font-size: 9px;
+  margin-bottom: 3px;
+}
+
+.yoga-card--minimal .yoga-card__back-list li {
+  font-size: 11px;
+  line-height: 1.4;
+  margin-bottom: 1px;
+}
+
+.yoga-card--minimal .yoga-card__hold-time {
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.yoga-card--minimal .yoga-card__back-footer {
+  padding-top: 8px;
+}
+
+.yoga-card--minimal .yoga-card__share-btn {
+  font-size: 11px;
+  padding: 4px 10px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .yoga-cards {
+    padding: 48px 16px 80px;
+  }
+
+  .yoga-cards__grid--landscape {
+    grid-template-columns: 1fr;
+  }
+
+  .yoga-cards__grid--portrait {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .yoga-cards__grid--square {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .yoga-cards__grid--minimal {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .yoga-cards__style-btn {
+    min-width: 0;
+    flex: 1;
+    padding: 10px 12px;
+  }
+
+  .yoga-cards__style-desc {
+    display: none;
+  }
+
+  .yoga-card__back-content {
+    padding: 16px;
+  }
+
+  .yoga-card__back-name {
+    font-size: 20px;
+  }
+}

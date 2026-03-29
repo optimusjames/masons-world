@@ -2,6 +2,14 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'yoga-cards',
+    date: 'March 29, 2026',
+    title: 'Yoga Cards',
+    description: 'Flippable yoga pose cards in four styles — wide, tall, square, and minimal. Click to flip and reveal Sanskrit names, level badges, benefits, alignment cues, and hold times. CSS 3D transforms, staggered entrance animations, and a share button on each card.',
+    screenshot: '/screenshots/yoga-cards.png',
+    tags: ['Yoga', 'Cards', '3D Animation', 'Interactive'],
+  },
+  {
     slug: 'yoga-guide',
     date: 'March 13, 2026',
     title: 'Yoga Guide',

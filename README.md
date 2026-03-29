@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Yoga Cards
+
+**March 29, 2026**
+
+![Yoga Cards](./public/screenshots/yoga-cards.png)
+
+Flippable yoga pose cards in four styles — wide, tall, square, and minimal. Click to flip and reveal Sanskrit names, level badges, benefits, alignment cues, and hold times. CSS 3D transforms, staggered entrance animations, and a share button on each card.
+
+**Tags:** Yoga - Cards - 3D Animation - Interactive
+
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/(experiments)/yoga-cards)**
+
+---
+
 ### Yoga Guide
 
 **March 13, 2026**

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Cormorant_Garamond, Space_Mono, DM_Sans } from 'next/font/google'
-import { poses, cardStyles, type YogaPose, type CardStyle } from './data'
+import { poses, cardStyles, galleryCards, type YogaPose, type CardStyle } from './data'
 import './styles.css'
 
 const cormorant = Cormorant_Garamond({
@@ -36,10 +36,12 @@ function YogaCard({
   pose,
   style,
   index,
+  gridPlacement,
 }: {
   pose: YogaPose
   style: CardStyle
   index: number
+  gridPlacement?: { gridColumn: string; gridRow: string }
 }) {
   const [flipped, setFlipped] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
@@ -73,16 +75,18 @@ function YogaCard({
   const isMinimal = style === 'minimal'
   const isLandscape = style === 'landscape'
   const rounded = style !== 'minimal'
-  const aspectVar = cardStyles.find(s => s.id === style)?.aspectRatio ?? '1 / 1'
+  const isGallery = !!gridPlacement
+  const aspectVar = isGallery ? 'auto' : (cardStyles.find(s => s.id === style)?.aspectRatio ?? '1 / 1')
 
   return (
     <div
       ref={cardRef}
-      className={`yoga-card yoga-card--${style}`}
+      className={`yoga-card yoga-card--${style} ${isGallery ? 'yoga-card--gallery' : ''}`}
       style={{
         '--aspect': aspectVar,
         '--delay': `${index * 0.08}s`,
         '--level-color': levelColor[pose.level],
+        ...(gridPlacement ?? {}),
       } as React.CSSProperties}
       onClick={() => setFlipped(f => !f)}
       role="button"
@@ -126,54 +130,106 @@ function YogaCard({
 
         {/* BACK */}
         <div className="yoga-card__face yoga-card__back">
-          <div className="yoga-card__back-content">
-            <div className="yoga-card__back-header">
-              <h3 className="yoga-card__back-name">{pose.name}</h3>
-              <p className="yoga-card__back-sanskrit">{pose.sanskrit}</p>
-              <span
-                className="yoga-card__level-badge"
-                style={{ background: levelColor[pose.level] }}
-              >
-                {pose.level}
-              </span>
-            </div>
+          <div className={`yoga-card__back-content ${isLandscape ? 'yoga-card__back-content--landscape' : ''}`}>
+            {isLandscape ? (
+              <>
+                <div className="yoga-card__back-left">
+                  <h3 className="yoga-card__back-name">{pose.name}</h3>
+                  <p className="yoga-card__back-sanskrit">{pose.sanskrit}</p>
+                  <span
+                    className="yoga-card__level-badge"
+                    style={{ background: levelColor[pose.level] }}
+                  >
+                    {pose.level}
+                  </span>
+                  {pose.holdTime && (
+                    <p className="yoga-card__hold-time">
+                      Hold: {pose.holdTime}
+                    </p>
+                  )}
+                  <div className="yoga-card__back-footer">
+                    <button className="yoga-card__share-btn" onClick={handleShare}>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 9.5l4-3M6 6.5l4 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                        <circle cx="4.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.2" />
+                        <circle cx="11.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.2" />
+                        <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.2" />
+                      </svg>
+                      Share
+                    </button>
+                    <span className="yoga-card__tap-hint">tap to flip</span>
+                  </div>
+                </div>
+                <div className="yoga-card__back-right">
+                  <div className="yoga-card__back-section">
+                    <h4 className="yoga-card__back-label">Benefits</h4>
+                    <ul className="yoga-card__back-list">
+                      {pose.benefits.map(b => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="yoga-card__back-section">
+                    <h4 className="yoga-card__back-label">Cues</h4>
+                    <ul className="yoga-card__back-list">
+                      {pose.cues.map(c => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="yoga-card__back-header">
+                  <h3 className="yoga-card__back-name">{pose.name}</h3>
+                  <p className="yoga-card__back-sanskrit">{pose.sanskrit}</p>
+                  <span
+                    className="yoga-card__level-badge"
+                    style={{ background: levelColor[pose.level] }}
+                  >
+                    {pose.level}
+                  </span>
+                </div>
 
-            <div className="yoga-card__back-section">
-              <h4 className="yoga-card__back-label">Benefits</h4>
-              <ul className="yoga-card__back-list">
-                {pose.benefits.map(b => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </div>
+                <div className="yoga-card__back-section">
+                  <h4 className="yoga-card__back-label">Benefits</h4>
+                  <ul className="yoga-card__back-list">
+                    {pose.benefits.map(b => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
 
-            <div className="yoga-card__back-section">
-              <h4 className="yoga-card__back-label">Cues</h4>
-              <ul className="yoga-card__back-list">
-                {pose.cues.map(c => (
-                  <li key={c}>{c}</li>
-                ))}
-              </ul>
-            </div>
+                <div className="yoga-card__back-section">
+                  <h4 className="yoga-card__back-label">Cues</h4>
+                  <ul className="yoga-card__back-list">
+                    {pose.cues.map(c => (
+                      <li key={c}>{c}</li>
+                    ))}
+                  </ul>
+                </div>
 
-            {pose.holdTime && (
-              <p className="yoga-card__hold-time">
-                Hold: {pose.holdTime}
-              </p>
+                {pose.holdTime && (
+                  <p className="yoga-card__hold-time">
+                    Hold: {pose.holdTime}
+                  </p>
+                )}
+
+                <div className="yoga-card__back-footer">
+                  <button className="yoga-card__share-btn" onClick={handleShare}>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 9.5l4-3M6 6.5l4 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                      <circle cx="4.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.2" />
+                      <circle cx="11.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.2" />
+                      <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.2" />
+                    </svg>
+                    Share
+                  </button>
+                  <span className="yoga-card__tap-hint">tap to flip</span>
+                </div>
+              </>
             )}
-
-            <div className="yoga-card__back-footer">
-              <button className="yoga-card__share-btn" onClick={handleShare}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M6 9.5l4-3M6 6.5l4 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                  <circle cx="4.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.2" />
-                  <circle cx="11.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.2" />
-                  <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
-                Share
-              </button>
-              <span className="yoga-card__tap-hint">tap to flip</span>
-            </div>
           </div>
         </div>
       </div>
@@ -211,9 +267,23 @@ export default function YogaCards() {
         className={`yoga-cards__grid yoga-cards__grid--${activeStyle}`}
         key={activeStyle}
       >
-        {poses.map((pose, i) => (
-          <YogaCard key={`${pose.id}-${activeStyle}`} pose={pose} style={activeStyle} index={i} />
-        ))}
+        {activeStyle === 'gallery'
+          ? galleryCards.map((gc, i) => {
+              const pose = poses.find(p => p.id === gc.poseId)!
+              return (
+                <YogaCard
+                  key={`${gc.poseId}-gallery`}
+                  pose={pose}
+                  style={gc.style as CardStyle}
+                  index={i}
+                  gridPlacement={{ gridColumn: gc.gridColumn, gridRow: gc.gridRow }}
+                />
+              )
+            })
+          : poses.map((pose, i) => (
+              <YogaCard key={`${pose.id}-${activeStyle}`} pose={pose} style={activeStyle} index={i} />
+            ))
+        }
       </section>
     </div>
   )

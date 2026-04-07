@@ -5,7 +5,7 @@ export const experiments: Experiment[] = [
     slug: 'yoga-cards',
     date: 'March 29, 2026',
     title: 'Yoga Cards',
-    description: 'Flippable yoga pose cards in four styles — wide, tall, square, and minimal. Click to flip and reveal Sanskrit names, level badges, benefits, alignment cues, and hold times. CSS 3D transforms, staggered entrance animations, and a share button on each card.',
+    description: 'Flippable yoga pose cards in five layouts — wide, tall, square, minimal, and gallery. Click to flip and reveal Sanskrit names, level badges, benefits, alignment cues, and hold times. CSS 3D transforms, staggered entrance animations, and shareable deep links per card.',
     screenshot: '/screenshots/yoga-cards.png',
     tags: ['Yoga', 'Cards', '3D Animation', 'Interactive'],
   },

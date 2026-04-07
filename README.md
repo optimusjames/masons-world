@@ -16,7 +16,7 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ![Yoga Cards](./public/screenshots/yoga-cards.png)
 
-Flippable yoga pose cards in four styles — wide, tall, square, and minimal. Click to flip and reveal Sanskrit names, level badges, benefits, alignment cues, and hold times. CSS 3D transforms, staggered entrance animations, and a share button on each card.
+Flippable yoga pose cards in five layouts — wide, tall, square, minimal, and gallery. Click to flip and reveal Sanskrit names, level badges, benefits, alignment cues, and hold times. CSS 3D transforms, staggered entrance animations, and shareable deep links per card (e.g. `?pose=tree-pose` scrolls to and highlights that card).
 
 **Tags:** Yoga - Cards - 3D Animation - Interactive
 

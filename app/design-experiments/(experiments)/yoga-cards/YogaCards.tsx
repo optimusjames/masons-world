@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Cormorant_Garamond, Space_Mono, DM_Sans } from 'next/font/google'
 import { poses, cardStyles, galleryCards, type YogaPose, type CardStyle } from './data'
 import './styles.css'
@@ -37,14 +38,18 @@ function YogaCard({
   style,
   index,
   gridPlacement,
+  highlighted,
 }: {
   pose: YogaPose
   style: CardStyle
   index: number
   gridPlacement?: { gridColumn: string; gridRow: string }
+  highlighted?: boolean
 }) {
   const [flipped, setFlipped] = useState(false)
+  const [copied, setCopied] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout>>(null)
 
   useEffect(() => {
     const el = cardRef.current
@@ -62,15 +67,20 @@ function YogaCard({
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (highlighted && cardRef.current) {
+      cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [highlighted])
+
   const handleShare = useCallback(async (e: React.MouseEvent) => {
     e.stopPropagation()
-    const text = `${pose.name} (${pose.sanskrit}) — ${pose.benefits[0]}`
-    if (navigator.share) {
-      await navigator.share({ title: pose.name, text })
-    } else {
-      await navigator.clipboard.writeText(text)
-    }
-  }, [pose])
+    const url = `${window.location.origin}${window.location.pathname}?pose=${pose.id}`
+    await navigator.clipboard.writeText(url)
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current)
+    setCopied(true)
+    copyTimerRef.current = setTimeout(() => setCopied(false), 2000)
+  }, [pose.id])
 
   const isMinimal = style === 'minimal'
   const isLandscape = style === 'landscape'
@@ -81,7 +91,8 @@ function YogaCard({
   return (
     <div
       ref={cardRef}
-      className={`yoga-card yoga-card--${style} ${isGallery ? 'yoga-card--gallery' : ''}`}
+      data-pose-id={pose.id}
+      className={`yoga-card yoga-card--${style} ${isGallery ? 'yoga-card--gallery' : ''} ${highlighted ? 'yoga-card--highlighted' : ''}`}
       style={{
         '--aspect': aspectVar,
         '--delay': `${index * 0.08}s`,
@@ -148,14 +159,20 @@ function YogaCard({
                     </p>
                   )}
                   <div className="yoga-card__back-footer">
-                    <button className="yoga-card__share-btn" onClick={handleShare}>
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 9.5l4-3M6 6.5l4 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                        <circle cx="4.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.2" />
-                        <circle cx="11.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.2" />
-                        <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.2" />
-                      </svg>
-                      Share
+                    <button className={`yoga-card__share-btn ${copied ? 'yoga-card__share-btn--copied' : ''}`} onClick={handleShare}>
+                      {copied ? (
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M3.5 8.5l3 3 6-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : (
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M6 9.5l4-3M6 6.5l4 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                          <circle cx="4.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.2" />
+                          <circle cx="11.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.2" />
+                          <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.2" />
+                        </svg>
+                      )}
+                      {copied ? 'Copied!' : 'Share'}
                     </button>
                     <span className="yoga-card__tap-hint">tap to flip</span>
                   </div>
@@ -217,14 +234,20 @@ function YogaCard({
                 )}
 
                 <div className="yoga-card__back-footer">
-                  <button className="yoga-card__share-btn" onClick={handleShare}>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M6 9.5l4-3M6 6.5l4 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                      <circle cx="4.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.2" />
-                      <circle cx="11.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.2" />
-                      <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.2" />
-                    </svg>
-                    Share
+                  <button className={`yoga-card__share-btn ${copied ? 'yoga-card__share-btn--copied' : ''}`} onClick={handleShare}>
+                    {copied ? (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5l3 3 6-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    ) : (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 9.5l4-3M6 6.5l4 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                        <circle cx="4.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.2" />
+                        <circle cx="11.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.2" />
+                        <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.2" />
+                      </svg>
+                    )}
+                    {copied ? 'Copied!' : 'Share'}
                   </button>
                   <span className="yoga-card__tap-hint">tap to flip</span>
                 </div>
@@ -238,6 +261,8 @@ function YogaCard({
 }
 
 export default function YogaCards() {
+  const searchParams = useSearchParams()
+  const highlightedPose = searchParams.get('pose')
   const [activeStyle, setActiveStyle] = useState<CardStyle>('landscape')
 
   return (
@@ -277,11 +302,12 @@ export default function YogaCards() {
                   style={gc.style as CardStyle}
                   index={i}
                   gridPlacement={{ gridColumn: gc.gridColumn, gridRow: gc.gridRow }}
+                  highlighted={highlightedPose === gc.poseId}
                 />
               )
             })
           : poses.map((pose, i) => (
-              <YogaCard key={`${pose.id}-${activeStyle}`} pose={pose} style={activeStyle} index={i} />
+              <YogaCard key={`${pose.id}-${activeStyle}`} pose={pose} style={activeStyle} index={i} highlighted={highlightedPose === pose.id} />
             ))
         }
       </section>

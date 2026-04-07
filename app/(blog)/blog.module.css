@@ -71,6 +71,28 @@
   color: #aaa;
 }
 
+.shareButtonCopied {
+  color: #4a9;
+}
+
+.copiedToast {
+  position: absolute;
+  right: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-space-mono, monospace);
+  font-size: 11px;
+  color: #4a9;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.copiedToastVisible {
+  opacity: 1;
+}
+
 .shareRow {
   display: flex;
   justify-content: center;

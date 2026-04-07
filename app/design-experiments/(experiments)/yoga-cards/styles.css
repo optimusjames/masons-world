@@ -425,10 +425,29 @@
   transition: all 0.2s;
 }
 
+.yoga-card__share-btn--copied {
+  color: #6bcb77;
+  border-color: #6bcb77;
+}
+
 @media (hover: hover) {
   .yoga-card__share-btn:hover {
     color: #f0ede8;
     border-color: #4a4540;
+  }
+}
+
+/* Highlighted card (from ?pose= deep link) */
+.yoga-card--highlighted {
+  animation: card-highlight 2s ease-out 0.5s both;
+}
+
+@keyframes card-highlight {
+  0% {
+    box-shadow: 0 0 0 3px rgba(107, 203, 119, 0.8), 0 0 24px rgba(107, 203, 119, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(107, 203, 119, 0), 0 0 0px rgba(107, 203, 119, 0);
   }
 }
 

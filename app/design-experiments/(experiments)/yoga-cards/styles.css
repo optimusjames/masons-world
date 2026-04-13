@@ -112,17 +112,6 @@
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
-.yoga-cards__grid--gallery {
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(8, 140px);
-}
-
-/* Gallery cards: fill grid area, no aspect-ratio */
-.yoga-card--gallery .yoga-card__inner {
-  aspect-ratio: auto;
-  height: 100%;
-}
-
 /* ── Card ── */
 .yoga-card {
   perspective: 900px;
@@ -587,70 +576,22 @@
   font-size: 8px;
 }
 
-/* ── Responsive ── */
+/* ── Responsive ──
+   Mobile: every style collapses to a single full-width column.
+   Each card renders at ~full-viewport width, which is larger than
+   its desktop grid cell, so the existing per-style typography fits
+   comfortably. Shareable as a screenshot. */
 @media (max-width: 768px) {
   .yoga-cards {
     padding: 48px 16px 80px;
   }
 
-  .yoga-cards__grid--landscape {
-    grid-template-columns: 1fr;
-  }
-
-  .yoga-cards__grid--gallery {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(12, 100px);
-    gap: 16px;
-  }
-
-  /* Reset explicit placements for mobile 2-col layout */
-  .yoga-cards__grid--gallery .yoga-card--gallery {
-    grid-column: auto !important;
-    grid-row: auto !important;
-  }
-
-  .yoga-cards__grid--gallery .yoga-card--landscape {
-    grid-column: span 2 !important;
-    grid-row: span 2 !important;
-  }
-
-  .yoga-cards__grid--gallery .yoga-card--portrait {
-    grid-row: span 3 !important;
-  }
-
-  .yoga-cards__grid--gallery .yoga-card--square {
-    grid-row: span 2 !important;
-  }
-
-  /* Landscape back: stack on small screens */
-  .yoga-card__back-content--landscape {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .yoga-card__back-left {
-    flex: none;
-  }
-
-  .yoga-card__back-right {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid #2a2724;
-    padding-top: 8px;
-  }
-
-  .yoga-cards__grid--portrait {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .yoga-cards__grid--square {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
+  .yoga-cards__grid,
+  .yoga-cards__grid--landscape,
+  .yoga-cards__grid--portrait,
+  .yoga-cards__grid--square,
   .yoga-cards__grid--minimal {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 16px;
   }
 
@@ -658,56 +599,10 @@
     min-width: 0;
     flex: 1;
     padding: 10px 12px;
+    text-align: center;
   }
 
   .yoga-cards__style-desc {
     display: none;
-  }
-
-  .yoga-card__back-content {
-    padding: 12px;
-  }
-
-  .yoga-card__back-name {
-    font-size: 16px;
-  }
-
-  .yoga-card__back-sanskrit {
-    font-size: 11px;
-    margin-bottom: 4px;
-  }
-
-  .yoga-card__back-section {
-    margin-bottom: 4px;
-  }
-
-  .yoga-card__back-label {
-    font-size: 8px;
-    margin-bottom: 1px;
-  }
-
-  .yoga-card__back-list li {
-    font-size: 10px;
-    line-height: 1.3;
-    margin-bottom: 0;
-    padding-left: 10px;
-  }
-
-  .yoga-card__hold-time {
-    font-size: 9px;
-    margin-bottom: 4px;
-  }
-
-  .yoga-card__back-footer {
-    padding-top: 4px;
-  }
-
-  .yoga-card__share-btn {
-    font-size: 10px;
-    padding: 3px 7px;
-  }
-
-  .yoga-card__tap-hint {
-    font-size: 8px;
   }
 }

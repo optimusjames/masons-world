@@ -103,34 +103,7 @@ export const poses: YogaPose[] = [
   },
 ]
 
-export type CardStyle = 'landscape' | 'portrait' | 'square' | 'minimal' | 'gallery'
-
-// Gallery mode: explicit grid placement for each pose
-// 4 columns, 8 row units. Cards fill their grid area (no aspect-ratio).
-//
-//          Col 1    Col 2    Col 3    Col 4
-// Row 1-2: [  Warrior II   ] [Tree  ] [Half  ]
-// Row 3-4: [  Cobra Pose   ] [Pose  ] [Moon  ]
-// Row 5-6: [ Downward Dog  ] [Legs  ] [Medi- ]
-// Row 7-8: [  Crow Pose    ] [Up Wl ] [tation]
-//
-export interface GalleryCard {
-  poseId: string
-  style: CardStyle
-  gridColumn: string
-  gridRow: string
-}
-
-export const galleryCards: GalleryCard[] = [
-  { poseId: 'warrior-ii',   style: 'landscape', gridColumn: '1 / 3', gridRow: '1 / 3' },
-  { poseId: 'tree-pose',    style: 'portrait',  gridColumn: '3 / 4', gridRow: '1 / 5' },
-  { poseId: 'half-moon',    style: 'square',    gridColumn: '4 / 5', gridRow: '1 / 3' },
-  { poseId: 'cobra',        style: 'landscape', gridColumn: '1 / 3', gridRow: '3 / 5' },
-  { poseId: 'meditation',   style: 'portrait',  gridColumn: '4 / 5', gridRow: '3 / 7' },
-  { poseId: 'downward-dog', style: 'landscape', gridColumn: '1 / 3', gridRow: '5 / 7' },
-  { poseId: 'legs-up-wall', style: 'square',    gridColumn: '3 / 4', gridRow: '5 / 7' },
-  { poseId: 'crow',         style: 'landscape', gridColumn: '1 / 3', gridRow: '7 / 9' },
-]
+export type CardStyle = 'landscape' | 'portrait' | 'square' | 'minimal'
 
 export interface CardStyleConfig {
   id: CardStyle
@@ -168,12 +141,5 @@ export const cardStyles: CardStyleConfig[] = [
     description: 'Image only, info icon to flip',
     aspectRatio: '4 / 5',
     rounded: false,
-  },
-  {
-    id: 'gallery',
-    label: 'Gallery',
-    description: 'Mixed styles, best fit per pose',
-    aspectRatio: '1 / 1',
-    rounded: true,
   },
 ]

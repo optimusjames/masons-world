@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Cormorant_Garamond, Space_Mono, DM_Sans } from 'next/font/google'
-import { poses, cardStyles, galleryCards, type YogaPose, type CardStyle } from './data'
+import { poses, cardStyles, type YogaPose, type CardStyle } from './data'
 import './styles.css'
 
 const cormorant = Cormorant_Garamond({
@@ -37,13 +37,11 @@ function YogaCard({
   pose,
   style,
   index,
-  gridPlacement,
   highlighted,
 }: {
   pose: YogaPose
   style: CardStyle
   index: number
-  gridPlacement?: { gridColumn: string; gridRow: string }
   highlighted?: boolean
 }) {
   const [flipped, setFlipped] = useState(false)
@@ -85,19 +83,17 @@ function YogaCard({
   const isMinimal = style === 'minimal'
   const isLandscape = style === 'landscape'
   const rounded = style !== 'minimal'
-  const isGallery = !!gridPlacement
-  const aspectVar = isGallery ? 'auto' : (cardStyles.find(s => s.id === style)?.aspectRatio ?? '1 / 1')
+  const aspectVar = cardStyles.find(s => s.id === style)?.aspectRatio ?? '1 / 1'
 
   return (
     <div
       ref={cardRef}
       data-pose-id={pose.id}
-      className={`yoga-card yoga-card--${style} ${isGallery ? 'yoga-card--gallery' : ''} ${highlighted ? 'yoga-card--highlighted' : ''}`}
+      className={`yoga-card yoga-card--${style} ${highlighted ? 'yoga-card--highlighted' : ''}`}
       style={{
         '--aspect': aspectVar,
         '--delay': `${index * 0.08}s`,
         '--level-color': levelColor[pose.level],
-        ...(gridPlacement ?? {}),
       } as React.CSSProperties}
       onClick={() => setFlipped(f => !f)}
       role="button"
@@ -292,24 +288,9 @@ export default function YogaCards() {
         className={`yoga-cards__grid yoga-cards__grid--${activeStyle}`}
         key={activeStyle}
       >
-        {activeStyle === 'gallery'
-          ? galleryCards.map((gc, i) => {
-              const pose = poses.find(p => p.id === gc.poseId)!
-              return (
-                <YogaCard
-                  key={`${gc.poseId}-gallery`}
-                  pose={pose}
-                  style={gc.style as CardStyle}
-                  index={i}
-                  gridPlacement={{ gridColumn: gc.gridColumn, gridRow: gc.gridRow }}
-                  highlighted={highlightedPose === gc.poseId}
-                />
-              )
-            })
-          : poses.map((pose, i) => (
-              <YogaCard key={`${pose.id}-${activeStyle}`} pose={pose} style={activeStyle} index={i} highlighted={highlightedPose === pose.id} />
-            ))
-        }
+        {poses.map((pose, i) => (
+          <YogaCard key={`${pose.id}-${activeStyle}`} pose={pose} style={activeStyle} index={i} highlighted={highlightedPose === pose.id} />
+        ))}
       </section>
     </div>
   )

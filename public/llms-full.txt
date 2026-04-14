@@ -24,6 +24,8 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Blog
 
+- [Who's the Smartest?](https://masons-world.vercel.app/blog/whos-the-smartest): On vibe as intelligence, and why it's about to matter more. Riffs on Jensen Huang's definition of smart as the ability to feel the vibe -- integrating data, analysis, first principles, life experience, wisdom, and sensing people. Argues the unlikely person in the room is often the one tuned in, and AI is about to make that edge decisive. By James Mason. Date: April 13, 2026.
+
 - [Wrong Again](https://masons-world.vercel.app/blog/wrong-again): On being wrong, adjusting, and the loop that actually works. About the iterative process of making mistakes, learning from them, and how that cycle is the real skill. By James Mason. Date: March 12, 2026.
 
 - [This Is Gonna Be Fun](https://masons-world.vercel.app/blog/this-is-gonna-be-fun): On starting before you know what you're doing. About diving into projects with enthusiasm before having everything figured out, and why that's often the right move. By James Mason. Date: March 9, 2026.

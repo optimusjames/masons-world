@@ -1,0 +1,58 @@
+{
+  "type": "FeatureCollection",
+  "source": {
+    "title": "High Crash Intersections",
+    "url": "https://gis-pdx.opendata.arcgis.com/api/download/v1/items/bce6a71d1eaf4013bcad42d878d6fe49/geojson?layers=1428",
+    "fetchedAt": "2026-04-19T05:38:14.591Z"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": 9,
+        "IntersectionID": "01744NODE64137",
+        "LocationDescription": "SE Holgate Blvd and SE Mcloughlin Blvd",
+        "NumFatal": 2,
+        "NumInjA": 2,
+        "NumInjB": 13,
+        "NumInjC": 21,
+        "InjuryCosts": 14851300,
+        "ADTVolume": 66509,
+        "CollisonRate": 0.41193313,
+        "CurrentRank": 12,
+        "GlobalID": "{52AF3101-F94B-4A70-B74C-769174FE5F3C}"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65424200920819,
+          45.490334526956616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": 18,
+        "IntersectionID": "00792NODE56253",
+        "LocationDescription": "SE Clay St and SE Martin Luther King Jr. Blvd\r\n",
+        "NumFatal": 1,
+        "NumInjA": 0,
+        "NumInjB": 4,
+        "NumInjC": 12,
+        "InjuryCosts": 6937300,
+        "ADTVolume": 33744,
+        "CollisonRate": 0.50338731,
+        "CurrentRank": 29,
+        "GlobalID": "{C72FFCAE-274F-46CD-B232-7C030BD80A81}"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66184945866709,
+          45.511527427643124
+        ]
+      }
+    }
+  ]
+}

@@ -86,20 +86,22 @@ export default function Home() {
           className={styles.experiment}
           data-delay={Math.min(index + 1, 6)}
         >
-          <div className={styles.experimentPreviewContainer}>
-            <Link
-              href={`/design-experiments/${experiment.slug}`}
-              onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
-            >
-              <Image
-                src={experiment.screenshot}
-                alt={`${experiment.title} preview`}
-                width={280}
-                height={210}
-                className={styles.experimentPreview}
-              />
-            </Link>
-          </div>
+          {experiment.screenshot && (
+            <div className={styles.experimentPreviewContainer}>
+              <Link
+                href={`/design-experiments/${experiment.slug}`}
+                onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
+              >
+                <Image
+                  src={experiment.screenshot}
+                  alt={`${experiment.title} preview`}
+                  width={280}
+                  height={210}
+                  className={styles.experimentPreview}
+                />
+              </Link>
+            </div>
+          )}
           <div className={styles.experimentContent}>
             <div className={styles.experimentDate}>{experiment.date}</div>
             <h2 className={styles.experimentTitle}>

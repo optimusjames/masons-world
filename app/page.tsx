@@ -32,14 +32,16 @@ export default async function Home() {
               <div className={styles.columnItems}>
                 {recentExperiments.map((exp) => (
                   <CurtainLink key={exp.slug} href={`/design-experiments/${exp.slug}`} className={styles.columnItem} curtainTransition={true}>
-                    <Image
-                      src={exp.screenshot}
-                      alt={exp.title}
-                      width={120}
-                      height={90}
-                      sizes="60px"
-                      className={styles.itemThumb}
-                    />
+                    {exp.screenshot && (
+                      <Image
+                        src={exp.screenshot}
+                        alt={exp.title}
+                        width={120}
+                        height={90}
+                        sizes="60px"
+                        className={styles.itemThumb}
+                      />
+                    )}
                     <div className={styles.itemText}>
                       <span className={styles.itemTitle}>{exp.title}</span>
                       <span className={styles.itemDate}>{exp.date}</span>

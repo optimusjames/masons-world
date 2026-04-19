@@ -8,6 +8,7 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Design Experiments
 
+- [McLoughlin / 99E](https://masons-world.vercel.app/design-experiments/mcloughlin-99e): Interactive Leaflet map of a four-mile Portland corridor with Portland Open Data High Crash Network overlays, framing a 45→40 mph speed reduction through an autonomous-vehicle operations lens
 - [Yoga Cards](https://masons-world.vercel.app/design-experiments/yoga-cards): Flippable yoga pose cards in five layouts with shareable deep links, CSS 3D transforms, and staggered animations
 - [Yoga Guide](https://masons-world.vercel.app/design-experiments/yoga-guide): Five-step questionnaire that produces a personalized yoga prescription with poses, breathing, and Ayurvedic guidance
 - [Yoga Flow](https://masons-world.vercel.app/design-experiments/yoga-flow): Two-screen yoga flow planner with duration/level selection and sequenced pose list

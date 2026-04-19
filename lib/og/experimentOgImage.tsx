@@ -21,13 +21,15 @@ export function experimentOgImage(slug: string) {
     )
   }
 
-  const screenshotPath = path.join(process.cwd(), 'public', exp.screenshot)
   let imgSrc: string | null = null
 
-  if (existsSync(screenshotPath)) {
-    const imgBuffer = readFileSync(screenshotPath)
-    const ext = path.extname(exp.screenshot).slice(1).replace('jpg', 'jpeg')
-    imgSrc = `data:image/${ext};base64,${imgBuffer.toString('base64')}`
+  if (exp.screenshot) {
+    const screenshotPath = path.join(process.cwd(), 'public', exp.screenshot)
+    if (existsSync(screenshotPath)) {
+      const imgBuffer = readFileSync(screenshotPath)
+      const ext = path.extname(exp.screenshot).slice(1).replace('jpg', 'jpeg')
+      imgSrc = `data:image/${ext};base64,${imgBuffer.toString('base64')}`
+    }
   }
 
   return new ImageResponse(

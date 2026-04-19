@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### McLoughlin / 99E
+
+**April 18, 2026**
+
+![McLoughlin / 99E](./public/screenshots/mcloughlin-99e.png)
+
+Interactive Leaflet map of SE McLoughlin Boulevard / OR-99E — a four-mile Portland corridor — with Portland Open Data High Crash Network streets and High Crash intersections overlaid on the stretch where I worked with Vision Zero, PBOT, and ODOT to drop the posted speed from 45 to 40 mph. SE Holgate & McLoughlin surfaces as Portland's #12 most dangerous intersection. Framed through the lens of autonomous vehicle operations — first of a planned series of Portland GIS studies.
+
+**Tags:** Map - Leaflet - Portland - Safety - AV
+
+**[View Code →](https://github.com/optimusjames/masons-world/tree/main/app/design-experiments/(experiments)/mcloughlin-99e)**
+
+---
+
 ### Yoga Cards
 
 **March 29, 2026**

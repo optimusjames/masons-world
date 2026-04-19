@@ -3,7 +3,7 @@ export interface Experiment {
   date: string
   title: string
   description: string
-  screenshot: string
+  screenshot?: string
   tags: string[]
   theme?: 'light' | 'dark'
 }

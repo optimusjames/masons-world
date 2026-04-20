@@ -237,7 +237,7 @@
   font-family: var(--font-space-grotesk), sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #F5F3F0;
+  color: color-mix(in srgb, var(--glow-color, #F5F3F0) 70%, transparent);
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;

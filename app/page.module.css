@@ -239,8 +239,8 @@
   font-weight: 700;
   color: #F5F3F0;
   text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.35),
-    0 0 22px rgba(255, 255, 255, 0.12);
+    0 0 10px rgba(255, 255, 255, 0.55),
+    0 0 28px rgba(255, 255, 255, 0.18);
   padding-bottom: 0.5rem;
   border-bottom: 1px solid color-mix(in srgb, var(--complement-color, #ffffff) 30%, transparent);
   display: flex;

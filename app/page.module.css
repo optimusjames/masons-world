@@ -248,6 +248,7 @@
 
 .columnTitle svg {
   opacity: 0.5;
+  color: var(--complement-color, currentColor);
   transition: opacity 0.3s ease;
 }
 

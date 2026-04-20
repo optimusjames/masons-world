@@ -3,12 +3,12 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const GREETINGS = [
-  { text: "Greetings, Earthling.", color: "#7FE8A0", glow: "#7FE8A0" },
-  { text: "Oh, hello there.", color: "#1E3FBA", glow: "#4A8AFF" },
-  { text: "You found me.", color: "#5EC47A", glow: "#7FE8A0" },
-  { text: "Don\u2019t panic.", color: "#7FE8A0", glow: "#7FE8A0" },
-  { text: "Signal received.", color: "#8FF7F9", glow: "#8FF7F9" },
-  { text: "Transmission incoming.", color: "#5EC47A", glow: "#7FE8A0" },
+  { text: "Greetings, Earthling.", color: "#7FE8A0", glow: "#7FE8A0", complement: "#E87DC6" },
+  { text: "Oh, hello there.", color: "#1E3FBA", glow: "#4A8AFF", complement: "#F0A840" },
+  { text: "You found me.", color: "#5EC47A", glow: "#7FE8A0", complement: "#C45E93" },
+  { text: "Don\u2019t panic.", color: "#7FE8A0", glow: "#7FE8A0", complement: "#E87DC6" },
+  { text: "Signal received.", color: "#8FF7F9", glow: "#8FF7F9", complement: "#F9918F" },
+  { text: "Transmission incoming.", color: "#5EC47A", glow: "#7FE8A0", complement: "#C45E93" },
 ];
 
 function pick() {
@@ -31,6 +31,7 @@ export default function RandomGreeting({ className }: { className?: string }) {
     const g = pick();
     setGreeting(g);
     document.documentElement.style.setProperty("--glow-color", g.glow);
+    document.documentElement.style.setProperty("--complement-color", g.complement);
   }, []);
 
   const handleClick = useCallback(() => {

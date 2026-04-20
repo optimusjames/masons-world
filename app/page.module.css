@@ -253,7 +253,7 @@
 
 .columnTitle:hover svg {
   opacity: 0.9;
-  animation: caretDrift 2.4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  animation: caretDrift 1.6s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 
 @keyframes caretDrift {
@@ -282,7 +282,7 @@
 }
 
 .columnItem:hover {
-  animation: cardBreath 2s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  animation: cardBreath 1.4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 
 @keyframes cardBreath {

@@ -11,7 +11,7 @@ This file tracks major changes and milestones in the project.
 ## April 2026
 
 **McLoughlin / 99E**  
-New design experiment. Interactive Leaflet map of SE McLoughlin Boulevard / OR-99E with Portland Open Data High Crash Network streets and High Crash intersections overlaid on the four-mile corridor from the Ross Island Bridge into Milwaukie. Anchored in a real 45 → 40 mph posted-speed reduction, framed through the lens of autonomous vehicle operations. SE Holgate & McLoughlin shows up as Portland's #12 most dangerous intersection. First of a planned series of Portland GIS studies.
+New design experiment, then redesigned as a four-chapter scrollytelling case study. Sticky Leaflet map paired with narrative cards walking through the 3-year effort to reduce the posted speed on SE McLoughlin Blvd / OR-99E — the original 2-mile petition, the cross-agency path from PBOT to ODOT to Salem, the safety record (Portland and ODOT crash data, SE Holgate as Portland's #12 most dangerous intersection), and a modern-corridor view connecting MAX Orange, the Springwater Trail, schools, and parks. Signed off January 2026 as a 4-mile, 45 → 40 mph reduction in both directions.
 
 **Blog post, *Who's the Smartest?***  
 New essay riffing on Jensen Huang's definition of smart as the ability to feel the vibe. Grounds the idea in a concrete AWS-era scene and widens to why this kind of intelligence is about to matter more in an AI-amplified world.

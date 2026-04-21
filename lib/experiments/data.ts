@@ -3,11 +3,11 @@ import type { Experiment } from '@/app/types/experiments'
 export const experiments: Experiment[] = [
   {
     slug: 'mcloughlin-99e',
-    date: 'April 18, 2026',
+    date: 'April 21, 2026',
     title: 'McLoughlin / 99E',
-    description: 'A corridor study of SE McLoughlin Boulevard / OR-99E through the lens of autonomous vehicle operations. Real Portland Open Data crash points overlaid on the stretch where the speed limit was reduced from 45 to 40 mph — Ross Island Bridge through the Portland city limit into Milwaukie.',
+    description: 'A scrollytelling case study of the 3-year effort to reduce the speed limit on SE McLoughlin Blvd / OR-99E — from a 2-mile petition to a 4-mile signed reduction. Real Portland and ODOT crash data, four chapters, a synced map that flies between corridor views as you scroll.',
     screenshot: '/screenshots/mcloughlin-99e.png',
-    tags: ['Map', 'Leaflet', 'Portland', 'Safety', 'AV'],
+    tags: ['Map', 'Leaflet', 'Portland', 'Safety', 'Scrollytelling'],
   },
   {
     slug: 'yoga-cards',

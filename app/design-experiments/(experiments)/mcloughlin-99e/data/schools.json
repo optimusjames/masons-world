@@ -1,0 +1,212 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 357363677,
+        "addr:city": "Milwaukie",
+        "addr:housenumber": "2301",
+        "addr:state": "OR",
+        "addr:street": "Southeast Willard Street",
+        "amenity": "school",
+        "name": "Milwaukie Academy of the Arts",
+        "phone": "+1 503 353 5843",
+        "website": "http://www.academyofthearts.org/",
+        "wikidata": "Q6861856"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.638018,
+          45.441758
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 131504811,
+        "addr:city": "Milwaukie",
+        "addr:housenumber": "2300",
+        "addr:street": "Southeast Harrison Street",
+        "amenity": "school",
+        "education": "school",
+        "name": "Portland Waldorf School",
+        "operator": "Portland Waldorf Association",
+        "phone": "+1 503 654 2200",
+        "website": "https://www.portlandwaldorf.org/",
+        "wikidata": "Q7232070"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.638219,
+              45.445057
+            ],
+            [
+              -122.638537,
+              45.444446
+            ],
+            [
+              -122.640098,
+              45.444252
+            ],
+            [
+              -122.640123,
+              45.444358
+            ],
+            [
+              -122.640411,
+              45.445571
+            ],
+            [
+              -122.639572,
+              45.445695
+            ],
+            [
+              -122.639473,
+              45.44571
+            ],
+            [
+              -122.639475,
+              45.446066
+            ],
+            [
+              -122.639443,
+              45.446181
+            ],
+            [
+              -122.639414,
+              45.446229
+            ],
+            [
+              -122.639361,
+              45.446267
+            ],
+            [
+              -122.639285,
+              45.446294
+            ],
+            [
+              -122.63915,
+              45.446312
+            ],
+            [
+              -122.637708,
+              45.446343
+            ],
+            [
+              -122.637691,
+              45.446343
+            ],
+            [
+              -122.63768,
+              45.446339
+            ],
+            [
+              -122.637669,
+              45.446332
+            ],
+            [
+              -122.637662,
+              45.446323
+            ],
+            [
+              -122.637659,
+              45.446306
+            ],
+            [
+              -122.638118,
+              45.445287
+            ],
+            [
+              -122.638219,
+              45.445057
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 144950832,
+        "addr:city": "Portland",
+        "addr:housenumber": "3830",
+        "addr:state": "OR",
+        "addr:street": "Southeast 14th Avenue",
+        "amenity": "school",
+        "grades": "K-8",
+        "name": "Winterhaven School",
+        "operator": "Portland Public Schools",
+        "operator:short": "PPS",
+        "operator:type": "public",
+        "operator:wikidata": "Q608234",
+        "phone": "+1 503 916 6200",
+        "website": "https://www.pps.net/winterhaven"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.650868,
+              45.494496
+            ],
+            [
+              -122.651279,
+              45.494497
+            ],
+            [
+              -122.651264,
+              45.495347
+            ],
+            [
+              -122.650444,
+              45.495341
+            ],
+            [
+              -122.650449,
+              45.495216
+            ],
+            [
+              -122.650453,
+              45.495017
+            ],
+            [
+              -122.650749,
+              45.495015
+            ],
+            [
+              -122.650807,
+              45.495017
+            ],
+            [
+              -122.650811,
+              45.494783
+            ],
+            [
+              -122.650724,
+              45.494783
+            ],
+            [
+              -122.650727,
+              45.494613
+            ],
+            [
+              -122.650868,
+              45.494496
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "source": {
+    "title": "Schools (OSM) — OpenStreetMap via Overpass",
+    "fetchedAt": "2026-04-21T19:18:55.714Z"
+  }
+}

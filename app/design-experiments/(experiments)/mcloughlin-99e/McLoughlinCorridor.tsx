@@ -1,69 +1,126 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import styles from './styles.module.css'
-import NarrativePanel from './components/NarrativePanel'
 import MapView from './components/MapView'
-import LayerToggle, { type LayerOption } from './components/LayerToggle'
 import Legend from './components/Legend'
+import StoryCard from './components/StoryCard'
+import ChapterIndicator from './components/ChapterIndicator'
+import { useActiveChapter } from './hooks/useActiveChapter'
+import { useElementHeightVar } from './hooks/useElementHeightVar'
 import { headline } from './data/narrative'
+import { chapters, CHAPTER_LAYERS } from './data/chapters'
 import type {
-  LayerId,
   HighCrashStreetsCollection,
   HighCrashIntersectionsCollection,
+  PedCrashesCollection,
+  FatalCrashesCollection,
+  SidewalksCollection,
+  ParksCollection,
+  SchoolsCollection,
+  MaxLineCollection,
+  SpringwaterCollection,
 } from './types'
 import streetsRaw from './data/highCrashStreets.json'
 import intersectionsRaw from './data/highCrashIntersections.json'
+import pedCrashesRaw from './data/pedCrashes.json'
+import fatalCrashesRaw from './data/fatalCrashes.json'
+import sidewalksRaw from './data/sidewalks.json'
+import parksRaw from './data/parks.json'
+import schoolsRaw from './data/schools.json'
+import maxOrangeRaw from './data/maxOrange.json'
+import springwaterRaw from './data/springwater.json'
 
 const highCrashStreets = streetsRaw as unknown as HighCrashStreetsCollection
 const highCrashIntersections = intersectionsRaw as unknown as HighCrashIntersectionsCollection
-
-const LAYER_OPTIONS: LayerOption[] = [
-  { id: 'corridor', label: 'McLoughlin corridor', color: '#e8b04e', shape: 'line' },
-  { id: 'speedZone', label: '40 mph zone', color: 'rgba(232, 176, 78, 0.45)', shape: 'lineSoft' },
-  { id: 'highCrashStreets', label: 'High Crash Network', color: '#ec4899', shape: 'lineDashed' },
-  { id: 'highCrashIntersections', label: 'High Crash intersections', color: '#ef4444', shape: 'dot' },
-]
+const pedCrashes = pedCrashesRaw as unknown as PedCrashesCollection
+const fatalCrashes = fatalCrashesRaw as unknown as FatalCrashesCollection
+const sidewalks = sidewalksRaw as unknown as SidewalksCollection
+const parks = parksRaw as unknown as ParksCollection
+const schools = schoolsRaw as unknown as SchoolsCollection
+const maxOrange = maxOrangeRaw as unknown as MaxLineCollection
+const springwater = springwaterRaw as unknown as SpringwaterCollection
 
 export default function McLoughlinCorridor() {
-  const [visible, setVisible] = useState<LayerId[]>([
-    'corridor',
-    'speedZone',
-    'highCrashStreets',
-    'highCrashIntersections',
-  ])
+  const { activeIndex, registerCard } = useActiveChapter(chapters.length)
+  const stickyRef = useElementHeightVar('--sticky-height')
+  const visibleLayers = CHAPTER_LAYERS[activeIndex] ?? CHAPTER_LAYERS[0]
+  const activeBounds = chapters[activeIndex].bounds
 
-  const toggle = useCallback((id: LayerId) => {
-    setVisible((prev) =>
-      prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id],
-    )
+  useEffect(() => {
+    const html = document.documentElement
+    const prevBehavior = html.style.scrollBehavior
+    const prevSnap = html.style.scrollSnapType
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let enableSnap: (() => void) | null = null
+    if (!reduced) {
+      html.style.scrollBehavior = 'smooth'
+      enableSnap = () => {
+        html.style.scrollSnapType = 'y proximity'
+        window.removeEventListener('scroll', enableSnap as () => void)
+      }
+      window.addEventListener('scroll', enableSnap, { passive: true, once: true })
+    }
+    return () => {
+      html.style.scrollBehavior = prevBehavior
+      html.style.scrollSnapType = prevSnap
+      if (enableSnap) window.removeEventListener('scroll', enableSnap)
+    }
+  }, [])
+
+  const scrollToChapter = useCallback((index: number) => {
+    if (typeof document === 'undefined') return
+    const el = document.querySelector<HTMLElement>(`[data-chapter-index="${index}"]`)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [])
 
   return (
     <div className={styles.page}>
       <header className={styles.headline}>
-        <div className={styles.eyebrow}>Portland GIS · Design Experiment v1</div>
+        <div className={styles.eyebrow}>SE McLoughlin Blvd · Portland, OR · 2018–2026</div>
         <h1 className={styles.title}>{headline.title}</h1>
         <p className={styles.subtitle}>{headline.subtitle}</p>
       </header>
 
-      <div className={styles.mapColumn}>
-        <div className={styles.controls}>
-          <LayerToggle layers={LAYER_OPTIONS} visible={visible} onToggle={toggle} />
+      <div className={styles.grid}>
+        <div className={styles.stickyMap} ref={stickyRef}>
+          <div className={styles.mapWrapper}>
+            <MapView
+              visibleLayers={visibleLayers}
+              activeBounds={activeBounds}
+              highCrashStreets={highCrashStreets}
+              highCrashIntersections={highCrashIntersections}
+              pedCrashes={pedCrashes}
+              fatalCrashes={fatalCrashes}
+              sidewalks={sidewalks}
+              parks={parks}
+              schools={schools}
+              maxOrange={maxOrange}
+              springwater={springwater}
+            />
+            <ChapterIndicator
+              chapters={chapters}
+              activeIndex={activeIndex}
+              onSelect={scrollToChapter}
+            />
+          </div>
+          <Legend visibleLayers={visibleLayers} />
         </div>
 
-        <div className={styles.mapWrapper}>
-          <MapView
-            visibleLayers={visible}
-            highCrashStreets={highCrashStreets}
-            highCrashIntersections={highCrashIntersections}
-          />
+        <div className={styles.storyColumn}>
+          {chapters.map((c) => (
+            <StoryCard
+              key={c.id}
+              chapter={c}
+              isActive={c.index === activeIndex}
+              registerRef={registerCard(c.index)}
+            />
+          ))}
+          <p className={styles.footnote}>
+            Speed reduction signed January 2026 · 2024–2026 crash data pending ODOT publication
+          </p>
         </div>
-
-        <Legend />
       </div>
-
-      <NarrativePanel />
     </div>
   )
 }

@@ -1,0 +1,1049 @@
+{
+  "type": "FeatureCollection",
+  "source": {
+    "title": "ODOT Crash Data — Fatal & Serious (all types)",
+    "fetchedAt": "2026-04-21T19:18:51.978Z"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65098947176747,
+          45.48963046634876
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1794830,
+        "CRASH_DT": 1539172800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 1,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65872558837582,
+          45.51223324451697
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1781263,
+        "CRASH_DT": 1521115200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65321724985616,
+          45.4903415768779
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1785352,
+        "CRASH_DT": 1526040000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.63830939204207,
+          45.46531475112096
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1852707,
+        "CRASH_DT": 1573819200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64350243521304,
+          45.48167305722209
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1863280,
+        "CRASH_DT": 1560513600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65872897197096,
+          45.51152103752292
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1828328,
+        "CRASH_DT": 1553688000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64125892756833,
+          45.45288221129512
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1876970,
+        "CRASH_DT": 1606910400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.63837407258572,
+          45.4658926257403
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1876585,
+        "CRASH_DT": 1608465600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 1,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6416214550446,
+          45.45036062724265
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1876491,
+        "CRASH_DT": 1579176000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66257823233333,
+          45.501394413915754
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1876666,
+        "CRASH_DT": 1602331200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66185436891638,
+          45.51081825748815
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1876270,
+        "CRASH_DT": 1607428800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66079647644844,
+          45.51152787538701
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1916370,
+        "CRASH_DT": 1622289600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65872425658316,
+          45.51223412329732
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1916209,
+        "CRASH_DT": 1619784000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66282692959481,
+          45.51011984976617
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1916380,
+        "CRASH_DT": 1620561600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64057331685937,
+          45.47462730614483
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1927552,
+        "CRASH_DT": 1631361600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 2,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64328945134025,
+          45.48317528284486
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1937254,
+        "CRASH_DT": 1634385600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64294354291499,
+          45.48265030267817
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1925638,
+        "CRASH_DT": 1616846400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64126439826548,
+          45.45288500012071
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1915155,
+        "CRASH_DT": 1610452800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65438286897499,
+          45.49035015644901
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1926184,
+        "CRASH_DT": 1635076800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.63858444266309,
+          45.46362172522122
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1925500,
+        "CRASH_DT": 1628337600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65438957217759,
+          45.490353968706124
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1925899,
+        "CRASH_DT": 1637928000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65952071924968,
+          45.49793583037602
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1925618,
+        "CRASH_DT": 1625140800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6551686727838,
+          45.49057244056518
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1923212,
+        "CRASH_DT": 1630584000000,
+        "KABCO": "K",
+        "Graph_Severity": "1 - Fatal",
+        "TOT_FATAL_CNT": 1,
+        "TOT_INJ_LVL_A_CNT": 0,
+        "TOT_PED_CNT": 1,
+        "TOT_PED_FATAL_CNT": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66184971870028,
+          45.51152723260597
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1923112,
+        "CRASH_DT": 1629633600000,
+        "KABCO": "K",
+        "Graph_Severity": "1 - Fatal",
+        "TOT_FATAL_CNT": 1,
+        "TOT_INJ_LVL_A_CNT": 0,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.63830939204207,
+          45.46531475112096
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1927404,
+        "CRASH_DT": 1639742400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64912115845942,
+          45.486583356628856
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1924061,
+        "CRASH_DT": 1629720000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 2,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6399083973817,
+          45.45871301134026
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1922941,
+        "CRASH_DT": 1635681600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 2,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66012207259479,
+          45.499473314548325
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1921107,
+        "CRASH_DT": 1612612800000,
+        "KABCO": "K",
+        "Graph_Severity": "1 - Fatal",
+        "TOT_FATAL_CNT": 1,
+        "TOT_INJ_LVL_A_CNT": 0,
+        "TOT_PED_CNT": 1,
+        "TOT_PED_FATAL_CNT": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65407942746657,
+          45.490334894003695
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1961834,
+        "CRASH_DT": 1642680000000,
+        "KABCO": "K",
+        "Graph_Severity": "1 - Fatal",
+        "TOT_FATAL_CNT": 1,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65977440428699,
+          45.502074725133916
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1969995,
+        "CRASH_DT": 1666267200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66083627416852,
+          45.508997468570435
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2029137,
+        "CRASH_DT": 1641211200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64154031771004,
+          45.474169257921325
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1960403,
+        "CRASH_DT": 1644580800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65008104164073,
+          45.48645419550332
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1969753,
+        "CRASH_DT": 1652356800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6607848689332,
+          45.51224777581072
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1968737,
+        "CRASH_DT": 1671451200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 1,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64098694048697,
+          45.45283338233942
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1973878,
+        "CRASH_DT": 1672142400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.63990525135952,
+          45.458711015976064
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1960793,
+        "CRASH_DT": 1645444800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 2,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65883340921054,
+          45.50155560662618
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1968689,
+        "CRASH_DT": 1670068800000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65406770767284,
+          45.490327645154636
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1965016,
+        "CRASH_DT": 1647259200000,
+        "KABCO": "K",
+        "Graph_Severity": "1 - Fatal",
+        "TOT_FATAL_CNT": 1,
+        "TOT_INJ_LVL_A_CNT": 0,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6607848689332,
+          45.51224777581072
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1982822,
+        "CRASH_DT": 1657886400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64835310982178,
+          45.48636976686466
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1962388,
+        "CRASH_DT": 1646136000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66183004118025,
+          45.51367271799387
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1970024,
+        "CRASH_DT": 1669118400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65882903659794,
+          45.501559087936606
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1960419,
+        "CRASH_DT": 1642507200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66104750730587,
+          45.50746485959784
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 1944200,
+        "CRASH_DT": 1657972800000,
+        "KABCO": "K",
+        "Graph_Severity": "1 - Fatal",
+        "TOT_FATAL_CNT": 1,
+        "TOT_INJ_LVL_A_CNT": 0,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64239866789792,
+          45.44388558501866
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2032199,
+        "CRASH_DT": 1695729600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65680148225114,
+          45.493194945857574
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2007470,
+        "CRASH_DT": 1688299200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 2,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6602874569483,
+          45.499885411609384
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2015327,
+        "CRASH_DT": 1699963200000,
+        "KABCO": "K",
+        "Graph_Severity": "1 - Fatal",
+        "TOT_FATAL_CNT": 1,
+        "TOT_INJ_LVL_A_CNT": 0,
+        "TOT_PED_CNT": 1,
+        "TOT_PED_FATAL_CNT": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65116617187009,
+          45.49033446447926
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2004451,
+        "CRASH_DT": 1683806400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.63990525135952,
+          45.458711015976064
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2003353,
+        "CRASH_DT": 1683201600000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66078488369429,
+          45.5030576895211
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2010454,
+        "CRASH_DT": 1678795200000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65407942746657,
+          45.490334894003695
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2007346,
+        "CRASH_DT": 1686744000000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6399621928639,
+          45.456896151217066
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2004420,
+        "CRASH_DT": 1694174400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 2,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66078486569134,
+          45.512947356560616
+        ]
+      },
+      "properties": {
+        "CRASH_ID": 2010348,
+        "CRASH_DT": 1677758400000,
+        "KABCO": "A",
+        "Graph_Severity": "2 - Suspected Serious Injury",
+        "TOT_FATAL_CNT": 0,
+        "TOT_INJ_LVL_A_CNT": 1,
+        "TOT_PED_CNT": 0,
+        "TOT_PED_FATAL_CNT": 0
+      }
+    }
+  ]
+}

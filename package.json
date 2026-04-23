@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
+    "@vercel/analytics": "^2.0.1",
     "chroma-js": "^3.2.0",
     "gray-matter": "^4.0.3",
     "leaflet": "^1.9.4",

@@ -6,6 +6,7 @@ import { getAllRecommendations } from "@/app/(blog)/recommended/loadRecommended"
 import { experiments } from "@/lib/experiments/data";
 
 import RandomGreeting from "./components/RandomGreeting";
+import ShakeCard from "./components/ShakeCard";
 import styles from "./page.module.css";
 
 export default async function Home() {
@@ -31,22 +32,24 @@ export default async function Home() {
               </CurtainLink>
               <div className={styles.columnItems}>
                 {recentExperiments.map((exp) => (
-                  <CurtainLink key={exp.slug} href={`/design-experiments/${exp.slug}`} className={styles.columnItem} curtainTransition={true}>
-                    {exp.screenshot && (
-                      <Image
-                        src={exp.screenshot}
-                        alt={exp.title}
-                        width={120}
-                        height={90}
-                        sizes="60px"
-                        className={styles.itemThumb}
-                      />
-                    )}
-                    <div className={styles.itemText}>
-                      <span className={styles.itemTitle}>{exp.title}</span>
-                      <span className={styles.itemDate}>{exp.date}</span>
-                    </div>
-                  </CurtainLink>
+                  <ShakeCard key={exp.slug} className={styles.columnItem}>
+                    <CurtainLink href={`/design-experiments/${exp.slug}`} style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }} curtainTransition={true}>
+                      {exp.screenshot && (
+                        <Image
+                          src={exp.screenshot}
+                          alt={exp.title}
+                          width={160}
+                          height={120}
+                          sizes="80px"
+                          className={styles.itemThumb}
+                        />
+                      )}
+                      <div className={styles.itemText}>
+                        <span className={styles.itemTitle}>{exp.title}</span>
+                        <span className={styles.itemDate}>{exp.date}</span>
+                      </div>
+                    </CurtainLink>
+                  </ShakeCard>
                 ))}
               </div>
             </div>
@@ -61,32 +64,34 @@ export default async function Home() {
               </CurtainLink>
               <div className={styles.columnItems}>
                 {posts.map((post) => (
-                  <CurtainLink key={post.slug} href={`/blog/${post.slug}`} className={styles.columnItem} curtainTransition={true}>
-                    {post.image && (
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        width={60}
-                        height={45}
-                        sizes="60px"
-                        className={styles.itemThumb}
-                      />
-                    )}
-                    <div className={styles.itemText}>
-                      <span className={styles.itemTitle}>{post.title}</span>
-                      {post.subtitle ? (
-                        <span className={styles.itemDate}>{post.subtitle}</span>
-                      ) : post.date ? (
-                        <span className={styles.itemDate}>
-                          {new Date(post.date).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
-                        </span>
-                      ) : null}
-                    </div>
-                  </CurtainLink>
+                  <ShakeCard key={post.slug} className={styles.columnItem}>
+                    <CurtainLink href={`/blog/${post.slug}`} style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }} curtainTransition={true}>
+                      {post.image && (
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          width={160}
+                          height={120}
+                          sizes="80px"
+                          className={styles.itemThumb}
+                        />
+                      )}
+                      <div className={styles.itemText}>
+                        <span className={styles.itemTitle}>{post.title}</span>
+                        {post.subtitle ? (
+                          <span className={styles.itemDate}>{post.subtitle}</span>
+                        ) : post.date ? (
+                          <span className={styles.itemDate}>
+                            {new Date(post.date).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
+                        ) : null}
+                      </div>
+                    </CurtainLink>
+                  </ShakeCard>
                 ))}
               </div>
             </div>
@@ -101,22 +106,24 @@ export default async function Home() {
               </CurtainLink>
               <div className={styles.columnItems}>
                 {recentExplores.map((item) => (
-                  <CurtainLink key={item.id} href="/recommended" className={styles.columnItem} curtainTransition={true}>
-                    {item.thumbnail && (
-                      <Image
-                        src={item.thumbnail}
-                        alt={item.title}
-                        width={60}
-                        height={45}
-                        sizes="60px"
-                        className={styles.itemThumb}
-                      />
-                    )}
-                    <div className={styles.itemText}>
-                      <span className={styles.itemTitle}>{item.title}</span>
-                      <span className={styles.itemDate}>{new Date(`${item.date}T00:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                    </div>
-                  </CurtainLink>
+                  <ShakeCard key={item.id} className={styles.columnItem}>
+                    <CurtainLink href="/recommended" style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }} curtainTransition={true}>
+                      {item.thumbnail && (
+                        <Image
+                          src={item.thumbnail}
+                          alt={item.title}
+                          width={160}
+                          height={120}
+                          sizes="80px"
+                          className={styles.itemThumb}
+                        />
+                      )}
+                      <div className={styles.itemText}>
+                        <span className={styles.itemTitle}>{item.title}</span>
+                        <span className={styles.itemDate}>{new Date(`${item.date}T00:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                      </div>
+                    </CurtainLink>
+                  </ShakeCard>
                 ))}
               </div>
             </div>

@@ -14,23 +14,23 @@ export type Chapter = {
 }
 
 const ORIGINAL_PETITION: ChapterBounds = [
-  [45.473, -122.660],
-  [45.490, -122.648],
+  [45.478, -122.660],
+  [45.495, -122.648],
 ]
 
 const FULL_CORRIDOR: ChapterBounds = [
-  [45.438, -122.672],
-  [45.514, -122.640],
+  [45.452, -122.662],
+  [45.490, -122.648],
 ]
 
 const MID_CORRIDOR: ChapterBounds = [
-  [45.472, -122.665],
-  [45.508, -122.645],
+  [45.466, -122.665],
+  [45.502, -122.645],
 ]
 
 const NORTH_CORRIDOR: ChapterBounds = [
-  [45.480, -122.670],
-  [45.515, -122.640],
+  [45.466, -122.665],
+  [45.502, -122.645],
 ]
 
 export const chapters: Chapter[] = [
@@ -44,7 +44,7 @@ export const chapters: Chapter[] = [
       'In 2023, I petitioned Portland\u2019s Vision Zero program to lower the posted speed on SE McLoughlin Boulevard. Vision Zero is the commitment that no one should die or be seriously injured simply going about their day, and Portland has formally adopted that commitment. There had already been preventable traffic deaths along this corridor, so the petition wasn\u2019t abstract. Because McLoughlin runs through Portland but is owned by the State of Oregon, the process requires coordination across three entities: Vision Zero and PBOT submit a formal request and engineering review, ODOT conducts an independent review, and the state traffic engineer in Salem signs off. Two reviews, three entities, one sign change.',
       'My initial ask was an under-two-mile stretch from SE Franklin down to SE Harold, the section with continuous sidewalks and the clearest pedestrian presence. I built the case the way the engineers would evaluate it: schools and parks along the corridor, a neighborhood that has shifted from industrial to residential over decades along with the businesses that followed, a brick-and-mortar bar and courtyard with a rotating food-truck pod right on the boulevard, a 24-hour gym, a local vet, a neighborhood brewery a few blocks off, dog walkers and families on adjacent streets, and several 20 mph residential streets that plug directly into a 45 mph throughway. A simple calculation showed that dropping from 45 to 40 mph over those two miles would cost the average driver roughly 35 seconds. The cost-benefit case was clear on paper. The work was moving it through the agencies.',
     ],
-    layers: ['corridor', 'sidewalks', 'parks', 'schools'],
+    layers: ['corridor', 'sidewalks', 'parks', 'schools', 'springwater', 'highCrashIntersections', 'fatalCrashes', 'pedCrashes'],
     bounds: ORIGINAL_PETITION,
   },
   {
@@ -57,7 +57,7 @@ export const chapters: Chapter[] = [
       'PBOT completed its engineering review in about a month. ODOT initially estimated a year. I maintained regular check-ins with engineer contacts at both agencies. When ODOT hadn\u2019t finished the review at the one-year mark, I followed up, and again every few months after. Each check-in surfaced the next stage: additional data, another review, another stakeholder.',
       'ODOT\u2019s regional traffic engineer signed off, but the Salem office requested several revisions, including extending the investigation up to 250 feet south of the OR-224 overcrossing, which required additional data collection and a new report. The final report was signed by the state traffic engineer and sent to Portland for concurrence. The result was a 5 mph reduction across four miles of corridor, in both directions, from the Ross Island Bridge past Portland\u2019s southern boundary. The cross-agency coordination, not the engineering itself, was what took the three years.',
     ],
-    layers: ['corridor', 'speedZone', 'sidewalks', 'parks', 'schools'],
+    layers: ['corridor', 'sidewalks', 'parks', 'schools', 'springwater'],
     bounds: FULL_CORRIDOR,
   },
   {
@@ -72,7 +72,6 @@ export const chapters: Chapter[] = [
     ],
     layers: [
       'corridor',
-      'speedZone',
       'highCrashStreets',
       'highCrashIntersections',
       'fatalCrashes',

@@ -253,7 +253,7 @@ export default function MapView({
             weight: 1.5,
             opacity: 0.9,
             fillColor: '#3b82f6',
-            fillOpacity: 0.22,
+            fillOpacity: 0.38,
           })
           if (p.name) {
             circle.bindPopup(
@@ -335,14 +335,7 @@ export default function MapView({
     }
   }, [activeBounds, mapReady])
 
-  return (
-    <>
-      <div ref={containerRef} className={styles.map} />
-      <div className={styles.mapCallout}>
-        <strong>4 mi</strong> · Ross Island Bridge → Milwaukie · 45 → 40 mph · Signs installed Jan 2026
-      </div>
-    </>
-  )
+  return <div ref={containerRef} className={styles.map} />
 }
 
 function featureCentroid(

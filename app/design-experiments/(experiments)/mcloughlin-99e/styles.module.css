@@ -297,29 +297,6 @@
   margin-left: 1px;
 }
 
-.mapCallout {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  z-index: 400;
-  padding: 8px 12px;
-  background: rgba(10, 13, 18, 0.85);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  font-family: var(--font-space-mono, ui-monospace, monospace);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  backdrop-filter: blur(4px);
-  pointer-events: none;
-  max-width: calc(100% - 24px);
-}
-
-.mapCallout strong {
-  color: var(--accent);
-  font-weight: 600;
-}
 
 .chapterIndicator {
   position: absolute;

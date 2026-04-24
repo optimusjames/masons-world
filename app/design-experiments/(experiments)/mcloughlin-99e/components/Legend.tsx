@@ -17,18 +17,6 @@ const ROWS: Row[] = [
     ),
   },
   {
-    id: 'speedZone',
-    node: (
-      <>
-        <span
-          className={styles.legendLine}
-          style={{ background: 'rgba(232,176,78,0.35)', height: 8 }}
-        />
-        40 mph zone
-      </>
-    ),
-  },
-  {
     id: 'highCrashStreets',
     node: (
       <>

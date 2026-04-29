@@ -50,21 +50,10 @@ export default function McLoughlinCorridor() {
   useEffect(() => {
     const html = document.documentElement
     const prevBehavior = html.style.scrollBehavior
-    const prevSnap = html.style.scrollSnapType
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let enableSnap: (() => void) | null = null
-    if (!reduced) {
-      html.style.scrollBehavior = 'smooth'
-      enableSnap = () => {
-        html.style.scrollSnapType = 'y proximity'
-        window.removeEventListener('scroll', enableSnap as () => void)
-      }
-      window.addEventListener('scroll', enableSnap, { passive: true, once: true })
-    }
+    if (!reduced) html.style.scrollBehavior = 'smooth'
     return () => {
       html.style.scrollBehavior = prevBehavior
-      html.style.scrollSnapType = prevSnap
-      if (enableSnap) window.removeEventListener('scroll', enableSnap)
     }
   }, [])
 
@@ -117,7 +106,7 @@ export default function McLoughlinCorridor() {
             />
           ))}
           <p className={styles.footnote}>
-            Speed reduction signed January 2026 · 2024–2026 crash data pending ODOT publication
+            Speed reduction signed January 2026 · Post-2023 crash data pending ODOT publication
           </p>
         </div>
       </div>

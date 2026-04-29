@@ -65,9 +65,15 @@ export default function MapView({
       map = L.map(containerRef.current, {
         center: CORRIDOR_CENTER,
         zoom: 13,
-        zoomControl: true,
+        zoomControl: false,
         attributionControl: false,
+        scrollWheelZoom: false,
       })
+
+      L.control.zoom({ position: 'bottomleft' }).addTo(map)
+      L.control.attribution({ position: 'bottomright', prefix: false })
+        .addAttribution('© <a href="https://carto.com" target="_blank" rel="noopener">CartoDB</a>')
+        .addTo(map)
 
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         maxZoom: 19,

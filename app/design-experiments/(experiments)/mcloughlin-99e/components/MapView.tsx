@@ -78,6 +78,7 @@ export default function MapView({
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         maxZoom: 19,
         subdomains: 'abcd',
+        attribution: '',
       }).addTo(map)
 
       const speedGlow = L.geoJSON(speedZoneReduced as never, {

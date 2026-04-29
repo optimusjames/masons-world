@@ -355,7 +355,7 @@
 .storyColumn {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 64px;
 }
 
 .storyCard {
@@ -439,15 +439,4 @@
 
 :global(.leaflet-control-attribution a) {
   color: rgba(255, 255, 255, 0.45) !important;
-}
-
-.footnote {
-  font-family: var(--font-space-mono, ui-monospace, monospace);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin: 8px 0 0;
-  padding: 12px 0;
-  border-top: 1px solid var(--rule);
 }

@@ -105,9 +105,6 @@ export default function McLoughlinCorridor() {
               registerRef={registerCard(c.index)}
             />
           ))}
-          <p className={styles.footnote}>
-            Speed reduction signed January 2026 · Post-2023 crash data pending ODOT publication
-          </p>
         </div>
       </div>
     </div>

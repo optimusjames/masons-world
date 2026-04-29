@@ -390,8 +390,8 @@
 
 .storyEyebrow {
   font-family: var(--font-space-mono, ui-monospace, monospace);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.12em;
   color: var(--accent);
   margin-bottom: 14px;
 }

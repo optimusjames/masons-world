@@ -10,6 +10,18 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### QR Studio
+
+**May 6, 2026**
+
+![QR Studio](./public/screenshots/qr-studio.png)
+
+A card builder for print. Generate styled QR codes across three formats — business card, event flyer, and content card — with dark and light themes, live preview, and PNG or PDF export. Shell favicon embedded in every QR center.
+
+**[View Live →](https://masons-world.vercel.app/design-experiments/qr-studio)**
+
+---
+
 ### McLoughlin / 99E
 
 **April 21, 2026**

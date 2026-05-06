@@ -1,6 +1,15 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
+
+function useDebounced<T>(value: T, delay = 400): T {
+  const [debounced, setDebounced] = useState(value)
+  useEffect(() => {
+    const t = setTimeout(() => setDebounced(value), delay)
+    return () => clearTimeout(t)
+  }, [value, delay])
+  return debounced
+}
 import { Cormorant_Garamond, Space_Mono, DM_Sans } from 'next/font/google'
 import BusinessCard from './components/BusinessCard'
 import EventFlyer from './components/EventFlyer'
@@ -63,6 +72,10 @@ export default function QrStudio() {
   const [selectedId, setSelectedId] = useState(contentItems[0].id)
   const [ccTitle, setCcTitle] = useState(contentItems[0].title)
   const [ccDescription, setCcDescription] = useState(contentItems[0].description)
+
+  // Debounced URLs — QR only regenerates after 400ms pause, not on every keystroke
+  const debouncedBcUrl = useDebounced(bcUrl)
+  const debouncedEfUrl = useDebounced(efUrl)
 
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -300,7 +313,7 @@ export default function QrStudio() {
                 name={bcName}
                 title={bcTitle}
                 tagline={bcTagline}
-                url={bcUrl}
+                url={debouncedBcUrl}
                 dark={dark}
                 side={side}
               />
@@ -313,7 +326,7 @@ export default function QrStudio() {
                 date={efDate}
                 location={efLocation}
                 details={efDetails}
-                url={efUrl}
+                url={debouncedEfUrl}
                 dark={dark}
               />
             )}

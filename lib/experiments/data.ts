@@ -5,7 +5,7 @@ export const experiments: Experiment[] = [
     slug: 'qr-studio',
     date: 'May 6, 2026',
     title: 'QR Studio',
-    description: 'A print-ready card generator with styled QR codes. Three formats — business card, event flyer, and content card — with dark and light themes, live preview, and PNG + PDF export. Shell favicon embedded in every QR center.',
+    description: 'A card builder for print. Generate styled QR codes across three formats — business card, event flyer, and content card — with dark and light themes, live preview, and PNG or PDF export. Shell favicon embedded in every QR center.',
     tags: ['QR Code', 'Print', 'Generator', 'Interactive', 'Dark Theme'],
   },
   {

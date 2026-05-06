@@ -2,6 +2,13 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'qr-studio',
+    date: 'May 6, 2026',
+    title: 'QR Studio',
+    description: 'A print-ready card generator with styled QR codes. Three formats — business card, event flyer, and content card — with dark and light themes, live preview, and PNG + PDF export. Shell favicon embedded in every QR center.',
+    tags: ['QR Code', 'Print', 'Generator', 'Interactive', 'Dark Theme'],
+  },
+  {
     slug: 'mcloughlin-99e',
     date: 'April 21, 2026',
     title: 'McLoughlin / 99E',

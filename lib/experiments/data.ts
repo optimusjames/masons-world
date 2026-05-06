@@ -6,6 +6,7 @@ export const experiments: Experiment[] = [
     date: 'May 6, 2026',
     title: 'QR Studio',
     description: 'A card builder for print. Generate styled QR codes across three formats — business card, event flyer, and content card — with dark and light themes, live preview, and PNG or PDF export. Shell favicon embedded in every QR center.',
+    screenshot: '/screenshots/qr-studio.png',
     tags: ['QR Code', 'Print', 'Generator', 'Interactive', 'Dark Theme'],
   },
   {

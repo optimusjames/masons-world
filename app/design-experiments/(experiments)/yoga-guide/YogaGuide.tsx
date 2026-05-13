@@ -257,7 +257,7 @@ interface FlowItem {
   holdSeconds: number;
 }
 
-function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => void }) {
+function FlowView({ poses, accommodationNote, onBack }: { poses: Results['poses']; accommodationNote?: string; onBack: () => void }) {
   const sequence: FlowItem[] = useMemo(() => {
     const items: FlowItem[] = [];
     for (const pose of poses) {
@@ -361,18 +361,23 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
       <div className={s.subView}>
         <button className={s.backBtn} onClick={() => setPreviewShown(false)}>← back</button>
         <div className={s.previewHeader}>
-          <h2 className={s.previewTitle}>A note before you begin</h2>
-          <p className={s.previewSubtitle}>These poses have been modified for your practice.</p>
+          <h2 className={s.previewTitle}>Before you begin</h2>
+          <p className={s.previewSubtitle}>
+            {adaptedPoses.length} pose{adaptedPoses.length !== 1 ? 's' : ''} in your sequence include specific instructions.
+            Here is what changes for each one.
+          </p>
         </div>
         <div className={s.previewList}>
-          {adaptedPoses.map((pose) => (
-            <div key={pose.id} className={s.previewItem}>
-              <span className={s.previewPoseName}>{pose.name}</span>
-              <span className={s.previewAdaptationNote}>
-                {pose.adaptation!.split('.')[0]}.
-              </span>
-            </div>
-          ))}
+          {adaptedPoses.map((pose) => {
+            const sentences = pose.adaptation!.split(/(?<=\.)\s+/).filter(Boolean);
+            const preview = sentences.slice(0, 2).join(' ');
+            return (
+              <div key={pose.id} className={s.previewItem}>
+                <span className={s.previewPoseName}>{pose.name}</span>
+                <span className={s.previewAdaptationNote}>{preview}</span>
+              </div>
+            );
+          })}
         </div>
         <button className={s.beginBtn} onClick={beginFlow}>got it — begin flow</button>
       </div>
@@ -1082,7 +1087,7 @@ export default function YogaGuide() {
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <FlowView poses={results.poses} onBack={goBack} />
+            <FlowView poses={results.poses} accommodationNote={results.accommodationNote} onBack={goBack} />
           </motion.div>
         )}
 

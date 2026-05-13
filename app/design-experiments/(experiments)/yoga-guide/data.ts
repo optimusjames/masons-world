@@ -955,7 +955,7 @@ function getLimbAdaptations(ld: LimbDifference): Record<string, string> {
       ? `Press through the available leg and through the residual limb or prosthetic as appropriate. Place a folded blanket under the ${ld.side} side for support if needed. The opposite leg does most of the driving.`
       : `Press evenly through both feet or through your prosthetic if weight-bearing is appropriate for your device. Reduce the height of the lift if balance is a concern. Engage the core for stability.`,
     'happy-baby': `Lie on your back. Draw both knees toward your chest. For your {side} limb, hold the shin or rest the limb comfortably — no need to reach the foot. Rock gently if that feels good.`,
-    sphinx: `This prone pose is accessible for most limb differences. Let your {side} leg rest naturally alongside the {oppSide} leg. The work of the pose is entirely in the upper body — the legs are simply resting.`,
+    sphinx: `Lie on your stomach with elbows directly under the shoulders, forearms flat on the mat. Press down through the forearms and lift the chest. Your {side} limb rests naturally alongside the {oppSide} leg — no leg engagement is needed. The entire pose is in the upper body and forearms.`,
     'standing-forward-fold': aboveKnee
       ? `Stand near a wall for support. Fold forward as far as is comfortable, with the wall available at any moment. Your centre of gravity in the forward fold will differ slightly — that is correct for your body.`
       : `Keep a wall or chair nearby for balance as the forward fold shifts your weight. Fold only as far as feels stable. The spinal release is the primary benefit.`,
@@ -979,7 +979,7 @@ function getLimbOppositeInstructions(ld: LimbDifference): Record<string, string>
   }
 
   return {
-    'supine-figure-four': `Lie on your back, knees bent, ${ld.side} foot flat on the floor. Cross your ${opp} ankle over your ${ld.side} thigh just above the knee. Flex your ${opp} foot firmly to protect the knee joint. Place your hands behind your ${ld.side} thigh and draw both legs toward your chest until you feel the ${opp} hip open. Hold and breathe.`,
+    'supine-figure-four': `Lie on your back with your ${ld.side} limb resting naturally on the mat. Cross your ${opp} ankle over your ${ld.side} thigh just above the knee. Flex your ${opp} foot firmly to protect the knee joint. Place your hands behind your ${ld.side} thigh and gently draw both legs toward your chest until you feel the ${opp} hip open. Hold and breathe.`,
     'supine-twist': `Lying on your back, draw your ${opp} knee toward the chest and guide it across toward the ${ld.side} floor. Your ${ld.side} limb rests naturally along the mat. Extend your arms in a T and let the gaze travel ${opp}.`,
     'warrior-i': `Step your ${opp} foot forward into a lunge. Bring the ${ld.side} limb back — positioning it at 45° or in whatever stance your prosthetic or residual limb allows comfortably. Bend the front knee over the ankle and raise both arms overhead. Soften the gaze forward or up.`,
   }

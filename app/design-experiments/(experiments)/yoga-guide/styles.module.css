@@ -1050,24 +1050,40 @@
   align-items: center;
 }
 
+/* ─── Results Section Title ─────────────────── */
+
+.resultsSectionTitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(232, 227, 216, 0.88);
+  margin-bottom: 14px;
+}
+
 /* ─── Learn More Button ─────────────────────── */
 
 .learnMoreBtn {
   background: none;
-  border: none;
-  color: rgba(var(--accent-rgb), 0.65);
+  border: 1px solid rgba(var(--accent-rgb), 0.28);
+  border-radius: 2px;
+  color: rgba(var(--accent-rgb), 0.80);
   font-family: 'Space Mono', monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: lowercase;
-  padding: 0;
+  padding: 10px 16px;
   cursor: pointer;
-  margin-top: 6px;
+  margin-top: 10px;
   align-self: flex-start;
-  transition: color 0.2s;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
-.learnMoreBtn:hover { color: var(--accent); }
+.learnMoreBtn:hover {
+  color: var(--accent);
+  border-color: rgba(var(--accent-rgb), 0.55);
+  background: rgba(var(--accent-rgb), 0.06);
+}
 
 /* ─── Breath Duration Selector ──────────────── */
 
@@ -1161,6 +1177,87 @@
   margin: 0;
   text-align: center;
   padding: 20px 0 8px;
+}
+
+/* ─── Pose Image / Placeholder ─────────────── */
+
+.posePlaceholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(var(--accent-rgb), 0.45);
+}
+
+.posePlaceholderSvg {
+  width: 56px;
+  height: 56px;
+}
+
+.poseImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+}
+
+/* ─── Pre-flow Adaptation Preview ──────────── */
+
+.previewHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.previewTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: 28px;
+  color: #e8e3d8;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.previewSubtitle {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.52);
+  margin: 0;
+}
+
+.previewList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.previewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.previewItem:last-child { border-bottom: none; }
+
+.previewPoseName {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: #e8e3d8;
+  line-height: 1.2;
+}
+
+.previewAdaptationNote {
+  font-family: 'Karla', sans-serif;
+  font-size: 12px;
+  color: rgba(232, 227, 216, 0.62);
+  line-height: 1.55;
 }
 
 /* ─── Responsive ────────────────────────────── */

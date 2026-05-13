@@ -8,6 +8,8 @@ import {
   type ActivityLevel,
   type PreferredTime,
   type Dosha,
+  type SkillLevel,
+  type DietaryStyle,
   type Step,
   type Results,
   type BreathingTechnique,
@@ -16,6 +18,8 @@ import {
   INTENTIONS_LIST,
   ACTIVITY_LEVELS,
   PREFERRED_TIMES,
+  SKILL_LEVELS,
+  DIETARY_STYLES,
   ACCOMMODATION_LABELS,
   LIMB_SIDES,
   LIMB_LEVELS,
@@ -220,6 +224,23 @@ function BreatheView({
   );
 }
 
+// ── Pose Placeholder ───────────────────────────────────────────────────────
+
+function PosePlaceholder() {
+  return (
+    <div className={s.posePlaceholder}>
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className={s.posePlaceholderSvg}>
+        <ellipse cx="40" cy="44" rx="6" ry="12" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+        <ellipse cx="40" cy="44" rx="6" ry="12" stroke="currentColor" strokeWidth="1" opacity="0.5" transform="rotate(45 40 44)" />
+        <ellipse cx="40" cy="44" rx="6" ry="12" stroke="currentColor" strokeWidth="1" opacity="0.5" transform="rotate(90 40 44)" />
+        <ellipse cx="40" cy="44" rx="6" ry="12" stroke="currentColor" strokeWidth="1" opacity="0.5" transform="rotate(135 40 44)" />
+        <circle cx="40" cy="44" r="5" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+        <circle cx="40" cy="44" r="2" fill="currentColor" opacity="0.4" />
+      </svg>
+    </div>
+  );
+}
+
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function resolveAdaptation(text: string, side: 'left' | 'right' | null): string {
@@ -258,11 +279,17 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
   );
 
   const [started, setStarted] = useState(false);
+  const [previewShown, setPreviewShown] = useState(false);
   const [current, setCurrent] = useState(0);
   const [secsLeft, setSecsLeft] = useState(sequence[0]?.holdSeconds ?? 60);
   const [timerRunning, setTimerRunning] = useState(false);
   const [autoCountdown, setAutoCountdown] = useState<number | null>(null);
   const [done, setDone] = useState(false);
+
+  const adaptedPoses = useMemo(
+    () => poses.filter((p) => p.adaptation),
+    [poses]
+  );
 
   const item = sequence[current];
 
@@ -292,8 +319,9 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
     setTimerRunning(true);
   }
 
-  function startFlow() {
+  function beginFlow() {
     setStarted(true);
+    setPreviewShown(false);
     setCurrent(0);
     setSecsLeft(sequence[0].holdSeconds);
     setTimerRunning(true);
@@ -301,9 +329,18 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
     setAutoCountdown(null);
   }
 
+  function handleBeginClick() {
+    if (adaptedPoses.length > 0 && !previewShown) {
+      setPreviewShown(true);
+    } else {
+      beginFlow();
+    }
+  }
+
   function restartFlow() {
     setDone(false);
     setStarted(false);
+    setPreviewShown(false);
     setCurrent(0);
     setSecsLeft(sequence[0].holdSeconds);
     setTimerRunning(false);
@@ -317,6 +354,29 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
       return `${m}:${sc.toString().padStart(2, '0')}`;
     }
     return `${secs}`;
+  }
+
+  if (!started && previewShown) {
+    return (
+      <div className={s.subView}>
+        <button className={s.backBtn} onClick={() => setPreviewShown(false)}>← back</button>
+        <div className={s.previewHeader}>
+          <h2 className={s.previewTitle}>A note before you begin</h2>
+          <p className={s.previewSubtitle}>These poses have been modified for your practice.</p>
+        </div>
+        <div className={s.previewList}>
+          {adaptedPoses.map((pose) => (
+            <div key={pose.id} className={s.previewItem}>
+              <span className={s.previewPoseName}>{pose.name}</span>
+              <span className={s.previewAdaptationNote}>
+                {pose.adaptation!.split('.')[0]}.
+              </span>
+            </div>
+          ))}
+        </div>
+        <button className={s.beginBtn} onClick={beginFlow}>got it — begin flow</button>
+      </div>
+    );
   }
 
   if (!started) {
@@ -338,7 +398,7 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
             </div>
           ))}
         </div>
-        <button className={s.beginBtn} onClick={startFlow}>begin flow</button>
+        <button className={s.beginBtn} onClick={handleBeginClick}>begin flow</button>
       </div>
     );
   }
@@ -359,10 +419,12 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
   }
 
   const isTimerDone = secsLeft === 0;
-  const instructionText = resolveAdaptation(
-    item.pose.adaptation ?? item.pose.instruction,
-    item.side
-  );
+  const isAdaptedSide =
+    !item.pose.adaptedSide || item.side === null || item.side === item.pose.adaptedSide;
+  const instruction = isAdaptedSide
+    ? (item.pose.adaptation ?? item.pose.instruction)
+    : (item.pose.oppositeInstruction ?? item.pose.instruction);
+  const instructionText = resolveAdaptation(instruction, item.side);
 
   return (
     <div className={s.subView}>
@@ -376,6 +438,11 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         {item.side && <span className={s.flowActiveSide}>{item.side} side</span>}
+        {item.pose.imageUrl ? (
+          <img src={item.pose.imageUrl} alt={item.pose.name} className={s.poseImage} />
+        ) : (
+          <PosePlaceholder />
+        )}
         <h2 className={s.flowActiveName}>{item.pose.name}</h2>
         <p className={s.flowActiveBenefit}>{item.pose.benefit}</p>
         <p className={s.flowActiveInstruction}>{instructionText}</p>
@@ -415,11 +482,13 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
 
 function RhythmView({
   activityLevel,
+  skillLevel,
   flowDurationMins,
   accommodationNote,
   onBack,
 }: {
   activityLevel: ActivityLevel;
+  skillLevel: SkillLevel;
   flowDurationMins: number;
   accommodationNote?: string;
   onBack: () => void;
@@ -462,6 +531,9 @@ function RhythmView({
       <div className={s.deepDiveSection}>
         <div className={s.sectionLabel}>what to expect</div>
         <p className={s.deepDiveText}>{detail.progressNote}</p>
+        {skillLevel === 'beginner' && detail.beginnerNote && (
+          <p className={s.deepDiveText} style={{ marginTop: 10, opacity: 0.85 }}>{detail.beginnerNote}</p>
+        )}
       </div>
     </div>
   );
@@ -471,13 +543,16 @@ function RhythmView({
 
 function AyurvedaView({
   dosha,
+  dietaryStyle,
   onBack,
 }: {
   dosha: Dosha;
+  dietaryStyle: DietaryStyle;
   onBack: () => void;
 }) {
   const detail = DOSHA_AYURVEDA_DETAIL[dosha];
   const card = DOSHA_CARDS.find((c) => c.id === dosha)!;
+  const foodNote = detail.foodNoteByDiet?.[dietaryStyle] ?? detail.foodNote;
 
   return (
     <div className={s.subView}>
@@ -499,7 +574,7 @@ function AyurvedaView({
 
       <div className={s.deepDiveSection}>
         <div className={s.sectionLabel}>food & nourishment</div>
-        <p className={s.deepDiveText}>{detail.foodNote}</p>
+        <p className={s.deepDiveText}>{foodNote}</p>
       </div>
 
       <div className={s.deepDiveSection}>
@@ -583,7 +658,7 @@ function ResultsView({
 
       {/* Poses */}
       <div>
-        <div className={s.sectionLabel}>good poses for you</div>
+        <div className={s.resultsSectionTitle}>good poses for you</div>
         <div className={s.poseList}>
           {results.poses.map((pose, i) => (
             <motion.div key={pose.id} className={s.poseRow}
@@ -608,7 +683,7 @@ function ResultsView({
 
       {/* Breathwork */}
       <div>
-        <div className={s.sectionLabel}>breathwork</div>
+        <div className={s.resultsSectionTitle}>breathwork</div>
         <div className={s.breathCards}>
           {results.breathingTechniques.map((b) => (
             <div key={b.id} className={s.breathCard}>
@@ -625,7 +700,7 @@ function ResultsView({
 
       {/* Rhythm */}
       <div>
-        <div className={s.sectionLabel}>movement & breath rhythm</div>
+        <div className={s.resultsSectionTitle}>movement & breath rhythm</div>
         <div className={s.guidanceRow}>
           <div className={s.guidanceText}>
             {results.frequencyGuidance} Your sequence runs about {results.flowDurationMins} min — repeat it 2–3× for a full session.
@@ -637,7 +712,7 @@ function ResultsView({
 
       {/* Ayurvedic */}
       <div>
-        <div className={s.sectionLabel}>ayurvedic guidance</div>
+        <div className={s.resultsSectionTitle}>ayurvedic guidance</div>
         {results.ayurvedicTips.map((tip, i) => (
           <div key={i} className={s.tipRow}>
             <span className={s.tipDot} />
@@ -668,6 +743,8 @@ export default function YogaGuide() {
   const [intentions, setIntentions] = useState<Intention[]>([]);
   const [activityLevel, setActivityLevel] = useState<ActivityLevel | null>(null);
   const [preferredTime, setPreferredTime] = useState<PreferredTime | null>(null);
+  const [skillLevel, setSkillLevel] = useState<SkillLevel | null>(null);
+  const [dietaryStyle, setDietaryStyle] = useState<DietaryStyle | null>(null);
   const [accommodations, setAccommodations] = useState<Accommodations>({ areas: [] });
   const [expandedDosha, setExpandedDosha] = useState<Dosha | null>(null);
   const [selectedDosha, setSelectedDosha] = useState<Dosha | null>(null);
@@ -693,7 +770,7 @@ export default function YogaGuide() {
 
   function handleDoshaChoose(dosha: Dosha) {
     const r = getRecommendations(
-      { intentions, activityLevel: activityLevel!, preferredTime: preferredTime!, dosha },
+      { intentions, activityLevel: activityLevel!, preferredTime: preferredTime!, dosha, skillLevel: skillLevel!, dietaryStyle: dietaryStyle! },
       accommodations.areas.length > 0 ? accommodations : undefined
     );
     setSelectedDosha(dosha);
@@ -719,6 +796,8 @@ export default function YogaGuide() {
     setIntentions([]);
     setActivityLevel(null);
     setPreferredTime(null);
+    setSkillLevel(null);
+    setDietaryStyle(null);
     setAccommodations({ areas: [] });
     setExpandedDosha(null);
     setSelectedDosha(null);
@@ -752,7 +831,7 @@ export default function YogaGuide() {
           >
             <div className={s.welcomeContent}>
               <h1 className={s.welcomeTitle}>Your Practice,<br />Personalised</h1>
-              <p className={s.welcomeTagline}>Five questions. A prescription built for you.</p>
+              <p className={s.welcomeTagline}>A few questions. A prescription built for you.</p>
               <button className={s.beginBtn} onClick={() => setStep('intentions')}>begin</button>
             </div>
           </motion.div>
@@ -817,7 +896,29 @@ export default function YogaGuide() {
                   ))}
                 </div>
               </div>
-              <button className={s.beginBtn} disabled={!activityLevel || !preferredTime} onClick={() => setStep('accommodations')}>
+              <div className={s.contextSection}>
+                <div className={s.sectionLabel}>Your yoga experience?</div>
+                <div className={s.pillRow}>
+                  {SKILL_LEVELS.map((sl) => (
+                    <button key={sl.id}
+                      className={`${s.pill} ${skillLevel === sl.id ? s.pillActive : ''}`}
+                      onClick={() => setSkillLevel(sl.id)}
+                    >{sl.label}</button>
+                  ))}
+                </div>
+              </div>
+              <div className={s.contextSection}>
+                <div className={s.sectionLabel}>Dietary approach?</div>
+                <div className={s.pillRow}>
+                  {DIETARY_STYLES.map((ds) => (
+                    <button key={ds.id}
+                      className={`${s.pill} ${dietaryStyle === ds.id ? s.pillActive : ''}`}
+                      onClick={() => setDietaryStyle(ds.id)}
+                    >{ds.label}</button>
+                  ))}
+                </div>
+              </div>
+              <button className={s.beginBtn} disabled={!activityLevel || !preferredTime || !skillLevel || !dietaryStyle} onClick={() => setStep('accommodations')}>
                 continue
               </button>
             </div>
@@ -992,6 +1093,7 @@ export default function YogaGuide() {
           >
             <RhythmView
               activityLevel={activityLevel}
+              skillLevel={skillLevel!}
               flowDurationMins={results.flowDurationMins}
               accommodationNote={results.accommodationNote}
               onBack={goBack}
@@ -999,12 +1101,12 @@ export default function YogaGuide() {
           </motion.div>
         )}
 
-        {step === 'ayurveda' && selectedDosha && (
+        {step === 'ayurveda' && selectedDosha && dietaryStyle && (
           <motion.div key="ayurveda" className={s.stepPanel}
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: 'easeInOut' }}
           >
-            <AyurvedaView dosha={selectedDosha} onBack={goBack} />
+            <AyurvedaView dosha={selectedDosha} dietaryStyle={dietaryStyle} onBack={goBack} />
           </motion.div>
         )}
 

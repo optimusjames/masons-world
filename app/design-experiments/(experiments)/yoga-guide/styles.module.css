@@ -3,8 +3,8 @@
 /* ─── Theming ───────────────────────────────── */
 
 .page {
-  --accent: #7fa882;
-  --accent-rgb: 127, 168, 130;
+  --accent: #62b86c;
+  --accent-rgb: 98, 184, 108;
   --bg: #0e110f;
   min-height: 100svh;
   background: var(--bg);
@@ -17,15 +17,21 @@
 }
 
 .page[data-theme="ocean"] {
-  --accent: #7aafc4;
-  --accent-rgb: 122, 175, 196;
+  --accent: #50b8d4;
+  --accent-rgb: 80, 184, 212;
   --bg: #08101a;
 }
 
 .page[data-theme="dusk"] {
-  --accent: #a882a8;
-  --accent-rgb: 168, 130, 168;
+  --accent: #bc7abc;
+  --accent-rgb: 188, 122, 188;
   --bg: #100d10;
+}
+
+.page[data-theme="orange"] {
+  --accent: #cc7a4a;
+  --accent-rgb: 204, 122, 74;
+  --bg: #120e09;
 }
 
 /* ─── Header ────────────────────────────────── */
@@ -42,7 +48,7 @@
   font-size: 10px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(232, 227, 216, 0.28);
+  color: rgba(232, 227, 216, 0.38);
   margin: 0;
 }
 
@@ -53,18 +59,18 @@
 }
 
 .swatch {
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: var(--swatch-color);
   border: 1.5px solid transparent;
   cursor: pointer;
   padding: 0;
-  opacity: 0.5;
+  opacity: 0.6;
   transition: opacity 0.2s, box-shadow 0.2s;
 }
 
-.swatch:hover { opacity: 0.85; }
+.swatch:hover { opacity: 0.9; }
 
 .swatchActive {
   opacity: 1;
@@ -88,7 +94,7 @@
 }
 
 .progressDotActive {
-  background: rgba(var(--accent-rgb), 0.55);
+  background: rgba(var(--accent-rgb), 0.65);
 }
 
 /* ─── Step Panel ────────────────────────────── */
@@ -125,7 +131,7 @@
   font-family: 'Karla', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: rgba(232, 227, 216, 0.4);
+  color: rgba(232, 227, 216, 0.48);
   margin: 0;
   letter-spacing: 0.02em;
 }
@@ -151,7 +157,7 @@
 .stepSubtitle {
   font-family: 'Karla', sans-serif;
   font-size: 13px;
-  color: rgba(232, 227, 216, 0.35);
+  color: rgba(232, 227, 216, 0.52);
   margin: 8px 0 0;
 }
 
@@ -159,10 +165,10 @@
 
 .sectionLabel {
   font-family: 'Space Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(232, 227, 216, 0.42);
+  color: rgba(232, 227, 216, 0.60);
   margin-bottom: 10px;
 }
 
@@ -178,7 +184,7 @@
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 2px;
-  color: rgba(232, 227, 216, 0.32);
+  color: rgba(232, 227, 216, 0.55);
   font-family: 'Karla', sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -190,15 +196,15 @@
 }
 
 .pill:hover {
-  border-color: rgba(var(--accent-rgb), 0.3);
-  color: rgba(var(--accent-rgb), 0.8);
-  background: rgba(var(--accent-rgb), 0.04);
+  border-color: rgba(var(--accent-rgb), 0.38);
+  color: rgba(var(--accent-rgb), 0.9);
+  background: rgba(var(--accent-rgb), 0.05);
 }
 
 .pillActive {
-  border-color: rgba(var(--accent-rgb), 0.5);
+  border-color: rgba(var(--accent-rgb), 0.6);
   color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.08);
+  background: rgba(var(--accent-rgb), 0.1);
 }
 
 /* ─── Back Button ───────────────────────────── */
@@ -206,7 +212,7 @@
 .backBtn {
   background: none;
   border: none;
-  color: rgba(232, 227, 216, 0.25);
+  color: rgba(232, 227, 216, 0.42);
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.2em;
@@ -218,14 +224,14 @@
   transition: color 0.2s;
 }
 
-.backBtn:hover { color: rgba(232, 227, 216, 0.6); }
+.backBtn:hover { color: rgba(232, 227, 216, 0.72); }
 
 /* ─── Begin / Continue Button ───────────────── */
 
 .beginBtn {
   background: none;
-  border: 1px solid rgba(232, 227, 216, 0.14);
-  color: rgba(232, 227, 216, 0.5);
+  border: 1px solid rgba(232, 227, 216, 0.18);
+  color: rgba(232, 227, 216, 0.62);
   font-family: 'Space Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.3em;
@@ -238,9 +244,9 @@
 }
 
 .beginBtn:hover:not(:disabled) {
-  border-color: rgba(var(--accent-rgb), 0.5);
+  border-color: rgba(var(--accent-rgb), 0.6);
   color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.05);
+  background: rgba(var(--accent-rgb), 0.06);
 }
 
 .beginBtn:disabled {
@@ -260,7 +266,7 @@
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 2px;
-  color: rgba(232, 227, 216, 0.38);
+  color: rgba(232, 227, 216, 0.55);
   font-family: 'Karla', sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -271,15 +277,15 @@
 }
 
 .intentionPill:hover {
-  border-color: rgba(var(--accent-rgb), 0.3);
-  color: rgba(var(--accent-rgb), 0.8);
-  background: rgba(var(--accent-rgb), 0.04);
+  border-color: rgba(var(--accent-rgb), 0.38);
+  color: rgba(var(--accent-rgb), 0.9);
+  background: rgba(var(--accent-rgb), 0.05);
 }
 
 .intentionPillActive {
-  border-color: rgba(var(--accent-rgb), 0.5);
+  border-color: rgba(var(--accent-rgb), 0.6);
   color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.08);
+  background: rgba(var(--accent-rgb), 0.1);
 }
 
 .intentionPillDimmed {
@@ -289,7 +295,7 @@
 
 .intentionPillDimmed:hover {
   border-color: rgba(255, 255, 255, 0.07);
-  color: rgba(232, 227, 216, 0.38);
+  color: rgba(232, 227, 216, 0.55);
   background: rgba(255, 255, 255, 0.025);
 }
 
@@ -298,6 +304,57 @@
 .contextSection {
   display: flex;
   flex-direction: column;
+}
+
+/* ─── Accommodations ────────────────────────── */
+
+.limbDetailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  padding-top: 4px;
+}
+
+.accommodationNoteBox {
+  background: rgba(var(--accent-rgb), 0.05);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border-radius: 3px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accommodationNoteText {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  color: rgba(232, 227, 216, 0.68);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.adaptedBadge {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
+  border-radius: 100px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+
+.adaptationChip {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.75;
 }
 
 /* ─── Dosha Cards ───────────────────────────── */
@@ -319,13 +376,13 @@
 }
 
 .doshaCard:hover {
-  border-color: rgba(var(--accent-rgb), 0.25);
-  background: rgba(var(--accent-rgb), 0.03);
+  border-color: rgba(var(--accent-rgb), 0.3);
+  background: rgba(var(--accent-rgb), 0.04);
 }
 
 .doshaCardExpanded {
-  border-color: rgba(var(--accent-rgb), 0.45);
-  background: rgba(var(--accent-rgb), 0.06);
+  border-color: rgba(var(--accent-rgb), 0.52);
+  background: rgba(var(--accent-rgb), 0.07);
 }
 
 .doshaCardHeader {
@@ -346,14 +403,14 @@
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(var(--accent-rgb), 0.55);
+  color: rgba(var(--accent-rgb), 0.70);
   margin-top: 4px;
 }
 
 .doshaTeaserText {
   font-family: 'Karla', sans-serif;
   font-size: 13px;
-  color: rgba(232, 227, 216, 0.38);
+  color: rgba(232, 227, 216, 0.50);
   line-height: 1.55;
   margin-top: 10px;
 }
@@ -366,14 +423,14 @@
   font-family: 'Karla', sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color: rgba(232, 227, 216, 0.5);
+  color: rgba(232, 227, 216, 0.58);
   line-height: 1.65;
   margin: 14px 0 16px;
 }
 
 .doshaChooseBtn {
   background: none;
-  border: 1px solid rgba(var(--accent-rgb), 0.35);
+  border: 1px solid rgba(var(--accent-rgb), 0.42);
   color: var(--accent);
   font-family: 'Space Mono', monospace;
   font-size: 9px;
@@ -386,8 +443,8 @@
 }
 
 .doshaChooseBtn:hover {
-  background: rgba(var(--accent-rgb), 0.1);
-  border-color: rgba(var(--accent-rgb), 0.6);
+  background: rgba(var(--accent-rgb), 0.12);
+  border-color: rgba(var(--accent-rgb), 0.7);
 }
 
 /* ─── Results ───────────────────────────────── */
@@ -428,7 +485,7 @@
 .bentoUnit {
   font-family: 'Space Mono', monospace;
   font-size: 12px;
-  color: rgba(var(--accent-rgb), 0.5);
+  color: rgba(var(--accent-rgb), 0.62);
 }
 
 .bentoLabel {
@@ -436,7 +493,7 @@
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(var(--accent-rgb), 0.55);
+  color: rgba(var(--accent-rgb), 0.65);
 }
 
 .atAGlance {
@@ -450,7 +507,7 @@
   font-size: 9px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(232, 227, 216, 0.28);
+  color: rgba(232, 227, 216, 0.35);
   margin: 0;
 }
 
@@ -471,7 +528,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  border: 1px solid rgba(var(--accent-rgb), 0.38);
   border-radius: 100px;
   padding: 4px 10px;
 }
@@ -483,7 +540,7 @@
   font-style: italic;
   font-weight: 300;
   font-size: 21px;
-  color: rgba(232, 227, 216, 0.65);
+  color: rgba(232, 227, 216, 0.72);
   line-height: 1.6;
   margin: 0;
   letter-spacing: 0.01em;
@@ -521,7 +578,7 @@
   font-family: 'Karla', sans-serif;
   font-size: 12px;
   font-weight: 400;
-  color: rgba(232, 227, 216, 0.58);
+  color: rgba(232, 227, 216, 0.62);
   margin-top: 3px;
   line-height: 1.4;
 }
@@ -539,7 +596,6 @@
   font-family: 'Space Mono', monospace;
   font-size: 11px;
   color: var(--accent);
-  opacity: 0.75;
   letter-spacing: 0.05em;
   text-align: right;
 }
@@ -547,7 +603,7 @@
 .poseMetaSub {
   font-family: 'Space Mono', monospace;
   font-size: 9px;
-  color: rgba(var(--accent-rgb), 0.4);
+  color: rgba(var(--accent-rgb), 0.65);
   letter-spacing: 0.05em;
   text-align: right;
 }
@@ -580,14 +636,14 @@
 .breathRatio {
   font-family: 'Space Mono', monospace;
   font-size: 10px;
-  color: rgba(var(--accent-rgb), 0.55);
+  color: rgba(var(--accent-rgb), 0.72);
   letter-spacing: 0.1em;
 }
 
 .breathBenefit {
   font-family: 'Karla', sans-serif;
   font-size: 13px;
-  color: rgba(232, 227, 216, 0.62);
+  color: rgba(232, 227, 216, 0.68);
   line-height: 1.5;
   margin-top: 2px;
 }
@@ -596,7 +652,7 @@
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.12em;
-  color: rgba(var(--accent-rgb), 0.55);
+  color: rgba(var(--accent-rgb), 0.6);
   text-decoration: none;
   margin-top: 4px;
   transition: color 0.2s;
@@ -615,7 +671,7 @@
 .guidanceText {
   font-family: 'Karla', sans-serif;
   font-size: 13px;
-  color: rgba(232, 227, 216, 0.62);
+  color: rgba(232, 227, 216, 0.68);
   line-height: 1.65;
 }
 
@@ -633,14 +689,14 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: rgba(var(--accent-rgb), 0.55);
+  background: rgba(var(--accent-rgb), 0.72);
   margin-top: 6px;
 }
 
 .tipText {
   font-family: 'Karla', sans-serif;
   font-size: 13px;
-  color: rgba(232, 227, 216, 0.62);
+  color: rgba(232, 227, 216, 0.68);
   line-height: 1.65;
 }
 
@@ -651,8 +707,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: rgba(var(--accent-rgb), 0.06);
-  border: 1px solid rgba(var(--accent-rgb), 0.28);
+  background: rgba(var(--accent-rgb), 0.07);
+  border: 1px solid rgba(var(--accent-rgb), 0.34);
   border-radius: 3px;
   color: var(--accent);
   font-family: 'Space Mono', monospace;
@@ -666,13 +722,13 @@
 }
 
 .ctaBtn:hover {
-  background: rgba(var(--accent-rgb), 0.12);
-  border-color: rgba(var(--accent-rgb), 0.5);
+  background: rgba(var(--accent-rgb), 0.14);
+  border-color: rgba(var(--accent-rgb), 0.58);
 }
 
 .ctaBtnReady {
-  border-color: rgba(var(--accent-rgb), 0.6);
-  background: rgba(var(--accent-rgb), 0.1);
+  border-color: rgba(var(--accent-rgb), 0.68);
+  background: rgba(var(--accent-rgb), 0.12);
 }
 
 /* ─── Save Row ──────────────────────────────── */
@@ -685,8 +741,8 @@
 
 .saveBtn {
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: rgba(232, 227, 216, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(232, 227, 216, 0.48);
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.22em;
@@ -698,13 +754,13 @@
 }
 
 .saveBtn:hover {
-  border-color: rgba(var(--accent-rgb), 0.35);
-  color: rgba(var(--accent-rgb), 0.7);
-  background: rgba(var(--accent-rgb), 0.04);
+  border-color: rgba(var(--accent-rgb), 0.42);
+  color: rgba(var(--accent-rgb), 0.8);
+  background: rgba(var(--accent-rgb), 0.05);
 }
 
 .saveBtnConfirmed {
-  border-color: rgba(var(--accent-rgb), 0.4);
+  border-color: rgba(var(--accent-rgb), 0.48);
   color: var(--accent);
 }
 
@@ -713,7 +769,7 @@
 .startOverBtn {
   background: none;
   border: none;
-  color: rgba(232, 227, 216, 0.2);
+  color: rgba(232, 227, 216, 0.28);
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.3em;
@@ -724,7 +780,7 @@
   transition: color 0.2s;
 }
 
-.startOverBtn:hover { color: rgba(232, 227, 216, 0.5); }
+.startOverBtn:hover { color: rgba(232, 227, 216, 0.58); }
 
 /* ─── Sub-view wrapper (breathe + flow) ─────── */
 
@@ -759,14 +815,14 @@
   font-family: 'Space Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
-  color: rgba(var(--accent-rgb), 0.65);
+  color: rgba(var(--accent-rgb), 0.80);
   margin: 0;
 }
 
 .breathViewBenefit {
   font-family: 'Karla', sans-serif;
   font-size: 14px;
-  color: rgba(232, 227, 216, 0.6);
+  color: rgba(232, 227, 216, 0.65);
   line-height: 1.55;
   margin: 0;
   max-width: 320px;
@@ -783,8 +839,8 @@
   width: 188px;
   height: 188px;
   border-radius: 50%;
-  border: 1.5px solid rgba(var(--accent-rgb), 0.35);
-  background: rgba(var(--accent-rgb), 0.05);
+  border: 1.5px solid rgba(var(--accent-rgb), 0.42);
+  background: rgba(var(--accent-rgb), 0.06);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -804,7 +860,7 @@
 .breathCountdown {
   font-family: 'Space Mono', monospace;
   font-size: 24px;
-  color: rgba(var(--accent-rgb), 0.65);
+  color: rgba(var(--accent-rgb), 0.80);
   letter-spacing: 0.08em;
 }
 
@@ -813,7 +869,7 @@
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(232, 227, 216, 0.32);
+  color: rgba(232, 227, 216, 0.40);
   text-align: center;
   margin-top: -14px;
 }
@@ -838,7 +894,7 @@
 .flowViewMeta {
   font-family: 'Space Mono', monospace;
   font-size: 11px;
-  color: rgba(var(--accent-rgb), 0.6);
+  color: rgba(var(--accent-rgb), 0.75);
   letter-spacing: 0.08em;
 }
 
@@ -877,13 +933,13 @@
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(var(--accent-rgb), 0.5);
+  color: rgba(var(--accent-rgb), 0.65);
 }
 
 .flowPreHold {
   font-family: 'Space Mono', monospace;
   font-size: 11px;
-  color: rgba(var(--accent-rgb), 0.6);
+  color: rgba(var(--accent-rgb), 0.75);
   flex-shrink: 0;
 }
 
@@ -899,7 +955,7 @@
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(var(--accent-rgb), 0.5);
+  color: rgba(var(--accent-rgb), 0.65);
 }
 
 .flowActivePose {
@@ -916,7 +972,7 @@
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(var(--accent-rgb), 0.65);
+  color: rgba(var(--accent-rgb), 0.75);
 }
 
 .flowActiveName {
@@ -931,7 +987,7 @@
 .flowActiveBenefit {
   font-family: 'Karla', sans-serif;
   font-size: 14px;
-  color: rgba(232, 227, 216, 0.58);
+  color: rgba(232, 227, 216, 0.62);
   line-height: 1.55;
   max-width: 300px;
 }
@@ -939,14 +995,14 @@
 .flowTimer {
   font-family: 'Space Mono', monospace;
   font-size: 52px;
-  color: rgba(var(--accent-rgb), 0.55);
+  color: rgba(var(--accent-rgb), 0.65);
   letter-spacing: 0.04em;
   line-height: 1;
   transition: color 0.3s ease;
 }
 
 .flowTimerDone {
-  color: rgba(var(--accent-rgb), 0.85);
+  color: rgba(var(--accent-rgb), 0.92);
 }
 
 .flowTimerUnit {
@@ -982,7 +1038,7 @@
 .flowDoneSubtitle {
   font-family: 'Karla', sans-serif;
   font-size: 14px;
-  color: rgba(232, 227, 216, 0.55);
+  color: rgba(232, 227, 216, 0.58);
   margin: 0;
   line-height: 1.55;
 }
@@ -999,7 +1055,7 @@
 .learnMoreBtn {
   background: none;
   border: none;
-  color: rgba(var(--accent-rgb), 0.5);
+  color: rgba(var(--accent-rgb), 0.65);
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.18em;
@@ -1026,7 +1082,7 @@
 .flowActiveInstruction {
   font-family: 'Karla', sans-serif;
   font-size: 13px;
-  color: rgba(232, 227, 216, 0.42);
+  color: rgba(232, 227, 216, 0.52);
   line-height: 1.65;
   max-width: 300px;
   text-align: center;
@@ -1038,7 +1094,7 @@
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.2em;
-  color: rgba(var(--accent-rgb), 0.5);
+  color: rgba(var(--accent-rgb), 0.62);
   text-align: center;
 }
 
@@ -1064,7 +1120,7 @@
 .deepDiveSummary {
   font-family: 'Karla', sans-serif;
   font-size: 14px;
-  color: rgba(232, 227, 216, 0.55);
+  color: rgba(232, 227, 216, 0.60);
   line-height: 1.65;
   margin: 0;
 }
@@ -1074,7 +1130,7 @@
   font-style: italic;
   font-weight: 300;
   font-size: 18px;
-  color: rgba(232, 227, 216, 0.5);
+  color: rgba(232, 227, 216, 0.55);
   margin: 0;
   line-height: 1.5;
 }
@@ -1090,7 +1146,7 @@
 .deepDiveText {
   font-family: 'Karla', sans-serif;
   font-size: 13px;
-  color: rgba(232, 227, 216, 0.62);
+  color: rgba(232, 227, 216, 0.68);
   line-height: 1.7;
   margin: 0;
 }
@@ -1100,7 +1156,7 @@
   font-style: italic;
   font-weight: 300;
   font-size: 20px;
-  color: rgba(232, 227, 216, 0.45);
+  color: rgba(232, 227, 216, 0.50);
   line-height: 1.55;
   margin: 0;
   text-align: center;

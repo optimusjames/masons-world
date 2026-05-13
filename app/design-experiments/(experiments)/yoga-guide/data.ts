@@ -17,12 +17,36 @@ export type Step =
   | 'welcome'
   | 'intentions'
   | 'context'
+  | 'accommodations'
   | 'dosha'
   | 'results'
   | 'breathe'
   | 'flow'
   | 'rhythm'
   | 'ayurveda'
+
+export type InjuryArea =
+  | 'lower-back'
+  | 'knee'
+  | 'ankle-foot'
+  | 'shoulder-arm'
+  | 'hip'
+  | 'wrist-hand'
+  | 'neck'
+  | 'limb-difference'
+
+export type LimbSide = 'left' | 'right'
+export type LimbLevel = 'full-arm' | 'partial-arm' | 'full-leg' | 'above-knee' | 'below-knee'
+
+export interface LimbDifference {
+  side: LimbSide
+  level: LimbLevel
+}
+
+export interface Accommodations {
+  areas: InjuryArea[]
+  limbDifference?: LimbDifference
+}
 
 export interface Answers {
   intentions: Intention[]
@@ -40,6 +64,10 @@ export interface Pose {
   howOften: string
   doshaAffinity: Dosha[]
   timeAffinity: PreferredTime[]
+}
+
+export interface PoseWithAdaptation extends Pose {
+  adaptation?: string
 }
 
 export interface BreathPhase {
@@ -81,12 +109,13 @@ export interface AyurvedaDetail {
 
 export interface Results {
   summary: string
-  poses: Pose[]
+  poses: PoseWithAdaptation[]
   breathingTechniques: BreathingTechnique[]
   frequencyGuidance: string
   timeGuidance: string
   flowDurationMins: number
   ayurvedicTips: string[]
+  accommodationNote?: string
 }
 
 // Parse a hold string like "90s", "2 min", "60s each side" → seconds
@@ -124,6 +153,30 @@ export const PREFERRED_TIMES: { id: PreferredTime; label: string }[] = [
   { id: 'afternoon', label: 'Afternoon' },
   { id: 'evening', label: 'Evening' },
   { id: 'flexible', label: 'Flexible' },
+]
+
+export const ACCOMMODATION_LABELS: { id: InjuryArea; label: string }[] = [
+  { id: 'lower-back', label: 'Lower Back' },
+  { id: 'knee', label: 'Knee' },
+  { id: 'ankle-foot', label: 'Ankle / Foot' },
+  { id: 'shoulder-arm', label: 'Shoulder / Arm' },
+  { id: 'hip', label: 'Hip' },
+  { id: 'wrist-hand', label: 'Wrist / Hand' },
+  { id: 'neck', label: 'Neck' },
+  { id: 'limb-difference', label: 'Limb Difference' },
+]
+
+export const LIMB_SIDES: { id: LimbSide; label: string }[] = [
+  { id: 'left', label: 'Left' },
+  { id: 'right', label: 'Right' },
+]
+
+export const LIMB_LEVELS: { id: LimbLevel; label: string }[] = [
+  { id: 'full-arm', label: 'Entire arm' },
+  { id: 'partial-arm', label: 'Elbow to hand' },
+  { id: 'full-leg', label: 'Entire leg' },
+  { id: 'above-knee', label: 'Above knee' },
+  { id: 'below-knee', label: 'Below knee' },
 ]
 
 // ── Bento stat data ────────────────────────────────────────────────────────
@@ -545,9 +598,177 @@ const DOSHA_SUMMARY_QUALITY: Record<Dosha, string> = {
   kapha: 'energising and awakened',
 }
 
+// ── Accommodation Data ─────────────────────────────────────────────────────
+
+const POSE_SCORE_PENALTIES: Partial<Record<InjuryArea, string[]>> = {
+  knee: ['pigeon', 'warrior-i'],
+  'wrist-hand': ['downward-dog', 'cat-cow'],
+  'shoulder-arm': ['downward-dog', 'cat-cow'],
+  'ankle-foot': ['warrior-i'],
+  hip: ['pigeon', 'warrior-i'],
+}
+
+const POSE_PRIORITIES_FOR_ACCOMMODATION: Partial<Record<InjuryArea, string[]>> = {
+  'lower-back': ['cat-cow', 'childs-pose', 'supine-twist'],
+  knee: ['legs-up-wall', 'savasana', 'seated-forward-fold', 'supine-twist'],
+  'ankle-foot': ['legs-up-wall', 'seated-forward-fold', 'butterfly', 'supine-twist'],
+  'shoulder-arm': ['legs-up-wall', 'supine-twist', 'savasana', 'butterfly'],
+  hip: ['supine-twist', 'butterfly', 'legs-up-wall', 'seated-forward-fold'],
+  'wrist-hand': ['legs-up-wall', 'supine-twist', 'butterfly', 'savasana'],
+  neck: ['savasana', 'supine-twist', 'childs-pose'],
+  'limb-difference': ['savasana', 'supine-twist', 'seated-forward-fold', 'butterfly'],
+}
+
+const POSE_ADAPTATIONS: Partial<Record<InjuryArea, Record<string, string>>> = {
+  'lower-back': {
+    bridge:
+      'Micro-bridge: lift the hips only 2–3 inches off the mat. Avoid pressing into a full arch. Keep the natural lumbar curve neutral and use the glutes, not the lower back, to sustain the lift.',
+    'seated-forward-fold':
+      'Sit on a folded blanket to tilt the pelvis forward. Bend the knees generously. Hinge from the hips and pause well before any pulling sensation in the lower back — go only as far as feels safe.',
+    'warrior-i':
+      'Shorten the stance by about a third. Keep the front knee stacked over the ankle. Rest both hands on the front thigh if raising the arms causes lumbar compression.',
+    'downward-dog':
+      'Bend both knees generously throughout the hold. The goal is spinal decompression and length — not straight legs. Walk the hands further from the feet to reduce the angle of the lower back.',
+    'cat-cow':
+      'Avoid dropping the belly past neutral in the cow phase if this pulls in the lower back. A small, gentle arc is sufficient. Move slowly and let breath lead the movement.',
+    pigeon:
+      'Use a folded blanket under the front hip to keep the pelvis level. This prevents the lower back from rotating to compensate. Fold forward only as far as the back stays neutral.',
+  },
+  knee: {
+    'warrior-i':
+      'Shorten the lunge considerably. The front knee should track the second toe and stay directly over — not past — the ankle. Rest the back knee on a folded blanket if sensitive. Reduce depth until there is zero discomfort.',
+    pigeon:
+      'Replace with a supine figure-four: lie on your back, cross one ankle over the opposite thigh, flex both feet strongly (this protects the knee ligaments), and draw both legs gently toward the chest. Full hip opening, zero knee loading.',
+    butterfly:
+      'Sit on a folded blanket to elevate the hips. Let the knees rest at whatever height is natural — do not press them toward the floor. Avoid any position that creates sensation inside the knee joint.',
+    bridge:
+      'Place a yoga block or folded blanket between the thighs to encourage alignment. Reduce the height of the lift if there is any knee discomfort. Stop immediately if a sharp sensation occurs.',
+    'childs-pose':
+      'Place a tightly rolled blanket behind the knees before folding forward to create more space in the joint. If floor kneeling is too much, fold forward from a chair seat with arms hanging toward the floor.',
+    'cat-cow':
+      'Place a folded blanket under each knee before beginning. If hands-and-knees is still uncomfortable, do this seated in a chair: arch (cow) and round (cat) the spine with the breath, hands resting on thighs.',
+  },
+  'ankle-foot': {
+    'warrior-i':
+      'Rest the back knee on a folded blanket (low lunge variation). This removes weight-bearing from the rear ankle entirely while preserving the hip flexor opening and upper body lift.',
+    'mountain-pose':
+      'Stand near a wall with one hand lightly resting on it. Allow the affected foot to bear only as much weight as is comfortable. Focus on alignment of hip and knee rather than a perfectly symmetrical stance.',
+    'downward-dog':
+      'Work from the forearms — Dolphin Pose: come onto the elbows with forearms flat on the mat, then press the hips up and back. This eliminates ankle weight-bearing while providing most of the spinal and hamstring benefit.',
+    bridge:
+      'Ensure the feet are placed flat and close enough to the hips that there is minimal dorsiflexion at the ankle. If heel placement is uncomfortable, try a slightly wider stance.',
+  },
+  'shoulder-arm': {
+    'downward-dog':
+      'Replace with Puppy Pose: from hands and knees, walk the hands forward along the mat and lower the chest and chin toward the floor, keeping the hips stacked over the knees. Same thoracic extension, no shoulder weight-bearing.',
+    'cat-cow':
+      'Come onto the forearms for the cow phase. For cat, simply round the spine from a forearm or seated position — no pressing through the hands required.',
+    bridge:
+      'Keep arms flat alongside the body, palms facing down or up — whichever is comfortable. Do not clasp the hands beneath the back. Let the leg drive and glute strength sustain the lift.',
+    'warrior-i':
+      'Rest the hands on the hips or front thigh rather than raising the arms overhead. The standing, balancing, and hip-opening benefits of the pose are fully intact at hip height.',
+    'childs-pose':
+      'Rest the arms alongside the body rather than extended forward. This takes all weight and stretch off the shoulders and turns the pose into pure grounding rest.',
+  },
+  hip: {
+    pigeon:
+      'Replace with a supine figure-four: lie on your back, cross one ankle over the opposite thigh, flex the raised foot strongly, and draw both legs gently toward the chest. Equivalent hip external rotation with no joint loading.',
+    'warrior-i':
+      'Reduce the stride length to half of what feels natural. Add a slight external rotation at the back hip if that creates more ease. Keep the pelvis as neutral as possible.',
+    butterfly:
+      'Sit on a firm folded blanket or bolster to tilt the pelvis forward. Let the knees rest at their natural height — never press them down. Fold forward only as far as the hips, not the waist, allow.',
+    'downward-dog':
+      'Bend the knees and focus on the hip crease opening upward toward the ceiling rather than pressing the heels down. A well-bent-knee dog with lifted sit bones is more hip-opening than forcing flat legs.',
+  },
+  'wrist-hand': {
+    'downward-dog':
+      'Substitute with Dolphin Pose: come onto the forearms with elbows at shoulder width, forearms parallel. Press the hips up and back as in a standard dog. Alternatively, make soft fists and place the knuckles on the mat to bring the wrist toward neutral.',
+    'cat-cow':
+      'Place the forearms on the mat instead of the hands for the cow phase. For cat, simply round the spine while resting on the forearms. Or perform the sequence seated in a chair.',
+    bridge:
+      'Keep palms facing up alongside the body, fully releasing the wrists. Do not press the hands into the mat at any point.',
+    'childs-pose':
+      'Extend the arms alongside the body rather than forward. This removes all pressure from the wrists while retaining the grounding and rest qualities of the pose.',
+  },
+  neck: {
+    'downward-dog':
+      'Let the head hang fully between the arms — a fully released neck, not tucked chin, not craned up. If neck sensation is too strong, place blocks under the hands to raise the floor and reduce the angle.',
+    'childs-pose':
+      'Place a folded blanket under the forehead so the neck rests in a supported, neutral position rather than being pressed into the mat. Arms alongside the body release all neck tension.',
+    'warrior-i':
+      'Keep the gaze softly forward at the horizon. Do not look up toward the hands overhead. A neutral neck with a gentle forward gaze is both safer and more sustainable.',
+    'cat-cow':
+      'In cow phase, look only slightly forward — let the cervical spine follow the thoracic arc gently. In cat, let the chin drop naturally without forcing it to the chest.',
+    savasana:
+      'Place a thin folded blanket under the head and neck so the cervical spine rests in neutral — neither pressed into the mat nor extended. Essential for holds longer than a minute.',
+  },
+}
+
+function getLimbAdaptations(ld: LimbDifference): Record<string, string> {
+  const isArm = ld.level === 'full-arm' || ld.level === 'partial-arm'
+  const aboveKnee = ld.level === 'full-leg' || ld.level === 'above-knee'
+  const opp = ld.side === 'left' ? 'right' : 'left'
+
+  if (isArm) {
+    return {
+      'downward-dog': `From hands and knees, shift weight onto the ${opp} hand and rest the ${ld.side} forearm or a block for support. Puppy Pose — chest and chin toward the mat, hips over knees — is fully accessible and delivers the same spinal elongation without bilateral hand weight-bearing.`,
+      'cat-cow': `If bilateral hand support is not available, rest on the forearm or a yoga block on the ${ld.side} side. The spinal flexion and extension are the core movement — symmetric support is not required.`,
+      'warrior-i': `Rest the available hand on the front thigh or extend it for balance. The pose is structurally complete with one arm. The standing strength, hip opening, and breath are unchanged.`,
+      bridge: `Arms rest naturally alongside the body. The lift is driven entirely by the legs and glutes — arm engagement is not needed. Focus on pressing evenly through both feet.`,
+      'childs-pose': `Let the available arm extend forward or rest alongside the body — whichever is more comfortable. The grounding and nervous system reset of the pose are fully available to you.`,
+    }
+  }
+
+  return {
+    'warrior-i': aboveKnee
+      ? `Work near a wall or with a chair for balance support on the ${ld.side} side. The upper body and hip opening are the primary benefits — adapt your base to what feels stable for your prosthetic or residual limb. A shorter stance gives more control.`
+      : `Shorten the stance to what feels stable. If using a below-knee prosthetic, check with your prosthetist about deep lunge weight distribution. Keep a wall or chair within reach to offload at any moment.`,
+    'mountain-pose': `Stand near a wall with one hand available for support. Find your own centre of gravity — it will differ from a symmetric baseline, and that is the correct position for your body. Steady, even breathing is the whole practice here.`,
+    pigeon: aboveKnee
+      ? `Supine figure-four ({side} hip): lie on your back, rest your {side} limb over your {oppSide} thigh as comfortably as possible, and draw both legs gently toward your chest. Full hip opening, no balance required.`
+      : `Supine figure-four ({side} hip): lie on your back, cross your {side} ankle over your {oppSide} thigh, flex both feet strongly, and draw both legs toward your chest. Full hip opening, no balance required.`,
+    'cat-cow': `This sequence can be done seated in a chair: sit upright at the edge of the seat, hands on thighs. Inhale and arch the spine into cow, lifting the chest. Exhale and round into cat. The spinal mobility benefit is identical.`,
+    'downward-dog': `Stand facing a wall, place both hands flat on it at chest height, and step the feet back until the torso is close to parallel with the floor. The spinal decompression and hamstring stretch are fully available at the wall.`,
+    bridge: aboveKnee
+      ? `Press through the available leg and through the residual limb or prosthetic as appropriate. Place a folded blanket under the ${ld.side} side for support if needed. The opposite leg does most of the driving.`
+      : `Press evenly through both feet or through your prosthetic if weight-bearing is appropriate for your device. Reduce the height of the lift if balance is a concern. Engage the core for stability.`,
+  }
+}
+
+function getAccommodationNote(accommodations: Accommodations): string | undefined {
+  if (!accommodations.areas.length) return undefined
+
+  if (accommodations.limbDifference) {
+    const { side, level } = accommodations.limbDifference
+    const levelLabels: Record<LimbLevel, string> = {
+      'full-arm': 'full arm',
+      'partial-arm': 'arm (elbow to hand)',
+      'full-leg': 'full leg',
+      'above-knee': 'above-knee leg',
+      'below-knee': 'below-knee leg',
+    }
+    return `Your practice has been adapted for your ${side} ${levelLabels[level]} difference. Every relevant pose in your sequence includes a specific modification. Where standing balance is involved, keeping a wall or chair nearby gives you full autonomy over depth and stability. Move at your pace — the breath and the intention are the practice.`
+  }
+
+  const areaLabels: Partial<Record<InjuryArea, string>> = {
+    'lower-back': 'lower back',
+    knee: 'knee',
+    'ankle-foot': 'ankle and foot',
+    'shoulder-arm': 'shoulder and arm',
+    hip: 'hip',
+    'wrist-hand': 'wrist and hand',
+    neck: 'neck',
+    'limb-difference': 'limb difference',
+  }
+
+  const labels = accommodations.areas.map((a) => areaLabels[a]).filter(Boolean)
+  const plural = labels.length > 1
+  return `Your practice has been adapted for your ${labels.join(' and ')}${plural ? ' areas' : ''}. Modified instructions appear with each relevant pose during your flow session. Work within a pain-free range — any modification is not a lesser version, it is the version that keeps you practising long-term.`
+}
+
 // ── Recommendation Engine ──────────────────────────────────────────────────
 
-export function getRecommendations(answers: Answers): Results {
+export function getRecommendations(answers: Answers, accommodations?: Accommodations): Results {
   const { intentions, activityLevel, preferredTime, dosha } = answers
 
   // Score poses
@@ -566,6 +787,16 @@ export function getRecommendations(answers: Answers): Results {
     }
   }
 
+  // Apply accommodation score adjustments
+  if (accommodations?.areas.length) {
+    for (const area of accommodations.areas) {
+      const penalties = POSE_SCORE_PENALTIES[area] ?? []
+      for (const id of penalties) poseScores.set(id, (poseScores.get(id) ?? 0) - 4)
+      const boosts = POSE_PRIORITIES_FOR_ACCOMMODATION[area] ?? []
+      for (const id of boosts) poseScores.set(id, (poseScores.get(id) ?? 0) + 4)
+    }
+  }
+
   const sortedPoses = [...POSES].sort(
     (a, b) => (poseScores.get(b.id) ?? 0) - (poseScores.get(a.id) ?? 0)
   )
@@ -576,6 +807,21 @@ export function getRecommendations(answers: Answers): Results {
       .filter((p): p is Pose => !!p)
     topPoses = [...topPoses, ...boostFill].slice(0, 4)
   }
+
+  // Apply adaptations to selected poses
+  const posesWithAdaptations: PoseWithAdaptation[] = topPoses.map((pose) => {
+    if (!accommodations?.areas.length) return pose
+    for (const area of accommodations.areas) {
+      if (area === 'limb-difference' && accommodations.limbDifference) {
+        const limbAdaptations = getLimbAdaptations(accommodations.limbDifference)
+        if (limbAdaptations[pose.id]) return { ...pose, adaptation: limbAdaptations[pose.id] }
+      } else {
+        const areaAdaptations = POSE_ADAPTATIONS[area]
+        if (areaAdaptations?.[pose.id]) return { ...pose, adaptation: areaAdaptations[pose.id] }
+      }
+    }
+    return pose
+  })
 
   // Score breathing
   const breathScores = new Map<string, number>()
@@ -619,11 +865,14 @@ export function getRecommendations(answers: Answers): Results {
 
   return {
     summary,
-    poses: topPoses,
+    poses: posesWithAdaptations,
     breathingTechniques: topBreath,
     frequencyGuidance: FREQUENCY_GUIDANCE[activityLevel],
     timeGuidance: TIME_GUIDANCE[preferredTime],
     flowDurationMins,
     ayurvedicTips,
+    accommodationNote: accommodations?.areas.length
+      ? getAccommodationNote(accommodations)
+      : undefined,
   }
 }

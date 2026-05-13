@@ -52,7 +52,8 @@ The first result should always be free. This is the trust moment.
 ## Feature backlog
 
 ### Near-term (would meaningfully improve the prototype)
-- More intentions + finer-grained scoring (e.g. injury-aware modifications)
+- ✅ Injury-aware modifications — accommodations step with 8 areas + limb difference detail, adapted pose instructions, score adjustments, accommodation note surfaced in results + rhythm view
+- More intentions + finer-grained scoring
 - Pose instruction video thumbnails or illustrated cues in flow view
 - Ability to swap out a pose you don't like and get an alternative
 - Duration preference for the flow (10 / 20 / 30 min) that adjusts pose count and hold times

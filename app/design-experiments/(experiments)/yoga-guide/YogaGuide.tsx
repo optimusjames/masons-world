@@ -11,9 +11,14 @@ import {
   type Step,
   type Results,
   type BreathingTechnique,
+  type InjuryArea,
+  type Accommodations,
   INTENTIONS_LIST,
   ACTIVITY_LEVELS,
   PREFERRED_TIMES,
+  ACCOMMODATION_LABELS,
+  LIMB_SIDES,
+  LIMB_LEVELS,
   DOSHA_CARDS,
   RHYTHM_DETAIL,
   DOSHA_AYURVEDA_DETAIL,
@@ -23,17 +28,18 @@ import {
 
 // ── Theme ──────────────────────────────────────────────────────────────────
 
-type Theme = 'sage' | 'ocean' | 'dusk';
+type Theme = 'sage' | 'ocean' | 'dusk' | 'orange';
 
 const THEMES = [
-  { id: 'sage' as const, color: '#7fa882' },
-  { id: 'ocean' as const, color: '#7aafc4' },
-  { id: 'dusk' as const, color: '#a882a8' },
+  { id: 'sage' as const, color: '#62b86c' },
+  { id: 'ocean' as const, color: '#50b8d4' },
+  { id: 'dusk' as const, color: '#bc7abc' },
+  { id: 'orange' as const, color: '#cc7a4a' },
 ];
 
 // ── Progress Dots ──────────────────────────────────────────────────────────
 
-const QUESTIONNAIRE_STEPS: Step[] = ['intentions', 'context', 'dosha', 'results'];
+const QUESTIONNAIRE_STEPS: Step[] = ['intentions', 'context', 'accommodations', 'dosha', 'results'];
 
 function ProgressDots({ step }: { step: Step }) {
   if (!QUESTIONNAIRE_STEPS.includes(step)) return null;
@@ -64,7 +70,7 @@ function BreatheView({
   onBack: () => void;
 }) {
   const [activeTech, setActiveTech] = useState(techniques[0]);
-  const [targetSecs, setTargetSecs] = useState(600); // default 10 min
+  const [targetSecs, setTargetSecs] = useState(600);
   const [running, setRunning] = useState(false);
   const [phaseIdx, setPhaseIdx] = useState(0);
   const phaseIdxRef = useRef(0);
@@ -125,7 +131,6 @@ function BreatheView({
     setElapsed(0);
   }
 
-  // Circle scale
   const isInhale = currentPhase.label === 'Inhale';
   const isExhale = currentPhase.label === 'Exhale';
   const prevLabel = activeTech.phases[(phaseIdx - 1 + activeTech.phases.length) % activeTech.phases.length]?.label;
@@ -162,7 +167,6 @@ function BreatheView({
         <p className={s.breathViewBenefit}>{activeTech.benefit}</p>
       </div>
 
-      {/* Duration selector */}
       {!running && !sessionDone && elapsed === 0 && (
         <div className={s.breathDurationRow}>
           <div className={s.sectionLabel}>session length</div>
@@ -177,7 +181,6 @@ function BreatheView({
         </div>
       )}
 
-      {/* Breathing circle */}
       <div className={s.breathCircleWrap}>
         <div
           className={s.breathCircle}
@@ -195,7 +198,6 @@ function BreatheView({
         </div>
       </div>
 
-      {/* Elapsed / session complete */}
       {(running || elapsed > 0) && !sessionDone && (
         <p className={s.breathCycleLabel}>
           {elapsedMins}:{elapsedSecs.toString().padStart(2, '0')} elapsed
@@ -216,6 +218,14 @@ function BreatheView({
       )}
     </div>
   );
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+function resolveAdaptation(text: string, side: 'left' | 'right' | null): string {
+  if (!side || (!text.includes('{side}') && !text.includes('{oppSide}'))) return text
+  const opp = side === 'left' ? 'right' : 'left'
+  return text.replace(/\{side\}/g, side).replace(/\{oppSide\}/g, opp)
 }
 
 // ── Flow View ──────────────────────────────────────────────────────────────
@@ -256,7 +266,6 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
 
   const item = sequence[current];
 
-  // Main countdown
   useEffect(() => {
     if (!timerRunning) return;
     if (secsLeft <= 0) {
@@ -268,7 +277,6 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
     return () => clearInterval(id);
   }, [timerRunning, secsLeft, current, sequence.length]);
 
-  // Auto-advance countdown after pose ends
   useEffect(() => {
     if (autoCountdown === null) return;
     if (autoCountdown <= 0) { setAutoCountdown(null); advancePose(); return; }
@@ -351,6 +359,10 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
   }
 
   const isTimerDone = secsLeft === 0;
+  const instructionText = resolveAdaptation(
+    item.pose.adaptation ?? item.pose.instruction,
+    item.side
+  );
 
   return (
     <div className={s.subView}>
@@ -366,7 +378,7 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
         {item.side && <span className={s.flowActiveSide}>{item.side} side</span>}
         <h2 className={s.flowActiveName}>{item.pose.name}</h2>
         <p className={s.flowActiveBenefit}>{item.pose.benefit}</p>
-        <p className={s.flowActiveInstruction}>{item.pose.instruction}</p>
+        <p className={s.flowActiveInstruction}>{instructionText}</p>
         <div className={`${s.flowTimer} ${isTimerDone ? s.flowTimerDone : ''}`}>
           {fmtTime(secsLeft)}
           {secsLeft >= 60 ? (
@@ -404,10 +416,12 @@ function FlowView({ poses, onBack }: { poses: Results['poses']; onBack: () => vo
 function RhythmView({
   activityLevel,
   flowDurationMins,
+  accommodationNote,
   onBack,
 }: {
   activityLevel: ActivityLevel;
   flowDurationMins: number;
+  accommodationNote?: string;
   onBack: () => void;
 }) {
   const detail = RHYTHM_DETAIL[activityLevel];
@@ -419,6 +433,13 @@ function RhythmView({
         <h2 className={s.deepDiveTitle}>Movement & Breath Rhythm</h2>
         <p className={s.deepDiveSummary}>{detail.sessionSummary}</p>
       </div>
+
+      {accommodationNote && (
+        <div className={s.deepDiveSection}>
+          <div className={s.sectionLabel}>practice accommodations</div>
+          <p className={s.deepDiveText}>{accommodationNote}</p>
+        </div>
+      )}
 
       <div className={s.deepDiveSection}>
         <div className={s.sectionLabel}>your flow practice</div>
@@ -552,6 +573,14 @@ function ResultsView({
 
       <p className={s.resultsSummary}>{results.summary}</p>
 
+      {/* Accommodation note */}
+      {results.accommodationNote && (
+        <div className={s.accommodationNoteBox}>
+          <div className={s.sectionLabel}>practice accommodations</div>
+          <p className={s.accommodationNoteText}>{results.accommodationNote}</p>
+        </div>
+      )}
+
       {/* Poses */}
       <div>
         <div className={s.sectionLabel}>good poses for you</div>
@@ -639,6 +668,7 @@ export default function YogaGuide() {
   const [intentions, setIntentions] = useState<Intention[]>([]);
   const [activityLevel, setActivityLevel] = useState<ActivityLevel | null>(null);
   const [preferredTime, setPreferredTime] = useState<PreferredTime | null>(null);
+  const [accommodations, setAccommodations] = useState<Accommodations>({ areas: [] });
   const [expandedDosha, setExpandedDosha] = useState<Dosha | null>(null);
   const [selectedDosha, setSelectedDosha] = useState<Dosha | null>(null);
   const [results, setResults] = useState<Results | null>(null);
@@ -651,13 +681,21 @@ export default function YogaGuide() {
     });
   }
 
-  function handleDoshaChoose(dosha: Dosha) {
-    const r = getRecommendations({
-      intentions,
-      activityLevel: activityLevel!,
-      preferredTime: preferredTime!,
-      dosha,
+  function toggleAccommodation(area: InjuryArea) {
+    setAccommodations((prev) => {
+      const newAreas = prev.areas.includes(area)
+        ? prev.areas.filter((a) => a !== area)
+        : [...prev.areas, area];
+      const limbDifference = newAreas.includes('limb-difference') ? prev.limbDifference : undefined;
+      return { areas: newAreas, limbDifference };
     });
+  }
+
+  function handleDoshaChoose(dosha: Dosha) {
+    const r = getRecommendations(
+      { intentions, activityLevel: activityLevel!, preferredTime: preferredTime!, dosha },
+      accommodations.areas.length > 0 ? accommodations : undefined
+    );
     setSelectedDosha(dosha);
     setResults(r);
     setStep('results');
@@ -666,7 +704,8 @@ export default function YogaGuide() {
   function goBack() {
     if (step === 'intentions') setStep('welcome');
     else if (step === 'context') setStep('intentions');
-    else if (step === 'dosha') setStep('context');
+    else if (step === 'accommodations') setStep('context');
+    else if (step === 'dosha') setStep('accommodations');
     else if (step === 'results') {
       setExpandedDosha(null); setSelectedDosha(null); setResults(null);
       setStep('dosha');
@@ -680,6 +719,7 @@ export default function YogaGuide() {
     setIntentions([]);
     setActivityLevel(null);
     setPreferredTime(null);
+    setAccommodations({ areas: [] });
     setExpandedDosha(null);
     setSelectedDosha(null);
     setResults(null);
@@ -777,8 +817,86 @@ export default function YogaGuide() {
                   ))}
                 </div>
               </div>
-              <button className={s.beginBtn} disabled={!activityLevel || !preferredTime} onClick={() => setStep('dosha')}>
+              <button className={s.beginBtn} disabled={!activityLevel || !preferredTime} onClick={() => setStep('accommodations')}>
                 continue
+              </button>
+            </div>
+          </motion.div>
+        )}
+
+        {step === 'accommodations' && (
+          <motion.div key="accommodations" className={s.stepPanel}
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: 'easeInOut' }}
+          >
+            <div className={s.stepContent}>
+              <button className={s.backBtn} onClick={goBack}>← back</button>
+              <div>
+                <h2 className={s.stepTitle}>Any physical accommodations?</h2>
+                <p className={s.stepSubtitle}>Select all that apply — or continue if none.</p>
+              </div>
+              <div className={s.intentionsGrid}>
+                {ACCOMMODATION_LABELS.map((item) => {
+                  const selected = accommodations.areas.includes(item.id);
+                  return (
+                    <button key={item.id}
+                      className={`${s.intentionPill} ${selected ? s.intentionPillActive : ''}`}
+                      onClick={() => toggleAccommodation(item.id)}
+                    >{item.label}</button>
+                  );
+                })}
+              </div>
+
+              <AnimatePresence>
+                {accommodations.areas.includes('limb-difference') && (
+                  <motion.div
+                    key="limb-detail"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.22, ease: 'easeInOut' }}
+                    className={s.limbDetailSection}
+                  >
+                    <div className={s.contextSection}>
+                      <div className={s.sectionLabel}>Which side?</div>
+                      <div className={s.pillRow}>
+                        {LIMB_SIDES.map((ls) => (
+                          <button key={ls.id}
+                            className={`${s.pill} ${accommodations.limbDifference?.side === ls.id ? s.pillActive : ''}`}
+                            onClick={() => setAccommodations((prev) => ({
+                              ...prev,
+                              limbDifference: {
+                                side: ls.id,
+                                level: prev.limbDifference?.level ?? 'below-knee',
+                              },
+                            }))}
+                          >{ls.label}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className={s.contextSection}>
+                      <div className={s.sectionLabel}>Level</div>
+                      <div className={s.pillRow}>
+                        {LIMB_LEVELS.map((ll) => (
+                          <button key={ll.id}
+                            className={`${s.pill} ${accommodations.limbDifference?.level === ll.id ? s.pillActive : ''}`}
+                            onClick={() => setAccommodations((prev) => ({
+                              ...prev,
+                              limbDifference: {
+                                side: prev.limbDifference?.side ?? 'left',
+                                level: ll.id,
+                              },
+                            }))}
+                          >{ll.label}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <button className={s.beginBtn} onClick={() => setStep('dosha')}>
+                {accommodations.areas.length === 0 ? 'skip' : 'continue'}
               </button>
             </div>
           </motion.div>
@@ -875,6 +993,7 @@ export default function YogaGuide() {
             <RhythmView
               activityLevel={activityLevel}
               flowDurationMins={results.flowDurationMins}
+              accommodationNote={results.accommodationNote}
               onBack={goBack}
             />
           </motion.div>

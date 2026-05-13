@@ -950,11 +950,11 @@ function getLimbAdaptations(ld: LimbDifference): Record<string, string> {
       ? `Fold forward over a bolster or stacked pillows from a comfortable seated position — the full grounding and nervous system reset of the pose is available without bilateral kneeling. Arms alongside the body or extended forward.`
       : `Add extra cushioning beneath the {side} knee before folding forward. If floor kneeling is uncomfortable, fold forward from a chair with arms hanging toward the floor.`,
     'cat-cow': `This sequence can be done seated in a chair: sit upright at the edge of the seat, hands on thighs. Inhale and arch the spine into cow, lifting the chest. Exhale and round into cat. The spinal mobility benefit is identical.`,
-    'downward-dog': `Stand facing a wall, place both hands flat on it at chest height, and step the feet back until the torso is close to parallel with the floor. The spinal decompression and hamstring stretch are fully available at the wall.`,
+    'downward-dog': `Stand facing a wall and place both hands flat on it at chest height. Walk back until the torso is close to parallel with the floor. The spinal decompression and hamstring stretch are fully available at the wall.`,
     bridge: aboveKnee
       ? `Press through the available leg and through the residual limb or prosthetic as appropriate. Place a folded blanket under the ${ld.side} side for support if needed. The opposite leg does most of the driving.`
-      : `Press evenly through both feet or through your prosthetic if weight-bearing is appropriate for your device. Reduce the height of the lift if balance is a concern. Engage the core for stability.`,
-    'happy-baby': `Lie on your back. Draw both knees toward your chest. For your {side} limb, hold the shin or rest the limb comfortably — no need to reach the foot. Rock gently if that feels good.`,
+      : `Press through your {oppSide} foot and through your {side} limb or prosthetic as weight-bearing allows. Reduce the height of the lift if balance is a concern. Engage the core for stability.`,
+    'happy-baby': `Lie on your back. Draw both knees toward your chest. Hold your {oppSide} foot or shin in the usual way. For your {side} limb, hold the shin or rest the limb wherever it is comfortable. Rock gently side to side or simply hold.`,
     sphinx: `Lie on your stomach with elbows directly under the shoulders, forearms flat on the mat. Press down through the forearms and lift the chest. Your {side} limb rests naturally alongside the {oppSide} leg — no leg engagement is needed. The entire pose is in the upper body and forearms.`,
     'standing-forward-fold': aboveKnee
       ? `Stand near a wall for support. Fold forward as far as is comfortable, with the wall available at any moment. Your centre of gravity in the forward fold will differ slightly — that is correct for your body.`

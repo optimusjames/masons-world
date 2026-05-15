@@ -45,9 +45,12 @@ export interface LimbDifference {
   level: LimbLevel
 }
 
+export type AccommodationSide = 'left' | 'right' | 'both'
+
 export interface Accommodations {
   areas: InjuryArea[]
   limbDifference?: LimbDifference
+  sides?: Partial<Record<InjuryArea, AccommodationSide>>
 }
 
 export interface Answers {
@@ -186,6 +189,15 @@ export const ACCOMMODATION_LABELS: { id: InjuryArea; label: string }[] = [
   { id: 'wrist-hand', label: 'Wrist / Hand' },
   { id: 'neck', label: 'Neck' },
   { id: 'limb-difference', label: 'Limb Difference' },
+]
+
+// Areas where left/right side is meaningful (lower-back and neck are midline)
+export const BILATERAL_AREAS: InjuryArea[] = ['knee', 'ankle-foot', 'shoulder-arm', 'hip', 'wrist-hand']
+
+export const AREA_SIDES: { id: AccommodationSide; label: string }[] = [
+  { id: 'left', label: 'Left' },
+  { id: 'right', label: 'Right' },
+  { id: 'both', label: 'Both' },
 ]
 
 export const LIMB_SIDES: { id: LimbSide; label: string }[] = [
@@ -1011,7 +1023,16 @@ function getAccommodationNote(accommodations: Accommodations): string | undefine
     'limb-difference': 'limb difference',
   }
 
-  const labels = accommodations.areas.map((a) => areaLabels[a]).filter(Boolean)
+  const labels = accommodations.areas
+    .filter((a) => a !== 'limb-difference')
+    .map((a) => {
+      const base = areaLabels[a] ?? ''
+      const side = accommodations.sides?.[a]
+      if (side === 'left') return `left ${base}`
+      if (side === 'right') return `right ${base}`
+      return base
+    })
+    .filter(Boolean)
   const plural = labels.length > 1
   return `Your practice has been adapted for your ${labels.join(' and ')}${plural ? ' areas' : ''}. Modified instructions appear with each relevant pose during your flow session. Work within a pain-free range — any modification is not a lesser version, it is the version that keeps you practising long-term.`
 }

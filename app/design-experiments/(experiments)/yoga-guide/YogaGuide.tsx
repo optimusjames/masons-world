@@ -15,12 +15,15 @@ import {
   type BreathingTechnique,
   type InjuryArea,
   type Accommodations,
+  type AccommodationSide,
   INTENTIONS_LIST,
   ACTIVITY_LEVELS,
   PREFERRED_TIMES,
   SKILL_LEVELS,
   DIETARY_STYLES,
   ACCOMMODATION_LABELS,
+  BILATERAL_AREAS,
+  AREA_SIDES,
   LIMB_SIDES,
   LIMB_LEVELS,
   DOSHA_CARDS,
@@ -769,8 +772,18 @@ export default function YogaGuide() {
         ? prev.areas.filter((a) => a !== area)
         : [...prev.areas, area];
       const limbDifference = newAreas.includes('limb-difference') ? prev.limbDifference : undefined;
-      return { areas: newAreas, limbDifference };
+      const newSides = { ...prev.sides };
+      if (!newAreas.includes(area)) delete newSides[area];
+      const sides = Object.keys(newSides).length ? newSides : undefined;
+      return { areas: newAreas, limbDifference, sides };
     });
+  }
+
+  function setAreaSide(area: InjuryArea, side: AccommodationSide) {
+    setAccommodations((prev) => ({
+      ...prev,
+      sides: { ...prev.sides, [area]: side },
+    }));
   }
 
   function handleDoshaChoose(dosha: Dosha) {
@@ -803,7 +816,7 @@ export default function YogaGuide() {
     setPreferredTime(null);
     setSkillLevel(null);
     setDietaryStyle(null);
-    setAccommodations({ areas: [] });
+    setAccommodations({ areas: [], sides: undefined });
     setExpandedDosha(null);
     setSelectedDosha(null);
     setResults(null);
@@ -997,6 +1010,35 @@ export default function YogaGuide() {
                         ))}
                       </div>
                     </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {accommodations.areas.some((a) => BILATERAL_AREAS.includes(a)) && (
+                  <motion.div
+                    key="bilateral-sides"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.22, ease: 'easeInOut' }}
+                    className={s.limbDetailSection}
+                  >
+                    {accommodations.areas.filter((a) => BILATERAL_AREAS.includes(a)).map((area) => (
+                      <div key={area} className={s.contextSection}>
+                        <div className={s.sectionLabel}>
+                          {ACCOMMODATION_LABELS.find((a2) => a2.id === area)?.label} — which side?
+                        </div>
+                        <div className={s.pillRow}>
+                          {AREA_SIDES.map((side) => (
+                            <button key={side.id}
+                              className={`${s.pill} ${accommodations.sides?.[area] === side.id ? s.pillActive : ''}`}
+                              onClick={() => setAreaSide(area, side.id)}
+                            >{side.label}</button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>

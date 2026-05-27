@@ -7,7 +7,7 @@ const GREETINGS = [
   { text: "You found me.", color: "#5EC47A", glow: "#7FE8A0" },
   { text: "Signal received.", color: "#8FF7F9", glow: "#8FF7F9" },
   { text: "Transmission incoming.", color: "#5EC47A", glow: "#7FE8A0" },
-  { text: "Let\u2019s make something.", color: "#7FE8A0", glow: "#7FE8A0" },
+  { text: "Eyes open.", color: "#7FE8A0", glow: "#7FE8A0" },
   { text: "Good to see you.", color: "#8FF7F9", glow: "#8FF7F9" },
 ];
 

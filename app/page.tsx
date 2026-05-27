@@ -112,7 +112,7 @@ export default async function Home() {
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </CurtainLink>
-              <span className={styles.exploreSectionSubtitle}>Reads · Tools · Links Worth Saving</span>
+              <span className={styles.exploreSectionSubtitle}>Reads · Finds · Rabbit Holes</span>
             </div>
             <div className={styles.exploreItems}>
               {recentExplores.map((item) => (

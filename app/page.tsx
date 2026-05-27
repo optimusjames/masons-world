@@ -39,14 +39,17 @@ export default async function Home() {
                         <Image
                           src={exp.screenshot}
                           alt={exp.title}
-                          width={160}
-                          height={120}
-                          sizes="80px"
+                          width={200}
+                          height={150}
+                          sizes="100px"
                           className={styles.itemThumb}
                         />
                       )}
                       <div className={styles.itemText}>
                         <span className={styles.itemTitle}>{exp.title}</span>
+                        {exp.description && (
+                          <span className={styles.itemSnippet}>{exp.description}</span>
+                        )}
                         <span className={styles.itemDate}>{exp.date}</span>
                       </div>
                     </CurtainLink>
@@ -63,6 +66,7 @@ export default async function Home() {
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </CurtainLink>
+              <span className={styles.columnSubtitle}>Philosophy · Mindset · Tech</span>
               <div className={styles.columnItems}>
                 {posts.map((post) => (
                   <ShakeCard key={post.slug} className={styles.columnItem}>
@@ -71,17 +75,18 @@ export default async function Home() {
                         <Image
                           src={post.image}
                           alt={post.title}
-                          width={160}
-                          height={120}
-                          sizes="80px"
+                          width={200}
+                          height={150}
+                          sizes="100px"
                           className={styles.itemThumb}
                         />
                       )}
                       <div className={styles.itemText}>
                         <span className={styles.itemTitle}>{post.title}</span>
-                        {post.subtitle ? (
-                          <span className={styles.itemDate}>{post.subtitle}</span>
-                        ) : post.date ? (
+                        {post.subtitle && (
+                          <span className={styles.itemSnippet}>{post.subtitle}</span>
+                        )}
+                        {post.date && (
                           <span className={styles.itemDate}>
                             {new Date(post.date).toLocaleDateString("en-US", {
                               month: "short",
@@ -89,7 +94,7 @@ export default async function Home() {
                               year: "numeric",
                             })}
                           </span>
-                        ) : null}
+                        )}
                       </div>
                     </CurtainLink>
                   </ShakeCard>
@@ -100,12 +105,15 @@ export default async function Home() {
 
           {/* Explore Stuff */}
           <div className={styles.exploreSection}>
-            <CurtainLink href="/recommended" className={styles.exploreSectionTitle} curtainTransition={true}>
-              Explore Stuff
-              <svg width="12" height="12" viewBox="0 0 20 20" fill="none">
-                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </CurtainLink>
+            <div className={styles.exploreSectionHeader}>
+              <CurtainLink href="/recommended" className={styles.exploreSectionTitle} curtainTransition={true}>
+                Explore Stuff
+                <svg width="12" height="12" viewBox="0 0 20 20" fill="none">
+                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </CurtainLink>
+              <span className={styles.exploreSectionSubtitle}>Reads · Tools · Links Worth Saving</span>
+            </div>
             <div className={styles.exploreItems}>
               {recentExplores.map((item) => (
                 <ShakeCard key={item.id} className={styles.exploreItem}>

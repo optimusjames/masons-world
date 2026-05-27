@@ -30,6 +30,7 @@ export default async function Home() {
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </CurtainLink>
+              <span className={styles.columnSubtitle}>Experiments · Case Studies · Tools</span>
               <div className={styles.columnItems}>
                 {recentExperiments.map((exp) => (
                   <ShakeCard key={exp.slug} className={styles.columnItem}>
@@ -54,10 +55,10 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Write */}
+            {/* Blog */}
             <div className={styles.column}>
               <CurtainLink href="/blog" className={styles.columnTitle} curtainTransition={true}>
-                Write
+                Blog
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
                   <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -95,39 +96,38 @@ export default async function Home() {
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* Explore */}
-            <div className={styles.column}>
-              <CurtainLink href="/recommended" className={styles.columnTitle} curtainTransition={true}>
-                Explore
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </CurtainLink>
-              <div className={styles.columnItems}>
-                {recentExplores.map((item) => (
-                  <ShakeCard key={item.id} className={styles.columnItem}>
-                    <CurtainLink href="/recommended" style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }} curtainTransition={true}>
-                      {item.thumbnail && (
-                        <Image
-                          src={item.thumbnail}
-                          alt={item.title}
-                          width={160}
-                          height={120}
-                          sizes="80px"
-                          className={styles.itemThumb}
-                        />
-                      )}
-                      <div className={styles.itemText}>
-                        <span className={styles.itemTitle}>{item.title}</span>
-                        <span className={styles.itemDate}>{new Date(`${item.date}T00:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                      </div>
-                    </CurtainLink>
-                  </ShakeCard>
-                ))}
-              </div>
+          {/* Explore Stuff */}
+          <div className={styles.exploreSection}>
+            <CurtainLink href="/recommended" className={styles.exploreSectionTitle} curtainTransition={true}>
+              Explore Stuff
+              <svg width="12" height="12" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </CurtainLink>
+            <div className={styles.exploreItems}>
+              {recentExplores.map((item) => (
+                <ShakeCard key={item.id} className={styles.exploreItem}>
+                  <CurtainLink href="/recommended" style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }} curtainTransition={true}>
+                    {item.thumbnail && (
+                      <Image
+                        src={item.thumbnail}
+                        alt={item.title}
+                        width={100}
+                        height={75}
+                        sizes="50px"
+                        className={styles.exploreThumb}
+                      />
+                    )}
+                    <div className={styles.itemText}>
+                      <span className={styles.itemTitle}>{item.title}</span>
+                      <span className={styles.itemDate}>{new Date(`${item.date}T00:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+                    </div>
+                  </CurtainLink>
+                </ShakeCard>
+              ))}
             </div>
-
           </div>
           <SiteFooter className={styles.homeFooter} />
         </div>

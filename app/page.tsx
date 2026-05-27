@@ -129,7 +129,7 @@ export default async function Home() {
                       />
                     )}
                     <div className={styles.itemText}>
-                      <span className={styles.itemTitle}>{item.title}</span>
+                      <span className={styles.exploreItemTitle}>{item.title}</span>
                       <span className={styles.itemDate}>{new Date(`${item.date}T00:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
                     </div>
                   </CurtainLink>

@@ -447,6 +447,20 @@
   opacity: 0.8;
 }
 
+.exploreItemTitle {
+  font-family: var(--font-lora), 'Lora', serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
 .homeFooter {
   width: 100%;
   max-width: var(--content-max);

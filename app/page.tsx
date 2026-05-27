@@ -69,7 +69,7 @@ export default async function Home() {
               <span className={styles.columnSubtitle}>Philosophy · Mindset · Tech</span>
               <div className={styles.columnItems}>
                 {posts.map((post) => (
-                  <ShakeCard key={post.slug} className={styles.columnItem}>
+                  <ShakeCard key={post.slug} className={`${styles.columnItem} ${styles.columnItemReversed}`}>
                     <CurtainLink href={`/blog/${post.slug}`} style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }} curtainTransition={true}>
                       {post.image && (
                         <Image

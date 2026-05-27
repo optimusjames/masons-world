@@ -299,6 +299,10 @@
   border-bottom: none;
 }
 
+.columnItemReversed {
+  flex-direction: row-reverse;
+}
+
 .itemThumb {
   flex-shrink: 0;
   width: 100px;
@@ -318,7 +322,7 @@
 
 .itemTitle {
   font-family: var(--font-lora), 'Lora', serif;
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: color-mix(in srgb, var(--glow-color, #E0DED9) 70%, #E0DED9);
   line-height: 1.3;

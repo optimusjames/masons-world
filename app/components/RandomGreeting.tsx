@@ -3,12 +3,12 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const GREETINGS = [
-  { text: "Greetings, Earthling.", color: "#7FE8A0", glow: "#7FE8A0" },
   { text: "Oh, hello there.", color: "#1E3FBA", glow: "#4A8AFF" },
   { text: "You found me.", color: "#5EC47A", glow: "#7FE8A0" },
-  { text: "Don\u2019t panic.", color: "#7FE8A0", glow: "#7FE8A0" },
   { text: "Signal received.", color: "#8FF7F9", glow: "#8FF7F9" },
   { text: "Transmission incoming.", color: "#5EC47A", glow: "#7FE8A0" },
+  { text: "Let\u2019s make something.", color: "#7FE8A0", glow: "#7FE8A0" },
+  { text: "Good to see you.", color: "#8FF7F9", glow: "#8FF7F9" },
 ];
 
 function pick() {

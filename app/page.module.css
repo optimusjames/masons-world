@@ -247,11 +247,14 @@
     0 0 10px rgba(255, 255, 255, 0.55),
     0 0 28px rgba(255, 255, 255, 0.18);
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   display: flex;
   align-items: center;
   gap: 0.35rem;
   text-decoration: none;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.18) 0%, transparent 55%);
+  background-size: 100% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
 }
 
 .columnTitle svg {
@@ -348,7 +351,7 @@
   font-size: 0.72rem;
   font-weight: 400;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.62);
   line-height: 1.35;
   overflow: hidden;
   display: -webkit-box;
@@ -359,10 +362,10 @@
 
 .itemDate {
   font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.42);
   line-height: 1.3;
   margin-top: 0.1rem;
 }
@@ -464,7 +467,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   white-space: normal;
 }

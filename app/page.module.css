@@ -210,8 +210,10 @@
   animation: contentEnter 0.8s ease-out 1.1s forwards;
   background-image: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.09),
-    rgba(255, 255, 255, 0.09)
+    transparent 0%,
+    rgba(255, 255, 255, 0.09) 18%,
+    rgba(255, 255, 255, 0.09) 82%,
+    transparent 100%
   );
   background-size: 1px 100%;
   background-position: center;
@@ -348,10 +350,11 @@
 
 .itemSnippet {
   font-family: var(--font-lora), 'Lora', serif;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 400;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.015em;
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.35;
   overflow: hidden;
   display: -webkit-box;

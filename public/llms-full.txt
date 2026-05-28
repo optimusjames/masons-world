@@ -26,6 +26,8 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Blog
 
+- [Proof of Person](https://masons-world.vercel.app/blog/proof-of-person): On authenticity in an age when AI can simulate your voice, face, and writing. Argues that trust doesn't come from being verifiable, it comes from being knowable — through specificity, raw process, vulnerability, and the willingness to be wrong in public. The non-linear accumulation of a real life has a texture that simulation can't quite source. By James Mason. Date: May 27, 2026.
+
 - [Who's the Smartest?](https://masons-world.vercel.app/blog/whos-the-smartest): On vibe as intelligence, and why it's about to matter more. Riffs on Jensen Huang's definition of smart as the ability to feel the vibe -- integrating data, analysis, first principles, life experience, wisdom, and sensing people. Argues the unlikely person in the room is often the one tuned in, and AI is about to make that edge decisive. By James Mason. Date: April 13, 2026.
 
 - [Wrong Again](https://masons-world.vercel.app/blog/wrong-again): On being wrong, adjusting, and the loop that actually works. About the iterative process of making mistakes, learning from them, and how that cycle is the real skill. By James Mason. Date: March 12, 2026.

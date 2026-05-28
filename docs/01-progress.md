@@ -8,6 +8,13 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+## May 2026
+
+**Blog post, *Proof of Person***
+New essay on authenticity and AI simulation. Argues that in an age when anyone can generate a convincing version of you, trust doesn't come from being verifiable — it comes from being knowable. The non-linear accumulation of a real life, the vulnerability, the imperfect process, has a texture simulation can't source.
+
+---
+
 ## April 2026
 
 **McLoughlin / 99E**  

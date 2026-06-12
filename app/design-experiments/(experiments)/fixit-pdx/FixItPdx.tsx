@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.css'
 import type {
   Category,
@@ -29,6 +29,22 @@ export default function FixItPdx() {
 
   const [visibleStatuses, setVisibleStatuses] = useState<ReportStatus[]>(ALL_STATUSES)
   const [visibleCategory, setVisibleCategory] = useState<Category['id'] | 'all'>('all')
+  const [fullscreen, setFullscreen] = useState(false)
+
+  // While in fullscreen takeover, lock background scroll and let Esc exit.
+  useEffect(() => {
+    if (!fullscreen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setFullscreen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [fullscreen])
 
   const counts = useMemo(() => {
     const c: Record<ReportStatus, number> = { reported: 0, in_progress: 0, fixed: 0 }
@@ -128,7 +144,7 @@ export default function FixItPdx() {
     screen === 'confirmation'
 
   return (
-    <div className={styles.app}>
+    <div className={`${styles.app} ${fullscreen ? styles.appFullscreen : ''}`}>
       <MapView
         pins={pins}
         visibleStatuses={visibleStatuses}
@@ -144,7 +160,20 @@ export default function FixItPdx() {
           <span className={styles.brandFix}>Fix It</span>
           <span className={styles.brandPdx}>PDX</span>
         </div>
-        <StatsStrip reported={DATA.stats.reportedThisMonth} fixed={DATA.stats.fixedThisMonth} />
+        <div className={styles.topRight}>
+          <StatsStrip reported={DATA.stats.reportedThisMonth} fixed={DATA.stats.fixedThisMonth} />
+          {screen === 'map' && (
+            <button
+              type="button"
+              className={styles.fsBtn}
+              onClick={() => setFullscreen((v) => !v)}
+              aria-label={fullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+              title={fullscreen ? 'Exit fullscreen (Esc)' : 'Fullscreen'}
+            >
+              {fullscreen ? '✕' : '⤢'}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Browse mode controls */}

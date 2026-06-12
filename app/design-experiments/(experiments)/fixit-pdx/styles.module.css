@@ -24,6 +24,18 @@
   isolation: isolate;
 }
 
+/* Fullscreen takeover — fill the whole viewport (tab), escaping the
+   design-experiment frame. Toggled by the ⤢ button; Esc exits. */
+.appFullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100dvh;
+  max-height: none;
+  border-radius: 0;
+}
+
 .map {
   position: absolute;
   inset: 0;
@@ -67,6 +79,31 @@
 }
 .brandPdx {
   color: var(--primary);
+}
+
+.topRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+.fsBtn {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.15s, transform 0.1s;
+}
+.fsBtn:hover {
+  background: var(--surface-2);
+  transform: translateY(-1px);
 }
 
 .stats {

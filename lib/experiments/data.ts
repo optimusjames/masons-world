@@ -2,6 +2,15 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'fixit-pdx',
+    date: 'June 11, 2026',
+    title: 'Fix It PDX',
+    description: 'A reimagining of the City of Portland\'s clunky, login-walled PDX Reporter. One clean map that does two things: tap a pin to see what got fixed and how fast, or tap anywhere to report a pothole, dead streetlight, graffiti, or other street issue — no login, no 13-tile maze. Twelve infrastructure categories routed to inline, phone, or city-form handoffs. Real Portland open data on a light Leaflet basemap.',
+    screenshot: '/screenshots/fixit-pdx.png',
+    tags: ['Map', 'Leaflet', 'Portland', 'Civic', 'Interactive'],
+    theme: 'light',
+  },
+  {
     slug: 'qr-studio',
     date: 'May 6, 2026',
     title: 'QR Studio',

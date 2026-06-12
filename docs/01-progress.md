@@ -8,6 +8,13 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+## June 2026
+
+**Fix It PDX**  
+New design experiment — a reimagining of the City of Portland's clunky, login-walled PDX Reporter. One light Leaflet map that does two things: tap a pin to see what got fixed (and how fast), or tap anywhere to report a street issue with no login. Lands already alive with ~370 real pothole records from the city's public PBOT Maintenance feature layer plus illustrative pins for the other categories on real Portland streets. Map-first report flow with reverse geocoding, a 5-common-plus-search category step, and three honest handling patterns — inline mock-submit (reference number + optional email opt-in), phone handoff with a pre-filled script, and external handoff to the real Portland.gov form. Campsite reporting kept out as a respectful pointer to the Impact Reduction Program. A pitch-ready front-end vision prototype aimed at PBOT: "here's the replacement experience — you build the backend." Reuses the Leaflet bones from McLoughlin / 99E.
+
+---
+
 ## May 2026
 
 **Blog post, *Proof of Person***

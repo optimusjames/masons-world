@@ -113,12 +113,15 @@ export default function MapView({
           }),
         onEachFeature: (feature, layer) => {
           const p = feature.properties as FountainProps
-          const label = p.bubbler ? 'Benson Bubbler' : 'Drinking fountain'
+          const [lon, lat] = (feature.geometry as unknown as { coordinates: [number, number] }).coordinates
           layer.bindPopup(
-            `<div class="${styles.popup}">` +
-              `<div class="${styles.popupLabel}">${label}</div>` +
-              (p.name ? `<div><strong>${escapeHtml(p.name)}</strong></div>` : '<div>Public water</div>') +
-              `</div>`,
+            reliefPopup(
+              'Cold water',
+              WATER,
+              p.name || 'Drinking fountain',
+              p.bubbler ? 'Benson Bubbler' : 'Public drinking water',
+              [lat, lon],
+            ),
           )
         },
       })
@@ -135,12 +138,15 @@ export default function MapView({
           }),
         onEachFeature: (feature, layer) => {
           const p = feature.properties as CoolingProps
-          const kind = p.kind === 'library' ? 'Library' : 'Community center'
+          const [lon, lat] = (feature.geometry as unknown as { coordinates: [number, number] }).coordinates
           layer.bindPopup(
-            `<div class="${styles.popup}">` +
-              `<div class="${styles.popupLabel}">${kind} · cool air</div>` +
-              `<div><strong>${escapeHtml(p.name)}</strong></div>` +
-              `</div>`,
+            reliefPopup(
+              'Cool air · AC',
+              COOL,
+              p.name,
+              p.kind === 'library' ? 'Library · air-conditioned' : 'Community center · air-conditioned',
+              [lat, lon],
+            ),
           )
         },
       })
@@ -230,6 +236,27 @@ export default function MapView({
   }, [userLocation, nearest, mapReady])
 
   return <div ref={containerRef} className={styles.map} />
+}
+
+// Builds a popup that matches the "Nearest relief" card: benefit eyebrow, name,
+// sub, and a Directions link — so any clicked spot is as useful as the located one.
+function reliefPopup(
+  eyebrow: string,
+  color: string,
+  name: string,
+  sub: string,
+  coord: [number, number],
+): string {
+  const dir = `https://www.google.com/maps/dir/?api=1&destination=${coord[0]},${coord[1]}`
+  return (
+    `<div class="${styles.popup}">` +
+    `<div class="${styles.popupEyebrow}" style="color:${color}">` +
+    `<span class="${styles.popupDot}" style="background:${color}"></span>${eyebrow}</div>` +
+    `<div class="${styles.popupName}">${escapeHtml(name)}</div>` +
+    `<div class="${styles.popupMeta}">${escapeHtml(sub)}</div>` +
+    `<a class="${styles.popupDir}" href="${dir}" target="_blank" rel="noopener noreferrer" style="color:${color}">Directions ↗</a>` +
+    `</div>`
+  )
 }
 
 function escapeHtml(s: string): string {

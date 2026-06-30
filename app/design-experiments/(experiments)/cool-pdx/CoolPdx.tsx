@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import MapView from './components/MapView'
 import LayerToggles from './components/LayerToggles'
@@ -80,6 +80,22 @@ export default function CoolPdx() {
   const [nearest, setNearest] = useState<NearestResult | null>(null)
   const [locating, setLocating] = useState(false)
   const [geoError, setGeoError] = useState<string | null>(null)
+  const [fullscreen, setFullscreen] = useState(false)
+
+  // While in fullscreen takeover, lock background scroll and let Esc exit.
+  useEffect(() => {
+    if (!fullscreen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setFullscreen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [fullscreen])
 
   const toggleLayer = useCallback((id: LayerId) => {
     setVisibleLayers((prev) =>
@@ -129,7 +145,7 @@ export default function CoolPdx() {
         </p>
       </header>
 
-      <div className={styles.mapWrapper}>
+      <div className={`${styles.mapWrapper} ${fullscreen ? styles.mapWrapperFullscreen : ''}`}>
         <MapView
           visibleLayers={visibleLayers}
           canopy={canopy}
@@ -138,15 +154,26 @@ export default function CoolPdx() {
           userLocation={userLocation}
           nearest={nearest}
         />
-        <button
-          type="button"
-          className={styles.locateBtn}
-          onClick={findRelief}
-          disabled={locating}
-        >
-          <span className={styles.locateDot} />
-          {locating ? 'Locating…' : 'Relief near me'}
-        </button>
+        <div className={styles.mapControls}>
+          <button
+            type="button"
+            className={styles.locateBtn}
+            onClick={findRelief}
+            disabled={locating}
+          >
+            <span className={styles.locateDot} />
+            {locating ? 'Locating…' : 'Relief near me'}
+          </button>
+          <button
+            type="button"
+            className={styles.fsBtn}
+            onClick={() => setFullscreen((v) => !v)}
+            aria-label={fullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+            title={fullscreen ? 'Exit fullscreen (Esc)' : 'Fullscreen'}
+          >
+            {fullscreen ? '✕' : '⤢'}
+          </button>
+        </div>
         <LayerToggles visibleLayers={visibleLayers} onToggle={toggleLayer} />
         {nearest && <ReliefCard nearest={nearest} onClose={closeRelief} />}
       </div>

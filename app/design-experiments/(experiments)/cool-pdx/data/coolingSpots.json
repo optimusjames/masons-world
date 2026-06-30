@@ -1,0 +1,2095 @@
+{
+  "type": "FeatureCollection",
+  "source": {
+    "title": "Cooling spots (libraries + community centers) — OpenStreetMap via Overpass",
+    "note": "Year-round air-conditioned public spaces. Declared-heat-emergency cooling shelters are separate (county seasonal list).",
+    "fetchedAt": "2026-06-30T04:38:02.244Z"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 361215845,
+        "name": "Garden Home Community Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.753788,
+          45.466214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 364169953,
+        "name": "Hollywood Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.621173,
+          45.537627
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 364170016,
+        "name": "Sellwood Moreland Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.652789,
+          45.467734
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 365790589,
+        "name": "Davies Family Research Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.682446,
+          45.515721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 370457272,
+        "name": "Vancouver Mall Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.581715,
+          45.658378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 370457295,
+        "name": "Southwest Washington Medical Center Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.58012,
+          45.623949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 903474468,
+        "name": "Naya",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.620067,
+          45.557286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2233417294,
+        "name": "Cascade Park Community Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.535584,
+          45.625155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2477261489,
+        "name": "Salvation Army Moore Street Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.667534,
+          45.562218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3443509270,
+        "name": "YMCA of Columbia Willamette",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.713648,
+          45.456056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3608240592,
+        "name": "Tin House Books",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.705095,
+          45.535525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3726476827,
+        "name": "Linnton Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.785257,
+          45.598655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3994426756,
+        "name": "SomaSpace",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.621485,
+          45.535015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4274934893,
+        "name": "Tabor Space",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.607104,
+          45.516688
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5025632622,
+        "name": "Family of Grace",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.534838,
+          45.522196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5384751965,
+        "name": "Student Union",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.591803,
+          45.506086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5817914979,
+        "name": "Leaven Community",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.645128,
+          45.562396
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6377765017,
+        "name": "The Cleaners",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.68131,
+          45.521971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7945843438,
+        "name": "Cathedral Gardens Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.749605,
+          45.602258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9063257317,
+        "name": "Senior Helpers",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.557172,
+          45.52186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9109467717,
+        "name": "SE Works Harold Place",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.580307,
+          45.482963
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9293419403,
+        "name": "Open Signal",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.661308,
+          45.542789
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9400458194,
+        "name": "Beaverton Resource Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.816524,
+          45.506024
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9644873083,
+        "name": "Anarres Infoshop & Community Space",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.689085,
+          45.529702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9873804228,
+        "name": "Big Brothers Big Sisters Columbia Northwest",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.743568,
+          45.487871
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11209475922,
+        "name": "Regence Club",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.713183,
+          45.588455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13335789001,
+        "name": "Multnomah County Library - Hawthorne Holds Pickup",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.627437,
+          45.51243
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32322280,
+        "name": "Hillsdale Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.694087,
+          45.479844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32334087,
+        "name": "West Slope Community Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.757206,
+          45.49333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32334088,
+        "name": "Cedar Mill Comunity Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.806036,
+          45.52739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32353142,
+        "name": "Woodstock Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.612106,
+          45.478954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32353143,
+        "name": "Holgate Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.58215,
+          45.490494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32353144,
+        "name": "Midland Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.538457,
+          45.516654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32353149,
+        "name": "Capitol Hill Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.725452,
+          45.448055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32353152,
+        "name": "Saint Johns Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.751053,
+          45.590036
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32353155,
+        "name": "Rockwood Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.479058,
+          45.519525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32499299,
+        "name": "Central Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.683222,
+          45.519163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 36741611,
+        "name": "West End Theater",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.685501,
+          45.519163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39336400,
+        "name": "Liberty Hall",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.669759,
+          45.54767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39378720,
+        "name": "Northeast Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.623717,
+          45.534915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39414854,
+        "name": "Laurelhurst Studio Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.624611,
+          45.519883
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39660639,
+        "name": "Eastside Jewish Commons",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.64057,
+          45.527614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39705969,
+        "name": "Senior/Disabled Citizens Recreation",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.652406,
+          45.526338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40343887,
+        "name": "Soho House Portland",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.655158,
+          45.521
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40539633,
+        "name": "Q Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.675856,
+          45.553599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40877485,
+        "name": "Student Union",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.631558,
+          45.481208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 41690782,
+        "name": "Ethos Music Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66725,
+          45.562529
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 52082877,
+        "name": "The John & Marlis Carson Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.692954,
+          45.528999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 52322616,
+        "name": "Fulton Park Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.678967,
+          45.470945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 57716453,
+        "name": "Biomedical Information Communication Center",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.687601,
+          45.498896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 75175087,
+        "name": "Southwest Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.722132,
+          45.475836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 79445401,
+        "name": "Peninsula Park Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.673602,
+          45.569639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 96737741,
+        "name": "Beaverton City Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.804063,
+          45.484144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 107537386,
+        "name": "Belmont Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.622645,
+          45.515381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 109021234,
+        "name": "Hillside Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.709649,
+          45.527797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 111687468,
+        "name": "Mountain Park Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.715146,
+          45.431577
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 115923959,
+        "name": "Mount Scott Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.588659,
+          45.4825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 119843553,
+        "name": "Eric V. Hauser Memorial Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.628602,
+          45.48023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 130919075,
+        "name": "Garden Home Recreation Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.753484,
+          45.466556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 133792502,
+        "name": "Sellwood Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.651259,
+          45.464825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 135462705,
+        "name": "Montavilla Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.578535,
+          45.526804
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 139314997,
+        "name": "Watzek Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.66921,
+          45.450862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 142540173,
+        "name": "East Portland Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.552728,
+          45.515998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 142974586,
+        "name": "Woodstock Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.618838,
+          45.479775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 143086538,
+        "name": "Native American Youth and Family Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.609371,
+          45.571188
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 143103096,
+        "name": "Charles Jordan Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.711279,
+          45.587748
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 143125302,
+        "name": "Overlook House Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.685718,
+          45.550347
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 143127607,
+        "name": "Matt Dishman Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.664755,
+          45.542168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 143315079,
+        "name": "Saint Johns Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.752145,
+          45.592229
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 149460618,
+        "name": "Murrayhill Recreation Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.835789,
+          45.439798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 150553938,
+        "name": "Firstenburg Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.535955,
+          45.62584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 156411905,
+        "name": "Clark Memorial Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.726723,
+          45.572799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 159075020,
+        "name": "Student Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.687223,
+          45.498329
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 161312571,
+        "name": "The United Methodist Church Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.693337,
+          45.516768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 163045340,
+        "name": "North Portland Eagles",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.724908,
+          45.583533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 186069296,
+        "name": "Social Good Place",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.615948,
+          45.513787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 188983095,
+        "name": "Wyrd House",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.5957,
+          45.488839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 207289467,
+        "name": "Urban Studio",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.680952,
+          45.524627
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 213961479,
+        "name": "Southeast Family YMCA",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.601462,
+          45.491263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 272842144,
+        "name": "Community center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.8271,
+          45.514753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 276560112,
+        "name": "Friendly House",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.705255,
+          45.535167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 292995704,
+        "name": "Mittleman Jewish Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.704326,
+          45.476971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 315947069,
+        "name": "Lee E. Moore Senior Opportunity Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.704274,
+          45.475088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 320283253,
+        "name": "Community center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.687625,
+          45.515632
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 321368023,
+        "name": "Eliot Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.686012,
+          45.518586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 324101416,
+        "name": "Boyd Community Room",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.834349,
+          45.536817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 324127270,
+        "name": "Club House",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.819324,
+          45.529551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 324143779,
+        "name": "Leedy Grange Hall #339",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.80677,
+          45.526123
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 327190898,
+        "name": "Elise Stuhr Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.80402,
+          45.479743
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 327539072,
+        "name": "Interchurch Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.674999,
+          45.492612
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 330749067,
+        "name": "Centro Educativo y Cultural de Edúcate Ya",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.680819,
+          45.499862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 331945083,
+        "name": "Cannell Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.65091,
+          45.635428
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 332712065,
+        "name": "Marshall Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.661228,
+          45.633453
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 344854528,
+        "name": "Patricia D. Whiting Hall",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.763352,
+          45.448959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 351734750,
+        "name": "SMILE Station",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.652659,
+          45.463384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 361098054,
+        "name": "North Portland Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.671515,
+          45.562449
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 361102773,
+        "name": "Eritrean Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.655385,
+          45.558933
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 363366690,
+        "name": "Cascade Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.673437,
+          45.563128
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 367568088,
+        "name": "Korean Society of Oregon",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.759694,
+          45.46464
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 367936946,
+        "name": "Community Music Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.630561,
+          45.494582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 368089811,
+        "name": "Vancouver Community Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.668826,
+          45.62849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 368208133,
+        "name": "Alder Commons",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.619931,
+          45.555217
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 368223972,
+        "name": "Gregory Heights Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.581324,
+          45.551648
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 368307192,
+        "name": "Hinson Baptist Church Annex",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.645894,
+          45.513345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 369015548,
+        "name": "Community Hall Annex",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.581791,
+          45.506161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 370781537,
+        "name": "Milwaukie Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.619167,
+          45.44612
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 371454818,
+        "name": "Sivers Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.679206,
+          45.506257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 371554878,
+        "name": "Skyline Grange #894",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.83488,
+          45.606587
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 384205500,
+        "name": "Boley Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.67813,
+          45.452239
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 386579861,
+        "name": "Kenton Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.686463,
+          45.582829
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 398627879,
+        "name": "Mitchell Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.575532,
+          45.527086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 399825168,
+        "name": "UO Portland Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.636969,
+          45.569051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 399825171,
+        "name": "George R. White Library & Learning Center",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.63685,
+          45.570205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 405801275,
+        "name": "Bethany Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.835012,
+          45.554766
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 409153727,
+        "name": "Elder Hall",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.662102,
+          45.551342
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 409713264,
+        "name": "Moxie Studio",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.656314,
+          45.559261
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 410378371,
+        "name": "Kiernan Memorial Hall",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.657265,
+          45.558519
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 419548610,
+        "name": "Carvlin Hall",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.648649,
+          45.505475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 419548615,
+        "name": "The Paulist Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.649081,
+          45.505553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 425665792,
+        "name": "Beaverton City Library Murray Scholls Branch",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.827271,
+          45.43873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 519491103,
+        "name": "Norse Hall",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.654962,
+          45.523857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 519770054,
+        "name": "The Evergreen",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.6593,
+          45.517792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 520427339,
+        "name": "Alma Education & Movement Space",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.652793,
+          45.519551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 530914029,
+        "name": "Building 6 - Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.525987,
+          45.543223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 551174785,
+        "name": "Southeast Campus Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.58017,
+          45.505409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 558385535,
+        "name": "Otto F. Linn Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.594222,
+          45.50634
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 594005749,
+        "name": "Bethany Creek Falls Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.830902,
+          45.567956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 602177727,
+        "name": "Branford Price Millar Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.686121,
+          45.511541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 676941180,
+        "name": "Northwest Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.693332,
+          45.532368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 759449471,
+        "name": "Tamarack Hall",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.671543,
+          45.447724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 759673999,
+        "name": "Fowler Student Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.670948,
+          45.449314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 762748544,
+        "name": "Ledding Library",
+        "kind": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.640386,
+          45.446184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 802353885,
+        "name": "Nordia House",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.767378,
+          45.456125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 899351367,
+        "name": "June Key Delta Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.674664,
+          45.566113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 941356299,
+        "name": "Muslim Community Center of Portland",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.668992,
+          45.562217
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1178008663,
+        "name": "Villas at 28th Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.548048,
+          45.641534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1178451936,
+        "name": "Copper Lane Community Center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.550969,
+          45.640092
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1486455032,
+        "name": "Community center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.481793,
+          45.619683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1486455043,
+        "name": "Community center",
+        "kind": "community-center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.484451,
+          45.619562
+        ]
+      }
+    }
+  ]
+}

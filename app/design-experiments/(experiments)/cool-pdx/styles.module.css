@@ -142,12 +142,19 @@
   50% { box-shadow: 0 8px 28px rgba(99, 102, 241, 0.5); }
 }
 
-.locateHero {
+.heroWrap {
   position: absolute;
   z-index: 500;
   left: 50%;
-  bottom: 20px;
+  bottom: 18px;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.locateHero {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -166,7 +173,7 @@
 }
 
 .locateHero:hover {
-  transform: translateX(-50%) translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .locateHero:disabled {
@@ -175,11 +182,76 @@
   animation: none;
 }
 
+.heroHint {
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.82);
+  padding: 3px 11px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
 @media (max-width: 620px) {
-  .locateHero {
+  .heroWrap {
     bottom: 14px;
+  }
+  .locateHero {
     font-size: 13.5px;
     padding: 12px 20px;
+  }
+}
+
+/* Subtle address search — top center */
+.searchForm {
+  position: absolute;
+  z-index: 500;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: min(300px, calc(100% - 130px));
+  padding: 8px 13px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 10px rgba(42, 35, 32, 0.1);
+}
+
+.searchIcon {
+  display: inline-flex;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.searchInput::placeholder {
+  color: var(--ink-faint);
+}
+
+.searchBusy {
+  color: var(--ink-faint);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 520px) {
+  .searchForm {
+    width: calc(100% - 28px);
+    top: 56px;
   }
 }
 
@@ -327,7 +399,8 @@
   border-radius: 12px;
   background: var(--surface);
   box-shadow: 0 12px 38px rgba(42, 35, 32, 0.24);
-  overflow: hidden;
+  max-height: calc(100% - 28px);
+  overflow: hidden auto;
   animation: riseCenter 0.32s ease both;
 }
 
@@ -444,7 +517,7 @@
 
 .reliefDirections {
   display: inline-block;
-  margin-top: 9px;
+  margin: 4px 0 4px 8px;
   font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
   font-size: 12px;
   font-weight: 600;
@@ -460,6 +533,69 @@
   font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
   font-size: 12px;
   color: var(--ink-faint);
+}
+
+/* Ranked, selectable options inside each card column */
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 3px;
+}
+
+.optEmpty {
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  padding: 4px 2px;
+}
+
+.optionWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: none;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.option:hover {
+  background: rgba(42, 35, 32, 0.04);
+}
+
+.optionSelected {
+  background: rgba(42, 35, 32, 0.05);
+}
+
+.optName {
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.option:not(.optionSelected) .optName {
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.optMeta {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--ink-faint);
+  line-height: 1.35;
 }
 
 /* ---- Context strip ---- */

@@ -10,7 +10,7 @@ import type {
   FountainProps,
   CoolingCollection,
   CoolingProps,
-  NearestResult,
+  ActiveSpot,
 } from '../types'
 
 type Props = {
@@ -18,8 +18,31 @@ type Props = {
   canopy: CanopyGrid
   fountains: FountainsCollection
   cooling: CoolingCollection
-  userLocation: [number, number] | null // [lat, lon]
-  nearest: NearestResult | null
+  origin: [number, number] | null // [lat, lon]
+  activeSpots: ActiveSpot[]
+  onPickOrigin: (coord: [number, number]) => void
+}
+
+// Real walking route geometry from a public OSRM foot service; null on any failure
+// (caller falls back to a straight line). Returns [lat, lon] pairs.
+async function fetchRouteLine(
+  from: [number, number],
+  to: [number, number],
+  signal: AbortSignal,
+): Promise<[number, number][] | null> {
+  try {
+    const url =
+      `https://routing.openstreetmap.de/routed-foot/route/v1/foot/` +
+      `${from[1]},${from[0]};${to[1]},${to[0]}?overview=full&geometries=geojson`
+    const res = await fetch(url, { signal })
+    if (!res.ok) return null
+    const data = await res.json()
+    const coords = data?.routes?.[0]?.geometry?.coordinates
+    if (!Array.isArray(coords) || coords.length < 2) return null
+    return coords.map((c: [number, number]) => [c[1], c[0]])
+  } catch {
+    return null
+  }
 }
 
 const PORTLAND_BOUNDS: [[number, number], [number, number]] = [
@@ -36,14 +59,21 @@ export default function MapView({
   canopy,
   fountains,
   cooling,
-  userLocation,
-  nearest,
+  origin,
+  activeSpots,
+  onPickOrigin,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const mapRef = useRef<LeafletMap | null>(null)
   const layersRef = useRef<Partial<Record<LayerId, LeafletLayer>>>({})
   const userLayerRef = useRef<LayerGroup | null>(null)
+  const routeLayerRef = useRef<LayerGroup | null>(null)
+  const onPickRef = useRef(onPickOrigin)
   const [mapReady, setMapReady] = useState(false)
+
+  useEffect(() => {
+    onPickRef.current = onPickOrigin
+  }, [onPickOrigin])
 
   useEffect(() => {
     let mounted = true
@@ -156,10 +186,19 @@ export default function MapView({
         fountains: fountainsGroup,
         cooling: coolingGroup,
       }
-      userLayerRef.current = L.layerGroup().addTo(map)
       mapRef.current = map
-
       applyVisibility(map, layersRef.current, visibleLayers)
+
+      // Overlay groups on top of the data layers: routes underneath, markers over.
+      routeLayerRef.current = L.layerGroup().addTo(map)
+      userLayerRef.current = L.layerGroup().addTo(map)
+
+      // Tapping an empty part of the map sets the search origin ("check this spot").
+      // Marker clicks don't fire map 'click', so popups are unaffected.
+      map.on('click', (e) => {
+        onPickRef.current([e.latlng.lat, e.latlng.lng])
+      })
+
       map.invalidateSize()
       setMapReady(true)
 
@@ -177,6 +216,7 @@ export default function MapView({
       if (map) map.remove()
       layersRef.current = {}
       userLayerRef.current = null
+      routeLayerRef.current = null
       mapRef.current = null
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -188,54 +228,46 @@ export default function MapView({
     applyVisibility(map, layersRef.current, visibleLayers)
   }, [visibleLayers])
 
-  // User location + connectors to nearest relief
+  // Origin + selected destinations: markers/labels draw immediately; real walking
+  // routes load async and replace the straight-line fallback.
+  const spotsKey = activeSpots.map((s) => `${s.key}:${s.coord.join(',')}`).join('|')
+  const originKey = origin ? origin.join(',') : ''
   useEffect(() => {
     const map = mapRef.current
-    const group = userLayerRef.current
-    if (!map || !group || !mapReady) return
+    const markers = userLayerRef.current
+    const routes = routeLayerRef.current
+    if (!map || !markers || !routes || !mapReady) return
+    let cancelled = false
+    const ctrl = new AbortController()
 
     ;(async () => {
       const L = (await import('leaflet')).default
-      group.clearLayers()
-      if (!userLocation) return
+      markers.clearLayers()
+      routes.clearLayers()
+      if (!origin) return
 
       const reduced =
         typeof window !== 'undefined' &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-      // Each route: a flowing line toward the resource, a halo + emphasized ring so
-      // the target stands out among all the dots, and an on-map walk-time label.
-      const addRoute = (
-        spot: { coord: [number, number]; distM: number } | null | undefined,
-        color: string,
-      ) => {
-        if (!spot) return
-        const to = spot.coord
-        L.polyline([userLocation, to], {
-          color,
-          weight: 3,
-          opacity: 0.85,
-          dashArray: '1 7',
-          className: reduced ? '' : styles.routeLine,
-          interactive: false,
-        }).addTo(group)
-        L.circleMarker(to, {
+      // Target markers + walk-time labels (drawn now, on top).
+      for (const s of activeSpots) {
+        L.circleMarker(s.coord, {
           radius: 15,
           stroke: false,
-          fillColor: color,
+          fillColor: s.color,
           fillOpacity: 0.16,
           interactive: false,
-        }).addTo(group)
-        L.circleMarker(to, {
+        }).addTo(markers)
+        L.circleMarker(s.coord, {
           radius: 8,
           color: '#ffffff',
           weight: 2,
-          fillColor: color,
+          fillColor: s.color,
           fillOpacity: 1,
           interactive: false,
-        }).addTo(group)
-        const wm = Math.max(1, Math.round(spot.distM / 80))
-        L.marker(to, {
+        }).addTo(markers)
+        L.marker(s.coord, {
           interactive: false,
           icon: L.divIcon({
             className: '',
@@ -243,41 +275,59 @@ export default function MapView({
             iconAnchor: [0, 0],
             html:
               `<div style="position:absolute;transform:translate(-50%,-230%);white-space:nowrap;` +
-              `font:700 11px ui-sans-serif,system-ui,sans-serif;background:#fff;color:${color};` +
-              `border:1px solid ${color}66;padding:2px 8px;border-radius:999px;` +
-              `box-shadow:0 2px 8px rgba(42,35,32,0.2);">~${wm} min walk</div>`,
+              `font:700 11px ui-sans-serif,system-ui,sans-serif;background:#fff;color:${s.color};` +
+              `border:1px solid ${s.color}66;padding:2px 8px;border-radius:999px;` +
+              `box-shadow:0 2px 8px rgba(42,35,32,0.2);">~${s.minWalk} min walk</div>`,
           }),
-        }).addTo(group)
+        }).addTo(markers)
       }
-      addRoute(nearest?.fountain, WATER)
-      addRoute(nearest?.cooling, COOL)
 
-      // "You are here" — halo + solid dot for visibility.
-      L.circleMarker(userLocation, {
+      // Origin marker — halo + solid dot.
+      L.circleMarker(origin, {
         radius: 14,
         stroke: false,
         fillColor: '#2a2320',
         fillOpacity: 0.1,
         interactive: false,
-      }).addTo(group)
-      L.circleMarker(userLocation, {
+      }).addTo(markers)
+      L.circleMarker(origin, {
         radius: 7,
         fillColor: '#2a2320',
         color: '#ffffff',
         weight: 2,
         fillOpacity: 1,
       })
-        .addTo(group)
-        .bindPopup(`<div class="${styles.popup}">You are here</div>`)
+        .addTo(markers)
+        .bindPopup(`<div class="${styles.popup}">Searching from here</div>`)
 
-      const pts: [number, number][] = [userLocation]
-      if (nearest?.fountain) pts.push(nearest.fountain.coord)
-      if (nearest?.cooling) pts.push(nearest.cooling.coord)
-      const bounds = L.latLngBounds(pts).pad(0.4)
+      // Frame origin + targets right away.
+      const pts: [number, number][] = [origin, ...activeSpots.map((s) => s.coord)]
+      const bounds = L.latLngBounds(pts).pad(0.35)
       if (reduced) map.fitBounds(bounds)
       else map.flyToBounds(bounds, { duration: 0.7 })
+
+      // Real walking routes (async); fall back to a straight dashed line.
+      for (const s of activeSpots) {
+        const line = await fetchRouteLine(origin, s.coord, ctrl.signal)
+        if (cancelled) return
+        const latlngs = line ?? [origin, s.coord]
+        L.polyline(latlngs, {
+          color: s.color,
+          weight: 3.5,
+          opacity: 0.85,
+          dashArray: line ? undefined : '1 7',
+          className: !line && !reduced ? styles.routeLine : '',
+          interactive: false,
+        }).addTo(routes)
+      }
     })()
-  }, [userLocation, nearest, mapReady])
+
+    return () => {
+      cancelled = true
+      ctrl.abort()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [originKey, spotsKey, mapReady])
 
   return <div ref={containerRef} className={styles.map} />
 }

@@ -42,15 +42,26 @@ export interface CoolingProps {
 export type FountainsCollection = FeatureCollection<FountainProps>
 export type CoolingCollection = FeatureCollection<CoolingProps>
 
-export interface NearestSpot {
+export interface Spot {
   label: string
   sub: string
   coord: [number, number] // [lat, lon]
   distM: number
 }
 
-export interface NearestResult {
-  user: [number, number] // [lat, lon]
-  fountain: NearestSpot | null
-  cooling: NearestSpot | null
+export type ReliefKind = 'fountain' | 'cooling'
+
+export interface ReliefResult {
+  origin: [number, number] // [lat, lon]
+  originLabel: string
+  fountains: Spot[]
+  cooling: Spot[]
+}
+
+// A destination currently selected for routing/drawing on the map.
+export interface ActiveSpot {
+  key: string
+  coord: [number, number] // [lat, lon]
+  color: string
+  minWalk: number
 }

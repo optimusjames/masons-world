@@ -136,6 +136,62 @@
   box-shadow: 0 4px 14px rgba(42, 35, 32, 0.16);
 }
 
+/* Hero "find relief near me" — the primary action, centered on the bottom */
+@keyframes heroPulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(43, 143, 208, 0.32); }
+  50% { box-shadow: 0 8px 28px rgba(99, 102, 241, 0.5); }
+}
+
+.locateHero {
+  position: absolute;
+  z-index: 500;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--water), var(--cool));
+  color: #fff;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(43, 143, 208, 0.32);
+  animation: heroPulse 2.8s ease-in-out infinite;
+  transition: transform 0.15s ease;
+}
+
+.locateHero:hover {
+  transform: translateX(-50%) translateY(-1px);
+}
+
+.locateHero:disabled {
+  cursor: progress;
+  opacity: 0.9;
+  animation: none;
+}
+
+@media (max-width: 620px) {
+  .locateHero {
+    bottom: 14px;
+    font-size: 13.5px;
+    padding: 12px 20px;
+  }
+}
+
+/* Animated route line flowing toward each resource */
+.routeLine {
+  animation: routeFlow 0.9s linear infinite;
+}
+
+@keyframes routeFlow {
+  to { stroke-dashoffset: -16; }
+}
+
 /* "relief near me" button */
 .locateBtn {
   display: inline-flex;
@@ -523,7 +579,9 @@
   .header,
   .mapWrapper,
   .context,
-  .reliefCard {
+  .reliefCard,
+  .locateHero,
+  .routeLine {
     animation: none;
   }
 }

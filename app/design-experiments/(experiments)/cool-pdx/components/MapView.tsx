@@ -203,19 +203,63 @@ export default function MapView({
         typeof window !== 'undefined' &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-      const connect = (to: [number, number] | undefined, color: string) => {
-        if (!to) return
+      // Each route: a flowing line toward the resource, a halo + emphasized ring so
+      // the target stands out among all the dots, and an on-map walk-time label.
+      const addRoute = (
+        spot: { coord: [number, number]; distM: number } | null | undefined,
+        color: string,
+      ) => {
+        if (!spot) return
+        const to = spot.coord
         L.polyline([userLocation, to], {
           color,
-          weight: 2.5,
-          opacity: 0.7,
-          dashArray: '2 6',
+          weight: 3,
+          opacity: 0.85,
+          dashArray: '1 7',
+          className: reduced ? '' : styles.routeLine,
           interactive: false,
         }).addTo(group)
+        L.circleMarker(to, {
+          radius: 15,
+          stroke: false,
+          fillColor: color,
+          fillOpacity: 0.16,
+          interactive: false,
+        }).addTo(group)
+        L.circleMarker(to, {
+          radius: 8,
+          color: '#ffffff',
+          weight: 2,
+          fillColor: color,
+          fillOpacity: 1,
+          interactive: false,
+        }).addTo(group)
+        const wm = Math.max(1, Math.round(spot.distM / 80))
+        L.marker(to, {
+          interactive: false,
+          icon: L.divIcon({
+            className: '',
+            iconSize: [0, 0],
+            iconAnchor: [0, 0],
+            html:
+              `<div style="position:absolute;transform:translate(-50%,-230%);white-space:nowrap;` +
+              `font:700 11px ui-sans-serif,system-ui,sans-serif;background:#fff;color:${color};` +
+              `border:1px solid ${color}66;padding:2px 8px;border-radius:999px;` +
+              `box-shadow:0 2px 8px rgba(42,35,32,0.2);">~${wm} min walk</div>`,
+          }),
+        }).addTo(group)
       }
-      connect(nearest?.fountain?.coord, WATER)
-      connect(nearest?.cooling?.coord, COOL)
+      addRoute(nearest?.fountain, WATER)
+      addRoute(nearest?.cooling, COOL)
 
+      // "You are here" — halo + solid dot for visibility.
+      L.circleMarker(userLocation, {
+        radius: 14,
+        stroke: false,
+        fillColor: '#2a2320',
+        fillOpacity: 0.1,
+        interactive: false,
+      }).addTo(group)
       L.circleMarker(userLocation, {
         radius: 7,
         fillColor: '#2a2320',

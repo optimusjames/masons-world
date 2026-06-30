@@ -27,6 +27,28 @@ const cooling = coolingRaw as unknown as CoolingCollection
 
 const ALL_LAYERS: LayerId[] = ['canopy', 'fountains', 'cooling']
 
+function LocateIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="3.4" />
+      <line x1="12" y1="2.5" x2="12" y2="5.8" />
+      <line x1="12" y1="18.2" x2="12" y2="21.5" />
+      <line x1="2.5" y1="12" x2="5.8" y2="12" />
+      <line x1="18.2" y1="12" x2="21.5" y2="12" />
+    </svg>
+  )
+}
+
 // Haversine distance in meters between two [lat, lon] points.
 function distMeters(a: [number, number], b: [number, number]): number {
   const R = 6371000
@@ -157,15 +179,6 @@ export default function CoolPdx() {
         <div className={styles.mapControls}>
           <button
             type="button"
-            className={styles.locateBtn}
-            onClick={findRelief}
-            disabled={locating}
-          >
-            <span className={styles.locateDot} />
-            {locating ? 'Locating…' : 'Relief near me'}
-          </button>
-          <button
-            type="button"
             className={styles.fsBtn}
             onClick={() => setFullscreen((v) => !v)}
             aria-label={fullscreen ? 'Exit fullscreen' : 'Fullscreen'}
@@ -175,6 +188,17 @@ export default function CoolPdx() {
           </button>
         </div>
         <LayerToggles visibleLayers={visibleLayers} onToggle={toggleLayer} />
+        {!nearest && (
+          <button
+            type="button"
+            className={styles.locateHero}
+            onClick={findRelief}
+            disabled={locating}
+          >
+            <LocateIcon />
+            {locating ? 'Finding nearby relief…' : 'Find relief near me'}
+          </button>
+        )}
         {nearest && <ReliefCard nearest={nearest} onClose={closeRelief} />}
       </div>
 

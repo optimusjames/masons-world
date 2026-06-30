@@ -3,9 +3,11 @@ Next.js design experiments sandbox. Each experiment is a self-contained route.
 ## Commands
 
 ```bash
-npm run dev      # Dev server :3000
-npm run build    # Production build
+pnpm dev      # Dev server :3000
+pnpm build    # Production build
 ```
+
+This project uses **pnpm** (not npm). `pnpm-workspace.yaml` lists the dependencies allowed to run install scripts.
 
 ## Frequent Workflows
 

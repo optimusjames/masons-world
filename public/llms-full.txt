@@ -31,6 +31,8 @@ Source: https://github.com/optimusjames/masons-world
 
 - [Who's the Smartest?](https://masons-world.vercel.app/blog/whos-the-smartest): On vibe as intelligence, and why it's about to matter more. Riffs on Jensen Huang's definition of smart as the ability to feel the vibe -- integrating data, analysis, first principles, life experience, wisdom, and sensing people. Argues the unlikely person in the room is often the one tuned in, and AI is about to make that edge decisive. By James Mason. Date: April 13, 2026.
 
+- [Close Your Eyes](https://masons-world.vercel.app/blog/close-your-eyes): On reps, feel, and the work before the one shot. About the phase in yoga (and any practiced skill) where conscious instruction compresses into intuition — when the body stops being managed by the brain and starts responding on its own. By James Mason. Date: March 22, 2026.
+- [Remarkable Is a Direction](https://masons-world.vercel.app/blog/remarkable-is-a-direction): On obsession, play, and knowing when to ship. Argues that remarkable doesn't mean flashy or new — it means changing what someone expected and what they expect next. A direction people can feel and carry forward. By James Mason. Date: March 18, 2026.
 - [Wrong Again](https://masons-world.vercel.app/blog/wrong-again): On being wrong, adjusting, and the loop that actually works. About the iterative process of making mistakes, learning from them, and how that cycle is the real skill. By James Mason. Date: March 12, 2026.
 
 - [This Is Gonna Be Fun](https://masons-world.vercel.app/blog/this-is-gonna-be-fun): On starting before you know what you're doing. About diving into projects with enthusiasm before having everything figured out, and why that's often the right move. By James Mason. Date: March 9, 2026.

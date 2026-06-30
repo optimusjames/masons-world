@@ -22,6 +22,8 @@ Source: https://github.com/optimusjames/masons-world
 
 - [Proof of Person](https://masons-world.vercel.app/blog/proof-of-person): On authenticity, AI simulation, and why being real means being knowable — not just verifiable
 - [Who's the Smartest?](https://masons-world.vercel.app/blog/whos-the-smartest): On vibe as intelligence, and why it's about to matter more
+- [Close Your Eyes](https://masons-world.vercel.app/blog/close-your-eyes): On reps, feel, and the work before the one shot — when instruction compresses into intuition
+- [Remarkable Is a Direction](https://masons-world.vercel.app/blog/remarkable-is-a-direction): On obsession, play, and knowing when to ship — why remarkable means changing what someone expects next
 - [Wrong Again](https://masons-world.vercel.app/blog/wrong-again): On being wrong, adjusting, and the loop that actually works
 - [This Is Gonna Be Fun](https://masons-world.vercel.app/blog/this-is-gonna-be-fun): On starting before you know what you're doing
 - [You Can't Force It](https://masons-world.vercel.app/blog/you-cant-force-it): On leading by listening, and why it works the same way with AI

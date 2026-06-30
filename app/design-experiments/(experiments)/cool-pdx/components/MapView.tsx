@@ -62,11 +62,13 @@ export default function MapView({
       map.fitBounds(PORTLAND_BOUNDS)
 
       L.control.zoom({ position: 'bottomright' }).addTo(map)
+      // Keep the in-map credit to the license minimum; full data-source credits
+      // (incl. City of Portland trees) live in the page's source line under the map.
       L.control
-        .attribution({ position: 'bottomright', prefix: false })
+        .attribution({ position: 'bottomleft', prefix: false })
         .addAttribution(
-          '© <a href="https://carto.com" target="_blank" rel="noopener">CARTO</a> · ' +
-            'Trees: City of Portland · Fountains & cool spots: © OpenStreetMap',
+          '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · ' +
+            '© <a href="https://carto.com" target="_blank" rel="noopener">CARTO</a>',
         )
         .addTo(map)
 

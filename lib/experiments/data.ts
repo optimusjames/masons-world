@@ -2,6 +2,15 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'cool-pdx',
+    date: 'June 29, 2026',
+    title: 'Cool PDX',
+    description: 'A heat-relief map for Portland. On a hot day, find the nearest shade, water, and cool air — and see at a glance which neighborhoods are shaded and which bake. A tree-canopy gradient built from the city\'s street-tree inventory (253,951 trees) sits under drinking fountains and air-conditioned public refuges, with a "relief near me" button that finds your nearest fountain and cool space. Real Portland open data on a light Leaflet basemap.',
+    screenshot: '/screenshots/cool-pdx.png',
+    tags: ['Map', 'Leaflet', 'Portland', 'Climate', 'Interactive'],
+    theme: 'light',
+  },
+  {
     slug: 'fixit-pdx',
     date: 'June 11, 2026',
     title: 'Fix It PDX',

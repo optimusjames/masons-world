@@ -8,6 +8,7 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Design Experiments
 
+- [Cool PDX](https://masons-world.vercel.app/design-experiments/cool-pdx): A Portland heat-relief map — find the nearest shade, water, and cool air on a hot day. A tree-canopy shade gradient (253,951 street trees) under drinking fountains and air-conditioned public refuges, with a "relief near me" geolocation button. Real Portland open data on a light Leaflet basemap
 - [Fix It PDX](https://masons-world.vercel.app/design-experiments/fixit-pdx): An intuitive refresh of Portland's PDX Reporter — one clean Leaflet map where you tap a pin to see what's been fixed (real PBOT pothole data) or tap anywhere to report a street issue with no login, across 12 infrastructure categories routed to inline, phone, or city-form handoffs
 - [QR Studio](https://masons-world.vercel.app/design-experiments/qr-studio): Print-ready card generator with styled QR codes — business card, event flyer, and content card formats with dark/light themes and PNG + PDF export
 - [McLoughlin / 99E](https://masons-world.vercel.app/design-experiments/mcloughlin-99e): Four-chapter scrollytelling case study of a 3-year effort to reduce the speed limit on SE McLoughlin Blvd / OR-99E, with a synced Leaflet map that flies between corridor views as you scroll

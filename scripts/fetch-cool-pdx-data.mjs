@@ -91,45 +91,30 @@ async function fetchTreesGrid() {
   }
   process.stdout.write('\n')
 
-  // Emit cells as rectangles with a log-normalized intensity (0..1). Log scale keeps
-  // dense downtown/older neighborhoods from flattening the eastside contrast.
+  // Emit a COMPACT grid: origin + cell size + [ix, iy, intensity] triples. The client
+  // reconstructs cell rectangles. Far lighter than GeoJSON polygons (~5× smaller).
+  // Intensity is log-normalized (0..1) so dense old neighborhoods don't flatten the
+  // eastside contrast.
   const counts = [...cells.values()]
   const maxCount = counts.length ? Math.max(...counts) : 1
   const logMax = Math.log(maxCount + 1)
   const total = counts.reduce((a, b) => a + b, 0)
-  const features = [...cells.entries()].map(([key, count]) => {
+  const triples = [...cells.entries()].map(([key, count]) => {
     const [ix, iy] = key.split(',').map(Number)
-    const west = BBOX.west + ix * CELL
-    const south = BBOX.south + iy * CELL
-    return {
-      type: 'Feature',
-      properties: {
-        count,
-        intensity: Number((Math.log(count + 1) / logMax).toFixed(3)),
-      },
-      geometry: {
-        type: 'Polygon',
-        coordinates: [[
-          [Number(west.toFixed(6)), Number(south.toFixed(6))],
-          [Number((west + CELL).toFixed(6)), Number(south.toFixed(6))],
-          [Number((west + CELL).toFixed(6)), Number((south + CELL).toFixed(6))],
-          [Number(west.toFixed(6)), Number((south + CELL).toFixed(6))],
-          [Number(west.toFixed(6)), Number(south.toFixed(6))],
-        ]],
-      },
-    }
+    return [ix, iy, Number((Math.log(count + 1) / logMax).toFixed(3))]
   })
-  console.log(`    ${features.length} cells, ${total} trees, max ${maxCount}/cell`)
+  console.log(`    ${triples.length} cells, ${total} trees, max ${maxCount}/cell`)
   return {
-    type: 'FeatureCollection',
     source: {
       title: 'Street Tree Inventory (Active) — PortlandMaps, binned to density grid',
       url: TREES_URL,
-      cellDegrees: CELL,
       maxCount,
+      treeCount: total,
       fetchedAt: new Date().toISOString(),
     },
-    features,
+    cell: CELL,
+    origin: [Number(BBOX.west.toFixed(6)), Number(BBOX.south.toFixed(6))], // [lon, lat]
+    cells: triples, // [ix, iy, intensity]
   }
 }
 

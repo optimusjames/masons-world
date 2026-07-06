@@ -23,8 +23,10 @@ const themes = {
 
 export default function ShellEasterEgg({
   variant = "dark",
+  className,
 }: {
   variant?: "light" | "dark";
+  className?: string;
 }) {
   const [visible, setVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -48,7 +50,7 @@ export default function ShellEasterEgg({
   }, []);
 
   return (
-    <span style={{ position: "relative", display: "inline-flex" }}>
+    <span className={className} style={{ position: "relative", display: "inline-flex" }}>
       <Shell
         size={18}
         onClick={handleClick}

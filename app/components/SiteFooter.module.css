@@ -60,6 +60,18 @@
   transition: color 0.2s ease;
 }
 
+/* The Shell easter egg is invisible (opacity 0) but still hit-testable, so it can
+   steal clicks from anything layered over the footer's corner (e.g. a fullscreen
+   map's zoom control). Keep it inert until its own icon cluster is hovered/focused. */
+.egg {
+  pointer-events: none;
+}
+
+.icons:hover .egg,
+.egg:focus-within {
+  pointer-events: auto;
+}
+
 .iconLink:hover {
   color: #8FF7F9;
 }

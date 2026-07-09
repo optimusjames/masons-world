@@ -74,7 +74,7 @@ export default async function Home() {
               <span className={styles.eyebrow}>Featured Work</span>
               <h2 className={styles.sectionTitle}>Civic maps, built on Portland&apos;s open data.</h2>
               <CurtainLink href="/design-experiments" className={styles.sectionLink} curtainTransition={true}>
-                All experiments {caret}
+                All designs {caret}
               </CurtainLink>
             </div>
             <div className={styles.featuredGrid}>

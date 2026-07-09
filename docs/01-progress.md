@@ -8,6 +8,13 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+## July 2026
+
+**Home page — "living resume" redesign**
+Reworked the landing page from a playful personal site into a professional, employer-facing home while keeping its character. Fixed the randomized greeting to a single "Oh, hello there." flourish, added a contained identity card (monogram, name, role, tagline, links), and promoted the three Portland civic-map projects (McLoughlin / 99E, Fix It PDX, Cool PDX) to a Featured Work section with per-project impact/scope lines. Second pass went further: off pure black onto a layered "ink" surface system with elevated cards and hairline borders, consolidated the type to Space Grotesk + Space Mono (retiring Michroma and Lora on the home page), wired the previously-unused NetworkCanvas as a subtle constellation backdrop, and introduced a commanding eyebrow-plus-display-heading hierarchy ("Civic maps, built on Portland's open data."). Writing and Recommendations demoted to clearly secondary planes; the Writing section now carries a subtle "written with Claude" tag acknowledging the blog as an AI-assisted writing experiment.
+
+---
+
 ## June 2026
 
 **Cool PDX**  

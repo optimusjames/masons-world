@@ -109,9 +109,12 @@ export default async function Home() {
           <section className={styles.secondary}>
             <div className={styles.subsection}>
               <div className={styles.subsectionHead}>
-                <CurtainLink href="/blog" className={styles.eyebrowLink} curtainTransition={true}>
-                  Writing {caret}
-                </CurtainLink>
+                <div className={styles.subsectionTitleRow}>
+                  <CurtainLink href="/blog" className={styles.eyebrowLink} curtainTransition={true}>
+                    Writing {caret}
+                  </CurtainLink>
+                  <span className={styles.experimentTag}>✦ an experiment</span>
+                </div>
                 <span className={styles.subsectionMeta}>Philosophy · Mindset · Tech</span>
               </div>
               <div className={styles.rows}>
@@ -139,9 +142,9 @@ export default async function Home() {
             <div className={styles.subsection}>
               <div className={styles.subsectionHead}>
                 <CurtainLink href="/recommended" className={styles.eyebrowLink} curtainTransition={true}>
-                  Recommendations {caret}
+                  Finds {caret}
                 </CurtainLink>
-                <span className={styles.subsectionMeta}>Reads · Finds · Rabbit Holes</span>
+                <span className={styles.subsectionMeta}>Reads · Watches · Rabbit Holes</span>
               </div>
               <div className={styles.rows}>
                 {recentExplores.map((item) => (

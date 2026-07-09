@@ -268,6 +268,17 @@
   color: rgba(245, 243, 240, 0.85);
 }
 
+.featuredDek {
+  font-family: var(--font-lora), 'Lora', serif;
+  font-size: 0.86rem;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.5);
+  margin: -0.2rem 0 0.1rem;
+  max-width: 46ch;
+}
+
 .featuredAll {
   font-family: var(--font-space-grotesk), sans-serif;
   font-size: 0.74rem;
@@ -356,17 +367,17 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.featuredTags {
+.featuredScope {
   font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--glow-color, #8ab4ff) 58%, rgba(255, 255, 255, 0.7));
+  margin-top: 0.25rem;
 }
 
-/* Two-column recent content */
+/* Two-column recent content — clearly secondary to Featured Work */
 .columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -374,7 +385,9 @@
   width: 100%;
   max-width: var(--content-max);
   pointer-events: auto;
-  padding: 1rem;
+  padding: 2.75rem 1rem 1rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   opacity: 0;
   transform: translateY(12px);
   animation: contentEnter 0.8s ease-out 1.3s forwards;
@@ -412,13 +425,13 @@
 
 .columnTitle {
   font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #F5F3F0;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(245, 243, 240, 0.82);
   text-shadow:
-    0 0 10px rgba(255, 255, 255, 0.55),
-    0 0 28px rgba(255, 255, 255, 0.18);
+    0 0 8px rgba(255, 255, 255, 0.3),
+    0 0 22px rgba(255, 255, 255, 0.12);
   padding-bottom: 0.5rem;
   display: flex;
   align-items: center;

@@ -9,12 +9,25 @@ import Greeting from "./components/Greeting";
 import ShakeCard from "./components/ShakeCard";
 import styles from "./page.module.css";
 
-// The three map projects, in the order they should headline the page, each with
-// a short blurb tuned for the featured cards (the data descriptions run long).
+// The three map projects, in chronological order so they read left-to-right as a
+// progression. Each carries a short blurb and one concrete impact/scope line
+// (the data.ts descriptions run long, and the shared tags say nothing new).
 const FEATURED = [
-  { slug: "cool-pdx", blurb: "A heat-relief map for Portland — find the nearest shade, water, and cool air on a hot day." },
-  { slug: "fixit-pdx", blurb: "A cleaner take on the city's issue reporter. One map, two taps: see what's fixed, or report a problem." },
-  { slug: "mcloughlin-99e", blurb: "A scrollytelling case study of the 3-year effort to slow down a deadly stretch of OR-99E." },
+  {
+    slug: "mcloughlin-99e",
+    blurb: "A scrollytelling case study of a real 3-year campaign to slow a corridor still engineered like a 1930s superhighway.",
+    scope: "3 yrs with ODOT & PBOT · 2 → 4 mile speed reduction",
+  },
+  {
+    slug: "fixit-pdx",
+    blurb: "A friction-free reimagining of Portland's issue reporter — one map to flag a pothole, streetlight, or graffiti, and see what's already fixed.",
+    scope: "No login · 12 issue types · report in two taps",
+  },
+  {
+    slug: "cool-pdx",
+    blurb: "On a hot day, find the nearest shade, water, and air-conditioned refuge — all drawn from Portland's public open data.",
+    scope: "Built from 253,951 city street trees",
+  },
 ];
 
 const caret = (
@@ -25,7 +38,7 @@ const caret = (
 
 export default async function Home() {
   const bySlug = new Map(experiments.map((e) => [e.slug, e]));
-  const featured = FEATURED.map((f) => ({ ...bySlug.get(f.slug)!, blurb: f.blurb }));
+  const featured = FEATURED.map((f) => ({ ...bySlug.get(f.slug)!, blurb: f.blurb, scope: f.scope }));
   const posts = getAllPosts().slice(0, 3);
   const recentExplores = (await getAllRecommendations()).slice(0, 3);
 
@@ -52,6 +65,9 @@ export default async function Home() {
                 {caret}
               </CurtainLink>
             </div>
+            <p className={styles.featuredDek}>
+              Civic maps that turn Portland&apos;s open data into something people can explore.
+            </p>
             <div className={styles.featuredGrid}>
               {featured.map((exp) => (
                 <CurtainLink
@@ -73,7 +89,7 @@ export default async function Home() {
                   <div className={styles.featuredText}>
                     <span className={styles.featuredCardTitle}>{exp.title}</span>
                     <span className={styles.featuredBlurb}>{exp.blurb}</span>
-                    <span className={styles.featuredTags}>{exp.tags.slice(0, 3).join(" · ")}</span>
+                    <span className={styles.featuredScope}>{exp.scope}</span>
                   </div>
                 </CurtainLink>
               ))}

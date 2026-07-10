@@ -53,7 +53,17 @@ export default async function Home() {
           <header className={styles.hero}>
             <Greeting className={styles.greeting} />
             <div className={styles.identityCard}>
-              <div className={styles.avatar} aria-hidden="true">JM</div>
+              <div className={styles.avatar}>
+                <Image
+                  src="/james-headshot.jpg"
+                  alt="James Mason"
+                  width={160}
+                  height={160}
+                  sizes="80px"
+                  className={styles.avatarImg}
+                  priority
+                />
+              </div>
               <div className={styles.identityText}>
                 <h1 className={styles.name}>James Mason</h1>
                 <p className={styles.role}>Civic data &amp; maps · Portland, OR</p>

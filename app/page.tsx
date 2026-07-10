@@ -22,12 +22,12 @@ const FEATURED = [
   },
   {
     slug: "fixit-pdx",
-    blurb: "A friction-free reimagining of Portland's issue reporter — one map to flag a pothole, streetlight, or graffiti, and see what's already fixed.",
+    blurb: "A friction-free reimagining of Portland's issue reporter: one map to flag a pothole, streetlight, or graffiti, and see what's already fixed.",
     scope: "No login · 12 issue types · report in two taps",
   },
   {
     slug: "cool-pdx",
-    blurb: "On a hot day, find the nearest shade, water, and air-conditioned refuge — all drawn from Portland's public open data.",
+    blurb: "On a hot day, find the nearest shade, water, and air-conditioned refuge, all drawn from Portland's public open data.",
     scope: "Built from 253,951 city street trees",
   },
 ];

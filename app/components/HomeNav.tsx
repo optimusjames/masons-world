@@ -18,7 +18,6 @@ export default function HomeNav() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
 
-  // Close on route change or Escape
   useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -30,32 +29,33 @@ export default function HomeNav() {
 
   return (
     <div className={styles.nav}>
-      {/* Desktop — inline links */}
-      <div className={styles.inline}>
-        {LINKS.map((l) => (
-          <CurtainLink key={l.href} href={l.href} className={styles.link} curtainTransition={true}>
-            {l.label}
-          </CurtainLink>
-        ))}
-        <a href={CONTACT} target="_blank" rel="noopener noreferrer" className={styles.contact}>
-          Contact
-        </a>
-      </div>
-
-      {/* Mobile — hamburger */}
       <button
         type="button"
-        className={`${styles.burger}${open ? ' ' + styles.burgerOpen : ''}`}
+        className={`${styles.toggle}${open ? ' ' + styles.toggleOpen : ''}`}
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? 'Close menu' : 'Open menu'}
         aria-expanded={open}
       >
-        <span />
-        <span />
-        <span />
+        <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
+          <g className={styles.stars}>
+            <line x1="5" y1="7" x2="12" y2="4.5" />
+            <line x1="12" y1="4.5" x2="18.5" y2="9" />
+            <line x1="5" y1="7" x2="9" y2="14" />
+            <line x1="9" y1="14" x2="16" y2="17.5" />
+            <line x1="18.5" y1="9" x2="16" y2="17.5" />
+            <circle cx="5" cy="7" r="1.6" />
+            <circle cx="12" cy="4.5" r="1.6" />
+            <circle cx="18.5" cy="9" r="1.6" />
+            <circle cx="9" cy="14" r="1.6" />
+            <circle cx="16" cy="17.5" r="1.6" />
+          </g>
+          <g className={styles.cross}>
+            <line x1="6.5" y1="6.5" x2="17.5" y2="17.5" />
+            <line x1="17.5" y1="6.5" x2="6.5" y2="17.5" />
+          </g>
+        </svg>
       </button>
 
-      {/* Mobile — dropdown panel */}
       <div className={`${styles.panel}${open ? ' ' + styles.panelOpen : ''}`} role="menu" aria-hidden={!open}>
         {LINKS.map((l) => (
           <CurtainLink key={l.href} href={l.href} className={styles.panelLink} curtainTransition={true} role="menuitem">

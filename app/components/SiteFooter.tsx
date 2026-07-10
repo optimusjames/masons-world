@@ -16,7 +16,7 @@ export default function SiteFooter({ className }: { className?: string }) {
       <div className={styles.row}>
         <nav className={styles.nav}>
           <CurtainLink href="/design-experiments" className={styles.navLink} curtainTransition>Design</CurtainLink>
-          <CurtainLink href="/blog" className={styles.navLink} curtainTransition>Write</CurtainLink>
+          <CurtainLink href="/blog" className={styles.navLink} curtainTransition>Writing</CurtainLink>
           <CurtainLink href="/recommended" className={styles.navLink} curtainTransition>Finds</CurtainLink>
           <CurtainLink href="/docs" className={styles.navLink} curtainTransition>Docs</CurtainLink>
         </nav>

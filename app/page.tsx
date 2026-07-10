@@ -7,6 +7,7 @@ import { getAllRecommendations } from "@/app/(blog)/recommended/loadRecommended"
 import { experiments } from "@/lib/experiments/data";
 
 import Greeting from "./components/Greeting";
+import HomeNav from "./components/HomeNav";
 import ShakeCard from "./components/ShakeCard";
 import styles from "./page.module.css";
 
@@ -51,7 +52,10 @@ export default async function Home() {
         <div className={styles.content}>
           {/* Hero — greeting flourish + contained identity */}
           <header className={styles.hero}>
-            <Greeting className={styles.greeting} />
+            <div className={styles.heroTop}>
+              <Greeting className={styles.greeting} />
+              <HomeNav />
+            </div>
             <div className={styles.identityCard}>
               <div className={styles.avatar}>
                 <Image
@@ -66,7 +70,7 @@ export default async function Home() {
               </div>
               <div className={styles.identityText}>
                 <h1 className={styles.name}>James Mason</h1>
-                <p className={styles.role}>Civic data &amp; maps · Portland, OR</p>
+                <p className={styles.role}>GIS &amp; Civic data · Portland, OR</p>
                 <p className={styles.tagline}>
                   I turn public data into interactive maps and tools people actually use.
                 </p>

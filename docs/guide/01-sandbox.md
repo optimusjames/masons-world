@@ -14,7 +14,7 @@ This is a design playground that doubles as a portfolio. It's built with Next.js
 
 **Sticky Notes** are quick captures -- single thoughts written in a handwritten typeface on colored cards. They stack in the corner of the blog index like Post-its on a desk. No titles, no categories, just a thought and a date.
 
-**Explore** is a curated link collection with auto-fetched thumbnails and source badges. Drop a URL and a comment in a markdown file, and the build system handles the rest -- pulling titles from Open Graph, downloading thumbnails, detecting whether it's a YouTube video, GitHub repo, or web page.
+**Explore** (shown as "Finds" on the homepage) is a curated link collection with auto-fetched thumbnails and source badges. Drop a URL and a comment in a markdown file, and the build system handles the rest -- pulling titles from Open Graph, downloading thumbnails, detecting whether it's a YouTube video, GitHub repo, or web page.
 
 ## How It's Made
 
@@ -38,10 +38,12 @@ The site uses a small set of shared conventions across all sections:
 | Space Grotesk 700 | Headings everywhere (`--font-space-grotesk`) |
 | Lora 400 / italic | Body text, titles, subtitles (`--font-lora`) |
 | Space Mono | Meta, dates, monospace details (`--font-space-mono`) |
-| Michroma | Homepage greeting display (`--font-display`) |
+| Michroma | Display accent in a few experiments (`--font-display`) |
 | Karla | Global body font (applied to `body`) |
 
 Colors are warm and dark by default (`--site-bg: #0b0b0b`, `--site-text: #F2EFEB`) with a cyan accent (`#8FF7F9`) for interactive elements. A light theme is available for experiments and the blog, activated through a `data-theme` attribute that flips CSS custom properties.
+
+The homepage was later redesigned onto a layered "ink" surface with a blue accent (`#4a8aff`) and a Space Grotesk + Space Mono type system; the warm/cyan palette above still governs the blog, gallery, and docs.
 
 Content width is capped at 900px (`--content-max`) across the blog, gallery, docs, and homepage.
 

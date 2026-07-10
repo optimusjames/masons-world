@@ -8,6 +8,7 @@ import { experiments } from "@/lib/experiments/data";
 
 import Greeting from "./components/Greeting";
 import HomeNav from "./components/HomeNav";
+import LiveData from "./components/LiveData";
 import ShakeCard from "./components/ShakeCard";
 import styles from "./page.module.css";
 
@@ -56,7 +57,8 @@ export default async function Home() {
               <Greeting className={styles.greeting} />
               <HomeNav />
             </div>
-            <div className={styles.identityCard}>
+            <div className={styles.heroBody}>
+              <div className={styles.identityCard}>
               <div className={styles.avatar}>
                 <Image
                   src="/james-headshot.jpg"
@@ -79,6 +81,8 @@ export default async function Home() {
                   <a href="https://www.linkedin.com/in/optimizationmason/" target="_blank" rel="noopener noreferrer" className={styles.identityLink}>LinkedIn</a>
                 </div>
               </div>
+              </div>
+              <LiveData />
             </div>
           </header>
 

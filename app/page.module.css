@@ -91,6 +91,14 @@
   width: 100%;
 }
 
+.heroBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
 .greeting {
   font-family: var(--font-space-grotesk), sans-serif;
   font-size: clamp(1.8rem, 4.5vw, 2.5rem);
@@ -497,6 +505,11 @@
     padding: 2.5rem 18px 2.5rem;
   }
 
+
+  .heroBody {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
 
   .identityCard {
     flex-direction: column;

@@ -94,29 +94,30 @@ export default function LiveData() {
   const aqi = reading && reading.aqi != null ? aqiLevel(reading.aqi) : null
 
   return (
-    <aside className={styles.card} aria-label="Live location readout">
-      <div className={styles.head}>
-        <span className={styles.city}>{city.name}</span>
-        <button type="button" className={styles.shuffle} onClick={shuffle} aria-label="Random city" title="Random city">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h4l3 4m6-4h3m0 0l-2-2m2 2l-2 2M4 17h4l8-10h4m0 0l-2-2m2 2l-2 2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-      </div>
-
-      <span className={styles.coords}>{city.lat.toFixed(2)}°, {city.lon.toFixed(2)}°</span>
-
-      <div className={styles.weather}>
-        <span className={styles.temp}>{reading ? `${reading.temp}°` : '—'}</span>
-        <span className={styles.cond}>{weather ? `${weather.icon} ${weather.label}` : ' '}</span>
-      </div>
-
-      <div className={styles.aqi}>
-        <span className={styles.dot} style={{ background: aqi?.color ?? 'rgba(255,255,255,0.2)' }} />
-        <span>{aqi ? `AQI ${reading!.aqi} · ${aqi.label}` : 'AQI —'}</span>
-      </div>
-
-      <span className={styles.source}>live · open data</span>
-    </aside>
+    <button
+      type="button"
+      className={styles.feed}
+      onClick={shuffle}
+      aria-label={`${city.name}. Weather and air quality. Click for a random city.`}
+      title="Random city"
+    >
+      <span className={styles.city}>{city.name}</span>
+      <span className={styles.readout}>
+        <span className={styles.weather}>
+          <span className={styles.wicon}>{weather?.icon ?? '·'}</span>
+          <span className={styles.temp}>{reading ? `${reading.temp}°` : '—'}</span>
+        </span>
+        <span className={styles.aqi}>
+          <span
+            className={styles.dot}
+            style={{ background: aqi?.color ?? 'rgba(255,255,255,0.22)', color: aqi?.color ?? 'transparent' }}
+          />
+          <span className={styles.aqiNum} style={{ color: aqi?.color ?? 'rgba(255,255,255,0.5)' }}>
+            {reading?.aqi ?? '—'}
+          </span>
+          <span className={styles.aqiLabel}>{aqi?.label ?? 'AQI'}</span>
+        </span>
+      </span>
+    </button>
   )
 }

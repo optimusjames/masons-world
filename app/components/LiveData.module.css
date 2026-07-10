@@ -1,112 +1,102 @@
-.card {
-  flex-shrink: 0;
-  width: 250px;
+/* Transparent ambient readout — the whole area shuffles the city on click */
+.feed {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  padding: 1rem 1.15rem 0.9rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.11));
-  backdrop-filter: blur(11px) saturate(1.1);
-  -webkit-backdrop-filter: blur(11px) saturate(1.1);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 16px 40px rgba(0, 0, 0, 0.3);
+  align-items: flex-end;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  padding: 0.35rem;
+  margin: -0.35rem;
+  cursor: pointer;
+  text-align: right;
   opacity: 0;
   animation: liveEnter 0.8s ease-out 0.95s forwards;
+  transition: transform 0.2s ease;
 }
 
 @keyframes liveEnter {
   to { opacity: 1; }
 }
 
-.head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
+.feed:hover {
+  transform: translateY(-1px);
+}
+
+.feed:hover .city {
+  color: var(--accent, #4a8aff);
 }
 
 .city {
   font-family: var(--font-space-mono), monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text, #f5f6f8);
-}
-
-.shuffle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
-  padding: 0;
-  border-radius: 7px;
-  background: none;
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.11));
-  color: var(--text-2, rgba(255, 255, 255, 0.66));
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.3s ease;
-}
-
-.shuffle:hover {
-  color: var(--accent, #4a8aff);
-  border-color: color-mix(in srgb, var(--accent, #4a8aff) 45%, transparent);
-  transform: rotate(180deg);
-}
-
-.coords {
-  font-family: var(--font-space-mono), monospace;
   font-size: 0.68rem;
-  letter-spacing: 0.02em;
-  color: var(--accent, #4a8aff);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-3, rgba(255, 255, 255, 0.46));
+  transition: color 0.2s ease;
+}
+
+.readout {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
 }
 
 .weather {
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-top: 0.35rem;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.wicon {
+  font-size: 1.55rem;
+  line-height: 1;
 }
 
 .temp {
   font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 1.65rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
   color: var(--text, #f5f6f8);
-}
-
-.cond {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 0.82rem;
-  color: var(--text-2, rgba(255, 255, 255, 0.66));
 }
 
 .aqi {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  font-family: var(--font-space-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
-  color: var(--text-2, rgba(255, 255, 255, 0.66));
 }
 
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   flex-shrink: 0;
+  box-shadow: 0 0 10px currentColor;
 }
 
-.source {
+.aqiNum {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.aqiLabel {
   font-family: var(--font-space-mono), monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-3, rgba(255, 255, 255, 0.4));
-  margin-top: 0.3rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  color: var(--text-3, rgba(255, 255, 255, 0.46));
+}
+
+/* Narrow screens: a single horizontal feed line */
+@media (max-width: 830px) {
+  .feed {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    align-self: flex-start;
+  }
 }

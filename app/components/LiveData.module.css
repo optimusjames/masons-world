@@ -19,6 +19,17 @@
   to { opacity: 1; }
 }
 
+/* Carries the blur-morph pop on each new reading, so the button itself stays
+   put in the layout. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  transform-origin: right center;
+  will-change: transform, filter;
+}
+
 .feed:hover {
   transform: translateY(-1px);
 }
@@ -93,10 +104,13 @@
 /* Narrow screens: a single horizontal feed line */
 @media (max-width: 830px) {
   .feed {
+    align-self: flex-start;
+    text-align: left;
+  }
+  .stack {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-    text-align: left;
-    align-self: flex-start;
+    transform-origin: left center;
   }
 }

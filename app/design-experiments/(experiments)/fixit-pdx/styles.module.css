@@ -169,12 +169,45 @@
   width: 218px;
 }
 .legendHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  background: none;
+  font-family: inherit;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--muted);
   padding: 0 2px;
+  /* Non-interactive on desktop — collapsing only matters on mobile. */
+  cursor: default;
+  pointer-events: none;
+}
+/* Active-status dots shown in the collapsed pill; hidden while expanded. */
+.legendDots {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+.legendMiniDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.legendChevron {
+  display: none;
+  margin-left: auto;
+  font-size: 11px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.legendBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .legendRow {
   display: flex;
@@ -842,6 +875,27 @@
     left: 12px;
     right: 12px;
     width: auto;
+  }
+  .legendHeader {
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .legendChevron {
+    display: inline-block;
+  }
+  /* Collapsed: shrink to a tappable pill, surface the active-status dots. */
+  .legend[data-collapsed='true'] {
+    right: auto;
+    width: auto;
+  }
+  .legend[data-collapsed='true'] .legendBody {
+    display: none;
+  }
+  .legend[data-collapsed='true'] .legendDots {
+    display: inline-flex;
+  }
+  .legend[data-collapsed='false'] .legendChevron {
+    transform: rotate(180deg);
   }
   .sheet {
     width: 100%;

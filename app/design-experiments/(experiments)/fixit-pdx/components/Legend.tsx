@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import styles from '../styles.module.css'
 import type { CategoryId, ReportStatus } from '../types'
 import { CATEGORIES } from '../data/categories'
@@ -20,9 +21,36 @@ export default function Legend({
   onCategoryChange: (c: CategoryId | 'all') => void
   counts: Record<ReportStatus, number>
 }) {
+  // Start collapsed on phones, where the full panel eats too much of the map.
+  // Desktop ignores this (the toggle only does anything at the mobile breakpoint).
+  const [collapsed, setCollapsed] = useState(false)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 540px)').matches) {
+      setCollapsed(true)
+    }
+  }, [])
+
   return (
-    <div className={styles.legend}>
-      <div className={styles.legendHeader}>Showing on map</div>
+    <div className={styles.legend} data-collapsed={collapsed}>
+      <button
+        type="button"
+        className={styles.legendHeader}
+        onClick={() => setCollapsed((c) => !c)}
+        aria-expanded={!collapsed}
+      >
+        <span>Showing on map</span>
+        <span className={styles.legendDots} aria-hidden>
+          {STATUSES.map((s) =>
+            visibleStatuses.includes(s) ? (
+              <span key={s} className={styles.legendMiniDot} style={{ background: STATUS_COLOR[s] }} />
+            ) : null,
+          )}
+        </span>
+        <span className={styles.legendChevron} aria-hidden>
+          ▾
+        </span>
+      </button>
+      <div className={styles.legendBody}>
       <div className={styles.legendRow}>
         {STATUSES.map((s) => {
           const on = visibleStatuses.includes(s)
@@ -62,6 +90,7 @@ export default function Legend({
           </option>
         ))}
       </select>
+      </div>
     </div>
   )
 }

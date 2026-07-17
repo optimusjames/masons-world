@@ -4,7 +4,6 @@ import { type FormEvent, useCallback, useEffect, useMemo, useState } from 'react
 import styles from './styles.module.css'
 import MapView from './components/MapView'
 import LayerToggles from './components/LayerToggles'
-import Legend from './components/Legend'
 import ReliefCard from './components/ReliefCard'
 import type {
   LayerId,
@@ -291,8 +290,6 @@ export default function CoolPdx() {
           />
         )}
       </div>
-
-      <Legend />
 
       {notice && (
         <p className={styles.reliefEmpty} style={{ marginTop: 10 }}>

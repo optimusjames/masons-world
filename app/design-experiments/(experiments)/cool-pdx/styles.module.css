@@ -309,76 +309,90 @@
   top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 10px;
+  gap: 3px;
+  padding: 10px 10px 8px;
   border: 1px solid var(--rule);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.92);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(6px);
+  box-shadow: 0 6px 22px rgba(42, 35, 32, 0.12);
+}
+
+.togglesHeader {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-faint);
+  padding: 0 4px 5px;
 }
 
 .toggle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  width: 100%;
   border: 0;
   background: none;
-  padding: 3px 2px;
+  padding: 6px 8px;
+  border-radius: 8px;
   cursor: pointer;
   font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
-  font-size: 12px;
-  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
   text-align: left;
+  transition: background 0.15s, opacity 0.15s;
 }
 
-.toggle[data-on='true'] {
-  color: var(--ink);
+.toggle:hover {
+  background: rgba(42, 35, 32, 0.05);
 }
 
 .toggle[data-on='false'] {
-  opacity: 0.45;
+  opacity: 0.5;
 }
 
-.swatch {
-  width: 13px;
-  height: 13px;
-  border-radius: 3px;
+.toggleIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+/* Canopy shade scale — indented to sit under the "Tree canopy" label. */
+.toggleScale {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 4px 5px 44px;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  transition: opacity 0.15s;
+}
+
+.toggleScale[data-on='false'] {
+  opacity: 0.4;
+}
+
+.toggleTiles {
+  display: inline-flex;
+  gap: 2px;
   flex-shrink: 0;
 }
 
-.swatchDot {
-  border-radius: 50%;
-}
-
-/* ---- Legend ---- */
-
-.legend {
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 18px;
-  padding: 12px 14px;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  background: var(--surface);
-  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
-  font-size: 12px;
-  color: var(--ink-soft);
-}
-
-.legendItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.canopyRamp {
-  width: 64px;
-  height: 12px;
-  border-radius: 3px;
-  background: linear-gradient(to right, rgba(63, 155, 92, 0.12), rgba(63, 155, 92, 0.85));
-  border: 1px solid var(--rule);
+.toggleTiles span {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(63, 155, 92, 0.16);
 }
 
 /* ---- Relief card ---- */
@@ -492,10 +506,7 @@
   margin-bottom: 6px;
 }
 
-.reliefIcon {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+.reliefGlyph {
   flex-shrink: 0;
 }
 
@@ -668,6 +679,13 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.popupIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 

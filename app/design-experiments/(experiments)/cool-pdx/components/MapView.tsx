@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, Layer as LeafletLayer, LayerGroup } from 'leaflet'
 import styles from '../styles.module.css'
+import { glyphSvg } from './icons'
 import type {
   LayerId,
   CanopyGrid,
@@ -108,6 +109,12 @@ export default function MapView({
         attribution: '',
       }).addTo(map)
 
+      // Dedicated low pane for the canopy so it always draws *under* the point
+      // markers, no matter what order layers get toggled on and off.
+      map.createPane('canopyPane')
+      const canopyPane = map.getPane('canopyPane')
+      if (canopyPane) canopyPane.style.zIndex = '250'
+
       // --- Canopy gradient: reconstruct cell rectangles from the compact grid ---
       const [originLon, originLat] = canopy.origin
       const size = canopy.cell
@@ -126,6 +133,7 @@ export default function MapView({
               // 0.10 floor so sparse cells still read; up to ~0.7 for the leafiest.
               fillOpacity: 0.1 + intensity * 0.6,
               interactive: false,
+              pane: 'canopyPane',
             },
           )
         }),
@@ -148,6 +156,7 @@ export default function MapView({
             reliefPopup(
               'Cold water',
               WATER,
+              'fountains',
               p.name || 'Drinking fountain',
               p.bubbler ? 'Benson Bubbler' : 'Public drinking water',
               [lat, lon],
@@ -173,6 +182,7 @@ export default function MapView({
             reliefPopup(
               'Cool air · AC',
               COOL,
+              'cooling',
               p.name,
               p.kind === 'library' ? 'Library · air-conditioned' : 'Community center · air-conditioned',
               [lat, lon],
@@ -252,20 +262,26 @@ export default function MapView({
 
       // Target markers + walk-time labels (drawn now, on top).
       for (const s of activeSpots) {
+        const iconId: LayerId = s.key === 'fountain' ? 'fountains' : 'cooling'
         L.circleMarker(s.coord, {
-          radius: 15,
+          radius: 16,
           stroke: false,
           fillColor: s.color,
           fillOpacity: 0.16,
           interactive: false,
         }).addTo(markers)
-        L.circleMarker(s.coord, {
-          radius: 8,
-          color: '#ffffff',
-          weight: 2,
-          fillColor: s.color,
-          fillOpacity: 1,
+        // Solid badge with the layer's glyph, so the routed-to spot reads at a glance.
+        L.marker(s.coord, {
           interactive: false,
+          icon: L.divIcon({
+            className: '',
+            iconSize: [28, 28],
+            iconAnchor: [14, 14],
+            html:
+              `<div style="width:28px;height:28px;border-radius:50%;background:${s.color};` +
+              `border:2px solid #fff;box-shadow:0 2px 8px rgba(42,35,32,0.3);display:flex;` +
+              `align-items:center;justify-content:center;">${glyphSvg(iconId, '#fff', 16)}</div>`,
+          }),
         }).addTo(markers)
         L.marker(s.coord, {
           interactive: false,
@@ -300,11 +316,22 @@ export default function MapView({
         .addTo(markers)
         .bindPopup(`<div class="${styles.popup}">Searching from here</div>`)
 
-      // Frame origin + targets right away.
+      // Frame origin + targets in the space *above* the relief card, so the
+      // drawn route stays visible instead of hiding behind it. Reserve the
+      // card's measured height at the bottom and the search bar up top.
       const pts: [number, number][] = [origin, ...activeSpots.map((s) => s.coord)]
-      const bounds = L.latLngBounds(pts).pad(0.35)
-      if (reduced) map.fitBounds(bounds)
-      else map.flyToBounds(bounds, { duration: 0.7 })
+      const bounds = L.latLngBounds(pts)
+      const size = map.getSize()
+      const card = containerRef.current?.parentElement?.querySelector(
+        '[class*="reliefCard"]',
+      ) as HTMLElement | null
+      const bottomInset = Math.min(Math.round(size.y * 0.55), (card?.offsetHeight ?? 40) + 28)
+      const fitOpts = {
+        paddingTopLeft: [40, 88] as [number, number],
+        paddingBottomRight: [40, Math.max(28, bottomInset)] as [number, number],
+      }
+      if (reduced) map.fitBounds(bounds, fitOpts)
+      else map.flyToBounds(bounds, { ...fitOpts, duration: 0.7 })
 
       // Real walking routes (async); fall back to a straight dashed line.
       for (const s of activeSpots) {
@@ -337,15 +364,16 @@ export default function MapView({
 function reliefPopup(
   eyebrow: string,
   color: string,
+  iconId: LayerId,
   name: string,
   sub: string,
   coord: [number, number],
 ): string {
-  const dir = `https://www.google.com/maps/dir/?api=1&destination=${coord[0]},${coord[1]}`
+  const dir = `https://www.google.com/maps/dir/?api=1&destination=${coord[0]},${coord[1]}&travelmode=walking`
   return (
     `<div class="${styles.popup}">` +
     `<div class="${styles.popupEyebrow}" style="color:${color}">` +
-    `<span class="${styles.popupDot}" style="background:${color}"></span>${eyebrow}</div>` +
+    `<span class="${styles.popupIcon}">${glyphSvg(iconId, color, 13)}</span>${eyebrow}</div>` +
     `<div class="${styles.popupName}">${escapeHtml(name)}</div>` +
     `<div class="${styles.popupMeta}">${escapeHtml(sub)}</div>` +
     `<a class="${styles.popupDir}" href="${dir}" target="_blank" rel="noopener noreferrer" style="color:${color}">Directions ↗</a>` +

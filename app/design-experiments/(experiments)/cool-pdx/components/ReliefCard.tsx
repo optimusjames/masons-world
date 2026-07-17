@@ -1,7 +1,8 @@
 'use client'
 
 import styles from '../styles.module.css'
-import type { ReliefResult, ReliefKind, Spot } from '../types'
+import { LayerGlyph } from './icons'
+import type { LayerId, ReliefResult, ReliefKind, Spot } from '../types'
 
 type Props = {
   result: ReliefResult
@@ -12,37 +13,50 @@ type Props = {
 }
 
 function fmtDist(m: number): string {
-  if (m < 1000) return `${Math.round(m / 10) * 10} m`
-  return `${(m / 1000).toFixed(1)} km`
+  const feet = m * 3.28084
+  // Feet under ~1000 ft (~0.19 mi); miles with one decimal beyond that.
+  if (feet < 1000) return `${Math.round(feet / 10) * 10} ft`
+  return `${(m / 1609.34).toFixed(1)} mi`
 }
 
 function walkMin(m: number): number {
   return Math.max(1, Math.round(m / 80))
 }
 
-function directionsUrl(coord: [number, number]): string {
-  return `https://www.google.com/maps/dir/?api=1&destination=${coord[0]},${coord[1]}&travelmode=walking`
+// Real route needs both ends: origin is the searched spot, so Google draws the
+// same walk we show on screen instead of guessing the start from device location.
+function directionsUrl(origin: [number, number], dest: [number, number]): string {
+  return (
+    `https://www.google.com/maps/dir/?api=1` +
+    `&origin=${origin[0]},${origin[1]}` +
+    `&destination=${dest[0]},${dest[1]}` +
+    `&travelmode=walking`
+  )
 }
 
 function Column({
   kind,
+  iconId,
   eyebrow,
   color,
   spots,
   selected,
+  origin,
   onSelect,
 }: {
   kind: ReliefKind
+  iconId: LayerId
   eyebrow: string
   color: string
   spots: Spot[]
   selected: number
+  origin: [number, number]
   onSelect: (kind: ReliefKind, idx: number) => void
 }) {
   return (
     <div className={styles.reliefRow} style={{ borderLeftColor: color }}>
       <div className={styles.reliefEyebrow} style={{ color }}>
-        <span className={styles.reliefIcon} style={{ background: color }} />
+        <LayerGlyph id={iconId} size={13} className={styles.reliefGlyph} />
         {eyebrow}
       </div>
       <div className={styles.optionList}>
@@ -68,7 +82,7 @@ function Column({
                 <a
                   className={styles.reliefDirections}
                   style={{ color }}
-                  href={directionsUrl(s.coord)}
+                  href={directionsUrl(origin, s.coord)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -99,18 +113,22 @@ export default function ReliefCard({ result, selFountain, selCooling, onSelect, 
       <div className={styles.reliefRows}>
         <Column
           kind="fountain"
+          iconId="fountains"
           eyebrow="Cold water"
           color="#2b8fd0"
           spots={result.fountains}
           selected={selFountain}
+          origin={result.origin}
           onSelect={onSelect}
         />
         <Column
           kind="cooling"
+          iconId="cooling"
           eyebrow="Cool air · AC"
           color="#6366f1"
           spots={result.cooling}
           selected={selCooling}
+          origin={result.origin}
           onSelect={onSelect}
         />
       </div>

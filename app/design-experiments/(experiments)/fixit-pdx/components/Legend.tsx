@@ -22,9 +22,11 @@ export default function Legend({
 }) {
   return (
     <div className={styles.legend}>
+      <div className={styles.legendHeader}>Showing on map</div>
       <div className={styles.legendRow}>
         {STATUSES.map((s) => {
           const on = visibleStatuses.includes(s)
+          const color = STATUS_COLOR[s]
           return (
             <button
               key={s}
@@ -32,12 +34,16 @@ export default function Legend({
               className={`${styles.legendChip} ${on ? '' : styles.legendChipOff}`}
               onClick={() => onToggleStatus(s)}
               aria-pressed={on}
+              style={on ? { background: color, borderColor: color, color: '#fff' } : undefined}
             >
-              <span
-                className={styles.legendDot}
-                style={{ background: STATUS_COLOR[s] }}
-              />
-              {STATUS_LABEL[s]}
+              {on ? (
+                <span className={styles.legendCheck} aria-hidden>
+                  ✓
+                </span>
+              ) : (
+                <span className={styles.legendDot} style={{ background: color }} />
+              )}
+              <span className={styles.legendLabel}>{STATUS_LABEL[s]}</span>
               <span className={styles.legendCount}>{counts[s]}</span>
             </button>
           )

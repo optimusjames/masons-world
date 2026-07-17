@@ -112,9 +112,21 @@
   gap: 14px;
   padding: 8px 16px;
   background: var(--surface);
+  border: none;
   border-radius: 12px;
   box-shadow: var(--shadow);
   pointer-events: auto;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.stats:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 34px rgba(20, 30, 40, 0.2);
+}
+.stats:active {
+  transform: translateY(0);
 }
 .stat {
   display: flex;
@@ -127,6 +139,7 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--primary);
+  font-variant-numeric: tabular-nums;
 }
 .statLabel {
   font-size: 10px;
@@ -148,44 +161,76 @@
   z-index: 500;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 10px;
+  gap: 10px;
+  padding: 12px;
   background: var(--surface);
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: var(--shadow);
-  max-width: 260px;
+  width: 218px;
+}
+.legendHeader {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  padding: 0 2px;
 }
 .legendRow {
   display: flex;
+  flex-direction: column;
   gap: 6px;
-  flex-wrap: wrap;
 }
 .legendChip {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 9px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 11px;
   background: var(--surface);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--ink);
   cursor: pointer;
-  transition: opacity 0.15s, background 0.15s;
+  transition: opacity 0.15s, background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.legendChip:hover {
+  transform: translateY(-1px);
 }
 .legendChipOff {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 .legendDot {
-  width: 9px;
-  height: 9px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
+  flex-shrink: 0;
+}
+.legendCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+.legendLabel {
+  flex: 1;
+  text-align: left;
 }
 .legendCount {
   color: var(--muted);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
+}
+.legendChip[aria-pressed='true'] .legendCount {
+  color: rgba(255, 255, 255, 0.9);
 }
 .legendSelect {
   appearance: none;
@@ -796,7 +841,7 @@
     bottom: 86px;
     left: 12px;
     right: 12px;
-    max-width: none;
+    width: auto;
   }
   .sheet {
     width: 100%;

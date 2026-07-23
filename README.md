@@ -10,6 +10,34 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Cool PDX
+
+**June 29, 2026**
+
+![Cool PDX](./public/screenshots/cool-pdx.png)
+
+A heat-relief map for Portland. On a hot day, find the nearest shade, water, and cool air — and see at a glance which neighborhoods are shaded and which bake. A tree-canopy gradient built from the city's street-tree inventory (253,951 trees) sits under drinking fountains and air-conditioned public refuges, with a "relief near me" button that finds your nearest fountain and cool space. Real Portland open data on a light Leaflet basemap.
+
+**Tags:** Map - Leaflet - Portland - Climate - Interactive
+
+**[View Live →](https://masons-world.vercel.app/design-experiments/cool-pdx)**
+
+---
+
+### Fix It PDX
+
+**June 11, 2026**
+
+![Fix It PDX](./public/screenshots/fixit-pdx.png)
+
+An intuitive refresh of the City of Portland's PDX Reporter. One clean map that does two things: tap a pin to see what's been fixed and how fast, or tap anywhere to report a pothole, dead streetlight, graffiti, or other street issue — no login required. Twelve infrastructure categories, each routed to an inline, phone, or city-form handoff. Built on real Portland open data and a light Leaflet basemap.
+
+**Tags:** Map - Leaflet - Portland - Civic - Interactive
+
+**[View Live →](https://masons-world.vercel.app/design-experiments/fixit-pdx)**
+
+---
+
 ### QR Studio
 
 **May 6, 2026**

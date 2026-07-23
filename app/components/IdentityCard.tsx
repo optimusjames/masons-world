@@ -60,7 +60,7 @@ export default function IdentityCard() {
             <h1 className={styles.name}>James Mason</h1>
             <p className={styles.role}>GIS &amp; Civic data · Portland, OR</p>
             <p className={styles.tagline}>
-              I turn public data into maps and tools people actually use, and I&apos;m moving toward the operations side of how a city runs.
+              I turn public data into maps and tools that are fun to use and genuinely useful, and I&apos;m exploring how far that can go.
             </p>
             <LinkRow />
           </div>

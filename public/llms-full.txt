@@ -2,7 +2,7 @@
 
 > A Next.js sandbox for design experiments, blog posts, and documentation on building with AI agents.
 
-James Mason turns public data into interactive maps and tools people actually use, and is moving toward the operations side of how a city runs. This is his design lab. The featured work is a set of Portland civic maps built on the city's open data (Cool PDX, Fix It PDX, McLoughlin / 99E); the full gallery groups these under Civic & Data, followed by Wellness & Movement and Tools & Craft experiments. The site is built with Next.js 16, TypeScript, and CSS Modules. Each design experiment is a self-contained route under `/design-experiments/`. The blog covers the experience of designing and building software collaboratively with AI coding agents like Claude Code.
+James Mason turns public data into interactive maps and tools that are fun to use and genuinely useful, and is exploring how far that can go. This is his design lab. The featured work is a set of Portland civic maps built on the city's open data (Cool PDX, Fix It PDX, McLoughlin / 99E); the full gallery groups these under Civic & Data, followed by Wellness & Movement and Tools & Craft experiments. The site is built with Next.js 16, TypeScript, and CSS Modules. Each design experiment is a self-contained route under `/design-experiments/`. The blog covers the experience of designing and building software collaboratively with AI coding agents like Claude Code.
 
 The project demonstrates a particular approach to AI-assisted development: working with agents through code rather than through GUI-based "AI design tools." Experiments range from interactive UI components to wellness tools and data dashboards.
 

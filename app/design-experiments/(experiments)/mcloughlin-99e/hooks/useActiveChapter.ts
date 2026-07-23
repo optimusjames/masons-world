@@ -50,7 +50,13 @@ export function useActiveChapter(total: number) {
     return () => {
       window.removeEventListener('scroll', schedule)
       window.removeEventListener('resize', schedule)
-      if (rafRef.current != null) cancelAnimationFrame(rafRef.current)
+      // Reset the handle: cancelAnimationFrame alone leaves rafRef non-null, which
+      // permanently jams schedule() (it early-returns while a frame is "pending").
+      // That froze the active chapter after a client-side nav, until a hard reload.
+      if (rafRef.current != null) {
+        cancelAnimationFrame(rafRef.current)
+        rafRef.current = null
+      }
     }
   }, [schedule])
 

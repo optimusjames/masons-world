@@ -10,6 +10,9 @@ This file tracks major changes and milestones in the project.
 
 ## July 2026
 
+**Fix: McLoughlin / 99E scrollytelling frozen until reload**
+The active-chapter tracker (`useActiveChapter`) cancelled its pending animation frame on cleanup but never reset the ref handle to null, so `schedule()` stayed permanently jammed (it early-returns while a frame looks "pending"). After a client-side navigation into the page the map never advanced with scroll until a hard reload. Reset the handle in cleanup.
+
 **Home identity flip card, sharpened pitch, grouped gallery**
 Turned the static identity block into a flippable card (`app/components/IdentityCard.tsx`), reusing the CSS 3D recipe from the Yoga Cards experiment: the front carries the pitch, an "About" flip reveals a short bio. Both faces render real DOM text (crawlable) and the offscreen face is `inert` so it drops out of the tab order; `prefers-reduced-motion` swaps the spin for an instant flip. Sharpened the front tagline to add direction ("...and I'm moving toward the operations side of how a city runs"). Removed the "an experiment" tag from the home Writing section so the blog reads as genuine thinking, not an undersell. Gave the experiments gallery a real hierarchy: added a `category` field to the experiment type and grouped the gallery into Civic & Data (lead), Wellness & Movement, and Tools & Craft, each with a section header and blurb.
 

@@ -9,6 +9,7 @@ export const experiments: Experiment[] = [
     screenshot: '/screenshots/cool-pdx.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Climate', 'Interactive'],
     theme: 'light',
+    category: 'Civic & Data',
   },
   {
     slug: 'fixit-pdx',
@@ -18,6 +19,7 @@ export const experiments: Experiment[] = [
     screenshot: '/screenshots/fixit-pdx.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Civic', 'Interactive'],
     theme: 'light',
+    category: 'Civic & Data',
   },
   {
     slug: 'qr-studio',
@@ -26,6 +28,7 @@ export const experiments: Experiment[] = [
     description: 'A card builder for print. Generate styled QR codes across three formats — business card, event flyer, and content card — with dark and light themes, live preview, and PNG or PDF export. Shell favicon embedded in every QR center.',
     screenshot: '/screenshots/qr-studio.png',
     tags: ['QR Code', 'Print', 'Generator', 'Interactive', 'Dark Theme'],
+    category: 'Tools & Craft',
   },
   {
     slug: 'mcloughlin-99e',
@@ -34,6 +37,7 @@ export const experiments: Experiment[] = [
     description: 'A scrollytelling case study of the 3-year effort to reduce the speed limit on SE McLoughlin Blvd / OR-99E — from a 2-mile petition to a 4-mile signed reduction. Real Portland and ODOT crash data, four chapters, a synced map that flies between corridor views as you scroll.',
     screenshot: '/screenshots/mcloughlin-99e.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Safety', 'Scrollytelling'],
+    category: 'Civic & Data',
   },
   {
     slug: 'yoga-cards',
@@ -42,6 +46,7 @@ export const experiments: Experiment[] = [
     description: 'Flippable yoga pose cards in five layouts — wide, tall, square, minimal, and gallery. Click to flip and reveal Sanskrit names, level badges, benefits, alignment cues, and hold times. CSS 3D transforms, staggered entrance animations, and shareable deep links per card.',
     screenshot: '/screenshots/yoga-cards.png',
     tags: ['Yoga', 'Cards', '3D Animation', 'Interactive'],
+    category: 'Wellness & Movement',
   },
   {
     slug: 'yoga-guide',
@@ -50,6 +55,7 @@ export const experiments: Experiment[] = [
     description: 'A five-step questionnaire that produces a personalized yoga prescription — poses, breathing techniques, frequency guidance, and Ayurvedic tips — from a static scoring engine.',
     screenshot: '/screenshots/yoga-guide.png',
     tags: ['Wellness', 'Interactive', 'Yoga', 'Dark Theme'],
+    category: 'Wellness & Movement',
   },
   {
     slug: 'yoga-flow',
@@ -57,7 +63,8 @@ export const experiments: Experiment[] = [
     title: 'Yoga Flow',
     description: 'A two-screen yoga flow planner. Pick a duration (Quick / Flow / Long) and level (Gentle / Moderate / Strong) on the setup screen, then hit Begin Flow to reveal a sequenced pose list with hold times and per-side indicators. Total time is computed live from the actual holds. Shares the dark theme and color swatch system from the Yoga Breathing experiment — Cormorant Garamond for pose names, Space Mono for times.',
     screenshot: '/screenshots/yoga-flow.png',
-    tags: ['Wellness', 'Interactive', 'Yoga', 'Dark Theme']
+    tags: ['Wellness', 'Interactive', 'Yoga', 'Dark Theme'],
+    category: 'Wellness & Movement',
   },
   {
     slug: 'yoga-breathing',
@@ -65,7 +72,8 @@ export const experiments: Experiment[] = [
     title: 'Yoga Breathing',
     description: 'Guided pranayama breathing app with an animated ring that expands and contracts with each phase. Five techniques: Box (4-4-4-4), 4-7-8, Foundation (5-5), 2:1 Calm, and Triangle. Three color themes (sage, ocean, dusk), optional session timer, Cormorant Garamond phase labels, Space Mono countdown.',
     screenshot: '/screenshots/yoga-breathing.png',
-    tags: ['Breathing', 'Animation', 'Wellness', 'Interactive']
+    tags: ['Breathing', 'Animation', 'Wellness', 'Interactive'],
+    category: 'Wellness & Movement',
   },
   {
     slug: 'crossfit-bento',
@@ -73,7 +81,8 @@ export const experiments: Experiment[] = [
     title: 'CrossFit Bento',
     description: 'Dark bento grid dashboard for CrossFit training data. Nine widget cards covering goal progress, calorie tracking, weekly training load bar chart, GitHub-style activity heatmap with flame icons on peak days, WOD stats, macro donut chart, exercise log with PR badges, heart rate zones, and sleep stages. DM Sans body with Geist Pixel Square for technical labels. Matte finish palette -- orange, olive, brown accents on near-black.',
     screenshot: '/screenshots/crossfit-bento.png',
-    tags: ['Bento Grid', 'Dashboard', 'Geist Pixel', 'Dark Theme']
+    tags: ['Bento Grid', 'Dashboard', 'Geist Pixel', 'Dark Theme'],
+    category: 'Wellness & Movement',
   },
   {
     slug: 'sticky-notes',
@@ -82,6 +91,7 @@ export const experiments: Experiment[] = [
     description: 'Interactive sticky note stack component. Post-it notes rendered from markdown files with swipe-to-cycle animation, color variants (warm, cool, neutral), and Permanent Marker handwriting font. Click to expand, click to cycle, Escape to close. Portable design -- consumer passes a notes directory path, so any page can use it with its own content.',
     screenshot: '/screenshots/sticky-notes.png',
     tags: ['Component', 'CSS Animation', 'Markdown Content', 'Portable'],
-    theme: 'light'
+    theme: 'light',
+    category: 'Tools & Craft',
   },
 ]

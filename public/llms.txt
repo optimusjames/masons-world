@@ -2,7 +2,7 @@
 
 > A Next.js sandbox for design experiments, blog posts, and documentation on building with AI agents.
 
-This is a personal design lab where James Mason explores visual design, typography, layout systems, and agentic AI workflows. Built with Next.js, TypeScript, and CSS Modules. Each experiment is self-contained. The blog covers the experience of designing and building software collaboratively with AI agents.
+James Mason turns public data into interactive maps and tools people actually use, and is moving toward the operations side of how a city runs. This is his design lab: the featured work is a set of Portland civic maps built on the city's open data, alongside wellness and utility experiments and a blog. Built with Next.js, TypeScript, and CSS Modules. Each experiment is self-contained. The blog covers the experience of designing and building software collaboratively with AI agents.
 
 Source: https://github.com/optimusjames/masons-world
 

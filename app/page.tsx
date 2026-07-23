@@ -8,6 +8,7 @@ import { experiments } from "@/lib/experiments/data";
 
 import Greeting from "./components/Greeting";
 import HomeNav from "./components/HomeNav";
+import IdentityCard from "./components/IdentityCard";
 import LiveData from "./components/LiveData";
 import ShakeCard from "./components/ShakeCard";
 import styles from "./page.module.css";
@@ -58,30 +59,7 @@ export default async function Home() {
               <HomeNav />
             </div>
             <div className={styles.heroBody}>
-              <div className={styles.identityCard}>
-              <div className={styles.avatar}>
-                <Image
-                  src="/james-headshot.jpg"
-                  alt="James Mason"
-                  width={160}
-                  height={160}
-                  sizes="80px"
-                  className={styles.avatarImg}
-                  priority
-                />
-              </div>
-              <div className={styles.identityText}>
-                <h1 className={styles.name}>James Mason</h1>
-                <p className={styles.role}>GIS &amp; Civic data · Portland, OR</p>
-                <p className={styles.tagline}>
-                  I turn public data into interactive maps and tools people actually use.
-                </p>
-                <div className={styles.identityLinks}>
-                  <a href="https://github.com/optimusjames" target="_blank" rel="noopener noreferrer" className={styles.identityLink}>GitHub</a>
-                  <a href="https://www.linkedin.com/in/optimizationmason/" target="_blank" rel="noopener noreferrer" className={styles.identityLink}>LinkedIn</a>
-                </div>
-              </div>
-              </div>
+              <IdentityCard />
               <LiveData />
             </div>
           </header>
@@ -131,7 +109,6 @@ export default async function Home() {
                   <CurtainLink href="/blog" className={styles.eyebrowLink} curtainTransition={true}>
                     Writing {caret}
                   </CurtainLink>
-                  <span className={styles.experimentTag}>✦ an experiment</span>
                 </div>
                 <span className={styles.subsectionMeta}>Philosophy · Mindset · Tech</span>
               </div>

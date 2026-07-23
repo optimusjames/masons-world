@@ -1,3 +1,5 @@
+export type ExperimentCategory = 'Civic & Data' | 'Wellness & Movement' | 'Tools & Craft'
+
 export interface Experiment {
   slug: string
   date: string
@@ -6,4 +8,5 @@ export interface Experiment {
   screenshot?: string
   tags: string[]
   theme?: 'light' | 'dark'
+  category: ExperimentCategory
 }

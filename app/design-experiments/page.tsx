@@ -8,6 +8,19 @@ import { ChevronLeft } from 'lucide-react'
 import CurtainLink from '@/app/components/CurtainLink'
 import styles from './page.module.css'
 import { experiments } from '@/lib/experiments/data'
+import type { ExperimentCategory } from '@/app/types/experiments'
+
+// Civic work leads; wellness and tools read as clearly secondary clusters.
+const CATEGORY_ORDER: ExperimentCategory[] = ['Civic & Data', 'Wellness & Movement', 'Tools & Craft']
+const CATEGORY_BLURB: Record<ExperimentCategory, string> = {
+  'Civic & Data': "Portland's open data, mapped and made usable.",
+  'Wellness & Movement': 'Yoga, breath, and training as interface studies.',
+  'Tools & Craft': 'Small utilities and reusable components.',
+}
+const groupedExperiments = CATEGORY_ORDER.map((category) => ({
+  category,
+  items: experiments.filter((e) => e.category === category),
+})).filter((group) => group.items.length > 0)
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -79,49 +92,58 @@ export default function Home() {
 
       <div className={styles.rule}></div>
 
-      {experiments.map((experiment, index) => (
-        <div
-          key={experiment.slug}
-          id={experiment.slug}
-          className={styles.experiment}
-          data-delay={Math.min(index + 1, 6)}
-        >
-          {experiment.screenshot && (
-            <div className={styles.experimentPreviewContainer}>
-              <Link
-                href={`/design-experiments/${experiment.slug}`}
-                onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
-              >
-                <Image
-                  src={experiment.screenshot}
-                  alt={`${experiment.title} preview`}
-                  width={280}
-                  height={210}
-                  className={styles.experimentPreview}
-                />
-              </Link>
-            </div>
-          )}
-          <div className={styles.experimentContent}>
-            <div className={styles.experimentDate}>{experiment.date}</div>
-            <h2 className={styles.experimentTitle}>
-              <Link
-                href={`/design-experiments/${experiment.slug}`}
-                onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
-              >{experiment.title}</Link>
-            </h2>
-            <p className={styles.experimentDescription}>
-              {experiment.description}
-            </p>
-            <div className={styles.experimentTags}>
-              {experiment.tags.map((tag) => (
-                <span key={`${experiment.slug}-${tag}`} className={styles.tag}>
-                  {tag}
-                </span>
-              ))}
-            </div>
+      {groupedExperiments.map((group) => (
+        <section key={group.category} className={styles.categoryGroup}>
+          <div className={styles.categoryHead}>
+            <h2 className={styles.categoryTitle}>{group.category}</h2>
+            <p className={styles.categoryBlurb}>{CATEGORY_BLURB[group.category]}</p>
           </div>
-        </div>
+
+          {group.items.map((experiment, index) => (
+            <div
+              key={experiment.slug}
+              id={experiment.slug}
+              className={styles.experiment}
+              data-delay={Math.min(index + 1, 6)}
+            >
+              {experiment.screenshot && (
+                <div className={styles.experimentPreviewContainer}>
+                  <Link
+                    href={`/design-experiments/${experiment.slug}`}
+                    onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
+                  >
+                    <Image
+                      src={experiment.screenshot}
+                      alt={`${experiment.title} preview`}
+                      width={280}
+                      height={210}
+                      className={styles.experimentPreview}
+                    />
+                  </Link>
+                </div>
+              )}
+              <div className={styles.experimentContent}>
+                <div className={styles.experimentDate}>{experiment.date}</div>
+                <h3 className={styles.experimentTitle}>
+                  <Link
+                    href={`/design-experiments/${experiment.slug}`}
+                    onClick={() => sessionStorage.setItem('gallery-last-slug', experiment.slug)}
+                  >{experiment.title}</Link>
+                </h3>
+                <p className={styles.experimentDescription}>
+                  {experiment.description}
+                </p>
+                <div className={styles.experimentTags}>
+                  {experiment.tags.map((tag) => (
+                    <span key={`${experiment.slug}-${tag}`} className={styles.tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </section>
       ))}
 
     </div>

@@ -1,0 +1,236 @@
+/* ============================================================
+   Identity card — flippable (front = pitch, back = short bio)
+   3D recipe reused from the Yoga Cards experiment. Faces are
+   grid-stacked so the card auto-sizes to the taller face.
+   ============================================================ */
+
+.wrap {
+  width: 100%;
+  max-width: 460px;
+  perspective: 1200px;
+  opacity: 0;
+  animation: cardEnter 0.8s ease-out 0.75s forwards;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Both faces share cell 1/1 so the taller one drives the height. */
+.face {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.1rem 1.3rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.11));
+  backdrop-filter: blur(11px) saturate(1.1);
+  -webkit-backdrop-filter: blur(11px) saturate(1.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 16px 40px rgba(0, 0, 0, 0.3);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.back {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.75rem;
+  transform: rotateY(180deg);
+}
+
+/* --- Front pieces --- */
+.avatar {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--surface-2, #20252f);
+  border: 1px solid color-mix(in srgb, var(--accent, #4a8aff) 35%, var(--border-strong, rgba(255, 255, 255, 0.18)));
+  box-shadow: 0 0 24px color-mix(in srgb, var(--accent, #4a8aff) 18%, transparent);
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+  border-radius: 50%;
+  filter: brightness(1.08) contrast(1.03) saturate(1.04);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  line-height: 1.1;
+  color: var(--text, rgba(255, 255, 255, 0.94));
+  margin: 0;
+}
+
+.role {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent, #4a8aff);
+  margin: 0.1rem 0 0.15rem;
+}
+
+.tagline {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.96rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-2, rgba(255, 255, 255, 0.66));
+  margin: 0;
+  max-width: 46ch;
+  text-wrap: balance;
+}
+
+/* --- Back pieces --- */
+.backLabel {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent, #4a8aff);
+}
+
+.bio {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text, rgba(255, 255, 255, 0.94));
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.backFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* --- Shared --- */
+.links {
+  display: flex;
+  gap: 1.1rem;
+  margin-top: 0.55rem;
+}
+
+.back .links {
+  margin-top: 0;
+}
+
+.link {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-2, rgba(255, 255, 255, 0.66));
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border-strong, rgba(255, 255, 255, 0.18));
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--accent, #4a8aff);
+  border-color: var(--accent, #4a8aff);
+}
+
+.flipBtn {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3, rgba(255, 255, 255, 0.46));
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.11));
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.flipBtn:hover {
+  color: var(--text, rgba(255, 255, 255, 0.94));
+  border-color: var(--border-strong, rgba(255, 255, 255, 0.18));
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* The back's control sits inline in the footer, not pinned to the corner. */
+.back .flipBtn {
+  position: static;
+}
+
+/* Face needs positioning context for the pinned front button. */
+.face {
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .face {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+  .back {
+    align-items: flex-start;
+  }
+  .flipBtn {
+    top: 0.8rem;
+    right: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    transition: none;
+  }
+  .wrap {
+    animation-duration: 0.01ms;
+  }
+}

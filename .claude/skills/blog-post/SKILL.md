@@ -30,12 +30,12 @@ Write in the style of the existing posts in `blog/`. The writing philosophy:
 
 - **Short paragraphs.** 2-4 sentences max. White space is structure.
 - **Concrete over abstract.** Specific details from real experience, not theory. Metaphors have to land on first read. If the reader stops to work out whether it fits, it costs more than it earns.
-- **Sustain the metaphor.** If the title carries one, thread it through the piece instead of bookending it.
+- **Sustain the metaphor.** If the title carries one, thread it through the piece instead of bookending it. Stepping outside it is fine when the point needs plain speech, but bridge back with a line that names the turn.
 - **One thesis.** Every post makes one point. Say it early, support it with examples, end when the point is made.
 - **Edgy and light on the outside, thoughtful and Zen on the inside.** Humor and irony help people connect. Don't be too serious. The depth earns its place because the delivery is fun.
-- **Start in first person or in thesis.** Personal posts ground the opening in a real moment ("I can stand at the window..."), then broaden to "you." Philosophical posts can lead with the idea — the personal comes through perspective, not anecdote. The conversation and subject matter will signal which mode fits.
+- **Start in first person or in thesis.** Personal posts ground the opening in a real moment ("I can stand at the window..."), then broaden to "we." Philosophical posts can lead with the idea, and the personal comes through perspective, not anecdote. The conversation and subject matter will signal which mode fits.
 - **Conversational but not rambling.** Write like you talk, but land on strong statements. No hedging, no "in conclusion." Confident is not the same as overclaiming. Absolutes and superlatives invite an argument the post can't win. Claim what the piece supports.
-- **Vary sentence rhythm.** Short fragments punch. Comma-joined clauses flow. Use both — the contrast is what makes the writing feel alive. Two fragments in a row is rhythm. Four is a tic. If three sentences running have no verb, one of them should be a clause.
+- **Vary sentence rhythm, but write full sentences.** Comma-joined clauses flow, short declaratives punch, and the contrast between them is what keeps the writing alive. Sentence fragments are the exception, not the tool. They read as AI filler, so use them rarely and never two in a row. If a fragment is sitting there for rhythm, absorb it into the neighboring sentence.
 - **End sharp.** The last line should hit. Sometimes it echoes the title.
 - **300-600 words.** 400-500 is the sweet spot. Let the idea breathe and develop fully. If it's pushing past 600, check you're not making two points. Recount after every revision. Additions get paid for with cuts. Check the number before reporting it.
 - **Essays, not documentation.** No headers unless the post genuinely needs sections. Most don't.
@@ -50,9 +50,13 @@ Specific qualities to bring:
 - Slightly contrarian. A little self-deprecating. Wry humor earns more trust than earnestness.
 - Light on the outside, genuine on the inside. The depth earns its place because the delivery is fun.
 
-**Watch for the instructional trap.** When a post starts to feel like advice, pull back. The voice earns its depth through lightness, not earnestness. If a paragraph is explaining the lesson rather than showing it, cut or reframe. Preachy is the main failure mode. A related failure is narrating the reader's behavior back at them. Describe the dynamic and let the reader place themselves in it.
+**Watch for the instructional trap.** When a post starts to feel like advice, pull back. The voice earns its depth through lightness, not earnestness. If a paragraph is explaining the lesson rather than showing it, cut or reframe. Preachy is the main failure mode. A related failure is narrating the reader's behavior back at them. Describe the dynamic and let the reader place themselves in it. Watch the pronoun here: "you" points at the reader and slides into telling them what to do, while "we" puts the writer inside the same problem, which is where this voice works best.
 
 **On drafting:** Sometimes the first draft is close and needs minimal polish. Sometimes the idea is still finding its shape and takes more passes. Both are fine. Start from what's in the conversation and let it land where it lands.
+
+**On revising:** Tightening an existing post means cutting and rewording what's already there, not adding new examples or analogies. Go paragraph by paragraph and say what to keep, cut, or reword. Recount the words after each pass.
+
+The final wording pass belongs to James. He reads the post through against the local build and rewrites phrases into his own language, and that pass is what makes it sound like him rather than like a draft. Before calling a post done, check that he has had it.
 
 ### 4. Generate Front Matter
 

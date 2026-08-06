@@ -19,7 +19,7 @@ Other work compounds, built slowly on a foundation that already holds. The trade
 
 Some of that is just physics. A new cast iron pan isn't ready yet, and while you can speed it along, oil and an oven get you most of the way in an afternoon, you can't skip it. There's a floor, and ambition doesn't move it.
 
-Which is why somebody still has to taste it. Not measure it. Taste it, and have an opinion about what it needs.
+None of which tells you whether the food is any good. Somebody still has to taste it. Not measure it. Taste it, and have an opinion about what it needs.
 
 With tools that can automate nearly anything, it gets tempting to read every manual step as a problem waiting for its solution. Faster improvement also means faster ways to go sideways, and the real risk usually isn't one bad call, it's twenty tabs open and nothing finished. Prioritizing gets harder exactly when building gets easier.
 

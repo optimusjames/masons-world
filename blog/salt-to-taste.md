@@ -1,34 +1,22 @@
 ---
 title: "Salt to Taste"
-subtitle: "On fast tools, slow systems, and knowing what's worth changing"
+subtitle: "On fast tools and knowing when to pump the brakes"
 date: 2026-08-05
 author: James Mason
 ---
 
-Now we can ask a question and the answer arrives in seconds. Organized, confident, tidy summary at the bottom. It looks done, but it's a first pass wearing a final draft's clothes.
+Now we can ask a question and the answer arrives in seconds, organized and confident, with a tidy summary at the bottom. It looks done, but it's a first pass wearing a final draft's clothes.
 
-That's fine once you notice, because then you push back, add context, ask for the version that accounts for what it missed. The trouble is what the speed does to you before you notice. Everything downstream starts to feel like it should pick up the pace, a pace that isn't attuned to anything real yet, and going along is easy since nobody wants to be the one asking everyone to slow down.
+That's fine as long as we're aware, because then we push back, add context, ask for the version that accounts for what it missed. That discernment doesn't come from the tool. Some of it is instinct, we know it when we see it, and the rest is reps.
 
-There's something else in there too. The answer is agreeable, so it's easy to agree back, and agreeableness walks you down the path without you checking many of the steps. Every kitchen runs on yes, chef. Somebody still has to be willing to say it with a question mark.
+The answer is agreeable too, which makes it easy to agree back, and agreeableness can walk us down the path without checking many of the steps. Top kitchens may run on yes, chef, but the head chef isn't a robot. We need to be willing to say it with a question mark.
 
-What counts as too fast depends on where you're standing.
+What counts as too fast is relative. Some work genuinely turns over every quarter, and moving fast there isn't reckless, it's needed. It's the lunch rush, and nobody's tuning the sandwich. We wrap it and move. Other work is the pho pot that's been on since morning, where rushing doesn't help and planning and patience do. Whatever we put in stays in. Too much salt after six hours of simmering ruins the whole pot, and there's no undoing it.
 
-Some work genuinely turns over every quarter. A web product competing against whatever shipped last season is in a real race, and moving fast there isn't recklessness, it's accurate. It's the lunch rush. Nobody's standing there weighing whether to cut it on the diagonal. You wrap it and you move.
+Despite what we're making or the pace we're building at, somebody has to taste the food. Preparing it is not the same as tasting it, and only one of the two tells us what the dish still needs.
 
-Other work compounds, built slowly on a foundation that already holds. The trades, manufacturing, businesses that have run the same way for decades and will run the same way for a few more. Changes there carry more weight in both directions: a good one keeps paying out, a bad one is much harder to walk back.
+Sometimes pumping the brakes is the product. It's the walkthrough where the customer mentions the thing they'd never have typed into a form, where reading tone and body language tells us more than the answers do. That's not the time for efficiency. Automate it and we haven't removed friction, we've removed a point of connection that was probably an edge.
 
-Some of that is just physics. A new cast iron pan isn't ready yet, and while you can speed it along, oil and an oven get you most of the way in an afternoon, you can't skip it. There's a floor, and ambition doesn't move it.
+Then there's the slowness nobody gains from. That's what's genuinely worth changing, and it's almost always boring. It's somebody retyping numbers off a PDF, or a spreadsheet whose only job is reconciling two other spreadsheets. These are the parts where everyone already feels there's got to be a better way, and they eat hours people would rather spend on work that uses more of them. Working out what's actually needed is harder than working out what's possible, and most of the value lives in the difference.
 
-A ready pan still isn't dinner. The cooking takes its own time, and then somebody has to taste it. Not measure it. Taste it, and have an opinion about what it needs.
-
-With tools that can automate nearly anything, it gets tempting to read every manual step as a problem waiting for its solution. Faster improvement also means faster ways to go sideways, and the real risk usually isn't one bad call, it's twenty tabs open and nothing finished. Prioritizing gets harder exactly when building gets easier.
-
-Some slowness is the product. The walkthrough where the customer mentions the thing they'd never have typed into a form. The check-in that exists because a person wanted to be checked in on. Automate those and you haven't removed friction, you've removed a point of connection that was probably your edge.
-
-What's genuinely worth changing is somewhere else, and it's almost always boring. Somebody retyping numbers off a PDF. A spreadsheet whose only job is reconciling two other spreadsheets. The tedious parts where everyone already feels there's got to be a better way, eating hours people would rather spend on work that uses more of them.
-
-That's the part I find interesting. Working out what's actually needed is harder than working out what's possible, and most of the value lives in the difference.
-
-The speed is real and it keeps getting more useful, but speed is part of the process, not the whole of it. The hotter the burner runs, the closer you have to watch it: guardrails, feedback, somebody tasting as they go. Not caution for its own sake, just how you keep from burning things.
-
-There's no correct amount of salt. Only the dish in front of you, the people about to eat, and what you find when you taste it.
+There's no amount of salt that's right for everything. Too much is still too much, but every dish needs its own amount. What matters is the one in front of us, the people about to eat it, and what we find when we taste.

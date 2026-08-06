@@ -28,6 +28,8 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Blog
 
+- [Salt to Taste](https://masons-world.vercel.app/blog/salt-to-taste): On fast tools, slow systems, and knowing what's worth changing. An instant, polished answer sets a tempo that the work downstream doesn't necessarily deserve, and agreeableness spreads. Argues that the right pace depends on where you're standing: some work turns over every quarter, some compounds over decades, and there's a floor that ambition doesn't move. Once tools can automate nearly anything, all slowness starts to look like a defect, but some slowness is the product (the call where somebody listens, the walkthrough where a customer says the thing they'd never type into a form). What's genuinely worth changing is almost always the boring stuff. By James Mason. Date: August 5, 2026.
+
 - [Proof of Person](https://masons-world.vercel.app/blog/proof-of-person): On authenticity in an age when AI can simulate your voice, face, and writing. Argues that trust doesn't come from being verifiable, it comes from being knowable — through specificity, raw process, vulnerability, and the willingness to be wrong in public. The non-linear accumulation of a real life has a texture that simulation can't quite source. By James Mason. Date: May 27, 2026.
 
 - [Who's the Smartest?](https://masons-world.vercel.app/blog/whos-the-smartest): On vibe as intelligence, and why it's about to matter more. Riffs on Jensen Huang's definition of smart as the ability to feel the vibe -- integrating data, analysis, first principles, life experience, wisdom, and sensing people. Argues the unlikely person in the room is often the one tuned in, and AI is about to make that edge decisive. By James Mason. Date: April 13, 2026.

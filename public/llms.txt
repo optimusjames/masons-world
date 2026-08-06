@@ -21,6 +21,7 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Blog
 
+- [Salt to Taste](https://masons-world.vercel.app/blog/salt-to-taste): On fast tools, slow systems, and knowing what's worth changing
 - [Proof of Person](https://masons-world.vercel.app/blog/proof-of-person): On authenticity, AI simulation, and why being real means being knowable — not just verifiable
 - [Who's the Smartest?](https://masons-world.vercel.app/blog/whos-the-smartest): On vibe as intelligence, and why it's about to matter more
 - [Close Your Eyes](https://masons-world.vercel.app/blog/close-your-eyes): On reps, feel, and the work before the one shot — when instruction compresses into intuition

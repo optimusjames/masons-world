@@ -8,6 +8,16 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+## August 2026
+
+**Salt to Taste, and blog skill refinements**
+New post on fast tools and slow systems: when tools can automate nearly anything, all slowness starts to look like a defect, and most of the skill is telling which slowness is waste and which one is the actual work. Six revision passes, and the edits fed back into `.claude/skills/blog-post/SKILL.md`. Added a ceiling on consecutive sentence fragments, a first-read legibility test for metaphors, a rule to thread a title's metaphor through the whole piece rather than bookending it, a distinction between confident and overclaiming, word-count discipline (additions get paid for with cuts, verified before reporting), the reader-accusation variant of the preachy trap, a vocabulary check against how James actually speaks, and a prompt to reach for one deep cut tied to the image. Also fixed two small bugs in the skill: two steps were numbered 7 with no step 6, and the build command said `npm` where the project uses pnpm.
+
+**Blog images converted to webp**
+All eight blog post images converted from PNG to webp via sharp-cli, cutting total weight from 8.9MB to 279KB with no visible difference (one 2.9MB film still became 41KB). Blog images render through a plain `<img>` tag rather than `next/image`, which was a deliberate call in `cfaee5b`: the Next.js optimizer cache kept serving stale crops after an image was edited, which collides directly with the blog workflow of saving a real image over the placeholder at the same path. sharp-cli was added as a devDependency at the same time as the intended replacement, so pre-optimizing files is the designed path here. Added it as an explicit step in the blog-post skill so it happens by default. `placeholder.png` stays PNG because the skill copies it, and `findImage` checks `.png` before `.webp`, so originals have to be deleted or the large file keeps winning.
+
+---
+
 ## July 2026
 
 **Fix: McLoughlin / 99E scrollytelling frozen until reload**

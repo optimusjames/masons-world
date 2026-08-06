@@ -79,18 +79,11 @@ cp public/blog/placeholder.png public/blog/{slug}.png
 
 This is a real 1200x630 dark gray PNG. It shows up correctly in blog cards and on the homepage. To replace it, the user just saves a real image to the same path -- same name, same extension. Everything just works.
 
-### 7. Optimize the Image
+**Use PNG or JPEG. Never webp.** The link-preview card is generated at `app/(blog)/blog/[slug]/opengraph-image.tsx`, which embeds the post image and renders it through Satori. Satori cannot decode webp: the route throws `TypeError: u2 is not iterable`, returns nothing, and every shared link falls back to the site favicon. Nothing in the build or the page itself fails, so the breakage is silent. `detectMime` in that file lists webp, which is misleading -- it labels the mime type but Satori still can't read the pixels.
 
-Once the user has saved a real image, convert it to webp. Blog images render through a plain `<img>` tag, so nothing optimizes them automatically. (Next.js `<Image>` was removed on purpose: its cache kept serving stale crops after an image was edited.)
+Blog images render through a plain `<img>` tag rather than `next/image` (removed deliberately in `cfaee5b`, because its cache served stale crops after an image was edited). So nothing resizes or compresses them automatically. That is a known, accepted tradeoff: file sizes run large. If you ever do optimize, stay in PNG or JPEG and verify the OG image by fetching the `opengraph-image` URL and confirming it returns 200 with the photo visible. Checking that the code mentions a format is not verification.
 
-```bash
-npx sharp -i public/blog/{slug}.png -o public/blog/{slug}.webp -f webp -q 85 resize 1600
-rm public/blog/{slug}.png
-```
-
-Drop `resize 1600` when the source is already narrower than that. Delete the original afterward, since `findImage` checks `.png` before `.webp` and the large file would keep winning. Leave `placeholder.png` alone.
-
-### 8. Production Build
+### 7. Production Build
 
 ```bash
 pnpm build
@@ -98,7 +91,7 @@ pnpm build
 
 Fix any errors before reporting success.
 
-### 9. Report
+### 8. Report
 
 Confirm:
 - Post drafted at `blog/{slug}.md`
@@ -131,6 +124,6 @@ The image is part of the post. It should feel inevitable — like the title and 
 
 - Posts: `blog/{slug}.md`
 - Master placeholder: `public/blog/placeholder.png` (1200x630 dark gray PNG)
-- Post images: `public/blog/{slug}.png` (placeholder initially, save over with real image, then convert to `.webp`)
+- Post images: `public/blog/{slug}.png` (placeholder initially, save over with real image; PNG or JPEG only, never webp)
 - Blog index: `/blog`
 - Individual post: `/blog/{slug}`

@@ -9,7 +9,7 @@ Nowadays we can ask a question and the answer arrives in seconds, organized and 
 
 That's fine as long as we're aware of it, because then we can push back, add context, ask for versions that account for what it missed. That discernment doesn't come from the tool, it's from us paying attention. Some instinct, we know it when we see it, and the rest is gained through repetition.
 
-The answers are agreeable too, which makes it easy to agree back, and agreeableness can walk us down the path without checking many of the steps. Top kitchens may run on "yes, chef" but the head chef isn't software. So I think it's important to be willing to say it with a question mark.
+The answers are agreeable too, which makes it easy to agree back. Agreeableness can walk us down the path without checking many of the steps. Top kitchens may run on "yes, chef" but the head chef isn't software. So I think it's important to be willing to say it with a question mark.
 
 What counts as too fast is relative, some work genuinely turns over every quarter, and moving fast there isn't reckless, it's needed. When there's a lunch rush, and nobody's actively editing the sandwich process, just wrap it and move on to the next. Other work is like the soup pot that's been on since morning, where rushing doesn't help, and too much salt after six hours of simmering could ruin the whole pot.
 

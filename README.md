@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Smoke PDX
+
+**August 10, 2026**
+
+![Smoke PDX](./public/screenshots/smoke-pdx.png)
+
+Where the smoke is, where it comes from, and which way the wind is carrying it. 373 EPA AirNow monitors across the Pacific Northwest, their AQI computed the way EPA actually computes it (NowCast over twelve hours, not a raw hourly reading), sit under a 651-cell wind field and every active fire perimeter from Northern California to Montana. Portland reads Good while monitors 200 miles east read Very Unhealthy, and the wind chevrons show you why. Three government sources, no API keys, and a provenance tier on every one.
+
+**Tags:** Map - Leaflet - Portland - Air Quality - Live Data
+
+**[View Live →](https://masons-world.vercel.app/design-experiments/smoke-pdx)**
+
+---
+
 ### Cool PDX
 
 **June 29, 2026**

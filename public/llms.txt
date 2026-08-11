@@ -8,6 +8,7 @@ Source: https://github.com/optimusjames/masons-world
 
 ## Design Experiments
 
+- [Smoke PDX](https://masons-world.vercel.app/design-experiments/smoke-pdx): A live wildfire-smoke map for greater Portland and the Oregon smoke shed. 373 EPA AirNow monitors with AQI computed the way EPA computes it (NowCast over 12 hours, 2024 breakpoints), under a 651-cell wind field and every active NIFC fire perimeter from Northern California to Montana. Zoom out from the metro to the region. Three keyless government sources with a provenance tier on each
 - [Cool PDX](https://masons-world.vercel.app/design-experiments/cool-pdx): A Portland heat-relief map — find the nearest shade, water, and cool air on a hot day. A tree-canopy shade gradient (253,951 street trees) under drinking fountains and air-conditioned public refuges, with a "relief near me" geolocation button. Real Portland open data on a light Leaflet basemap
 - [Fix It PDX](https://masons-world.vercel.app/design-experiments/fixit-pdx): An intuitive refresh of Portland's PDX Reporter — one clean Leaflet map where you tap a pin to see what's been fixed (real PBOT pothole data) or tap anywhere to report a street issue with no login, across 12 infrastructure categories routed to inline, phone, or city-form handoffs
 - [QR Studio](https://masons-world.vercel.app/design-experiments/qr-studio): Print-ready card generator with styled QR codes — business card, event flyer, and content card formats with dark/light themes and PNG + PDF export

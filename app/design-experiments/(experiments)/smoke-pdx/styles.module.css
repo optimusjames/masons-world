@@ -1,0 +1,655 @@
+/* ===========================================================================
+   Shared map chrome (from .claude/skills/map/templates/map-tokens.css).
+   This block is what makes the map experiments read as one family.
+   Experiment-specific rules start below the second divider.
+   =========================================================================== */
+
+.page {
+  --bg: #faf6ef;
+  --ink: #2a2320;
+  --ink-soft: #6b5f57;
+  --ink-faint: #9a8d83;
+  --rule: rgba(42, 35, 32, 0.12);
+  --surface: #ffffff;
+  --map-bg: #eef2ee;
+
+  --accent: #c0392b;
+
+  color: var(--ink);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 56px;
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.header {
+  margin: 0 0 20px;
+  animation: rise 0.5s ease 0.05s both;
+}
+
+.eyebrow {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-display, 'Michroma', sans-serif);
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 620px;
+  line-height: 1.5;
+}
+
+/* ---- map ---- */
+
+.mapWrapper {
+  position: relative;
+  height: 64dvh;
+  min-height: 460px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--map-bg);
+  animation: rise 0.5s ease 0.15s both;
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Fullscreen takeover — fill the whole viewport, escaping the experiment frame.
+   Toggled by the ⤢ button; Esc exits. */
+.mapWrapperFullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  animation: none;
+}
+
+.mapControls {
+  position: absolute;
+  z-index: 500;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fsBtn {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(42, 35, 32, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fsBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(42, 35, 32, 0.16);
+}
+
+/* The basemap recedes so the data carries the saturation. Not fully washed
+   out, though: the tint layer sits on top and needs some ground under it. */
+.map :global(.leaflet-tile-pane) {
+  filter: saturate(0.72) contrast(0.97);
+}
+
+/* Place names ride on their own pane above the tint. The white halo around each
+   name is baked into CARTO's label tiles, and it is the thing keeping them
+   readable over saturated color, so it stays. Only a light contrast nudge here;
+   pushing it further just thickens the halo. */
+.map :global(.leaflet-labels-pane) {
+  filter: saturate(0) contrast(1.08);
+}
+
+.map :global(.leaflet-container) {
+  background: var(--map-bg);
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.map :global(.leaflet-control-attribution) {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink-faint);
+  max-width: 62vw;
+}
+
+.map :global(.leaflet-control-attribution a) {
+  color: var(--ink-soft);
+}
+
+/* ---- legend ---- */
+
+.legend {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 12px 14px;
+  max-width: 284px;
+  box-shadow: 0 2px 12px rgba(42, 35, 32, 0.08);
+  animation: rise 0.4s ease 0.3s both;
+}
+
+.legendHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.legendChevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.legend[data-collapsed='true'] .legendChevron {
+  transform: rotate(-90deg);
+}
+
+.legendBody {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.legend[data-collapsed='true'] .legendBody {
+  display: none;
+}
+
+.legendUnit {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+
+.legendRamp {
+  display: grid;
+  gap: 4px;
+}
+
+/* Continuous AQI bar */
+.legendBar {
+  display: flex;
+  height: 12px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(42, 35, 32, 0.14);
+}
+
+.legendBarSeg {
+  flex: 1;
+}
+
+.legendBarTicks,
+.legendBarEnds {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+.legendBarEnds {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 1px;
+}
+
+.legendBand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.25;
+}
+
+.legendSwatch {
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  flex: none;
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+.legendBandLabel {
+  flex: 1;
+}
+
+.legendBandRange {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 11px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.legendRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-top: 1px solid var(--rule);
+  padding-top: 10px;
+}
+
+.legendChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--ink);
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.legendChip:hover {
+  border-color: var(--ink-faint);
+}
+
+.legendChipOff {
+  opacity: 0.42;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+/* The wind chip shows the real mark rather than a generic dot. */
+.legendChevronMark {
+  width: 12px;
+  height: 12px;
+  flex: none;
+}
+
+.legendCount {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.legendNote {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  line-height: 1.5;
+}
+
+.legendEmptyKey {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(120, 110, 102, 0.55);
+  background: rgba(255, 255, 255, 0.5);
+  vertical-align: -1px;
+}
+
+.legendFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+.legendAsOf {
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  flex: 1;
+}
+
+.legendStale {
+  color: #b8873b;
+}
+
+.refreshBtn {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.refreshBtn:hover:not(:disabled) {
+  border-color: var(--ink-faint);
+  color: var(--ink);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ---- popup ---- */
+
+.popupWrap :global(.leaflet-popup-content-wrapper) {
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(42, 35, 32, 0.16);
+}
+
+.popupWrap :global(.leaflet-popup-content) {
+  margin: 10px 12px;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.popup {
+  display: grid;
+  gap: 5px;
+  min-width: 178px;
+}
+
+.popupTitle {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.popupRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.popupRowLabel {
+  color: var(--ink-faint);
+}
+
+.popupRowValue {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.popupReal {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3f9d6b;
+  padding-top: 4px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ===========================================================================
+   Smoke PDX specific
+   =========================================================================== */
+
+.popupAqi {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 2px 0 4px;
+}
+
+.popupAqiNum {
+  font-family: var(--font-display, 'Michroma', sans-serif);
+  font-size: 26px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.popupAqiLabel {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.popupAqiNone {
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-style: italic;
+  padding: 2px 0 4px;
+}
+
+/* ---- monitor dots ---- */
+
+.monitorIcon {
+  background: none;
+  border: 0;
+}
+
+/* One continuous bloom: solid core fading to nothing. No ring and no shadow,
+   so overlapping stations pool into a field instead of stacking as discs. */
+.monitorDot {
+  display: block;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.monitorDot:hover {
+  transform: scale(1.1);
+}
+
+/* Stale readings: hollow, so an old value can never pass for a live one. */
+.monitorDotStale {
+  background: rgba(255, 255, 255, 0.94);
+  border: 2px dashed currentColor;
+  box-shadow: none;
+}
+
+/* Wind arrows are decoration until hovered; no marker chrome. Per-arrow
+   opacity is set inline from speed, so this only sharpens on hover. */
+.windIcon {
+  background: none;
+  border: 0;
+  transition: filter 0.15s ease;
+}
+
+.windIcon:hover {
+  filter: saturate(1.6) brightness(0.85);
+}
+
+.windTip {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+}
+
+/* ---- the reading: fires -> wind -> what arrived ---- */
+
+.reading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
+  animation: rise 0.5s ease 0.1s both;
+}
+
+.readingStat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: none;
+  padding-right: 20px;
+  border-right: 1px solid var(--rule);
+}
+
+.readingNum {
+  font-family: var(--font-display, 'Michroma', sans-serif);
+  font-size: clamp(52px, 6vw, 68px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.readingLabelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* The category is the answer to "is this bad?", so it gets real size and the
+   band color. The mono caps label underneath just names the number. */
+.readingCategory {
+  max-width: none;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.readingLabel {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 12.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.4;
+}
+
+.readingSentence {
+  flex: 1;
+  min-width: 260px;
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.readingSentence strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---- provenance ---- */
+
+.sources {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 6px;
+}
+
+.sourcesHead {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.sourceRow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.sourceRow a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sourceRow a:hover {
+  border-bottom-color: var(--ink-faint);
+}
+
+.sourceTier {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 2px;
+  flex: none;
+  color: #fff;
+  background: var(--ink-faint);
+}
+
+.sourceTier[data-tier='A'] { background: #3f9d6b; }
+.sourceTier[data-tier='B'] { background: #4a6fa5; }
+.sourceTier[data-tier='C'] { background: #b8873b; }
+.sourceTier[data-tier='D'] { background: #b05050; }
+
+.sourceMeta {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 540px) {
+  .legend {
+    max-width: calc(100% - 24px);
+  }
+  .mapWrapper {
+    height: 58dvh;
+  }
+  .readingNum {
+    font-size: 32px;
+  }
+}

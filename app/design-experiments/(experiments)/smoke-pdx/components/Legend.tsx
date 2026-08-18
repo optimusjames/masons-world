@@ -147,7 +147,7 @@ export default function Legend({
           )}
           {visibleLayers.includes('wind') && (
             <>
-              Chevrons follow the smoke downwind.
+              Chevrons point the way the wind is blowing.
               <br />
             </>
           )}

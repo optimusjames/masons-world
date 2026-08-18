@@ -13,26 +13,30 @@ import LiveData from "./components/LiveData";
 import ShakeCard from "./components/ShakeCard";
 import styles from "./page.module.css";
 
-// The three map projects, in chronological order so they read left-to-right as a
-// progression. Each carries a short blurb and one concrete impact/scope line
-// (the data.ts descriptions run long, and the shared tags say nothing new).
-const FEATURED = [
-  {
-    slug: "mcloughlin-99e",
-    blurb: "A scrollytelling case study of a real 3-year campaign to slow a corridor still engineered like a 1930s superhighway.",
-    scope: "3 yrs with ODOT & PBOT · 2 → 4 mile speed reduction",
-  },
-  {
-    slug: "fixit-pdx",
-    blurb: "A friction-free reimagining of Portland's issue reporter: one map to flag a pothole, streetlight, or graffiti, and see what's already fixed.",
-    scope: "No login · 12 issue types · report in two taps",
-  },
-  {
-    slug: "cool-pdx",
-    blurb: "On a hot day, find the nearest shade, water, and air-conditioned refuge, all drawn from Portland's public open data.",
-    scope: "Built from 253,951 city street trees",
-  },
-];
+// The civic maps, newest first, derived rather than hardcoded: ship a new one
+// and it leads this section automatically. Scoped to Civic & Data on purpose,
+// since the section heading makes a claim about Portland's open data and a new
+// yoga experiment must never land here just for being recent.
+//
+// Blurb and scope live on each experiment in data.ts. The fallback keeps a map
+// that forgot them presentable instead of blank.
+const FEATURED_CATEGORY = "Civic & Data";
+const FEATURED_COUNT = 4; // one lead + three trailing
+
+function firstSentence(text: string): string {
+  const end = text.indexOf(". ");
+  return end === -1 ? text : text.slice(0, end + 1);
+}
+
+const featuredMaps = experiments
+  .filter((e) => e.category === FEATURED_CATEGORY && e.screenshot)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, FEATURED_COUNT)
+  .map((e) => ({
+    ...e,
+    blurb: e.blurb ?? firstSentence(e.description),
+    scope: e.scope ?? e.tags.slice(0, 3).join(" · "),
+  }));
 
 const caret = (
   <svg width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -41,8 +45,7 @@ const caret = (
 );
 
 export default async function Home() {
-  const bySlug = new Map(experiments.map((e) => [e.slug, e]));
-  const featured = FEATURED.map((f) => ({ ...bySlug.get(f.slug)!, blurb: f.blurb, scope: f.scope }));
+  const [lead, ...trailing] = featuredMaps;
   const posts = getAllPosts().slice(0, 3);
   const recentExplores = (await getAllRecommendations()).slice(0, 3);
 
@@ -73,12 +76,45 @@ export default async function Home() {
                 All designs {caret}
               </CurtainLink>
             </div>
+            {lead && (
+              <CurtainLink
+                href={`/design-experiments/${lead.slug}`}
+                className={styles.leadCard}
+                curtainTransition={true}
+              >
+                <div className={styles.leadThumbFrame}>
+                  <Image
+                    src={lead.screenshot!}
+                    alt={lead.title}
+                    width={960}
+                    height={540}
+                    priority
+                    sizes="(max-width: 830px) 100vw, 620px"
+                    className={styles.leadThumb}
+                  />
+                </div>
+                <div className={styles.leadText}>
+                  <span className={styles.leadEyebrow}>
+                    <span className={styles.leadPulse} aria-hidden="true" />
+                    Latest
+                  </span>
+                  <span className={styles.leadTitle}>{lead.title}</span>
+                  <span className={styles.leadBlurb}>{lead.blurb}</span>
+                  <span className={styles.leadScope}>{lead.scope}</span>
+                  <span className={styles.leadCta}>
+                    Open the map {caret}
+                  </span>
+                </div>
+              </CurtainLink>
+            )}
+
             <div className={styles.featuredGrid}>
-              {featured.map((exp) => (
+              {trailing.map((exp, i) => (
                 <CurtainLink
                   key={exp.slug}
                   href={`/design-experiments/${exp.slug}`}
                   className={styles.featuredCard}
+                  style={{ ["--stagger" as string]: `${i * 90}ms` }}
                   curtainTransition={true}
                 >
                   {exp.screenshot && (

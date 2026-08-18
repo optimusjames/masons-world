@@ -10,6 +10,27 @@ This file tracks major changes and milestones in the project.
 
 ## August 2026
 
+**Home page: the featured maps derive themselves, and the newest one leads**
+The home page hardcoded three map slugs with blurbs written inline, so Smoke
+PDX shipped and simply never appeared. The featured set is now derived from
+`lib/experiments/data.ts`: filter to Civic & Data, sort by date, take four, lead
+with the newest. Scoped to that one category on purpose, since the section
+heading makes a claim about Portland's open data and a new yoga experiment must
+never land there just for being recent. Blurb and scope moved onto the
+experiment records themselves as optional fields, with a first-sentence fallback
+so a map that forgets them still renders. Ship the next civic map and it leads
+this section with no edit here.
+
+Presentation follows the same logic: a lead card with a large screenshot, a
+pulsing LATEST marker, and its own call to action, over a row of three. A flat
+row of four would have made the strongest piece in the set look interchangeable.
+Two CSS traps worth remembering, both found by measuring rather than looking.
+Entrance animations use `animation-fill-mode: backwards`, because a forward fill
+keeps applying the final keyframe's `transform: none` at animation priority and
+silently kills the hover lift. And `backwards` must not be paired with a base
+`opacity: 0`, or the base declaration reasserts itself the instant the animation
+ends and blanks the card, which is exactly what happened on the first attempt.
+
 **Smoke PDX: all three layers go live, and the map stops opening on stale data**
 Two problems that read as one. Fire perimeters were never refetched, so
 containment froze at whatever the build captured: Grasshopper showed 23%

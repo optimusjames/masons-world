@@ -6,6 +6,9 @@ export const experiments: Experiment[] = [
     date: 'August 10, 2026',
     title: 'Smoke PDX',
     description: 'Where the smoke is, where it comes from, and which way the wind is carrying it. 373 EPA AirNow monitors across the Pacific Northwest, their AQI computed the way EPA actually computes it (NowCast over twelve hours, not a raw hourly reading), sit under a 651-cell wind field and every active fire perimeter from Northern California to Montana. Portland reads Good while monitors 200 miles east read Very Unhealthy, and the wind chevrons show you why. Three government sources, no API keys, and a provenance tier on every one.',
+    blurb:
+      'Where the smoke is, where it comes from, and which way the wind is carrying it, across the whole Pacific Northwest smoke shed.',
+    scope: '373 EPA monitors · live wind field · 3 government sources',
     screenshot: '/screenshots/smoke-pdx.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Air Quality', 'Live Data'],
     theme: 'light',
@@ -16,6 +19,9 @@ export const experiments: Experiment[] = [
     date: 'June 29, 2026',
     title: 'Cool PDX',
     description: 'A heat-relief map for Portland. On a hot day, find the nearest shade, water, and cool air — and see at a glance which neighborhoods are shaded and which bake. A tree-canopy gradient built from the city\'s street-tree inventory (253,951 trees) sits under drinking fountains and air-conditioned public refuges, with a "relief near me" button that finds your nearest fountain and cool space. Real Portland open data on a light Leaflet basemap.',
+    blurb:
+      "On a hot day, find the nearest shade, water, and air-conditioned refuge, all drawn from Portland's public open data.",
+    scope: 'Built from 253,951 city street trees',
     screenshot: '/screenshots/cool-pdx.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Climate', 'Interactive'],
     theme: 'light',
@@ -26,6 +32,9 @@ export const experiments: Experiment[] = [
     date: 'June 11, 2026',
     title: 'Fix It PDX',
     description: 'An intuitive refresh of the City of Portland\'s PDX Reporter. One clean map that does two things: tap a pin to see what\'s been fixed and how fast, or tap anywhere to report a pothole, dead streetlight, graffiti, or other street issue — no login required. Twelve infrastructure categories, each routed to an inline, phone, or city-form handoff. Built on real Portland open data and a light Leaflet basemap.',
+    blurb:
+      "A friction-free reimagining of Portland's issue reporter: one map to flag a pothole, streetlight, or graffiti, and see what's already fixed.",
+    scope: 'No login · 12 issue types · report in two taps',
     screenshot: '/screenshots/fixit-pdx.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Civic', 'Interactive'],
     theme: 'light',
@@ -45,6 +54,9 @@ export const experiments: Experiment[] = [
     date: 'April 21, 2026',
     title: 'McLoughlin / 99E',
     description: 'A scrollytelling case study of the 3-year effort to reduce the speed limit on SE McLoughlin Blvd / OR-99E — from a 2-mile petition to a 4-mile signed reduction. Real Portland and ODOT crash data, four chapters, a synced map that flies between corridor views as you scroll.',
+    blurb:
+      'A scrollytelling case study of a real 3-year campaign to slow a corridor still engineered like a 1930s superhighway.',
+    scope: '3 yrs with ODOT & PBOT · 2 → 4 mile speed reduction',
     screenshot: '/screenshots/mcloughlin-99e.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Safety', 'Scrollytelling'],
     category: 'Civic & Data',

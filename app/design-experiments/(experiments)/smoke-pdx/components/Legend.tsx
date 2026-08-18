@@ -17,6 +17,8 @@ type Props = {
   asOf: string
   live: boolean | undefined
   refreshing: boolean
+  /** Result of the last Refresh press, or null when nothing was pressed. */
+  checked: 'new' | 'current' | 'failed' | null
   onRefresh: () => void
 }
 
@@ -28,6 +30,7 @@ export default function Legend({
   asOf,
   live,
   refreshing,
+  checked,
   onRefresh,
 }: Props) {
   const [collapsed, setCollapsed] = useState(false)
@@ -36,6 +39,17 @@ export default function Legend({
       setCollapsed(true)
     }
   }, [])
+
+  // Age has to be computed after mount. Rendering it on the server would bake in
+  // the build time and mismatch on hydration. Re-tick every half minute so a
+  // page left open does not keep claiming the data is fresh.
+  const [age, setAge] = useState<string | null>(null)
+  useEffect(() => {
+    const tick = () => setAge(formatAge(asOf))
+    tick()
+    const t = setInterval(tick, 30_000)
+    return () => clearInterval(t)
+  }, [asOf])
 
   const showAqi = visibleLayers.includes('monitor')
 
@@ -126,18 +140,30 @@ export default function Legend({
         <div className={styles.legendNote}>
           {visibleLayers.includes('monitor') && (
             <>
-              <strong>{reporting}</strong> of {counts.monitor} monitors are reporting;
-              the quiet ones are not drawn. Click a dot for its exact reading.
+              <strong>{reporting}</strong> of {counts.monitor} monitors reporting.
+              Click any dot for its reading.
               <br />
             </>
           )}
-          {visibleLayers.includes('wind') && <>Chevrons point the way the smoke travels.</>}
+          {visibleLayers.includes('wind') && (
+            <>
+              Chevrons follow the smoke downwind.
+              <br />
+            </>
+          )}
+          {visibleLayers.includes('perimeter') && <>Click a fire for acreage and containment.</>}
         </div>
 
         <div className={styles.legendFoot}>
-          <span className={styles.legendAsOf}>
+          <span className={styles.legendAsOf} title={formatAsOf(asOf)}>
             {live === false && <span className={styles.legendStale}>saved copy · </span>}
-            {formatAsOf(asOf)}
+            {checked === 'failed' ? (
+              <span className={styles.legendStale}>Could not reach the sources</span>
+            ) : checked === 'current' ? (
+              <>Already current, checked just now</>
+            ) : (
+              age ?? formatAsOf(asOf)
+            )}
           </span>
           <button
             type="button"
@@ -162,4 +188,21 @@ function formatAsOf(iso: string): string {
     hour: 'numeric',
     minute: '2-digit',
   })}`
+}
+
+/**
+ * How old the data is, in the terms someone actually asks the question in. The
+ * exact timestamp stays available on hover.
+ */
+function formatAge(iso: string): string {
+  const d = new Date(iso)
+  if (isNaN(d.getTime())) return iso
+  const mins = Math.floor((Date.now() - d.getTime()) / 60_000)
+  if (mins < 1) return 'Updated just now'
+  if (mins === 1) return 'Updated 1 minute ago'
+  if (mins < 60) return `Updated ${mins} minutes ago`
+  const hrs = Math.round(mins / 60)
+  if (hrs === 1) return 'Updated 1 hour ago'
+  if (hrs < 24) return `Updated ${hrs} hours ago`
+  return formatAsOf(iso)
 }

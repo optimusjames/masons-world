@@ -7,15 +7,14 @@ import Legend from './components/Legend'
 import { MAP_CONFIG } from './map.config'
 import { bandFor } from './components/scale'
 import type { LayerId, MapData } from './types'
-import snapshot from './data/smoke.json'
-
-const initial = snapshot as unknown as MapData
 
 const COMPASS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
   'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
 
-export default function SmokePdx() {
-  const [data, setData] = useState<MapData>(initial)
+// The page server-renders this from data/live.ts, so the first paint is already
+// current. Refresh re-fetches on demand for anyone watching the map change.
+export default function SmokePdx({ initialData }: { initialData: MapData }) {
+  const [data, setData] = useState<MapData>(initialData)
   const [refreshing, setRefreshing] = useState(false)
   const [fullscreen, setFullscreen] = useState(false)
   const [visibleLayers, setVisibleLayers] = useState<LayerId[]>(
@@ -43,17 +42,33 @@ export default function SmokePdx() {
     )
   }, [])
 
+  // What the last press actually found. The server caches for 15 minutes, so a
+  // press often correctly returns the same payload. Saying so is the difference
+  // between a button that looks broken and one that answers the question.
+  const [checked, setChecked] = useState<'new' | 'current' | 'failed' | null>(null)
+
   const refresh = useCallback(async () => {
     setRefreshing(true)
     try {
       const res = await fetch('/api/smoke-pdx', { cache: 'no-store' })
-      if (res.ok) setData((await res.json()) as MapData)
+      if (!res.ok) throw new Error(String(res.status))
+      const next = (await res.json()) as MapData
+      setChecked(next.generatedAt === data.generatedAt ? 'current' : 'new')
+      setData(next)
     } catch {
       // Keep showing what we have. The legend already says how old it is.
+      setChecked('failed')
     } finally {
       setRefreshing(false)
     }
-  }, [])
+  }, [data.generatedAt])
+
+  // Let the result stand long enough to read, then fall back to plain age.
+  useEffect(() => {
+    if (!checked) return
+    const t = setTimeout(() => setChecked(null), 6000)
+    return () => clearTimeout(t)
+  }, [checked])
 
   const counts = useMemo<Record<LayerId, number>>(
     () => ({
@@ -187,6 +202,7 @@ export default function SmokePdx() {
           asOf={data.generatedAt}
           live={data.live}
           refreshing={refreshing}
+          checked={checked}
           onRefresh={refresh}
         />
       </div>
@@ -194,10 +210,11 @@ export default function SmokePdx() {
       {/* Provenance belongs on the page, not only in SOURCES.md. */}
       <footer className={styles.sources}>
         <div className={styles.sourcesHead}>
-          Every layer was fetched and counted. {data.counts.monitorsReporting} of{' '}
-          {data.counts.monitors} monitors had a valid NowCast across{' '}
-          {data.counts.hourlyFilesUsed} hourly files. The soft color pools are a visual
-          aid drawn around real monitors, not a modeled smoke surface.
+          Every layer is fetched and counted live, all three from public sources that
+          need no API key. {data.counts.monitorsReporting} of {data.counts.monitors}{' '}
+          monitors had a valid NowCast across {data.counts.hourlyFilesUsed} hourly files.
+          The soft color pools are a visual aid drawn around real monitors, not a modeled
+          smoke surface.
         </div>
         {MAP_CONFIG.sources.map((s) => (
           <div key={s.id} className={styles.sourceRow}>
@@ -207,7 +224,7 @@ export default function SmokePdx() {
             <a href={s.url} target="_blank" rel="noopener noreferrer">
               {s.name}
             </a>
-            <span className={styles.sourceMeta}>{s.cadence} · no API key</span>
+            <span className={styles.sourceMeta}>updates {s.cadence}</span>
           </div>
         ))}
       </footer>

@@ -84,8 +84,13 @@
 }
 
 /* Fullscreen takeover — fill the whole viewport, escaping the experiment frame.
-   Toggled by the ⤢ button; Esc exits. */
-.mapWrapperFullscreen {
+   Toggled by the ⤢ button; Esc exits.
+
+   Deliberately compound (.mapWrapper.mapWrapperFullscreen) so it outranks any
+   plain .mapWrapper rule regardless of source order. Media queries add no
+   specificity, so the responsive `height: 58dvh` below would otherwise win and
+   pin "fullscreen" to 58% of a phone screen. */
+.mapWrapper.mapWrapperFullscreen {
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -149,11 +154,20 @@
   font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
 }
 
+/* Credit has to stay legible, but it does not need a box. Dropping the plate and
+   carrying legibility on a halo in the basemap's own color lets it sit on the
+   map instead of on top of it. */
 .map :global(.leaflet-control-attribution) {
   font-size: 9px;
-  background: rgba(255, 255, 255, 0.82);
+  background: transparent;
   color: var(--ink-faint);
   max-width: 62vw;
+  padding: 0 5px 1px;
+  line-height: 1.5;
+  text-shadow:
+    0 0 3px var(--map-bg),
+    0 0 2px var(--map-bg),
+    0 0 1px var(--map-bg);
 }
 
 .map :global(.leaflet-control-attribution a) {
@@ -651,5 +665,23 @@
   }
   .readingNum {
     font-size: 32px;
+  }
+  /* On a phone this sits right where you pan. Shrink it, and drop the source
+     names since the provenance footer repeats them at more length just below. */
+  .map :global(.leaflet-control-attribution) {
+    font-size: 8px;
+    max-width: 52vw;
+    padding: 0 3px;
+    opacity: 0.75;
+  }
+  /* Basemap credit only. The three data sources wrapped onto three lines here
+     and crowded the map, and they are already credited in the provenance footer
+     with tier, link, and cadence. This includes fullscreen: a phone has no room
+     for the long form, and exiting lands you on the footer. */
+  .map :global(.smokeAttrSources) {
+    display: none;
+  }
+  .map :global(.leaflet-control-attribution) {
+    white-space: nowrap;
   }
 }

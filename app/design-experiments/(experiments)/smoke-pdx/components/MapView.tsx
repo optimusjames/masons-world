@@ -76,12 +76,16 @@ export default function MapView({
 
       L.control.zoom({ position: 'bottomright' }).addTo(map)
 
-      const credits = [
-        MAP_CONFIG.basemap.attribution,
-        ...MAP_CONFIG.sources.map(
-          (s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a>`,
-        ),
-      ].join(' · ')
+      // The basemap credit travels with the tiles and always shows. The data
+      // sources are wrapped so CSS can drop them on a phone, where the
+      // provenance footer sits right below the map saying the same thing at
+      // more length. Fullscreen hides that footer, so the styles put them back.
+      const sourceCredits = MAP_CONFIG.sources
+        .map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a>`)
+        .join(' · ')
+      const credits =
+        `${MAP_CONFIG.basemap.attribution}` +
+        `<span class="smokeAttrSources"> · ${sourceCredits}</span>`
       L.control
         .attribution({ position: 'bottomleft', prefix: false })
         .addAttribution(credits)

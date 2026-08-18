@@ -85,7 +85,7 @@ export const MAP_CONFIG: MapConfig = {
       name: 'NIFC WFIGS current wildfire perimeters',
       tier: 'A',
       url: 'https://data-nifc.opendata.arcgis.com/',
-      cadence: 'continuous',
+      cadence: 'continuously',
       requiresKey: false,
       verifiedOn: '2026-08-10',
       recordCount: 118,

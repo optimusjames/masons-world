@@ -221,13 +221,35 @@ remains unexercised.
 
 ## Live path
 
-`app/api/smoke-pdx/route.ts` refreshes monitors and the **metro** wind cells
-every 15 minutes,
-reusing the exact NowCast and AQI logic from `_build.py`. Perimeters come from
-this snapshot rather than being refetched, since they move on the order of days.
+`data/live.ts` builds the live payload, reusing the exact NowCast and AQI logic
+from `_build.py`. Both the page and `app/api/smoke-pdx/route.ts` call
+`getLiveMapData()`, so the first paint and the Refresh button produce the same
+thing. Next dedupes the underlying fetches, so a live first paint costs no extra
+upstream requests.
 
-The route exists despite every source being keyless, for two reasons: AirNow's
-file server sends no CORS headers, so the browser cannot read it directly; and
+All three layers refresh, each on the cadence its source actually moves at:
+
+| Layer | Refresh | Scope |
+| --- | --- | --- |
+| Monitors | 15 min | Full region |
+| Wind | 15 min | **Metro** cells only; regional carried from this snapshot |
+| Perimeters | 1 hour | Full region |
+
+Perimeters were snapshot-only until 2026-08-17. That was wrong in a way worth
+recording: containment is the one number on this map that visibly moves, and
+freezing it made the map quietly lie. Grasshopper sat at 23% contained for a
+week while the real fire reached 47%. Hourly is the right cadence rather than 15
+minutes, because the geometry moves on the order of days and this service
+returned HTTP 429 twice during the source hunt.
+
+The page is ISR, not a client fetch on mount: the work happens once per window
+and is shared across visitors, so the map opens on current readings without
+hitting a public file host once per load.
+
+Every source being keyless does not make the server hop optional. AirNow's file
+server sends no CORS headers, so the browser cannot read it directly, and
 server-side caching keeps one public file host from being hit once per visitor.
-On any failure the route serves this snapshot with `live: false`, and the legend
-labels it "saved copy."
+Each layer falls back independently to this snapshot, so one flaky upstream
+degrades its own layer instead of blanking the map. When the monitors are the
+layer that failed, the payload carries `live: false` and the legend labels it
+"saved copy."

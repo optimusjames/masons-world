@@ -10,6 +10,40 @@ This file tracks major changes and milestones in the project.
 
 ## August 2026
 
+**Smoke PDX: all three layers go live, and the map stops opening on stale data**
+Two problems that read as one. Fire perimeters were never refetched, so
+containment froze at whatever the build captured: Grasshopper showed 23%
+contained for a week while the real fire reached 47%, and Big Grass showed
+553,972 acres at 35% against a live 579,135 at 71%. Separately, the page opened
+on the committed snapshot and only reached current data after a click, so the
+first thing a visitor saw was the oldest thing we had. The fix moves all the
+fetching into `data/live.ts`, shared by the page and the refresh route, and
+makes the page ISR so it server-renders current readings once per window instead
+of firing a fetch per visitor. Perimeters refresh hourly rather than every 15
+minutes, since the geometry moves on the order of days and NIFC returned 429
+twice during the original source hunt. The provenance footer now separates two
+things it had been conflating: what the publisher's cadence is, and how often we
+actually poll it. One Refresh button still covers everything, because splitting
+it per layer would have advertised freshness the data did not have.
+
+The button itself needed no new fetching, only honesty. Because the server
+caches for 15 minutes, a press often correctly returns the same payload, and
+saying nothing made a working button look broken. It now reports what it found:
+plain data age by default ("Updated 12 minutes ago"), and "Already current,
+checked just now" when the press confirmed nothing had changed. Also took the
+plate off the Leaflet credit, which now sits on the map on a text halo rather
+than a white box, and drops the data-source names on phones since the provenance
+footer repeats them immediately below, fullscreen included, since a phone has no
+room for the long form and exiting lands you on the footer anyway.
+
+Fullscreen was also never actually fullscreen on a phone. `.mapWrapperFullscreen`
+set `height: 100dvh`, but the responsive `.mapWrapper { height: 58dvh }` came
+later in the file at equal specificity, and media queries contribute none, so the
+takeover was pinned to 58% of the screen (measured 390x490 in an 844-tall
+viewport). The rule is now compound, `.mapWrapper.mapWrapperFullscreen`, so it
+outranks any plain `.mapWrapper` rule regardless of source order. Verified
+filling the viewport at six widths from 390 to 1920.
+
 **The `/map` skill, and Smoke PDX as its first output**
 Three Portland map experiments in (McLoughlin / 99E, Fix It PDX, Cool PDX) it was clear the map chrome was a solved pattern being rebuilt by hand each time, while the genuinely hard part — finding and proving a real data source — was being redone from scratch. `/map` splits those apart. Templates in `.claude/skills/map/templates/` carry the Leaflet scaffold, a shared `map-tokens.css` so every map reads as one family, and the non-negotiables learned the hard way (dynamic import, `preferCanvas`, `ResizeObserver` calling `invalidateSize`, escaped popup HTML). The skill's actual substance is a six-step flow whose third step is a hard stop: hunt sources across city, county, state, and federal, hit every candidate endpoint for real, then present a ranked list with a **provenance tier** (A primary agency, B aggregator, C community, D unverified) and let the user pick. A layer may only be drawn as real if it was fetched and counted; anything else is dropped or labeled in the interface, not just in a doc. Claude cannot create API keys (signup means email verification and accepting terms), so the skill ranks keyless sources first, hands over signup URL and env var name when a keyed source is clearly better, and keeps building with a fallback rather than blocking. Confirmed endpoints accumulate in `references/known-sources.md`, which is the part that compounds.
 

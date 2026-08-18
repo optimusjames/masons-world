@@ -12,6 +12,9 @@ export interface SourceRecord {
   name: string
   tier: SourceTier
   url: string
+  /** How often new data appears at the source. Our polling interval is an
+   *  implementation detail and lives in SOURCES.md, not in the interface: what
+   *  a reader needs is the age of the reading, which the legend already gives. */
   cadence: string
   requiresKey: boolean
   verifiedOn: string

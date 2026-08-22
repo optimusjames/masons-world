@@ -103,8 +103,18 @@ function hourlyUrl(t: Date, now: Date): string {
 // hundred rows. Treating a stub as real makes the whole country look offline.
 const MIN_PM25_ROWS = 800
 
-async function text(url: string): Promise<string> {
-  const res = await fetch(url, { headers: { 'User-Agent': UA }, next: { revalidate: REVALIDATE } })
+/**
+ * `force` bypasses Next's data cache for this one request.
+ *
+ * The Refresh button is a promise that we will go look again. Serving it out of
+ * a 15-minute cache makes that promise a lie, and it is the reason a press could
+ * leave the timestamp sitting on an hour that had already passed.
+ */
+async function text(url: string, force = false): Promise<string> {
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA },
+    ...(force ? { cache: 'no-store' as const } : { next: { revalidate: REVALIDATE } }),
+  })
   if (!res.ok) throw new Error(`${url} -> ${res.status}`)
   return res.text()
 }
@@ -152,7 +162,7 @@ async function loadSites(): Promise<Map<string, Site>> {
   return sites
 }
 
-async function buildMonitors(now: Date): Promise<MapFeature[]> {
+async function buildMonitors(now: Date, force: boolean): Promise<MapFeature[]> {
   const sites = await loadSites()
 
   /** Parse one hourly file. Returns null if the hour is unusable. */
@@ -177,7 +187,7 @@ async function buildMonitors(now: Date): Promise<MapFeature[]> {
   const SCAN = 16
   const hours = Array.from({ length: SCAN }, (_, i) => new Date(now.getTime() - i * 3600_000))
   const files = await Promise.all(
-    hours.map((h) => text(hourlyUrl(h, now)).catch(() => null)),
+    hours.map((h) => text(hourlyUrl(h, now), force).catch(() => null)),
   )
   const parsed = files.map(readHour)
 
@@ -354,12 +364,16 @@ async function buildPerimeters(): Promise<ShapeLayer> {
  * layer, not blank the map: Open-Meteo rate-limiting has nothing to do with
  * whether AirNow has fresh readings.
  */
-export async function getLiveMapData(): Promise<MapData> {
+export async function getLiveMapData({ force = false } = {}): Promise<MapData> {
   const base = snapshot as unknown as MapData
   const now = new Date()
 
+  // Only the monitors honour `force`. AirNow is a static file host with no
+  // quota, and the readings are what someone pressed the button for. Open-Meteo
+  // counts every coordinate against a quota and NIFC has handed us 429s, so
+  // those two keep their normal cadence no matter how often the button is hit.
   const [monitorsResult, windResult, perimeterResult] = await Promise.allSettled([
-    buildMonitors(now),
+    buildMonitors(now, force),
     buildWind(),
     buildPerimeters(),
   ])
@@ -384,11 +398,21 @@ export async function getLiveMapData(): Promise<MapData> {
   // "Live" tracks the monitors, since they are the reading someone came for.
   const live = monitorsResult.status === 'fulfilled'
 
+  // The hour the freshest reading is FOR. This is what actually changes when
+  // new data lands, so it is what the client compares across a refresh.
+  // `generatedAt` only says when we assembled the payload, which moves on every
+  // request and therefore can never tell you whether anything is new.
+  const observedAt = monitors.reduce<string | null>(
+    (acc, m) => (m.observedAt && (acc == null || m.observedAt > acc) ? m.observedAt : acc),
+    null,
+  )
+
   return {
     ...base,
     features: [...monitors, ...wind],
     shapes,
     generatedAt: live ? now.toISOString() : base.generatedAt,
+    observedAt: observedAt ?? base.observedAt,
     counts: {
       ...base.counts,
       monitors: monitors.length,

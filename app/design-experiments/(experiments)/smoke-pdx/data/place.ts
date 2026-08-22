@@ -44,3 +44,21 @@ export const REGION = {
 /** Degrees from the region edge over which wind arrows fade out, so the grid
  *  ends softly instead of stopping on a ruled line. */
 export const EDGE_FADE_DEG = 1.2
+
+/**
+ * How far past the data extent you are allowed to pan.
+ *
+ * REGION is where we fetched data, which is not the same question as where the
+ * camera may go. Clamping the camera to the data box means a monitor sitting on
+ * the north edge can never be centered, so clicking it opens a card the map
+ * refuses to pan into view and the reading gets clipped by the top of the
+ * frame. Padding the camera box gives every marker room to breathe, at the cost
+ * of a strip of empty basemap at the extremes, which the edge fade on the wind
+ * grid already prepares the eye for.
+ */
+const PAN_PAD = { lat: 1.6, lng: 2.6 }
+
+export const PAN_BOUNDS = [
+  [REGION.bounds[0][0] - PAN_PAD.lat, REGION.bounds[0][1] - PAN_PAD.lng],
+  [REGION.bounds[1][0] + PAN_PAD.lat, REGION.bounds[1][1] + PAN_PAD.lng],
+] as [[number, number], [number, number]]

@@ -10,6 +10,30 @@ This file tracks major changes and milestones in the project.
 
 ## August 2026
 
+**Smoke PDX: the refresh button tells the truth, and the map stops fighting you**
+Four fixes that all came from the same habit of letting one thing stand in for
+another. The Refresh button was declared `revalidate = 900`, so a press could
+only ever hand back a response Next had already frozen, timestamp and all. It is
+`force-dynamic` now, and the button asks for `?force=1`, which skips the upstream
+cache for the AirNow monitors alone, since Open-Meteo counts coordinates against
+a quota and NIFC has handed us 429s. A sixty second floor on the server keeps a
+held-down button from turning into a load test. The footer stopped asking one
+line to carry two clocks: "Readings from 8:00 PM" moves only when AirNow
+publishes, and "checked just now" moves on every press. What the client compares
+across a refresh is the hour the readings are for, not when the payload was
+assembled, because the second one changes on every request and would call every
+press new.
+
+The camera was clamped to the exact box we fetched data for, which meant a
+monitor near the north edge could never be centered and its card opened clipped
+by the top of the frame. The camera has its own padded box now, and every popup
+reserves the strips where the legend, the fullscreen control, and the credit
+live. The headline sentence averaged wind across all 651 cells in the smoke shed
+and printed a Pacific Northwest average directly under a Portland-only AQI, so it
+is scoped to the metro cells. The stat is clickable and flies the map to the
+station behind the number, building the card itself rather than reaching for a
+marker that may not survive the zoom.
+
 **Home page: the featured maps derive themselves, and the newest one leads**
 The home page hardcoded three map slugs with blurbs written inline, so Smoke
 PDX shipped and simply never appeared. The featured set is now derived from

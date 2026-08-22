@@ -99,7 +99,14 @@ export interface ShapeLayer {
 export interface MapData {
   features: MapFeature[]
   shapes: ShapeLayer[]
+  /** When we last assembled this payload from the sources. */
   generatedAt: string
+  /**
+   * The hour the freshest monitor reading is FOR. Unlike `generatedAt` this only
+   * moves when new data actually lands, which is what makes it the honest answer
+   * to "did that refresh find anything".
+   */
+  observedAt?: string
   counts: {
     monitors: number
     monitorsReporting: number

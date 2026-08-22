@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, LayerGroup } from 'leaflet'
 import styles from '../styles.module.css'
 import { MAP_CONFIG } from '../map.config'
-import { EDGE_FADE_DEG, METRO, REGION } from '../data/place'
+import { EDGE_FADE_DEG, METRO, PAN_BOUNDS, REGION } from '../data/place'
 import type { LayerId, MapFeature, ShapeLayer } from '../types'
 import {
   arrowLength,
@@ -27,6 +27,9 @@ type Props = {
   visibleLayers: LayerId[]
   /** Bumped by the parent on fullscreen toggle so the map re-measures. */
   resizeKey?: unknown
+  /** Set by the parent to fly to a feature and open its card. The nonce makes
+   *  a repeat request on the same feature a new request. */
+  focus?: { feature: MapFeature; nonce: number } | null
   onReady?: () => void
 }
 
@@ -35,6 +38,7 @@ export default function MapView({
   shapes,
   visibleLayers,
   resizeKey,
+  focus,
   onReady,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -62,12 +66,14 @@ export default function MapView({
         zoom: METRO.zoom,
         minZoom: REGION.minZoom,
         maxZoom: REGION.maxZoom,
-        // Pannable across the whole smoke shed, because that is the extent we
-        // actually fetched data for.
-        maxBounds: REGION.bounds,
-        // Hard stop rather than elastic. Past the edge there is no data, and a
-        // rubber-band that shows empty basemap invites the wrong conclusion.
-        maxBoundsViscosity: 1.0,
+        // Pannable across the whole smoke shed plus a margin. The data extent
+        // is REGION; the camera gets PAN_BOUNDS, which is REGION with room
+        // around it so a marker on the edge can still be centered.
+        maxBounds: PAN_BOUNDS,
+        // Soft rather than rigid. The stop is now well outside the data, so a
+        // little give at the very edge costs nothing and stops the map from
+        // fighting a drag or a popup trying to pan itself into view.
+        maxBoundsViscosity: 0.6,
         zoomControl: false,
         attributionControl: false,
         // Nearly 200 markers. Canvas is not optional.
@@ -153,6 +159,51 @@ export default function MapView({
     const id = window.setTimeout(() => mapRef.current?.invalidateSize(), 60)
     return () => window.clearTimeout(id)
   }, [resizeKey, ready])
+
+  // ---- fly to a feature -----------------------------------------------------
+  //
+  // The card is built here rather than by opening the marker's own popup. The
+  // monitor layer redraws on zoom (stations collapse and thin out when zoomed
+  // out), so the marker that was under the cursor when the flight started may
+  // not exist when it lands. A standalone popup with the same content sidesteps
+  // that lifecycle entirely.
+  useEffect(() => {
+    if (!ready || !focus) return
+    let cancelled = false
+    let timer = 0
+
+    ;(async () => {
+      const L = (await import('leaflet')).default
+      const map = mapRef.current
+      if (cancelled || !map) return
+
+      const { feature } = focus
+      let opened = false
+      const open = () => {
+        if (cancelled || opened) return
+        opened = true
+        L.popup({ className: styles.popupWrap, maxWidth: 280, ...POPUP_PAN })
+          .setLatLng([feature.lat, feature.lng])
+          .setContent(monitorPopup(feature))
+          .openOn(map)
+      }
+
+      // Never zoom OUT to get there. If someone is already looking closely,
+      // yanking them back to zoom 11 loses the context they built.
+      const target = Math.max(map.getZoom(), 11)
+      map.flyTo([feature.lat, feature.lng], target, { duration: 0.9 })
+      // Landing is what normally opens the card. The timer is the guard for the
+      // case where the map is already exactly there and never moves, which would
+      // otherwise leave a click with nothing to show for it.
+      map.once('moveend', open)
+      timer = window.setTimeout(open, 1200)
+    })()
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(timer)
+    }
+  }, [focus, ready])
 
   // ---- monitors -------------------------------------------------------------
   //
@@ -242,6 +293,9 @@ export default function MapView({
           closeButton: true,
           className: styles.popupWrap,
           maxWidth: 280,
+          // Cards near the top of the frame used to open half off-screen. Leave
+          // the map room to pan them clear of the legend and the controls.
+          ...POPUP_PAN,
         })
         marker.addTo(group)
       }
@@ -388,6 +442,7 @@ export default function MapView({
               closeButton: true,
               className: styles.popupWrap,
               maxWidth: 260,
+              ...POPUP_PAN,
             })
           },
         }).addTo(group)
@@ -403,6 +458,20 @@ export default function MapView({
 }
 
 // ---- helpers --------------------------------------------------------------
+
+/**
+ * Autopan margins for every popup on this map.
+ *
+ * The top strip carries the legend and the fullscreen button, and the bottom
+ * carries the zoom control and the attribution, so a popup that merely fits
+ * inside the container can still be sitting under furniture. Reserving those
+ * bands makes "opened" and "readable" the same thing.
+ */
+const POPUP_PAN = {
+  autoPan: true,
+  autoPanPaddingTopLeft: [18, 76] as [number, number],
+  autoPanPaddingBottomRight: [18, 46] as [number, number],
+}
 
 function inMetro(lat: number, lng: number): boolean {
   const [[s, w], [n, e]] = METRO.bounds

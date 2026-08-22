@@ -402,7 +402,8 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
             <span className={styles.statText}>
               {/* The superlative belongs up here, not in the small print under
                   the number. "Pacific Northwest / 162 / Unhealthy" reads as a
-                  claim about the whole region; "Highest in the Northwest" reads
+                  claim about the whole region; "Highest in the Pacific
+                  Northwest" reads
                   as what it is, one station. */}
               <span className={styles.statScope}>Highest in Portland metro</span>
               <span className={styles.statCategory}>{band?.label ?? 'No reading'}</span>
@@ -424,7 +425,7 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
           >
             <span className={styles.statNum}>{reading.nwWorst?.value ?? '—'}</span>
             <span className={styles.statText}>
-              <span className={styles.statScope}>Highest in the Northwest</span>
+              <span className={styles.statScope}>Highest in the Pacific Northwest</span>
               <span className={styles.statCategory}>{nwBand?.label ?? 'No reading'}</span>
               <span className={styles.statWhere}>
                 {reading.nwWorst
@@ -440,7 +441,7 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
           {reading.fireCount > 0 ? (
             <>
               <strong>{reading.fireCount}</strong> active fires are burning across the
-              Northwest
+              Pacific Northwest
               {reading.biggest?.properties.acres != null && (
                 <>
                   , the largest at{' '}

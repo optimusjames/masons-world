@@ -272,10 +272,13 @@ export default function MapView({
         // cell look more consequential than the two hundred identical ones
         // around it, and it had room for rows that then had to be filled with
         // something. Wind is a speed and a direction. That fits in a chip.
-        // Deliberately wide, and it will zoom OUT to get here if it has to.
-        // Wind is a field, not a point: one arrow on its own says nothing, and
-        // the reason to look is the pattern it sits in.
-        map.flyTo(at, 8, { duration: 0.9 })
+        // Close enough to see the local field, wide enough that it is still a
+        // field. Zoom 8 was too far out: the lattice re-samples to the same
+        // apparent spacing at every zoom, so all that extra extent bought was a
+        // bigger area of arrows that all looked alike. Wind turns with terrain
+        // and coastline, and that is only legible at something like city scale.
+        // This will zoom out to get here if it has to.
+        map.flyTo(at, 10, { duration: 0.9 })
         land(() => {
           if (cancelled) return
           const tip = L.tooltip({

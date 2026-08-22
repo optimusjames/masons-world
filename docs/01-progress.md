@@ -19,6 +19,10 @@ Northwest under it because it is what is coming. Both exclude stale readings and
 both derive their own count from the same list they pick from, so the label and
 the number cannot disagree. Each row flies the map to the station behind it.
 
+The superlative sits in the scope label rather than in the small print under the
+number, because "Pacific Northwest / 162 / Unhealthy" reads as a claim about the
+whole region when it is a claim about one station in Wenatchee.
+
 Stacked and near-identical, the two read as equals, which is the wrong
 relationship. They are opposites now: Portland is a light panel washed in its own
 air quality color, the region is the same information inverted onto dark. The eye

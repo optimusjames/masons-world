@@ -400,11 +400,15 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
           >
             <span className={styles.statNum}>{reading.worst?.value ?? '—'}</span>
             <span className={styles.statText}>
-              <span className={styles.statScope}>Portland metro</span>
+              {/* The superlative belongs up here, not in the small print under
+                  the number. "Pacific Northwest / 162 / Unhealthy" reads as a
+                  claim about the whole region; "Highest in the Northwest" reads
+                  as what it is, one station. */}
+              <span className={styles.statScope}>Highest in Portland metro</span>
               <span className={styles.statCategory}>{band?.label ?? 'No reading'}</span>
               <span className={styles.statWhere}>
                 {reading.worst
-                  ? `Highest of ${reading.metroCount} reporting · ${reading.worst.label}`
+                  ? `${reading.worst.label} · ${reading.metroCount} stations reporting`
                   : 'No metro monitor has a current reading'}
                 {reading.worst && <span className={styles.statGo}>show on map</span>}
               </span>
@@ -420,11 +424,11 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
           >
             <span className={styles.statNum}>{reading.nwWorst?.value ?? '—'}</span>
             <span className={styles.statText}>
-              <span className={styles.statScope}>Pacific Northwest</span>
+              <span className={styles.statScope}>Highest in the Northwest</span>
               <span className={styles.statCategory}>{nwBand?.label ?? 'No reading'}</span>
               <span className={styles.statWhere}>
                 {reading.nwWorst
-                  ? `Highest of ${reading.nwCount} reporting · ${reading.nwWorst.label}`
+                  ? `${reading.nwWorst.label} · ${reading.nwCount} stations reporting`
                   : 'No monitor has a current reading'}
                 {reading.nwWorst && <span className={styles.statGo}>show on map</span>}
               </span>

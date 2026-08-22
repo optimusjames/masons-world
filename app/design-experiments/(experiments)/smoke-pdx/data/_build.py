@@ -26,7 +26,7 @@ from datetime import datetime, timedelta, timezone
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "smoke.json")
 
-# Fetch extent = the whole Pacific Northwest smoke shed. The map OPENS on the
+# Fetch extent = the whole Pacific Northwest. The map OPENS on the
 # metro but you can zoom out, so the data has to already be there. Portland's
 # August smoke arrives from Northern California, Idaho, and western Montana, so
 # stopping at the state line would hide the source of what people are breathing.
@@ -77,7 +77,7 @@ for line in raw.splitlines():
         lat, lng = float(p[8]), float(p[9])
     except ValueError:
         continue
-    # Every monitor in the whole smoke shed, not just the metro. Sparse outside
+    # Every monitor in the whole region, not just the metro. Sparse outside
     # Portland, but sparse real readings beat empty map, and they show smoke
     # arriving upwind before it reaches town.
     if not inside(REGION, lat, lng):

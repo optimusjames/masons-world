@@ -39,6 +39,14 @@ export const AQI_BANDS: Band[] = [
 /** A monitor that is online but has no valid NowCast. Drawn, not hidden. */
 export const NO_READING = '#b9b1a8'
 
+const COMPASS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
+  'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+
+/** Degrees to the compass point a person would say out loud. */
+export function bearingLabel(deg: number): string {
+  return COMPASS[Math.round((((deg % 360) + 360) % 360) / 22.5) % 16]
+}
+
 export const FIRE = '#c0392b'
 export const WIND = '#27405f'
 

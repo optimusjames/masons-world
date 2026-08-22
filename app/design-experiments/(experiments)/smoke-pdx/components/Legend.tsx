@@ -47,7 +47,10 @@ export default function Legend({
   const open = pinned || hovered
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 540px)').matches) setPinned(false)
+    // Closed wherever the map is narrow enough that an open panel would be
+    // sitting on the map instead of beside it, which now includes the widths
+    // where the controls opposite still carry their labels.
+    if (window.matchMedia('(max-width: 760px)').matches) setPinned(false)
   }, [])
 
   // Touch browsers fire mouseenter on tap, which would leave the panel stuck
@@ -206,9 +209,11 @@ export default function Legend({
               {checked === 'failed' ? (
                 <span className={styles.legendStale}>sources unreachable</span>
               ) : checked === 'current' ? (
-                <>checked just now · nothing new yet</>
+                // A successful check is good news. "Nothing new yet" reported
+                // the same fact as a small disappointment.
+                <>checked just now · up to date</>
               ) : checked === 'new' ? (
-                <>checked just now · new readings</>
+                <>checked just now · new readings in</>
               ) : (
                 <>checked {age ? age.replace(/^Updated /, '') : 'on load'}</>
               )}

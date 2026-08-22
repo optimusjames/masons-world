@@ -10,6 +10,39 @@ This file tracks major changes and milestones in the project.
 
 ## August 2026
 
+**Smoke PDX: two numbers, a way to find your own air, and the end of "smoke shed"**
+The headline carried one reading, the Portland metro high, on a map that covers
+five states. That was a defensible scope and a confusing page, since the most
+alarming number on the map was never the number at the top of it. There are two
+now, stacked: Portland metro first because it is the subject, the Pacific
+Northwest under it because it is what is coming. Both exclude stale readings and
+both derive their own count from the same list they pick from, so the label and
+the number cannot disagree. Each row flies the map to the station behind it.
+
+Stacked and near-identical, the two read as equals, which is the wrong
+relationship. They are opposites now: Portland is a light panel washed in its own
+air quality color, the region is the same information inverted onto dark. The eye
+sorts them before it reads a word, and two AQI colors sitting against each other
+is the actual story on a smoky day. Band colors are tuned for a light basemap and
+several of them fall apart on dark, so the inverted panel lifts each toward white,
+keeping the hue that carries the meaning and getting the contrast back.
+
+"My air" asks the browser for a location, finds the nearest monitor that
+is actually reporting, and frames your spot and that station together rather than
+centering the station and pushing you off the screen. The card leads with the
+distance, because a reading from thirty miles away is useful and a reading from
+thirty miles away presented as yours is not. Out of area is treated as an answer
+rather than an error. "Highlights" opens four derived places worth looking at, each
+naming its own number, including the zoomed-out view where the fires sit inside
+the field of readings pooled around them. "Strongest wind" only considers cells
+within 45 miles of a reporting station: the fastest cell in the grid is almost
+always out over the Pacific, which is true, unsurprising, and lands the reader on
+blank ocean with nothing around it to look at.
+
+Also retired the word "smoke shed" from everything a reader sees. It is real
+vocabulary, coined off "airshed" the way airshed was coined off watershed, and it
+is still jargon that makes someone decode a metaphor to understand a map.
+
 **Smoke PDX: the refresh button tells the truth, and the map stops fighting you**
 Four fixes that all came from the same habit of letting one thing stand in for
 another. The Refresh button was declared `revalidate = 900`, so a press could

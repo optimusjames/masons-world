@@ -112,11 +112,10 @@
   gap: 8px;
 }
 
-/* A pill, not a 38px puck with a hairline glyph in it. This is the control that
-   turns a letterboxed map into a full screen of map, and it was the quietest
-   thing on the frame. Icon plus word, full-strength ink, a shadow that lifts it
-   off the tiles. */
-.fsBtn {
+/* One pill for every map control. These were a 38px puck with a hairline glyph
+   in it, the quietest thing on a frame they are supposed to be operating. Icon
+   plus word, full-strength ink, a shadow that lifts them off the tiles. */
+.mapBtn {
   height: 40px;
   flex-shrink: 0;
   display: inline-flex;
@@ -138,34 +137,145 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-.fsIcon {
+.mapBtnIcon {
   width: 19px;
   height: 19px;
   flex-shrink: 0;
 }
 
-.fsLabel {
+.mapBtnLabel {
   white-space: nowrap;
 }
 
-.fsBtn:hover {
+/* Pressed state for the control that opens a panel, so it is obvious which pill
+   the list belongs to. */
+.mapBtnOn {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.mapBtnIconOnly {
+  width: 40px;
+  padding: 0;
+}
+
+/* Not display:none. Collapsing the width keeps the row from jumping when the
+   control appears, and the button stays out of the tab order via tabIndex. */
+.mapBtnGone {
+  width: 0;
+  padding: 0;
+  border-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: none;
+  transition: width 0.2s ease, opacity 0.2s ease;
+}
+
+.mapBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.mapBtn:hover:not(:disabled) {
   transform: translateY(-1px);
   border-color: var(--ink);
   box-shadow: 0 5px 18px rgba(42, 35, 32, 0.24);
 }
 
-/* On a phone the legend already crowds the top of the map, so the word goes and
-   the control returns to a circle — a bigger one than it used to be. */
-@media (max-width: 540px) {
-  .fsBtn {
+/* Words for as long as there is room for words.
+   
+   A crosshair reads as "find me" almost everywhere, but the compass on the
+   highlights control does not read as anything in particular, and an unlabelled
+   icon is a guess. The labels are short enough now that they survive down to a
+   small tablet; below that, or on a screen too short to spare the height, the
+   icons carry it with the title attribute behind them. */
+@media (max-width: 620px), (max-height: 560px) {
+  .mapBtn {
     width: 42px;
     height: 42px;
     padding: 0;
   }
 
-  .fsLabel {
+  .mapBtnLabel {
     display: none;
   }
+}
+
+/* The list behind "Show me". Anchored under the controls, sized to its content,
+   and gone the moment something is picked, so the map is never competing with a
+   panel for the same pixels. */
+.highlights {
+  position: absolute;
+  z-index: 501;
+  top: 62px;
+  right: 14px;
+  width: min(272px, calc(100% - 28px));
+  display: grid;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 18px rgba(42, 35, 32, 0.14);
+  overflow: hidden;
+  animation: legendOpen 0.18s ease both;
+}
+
+.highlightRow {
+  display: grid;
+  gap: 2px;
+  padding: 9px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.14s ease;
+}
+
+.highlightRow:last-child {
+  border-bottom: 0;
+}
+
+.highlightRow:hover,
+.highlightRow:focus-visible {
+  background: rgba(42, 35, 32, 0.05);
+}
+
+.highlightLabel {
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+/* The number is the reason to click, so it is not an afterthought. */
+.highlightDetail {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  line-height: 1.35;
+}
+
+/* Result of the last location check. Sits under the controls it answers for,
+   and clears itself after a few seconds. */
+.mapNotice {
+  position: absolute;
+  z-index: 500;
+  top: 62px;
+  right: 14px;
+  max-width: min(300px, calc(100% - 28px));
+  padding: 9px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 12px rgba(42, 35, 32, 0.12);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  animation: legendOpen 0.2s ease both;
 }
 
 /* The basemap recedes so the data carries the saturation. Not fully washed
@@ -283,11 +393,6 @@
   margin-bottom: 6px;
 }
 
-.legendRamp {
-  display: grid;
-  gap: 4px;
-}
-
 /* Continuous AQI bar */
 .legendBar {
   display: flex;
@@ -324,33 +429,6 @@
   font-size: 9.75px;
   color: var(--ink-soft);
   margin-top: 2px;
-  white-space: nowrap;
-}
-
-.legendBand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.25;
-}
-
-.legendSwatch {
-  border-radius: 50%;
-  border: 1.5px solid #fff;
-  flex: none;
-  box-shadow: 0 0 0 1px var(--rule);
-}
-
-.legendBandLabel {
-  flex: 1;
-}
-
-.legendBandRange {
-  font-family: var(--font-space-mono, ui-monospace, monospace);
-  font-size: 11px;
-  color: var(--ink-faint);
   white-space: nowrap;
 }
 
@@ -473,6 +551,43 @@
 .refreshBtn:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+/* Where the reader is. Off the AQI ramp on purpose: this mark is a location,
+   not a reading, and any color from the scale would be read as one. */
+.hereIcon {
+  background: none;
+  border: 0;
+}
+
+.hereDot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 2px;
+  border-radius: 50%;
+  background: #27405f;
+  border: 2.5px solid #fff;
+  box-shadow: 0 0 0 1px rgba(39, 64, 95, 0.5);
+  animation: herePulse 2.4s ease-out infinite;
+}
+
+@keyframes herePulse {
+  0% {
+    box-shadow: 0 0 0 1px rgba(39, 64, 95, 0.5), 0 0 0 0 rgba(39, 64, 95, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 1px rgba(39, 64, 95, 0.5), 0 0 0 16px rgba(39, 64, 95, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(39, 64, 95, 0.5), 0 0 0 0 rgba(39, 64, 95, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hereDot {
+    animation: none;
+  }
 }
 
 /* ---- popup ---- */
@@ -614,109 +729,151 @@
   animation: rise 0.5s ease 0.1s both;
 }
 
-.readingStat {
+/* Two panels, not two rows of one list.
+   
+   Stacked and near-identical, these read as equals, which is the wrong
+   relationship: Portland is the subject and the region is the context it sits
+   in. So they are opposites now. Portland is a light panel washed in its own air
+   quality color, the region is the same information inverted onto dark. The eye
+   sorts them before it reads a word, and the two AQI colors sitting against each
+   other is the actual story on a smoky day. */
+.readingStats {
+  display: grid;
+  gap: 8px;
+  flex: 1 1 360px;
+  min-width: 0;
+  padding-right: 20px;
+}
+
+.statRow {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex: none;
-  padding-right: 20px;
-  border-right: 1px solid var(--rule);
+  gap: 15px;
+  min-width: 0;
+  padding: 13px 16px;
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  /* --band is set per row from the AQI band color. Everything else is derived. */
+  background: color-mix(in srgb, var(--band) 10%, var(--surface));
+  border-color: color-mix(in srgb, var(--band) 26%, transparent);
 }
 
-.readingNum {
+.statRow:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(42, 35, 32, 0.1);
+}
+
+.statRow:disabled {
+  cursor: default;
+}
+
+.statNum {
+  flex: none;
   font-family: var(--font-display, 'Michroma', sans-serif);
-  font-size: clamp(52px, 6vw, 68px);
+  font-size: clamp(42px, 5vw, 58px);
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  color: var(--band);
 }
 
-.readingLabelGroup {
+.statText {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
+  min-width: 0;
+}
+
+.statScope {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.3;
 }
 
 /* The category is the answer to "is this bad?", so it gets real size and the
-   band color. The mono caps label underneath just names the number. */
-.readingCategory {
-  max-width: none;
+   band color. */
+.statCategory {
   font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
-  font-size: clamp(22px, 2.2vw, 28px);
+  font-size: clamp(20px, 2.1vw, 26px);
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.01em;
+  color: var(--band);
 }
 
-.readingLabel {
-  font-family: var(--font-space-mono, ui-monospace, monospace);
+/* Sentence case, no letter-spacing, and free to wrap. The old mono caps version
+   of this line ran past the edge of the card on a narrow window, because caps
+   plus 0.09em tracking is about a third wider than the same words set plainly. */
+.statWhere {
   font-size: 12.5px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
   line-height: 1.4;
-}
-
-/* The station name, and the way to go see it. Reads as text until you point at
-   it, because it is a fact first and a control second. */
-.readingWhere {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-top: 2px;
-  padding: 0;
-  border: 0;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
-  font-size: 14px;
-  line-height: 1.3;
   color: var(--ink-soft);
-  transition: color 0.15s ease;
+  overflow-wrap: break-word;
 }
 
-.readingWhereGo {
+.statGo {
+  display: inline-block;
+  margin-left: 8px;
   font-family: var(--font-space-mono, ui-monospace, monospace);
   font-size: 9.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+  border-bottom: 1px solid currentColor;
   opacity: 0;
   transition: opacity 0.15s ease;
 }
 
-.readingWhere:hover {
-  color: var(--ink);
+.statRow:hover:not(:disabled) .statGo,
+.statRow:focus-visible .statGo {
+  opacity: 0.75;
 }
 
-/* Hovering anywhere on the card lights the chip, because anywhere on the card
-   is what you can click. */
-.readingClickable {
-  cursor: pointer;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.readingClickable:hover {
-  border-color: var(--ink-faint);
-  box-shadow: 0 3px 16px rgba(42, 35, 32, 0.09);
-}
-
-.readingClickable:hover .readingWhere {
-  color: var(--ink);
-}
-
-.readingClickable:hover .readingWhereGo,
-.readingWhere:focus-visible .readingWhereGo {
-  opacity: 1;
-}
-
-/* No hover on a touch screen, so an affordance that only appears on hover is an
-   affordance that never appears. */
 @media (hover: none) {
-  .readingWhereGo {
-    opacity: 1;
+  .statGo {
+    opacity: 0.75;
   }
+}
+
+/* The region panel, inverted. Smaller type keeps the hierarchy honest, since a
+   dark block on a light page pulls the eye harder than a tinted one. */
+.statRowSecondary {
+  background: var(--ink);
+  border-color: var(--ink);
+  padding: 11px 16px;
+}
+
+/* Band colors are tuned for a light basemap, so several of them (the purple
+   especially) fall apart on dark. Lifting each toward white keeps the hue that
+   carries the meaning and gets the contrast back. */
+.statRowSecondary .statNum,
+.statRowSecondary .statCategory {
+  color: color-mix(in srgb, var(--band) 70%, #ffffff);
+}
+
+.statRowSecondary .statNum {
+  font-size: clamp(29px, 3.4vw, 38px);
+}
+
+.statRowSecondary .statCategory {
+  font-size: clamp(16px, 1.6vw, 19px);
+}
+
+.statRowSecondary .statScope {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.statRowSecondary .statWhere {
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.statRowSecondary:hover:not(:disabled) {
+  box-shadow: 0 4px 16px rgba(42, 35, 32, 0.22);
 }
 
 .readingSentence {
@@ -792,15 +949,36 @@
   color: var(--ink-faint);
 }
 
-@media (max-width: 540px) {
+@media (max-width: 760px) {
+  .readingStats {
+    padding-right: 0;
+    padding-bottom: 6px;
+  }
+}
+
+@media (max-width: 760px) {
   .legend {
     max-width: calc(100% - 24px);
   }
   .mapWrapper {
     height: 58dvh;
   }
-  .readingNum {
-    font-size: 32px;
+  /* The clamps handle most of the range; this is the floor where a phone still
+     has to fit a number, a category, and a station name on one row. */
+  .statNum {
+    font-size: 38px;
+  }
+  .statRowSecondary .statNum {
+    font-size: 27px;
+  }
+  .statCategory {
+    font-size: 19px;
+  }
+  .statRowSecondary .statCategory {
+    font-size: 15px;
+  }
+  .statWhere {
+    font-size: 12px;
   }
 }
 

@@ -96,6 +96,20 @@ export interface ShapeLayer {
   real: boolean
 }
 
+export type FireFeature = ShapeLayer['geojson']['features'][number]
+
+/**
+ * Somewhere the map has been asked to go, and what to open when it lands.
+ *
+ * The nonce is what makes asking twice for the same place work: the object
+ * identity has to change or the effect watching it never re-runs.
+ */
+export type MapFocus =
+  | { nonce: number; kind: 'monitor'; feature: MapFeature; from?: [number, number] }
+  | { nonce: number; kind: 'fire'; feature: FireFeature }
+  | { nonce: number; kind: 'wind'; feature: MapFeature }
+  | { nonce: number; kind: 'region' }
+
 export interface MapData {
   features: MapFeature[]
   shapes: ShapeLayer[]

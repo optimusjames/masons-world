@@ -4,12 +4,12 @@
 // Leaflet touches `window` at module scope, so every reference is behind a
 // dynamic import inside an effect. Importing it at the top breaks the build.
 
-import { useEffect, useRef, useState } from 'react'
-import type { Map as LeafletMap, LayerGroup } from 'leaflet'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { Map as LeafletMap, LayerGroup, Marker, Tooltip } from 'leaflet'
 import styles from '../styles.module.css'
 import { MAP_CONFIG } from '../map.config'
 import { EDGE_FADE_DEG, METRO, PAN_BOUNDS, REGION } from '../data/place'
-import type { LayerId, MapFeature, ShapeLayer } from '../types'
+import type { FireFeature, LayerId, MapFeature, MapFocus, ShapeLayer } from '../types'
 import {
   arrowLength,
   arrowOpacity,
@@ -27,9 +27,15 @@ type Props = {
   visibleLayers: LayerId[]
   /** Bumped by the parent on fullscreen toggle so the map re-measures. */
   resizeKey?: unknown
-  /** Set by the parent to fly to a feature and open its card. The nonce makes
-   *  a repeat request on the same feature a new request. */
-  focus?: { feature: MapFeature; nonce: number } | null
+  /** Set by the parent to fly somewhere and open its card. */
+  focus?: MapFocus | null
+  /** Where the reader is, once they have asked. */
+  here?: [number, number] | null
+  /** Bumped by the parent to return to the opening view. */
+  resetKey?: number
+  /** Told whether the map is sitting on its opening view, so the parent can
+   *  offer the way back only when there is somewhere to come back from. */
+  onHomeChange?: (atHome: boolean) => void
   onReady?: () => void
 }
 
@@ -39,6 +45,9 @@ export default function MapView({
   visibleLayers,
   resizeKey,
   focus,
+  here,
+  resetKey = 0,
+  onHomeChange,
   onReady,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -46,6 +55,11 @@ export default function MapView({
   const monitorsRef = useRef<LayerGroup | null>(null)
   const windRef = useRef<LayerGroup | null>(null)
   const firesRef = useRef<LayerGroup | null>(null)
+  const hereRef = useRef<Marker | null>(null)
+  const windTipRef = useRef<Tooltip | null>(null)
+  // Held in a ref so the init effect never needs the callback as a dependency.
+  const onHomeRef = useRef(onHomeChange)
+  onHomeRef.current = onHomeChange
   const [ready, setReady] = useState(false)
   const [zoom, setZoom] = useState(METRO.zoom)
   // Bumped on every pan/zoom so the wind lattice re-samples for the new view.
@@ -66,7 +80,7 @@ export default function MapView({
         zoom: METRO.zoom,
         minZoom: REGION.minZoom,
         maxZoom: REGION.maxZoom,
-        // Pannable across the whole smoke shed plus a margin. The data extent
+        // Pannable across the whole region plus a margin. The data extent
         // is REGION; the camera gets PAN_BOUNDS, which is REGION with room
         // around it so a marker on the edge can still be centered.
         maxBounds: PAN_BOUNDS,
@@ -128,6 +142,19 @@ export default function MapView({
       map.on('zoomend', () => setZoom(map!.getZoom()))
       map.on('moveend zoomend', () => setView((v) => v + 1))
 
+      // "Home" is a small circle around the opening view, not an exact match.
+      // Leaflet's own animations land a few metres off, and a control that
+      // flickers back because of rounding is worse than no control.
+      const reportHome = () => {
+        const m = mapRef.current
+        if (!m) return
+        onHomeRef.current?.(
+          m.getZoom() === METRO.zoom && m.getCenter().distanceTo(L.latLng(METRO.center)) < 600,
+        )
+      }
+      map.on('moveend zoomend', reportHome)
+      reportHome()
+
       mapRef.current = map
       map.invalidateSize()
       setReady(true)
@@ -145,6 +172,8 @@ export default function MapView({
       resizeObserver?.disconnect()
       map?.remove()
       mapRef.current = null
+      hereRef.current = null
+      windTipRef.current = null
       monitorsRef.current = null
       windRef.current = null
       firesRef.current = null
@@ -159,6 +188,11 @@ export default function MapView({
     const id = window.setTimeout(() => mapRef.current?.invalidateSize(), 60)
     return () => window.clearTimeout(id)
   }, [resizeKey, ready])
+
+  const clearWindTip = useCallback(() => {
+    windTipRef.current?.remove()
+    windTipRef.current = null
+  }, [])
 
   // ---- fly to a feature -----------------------------------------------------
   //
@@ -176,34 +210,160 @@ export default function MapView({
       const L = (await import('leaflet')).default
       const map = mapRef.current
       if (cancelled || !map) return
+      clearWindTip()
 
-      const { feature } = focus
       let opened = false
-      const open = () => {
+      // The card is built here rather than by opening a marker's own popup. The
+      // monitor layer redraws on zoom and fires are a GeoJSON layer that gets
+      // cleared and rebuilt, so the marker under the cursor when the flight
+      // started may not exist when it lands. A standalone popup with the same
+      // content sidesteps that lifecycle entirely.
+      const openCard = (at: [number, number], html: string, width = 280) => {
         if (cancelled || opened) return
         opened = true
-        L.popup({ className: styles.popupWrap, maxWidth: 280, ...POPUP_PAN })
-          .setLatLng([feature.lat, feature.lng])
-          .setContent(monitorPopup(feature))
+        L.popup({ className: styles.popupWrap, maxWidth: width, ...POPUP_PAN })
+          .setLatLng(at)
+          .setContent(html)
           .openOn(map)
       }
 
-      // Never zoom OUT to get there. If someone is already looking closely,
-      // yanking them back to zoom 11 loses the context they built.
-      const target = Math.max(map.getZoom(), 11)
-      map.flyTo([feature.lat, feature.lng], target, { duration: 0.9 })
-      // Landing is what normally opens the card. The timer is the guard for the
-      // case where the map is already exactly there and never moves, which would
-      // otherwise leave a click with nothing to show for it.
-      map.once('moveend', open)
-      timer = window.setTimeout(open, 1200)
+      const land = (fn: () => void) => {
+        // Landing is what normally opens the card. The timer is the guard for
+        // the case where the map is already exactly there and never moves,
+        // which would otherwise leave a click with nothing to show for it.
+        map.once('moveend', fn)
+        timer = window.setTimeout(fn, 1400)
+      }
+
+      if (focus.kind === 'region') {
+        map.closePopup()
+        map.flyToBounds(L.latLngBounds(REGION.bounds), {
+          padding: [24, 24],
+          duration: 1,
+        })
+        return
+      }
+
+      if (focus.kind === 'fire') {
+        const box = coordBounds(focus.feature.geometry.coordinates)
+        const p = focus.feature.properties
+        if (!box) return
+        const center: [number, number] = [
+          (box[0][0] + box[1][0]) / 2,
+          (box[0][1] + box[1][1]) / 2,
+        ]
+        map.flyToBounds(L.latLngBounds(box), {
+          paddingTopLeft: [40, 90],
+          paddingBottomRight: [40, 60],
+          maxZoom: 11,
+          duration: 0.9,
+        })
+        land(() => openCard(center, firePopup(p), 260))
+        return
+      }
+
+      const { feature } = focus
+      const at: [number, number] = [feature.lat, feature.lng]
+
+      if (focus.kind === 'wind') {
+        // The same small chip the arrows show on hover, not a card.
+        //
+        // A popup here was the wrong instrument twice over: it made one wind
+        // cell look more consequential than the two hundred identical ones
+        // around it, and it had room for rows that then had to be filled with
+        // something. Wind is a speed and a direction. That fits in a chip.
+        // Deliberately wide, and it will zoom OUT to get here if it has to.
+        // Wind is a field, not a point: one arrow on its own says nothing, and
+        // the reason to look is the pattern it sits in.
+        map.flyTo(at, 8, { duration: 0.9 })
+        land(() => {
+          if (cancelled) return
+          const tip = L.tooltip({
+            permanent: true,
+            direction: 'top',
+            className: styles.windTip,
+            offset: [0, -6],
+          })
+            .setLatLng(at)
+            .setContent(feature.label)
+          tip.addTo(map)
+          windTipRef.current = tip
+          // It came from a button, not from a pointer, so nothing will take it
+          // away on its own. A click anywhere or a few seconds does it.
+          map.once('click', clearWindTip)
+          window.setTimeout(clearWindTip, 7000)
+        })
+        return
+      }
+
+      if (focus.from) {
+        // Both points in frame. The nearest reporting monitor can be thirty
+        // miles off, and centering it would push the reader's own location off
+        // the screen, which is the one thing the answer is relative to.
+        map.flyToBounds(L.latLngBounds([focus.from, at]), {
+          paddingTopLeft: [40, 90],
+          paddingBottomRight: [40, 60],
+          maxZoom: 12,
+          duration: 0.9,
+        })
+      } else {
+        // Never zoom OUT to get there. If someone is already looking closely,
+        // yanking them back to zoom 11 loses the context they built.
+        map.flyTo(at, Math.max(map.getZoom(), 11), { duration: 0.9 })
+      }
+      land(() => openCard(at, monitorPopup(feature)))
     })()
 
     return () => {
       cancelled = true
       window.clearTimeout(timer)
     }
-  }, [focus, ready])
+  }, [focus, ready, clearWindTip])
+
+  // ---- you are here ---------------------------------------------------------
+  //
+  // Deliberately not an AQI color and not a bloom. This mark is not a reading,
+  // and anything on the ramp would read as one.
+  useEffect(() => {
+    if (!ready) return
+    let cancelled = false
+
+    ;(async () => {
+      const L = (await import('leaflet')).default
+      const map = mapRef.current
+      if (cancelled || !map) return
+
+      hereRef.current?.remove()
+      hereRef.current = null
+      if (!here) return
+
+      hereRef.current = L.marker(here, {
+        icon: L.divIcon({
+          className: styles.hereIcon,
+          html: `<span class="${styles.hereDot}"></span>`,
+          iconSize: [18, 18],
+          iconAnchor: [9, 9],
+        }),
+        interactive: false,
+        keyboard: false,
+        zIndexOffset: 900,
+      }).addTo(map)
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [here, ready])
+
+  // ---- back to the opening view ---------------------------------------------
+  useEffect(() => {
+    if (!ready || !resetKey) return
+    const map = mapRef.current
+    if (!map) return
+    map.closePopup()
+    clearWindTip()
+    map.flyTo(METRO.center, METRO.zoom, { duration: 0.8 })
+  }, [resetKey, ready, clearWindTip])
 
   // ---- monitors -------------------------------------------------------------
   //
@@ -600,6 +760,32 @@ function monitorPopup(f: MapFeature): string {
     `<span class="${styles.popupReal}">verified source · EPA AirNow</span>` +
     `</div>`
   )
+}
+
+/**
+ * The bounding box of any GeoJSON coordinate nest, polygon or multipolygon.
+ * The geometry is typed `unknown` upstream because it arrives from ArcGIS, so
+ * this walks it with runtime checks rather than trusting a cast.
+ */
+function coordBounds(coords: unknown): [[number, number], [number, number]] | null {
+  let s = 90
+  let w = 180
+  let n = -90
+  let e = -180
+  const walk = (c: unknown) => {
+    if (!Array.isArray(c)) return
+    if (typeof c[0] === 'number' && typeof c[1] === 'number') {
+      const [lng, lat] = c as [number, number]
+      if (lat < s) s = lat
+      if (lat > n) n = lat
+      if (lng < w) w = lng
+      if (lng > e) e = lng
+      return
+    }
+    for (const child of c) walk(child)
+  }
+  walk(coords)
+  return n >= s && e >= w ? [[s, w], [n, e]] : null
 }
 
 function firePopup(p: { name: string; acres: number | null; contained: number | null }): string {

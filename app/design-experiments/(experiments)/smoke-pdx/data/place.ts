@@ -7,7 +7,7 @@
 // We use two boxes rather than one, because the phenomenon and the measurement
 // live at different scales. Smoke is made hundreds of miles away and measured
 // on your block, so the map OPENS on the metro and lets you pan out to the
-// smoke shed. Data was fetched for the whole outer box, so zooming out reveals
+// wider region. Data was fetched for the whole outer box, so zooming out reveals
 // fires and wind instead of empty basemap.
 
 /** Where the map opens: greater Portland. All 22 AirNow monitors sit inside. */
@@ -21,7 +21,7 @@ export const METRO = {
 }
 
 /**
- * How far out you can pan: the whole Pacific Northwest smoke shed.
+ * How far out you can pan: the whole Pacific Northwest.
  *
  * Oregon and SW Washington was too small an idea. Portland's August smoke
  * routinely arrives from Northern California, Idaho, and western Montana, so

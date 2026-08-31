@@ -739,3 +739,22 @@
     animation: none;
   }
 }
+
+/* Credit is a license requirement, not content: legible, never loud. */
+.map :global(.leaflet-control-attribution) {
+  font-size: 9px;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink-faint);
+  padding: 0 5px;
+}
+
+.map :global(.leaflet-control-attribution a) {
+  color: var(--ink-faint);
+  text-decoration: none;
+}
+
+.map :global(.leaflet-control-attribution a:hover) {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}

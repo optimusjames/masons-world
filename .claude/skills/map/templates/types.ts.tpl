@@ -1,3 +1,4 @@
+import type { BasemapTheme } from '@/lib/basemap'
 // {{TITLE}} — domain types.
 //
 // Shape the data to this schema in the build script, so the UI never has to
@@ -42,7 +43,7 @@ export interface MapConfig {
     minZoom: number
     maxZoom: number
   }
-  basemap: { url: string; subdomains: string; attribution: string }
+  basemap: { theme: BasemapTheme; attribution: string }
   layers: LayerSpec[]
   sources: SourceRecord[]
   freshness: {

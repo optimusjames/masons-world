@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, Layer as LeafletLayer, LayerGroup } from 'leaflet'
+import { addBasemap, BASEMAP_ATTRIBUTION } from '@/lib/basemap'
 import styles from '../styles.module.css'
 import { glyphSvg } from './icons'
 import type {
@@ -97,17 +98,13 @@ export default function MapView({
       // (incl. City of Portland trees) live in the page's source line under the map.
       L.control
         .attribution({ position: 'bottomleft', prefix: false })
-        .addAttribution(
-          '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · ' +
-            '© <a href="https://carto.com" target="_blank" rel="noopener">CARTO</a>',
-        )
+        .addAttribution(BASEMAP_ATTRIBUTION)
         .addTo(map)
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        subdomains: 'abcd',
-        attribution: '',
-      }).addTo(map)
+      // Loading the vector basemap is another await, so the component can unmount
+      // mid-flight; bail before touching a map the cleanup has already removed.
+      await addBasemap(map, { theme: 'light' })
+      if (!mounted) return
 
       // Dedicated low pane for the canopy so it always draws *under* the point
       // markers, no matter what order layers get toggled on and off.

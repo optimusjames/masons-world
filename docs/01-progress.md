@@ -10,6 +10,39 @@ This file tracks major changes and milestones in the project.
 
 ## August 2026
 
+**All four maps move off CARTO onto vector tiles**
+CARTO ended their keyless raster basemaps and began stamping "API KEY REQUIRED"
+across every tile. Cool PDX, Fix It PDX, Smoke PDX, and McLaughlin 99E all broke
+at once. McLaughlin looked fine only because the watermark landed charcoal on a
+near-black basemap; it was there too.
+
+The tiles were never the problem. A basemap tile is a pre-rendered image of a
+square of the world, and CARTO redraws them a few times a year, so nothing about
+these maps needed to be fresh. What changed was who pays to serve them. A free
+CARTO key would have restored the old look in five minutes, but CARTO is retiring
+the raster service the key unlocks, which makes it a fix with an expiry date.
+
+So the maps now draw on OpenFreeMap vector tiles: no key, no account, no rate
+limit, and self-hostable if the public instance disappears. Its `positron` style
+is a deliberate clone of the CARTO look these maps were designed against, so the
+change is close to visually neutral. Vector also means labels stay sharp at any
+pixel density, and switching light to dark restyles the map in place instead of
+refetching every tile.
+
+The real fix is `lib/basemap`. The provider used to be hardcoded in four separate
+files, which is why one external change became four problems. It is one module
+now, holding provider URLs, the required attribution, and a theme resolver, and
+nothing else: if it ever needs to branch on a specific experiment, the
+abstraction is wrong. The `/map` skill was updated to match, so new maps are born
+on the shared module rather than inheriting a dead tile URL.
+
+Two things worth knowing for later. maplibre-gl is pinned to ^5 even though the
+Leaflet bridge claims to support ^6, because the bridge reaches into MapLibre
+transform internals that moved in 6.x and fails silently: style and sprites load,
+a correctly sized canvas appears, and no tile is ever requested. And the basemap
+degrades to a blank ground rather than throwing when WebGL is unavailable, so the
+data layers still draw.
+
 **Smoke PDX: two numbers, a way to find your own air, and the end of "smoke shed"**
 The headline carried one reading, the Portland metro high, on a map that covers
 five states. That was a defensible scope and a confusing page, since the most

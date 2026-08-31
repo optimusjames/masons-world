@@ -73,9 +73,15 @@ Retry with a delay rather than in a tight loop.
 | Topic | Source | Tier | Key | Endpoint | Last OK |
 |---|---|---|---|---|---|
 | Place → bbox | Nominatim | B | no | `https://nominatim.openstreetmap.org/search?q=&format=json&limit=1` | 2026-08-10 |
-| Basemap tiles | CARTO light_all | — | no | `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png` | — |
+| Basemap tiles | OpenFreeMap (vector) | — | no | via `addBasemap()` in `@/lib/basemap`; styles `positron` (light) / `dark` | 2026-08-31 |
 
 Nominatim wants a descriptive User-Agent and rate-limits to 1 req/sec.
+
+Do not call a basemap provider directly from an experiment. CARTO's keyless
+raster tiles were the house default until August 2026, when CARTO began
+watermarking them "API KEY REQUIRED" and announced the raster service was being
+retired. Four shipped maps broke at once because each one hardcoded the URL.
+Everything basemap-related now goes through `@/lib/basemap`.
 
 ---
 

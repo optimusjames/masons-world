@@ -6,6 +6,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, LayerGroup, Marker, Tooltip } from 'leaflet'
+import { addBasemap, addLabelsOverlay } from '@/lib/basemap'
 import styles from '../styles.module.css'
 import { MAP_CONFIG } from '../map.config'
 import { EDGE_FADE_DEG, METRO, PAN_BOUNDS, REGION } from '../data/place'
@@ -111,10 +112,10 @@ export default function MapView({
         .addAttribution(credits)
         .addTo(map)
 
-      L.tileLayer(MAP_CONFIG.basemap.url, {
-        subdomains: MAP_CONFIG.basemap.subdomains,
-        maxZoom: 19,
-      }).addTo(map)
+      // Another await, so the component can unmount mid-flight; bail before
+      // touching a map the cleanup has already removed.
+      await addBasemap(map, { theme: MAP_CONFIG.basemap.theme })
+      if (!mounted) return
 
       // Order matters: fires at the bottom, then wind, monitors on top. The
       // measurement is never hidden by the cause.
@@ -133,11 +134,8 @@ export default function MapView({
       const labelPane = map.getPane('labels')!
       labelPane.style.zIndex = '650'
       labelPane.style.pointerEvents = 'none'
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
-        subdomains: 'abcd',
-        maxZoom: 19,
-        pane: 'labels',
-      }).addTo(map)
+      await addLabelsOverlay(map, { theme: MAP_CONFIG.basemap.theme, pane: 'labels' })
+      if (!mounted) return
 
       map.on('zoomend', () => setZoom(map!.getZoom()))
       map.on('moveend zoomend', () => setView((v) => v + 1))

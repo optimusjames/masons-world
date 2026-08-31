@@ -8,6 +8,7 @@ import type {
   Marker,
   LeafletMouseEvent,
 } from 'leaflet'
+import { addBasemap, BASEMAP_ATTRIBUTION } from '@/lib/basemap'
 import styles from '../styles.module.css'
 import type { CategoryId, MapPin, PickedLocation, ReportStatus } from '../types'
 import { CATEGORY_MAP } from '../data/categories'
@@ -63,14 +64,15 @@ export default function MapView({
       L.control
         .attribution({ position: 'bottomleft', prefix: false })
         .addAttribution(
-          'Pothole data © <a href="https://www.portlandmaps.com" target="_blank" rel="noopener">City of Portland</a> · © <a href="https://carto.com" target="_blank" rel="noopener">CARTO</a>',
+          'Pothole data © <a href="https://www.portlandmaps.com" target="_blank" rel="noopener">City of Portland</a> · ' +
+            BASEMAP_ATTRIBUTION,
         )
         .addTo(map)
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        subdomains: 'abcd',
-      }).addTo(map)
+      // Another await, so the component can unmount mid-flight; bail before
+      // touching a map the cleanup has already removed.
+      await addBasemap(map, { theme: 'light' })
+      if (!mounted) return
 
       pinsLayerRef.current = L.layerGroup().addTo(map)
 

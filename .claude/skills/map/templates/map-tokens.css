@@ -147,14 +147,25 @@
   font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
 }
 
+/* Credit is a license requirement, not content: legible, never loud. Keep it to
+   the minimum the licenses actually ask for (see BASEMAP_ATTRIBUTION) and let
+   the map have the space. */
 .map :global(.leaflet-control-attribution) {
   font-size: 9px;
-  background: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.6);
   color: var(--ink-faint);
+  padding: 0 5px;
 }
 
 .map :global(.leaflet-control-attribution a) {
+  color: var(--ink-faint);
+  text-decoration: none;
+}
+
+.map :global(.leaflet-control-attribution a:hover) {
   color: var(--ink-soft);
+  text-decoration: underline;
 }
 
 /* ---- legend ---- */

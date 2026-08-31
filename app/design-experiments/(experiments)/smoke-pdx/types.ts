@@ -1,3 +1,4 @@
+import type { BasemapTheme } from '@/lib/basemap'
 // Smoke PDX — domain types.
 //
 // The build script normalizes three very different feeds into this shape, so
@@ -45,7 +46,7 @@ export interface MapConfig {
     minZoom: number
     maxZoom: number
   }
-  basemap: { url: string; subdomains: string; attribution: string }
+  basemap: { theme: BasemapTheme; attribution: string }
   layers: LayerSpec[]
   sources: SourceRecord[]
   freshness: {

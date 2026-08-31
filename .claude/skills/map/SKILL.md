@@ -175,9 +175,11 @@ would be worse design.
 
 On top of the palette, four map-specific rules:
 
-1. **The basemap recedes.** Use a light, desaturated basemap. CARTO `light_all` is
-   the house default and matches the existing three maps. Data carries all the
-   saturation on the page.
+1. **The basemap recedes.** Never hardcode a tile URL. Call `addBasemap` from
+   `@/lib/basemap` and declare only `theme: 'light' | 'dark'` in `map.config.ts`.
+   The provider (OpenFreeMap vector tiles) lives in that one module, so when a
+   basemap's terms change it is one edit for every map rather than one per map.
+   Light is the house default; data carries all the saturation on the page.
 2. **Fills over tiles cap at ~0.55 opacity.** Past that the streets underneath
    vanish and people lose their bearings.
 3. **Ordered scales need a second channel.** Hue alone fails for roughly 1 in 12
@@ -189,8 +191,9 @@ On top of the palette, four map-specific rules:
    Collapse it by default under 540px.
 5. **Place names go on their own pane, and where they sit depends on the
    marks.** The moment any tint covers the basemap, labels baked into the tiles
-   become unreadable, so they need a labels-only tile layer on their own pane
-   (CARTO serves `light_only_labels`), with `pointerEvents: none`. Then:
+   become unreadable, so they need their own pane with `pointerEvents: none`,
+   filled by `addLabelsOverlay` from `@/lib/basemap` (it derives a labels-only
+   style from the same basemap, so the two always match). Then:
    - Markers that **print a value** (a number in a badge): labels go *below* at
      `zIndex: 450`, between the overlay pane (400) and the marker pane (600). A
      city name must never cover a reading.
@@ -225,7 +228,9 @@ Learned from the three maps that came before. Do not relearn them.
   Bump `resizeKey` on toggle so Leaflet re-measures, or the map renders at the old
   size until the next pan.
 - **Attribution is required.** Basemap and every data source. `attributionControl`
-  with `prefix: false`, bottom-left.
+  with `prefix: false`, bottom-left. Use `BASEMAP_ATTRIBUTION` from
+  `@/lib/basemap` for the basemap half: OpenMapTiles and OpenStreetMap credit is
+  an ODbL condition, not a courtesy.
 - **Put the number on the map.** If a layer's whole point is a value, draw the
   value in the marker rather than making people hover for it. Badge markers are
   `L.divIcon`, so use `zIndexOffset` to keep the important ones on top.

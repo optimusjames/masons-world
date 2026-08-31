@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, Layer as LeafletLayer, LatLngBoundsExpression } from 'leaflet'
+import { addBasemap, BASEMAP_ATTRIBUTION } from '@/lib/basemap'
 import styles from '../styles.module.css'
 import { corridor, CORRIDOR_CENTER } from '../data/corridor.geojson'
 import { speedZoneReduced } from '../data/speedZones.geojson'
@@ -72,14 +73,13 @@ export default function MapView({
 
       L.control.zoom({ position: 'bottomleft' }).addTo(map)
       L.control.attribution({ position: 'bottomright', prefix: false })
-        .addAttribution('© <a href="https://carto.com" target="_blank" rel="noopener">CartoDB</a>')
+        .addAttribution(BASEMAP_ATTRIBUTION)
         .addTo(map)
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        subdomains: 'abcd',
-        attribution: '',
-      }).addTo(map)
+      // Another await, so the component can unmount mid-flight; bail before
+      // touching a map the cleanup has already removed.
+      await addBasemap(map, { theme: 'dark' })
+      if (!mounted) return
 
       const speedGlow = L.geoJSON(speedZoneReduced as never, {
         style: { color: '#e8b04e', weight: 18, opacity: 0.22 },

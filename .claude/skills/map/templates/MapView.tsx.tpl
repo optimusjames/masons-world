@@ -9,6 +9,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, LayerGroup, CircleMarker } from 'leaflet'
 import styles from '../styles.module.css'
+import { addBasemap } from '@/lib/basemap'
 import { MAP_CONFIG } from '../map.config'
 import { PLACE } from '../data/place'
 import type { LayerId, MapFeature, ShapeLayer } from '../types'
@@ -79,10 +80,10 @@ export default function MapView({
         .addAttribution(credits)
         .addTo(map)
 
-      L.tileLayer(MAP_CONFIG.basemap.url, {
-        subdomains: MAP_CONFIG.basemap.subdomains,
-        maxZoom: 19,
-      }).addTo(map)
+      // Another await, so the component can unmount mid-flight; bail before
+      // touching a map the cleanup has already removed.
+      await addBasemap(map, { theme: MAP_CONFIG.basemap.theme })
+      if (!mounted) return
 
       // Shapes below points, always.
       shapesRef.current = L.layerGroup().addTo(map)

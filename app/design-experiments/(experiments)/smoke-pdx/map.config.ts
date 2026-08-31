@@ -3,6 +3,7 @@
 // The machine-readable description of this map. Keep it accurate; it is what a
 // future map-builder tool would read to reproduce this experiment.
 
+import { BASEMAP_ATTRIBUTION } from '@/lib/basemap'
 import type { MapConfig } from './types'
 import { METRO, REGION } from './data/place'
 
@@ -20,10 +21,11 @@ export const MAP_CONFIG: MapConfig = {
     maxZoom: REGION.maxZoom,
   },
 
+  // The provider itself lives in lib/basemap, so a change in its terms is one
+  // edit for every map. This map only declares which theme it wants.
   basemap: {
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    subdomains: 'abcd',
-    attribution: '© <a href="https://carto.com">CARTO</a> · © OpenStreetMap',
+    theme: 'light',
+    attribution: BASEMAP_ATTRIBUTION,
   },
 
   layers: [

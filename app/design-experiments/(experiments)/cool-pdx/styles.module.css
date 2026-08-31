@@ -319,6 +319,13 @@
 }
 
 .togglesHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  background: none;
+  text-align: left;
   font-family: var(--font-space-mono, ui-monospace, monospace);
   font-size: 9.5px;
   letter-spacing: 0.12em;
@@ -326,6 +333,39 @@
   font-weight: 600;
   color: var(--ink-faint);
   padding: 0 4px 5px;
+  /* Inert on desktop: collapsing only earns its keep on a phone. */
+  cursor: default;
+  pointer-events: none;
+}
+
+.togglesBody {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.togglesChevron,
+.togglesDots {
+  display: none;
+}
+
+.togglesChevron {
+  margin-left: auto;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0;
+  transition: transform 0.2s ease;
+}
+
+.togglesDots {
+  align-items: center;
+  gap: 4px;
+}
+
+.togglesMiniDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
 }
 
 .toggle {
@@ -770,5 +810,87 @@
     overflow: hidden;
     text-overflow: ellipsis;
     background: rgba(255, 255, 255, 0.42);
+  }
+}
+
+/* ---- phone: the map is the point, the chrome gets out of its way ---- */
+@media (max-width: 540px) {
+  /* Collapsed the panel is a single tappable row, so it stops covering the
+     search field and about a third of the map. */
+  .togglesHeader {
+    cursor: pointer;
+    pointer-events: auto;
+    padding: 0 2px;
+  }
+
+  .toggles {
+    left: 10px;
+    top: 10px;
+    padding: 8px;
+    gap: 2px;
+    border-radius: 10px;
+  }
+
+  .toggles[data-collapsed='true'] {
+    padding: 7px 10px;
+  }
+
+  .toggles[data-collapsed='true'] .togglesBody {
+    display: none;
+  }
+
+  .toggles[data-collapsed='true'] .togglesDots {
+    display: inline-flex;
+  }
+
+  .togglesChevron {
+    display: inline-block;
+  }
+
+  .toggles[data-collapsed='false'] .togglesChevron {
+    transform: rotate(180deg);
+  }
+
+  .toggle {
+    font-size: 12px;
+    gap: 8px;
+    padding: 5px 6px;
+  }
+
+  .toggleIcon {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+  }
+
+  .toggleScale {
+    margin: 0 4px 4px 36px;
+    font-size: 8.5px;
+    gap: 5px;
+  }
+
+  .toggleTiles span {
+    width: 9px;
+    height: 9px;
+  }
+
+  /* The label wrapped onto two lines and turned the pill into a slab. It is one
+     line now, and small enough to leave the map visible behind it. */
+  .locateHero {
+    font-size: 12.5px;
+    padding: 10px 16px;
+    gap: 7px;
+    white-space: nowrap;
+  }
+
+  .heroHint {
+    font-size: 10px;
+    padding: 2px 9px;
+    white-space: nowrap;
+  }
+
+  .heroWrap {
+    bottom: 12px;
+    gap: 6px;
   }
 }

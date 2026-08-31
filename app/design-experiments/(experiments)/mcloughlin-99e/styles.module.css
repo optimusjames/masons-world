@@ -441,3 +441,15 @@
 :global(.leaflet-control-attribution a) {
   color: rgba(255, 255, 255, 0.45) !important;
 }
+
+@media (max-width: 640px) {
+  :global(.leaflet-control-attribution) {
+    font-size: 8px !important;
+    padding: 1px 4px !important;
+    max-width: 60vw !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    background: rgba(10, 13, 18, 0.55) !important;
+  }
+}

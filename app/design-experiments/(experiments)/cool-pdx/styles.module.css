@@ -758,3 +758,17 @@
   color: var(--ink-soft);
   text-decoration: underline;
 }
+
+/* The credit shrinks before the map does. On a phone the map is the whole
+   point, so the line goes to 8px, stops wrapping, and thins its backdrop. */
+@media (max-width: 640px) {
+  .map :global(.leaflet-control-attribution) {
+    font-size: 8px;
+    padding: 0 3px;
+    max-width: 60vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(255, 255, 255, 0.42);
+  }
+}

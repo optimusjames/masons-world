@@ -195,7 +195,9 @@ export default function Legend({ visibleLayers }: { visibleLayers: LayerId[] }) 
         className={styles.legendRow}
         style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.44)' }}
       >
-        Portland Open Data · ODOT · OpenStreetMap
+        {/* OpenStreetMap is deliberately absent: the basemap credit in the map
+            corner already carries it, and one page does not need it twice. */}
+        Portland Open Data · ODOT
       </span>
       {narrow && (
         <button

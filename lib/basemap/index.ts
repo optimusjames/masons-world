@@ -168,6 +168,27 @@ export async function addLabelsOverlay(
   }
 }
 
+/**
+ * Restyle an existing basemap layer to the other theme.
+ *
+ * This is the part vector tiles make cheap: the geometry already in the browser
+ * is re-painted with new colors, so there is no grid of tiles reloading square
+ * by square the way a raster swap would look.
+ *
+ * Worth being clear about the scope, though. This changes the ground only. A
+ * map's panels, legend, popups, and mark colors are tuned against a particular
+ * basemap, so a visitor-facing light/dark toggle needs those to move too. This
+ * function is the easy half; the design pass is the rest.
+ */
+export function setBasemapTheme(layer: LeafletLayer, theme: BasemapTheme): boolean {
+  const glMap = (layer as unknown as {
+    getMaplibreMap?: () => { setStyle: (s: string) => void }
+  }).getMaplibreMap?.()
+  if (!glMap) return false
+  glMap.setStyle(basemapStyleUrl(theme))
+  return true
+}
+
 // A note on versions, because this one cost an afternoon.
 //
 // maplibre-gl is pinned to ^5, not ^6, even though the Leaflet bridge's

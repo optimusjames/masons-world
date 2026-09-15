@@ -187,6 +187,12 @@ export default function MapView({
       await addLabelsOverlay(map, { theme: MAP_CONFIG.basemap.theme, pane: 'labels' })
       if (!mounted) return
 
+      // Leaflet puts tooltips at 650, which is exactly where the labels pane
+      // above sits, and the label tiles are added afterwards, so a city name
+      // painted straight over the wind chip. 660 clears the names and still
+      // leaves popups (700) on top of everything.
+      map.getPane('tooltipPane')!.style.zIndex = '660'
+
       map.on('zoomend', () => setZoom(map!.getZoom()))
       map.on('moveend zoomend', () => setView((v) => v + 1))
 
@@ -337,7 +343,7 @@ export default function MapView({
             offset: [0, -6],
           })
             .setLatLng(at)
-            .setContent(feature.label)
+            .setContent(windChip(feature.value, feature.bearing ?? 0))
           tip.addTo(map)
           windTipRef.current = tip
           // It came from a button, not from a pointer, so nothing will take it
@@ -691,7 +697,7 @@ export default function MapView({
           offset: [0, -4],
         })
           .setLatLng(e.latlng)
-          .setContent(`${Math.round(s.speed)} mph from the ${bearingLabel(bearingOf(s))}`)
+          .setContent(windChip(s.speed, bearingOf(s)))
         tip.addTo(map)
         windTipRef.current = tip
         windTipTimerRef.current = window.setTimeout(clearWindTip, 6000)
@@ -774,6 +780,34 @@ const POPUP_PAN = {
 function inMetro(lat: number, lng: number): boolean {
   const [[s, w], [n, e]] = METRO.bounds
   return lat >= s && lat <= n && lng >= w && lng <= e
+}
+
+/**
+ * The wind chip: what a tap on the field gets back.
+ *
+ * Plain text in a white box read as a browser tooltip rather than as part of
+ * this map, and it gave a number and a direction the same weight. The reading
+ * is the number, so it takes the size; the direction is context, so it goes
+ * small underneath; and the chevron is the same mark the reduced-motion layer
+ * draws, rotated the same way, so the chip states in a glyph what the
+ * particles around it are already doing.
+ */
+function windChip(mph: number | null, bearing: number): string {
+  // Meteorology names the direction wind comes FROM, so the glyph turns 180°
+  // to point where the smoke is going, exactly as the chevrons do.
+  const heading = Math.round((bearing + 180) % 360)
+  return (
+    `<span class="${styles.windChipRow}">` +
+    `<svg class="${styles.windChipArrow}" viewBox="0 0 12 12" ` +
+    `style="transform:rotate(${heading}deg)" aria-hidden>` +
+    `<path d="M2 8 L6 3.5 L10 8" fill="none" stroke="currentColor" ` +
+    `stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>` +
+    `</svg>` +
+    `<span class="${styles.windChipNum}">${Math.round(mph ?? 0)}</span>` +
+    `<span class="${styles.windChipUnit}">mph</span>` +
+    `</span>` +
+    `<span class="${styles.windChipDir}">from the ${escapeHtml(bearingLabel(bearing))}</span>`
+  )
 }
 
 function arrowSvg(

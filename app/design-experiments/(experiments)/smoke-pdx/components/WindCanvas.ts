@@ -51,11 +51,26 @@ const PX_PER_MPH = 0.017
  *  by speeding anything up. */
 const MAX_AGE = 430
 
-/** How fast trails fade. Higher erases sooner, so trails read shorter. Low,
- *  because each frame now advances a particle a fraction of a pixel, and a
- *  quick fade at that pace would leave a dot with no tail behind it. The tail
- *  is the part that carries direction, so it is worth the pixels. */
-const TRAIL_FADE = 0.028
+/**
+ * Frames of position history each particle keeps, which IS the tail length.
+ *
+ * The tail used to come from fading the canvas toward transparent each frame
+ * rather than clearing it. That is the usual trick for this effect, and it is
+ * subtly broken: canvas alpha is an 8-bit integer, so multiplying an almost
+ * transparent pixel by 0.972 rounds straight back to the value it started at
+ * and the faintest part of every trail never erases. Leaving the map still for
+ * a minute left pale streaks across it, worst over the ocean where there is
+ * nothing else to look at.
+ *
+ * So the canvas is cleared every frame and each particle draws its own recent
+ * path instead. Nothing can accumulate, and the tail is a number here rather
+ * than a side effect of a fade rate.
+ */
+const TAIL = 46
+
+/** Alpha steps along the tail, newest to oldest. Three is enough for the taper
+ *  to read, and it keeps a frame at a dozen or so stroke calls. */
+const BANDS = 3
 
 /** One particle per this many square pixels of map, so density is what the eye
  *  sees rather than what the data holds. */
@@ -109,6 +124,20 @@ export function createWindCanvas(opts: {
   let age = new Float32Array(0)
   let count = 0
 
+  // Position history: TAIL slots per particle in one flat ring buffer. Every
+  // particle advances on the same frame, so they share a single write cursor
+  // rather than each carrying its own.
+  let hx = new Float32Array(0)
+  let hy = new Float32Array(0)
+  let head = 0
+
+  // Which speed tier each particle landed in this frame, and -1 for one that
+  // was just respawned and has nothing to draw yet. Kept so the draw pass can
+  // group by tier without asking the field again.
+  let tierOf = new Int8Array(0)
+  const tierFade = new Float32Array(TIERS)
+  const tierCount = new Float32Array(TIERS)
+
   const rgb = hexToRgb(color)
 
   function targetCount(): number {
@@ -127,6 +156,16 @@ export function createWindCanvas(opts: {
     // Staggered ages on the first seed, so the whole population does not
     // respawn on the same frame forever after.
     age[i] = fresh ? Math.random() * MAX_AGE : 0
+    tierOf[i] = -1
+    // A respawned particle has no past. Collapsing its whole history onto the
+    // new position makes every one of its segments zero-length, so it draws
+    // nothing until it has actually travelled rather than whipping a tail
+    // across the map from wherever it used to be.
+    const base = i * TAIL
+    for (let k = 0; k < TAIL; k++) {
+      hx[base + k] = px[i]
+      hy[base + k] = py[i]
+    }
   }
 
   function reseed() {
@@ -135,7 +174,11 @@ export function createWindCanvas(opts: {
       px = new Float32Array(count)
       py = new Float32Array(count)
       age = new Float32Array(count)
+      tierOf = new Int8Array(count)
+      hx = new Float32Array(count * TAIL)
+      hy = new Float32Array(count * TAIL)
     }
+    head = 0
     for (let i = 0; i < count; i++) seedOne(i, true)
   }
 
@@ -167,17 +210,15 @@ export function createWindCanvas(opts: {
   function step() {
     if (!ctx || !field) return
 
-    // Trails come from fading what is already drawn instead of clearing it.
-    // `destination-out` fades toward transparent rather than toward a color,
-    // which matters here: painting the map background over the canvas each
-    // frame would leave a fog sitting on top of the basemap.
-    ctx.globalCompositeOperation = 'destination-out'
-    ctx.fillStyle = `rgba(0,0,0,${TRAIL_FADE})`
-    ctx.fillRect(0, 0, width, height)
-    ctx.globalCompositeOperation = 'source-over'
+    // Cleared, not faded. See TAIL for why the usual fade leaves streaks that
+    // never finish erasing.
+    ctx.clearRect(0, 0, width, height)
 
-    // Collected per tier, then stroked in one path each.
-    const tiers: number[][] = Array.from({ length: TIERS }, () => [])
+    // Advance the cursor first, so the slot written below is the newest point
+    // of every tail and segment 0 is always the step that just happened.
+    head = (head + 1) % TAIL
+    tierFade.fill(0)
+    tierCount.fill(0)
 
     for (let i = 0; i < count; i++) {
       const x = px[i]
@@ -201,41 +242,69 @@ export function createWindCanvas(opts: {
       const nx = x + dx
       const ny = y + dy
 
+      px[i] = nx
+      py[i] = ny
+      hx[i * TAIL + head] = nx
+      hy[i * TAIL + head] = ny
+      age[i] += 1
+
+      if (age[i] > MAX_AGE || nx < 0 || ny < 0 || nx > width || ny > height) {
+        seedOne(i, false)
+        continue
+      }
+
       // Speed drives opacity and width together, the same pairing the chevrons
       // use. A thin stroke has too little ink on screen for an opacity ramp
       // alone to read.
       const t = Math.min(s.speed / 22, 1)
       const tier = Math.min(Math.floor(t * TIERS), TIERS - 1)
-      tiers[tier].push(x, y, nx, ny, fade)
-
-      px[i] = nx
-      py[i] = ny
-      age[i] += 1
-
-      if (age[i] > MAX_AGE || nx < 0 || ny < 0 || nx > width || ny > height) {
-        seedOne(i, false)
-      }
+      tierOf[i] = tier
+      tierFade[tier] += fade
+      tierCount[tier] += 1
     }
 
+    // One path per speed tier per alpha band, so a frame is about a dozen
+    // stroke calls no matter how many particles are in the air.
+    const perBand = Math.ceil((TAIL - 1) / BANDS)
+    ctx.lineCap = 'round'
+
     for (let tier = 0; tier < TIERS; tier++) {
-      const seg = tiers[tier]
-      if (!seg.length) continue
+      if (!tierCount[tier]) continue
       const t = (tier + 0.5) / TIERS
+      // The edge fade varies per particle, so the tier takes the average of
+      // what it is carrying. That keeps the region edge soft without needing a
+      // stroke call per particle.
+      const meanFade = tierFade[tier] / tierCount[tier]
       ctx.lineWidth = 1.2 + t * 1.7
-      ctx.lineCap = 'round'
-      // One alpha per tier. The edge fade varies per particle, so the tier
-      // takes the average of what it is carrying rather than a single value,
-      // which keeps the region edge soft without a stroke call per particle.
-      let fadeSum = 0
-      for (let i = 4; i < seg.length; i += 5) fadeSum += seg[i]
-      const meanFade = fadeSum / (seg.length / 5)
-      ctx.strokeStyle = `rgba(${rgb},${((0.3 + t * 0.55) * meanFade).toFixed(3)})`
-      ctx.beginPath()
-      for (let i = 0; i < seg.length; i += 5) {
-        ctx.moveTo(seg[i], seg[i + 1])
-        ctx.lineTo(seg[i + 2], seg[i + 3])
+
+      for (let b = 0; b < BANDS; b++) {
+        // Band 0 holds the newest segments and draws at full strength; each
+        // older band is dimmer, which is the taper from head to tail.
+        const bandAlpha = (BANDS - b) / BANDS
+        ctx.strokeStyle = `rgba(${rgb},${((0.3 + t * 0.55) * meanFade * bandAlpha).toFixed(3)})`
+        ctx.beginPath()
+
+        const kStart = b * perBand
+        const kEnd = Math.min(kStart + perBand, TAIL - 1)
+        for (let i = 0; i < count; i++) {
+          if (tierOf[i] !== tier) continue
+          const base = i * TAIL
+          for (let k = kStart; k < kEnd; k++) {
+            const a = (head - k + TAIL) % TAIL
+            const c = (head - k - 1 + TAIL) % TAIL
+            const x1 = hx[base + a]
+            const y1 = hy[base + a]
+            const x2 = hx[base + c]
+            const y2 = hy[base + c]
+            // Collapsed history from a respawn. Drawing it would put a stray
+            // round dot wherever that particle was born.
+            if (x1 === x2 && y1 === y2) continue
+            ctx.moveTo(x1, y1)
+            ctx.lineTo(x2, y2)
+          }
+        }
+        ctx.stroke()
       }
-      ctx.stroke()
     }
   }
 

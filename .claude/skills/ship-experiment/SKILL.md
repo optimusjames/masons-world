@@ -38,11 +38,29 @@ Ship a design experiment with automated screenshot, updates, and commit workflow
 #    If missing, add the import and export at the top of page.tsx.
 
 # 1. Start dev server and take screenshot
-npm run dev &
+pnpm dev &
 sleep 3
 agent-browser open "http://localhost:3000/experiment-name" --viewport 1280x720
 agent-browser screenshot ./public/screenshots/experiment-name.png
 # Close browser and stop server
+
+# MAP EXPERIMENTS NEED --headed.
+# The basemaps are vector tiles (OpenFreeMap via lib/basemap), which render
+# through WebGL. Headless Chrome here has no working WebGL — it fails with
+# "Could not create a WebGL context ... SwiftShader" and the map screenshots
+# with NO BASEMAP AT ALL, just data floating on a blank background. Verified
+# 2026-09-15 on Smoke PDX: headless came out empty, headed rendered correctly.
+#
+# So for any experiment with a map, add --headed to every call in the session:
+#
+#   agent-browser --session shot --headed open "http://localhost:3000/experiment-name"
+#   agent-browser --session shot --headed wait 6000   # let tiles and data settle
+#   agent-browser --session shot --headed screenshot ./public/screenshots/experiment-name.png
+#   agent-browser --session shot --headed close
+#
+# This opens a real browser window on the user's screen, so say so first. When a
+# layer is animated, which frame to catch is a taste call — offer to let the user
+# take the shot instead.
 
 # 2. Review description
 #    Read current description from lib/experiments/data.ts

@@ -709,9 +709,68 @@
   filter: saturate(1.6) brightness(0.85);
 }
 
+/* The wind chip.
+   Leaflet's default tooltip is a white box with a hairline border, which reads
+   as a browser affordance sitting on the map rather than as part of it. This is
+   the map's own navy, the same ink the particles are drawn in, so the answer
+   looks like it came from the layer that was tapped. */
 .windTip {
   font-family: var(--font-space-mono, ui-monospace, monospace);
+  background: #27405f;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  padding: 5px 9px 6px;
+  box-shadow: 0 6px 18px rgba(20, 30, 45, 0.3);
+  white-space: nowrap;
+}
+
+/* The little arrow under the tooltip is drawn as a border triangle, and its
+   color is set per direction, so it has to be recolored to match. Compounded
+   with Leaflet's own class so it outranks the default regardless of order. */
+.windTip:global(.leaflet-tooltip-top)::before {
+  border-top-color: #27405f;
+}
+
+.windTip:global(.leaflet-tooltip-bottom)::before {
+  border-bottom-color: #27405f;
+}
+
+.windChipRow {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.windChipArrow {
+  width: 11px;
+  height: 11px;
+  /* Nudged onto the number's baseline; a flex baseline does nothing useful for
+     an SVG, which aligns on its bottom edge. */
+  align-self: center;
+  opacity: 0.85;
+}
+
+.windChipNum {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.windChipUnit {
   font-size: 10px;
+  opacity: 0.7;
+}
+
+/* The direction is what the number means, not a second reading, so it sits
+   under it in the quiet style the rest of the map gives to context. */
+.windChipDir {
+  display: block;
+  margin-top: 1px;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.68;
 }
 
 /* ---- the reading: fires -> wind -> what arrived ---- */

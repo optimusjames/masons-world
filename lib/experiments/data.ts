@@ -5,7 +5,7 @@ export const experiments: Experiment[] = [
     slug: 'smoke-pdx',
     date: 'August 10, 2026',
     title: 'Smoke PDX',
-    description: 'Where the smoke is, where it comes from, and which way the wind is carrying it. 373 EPA AirNow monitors across the Pacific Northwest, their AQI computed the way EPA actually computes it (NowCast over twelve hours, not a raw hourly reading), sit under a 651-cell wind field and every active fire perimeter from Northern California to Montana. Portland reads Good while monitors 200 miles east read Very Unhealthy, and the wind chevrons show you why. Three government sources, no API keys, and a provenance tier on every one.',
+    description: 'Where the smoke is, where it comes from, and which way the wind is carrying it. 373 EPA AirNow monitors across the Pacific Northwest, their AQI computed the way EPA actually computes it (NowCast over twelve hours, not a raw hourly reading), sit under a 651-cell wind field and every active fire perimeter from Northern California to Montana. Portland reads Good while monitors 200 miles east read Very Unhealthy, and the drifting wind particles show you why. Three government sources, no API keys, and a provenance tier on every one.',
     blurb:
       'Where the smoke is, where it comes from, and which way the wind is carrying it, across the whole Pacific Northwest smoke shed.',
     scope: '373 EPA monitors · live wind field · 3 government sources',

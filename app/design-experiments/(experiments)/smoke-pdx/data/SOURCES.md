@@ -138,6 +138,28 @@ cell onto an even lattice spaced ~88px apart, snapped to a global grid so arrows
 do not shimmer while panning, and re-samples on every pan and zoom. Apparent
 spacing is then identical at every zoom.
 
+**The wind layer is animated, and the motion is a visualization of the sampled
+field rather than extra data.** Three things about it are ours, not
+Open-Meteo's, and none of them add information:
+
+1. **Position between cells is interpolated.** The 651 samples are filled onto a
+   0.08° grid by nearest neighbour and then bilinearly interpolated on lookup, so
+   a particle crossing the gap between two cells traces a smooth path the data
+   does not itself contain. Where no sample sits within 0.75°, there is no field
+   and particles die rather than drifting on an invented one.
+2. **Apparent speed is constant in screen space**, at 0.017 px per mph per frame,
+   not true to the ground. Physically correct motion would crawl at region zoom
+   and streak off the frame at street zoom, which would tell the reader about the
+   camera rather than about the air. Relative speed still reads correctly: a
+   fast cell is visibly faster than a calm one at any zoom, and the exact number
+   is a tap away.
+3. **Particle count follows screen area**, about one per 7,000 px², halved on
+   phones and thinned at region zoom. Density is a legibility decision, so a
+   denser patch of particles never means more wind.
+
+Static chevrons remain the fallback under `prefers-reduced-motion`, and they
+carry the same field through the same lookup.
+
 ---
 
 ## 3. Fire perimeters — NIFC WFIGS — Tier A

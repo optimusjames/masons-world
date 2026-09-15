@@ -8,6 +8,40 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+## September 2026
+
+**Smoke PDX: the wind moves**
+The wind layer drew static chevrons, which state a direction without showing
+one. Wind is the one layer on that map where motion is the data: it is the
+reason Portland can read Good while monitors two hundred miles east read Very
+Unhealthy. It now draws as drifting particles with fading trails, on a canvas in
+its own Leaflet pane above the fire perimeters and below the monitor blooms.
+
+The trails come from fading the canvas toward transparent each frame rather than
+clearing it, which is the trick that produces the comet-tail look. Fading toward
+a color instead would have laid a fog over the basemap.
+
+Two structural pieces made it affordable. The samples are filled onto a 0.08°
+grid once per data load and interpolated on lookup, because a particle asks
+"what is the wind here" a few hundred times per frame and scanning 651 cells for
+each answer is not a thing that runs. Segments are then collected into five
+opacity tiers and stroked once per tier, so a frame costs a handful of canvas
+calls instead of one per particle. Pan and zoom hide the canvas and reseed on
+landing, which trades a still frame during the gesture for a correct field the
+instant it ends.
+
+Particles cannot be clicked, so the map now answers a tap anywhere in the field
+with the same speed-and-direction chip the chevrons carried on hover. Without
+that the layer would have traded a number for an animation. The chevrons stay in
+the codebase as the `prefers-reduced-motion` fallback, and the legend swatch and
+copy follow whichever one is actually drawn.
+
+Closes issue #4. The particle layer is written to generalize: any vector field,
+such as currents or traffic flow, would reuse it unchanged, which is the case
+for folding it into the `/map` skill as an optional layer type.
+
+---
+
 ## August 2026
 
 **All four maps move off CARTO onto vector tiles**

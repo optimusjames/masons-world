@@ -43,7 +43,7 @@ export const MAP_CONFIG: MapConfig = {
       label: 'Wind',
       kind: 'point',
       encoding: 'sequential',
-      unit: 'mph at 10m, arrow points downwind',
+      unit: 'mph at 10m, particles drift downwind',
       defaultOn: true,
       sourceId: 'open-meteo',
     },

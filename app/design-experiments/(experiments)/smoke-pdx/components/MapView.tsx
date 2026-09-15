@@ -4,23 +4,32 @@
 // Leaflet touches `window` at module scope, so every reference is behind a
 // dynamic import inside an effect. Importing it at the top breaks the build.
 
-import { useCallback, useEffect, useRef, useState } from 'react'
-import type { Map as LeafletMap, LayerGroup, Marker, Tooltip } from 'leaflet'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type {
+  Map as LeafletMap,
+  LayerGroup,
+  LeafletMouseEvent,
+  Marker,
+  Tooltip,
+} from 'leaflet'
 import { addBasemap, addLabelsOverlay } from '@/lib/basemap'
 import styles from '../styles.module.css'
 import { MAP_CONFIG } from '../map.config'
-import { EDGE_FADE_DEG, METRO, PAN_BOUNDS, REGION } from '../data/place'
+import { METRO, PAN_BOUNDS, REGION } from '../data/place'
 import type { FireFeature, LayerId, MapFeature, MapFocus, ShapeLayer } from '../types'
 import {
   arrowLength,
   arrowOpacity,
   arrowWidth,
   bandFor,
+  bearingLabel,
   colorFor,
   FIRE,
   radiusFor,
   WIND,
 } from './scale'
+import { bearingOf, buildWindField, edgeFade, type WindField } from './wind'
+import { createWindCanvas, type WindCanvasHandle } from './WindCanvas'
 
 type Props = {
   features: MapFeature[]
@@ -58,6 +67,8 @@ export default function MapView({
   const firesRef = useRef<LayerGroup | null>(null)
   const hereRef = useRef<Marker | null>(null)
   const windTipRef = useRef<Tooltip | null>(null)
+  const windTipTimerRef = useRef(0)
+  const windCanvasRef = useRef<WindCanvasHandle | null>(null)
   // Held in a ref so the init effect never needs the callback as a dependency.
   const onHomeRef = useRef(onHomeChange)
   onHomeRef.current = onHomeChange
@@ -65,6 +76,35 @@ export default function MapView({
   const [zoom, setZoom] = useState(METRO.zoom)
   // Bumped on every pan/zoom so the wind lattice re-samples for the new view.
   const [view, setView] = useState(0)
+
+  // Motion IS the wind data, so the particle layer is the default and the
+  // chevrons are what anyone who has asked their system for less motion gets
+  // instead. Starting true means the first paint draws chevrons and swaps up to
+  // particles, rather than flashing motion at the people who opted out of it.
+  const [reducedMotion, setReducedMotion] = useState(true)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const apply = () => setReducedMotion(mq.matches)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+  const animateWind = !reducedMotion
+
+  // Built once per data load, not once per frame. A particle asks "what is the
+  // wind here" on every frame, and scanning 651 cells for the answer a few
+  // hundred times a frame is the difference between this running and not.
+  const windField = useMemo(() => {
+    if (!animateWind) return null
+    return buildWindField(features.filter((f) => f.layer === 'wind'))
+  }, [features, animateWind])
+
+  // The canvas is created asynchronously, after these values already exist, so
+  // it reads them from refs rather than being rebuilt whenever they change.
+  const windFieldRef = useRef<WindField | null>(windField)
+  windFieldRef.current = windField
+  const windOnRef = useRef(true)
+  windOnRef.current = visibleLayers.includes('wind')
 
   // ---- init (once) ----------------------------------------------------------
   useEffect(() => {
@@ -116,6 +156,16 @@ export default function MapView({
       // touching a map the cleanup has already removed.
       await addBasemap(map, { theme: MAP_CONFIG.basemap.theme })
       if (!mounted) return
+
+      // The particle canvas gets its own pane between the overlay pane (400,
+      // where the fire perimeters draw) and the marker pane (600, the monitor
+      // blooms). Wind moves over the fires and under the measurements, which is
+      // the order the map argues in: fires make it, wind moves it, monitors say
+      // what arrived.
+      map.createPane('wind')
+      const windPane = map.getPane('wind')!
+      windPane.style.zIndex = '450'
+      windPane.style.pointerEvents = 'none'
 
       // Order matters: fires at the bottom, then wind, monitors on top. The
       // measurement is never hidden by the cause.
@@ -188,6 +238,7 @@ export default function MapView({
   }, [resizeKey, ready])
 
   const clearWindTip = useCallback(() => {
+    window.clearTimeout(windTipTimerRef.current)
     windTipRef.current?.remove()
     windTipRef.current = null
   }, [])
@@ -481,6 +532,9 @@ export default function MapView({
       if (cancelled) return
       group.clearLayers()
       if (!visibleLayers.includes('wind')) return
+      // Particles are drawing this layer instead. The chevron code below stays
+      // for reduced motion, which is the whole reason it is still here.
+      if (animateWind) return
 
       // Arrows are drawn on a SCREEN-SPACE lattice, not on the raw data grid.
       //
@@ -567,7 +621,90 @@ export default function MapView({
     return () => {
       cancelled = true
     }
-  }, [features, visibleLayers, ready, zoom, view])
+  }, [features, visibleLayers, ready, zoom, view, animateWind])
+
+  // ---- wind, animated -------------------------------------------------------
+  //
+  // Created once and then driven, rather than rebuilt per pan. The canvas
+  // handles its own pan and zoom sync, which is why this effect does not watch
+  // `view` the way the chevrons above have to.
+  useEffect(() => {
+    if (!ready || !animateWind) return
+    let cancelled = false
+
+    ;(async () => {
+      const L = (await import('leaflet')).default
+      const map = mapRef.current
+      const pane = map?.getPane('wind')
+      if (cancelled || !map || !pane) return
+
+      const handle = createWindCanvas({ L, map, pane, color: WIND })
+      windCanvasRef.current = handle
+      handle.setVisible(windOnRef.current)
+      handle.setField(windFieldRef.current)
+    })()
+
+    return () => {
+      cancelled = true
+      windCanvasRef.current?.destroy()
+      windCanvasRef.current = null
+    }
+  }, [ready, animateWind])
+
+  useEffect(() => {
+    windCanvasRef.current?.setField(windField)
+  }, [windField])
+
+  useEffect(() => {
+    windCanvasRef.current?.setVisible(visibleLayers.includes('wind'))
+  }, [visibleLayers])
+
+  // ---- reading the wind where you tapped ------------------------------------
+  //
+  // A chevron was a thing you could hover or tap for its speed. Particles are
+  // not tappable, so without this the layer would trade a number for an
+  // animation, which is a bad trade on a map whose whole job is numbers. The
+  // map itself answers instead, at whatever point was tapped, with the same
+  // chip the chevrons used.
+  useEffect(() => {
+    if (!ready || !animateWind || !windField) return
+    if (!visibleLayers.includes('wind')) return
+    let cancelled = false
+    let handler: ((e: LeafletMouseEvent) => void) | null = null
+
+    ;(async () => {
+      const L = (await import('leaflet')).default
+      const map = mapRef.current
+      if (cancelled || !map) return
+
+      handler = (e: LeafletMouseEvent) => {
+        clearWindTip()
+        const s = windField.at(e.latlng.lat, e.latlng.lng)
+        // Off the data extent is a real answer. Saying nothing is the right
+        // version of it; inventing a reading there would not be.
+        if (!s || edgeFade(e.latlng.lat, e.latlng.lng) <= 0.04) return
+
+        const tip = L.tooltip({
+          permanent: true,
+          direction: 'top',
+          className: styles.windTip,
+          offset: [0, -4],
+        })
+          .setLatLng(e.latlng)
+          .setContent(`${Math.round(s.speed)} mph from the ${bearingLabel(bearingOf(s))}`)
+        tip.addTo(map)
+        windTipRef.current = tip
+        windTipTimerRef.current = window.setTimeout(clearWindTip, 6000)
+      }
+
+      map.on('click', handler)
+    })()
+
+    return () => {
+      cancelled = true
+      if (handler) mapRef.current?.off('click', handler)
+    }
+  }, [ready, animateWind, windField, visibleLayers, clearWindTip])
 
   // The air-quality tint used to be its own layer of wide translucent circles
   // under the markers. It is now baked into each monitor's radial gradient, so
@@ -637,15 +774,6 @@ const POPUP_PAN = {
 function inMetro(lat: number, lng: number): boolean {
   const [[s, w], [n, e]] = METRO.bounds
   return lat >= s && lat <= n && lng >= w && lng <= e
-}
-
-/** 0 at the region edge, 1 once EDGE_FADE_DEG inside it. Without this the wind
- *  grid ends on a ruled line and reads as a rectangle drawn over the map
- *  rather than as weather. */
-function edgeFade(lat: number, lng: number): number {
-  const [[s, w], [n, e]] = REGION.bounds
-  const d = Math.min(lat - s, n - lat, lng - w, e - lng)
-  return Math.max(0, Math.min(1, d / EDGE_FADE_DEG))
 }
 
 function arrowSvg(

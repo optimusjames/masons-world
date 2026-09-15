@@ -60,6 +60,20 @@ export default function Legend({
     canHover.current = window.matchMedia('(hover: hover)').matches
   }, [])
 
+  // The legend has to describe the mark the map actually drew. MapView draws
+  // drifting particles unless the reader has asked for reduced motion, in which
+  // case it falls back to the static chevrons, and the same question decides
+  // the swatch and the sentence here. Defaulting to the reduced case matches
+  // MapView, so the two can never disagree on the first paint.
+  const [reducedMotion, setReducedMotion] = useState(true)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const apply = () => setReducedMotion(mq.matches)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+
   const toggle = useCallback(() => {
     setPinned((p) => {
       if (p) setHovered(false)
@@ -155,19 +169,42 @@ export default function Legend({
                 onClick={() => onToggleLayer(layer.id)}
                 aria-pressed={on}
               >
-                {/* Wind shows its actual mark, so the chevrons on the map are
-                    identifiable without guessing. */}
+                {/* Wind shows its actual mark, so what is moving on the map is
+                    identifiable without guessing: a trailing particle normally,
+                    a chevron when motion is off. */}
                 {layer.id === 'wind' ? (
-                  <svg className={styles.legendChevronMark} viewBox="0 0 12 12" aria-hidden>
-                    <path
-                      d="M2 8 L6 4 L10 8"
-                      fill="none"
-                      stroke={WIND}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  reducedMotion ? (
+                    <svg className={styles.legendChevronMark} viewBox="0 0 12 12" aria-hidden>
+                      <path
+                        d="M2 8 L6 4 L10 8"
+                        fill="none"
+                        stroke={WIND}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <svg className={styles.legendChevronMark} viewBox="0 0 14 12" aria-hidden>
+                      {/* Head, then a tail that fades, which is exactly what one
+                          particle leaves behind on the canvas. */}
+                      <path
+                        d="M1 6 H5"
+                        stroke={WIND}
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        opacity="0.3"
+                      />
+                      <path
+                        d="M6 6 H9.5"
+                        stroke={WIND}
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        opacity="0.75"
+                      />
+                      <circle cx="11.6" cy="6" r="1.4" fill={WIND} />
+                    </svg>
+                  )
                 ) : (
                   <span className={styles.legendDot} style={{ background: swatch }} />
                 )}
@@ -189,7 +226,14 @@ export default function Legend({
               {/* "Downwind" is the meteorologist's word for it. What a reader
                   wants to know is where the smoke goes, which is the same fact
                   said in the terms they came with. */}
-              Wind marks point where the smoke is headed.
+              {reducedMotion ? (
+                'Wind marks point where the smoke is headed.'
+              ) : (
+                <>
+                  Particles drift the way the smoke is headed. Tap the map for the
+                  wind speed there.
+                </>
+              )}
               <br />
             </>
           )}

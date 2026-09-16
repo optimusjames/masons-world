@@ -18,6 +18,33 @@ date it last returned data.
 | Street trees / canopy | Portland street tree inventory (253,951 trees) | A | no | via PortlandMaps open data | 2026-06 |
 | Crash data | ODOT / Vision Zero, snapshot in `mcloughlin-99e/data/` | A | no | see that experiment's data dir | 2026-04 |
 | Walking routes | OSRM public foot service | B | no | `https://routing.openstreetmap.de/routed-foot/route/v1/foot/` | 2026-06 |
+| Parks (318 polygons, NAME + ACRES) | Portland Parks & Rec | A | no | `https://www.portlandmaps.com/arcgis/rest/services/Public/Parks_Misc/MapServer/2` | 2026-09-15 |
+| Natural areas (575 parcels) | PP&R Natural Area Land Inventory | A | no | `.../Public/Parks_Natural_Area_Land_Inventory/MapServer/0` | 2026-09-15 |
+| Community gardens (62 sites, plot counts) | PP&R | A | no | `.../Public/Parks_Community_Gardens/MapServer/5` | 2026-09-15 |
+| Garden plots (3,026, 166 ADA) | PP&R | A | no | `.../Public/Parks_Community_Gardens/MapServer/3` | 2026-09-15 |
+| Neighborhood boundaries (125) | City of Portland | A | no | `.../Public/Boundaries/MapServer/1` | 2026-09-15 |
+| Population by block group / tract (carries `POP`) | Metro RLIS | A | no | `https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/Census_Block_Groups_2020/FeatureServer/0` | 2026-09-15 |
+| Regional parks & natural areas (6,462 sites) | Metro RLIS ORCA Sites | A | no | `https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/ORCA_Sites/FeatureServer/4` | 2026-09-15 |
+
+**PortlandMaps services are listed, not guessed.** `Public/COP_OpenData/MapServer`
+is referenced all over the web and returns `"Service not started"`. Hit
+`https://www.portlandmaps.com/arcgis/rest/services/Public?f=json` and filter the
+226 service names — the useful ones are split into `Parks_*`, `Boundaries`, and
+friends, not one combined open-data service.
+
+**The Census API now requires a key** (`X-DataWebAPI-KeyError: 1`, redirect to
+`missing_key.html`). Free at `https://api.census.gov/data/key_signup.html`,
+store as `CENSUS_API_KEY`. Usually unnecessary in this region: **Metro RLIS
+publishes 2020 population keylessly** on block, block group, and tract, with
+race, household, and vacancy fields alongside.
+
+**Two layers in one ArcGIS service do not necessarily join.** Portland's garden
+plots and garden boundaries share a service, a publisher, and a projection, and
+still cannot be related: 3% of plots fall inside any garden polygon, and the
+`ActiveNet_ID` prefix that looks like a foreign key lands anywhere from 4m to
+638m from the garden it names. Verify a join with counts before building on it,
+and when it fails, report the aggregate and say so. Full write-up in
+`green-pdx/data/SOURCES.md`.
 
 ## Air, fire, weather (national, all keyless)
 

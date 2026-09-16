@@ -1,0 +1,751 @@
+/* ===========================================================================
+   Green PDX.
+
+   Opens with the shared map chrome every experiment in this family uses, then
+   adds what this map needs: the three stat rows, the garden markers, and the
+   popup treatment.
+   =========================================================================== */
+
+.page {
+  /* --- surface --- */
+  --bg: #faf6ef;
+  --ink: #2a2320;
+  --ink-soft: #6b5f57;
+  --ink-faint: #9a8d83;
+  --rule: rgba(42, 35, 32, 0.12);
+  --surface: #ffffff;
+  --map-bg: #eef2ee;
+
+  /* The accent is the natural-area edge green. The fill colors are pale by
+     design so they can stack, which makes both of them illegible as text on
+     this cream; the darker edge step is the one that reads. */
+  --accent: #47600d;
+
+  color: var(--ink);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 56px;
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- header ---- */
+
+.header {
+  margin: 0 0 20px;
+  animation: rise 0.5s ease 0.05s both;
+}
+
+.eyebrow {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-display, 'Michroma', sans-serif);
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 620px;
+  line-height: 1.5;
+}
+
+/* ---- the reading: three numbers, then the sentence ---- */
+
+.reading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
+  animation: rise 0.5s ease 0.1s both;
+}
+
+.readingStats {
+  display: grid;
+  gap: 8px;
+  flex: 1 1 320px;
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  border-left: 3px solid var(--band, var(--accent));
+  background: color-mix(in srgb, var(--band, var(--accent)) 7%, transparent);
+  text-align: left;
+}
+
+.statNum {
+  font-family: var(--font-display, 'Michroma', sans-serif);
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1;
+  color: var(--band, var(--accent));
+  font-variant-numeric: tabular-nums;
+}
+
+.statText {
+  display: grid;
+  gap: 1px;
+}
+
+.statScope {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.statWhere {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.readingText {
+  flex: 1 1 320px;
+  display: grid;
+  gap: 9px;
+}
+
+.readingSentence {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* A note about the data, not about Portland. It reads quieter than the
+   sentence above it and carries a rule down its side, so nobody mistakes a
+   caveat about the source for a fact about the city. */
+.readingNote {
+  margin: 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--rule);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+}
+
+.readingNote strong {
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.readingSentence strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- map ---- */
+
+.mapWrapper {
+  position: relative;
+  height: 64dvh;
+  min-height: 460px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--map-bg);
+  animation: rise 0.5s ease 0.15s both;
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Fullscreen takeover. Deliberately compound so it outranks the plain
+   .mapWrapper rule and the responsive height below, regardless of order. */
+.mapWrapper.mapWrapperFullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  animation: none;
+}
+
+.mapControls {
+  position: absolute;
+  z-index: 500;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 13px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(42, 35, 32, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+}
+
+.mapBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(42, 35, 32, 0.16);
+}
+
+.mapBtnOn {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.mapBtnIcon {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.mapBtnIconOnly {
+  padding: 0;
+  width: 36px;
+  justify-content: center;
+}
+
+/* Out of the way until the view has actually moved. */
+.mapBtnGone {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mapBtnLabel {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .mapBtnLabel {
+    display: none;
+  }
+  .mapBtn {
+    padding: 0;
+    width: 36px;
+    justify-content: center;
+  }
+}
+
+/* The basemap recedes so the data carries the saturation on the page. */
+.map :global(.leaflet-tile-pane) {
+  filter: saturate(0.6) contrast(0.96);
+}
+
+/* Names ride on their own pane under the garden markers. The white halo baked
+   into the label tiles is what keeps them readable over the fills, so it
+   stays; this only desaturates them out of competition with the greens. */
+.map :global(.leaflet-labels-pane) {
+  filter: saturate(0) contrast(1.06);
+}
+
+.map :global(.leaflet-container) {
+  background: var(--map-bg);
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.map :global(.leaflet-control-attribution) {
+  font-size: 9px;
+  background: transparent;
+  color: var(--ink-faint);
+  max-width: 62vw;
+  padding: 0 5px 1px;
+  line-height: 1.5;
+  opacity: 0.8;
+  text-shadow:
+    0 0 3px var(--map-bg),
+    0 0 2px var(--map-bg),
+    0 0 1px var(--map-bg);
+}
+
+.map :global(.leaflet-control-attribution a) {
+  color: var(--ink-soft);
+}
+
+/* On a phone the map is the whole point, and the footer below repeats every
+   source at more length. */
+@media (max-width: 640px) {
+  .map :global(.greenAttrSources) {
+    display: none;
+  }
+}
+
+/* ---- garden markers ---- */
+
+.gardenIcon {
+  background: none;
+  border: 0;
+}
+
+.gardenDot,
+.gardenBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 4px rgba(20, 16, 40, 0.35);
+  /* Gardens are the layer worth touching, so they are the one that answers a
+     pointer. The transform origin is the center because Leaflet positions the
+     icon by its top-left, and scaling from anywhere else would slide the mark
+     off the garden it marks. */
+  transform-origin: center;
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.18s ease;
+}
+
+.gardenIcon:hover .gardenDot,
+.gardenIcon:hover .gardenBadge,
+.gardenIcon:focus-visible .gardenDot,
+.gardenIcon:focus-visible .gardenBadge {
+  transform: scale(1.35);
+  box-shadow: 0 3px 10px rgba(20, 16, 40, 0.45);
+}
+
+/* Small gardens carry a sprout instead of a number: under 20 plots the digits
+   would have to shrink past reading, and a bare dot says "something is here"
+   without saying what kind of something. */
+.gardenDot svg {
+  width: 72%;
+  height: 72%;
+}
+
+/* Above 20 plots the count rides inside the dot. The white ring is what keeps
+   violet legible where a garden sits on top of a park fill. */
+.gardenBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* ---- legend ---- */
+
+.legend {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 10px 12px;
+  max-width: 264px;
+  box-shadow: 0 2px 12px rgba(42, 35, 32, 0.08);
+  animation: rise 0.4s ease 0.2s both;
+}
+
+.legendHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.legendChevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.legend[data-collapsed='true'] .legendChevron {
+  transform: rotate(-90deg);
+}
+
+.legendBody {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.legend[data-collapsed='true'] .legendBody {
+  display: none;
+}
+
+.legendRow {
+  display: grid;
+  gap: 5px;
+}
+
+.legendChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--surface);
+  cursor: pointer;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 12px;
+  color: var(--ink);
+  text-align: left;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.legendChipOff {
+  opacity: 0.45;
+}
+
+.legendSwatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  border: 1px solid;
+  flex: none;
+}
+
+.legendDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 0 1px rgba(20, 16, 40, 0.25);
+  flex: none;
+}
+
+.legendDash {
+  width: 13px;
+  height: 0;
+  border-top: 1.5px dashed;
+  flex: none;
+}
+
+.legendLabel {
+  flex: 1;
+}
+
+.legendCount {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.legendNote {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+.legendFoot {
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+.legendAsOf {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+/* ---- highlights ---- */
+
+.highlights {
+  position: absolute;
+  z-index: 600;
+  top: 58px;
+  right: 14px;
+  width: 260px;
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(42, 35, 32, 0.14);
+  animation: rise 0.25s ease both;
+}
+
+.highlightRow {
+  display: grid;
+  gap: 1px;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 3px;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.highlightRow:hover {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.highlightLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.highlightDetail {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+/* ---- popup ---- */
+
+.popupWrap :global(.leaflet-popup-content-wrapper) {
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(42, 35, 32, 0.16);
+}
+
+.popupWrap :global(.leaflet-popup-content) {
+  margin: 10px 12px;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.popup {
+  display: grid;
+  gap: 5px;
+  min-width: 170px;
+}
+
+.popupHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.popupDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+/* The kind of thing, above its name. Hue says it first and this says it
+   plainly, which is the relief the palette's contrast warning obliges. */
+.popupKind {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.popupTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.popupRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.popupRowLabel {
+  color: var(--ink-faint);
+}
+
+.popupRowValue {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.popupNote {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* The way out of the map and into doing something. A map that only reports is
+   half a map when the thing it found is a garden you could join or a park you
+   could work in. It links to the city's program rather than claiming to know
+   what the data does not say. */
+.popupCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.popupCta:hover {
+  text-decoration: underline;
+}
+
+/* Two exits, weighted. Looking the place up is what most people want;
+   volunteering is the quieter, bigger ask, so it does not compete. */
+.popupCtaRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.popupCtaQuiet {
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.popupCtaQuiet:hover {
+  color: var(--ink-soft);
+}
+
+.popupReal {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3f9d6b;
+  padding-top: 4px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---- sources ---- */
+
+.sources {
+  margin-top: 16px;
+  display: grid;
+  gap: 6px;
+  animation: rise 0.5s ease 0.25s both;
+}
+
+.sourcesHead {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 760px;
+  margin-bottom: 4px;
+}
+
+.sourceRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ink-faint);
+  flex-wrap: wrap;
+}
+
+.sourceRow a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sourceRow a:hover {
+  color: var(--ink);
+}
+
+/* The tier is the honesty rating, so it reads as a badge rather than as
+   decoration. */
+.sourceTier {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink-faint);
+  flex: none;
+}
+
+.sourceTier[data-tier='A'] {
+  background: #3f9d6b;
+}
+
+.sourceTier[data-tier='B'] {
+  background: #b8873b;
+}
+
+.sourceTier[data-tier='C'],
+.sourceTier[data-tier='D'] {
+  background: #b0564a;
+}
+
+.sourceMeta {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 760px) {
+  .legend {
+    max-width: calc(100% - 24px);
+  }
+  .mapWrapper {
+    height: 58dvh;
+  }
+  .highlights {
+    width: calc(100% - 28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page,
+  .header,
+  .reading,
+  .mapWrapper,
+  .legend,
+  .highlights,
+  .sources {
+    animation: none;
+  }
+}

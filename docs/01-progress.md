@@ -10,6 +10,46 @@ This file tracks major changes and milestones in the project.
 
 ## September 2026
 
+**Green PDX: every park, natural area, and community garden**
+The second map from the `/map` skill, and the first one where the interesting
+work was deciding what *not* to draw. Four keyless City of Portland services:
+318 parks over 11,438 acres, 575 natural area parcels, 62 community gardens
+holding 2,397 plots, 125 neighborhood boundaries.
+
+Two things were cut on honesty grounds, and both are worth remembering.
+
+The city publishes 3,026 individual garden plot polygons with 166 marked
+ADA-accessible, which would have been the best thing on the map. Neither join
+survived. Spatially, only 98 of 3,026 plots fall inside any garden boundary —
+not a generalization artifact, not paging, not projection; the plot polygons
+simply sit beside their gardens. By attribute, `ActiveNet_ID` looks like a
+garden key and isn't: prefixes land 4m to 638m from the nearest garden, three
+gardens are claimed by multiple prefixes including junk keys, and the counts
+contradict the city's own `Plotspergarden` in both directions. So the map
+reports the citywide total and says plainly that it cannot attribute it.
+
+And 29 of the 575 natural area parcels carry no name in the inventory. They are
+drawn and labelled "Unnamed natural area". That count started life as 25,
+because the build treated a whitespace-only name as a name; the city's own
+query disagrees, and a number the publisher's portal contradicts is not worth
+printing.
+
+The palette was chosen by running the dataviz validator, twice, and it
+overruled taste both times. Dark green natural areas with warm orange gardens
+measures ΔE 3.2 under protanopia — the classic red-green confusion, invisible
+on screen to anyone who can see it fine. Later, changing only the natural green
+to a drier olive failed the normal-vision floor at ΔE 11.0 against the existing
+aqua. Moving both ends apart passed with the widest margins of anything tried.
+The rule that fell out: these colors are a set, and a slot cannot be re-picked
+alone.
+
+Everything else follows from the map skill's existing rules — overlapping fills
+under the 0.55 ceiling, labels on their own pane beneath value-carrying
+markers, a fullscreen toggle, attribution for every source. New here: popups
+that offer a way to act (request a plot, volunteer, find your neighborhood
+association), each pointing at a city page verified to resolve rather than a
+constructed URL.
+
 **Smoke PDX: the wind moves**
 The wind layer drew static chevrons, which state a direction without showing
 one. Wind is the one layer on that map where motion is the data: it is the

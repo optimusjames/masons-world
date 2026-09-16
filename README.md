@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Green PDX
+
+**September 15, 2026**
+
+![Green PDX](./public/screenshots/green-pdx.png)
+
+Where the green space in Portland is, and what kind it is. 318 parks covering 11,438 acres, 575 natural area parcels, and all 62 community gardens holding 2,397 plots, drawn from four City of Portland services with no API key between them. Parks and natural areas overlap on purpose where the city manages both. Every popup offers a way in — request a garden plot, look up a park, help restore a natural area, find your neighborhood association. The palette was chosen by running the dataviz validator rather than by eye, which caught that the obvious green-and-orange pairing was unreadable for red-green colorblindness; a later attempt to attribute individual garden plots per site was dropped when neither a spatial nor an attribute join survived checking, and `SOURCES.md` records both failures.
+
+**Tags:** Map - Leaflet - Portland - Parks - Open Data
+
+**[View Live →](https://masons-world.vercel.app/design-experiments/green-pdx)**
+
+---
+
 ### Smoke PDX
 
 **August 10, 2026**

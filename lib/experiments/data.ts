@@ -2,6 +2,20 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'green-pdx',
+    date: 'September 15, 2026',
+    title: 'Green PDX',
+    description:
+      "Where the green space in Portland is, and what kind it is. 318 parks covering 11,438 acres, 575 natural area parcels, and all 62 community gardens, drawn from four City of Portland services with no API key between them. Gardens carry their real plot counts, including how many are ADA-accessible, and link to the city's own program page rather than inventing availability. The natural area layer is a parcel inventory rather than a directory, so the 25 parcels the city has no name for say exactly that. The palette was chosen by running the dataviz validator: the instinctive green-and-orange pairing failed colorblind separation, and what shipped clears it.",
+    blurb:
+      'Every park, natural area, and community garden in Portland, from four city open-data services.',
+    scope: '318 parks · 11,438 acres · 2,397 garden plots',
+    screenshot: '/screenshots/green-pdx.png',
+    tags: ['Map', 'Leaflet', 'Portland', 'Parks', 'Open Data'],
+    theme: 'light',
+    category: 'Civic & Data',
+  },
+  {
     slug: 'smoke-pdx',
     date: 'August 10, 2026',
     title: 'Smoke PDX',

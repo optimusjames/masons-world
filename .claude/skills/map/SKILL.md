@@ -137,6 +137,33 @@ position, weather, anything where a reading from last Tuesday is worthless.
 Keep GeoJSON out of the repo when it is enormous. Decimate to what the zoom can
 actually show and say so in `SOURCES.md`.
 
+#### Verify a join before you build on it
+
+**Two layers in the same service, from the same publisher, in the same
+projection, still may not join.** Portland's 3,026 garden plots and 62 garden
+boundaries share all three and cannot be related: only 98 plots fall inside any
+garden, and the `ActiveNet_ID` prefix that looks exactly like a foreign key
+lands anywhere from 4m to 638m from the garden it names, with three gardens
+claimed by multiple prefixes.
+
+So, before writing the feature that depends on a join:
+
+1. **Count the matches.** One query. A join that works returns most rows, not
+   3% of them.
+2. **When it fails, suspect the data before your own code.** An afternoon went
+   into three hypotheses about generalization, paging, and projection — all
+   disproved — before checking whether the two layers overlap at all. Test the
+   premise first, then the implementation.
+3. **Do not rescue it with proximity.** Assigning each key to whichever feature
+   is nearest is circular, and "151 of 166 landed somewhere" is not the claim a
+   reader takes from a per-feature number.
+4. **Report the aggregate and say why.** A citywide total needs no join and is
+   still worth surfacing. Put the failure in `SOURCES.md` with its counts: the
+   negative result is the expensive half of the research.
+
+Then ask the publisher which field joins them. That is a question for an email,
+not a harder algorithm.
+
 ### 5. Scaffold
 
 Copy from `templates/`, strip the `.tpl` extension:
@@ -211,6 +238,21 @@ On top of the palette, four map-specific rules:
    `moveend`/`zoomend`. Apparent spacing then stays constant at every zoom.
 7. **Any color not derived from a measurement must say so on the page.** Soft
    interpolated-looking washes are persuasive and easy to mistake for a model.
+8. **Run the validator in `--pairs all` mode, against the map's own surface.**
+   A map shows every category at once, which is the choropleth case, not the
+   adjacent-pair case. Pass `--surface` the actual `--map-bg`, not the chart
+   default, or the contrast numbers describe a page that does not exist.
+9. **The colors are a SET. A slot cannot be re-picked alone.** Green PDX proved
+   this twice in one session. Dark green natural areas with warm orange gardens
+   failed at ΔE 3.2 under protanopia, the classic red-green confusion, and it
+   looked completely fine on screen. Later, changing only that green to a drier
+   olive failed the normal-vision floor at ΔE 11.0 against the aqua beside it.
+   Moving both ends apart passed with the widest margins of the whole session.
+   When a design note asks for one color to change, re-validate all of them.
+10. **A contrast WARN is not dismissable.** It obliges relief: visible labels,
+    a count per layer in the legend, values printed in markers. Fills pale
+    enough to stack are pale enough to fail contrast, so plan the relief rather
+    than darkening the fill past the 0.55 ceiling.
 
 ## Non-Negotiables
 
@@ -240,7 +282,18 @@ Learned from the three maps that came before. Do not relearn them.
 ## Ship
 
 Hand off to `/ship-experiment`, which handles the screenshot, gallery entry,
-OG image, README, and commit. Before that, per the project SEO checklist, the new
+OG image, README, and commit.
+
+**The screenshot needs `agent-browser --headed`.** The basemaps are vector
+tiles rendered through WebGL, and headless Chrome here has none, so a headless
+capture of any map comes out with the data floating on a blank background and
+no basemap at all. It fails silently — the screenshot looks like a successful
+screenshot. Verified 2026-09-15.
+
+**Add the gallery entry in `lib/experiments/data.ts` before asking the user to
+look at the page.** The experiment layout reads `theme` from that entry and
+falls back to dark when the slug is missing, so a light map renders as dark
+text on a black page and looks like a CSS bug that is not one. Before that, per the project SEO checklist, the new
 route needs entries in `public/llms.txt` and `public/llms-full.txt`, and a note in
 `docs/01-progress.md`.
 

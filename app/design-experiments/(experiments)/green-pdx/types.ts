@@ -64,6 +64,24 @@ export interface MapFeature {
   detail?: { label: string; value: string }[]
   /** True only because the build script fetched it and counted it. */
   real: boolean
+  /**
+   * Where the record came from. Absent means the city's own layer, fetched and
+   * counted. `'community'` means a garden the city does not run, assembled by
+   * hand from its operator's own site — same reality, weaker provenance, and
+   * the UI says so where it is drawn.
+   */
+  source?: 'community'
+  /** Community records only: who runs the garden. */
+  operator?: string
+  /** Community records only: the location is an intersection or an address,
+   *  not a surveyed boundary, so it is good to about a block. */
+  approx?: boolean
+  /** Community records only: a sentence about plots, size, or what kind of
+   *  place it is, when the operator publishes one. */
+  note?: string | null
+  sourceName?: string
+  sourceUrl?: string
+  contact?: string | null
 }
 
 /** Properties the build script writes onto each polygon. */
@@ -111,6 +129,10 @@ export interface MapData {
     naturalAreas: number
     naturalAreasNamed: number
     gardens: number
+    /** Split by provenance: the city's own program vs gardens run by
+     *  neighborhood associations and nonprofits, assembled by hand. */
+    gardensCity: number
+    gardensCommunity: number
     neighborhoods: number
     gardenPlots: number
     parkAcres: number

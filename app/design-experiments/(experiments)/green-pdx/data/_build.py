@@ -221,6 +221,54 @@ for plot in plots_raw:
 
 features = []
 skipped_gardens = 0
+
+# ---- 3b. Community gardens the city does not run --------------------------
+#
+# The PP&R layer is a roster of PP&R's own program, not a census of gardens.
+# Brooklyn Community Garden sits on ODOT land and is run by the Brooklyn Action
+# Corps, so it is absent — and a person looking for their nearest garden does
+# not care which bureau runs it. `extra-gardens.json` is a small hand-assembled
+# set to fill that gap, with a source per record and the rejects kept alongside.
+#
+# These are drawn with the same violet mark as the city gardens, deliberately:
+# the distinction that matters to a reader is "community garden", not "which
+# agency". The distinction that matters to honesty is carried in the popup,
+# which names the operator and says the location is approximate.
+EXTRA = os.path.join(HERE, "extra-gardens.json")
+with open(EXTRA) as f:
+    extra = json.load(f)
+
+for g in extra["gardens"]:
+    detail = []
+    if g.get("plots"):
+        detail.append({"label": "Plots", "value": str(g["plots"])})
+    detail.append({"label": "Run by", "value": g["operator"]})
+    if g.get("onLandOf"):
+        detail.append({"label": "On land of", "value": g["onLandOf"]})
+    features.append(
+        {
+            "id": g["id"],
+            "layer": "garden",
+            "lat": g["lat"],
+            "lng": g["lng"],
+            "value": g.get("plots"),
+            "label": g["name"],
+            "detail": detail,
+            # Real: these gardens exist and an operator says so on its own site.
+            # What differs from the city records is the provenance tier and the
+            # precision of the location, and both are carried into the UI rather
+            # than flattened away here.
+            "real": True,
+            "source": "community",
+            "operator": g["operator"],
+            "approx": True,
+            "note": g.get("plotsNote"),
+            "sourceName": g["sourceName"],
+            "sourceUrl": g["sourceUrl"],
+            "contact": g.get("contact"),
+        }
+    )
+
 for idx, feat in enumerate(gardens_raw):
     p = feat.get("properties") or {}
     center = ring_centroid(feat.get("geometry"))
@@ -292,6 +340,8 @@ payload = {
         "naturalAreasNamed": sum(1 for f in natural if f["properties"]["named"]),
         "gardens": len(features),
         "neighborhoods": len(hoods),
+        "gardensCity": sum(1 for f in features if f.get("source") != "community"),
+        "gardensCommunity": sum(1 for f in features if f.get("source") == "community"),
         "gardenPlots": sum(f["value"] or 0 for f in features),
         "parkAcres": round(sum(f["properties"]["acres"] or 0 for f in parks)),
         # Citywide, straight from the plot layer. Not attributed to gardens —

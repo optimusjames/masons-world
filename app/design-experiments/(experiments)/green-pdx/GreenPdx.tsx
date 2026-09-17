@@ -305,18 +305,16 @@ export default function GreenPdx() {
             mapData.counts.gardens +
             mapData.counts.neighborhoods
           ).toLocaleString()}{' '}
-          shapes on this map are real city records, fetched and counted on{' '}
-          {MAP_CONFIG.sources[0].verifiedOn}. Boundaries are generalized to about 10m
-          for the browser, so they show where a place is, not where its property line
-          runs.{' '}
-          {/* Citywide, from the plot layer as a whole. It is deliberately not
-              broken out per garden: neither a spatial nor an attribute join
-              between plots and gardens survived checking, and SOURCES.md
-              records both attempts. */}
-          The city also maps {mapData.counts.mappedPlots.toLocaleString()} individual
-          garden plots, <strong>{mapData.counts.adaPlots}</strong> of them
-          ADA-accessible, though that layer cannot be reliably attributed to
-          individual gardens, so this map does not try.
+          shapes on this map come from City of Portland services, fetched and counted
+          on {MAP_CONFIG.sources[0].verifiedOn}. Boundaries are generalized to about
+          10m for the browser, so they show where a place is, not where its property
+          line runs.{' '}
+          {/* One sentence, because the popups already name each garden's
+              operator. The reasoning behind what is and is not attributed here
+              belongs in SOURCES.md, not on the page: the reader did not ask. */}
+          {mapData.counts.gardensCommunity} of the gardens are run by neighborhood
+          groups and nonprofits rather than the city, and are marked with who runs
+          them.
         </div>
         {MAP_CONFIG.sources.map((s) => (
           <div key={s.id} className={styles.sourceRow}>

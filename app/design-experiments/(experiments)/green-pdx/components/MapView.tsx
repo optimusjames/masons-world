@@ -404,18 +404,11 @@ function gardenMark(f: MapFeature): string {
       `${f.value}</span>`
     )
   }
-  // Too small for a number, so it gets the sprout instead. A plain dot said
-  // "something is here"; this says what kind of something, which is the whole
-  // job of a marker on a map with three layers.
+  // No published plot count, so a plain dot. It says a garden is here, which is
+  // all we know about it.
   return (
     `<span class="${styles.gardenDot}" ` +
-    `style="width:${size}px;height:${size}px;background:${GARDEN}">` +
-    `<svg viewBox="0 0 12 12" aria-hidden><path d="M6 10V5.4" ` +
-    `stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>` +
-    `<path d="M6 5.6C6 4 4.9 2.9 3.3 2.9c0 1.6 1.1 2.7 2.7 2.7z" fill="#fff"/>` +
-    `<path d="M6 5.2c0-1.4 1-2.4 2.4-2.4 0 1.4-1 2.4-2.4 2.4z" fill="#fff" ` +
-    `opacity="0.8"/></svg>` +
-    `</span>`
+    `style="width:${size}px;height:${size}px;background:${GARDEN}"></span>`
   )
 }
 
@@ -430,12 +423,28 @@ function gardenPopup(f: MapFeature): string {
     )
     .join('')
 
-  // The data has plot counts but no availability and no per-garden contact, so
-  // the map sends people to the program that has both rather than implying it
-  // knows whether a plot is free this season.
+  // A community garden is run by its own neighborhood association or nonprofit,
+  // so "request a plot" goes to them, not to the city's program page which has
+  // never heard of it. The city's page stays the right answer for city gardens.
+  const isCommunity = f.source === 'community'
+  const ctaHref = isCommunity ? f.sourceUrl ?? GARDEN_PROGRAM : GARDEN_PROGRAM
+  const ctaLabel = isCommunity ? 'Get involved' : 'How to request a plot'
   const cta =
-    `<a class="${styles.popupCta}" href="${GARDEN_PROGRAM}" target="_blank" rel="noopener">` +
-    `How to request a plot <span aria-hidden>→</span></a>`
+    `<a class="${styles.popupCta}" href="${ctaHref}" target="_blank" rel="noopener">` +
+    `${ctaLabel} <span aria-hidden>→</span></a>` +
+    (f.contact
+      ? `<div class="${styles.popupContact}">${escapeHtml(f.contact)}</div>`
+      : '')
+
+  // What this record is and is not. The mark is identical to a city garden's
+  // because the distinction a reader cares about is "community garden"; the
+  // distinction honesty cares about is provenance, and it lives here.
+  const provenance = isCommunity
+    ? `<div class="${styles.popupNote}">` +
+      (f.note ? `${escapeHtml(f.note)} ` : '') +
+      `Location is approximate, from ${escapeHtml(f.sourceName ?? 'its operator')}.` +
+      `</div>`
+    : ''
 
   return (
     `<div class="${styles.popup}">` +
@@ -445,8 +454,13 @@ function gardenPopup(f: MapFeature): string {
     `</div>` +
     `<div class="${styles.popupTitle}">${escapeHtml(f.label)}</div>` +
     rows +
+    provenance +
     cta +
-    `<span class="${styles.popupReal}">verified source · Portland Parks &amp; Rec</span>` +
+    `<span class="${styles.popupReal}">` +
+    (isCommunity
+      ? `community source · ${escapeHtml(f.sourceName ?? 'operator')}`
+      : 'verified source · Portland Parks &amp; Rec') +
+    `</span>` +
     `</div>`
   )
 }

@@ -122,7 +122,20 @@ export const MAP_CONFIG: MapConfig = {
       verifiedOn: '2026-09-15',
       recordCount: 125,
       notes:
-        'Recognized neighborhood boundaries with coalition names. Context for orientation, off by default.',
+        'Recognized neighborhood boundaries with coalition names. Context for orientation.',
+    },
+
+    {
+      id: 'community-gardens',
+      name: 'Community-run gardens (hand-assembled)',
+      tier: 'C',
+      url: 'https://brooklyn-neighborhood.org/brooklyn-community-garden/',
+      cadence: 'hand-checked, does not update itself',
+      requiresKey: false,
+      verifiedOn: '2026-09-16',
+      recordCount: 6,
+      notes:
+        "Gardens the city does not run, so they are absent from the PP&R layer: Brooklyn (Brooklyn Action Corps, on ODOT land), Neighborhoods, 139th Ave and Harrison Park (Outgrowing Hunger), NE 33rd Community Farm (Mudbone Grown), Emerson Street (Groundwork Portland). Each one is in the list because its own operator says on its own site that it exists. Locations are intersections or addresses rather than surveyed boundaries, so they are good to about a block, and every popup says so. Five further candidates were rejected for failing that bar; they are listed in data/extra-gardens.json.",
     },
   ],
 

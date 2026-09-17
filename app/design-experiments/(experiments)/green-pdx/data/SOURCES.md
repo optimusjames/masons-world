@@ -70,12 +70,60 @@ middle and not a separately published coordinate.
 
 **A garden with no plot count gets no plot row** in its popup. Printing 0 would
 read as "no plots", which is a different claim than "not recorded". Across the
-62 gardens the recorded plots total **2,397**.
+62 city gardens the recorded plots total **2,397**; with the six community-run
+gardens in section 3b, the map shows **68** gardens and **2,541** plots.
 
 **This layer is why the map stops at the city line.** The program is run by
 Portland Parks & Recreation, so gardens exist in the data only inside Portland.
 Drawing the metro would put gardens in the middle of an empty region and imply
 that Beaverton and Gresham have none, which the data does not say.
+
+## 3b. Community-run gardens — hand-assembled — Tier C
+
+**The city layer is a roster of the city's own program, not a census of
+gardens.** That distinction was invisible until James noticed his own garden
+missing: Brooklyn Community Garden, at SE Franklin and McLoughlin, sits on ODOT
+land and is run by the Brooklyn Action Corps with Southeast Uplift, so Portland
+Parks has no record of it. A person looking for their nearest garden does not
+care which bureau runs it, so the map now carries both.
+
+`extra-gardens.json` holds **6** records, assembled by hand on 2026-09-16.
+
+| Garden | Run by | Source |
+|---|---|---|
+| Brooklyn | Brooklyn Action Corps, on ODOT land | brooklyn-neighborhood.org |
+| Neighborhoods (SE 162nd) | Outgrowing Hunger | outgrowinghunger.org |
+| 139th Ave | Outgrowing Hunger | outgrowinghunger.org |
+| Harrison Park | Outgrowing Hunger | outgrowinghunger.org |
+| NE 33rd Community Farm | Mudbone Grown, on Oregon Food Bank land | growportland.org |
+| Emerson Street | Groundwork Portland | groundworkportland.org |
+
+**The bar for inclusion:** the garden's own operator, or the organization that
+manages it, says on its own site that it exists. A third-party list is a lead,
+not a source.
+
+**Five candidates failed that bar and are not drawn.** They are kept in
+`extra-gardens.json` under `_rejected` so nobody researches them twice:
+Cully, Boise–Eliot and Madison (Wikipedia's list, contradicted by the city's own
+public page), Market Street (absent from the site of the organization said to
+manage it), and Wood (described as city-managed yet missing from the city's
+layer, the same contradiction as Cully).
+
+**Locations are approximate.** These are intersections, addresses, or landmarks,
+not garden boundaries, so each is good to roughly a block. The popup says so on
+every one. Do not treat them as equivalent to the city's surveyed polygons. One
+correction already: NE 33rd Community Farm was first placed from the NE 33rd and
+Columbia Blvd intersection, about half a kilometre from the Oregon Food Bank
+site it actually occupies.
+
+**Nothing here updates itself.** Small gardens open and close, and unlike the
+ArcGIS layers this file is only as current as its last hand-check.
+
+**A wobble worth recording:** the city's own page says "There are 60 PP&R
+Community Gardens" while its GIS layer returns 62. We draw what the layer
+contains and note the disagreement rather than reconciling it silently.
+
+---
 
 ## 4. Neighborhoods — City of Portland — Tier A
 
@@ -104,10 +152,17 @@ rather than a palette color. It is not a fourth kind of green space.
 
 ## Real vs illustrative
 
-**All 1,080 drawn records are real** — 318 parks, 575 natural areas, 62 gardens,
-125 neighborhoods — every one fetched from the publishing agency on 2026-09-15
-and counted. Nothing on this map is illustrative, synthesized, interpolated, or
-modelled. No value is shown that its source does not carry.
+**All 1,086 drawn records are real**, in two tiers of provenance:
+
+- **1,080 Tier A city records** — 318 parks, 575 natural areas, 62 gardens, 125
+  neighborhoods — every one fetched from the publishing agency on 2026-09-15 and
+  counted.
+- **6 Tier C community records** — gardens the city does not run, assembled by
+  hand on 2026-09-16 from each operator's own site, with approximate locations.
+  See section 3b. Their markers say so.
+
+Nothing on this map is illustrative, synthesized, interpolated, or modelled. No
+value is shown that its source does not carry.
 
 ## Could not verify
 

@@ -113,10 +113,17 @@ export function gardenRadius(plots: number | null | undefined): number {
   return Math.round(Math.min(Math.max(6 + Math.sqrt(plots) * 0.85, 6), 13))
 }
 
-/** Gardens large enough that the number fits inside the dot. Below this the
- *  count would have to shrink past legibility, so it stays in the popup. */
+/**
+ * Print the count whenever there is one.
+ *
+ * This used to require 20 plots, with smaller gardens getting a sprout glyph
+ * instead. Two problems: a 17-plot garden hid a number we actually had, and at
+ * a 12px marker the sprout's stem and leaves collapsed into something that read
+ * as the letter Y. A garden with no published count gets a plain dot, which
+ * says "a garden is here" without pretending to say more.
+ */
 export function showsPlotBadge(plots: number | null | undefined): boolean {
-  return (plots ?? 0) >= 20
+  return (plots ?? 0) > 0
 }
 
 export function colorFor(layer: LayerId): string {

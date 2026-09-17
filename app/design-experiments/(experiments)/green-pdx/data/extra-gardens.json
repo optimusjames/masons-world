@@ -1,0 +1,130 @@
+{
+  "_README": [
+    "Community gardens that exist in Portland but are NOT in the city's Parks & Rec",
+    "layer, because that layer is a roster of PP&R's own program rather than a census",
+    "of every garden. Hand-assembled on 2026-09-16, one record at a time, each with",
+    "the source it came from and how its location was derived.",
+    "",
+    "THE BAR FOR INCLUSION: the garden's own operator, or the organization that",
+    "manages it, says on its own site that the garden exists. A third-party list is a",
+    "lead, not a source. Four candidates were dropped for failing this bar and are",
+    "recorded in `_rejected` below so nobody re-researches them.",
+    "",
+    "LOCATIONS ARE APPROXIMATE. These are street intersections and addresses, not",
+    "garden boundaries, so each is good to roughly a block. That is stated per record",
+    "in `locationMethod`, carried into the UI, and said plainly in the popup. Do not",
+    "let these be treated like the city's surveyed polygons.",
+    "",
+    "Re-verify before leaning on this: small gardens open and close, and unlike the",
+    "city layer nothing here updates itself."
+  ],
+
+  "verifiedOn": "2026-09-16",
+
+  "gardens": [
+    {
+      "id": "extra-brooklyn",
+      "name": "Brooklyn Community Garden",
+      "lat": 45.49969,
+      "lng": -122.66004,
+      "locationMethod": "intersection",
+      "locationNote": "SE Franklin St at SE McLoughlin Blvd, from the OSM intersection node",
+      "operator": "Brooklyn Action Corps neighborhood association, with Southeast Uplift",
+      "onLandOf": "ODOT",
+      "plots": 30,
+      "plotsNote": "\"more than 30 garden plots\", per the garden's own page",
+      "sourceName": "Brooklyn Action Corps",
+      "sourceUrl": "https://brooklyn-neighborhood.org/brooklyn-community-garden/",
+      "contact": "bcg-leads@bacpdx.org"
+    },
+    {
+      "id": "extra-neighborhoods",
+      "name": "Neighborhoods Community Garden",
+      "lat": 45.51915,
+      "lng": -122.4965,
+      "locationMethod": "intersection",
+      "locationNote": "SE 162nd Ave south of SE Stark St, from the OSM intersection node",
+      "operator": "Outgrowing Hunger",
+      "plots": 114,
+      "plotsNote": "114 plots of about 600 sq ft across 2.5 acres; Portland's largest community garden",
+      "sourceName": "Outgrowing Hunger",
+      "sourceUrl": "https://outgrowinghunger.org/gardens"
+    },
+    {
+      "id": "extra-139th",
+      "name": "139th Ave Community Garden",
+      "lat": 45.52229,
+      "lng": -122.52096,
+      "locationMethod": "intersection",
+      "locationNote": "SE 139th Ave south of E Burnside St, from the OSM intersection node",
+      "operator": "Outgrowing Hunger",
+      "plots": null,
+      "plotsNote": "About 40,000 sq ft; plot count not published",
+      "sourceName": "Outgrowing Hunger",
+      "sourceUrl": "https://outgrowinghunger.org/gardens"
+    },
+    {
+      "id": "extra-harrison-park",
+      "name": "Harrison Park Community Garden",
+      "lat": 45.50877,
+      "lng": -122.5763,
+      "locationMethod": "landmark",
+      "locationNote": "Harrison Park, Montavilla, geocoded via Nominatim",
+      "operator": "Outgrowing Hunger",
+      "plots": null,
+      "plotsNote": "Plot count not published",
+      "sourceName": "Outgrowing Hunger",
+      "sourceUrl": "https://outgrowinghunger.org/gardens"
+    },
+    {
+      "id": "extra-ne33rd",
+      "name": "NE 33rd Community Farm",
+      "lat": 45.57976,
+      "lng": -122.63195,
+      "locationMethod": "address",
+      "locationNote": "7900 NE 33rd Dr, the Oregon Food Bank site, geocoded via Nominatim. An earlier guess from the NE 33rd x Columbia Blvd intersection was about half a kilometre off and was discarded.",
+      "operator": "Mudbone Grown, on Oregon Food Bank land",
+      "plots": null,
+      "plotsNote": "A one-acre working farm rather than rented plots: it grows food for CSA boxes and community programs, so this is a place to get involved rather than a place to rent a bed",
+      "kind": "farm",
+      "sourceName": "Grow Portland, with Oregon Food Bank and Multnomah County",
+      "sourceUrl": "https://www.growportland.org/community-gardens"
+    },
+    {
+      "id": "extra-emerson",
+      "name": "Emerson Street Garden",
+      "lat": 45.56172,
+      "lng": -122.65747,
+      "locationMethod": "address",
+      "locationNote": "822 NE Emerson St, geocoded via Nominatim",
+      "operator": "Groundwork Portland",
+      "plots": null,
+      "plotsNote": "A communal garden on a 0.2-acre lot, open for shared planting and harvesting rather than divided into rented plots",
+      "sourceName": "Groundwork Portland",
+      "sourceUrl": "https://www.groundworkportland.org/emerson-street-garden/"
+    }
+  ],
+
+  "_rejected": [
+    {
+      "name": "Cully Community Garden",
+      "why": "Listed by Wikipedia at NE 42nd and Killingsworth and described elsewhere as a PP&R garden, but it is absent from PP&R's 62-record layer and unnamed on the city's own community gardens page. The only Cully garden the city names is the Native Gathering Garden at Cully Park, which is a different thing."
+    },
+    {
+      "name": "Boise-Eliot Community Garden",
+      "why": "Wikipedia gives 318 N Fremont St and says PP&R runs it, but it is in neither the city layer nor the city's public page. Likely closed; not drawable on a third-party list alone."
+    },
+    {
+      "name": "Madison Community Garden",
+      "why": "Wikipedia gives 2735 NE 82nd, which is McDaniel High School (formerly Madison). No evidence of a garden there from any operator or the school."
+    },
+    {
+      "name": "Market Street Community Garden",
+      "why": "Grow Portland's build list has it at SE Market and SE 101st, 'opening 2019', managed by Outgrowing Hunger. Outgrowing Hunger's own gardens page does not list it. Not confirmed by its manager."
+    },
+    {
+      "name": "Wood Community Garden",
+      "why": "Grow Portland says the City of Portland manages it, at 174th north of Powell, built 2018 — yet it does not appear in the city's own layer. Same contradiction as Cully; needs a first-party source before drawing."
+    }
+  ]
+}

@@ -340,13 +340,6 @@
   box-shadow: 0 3px 10px rgba(20, 16, 40, 0.45);
 }
 
-/* Small gardens carry a sprout instead of a number: under 20 plots the digits
-   would have to shrink past reading, and a bare dot says "something is here"
-   without saying what kind of something. */
-.gardenDot svg {
-  width: 72%;
-  height: 72%;
-}
 
 /* Above 20 plots the count rides inside the dot. The white ring is what keeps
    violet legible where a garden sits on top of a park fill. */
@@ -644,6 +637,15 @@
 
 .popupCtaQuiet:hover {
   color: var(--ink-soft);
+}
+
+/* A real contact address, where the garden publishes one. Monospaced so it
+   reads as something to copy rather than as prose. */
+.popupContact {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--ink-faint);
+  word-break: break-all;
 }
 
 .popupReal {

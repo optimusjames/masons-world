@@ -6,10 +6,10 @@ export const experiments: Experiment[] = [
     date: 'September 15, 2026',
     title: 'Green PDX',
     description:
-      "Where the green space in Portland is, and what kind it is. 318 parks covering 11,438 acres, 575 natural area parcels, and all 62 community gardens, drawn from four City of Portland services with no API key between them. Gardens carry their real plot counts, including how many are ADA-accessible, and link to the city's own program page rather than inventing availability. The natural area layer is a parcel inventory rather than a directory, so the 25 parcels the city has no name for say exactly that. The palette was chosen by running the dataviz validator: the instinctive green-and-orange pairing failed colorblind separation, and what shipped clears it.",
+      "Where the green space in Portland is, and what kind it is. 318 parks covering 11,438 acres, 575 natural area parcels, and 68 community gardens holding 2,541 plots, from four City of Portland services with no API key between them. The city's layer turned out to be a roster of its own program rather than a census, so six gardens run by neighborhood associations and nonprofits were added by hand from each operator's own site, marked as approximate and linking to whoever actually runs them. The natural area layer is a parcel inventory rather than a directory, so the 29 parcels the city has no name for say exactly that. The palette was chosen by running the dataviz validator: the instinctive green-and-orange pairing failed colorblind separation, and what shipped clears it.",
     blurb:
       'Every park, natural area, and community garden in Portland, from four city open-data services.',
-    scope: '318 parks · 11,438 acres · 2,397 garden plots',
+    scope: '318 parks · 11,438 acres · 2,541 garden plots',
     screenshot: '/screenshots/green-pdx.png',
     tags: ['Map', 'Leaflet', 'Portland', 'Parks', 'Open Data'],
     theme: 'light',

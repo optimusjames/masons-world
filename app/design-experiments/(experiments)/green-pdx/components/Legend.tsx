@@ -108,6 +108,9 @@ export default function Legend({ visibleLayers, onToggleLayer, counts, asOf }: P
         <div className={styles.legendNote}>
           Parks and natural areas overlap where the city manages both.
           <br />
+          Some gardens are run by the city, others by neighborhood associations and
+          nonprofits. Each one says which.
+          <br />
           Click a shape or a garden for details, or a neighborhood line for that
           neighborhood.
         </div>

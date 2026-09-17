@@ -13,8 +13,21 @@ This file tracks major changes and milestones in the project.
 **Green PDX: every park, natural area, and community garden**
 The second map from the `/map` skill, and the first one where the interesting
 work was deciding what *not* to draw. Four keyless City of Portland services:
-318 parks over 11,438 acres, 575 natural area parcels, 62 community gardens
-holding 2,397 plots, 125 neighborhood boundaries.
+318 parks over 11,438 acres, 575 natural area parcels, 68 community gardens
+holding 2,541 plots, 125 neighborhood boundaries.
+
+**The garden layer is a roster, not a census.** That only surfaced because James
+looked for his own garden and could not find it: Brooklyn Community Garden, at
+SE Franklin and McLoughlin, sits on ODOT land and is run by the Brooklyn Action
+Corps, so Portland Parks has no record of it. Six such gardens were added by
+hand, each one included only because its own operator says on its own site that
+it exists — a third-party list is a lead, not a source. Five more candidates
+failed that bar and are kept with their reasons in `extra-gardens.json`, three
+of them from a Wikipedia list the city's own page contradicts. They draw with
+the same violet mark, because the distinction a reader cares about is "community
+garden", not which agency runs it; the popup carries the distinction that
+matters to honesty, naming the operator, linking to them rather than the city's
+plot-request page, and saying the location is approximate.
 
 Two things were cut on honesty grounds, and both are worth remembering.
 

@@ -73,6 +73,13 @@
   padding: 10px 0;
 }
 
+/* Map pages open with their own place line (MapHero), so the tag row would be
+   a third strip of small caps before the title. The footer still lists them. */
+.frame:has([data-map-hero]) .subRow,
+.frame:has([data-map-hero]) .subRow + .rule {
+  display: none;
+}
+
 .label {
   font-family: 'Geist Pixel Square', monospace;
   font-size: 9px;

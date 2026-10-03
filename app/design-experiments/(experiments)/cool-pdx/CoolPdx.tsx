@@ -1,6 +1,7 @@
 'use client'
 
 import { type FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
+import MapHero from '@/app/design-experiments/components/MapHero'
 import styles from './styles.module.css'
 import MapView from './components/MapView'
 import LayerToggles from './components/LayerToggles'
@@ -216,14 +217,11 @@ export default function CoolPdx() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.eyebrow}>Portland, OR · Heat relief</div>
-        <h1 className={styles.title}>Cool PDX</h1>
-        <p className={styles.subtitle}>
-          On a hot day, find the nearest shade, water, and cool air — and see at a glance
-          which parts of the city are shaded and which bake.
-        </p>
-      </header>
+      <MapHero
+        place="Portland, Oregon · Heat relief"
+        title="Cool PDX"
+        dek="On a hot day, find the nearest shade, water, and cool air."
+      />
 
       <div className={`${styles.mapWrapper} ${fullscreen ? styles.mapWrapperFullscreen : ''}`}>
         <MapView

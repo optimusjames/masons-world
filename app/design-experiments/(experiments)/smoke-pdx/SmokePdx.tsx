@@ -1,12 +1,14 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react'
+import MapHero from '@/app/design-experiments/components/MapHero'
 import styles from './styles.module.css'
 import MapView from './components/MapView'
 import Legend from './components/Legend'
 import { MAP_CONFIG } from './map.config'
 import { METRO, REGION } from './data/place'
 import { bandFor, bearingLabel } from './components/scale'
+import { coordBounds, headingBetween, milesBetween } from './components/geo'
 import type { LayerId, MapData, MapFeature, MapFocus } from './types'
 
 /** Monitors carry a `metro` flag from the build; wind cells do not, so the
@@ -14,18 +16,6 @@ import type { LayerId, MapData, MapFeature, MapFocus } from './types'
 function inMetro(lat: number, lng: number): boolean {
   const [[s, w], [n, e]] = METRO.bounds
   return lat >= s && lat <= n && lng >= w && lng <= e
-}
-
-/** Miles between two points. Good enough at this scale, and it keeps a
- *  dependency out of the bundle for one formula. */
-function milesBetween(a: [number, number], b: [number, number]): number {
-  const toRad = (d: number) => (d * Math.PI) / 180
-  const dLat = toRad(b[0] - a[0])
-  const dLng = toRad(b[1] - a[1])
-  const h =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRad(a[0])) * Math.cos(toRad(b[0])) * Math.sin(dLng / 2) ** 2
-  return 3958.8 * 2 * Math.asin(Math.sqrt(h))
 }
 
 // The page server-renders this from data/live.ts, so the first paint is already
@@ -249,6 +239,7 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
     const metroWinds = allWinds.filter((f) => inMetro(f.lat, f.lng))
     const winds = metroWinds.length ? metroWinds : allWinds
     const windScope = metroWinds.length ? 'metro' : 'region'
+    let bearing: number | null = null
     let dir: string | null = null
     let speed: number | null = null
     if (winds.length) {
@@ -259,7 +250,8 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
         x += Math.sin(rad)
         y += Math.cos(rad)
       }
-      dir = bearingLabel((Math.atan2(x, y) * 180) / Math.PI)
+      bearing = ((Math.atan2(x, y) * 180) / Math.PI + 360) % 360
+      dir = bearingLabel(bearing)
       speed = Math.round(winds.reduce((s, w) => s + (w.value ?? 0), 0) / winds.length)
     }
 
@@ -275,6 +267,7 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
       metroCount: metroFresh.length,
       nwWorst,
       nwCount: fresh.length,
+      bearing,
       dir,
       speed,
       windScope,
@@ -328,38 +321,69 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
       })
     }
 
-    // The fastest cell in the grid is almost always out over the Pacific, which
-    // is true, unsurprising, and lands the reader on blank ocean with nothing to
-    // look at. Only consider wind near a station that is actually reporting, so
-    // wherever it goes has other data around it.
-    const NEAR_MI = 45
-    let windiest: MapFeature | null = null
-    let windNear: string | null = null
-    for (const w of data.features) {
-      if (w.layer !== 'wind' || w.value == null || w.bearing == null) continue
-      if (windiest && (w.value ?? 0) <= (windiest.value ?? 0)) continue
-      let nearest: MapFeature | null = null
-      let best = Infinity
-      for (const m of monitors) {
-        const d = milesBetween([w.lat, w.lng], [m.lat, m.lng])
-        if (d < best) {
-          best = d
-          nearest = m
+    // Where Portland's air is coming from. This replaced "strongest wind",
+    // which kept landing on open water near Seattle and never said anything
+    // about Portland. Wind bearings are the direction it blows FROM, so
+    // upwind is a straight line out of the city along the metro bearing.
+    // That is a heading, not a trajectory, so this names what lies upwind
+    // rather than claiming it as the source.
+    if (reading.bearing != null && reading.dir) {
+      const from = reading.bearing
+      const home = METRO.center
+      const UPWIND_CONE = 30 // degrees either side of the bearing
+      const UPWIND_MAX_MI = 400
+      const upwindMiles = (at: [number, number]): number | null => {
+        const d = milesBetween(home, at)
+        if (d > UPWIND_MAX_MI) return null
+        const off = Math.abs(((headingBetween(home, at) - from + 540) % 360) - 180)
+        return off <= UPWIND_CONE ? d : null
+      }
+
+      let fire: (typeof fires)[number] | null = null
+      let fireMi = Infinity
+      for (const f of fires) {
+        const box = coordBounds(f.geometry.coordinates)
+        if (!box) continue
+        const d = upwindMiles([(box[0][0] + box[1][0]) / 2, (box[0][1] + box[1][1]) / 2])
+        if (d != null && d < fireMi) {
+          fire = f
+          fireMi = d
         }
       }
-      if (!nearest || best > NEAR_MI) continue
-      windiest = w
-      windNear = nearest.label
-    }
-    if (windiest?.bearing != null) {
-      out.push({
-        key: 'wind',
-        label: 'Strongest wind',
-        detail:
-          `${Math.round(windiest.value ?? 0)} mph out of the ${bearingLabel(windiest.bearing)}` +
-          (windNear ? ` · near ${windNear}` : ''),
-        focus: () => ({ kind: 'wind', feature: windiest as MapFeature, nonce: Date.now() }),
-      })
+
+      // No fire upwind: name the nearest reporting station out that way, past
+      // the metro, so there is still a reading to go and look at.
+      let station: MapFeature | null = null
+      let stationMi = Infinity
+      if (!fire) {
+        for (const m of monitors) {
+          if (inMetro(m.lat, m.lng)) continue
+          const d = upwindMiles([m.lat, m.lng])
+          if (d != null && d < stationMi) {
+            station = m
+            stationMi = d
+          }
+        }
+      }
+
+      const wind = `Out of the ${reading.dir}${reading.speed != null ? ` at ${reading.speed} mph` : ''}`
+      if (fire) {
+        const f = fire
+        out.push({
+          key: 'upwind',
+          label: "Where Portland's air comes from",
+          detail: `${wind} · upwind: ${f.properties.name}, ${Math.round(fireMi)} mi`,
+          focus: () => ({ kind: 'fire', feature: f, nonce: Date.now() }),
+        })
+      } else if (station) {
+        const m = station
+        out.push({
+          key: 'upwind',
+          label: "Where Portland's air comes from",
+          detail: `${wind} · upwind: ${m.label}, AQI ${m.value}, ${Math.round(stationMi)} mi`,
+          focus: () => ({ kind: 'monitor', feature: m, from: home, nonce: Date.now() }),
+        })
+      }
     }
 
     // The view that started this: fires with a whole field of readings pooled
@@ -372,15 +396,11 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
     })
 
     return out
-  }, [data])
+  }, [data, reading])
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.eyebrow}>{MAP_CONFIG.place.name}</div>
-        <h1 className={styles.title}>Smoke PDX</h1>
-        <p className={styles.subtitle}>{MAP_CONFIG.question}</p>
-      </header>
+      <MapHero place={MAP_CONFIG.place.name} title={MAP_CONFIG.title} dek={MAP_CONFIG.dek} />
 
       {/* Fires make it, wind moves it, monitors measure what arrived. */}
       <div className={styles.reading}>

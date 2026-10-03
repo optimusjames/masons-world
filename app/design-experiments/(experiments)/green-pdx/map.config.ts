@@ -14,6 +14,7 @@ export const MAP_CONFIG: MapConfig = {
   slug: 'green-pdx',
   title: 'Green PDX',
   question: 'Where is the green space in Portland, and what kind is it.',
+  dek: 'Find every park, natural area, and community garden in Portland.',
 
   place: {
     name: PLACE.name,

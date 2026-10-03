@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect } from 'react'
+import MapHero from '@/app/design-experiments/components/MapHero'
 import styles from './styles.module.css'
 import MapView from './components/MapView'
 import Legend from './components/Legend'
@@ -65,11 +66,11 @@ export default function McLoughlinCorridor() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.headline}>
-        <div className={styles.eyebrow}>SE McLoughlin Blvd · Portland, OR · 2018–2026</div>
-        <h1 className={styles.title}>{headline.title}</h1>
-        <p className={styles.subtitle}>{headline.subtitle}</p>
-      </header>
+      <MapHero
+        place="SE McLoughlin Blvd · Portland, OR · 2018–2026"
+        title={headline.title}
+        dek={headline.subtitle}
+      />
 
       <div className={styles.grid}>
         <div className={styles.stickyMap} ref={stickyRef}>

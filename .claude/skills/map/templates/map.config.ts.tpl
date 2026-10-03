@@ -11,6 +11,7 @@ export const MAP_CONFIG: MapConfig = {
   slug: '{{SLUG}}',
   title: '{{TITLE}}',
   question: '{{THE ONE QUESTION THIS MAP ANSWERS}}',
+  dek: '{{ONE SENTENCE PROMISE, ~15 WORDS, SHOWN UNDER THE TITLE}}',
 
   place: {
     name: '{{PLACE NAME}}',

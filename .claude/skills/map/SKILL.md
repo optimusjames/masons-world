@@ -187,6 +187,21 @@ Copy from `templates/`, strip the `.tpl` extension:
 `map.config.ts` is the machine-readable spec: place, bbox, zoom, layers, sources,
 encoding. Fill it in completely. It is what a future public map tool would read.
 
+**The page opens with `MapHero`** (`@/app/design-experiments/components/MapHero`),
+not a hand-built header. It takes `place`, `title`, and `dek` straight from the
+config, and its `data-map-hero` attribute tells the experiment frame to drop its
+tag row so the page does not stack three strips of small caps before the title.
+
+Write the three fields to these rules:
+
+- **`place.name`** is the place only, short: "Portland, Oregon". The topic goes
+  in the dek, not after a dot in the eyebrow.
+- **`question`** is the design brief and never appears on the page.
+- **`dek`** is the sentence a visitor reads. One sentence, about 15 words, a
+  promise of what they can do or see ("See where the smoke is, which fires it
+  came from, and where the wind is taking it."). Never a question ending in a
+  period, no em dashes, and no caveats; those belong in `SOURCES.md`.
+
 ### 6. Color and encoding
 
 **Invoke the `dataviz` skill for the palette.** Do not invent a second opinion about
@@ -304,5 +319,5 @@ raw material for a public map tool and for selling curation.
 ## Portability
 
 Everything the skill needs lives in this directory. The only masons-world-specific
-touches are in Ship, above. When this becomes its own project, that section is the
-only thing to rewrite.
+touches are in Ship, above, and the `MapHero` import. When this becomes its own
+project, move `MapHero` in with the templates and rewrite Ship.

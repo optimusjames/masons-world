@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import MapHero from '@/app/design-experiments/components/MapHero'
 import styles from './styles.module.css'
 import MapView from './components/MapView'
 import Legend from './components/Legend'
@@ -46,11 +47,7 @@ export default function {{ComponentName}}() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.eyebrow}>{MAP_CONFIG.place.name}</div>
-        <h1 className={styles.title}>{MAP_CONFIG.title}</h1>
-        <p className={styles.subtitle}>{MAP_CONFIG.question}</p>
-      </header>
+      <MapHero place={MAP_CONFIG.place.name} title={MAP_CONFIG.title} dek={MAP_CONFIG.dek} />
 
       <div className={`${styles.mapWrapper} ${fullscreen ? styles.mapWrapperFullscreen : ''}`}>
         <MapView

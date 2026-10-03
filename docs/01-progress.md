@@ -8,6 +8,22 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+## October 2026
+
+**Maps share one header, and Smoke PDX says where Portland's air comes from**
+The map pages stacked three rows of small caps before the title and said the
+title twice, while the one sentence that explains the map sat quietest of all.
+Smoke, Green, Cool, and McLoughlin now open with a shared `MapHero` component
+(place, title, and a larger dek written as a promise rather than a question),
+and the experiment frame drops its tag row on any page that has one. The map
+skill's templates use it too, with a new `dek` field in `map.config.ts` and
+copy rules in `SKILL.md`.
+
+Smoke PDX's "strongest wind" highlight kept landing on open water near Seattle.
+It is now "Where Portland's air comes from": the metro wind bearing traced
+upwind from the city, naming the nearest fire that way, or the nearest
+reporting station when no fire is upwind.
+
 ## September 2026
 
 **Green PDX: every park, natural area, and community garden**

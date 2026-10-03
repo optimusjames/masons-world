@@ -38,39 +38,6 @@
   to { opacity: 1; transform: none; }
 }
 
-/* ---- header ---- */
-
-.header {
-  margin: 0 0 20px;
-  animation: rise 0.5s ease 0.05s both;
-}
-
-.eyebrow {
-  font-family: var(--font-space-mono, ui-monospace, monospace);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-
-.title {
-  font-family: var(--font-display, 'Michroma', sans-serif);
-  font-size: clamp(28px, 4vw, 42px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  margin: 0 0 8px;
-}
-
-.subtitle {
-  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
-  font-size: clamp(14px, 1.4vw, 16px);
-  color: var(--ink-soft);
-  margin: 0;
-  max-width: 620px;
-  line-height: 1.5;
-}
-
 /* ---- the reading: three numbers, then the sentence ---- */
 
 .reading {
@@ -339,7 +306,6 @@
   transform: scale(1.35);
   box-shadow: 0 3px 10px rgba(20, 16, 40, 0.45);
 }
-
 
 /* Above 20 plots the count rides inside the dot. The white ring is what keeps
    violet legible where a garden sits on top of a park fill. */

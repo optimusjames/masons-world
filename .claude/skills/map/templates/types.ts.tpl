@@ -35,6 +35,9 @@ export interface MapConfig {
   slug: string
   title: string
   question: string
+  /** The one sentence under the title on the page. A promise, not a question:
+   *  `question` is the design brief, this is what a visitor reads. */
+  dek: string
   place: {
     name: string
     bounds: [[number, number], [number, number]]

@@ -17,6 +17,7 @@ import styles from '../styles.module.css'
 import { MAP_CONFIG } from '../map.config'
 import { METRO, PAN_BOUNDS, REGION } from '../data/place'
 import type { FireFeature, LayerId, MapFeature, MapFocus, ShapeLayer } from '../types'
+import { coordBounds } from './geo'
 import {
   arrowLength,
   arrowOpacity,
@@ -923,32 +924,6 @@ function monitorPopup(f: MapFeature): string {
     `<span class="${styles.popupReal}">verified source · EPA AirNow</span>` +
     `</div>`
   )
-}
-
-/**
- * The bounding box of any GeoJSON coordinate nest, polygon or multipolygon.
- * The geometry is typed `unknown` upstream because it arrives from ArcGIS, so
- * this walks it with runtime checks rather than trusting a cast.
- */
-function coordBounds(coords: unknown): [[number, number], [number, number]] | null {
-  let s = 90
-  let w = 180
-  let n = -90
-  let e = -180
-  const walk = (c: unknown) => {
-    if (!Array.isArray(c)) return
-    if (typeof c[0] === 'number' && typeof c[1] === 'number') {
-      const [lng, lat] = c as [number, number]
-      if (lat < s) s = lat
-      if (lat > n) n = lat
-      if (lng < w) w = lng
-      if (lng > e) e = lng
-      return
-    }
-    for (const child of c) walk(child)
-  }
-  walk(coords)
-  return n >= s && e >= w ? [[s, w], [n, e]] : null
 }
 
 function firePopup(p: { name: string; acres: number | null; contained: number | null }): string {

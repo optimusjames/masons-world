@@ -12,9 +12,10 @@ export const MAP_CONFIG: MapConfig = {
   title: 'Smoke PDX',
   question:
     'Where is the smoke right now, where is it coming from, and which way is the wind carrying it.',
+  dek: 'See where the smoke is, which fires it came from, and where the wind is taking it.',
 
   place: {
-    name: 'Greater Portland · smoke across the Pacific Northwest',
+    name: 'Portland, Oregon',
     view: METRO,
     bounds: REGION.bounds,
     minZoom: REGION.minZoom,

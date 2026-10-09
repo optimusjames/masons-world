@@ -18,6 +18,9 @@ function inMetro(lat: number, lng: number): boolean {
   return lat >= s && lat <= n && lng >= w && lng <= e
 }
 
+/** One ISR window (REVALIDATE in data/live.ts) plus a little slack. */
+const STALE_AFTER_MS = 20 * 60_000
+
 // The page server-renders this from data/live.ts, so the first paint is already
 // current. Refresh re-fetches on demand for anyone watching the map change.
 export default function SmokePdx({ initialData }: { initialData: MapData }) {
@@ -186,6 +189,28 @@ export default function SmokePdx({ initialData }: { initialData: MapData }) {
       setRefreshing(false)
     }
   }, [data.observedAt, data.generatedAt])
+
+  // ISR serves the cached page first and rebuilds it in the background, so the
+  // first visitor after a quiet stretch gets HTML that can be hours old. If the
+  // payload we were handed is older than one revalidate window, go get the
+  // current one ourselves instead of leaving them on it until they reload.
+  // No `force`: the route's normal upstream cache is plenty fresh for this.
+  useEffect(() => {
+    const age = Date.now() - new Date(initialData.generatedAt).getTime()
+    if (!(age > STALE_AFTER_MS)) return
+    let cancelled = false
+    setRefreshing(true)
+    fetch('/api/smoke-pdx', { cache: 'no-store' })
+      .then((res) => (res.ok ? (res.json() as Promise<MapData>) : null))
+      .then((next) => {
+        if (!cancelled && next?.live) setData(next)
+      })
+      .catch(() => {})
+      .finally(() => !cancelled && setRefreshing(false))
+    return () => {
+      cancelled = true
+    }
+  }, [initialData.generatedAt])
 
   // Let the result stand long enough to read, then fall back to plain age.
   useEffect(() => {

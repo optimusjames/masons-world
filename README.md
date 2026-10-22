@@ -10,6 +10,20 @@ This is a design sketchbook, not production software. There's no test suite and 
 
 ## Experiments
 
+### Ride PDX
+
+**October 22, 2026**
+
+![Ride PDX](./public/screenshots/ride-pdx.png)
+
+Find a BIKETOWN bike or scooter and see how fast it gets you somewhere good, one question at a time. The map asks where you are starting (your location, a pin you drag the map under, or an address), then whether you want a bike, a scooter, or whichever is closest, then where to. Every one of BIKETOWN's 308 stations shows the bikes ready to rent on an orange badge, and about 1,500 e-bikes and scooters parked on the street come from the live feed, refreshed every minute. The trip is routed over real streets: the walk to your ride, the ride from it, and the walk the whole way for comparison. Destinations are 1,019 groceries, coffee shops, public libraries, parks, and viewpoints, and each step shows only what it needs, so the map never turns into a wall of pins. Lime and Bird publish no Portland vehicles, so BIKETOWN is the whole picture.
+
+**Tags:** Map - Leaflet - Portland - Bikes - Live Data
+
+**[View Live →](https://masons-world.vercel.app/design-experiments/ride-pdx)**
+
+---
+
 ### Green PDX
 
 **September 15, 2026**

@@ -10,6 +10,18 @@ This file tracks major changes and milestones in the project.
 
 ## October 2026
 
+**Ride PDX: the nearest BIKETOWN ride, and how long it takes**
+The third map from the `/map` skill, and the first built around a trip rather
+than a reading. BIKETOWN's live GBFS feed draws 308 stations as orange badges
+with the bike count printed on them, plus about 1,500 free-floating e-bikes and
+scooters. Lime and Bird were checked and publish nothing for Portland. 1,019
+places (PP&R parks and OpenStreetMap groceries, coffee, libraries, viewpoints)
+appear as icon pins in one Lucide family. The page is a three-step flow in
+the spirit of Fix It PDX: where are you starting, bike or scooter or either,
+then where to, with each step deciding what the map shows instead of a row of
+filters. The trip is routed on the public OSRM server, walk then ride, with a
+straight-line fallback marked by a tilde.
+
 **Maps share one header, and Smoke PDX says where Portland's air comes from**
 The map pages stacked three rows of small caps before the title and said the
 title twice, while the one sentence that explains the map sat quietest of all.

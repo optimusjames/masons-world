@@ -25,6 +25,12 @@ date it last returned data.
 | Neighborhood boundaries (125) | City of Portland | A | no | `.../Public/Boundaries/MapServer/1` | 2026-09-15 |
 | Population by block group / tract (carries `POP`) | Metro RLIS | A | no | `https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/Census_Block_Groups_2020/FeatureServer/0` | 2026-09-15 |
 | Regional parks & natural areas (6,462 sites) | Metro RLIS ORCA Sites | A | no | `https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/ORCA_Sites/FeatureServer/4` | 2026-09-15 |
+| Bike share (308 stations, live counts) | BIKETOWN GBFS (Lyft for PBOT) | A | no | `https://gbfs.lyft.com/gbfs/1.1/pdx/en/station_status.json` (root: `gbfs.biketownpdx.com/gbfs/gbfs.json`) | 2026-10-21 |
+| Free-floating e-bikes + scooters (~1,500, with range) | BIKETOWN GBFS 2.3 | A | no | `https://gbfs.lyft.com/gbfs/2.3/pdx/en/free_bike_status.json` | 2026-10-21 |
+| Scooters (Bird) | Bird GBFS | D | no | `https://mds.bird.co/gbfs/v2/public/portland/free_bike_status.json` (200, **0 vehicles**) | 2026-10-21 |
+| Scooters (Lime) | Lime GBFS | D | no | `https://data.lime.bike/api/partners/v2/gbfs/portland/gbfs.json` (**404**, v1 too) | 2026-10-21 |
+| Groceries, cafes, libraries, viewpoints | OpenStreetMap via Overpass | C | no | `https://overpass-api.de/api/interpreter` (`out center tags`) | 2026-10-21 |
+| Walk + bike times, one-to-many | OSRM `table` service, foot and bike | C | no | `https://routing.openstreetmap.de/routed-bike/table/v1/driving/{o};{d1};...?sources=0&annotations=duration` (CORS open) | 2026-10-21 |
 
 **PortlandMaps services are listed, not guessed.** `Public/COP_OpenData/MapServer`
 is referenced all over the web and returns `"Service not started"`. Hit
@@ -135,3 +141,12 @@ https://data.example.gov/resource/abcd-1234.geojson?$limit=5000
 **Check for staleness before you trust a layer.** A portal will happily serve a
 layer last updated in 2019 with no warning on the endpoint. Look for a max date
 in the records themselves, not the portal's metadata page.
+
+**GBFS is the first stop for any micromobility map.** Portland requires
+operators to publish it, and the MobilityData catalog
+(`https://raw.githubusercontent.com/MobilityData/gbfs/master/systems.csv`) lists
+every city's feeds. But the catalog lists feeds, not vehicles: Bird's Portland
+feed answers 200 with an empty array, and Lime's catalogued URL is a 404. Count
+`free_bike_status` before promising an operator. BIKETOWN's station
+`last_reported` is weeks old on most stations because the "lightweight"
+stations have no kiosk; use the feed's `last_updated` for the as-of time.

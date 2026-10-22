@@ -2,6 +2,20 @@ import type { Experiment } from '@/app/types/experiments'
 
 export const experiments: Experiment[] = [
   {
+    slug: 'ride-pdx',
+    date: 'October 22, 2026',
+    title: 'Ride PDX',
+    description:
+      "Find a BIKETOWN bike or scooter and see how fast it gets you somewhere good, one question at a time. The map asks where you are starting (your location, a pin you drag the map under, or an address), then whether you want a bike, a scooter, or whichever is closest, then where to. Every one of BIKETOWN's 308 stations shows the bikes ready to rent on an orange badge, and about 1,500 e-bikes and scooters parked on the street come from the live feed, refreshed every minute. The trip is routed over real streets: the walk to your ride, the ride from it, and the walk the whole way for comparison. Destinations are 1,019 groceries, coffee shops, public libraries, parks, and viewpoints, and each step shows only what it needs, so the map never turns into a wall of pins. Lime and Bird publish no Portland vehicles, so BIKETOWN is the whole picture.",
+    blurb:
+      'Pick a start, pick a bike or scooter, pick a place: a step-by-step BIKETOWN trip planner on live data.',
+    scope: '308 live stations · ~1,500 free vehicles · 1,019 places',
+    screenshot: '/screenshots/ride-pdx.png',
+    tags: ['Map', 'Leaflet', 'Portland', 'Bikes', 'Live Data'],
+    theme: 'light',
+    category: 'Civic & Data',
+  },
+  {
     slug: 'green-pdx',
     date: 'September 15, 2026',
     title: 'Green PDX',

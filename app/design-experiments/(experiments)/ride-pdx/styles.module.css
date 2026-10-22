@@ -1,0 +1,1769 @@
+/* ===========================================================================
+   Shared map chrome. Paste this at the TOP of the experiment's
+   styles.module.css, then add experiment-specific rules below it.
+
+   This block is what makes map #4 through #20 feel like one family. Change the
+   accent tokens per experiment; leave the structure alone.
+
+   The header is not here. It is the shared MapHero component, which reads
+   --accent (or --hero-eyebrow) from this block.
+   =========================================================================== */
+
+.page {
+  /* --- surface --- */
+  --bg: #faf6ef;
+  --ink: #2a2320;
+  --ink-soft: #6b5f57;
+  --ink-faint: #9a8d83;
+  --rule: rgba(42, 35, 32, 0.12);
+  --surface: #ffffff;
+  --map-bg: #eef2ee;
+
+  /* --- per-experiment accent (override these) --- */
+  --accent: #e2560e;
+
+  color: var(--ink);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 56px;
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- map ---- */
+
+.mapWrapper {
+  position: relative;
+  height: 64dvh;
+  min-height: 460px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--map-bg);
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- fullscreen (standard on every map) ----
+   A takeover within the viewport, not the browser Fullscreen API: it keeps the
+   page's own chrome and Esc behavior predictable. Toggled by the ⤢ button. */
+
+.mapWrapperFullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  animation: none;
+}
+
+.mapControls {
+  position: absolute;
+  z-index: 500;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fsBtn {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(42, 35, 32, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fsBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(42, 35, 32, 0.16);
+}
+
+/* The basemap recedes so the data carries all the saturation on the page. */
+.map :global(.leaflet-tile-pane) {
+  filter: saturate(0.55) contrast(0.95);
+}
+
+.map :global(.leaflet-container) {
+  background: var(--map-bg);
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+/* Credit is a license requirement, not content: legible, never loud. Keep it to
+   the minimum the licenses actually ask for (see BASEMAP_ATTRIBUTION) and let
+   the map have the space. */
+.map :global(.leaflet-control-attribution) {
+  font-size: 9px;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink-faint);
+  padding: 0 5px;
+}
+
+.map :global(.leaflet-control-attribution a) {
+  color: var(--ink-faint);
+  text-decoration: none;
+}
+
+.map :global(.leaflet-control-attribution a:hover) {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+
+/* The credit shrinks before the map does. On a phone the map is the whole
+   point, so the line goes to 8px, stops wrapping, and thins its backdrop. */
+@media (max-width: 640px) {
+  .map :global(.leaflet-control-attribution) {
+    font-size: 8px;
+    padding: 0 3px;
+    max-width: 60vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(255, 255, 255, 0.42);
+  }
+}
+
+/* ---- legend ---- */
+
+.legend {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 10px 12px;
+  max-width: 260px;
+  box-shadow: 0 2px 12px rgba(42, 35, 32, 0.08);
+  animation: rise 0.4s ease 0.2s both;
+}
+
+.legendHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.legendChevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.legend[data-collapsed='true'] .legendChevron {
+  transform: rotate(-90deg);
+}
+
+.legendBody {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.legend[data-collapsed='true'] .legendBody {
+  display: none;
+}
+
+.legendUnit {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+
+.legendRamp {
+  display: grid;
+  gap: 5px;
+}
+
+.legendBand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.legendSwatch {
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  flex: none;
+}
+
+.legendRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.legendChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--ink);
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.legendChipOff {
+  opacity: 0.45;
+}
+
+.legendCount {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+
+.legendAsOf {
+  font-size: 11px;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+/* ---- popup ---- */
+
+.popupWrap :global(.leaflet-popup-content-wrapper) {
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(42, 35, 32, 0.16);
+}
+
+.popupWrap :global(.leaflet-popup-content) {
+  margin: 10px 12px;
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.popup {
+  display: grid;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.popupHead {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.popupDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.popupTitle {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.popupWhen {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.popupRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.popupRowLabel {
+  color: var(--ink-faint);
+}
+
+.popupRowValue {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Provenance, stated where the record is drawn. */
+.popupReal,
+.popupSynthetic {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-top: 4px;
+  border-top: 1px solid var(--rule);
+}
+
+.popupReal {
+  color: #3f9d6b;
+}
+
+.popupSynthetic {
+  color: #b8873b;
+}
+
+@media (max-width: 540px) {
+  .legend {
+    max-width: calc(100% - 24px);
+  }
+  .mapWrapper {
+    height: 56dvh;
+  }
+}
+.sources {
+  margin-top: 16px;
+  display: grid;
+  gap: 6px;
+  animation: rise 0.5s ease 0.25s both;
+}
+
+.sourcesHead {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 760px;
+  margin-bottom: 4px;
+}
+
+.sourceRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ink-faint);
+  flex-wrap: wrap;
+}
+
+.sourceRow a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sourceRow a:hover {
+  color: var(--ink);
+}
+
+/* The tier is the honesty rating, so it reads as a badge rather than as
+   decoration. */
+.sourceTier {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink-faint);
+  flex: none;
+}
+
+.sourceTier[data-tier='A'] {
+  background: #3f9d6b;
+}
+
+.sourceTier[data-tier='B'] {
+  background: #b8873b;
+}
+
+.sourceTier[data-tier='C'],
+.sourceTier[data-tier='D'] {
+  background: #b0564a;
+}
+
+.sourceMeta {
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ===========================================================================
+   Ride PDX. Everything below is this experiment's own.
+
+   The feel is a nav app: chunky rounded cards, one line-icon family (Lucide)
+   on the map and in the UI alike, and one bold number per thing. The orange is BIKETOWN's, validated against this
+   basemap in components/scale.ts.
+   =========================================================================== */
+
+.page {
+  --biketown: #e2560e;
+  --scooter: #2a78d6;
+  --empty: #8a8f98;
+  --sheet-radius: 18px;
+}
+
+/* A nav map needs more height than a reading map: the sheet lives on it. */
+.mapWrapper {
+  height: 76dvh;
+  min-height: 600px;
+  border-radius: 14px;
+}
+
+.mapWrapper[data-picking='true'] .map :global(.leaflet-container),
+.mapWrapper[data-picking='true'] .map {
+  cursor: crosshair;
+}
+
+/* ---- right-hand buttons ---- */
+
+.mapControls {
+  flex-direction: row-reverse;
+}
+
+.fsBtn:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+/* ---- key ---- */
+
+.legend {
+  top: 12px;
+  border-radius: 999px;
+  max-width: 250px;
+  padding: 8px 12px;
+}
+
+/* Open, the pill becomes a card. */
+.legend[data-collapsed='false'] {
+  border-radius: 14px;
+}
+
+.legendHeader {
+  font-size: 10px;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--empty);
+  flex: none;
+}
+
+.liveDot[data-live='true'] {
+  background: #3f9d6b;
+  box-shadow: 0 0 0 0 rgba(63, 157, 107, 0.5);
+  animation: livePulse 2s ease-out infinite;
+}
+
+@keyframes livePulse {
+  to {
+    box-shadow: 0 0 0 7px rgba(63, 157, 107, 0);
+  }
+}
+
+.keyRow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.keyBadge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--biketown);
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 4px rgba(42, 35, 32, 0.25);
+  color: #fff;
+  font: 700 11px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.keyBadge[data-state='empty'] {
+  background: var(--empty);
+}
+
+.keyDot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  margin: 0 6px;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 0 1px rgba(42, 35, 32, 0.15);
+}
+
+.keyDot[data-kind='e'] {
+  background: var(--biketown);
+}
+
+.keyDot[data-kind='s'] {
+  background: var(--scooter);
+}
+
+.keyNote {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-faint);
+}
+
+.refreshBtn {
+  justify-self: start;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 5px 11px;
+  font: 600 11px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.refreshBtn:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+/* ---- markers ---- */
+
+/* divIcon wrappers: Leaflet's default white square must go. */
+.stationIcon,
+.placeIcon,
+.vehicleIcon,
+.youIcon,
+.selIcon {
+  background: none;
+  border: 0;
+}
+
+/* The station badge. A rounded square with a tail, so it reads as "a place
+   bikes live" and never as one of the round e-bike dots. */
+.stationPin {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  margin-left: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border-radius: 11px;
+  border: 2px solid #fff;
+  background: var(--biketown);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(42, 35, 32, 0.28);
+  transform-origin: 50% 120%;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+
+.stationPin::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  bottom: -6px;
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.stationPin:hover {
+  transform: scale(1.12);
+}
+
+.stationPin[data-state='empty'],
+.stationPin[data-state='off'] {
+  background: var(--empty);
+}
+
+.stationPin[data-state='off'] {
+  opacity: 0.55;
+}
+
+.stationGlyph {
+  display: flex;
+  line-height: 0;
+  margin-bottom: -1px;
+}
+
+.stationCount {
+  font: 700 12px/1 var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zoomed out, the badges shrink to stamps so the city stays legible. */
+.map[data-zoom='11'] .stationPin,
+.map[data-zoom='12'] .stationPin {
+  transform: scale(0.55);
+}
+
+.map[data-zoom='13'] .stationPin {
+  transform: scale(0.8);
+}
+
+/* Places: a tinted disc with a line icon. Ink, not color, carries the
+   category, so these sit quietly under the orange and blue rides. */
+.placePin {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--tint, #fff);
+  color: var(--ink);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 0 rgba(42, 35, 32, 0.08), 0 2px 8px rgba(42, 35, 32, 0.22);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  animation: pop 0.25s ease both;
+}
+
+.placePin:hover {
+  transform: scale(1.18);
+  background: var(--ink);
+  color: #fff;
+}
+
+/* Free vehicles up close: a round chip with the vehicle drawn in it. */
+.vehicleChip {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: var(--biketown);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(42, 35, 32, 0.3);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  animation: pop 0.2s ease both;
+}
+
+.vehicleChip[data-kind='s'] {
+  background: var(--scooter);
+}
+
+.vehicleChip:hover {
+  transform: scale(1.15);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.youDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 0 rgba(42, 35, 32, 0.35), 0 2px 8px rgba(42, 35, 32, 0.35);
+  animation: youPulse 2.2s ease-out infinite;
+}
+
+@keyframes youPulse {
+  to {
+    box-shadow: 0 0 0 16px rgba(42, 35, 32, 0), 0 2px 8px rgba(42, 35, 32, 0.35);
+  }
+}
+
+.selRing {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  background: rgba(255, 255, 255, 0.35);
+  animation: selPulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes selPulse {
+  from {
+    transform: scale(0.85);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ---- the sheet ---- */
+
+.sheetSlot[hidden] {
+  display: none;
+}
+
+.sheetSlot {
+  position: absolute;
+  z-index: 600;
+  left: 12px;
+  bottom: 26px;
+  width: 360px;
+  max-height: calc(100% - 140px);
+  display: flex;
+  animation: rise 0.45s ease 0.3s both;
+}
+
+.sheet {
+  width: 100%;
+  overflow-y: auto;
+  border-radius: var(--sheet-radius);
+  background: var(--surface);
+  box-shadow: 0 10px 40px rgba(42, 35, 32, 0.22), 0 0 0 1px var(--rule);
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+}
+
+.sheetBody {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.sheetTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sheetEyebrow {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.sheetTitle {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.sheetLede {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.sheetSection {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.sheetNotice {
+  margin: 0;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: #fff4ec;
+  color: #8a3a0c;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sheetFoot {
+  margin: 0;
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.sheetActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btnPrimary,
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font: 700 14px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btnPrimary {
+  flex: 1 1 auto;
+  border: 0;
+  background: var(--biketown);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(226, 86, 14, 0.35);
+}
+
+.btnGhost {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.btnPrimary:hover,
+.btnGhost:hover {
+  transform: translateY(-1px);
+}
+
+.btnPrimary:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.btnGhost[aria-pressed='true'] {
+  border-color: var(--ink);
+}
+
+.linkBtn {
+  border: 0;
+  background: none;
+  padding: 4px 0;
+  font: 600 13px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  color: var(--biketown);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: #f3efe9;
+  color: var(--ink-soft);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ---- rows (near you) ---- */
+
+.rowList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px;
+  margin: 0 -8px;
+  width: calc(100% + 16px);
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.row:hover {
+  background: #f6f2ec;
+}
+
+.rowIcon {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #f3efe9;
+  color: var(--ink);
+}
+
+.rowIcon[data-kind='station'] {
+  background: var(--biketown);
+  color: #fff;
+}
+
+.rowIcon[data-kind='e'] {
+  background: #fde6da;
+  color: #b8430a;
+}
+
+.rowIcon[data-kind='s'] {
+  background: #dce9f8;
+  color: #1f5fae;
+}
+
+.rowText {
+  min-width: 0;
+  flex: 1;
+  display: grid;
+  gap: 1px;
+}
+
+.rowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowSub {
+  font-size: 12px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowTime {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- detail ---- */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 36px;
+}
+
+.headIcon {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: #f3efe9;
+  color: var(--ink);
+}
+
+.headIcon[data-tone='bike'] {
+  background: var(--biketown);
+  color: #fff;
+}
+
+.headIcon[data-tone='scooter'] {
+  background: var(--scooter);
+  color: #fff;
+}
+
+.headIcon[data-tone='empty'] {
+  background: #eceef1;
+  color: var(--empty);
+}
+
+.headSub {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-faint);
+}
+
+.headTitle {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.factRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.factRow > span:first-child {
+  flex: none;
+  color: var(--ink-faint);
+}
+
+.factRow > span:last-child {
+  text-align: right;
+}
+
+.mono {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 11px;
+}
+
+.trip {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #faf6ef;
+}
+
+.trip[data-loading] {
+  font-size: 13px;
+  color: var(--ink-faint);
+  animation: breathe 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.5;
+  }
+}
+
+.tripLine {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tripPill svg,
+.rowTime svg,
+.btnPrimary svg,
+.btnGhost svg {
+  flex: none;
+}
+
+.tripPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--rule);
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tripPill[data-mode='bike'] {
+  background: var(--biketown);
+  border-color: var(--biketown);
+  color: #fff;
+}
+
+.tripPill[data-mode='scooter'] {
+  background: var(--scooter);
+  border-color: var(--scooter);
+  color: #fff;
+}
+
+.tripArrow {
+  flex: none;
+  color: var(--ink-faint);
+}
+
+.tripTotal {
+  margin-left: auto;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.tripTotal small {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}
+
+.tripCaption {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.walkAll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.fasterTag {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #e3f3ea;
+  color: #2c7a51;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat {
+  display: grid;
+  gap: 2px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #faf6ef;
+}
+
+.statN {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.provenance {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3f9d6b;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---- phone: the sheet docks to the bottom edge ---- */
+
+@media (max-width: 640px) {
+  .mapWrapper {
+    height: 82dvh;
+    min-height: 560px;
+    border-radius: 10px;
+  }
+
+
+  .legend {
+    left: 8px;
+    top: 10px;
+  }
+
+  .sheetSlot {
+    left: 8px;
+    right: 8px;
+    bottom: 18px;
+    width: auto;
+    max-height: 50%;
+  }
+
+  .sheetBody {
+    padding: 14px;
+  }
+
+  .sheetTitle {
+    font-size: 19px;
+  }
+}
+
+/* The sheet covers the bottom-left, so the zoom buttons ride above it on
+   phones and stay clear of it on desktop by living bottom-right. */
+@media (max-width: 640px) {
+  .map :global(.leaflet-bottom.leaflet-right) {
+    bottom: calc(50% + 10px);
+  }
+}
+
+/* ---- icon helpers ---- */
+
+.fsBtn svg {
+  display: block;
+}
+
+.inlineIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.closestTag {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+
+.sheetTitleSm {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.btnSmall {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--biketown);
+  color: #fff;
+  font: 700 13px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  cursor: pointer;
+}
+
+/* ---- step 1: where are you starting ---- */
+
+.startOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  /* The map stays visible behind the question: it is the promise. */
+  background: rgba(250, 246, 239, 0.42);
+  backdrop-filter: blur(2px) saturate(0.8);
+  animation: fadeIn 0.3s ease both;
+}
+
+.startCard {
+  width: min(400px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 20px 60px rgba(42, 35, 32, 0.28), 0 0 0 1px var(--rule);
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  animation: rise 0.4s ease 0.1s both;
+}
+
+.startTitle {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.startCard .sheetLede {
+  margin-bottom: 6px;
+}
+
+.startOption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--surface);
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.startOption:hover {
+  transform: translateY(-1px);
+  border-color: rgba(42, 35, 32, 0.3);
+  box-shadow: 0 4px 14px rgba(42, 35, 32, 0.1);
+}
+
+.startOption:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.startOptionIcon {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: #f3efe9;
+  color: var(--ink);
+}
+
+.startOption[data-primary] {
+  border-color: var(--biketown);
+  background: #fff7f2;
+}
+
+.startOption[data-primary] .startOptionIcon {
+  background: var(--biketown);
+  color: #fff;
+}
+
+.startSearch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 6px 0 14px;
+  border-radius: 999px;
+  background: #f3efe9;
+  color: var(--ink-faint);
+}
+
+.startSearch input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font: 500 14px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  color: var(--ink);
+}
+
+.startSearch button {
+  flex: none;
+  height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font: 700 13px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  cursor: pointer;
+}
+
+.startSearch button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.startSkip {
+  justify-self: center;
+  border: 0;
+  background: none;
+  padding: 6px 10px;
+  font: 600 13px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* While step 1 is up, the key steps back. */
+.mapWrapper[data-step='start'] .legend,
+.mapWrapper[data-step='picking'] .legend {
+  visibility: hidden;
+}
+
+/* ---- picking: the map moves under a fixed pin ---- */
+
+.pickPin {
+  position: absolute;
+  z-index: 650;
+  left: 50%;
+  top: 50%;
+  /* The pin's point is at the bottom center of the icon, on the map center. */
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(42, 35, 32, 0.3));
+  animation: pinDrop 0.35s cubic-bezier(0.3, 1.4, 0.6, 1) both;
+}
+
+.pickPin svg {
+  display: block;
+  fill: var(--biketown);
+  color: #fff;
+}
+
+.pickShadow {
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 12px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(42, 35, 32, 0.35);
+  transform: translateX(-50%);
+}
+
+@keyframes pinDrop {
+  from {
+    transform: translate(-50%, -160%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .startCard {
+    padding: 18px;
+  }
+
+  .startTitle {
+    font-size: 22px;
+  }
+}
+
+/* ---- the step flow ---- */
+
+.stepHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.backBtn {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #f3efe9;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.backBtn:hover {
+  background: #e9e3da;
+}
+
+.choiceList {
+  display: grid;
+  gap: 8px;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--surface);
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  animation: rise 0.3s ease both;
+}
+
+.choice:nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.choice:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.choice:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(42, 35, 32, 0.3);
+  box-shadow: 0 4px 14px rgba(42, 35, 32, 0.1);
+}
+
+.choice:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.choiceIcon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: #f3efe9;
+  color: var(--ink);
+}
+
+.choiceIcon[data-choice='bike'] {
+  background: var(--biketown);
+  color: #fff;
+}
+
+.choiceIcon[data-choice='scooter'] {
+  background: var(--scooter);
+  color: #fff;
+}
+
+.chev {
+  flex: none;
+  color: var(--ink-faint);
+}
+
+.rideSummary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px 8px 8px;
+  border: 0;
+  border-radius: 14px;
+  background: #faf6ef;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.rideSummary .rowIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+}
+
+.catGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.catTile {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  padding: 10px 2px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: var(--surface);
+  font: 600 11px var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.catTile:hover {
+  transform: translateY(-1px);
+}
+
+.catTile[data-on='true'] {
+  border-color: var(--ink);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.catIcon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--ink);
+}
+
+.tripFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+
+.tripFooter .linkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.provenanceInline {
+  font-family: var(--font-space-mono, ui-monospace, monospace);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3f9d6b;
+}
+
+.sheetNoticeBar {
+  margin: 0 16px 16px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: #fff4ec;
+  color: #8a3a0c;
+  font-size: 13px;
+}
+
+/* Candidates the step offers wear a quieter ring than the one chosen. */
+.selRing[data-tone='option'] {
+  width: 44px;
+  height: 44px;
+  margin: 4px;
+  border-width: 2px;
+  border-style: dashed;
+  background: none;
+  animation: none;
+}
+
+/* ---- key rows that double as toggles ---- */
+
+button.keyRow {
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 2px 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+button.keyRow[data-on='false'] > :not(.keySwitch) {
+  opacity: 0.4;
+}
+
+.keySwitch {
+  flex: none;
+  margin-left: auto;
+  position: relative;
+  width: 26px;
+  height: 15px;
+  border-radius: 999px;
+  background: #d9d4cc;
+  transition: background 0.15s ease;
+}
+
+.keySwitch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s ease;
+}
+
+.keySwitch[data-on='true'] {
+  background: var(--ink);
+}
+
+.keySwitch[data-on='true']::after {
+  transform: translateX(11px);
+}
+
+.keyDivider {
+  height: 1px;
+  background: var(--rule);
+}
+
+.keyPlace {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--ink);
+}
+
+.refreshBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 640px) {
+  .catTile {
+    font-size: 10px;
+  }
+
+  .catIcon {
+    width: 34px;
+    height: 34px;
+  }
+}

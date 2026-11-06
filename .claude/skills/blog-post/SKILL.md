@@ -56,6 +56,17 @@ Specific qualities to bring:
 
 **On revising:** Tightening an existing post means cutting and rewording what's already there, not adding new examples or analogies. Go paragraph by paragraph and say what to keep, cut, or reword. Recount the words after each pass.
 
+**Story posts (a real event told start to finish):** James dictates the story in long passes, catches his own inaccuracies on reread, and adds detail as he remembers it. A few things that keep the draft honest and alive:
+
+- **Never fill a gap with invented fact.** If his dictation is ambiguous (which street, who said what, what a rule actually was), write around it with something true at a coarser grain ("reached farther down the corridor than I'd asked for") and flag it. Any color you add yourself, flag it too so he can cut it.
+- **Don't hand him a confession he didn't make.** A theme he relates to in general ("I know overthinking") is not a claim about this event. Frame it as the road not taken ("I could easily have talked myself out of it") unless he says it happened.
+- **Procedure is not story.** When the draft starts reading like a timeline of agencies and rules, compress to the moments with impact: the surprising fact, the funny loop, the setback, the turn. Every detail has to move the reader or it goes.
+- **Credit the people, by role.** A story where he wins and everyone else is scenery reads as bragging. Naming who helped (the customer service rep, the engineer, the field lead) makes it humbler and more vivid at once.
+- **Open on the idea, not on him.** The reference posts (*Who's the Smartest?*, *Remarkable Is a Direction*) open on a thought anyone can feel, then use one personal story as evidence. A story post should still read that way.
+- **Fix the facts the moment he names them,** then keep going. Tense matters too: a changed thing gets past tense ("it ran at 45").
+
+The title can move late. When it does, rename both `blog/{slug}.md` and `public/blog/{slug}.png` together and grep for the old slug.
+
 The final wording pass belongs to James. He reads the post through against the local build and rewrites phrases into his own language, and that pass is what makes it sound like him rather than like a draft. Before calling a post done, check that he has had it.
 
 ### 4. Generate Front Matter
@@ -114,6 +125,8 @@ The image is part of the post. It should feel inevitable — like the title and 
 - **A little humor goes a long way.** The image can be funnier than the post. That contrast — irreverent image, genuine depth inside — is the whole vibe.
 - **Title and image click together last.** Often the right title only becomes obvious once the right image appears. Don't lock the title until you've thought about the image.
 - **Reach for one deep cut.** A reference that reads naturally to any reader but rewards the ones who know it, ideally tied to the image. One is plenty.
+- **His own instinct usually wins.** Offer directions, but when an image "just comes to him," build on it (find the deep cut inside it) rather than arguing for yours.
+- **Pasted screenshots vanish.** macOS clears the temp path before you can read it, and Desktop/Downloads are off limits. Ask him to save the image into `public/blog/`, then crop to 1200x630 with `sips` (`--cropToHeightWidth` + `--cropOffset`, then `--resampleHeightWidth 630 1200`), look at the result, and delete the raw file.
 - **Suggest image directions, don't just describe a placeholder.** Give the user 2-3 specific directions to explore — a movie scene, a cultural moment, a type of shot — and explain why each one might work.
 
 ## Key Decisions

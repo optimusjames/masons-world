@@ -8,6 +8,13 @@ This file tracks major changes and milestones in the project.
 
 ---
 
+## November 2026
+
+**Blog post, *Keep Moving*, and story-post guidance for the blog skill**
+New post on the McLoughlin / 99E speed reduction, told as a story about curiosity and momentum: one question to Vision Zero, a polite loop between city and state, a year that took a year and a half, and signs (and Waze) reading 40 by January 2026. The thesis is that the full route is rarely visible from the start, but the next question usually is. Image is the burned-out car from *Planes, Trains and Automobiles*. Several passes moved it from a process report to a story; those lessons went into `.claude/skills/blog-post/SKILL.md` as a "Story posts" section (no invented facts, no assigned confessions, compress procedure to moments, credit people by role, open on the idea) plus notes on late title renames and cropping pasted screenshots.
+
+---
+
 ## October 2026
 
 **Ride PDX: the nearest BIKETOWN ride, and how long it takes**

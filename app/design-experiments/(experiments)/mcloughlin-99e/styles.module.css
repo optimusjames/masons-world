@@ -396,6 +396,30 @@
   margin-bottom: 0;
 }
 
+.storyCoda {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px dashed var(--rule);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.storyCoda:hover,
+.storyCoda:focus-visible {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.storyCodaTitle {
+  font-family: var(--font-space-grotesk, 'Space Grotesk', sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
 .storyBody strong {
   color: var(--ink);
   font-weight: 600;

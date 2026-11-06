@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect } from 'react'
+import Link from 'next/link'
 import MapHero from '@/app/design-experiments/components/MapHero'
 import styles from './styles.module.css'
 import MapView from './components/MapView'
@@ -106,6 +107,11 @@ export default function McLoughlinCorridor() {
               registerRef={registerCard(c.index)}
             />
           ))}
+          <Link href="/blog/keep-moving" className={styles.storyCoda}>
+            <span className={styles.storyEyebrow}>THE STORY BEHIND IT</span>
+            <span className={styles.storyCodaTitle}>Keep Moving &rarr;</span>
+            <span className={styles.storyBody}>How one question to Vision Zero became a new speed limit.</span>
+          </Link>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import { Space_Grotesk } from 'next/font/google'
 import { ChevronLeft } from 'lucide-react'
 import CurtainLink from '@/app/components/CurtainLink'
 import styles from './page.module.css'
-import { experiments } from '@/lib/experiments/data'
+import { experiments, categoryId } from '@/lib/experiments/data'
 import type { ExperimentCategory } from '@/app/types/experiments'
 
 // Civic work leads; wellness and tools read as clearly secondary clusters.
@@ -93,7 +93,7 @@ export default function Home() {
       <div className={styles.rule}></div>
 
       {groupedExperiments.map((group) => (
-        <section key={group.category} className={styles.categoryGroup}>
+        <section key={group.category} id={categoryId(group.category)} className={styles.categoryGroup}>
           <div className={styles.categoryHead}>
             <h2 className={styles.categoryTitle}>{group.category}</h2>
             <p className={styles.categoryBlurb}>{CATEGORY_BLURB[group.category]}</p>

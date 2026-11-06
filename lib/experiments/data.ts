@@ -145,3 +145,8 @@ export const experiments: Experiment[] = [
     category: 'Tools & Craft',
   },
 ]
+
+// "Civic & Data" -> "civic-data", so other pages can link straight to a group
+export function categoryId(category: string): string {
+  return category.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '')
+}

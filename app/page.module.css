@@ -190,6 +190,21 @@
 .sectionLink:hover { color: color-mix(in srgb, var(--accent) 65%, white); }
 .sectionLink:hover svg { opacity: 1; transform: translateX(3px); }
 
+.moreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.25rem;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  text-decoration: none;
+}
+.moreLink svg { opacity: 0.85; transition: transform 0.3s ease, opacity 0.3s ease; }
+.moreLink:hover { color: color-mix(in srgb, var(--accent) 65%, white); }
+.moreLink:hover svg { opacity: 1; transform: translateX(3px); }
+
 /* --- Lead card — the newest civic map, given real presence ---
 
    Entrance uses fill-mode `backwards`, not `forwards`/`both`, on purpose:

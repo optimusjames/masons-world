@@ -67,7 +67,7 @@ export const chapters: Chapter[] = [
     stat: '7 fatalities · 45 serious-injury crashes · 25 pedestrian crashes · 2018–2023',
     heading: "A state highway the city couldn't formally measure",
     body: [
-      "McLoughlin doesn't appear on Portland's High Crash Network, not because it's safe, but because the city ranks its own streets and this one belongs to ODOT. That jurisdictional gap went unexamined for decades; one ODOT engineer told me they could find no speed or safety evaluation of this section in over **60 years**.",
+      "McLoughlin doesn't appear on Portland's High Crash Network, not because it's safe, but because the city ranks its own streets and this one belongs to ODOT. That jurisdictional gap went unexamined for decades; when I asked ODOT, the last review of this section was somewhere among investigations dating back to **1949**, with no digital copies to check.",
       "The record it wasn't keeping: **7 fatalities** and 45 serious-injury crashes from 2018–2023, plus 25 pedestrian crashes, 3 of them fatal. The two most dangerous intersections nearby both rank citywide: SE Holgate at McLoughlin is Portland's **#12**, with **$14.85M** in injury costs. A corridor that had to be petitioned just to be reviewed was producing outcomes its own city couldn't formally measure.",
     ],
     layers: [

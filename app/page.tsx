@@ -4,7 +4,7 @@ import SiteFooter from "./components/SiteFooter";
 import NetworkCanvas from "./components/NetworkCanvas";
 import { getAllPosts } from "@/lib/blog/loadBlog";
 import { getAllRecommendations } from "@/app/(blog)/recommended/loadRecommended";
-import { experiments } from "@/lib/experiments/data";
+import { experiments, categoryId } from "@/lib/experiments/data";
 
 import Greeting from "./components/Greeting";
 import HomeNav from "./components/HomeNav";
@@ -135,6 +135,9 @@ export default async function Home() {
                 </CurtainLink>
               ))}
             </div>
+            <CurtainLink href={`/design-experiments#${categoryId(FEATURED_CATEGORY)}`} className={styles.moreLink} curtainTransition={true}>
+              More maps {caret}
+            </CurtainLink>
           </section>
 
           {/* Secondary — Writing + Recommendations */}
